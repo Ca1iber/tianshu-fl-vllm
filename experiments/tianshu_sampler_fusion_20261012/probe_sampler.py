@@ -39,6 +39,12 @@ def main():
               'cases': [], 'timings': [], 'started_utc': datetime.now(timezone.utc).isoformat()}
     result['packages']={name:importlib.metadata.version(name) for name in ('torch','flag-gems','vllm')}
     result['baseline_sources']={}
+    diagnostic=torch.tensor([1.0,2.0,-3.0],device='cuda')
+    cpu_cast=diagnostic.cpu().double()
+    device_cast=diagnostic.double().cpu()
+    result['fp64_cast_diagnostic']={'cpu_cast':cpu_cast.tolist(),'device_cast':device_cast.tolist(),
+                                   'equal':torch.equal(cpu_cast,device_cast)}
+    result['cpu_oracle_built_after_host_transfer']=True
     for name in ('softmax','true_divide','argmax'):
         file=Path(inspect.getsourcefile(getattr(flag_gems,name)))
         result['baseline_sources'][name]={'path':str(file),'sha256':hashlib.sha256(file.read_bytes()).hexdigest()}
