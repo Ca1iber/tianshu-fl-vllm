@@ -13,14 +13,15 @@ def _gemm(a, weight, partial, out, m: tl.constexpr, n: tl.constexpr,
     ni = tl.program_id(1) * bn + tl.arange(0, bn)
     segment = tl.program_id(2)
     ki = segment * bk + tl.arange(0, bk)
+    ap = a + mi[:, None] * k + ki[None, :]
+    bp = weight + ni[None, :] * k + ki[:, None]
     acc = tl.zeros((bm, bn), tl.float32)
     for step in range(tl.cdiv(k, bk * splits)):
-        av = tl.load(a + mi[:, None] * k + ki[None, :],
-                     (mi[:, None] < m) & (ki[None, :] < k), other=0)
-        bv = tl.load(weight + ni[None, :] * k + ki[:, None],
-                     (ni[None, :] < n) & (ki[:, None] < k), other=0)
-        acc = tl.dot(av, bv, acc)
-        ki += bk * splits
+        av = tl.load(ap, mi[:, None] < m, other=0)
+        bv = tl.load(bp, ni[None, :] < n, other=0)
+        acc = tl.dot(av, bv, acc, input_precision=None)
+        ap += bk * splits
+        bp += bk * splits
     offset = mi[:, None] * n + ni[None, :]
     mask = (mi[:, None] < m) & (ni[None, :] < n)
     if splits == 1:
@@ -41,6 +42,7 @@ def _sum(partial, out, count: tl.constexpr, splits: tl.constexpr, block: tl.cons
 def prepare(a, weight, config):
     assert a.ndim == weight.ndim == 2 and a.shape[1] == weight.shape[1]
     assert a.dtype == weight.dtype == torch.bfloat16 and a.is_contiguous() and weight.is_contiguous()
+    assert a.shape[1] % (config['bk'] * config['splits']) == 0
     m, k = a.shape
     n = weight.shape[0]
     return (torch.empty((config['splits'], m, n), device=a.device, dtype=torch.float32),

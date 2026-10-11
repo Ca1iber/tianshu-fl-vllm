@@ -70,7 +70,9 @@ def main():
                         x.fill_(float('-inf'))
                     q = torch.empty_like(x).exponential_(generator=gen)
                     # CPU FP64 exponential-race oracle, independent of GPU kernels.
-                    xc, qc = x.double().cpu(), q.double().cpu()
+                    # Build the FP64 oracle entirely on CPU; the device's
+                    # float64 conversion is not part of a reference path.
+                    xc, qc = x.cpu().double(), q.cpu().double()
                     expected = (xc - qc.log()).argmax(-1)
                     reference = baseline(x, q).cpu()
                     production = gems_baseline(x,q).cpu()

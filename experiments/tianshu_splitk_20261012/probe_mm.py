@@ -21,6 +21,7 @@ def error(value, reference):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--smoke',action='store_true')
     args = parser.parse_args()
     root = args.output.resolve()
     root.mkdir(parents=True, exist_ok=True)
@@ -42,6 +43,8 @@ def main():
     configs = [dict(bm=bm, bn=bn, bk=64, splits=splits, warps=warps, stages=2)
                for bm, bn, warps in ((16,64,4),(32,64,4),(64,64,4),(32,128,4),(64,128,8))
                for splits in (1,2,4)]
+    if args.smoke:
+        configs=[c for c in configs if c['bm']==64 and c['bn']==64]
     result = {'complete': False, 'official_benchmark': False, 'adoption_allowed': False,
               'installed_files_modified': False, 'cases': [],
               'source_sha256': hashlib.sha256(Path(__file__).with_name('experimental_mm.py').read_bytes()).hexdigest()}
@@ -54,9 +57,10 @@ def main():
 
     try:
         with torch.inference_mode():
-            for m in (64, 8):
-                for name, n, k in (('qkv',2560,2048),('o_proj',2048,2048),
-                                   ('gate_up',12288,2048),('down',2048,6144)):
+            for m in ((64,) if args.smoke else (64, 8)):
+                shapes=(('qkv',2560,2048),) if args.smoke else (('qkv',2560,2048),('o_proj',2048,2048),
+                                                                             ('gate_up',12288,2048),('down',2048,6144))
+                for name,n,k in shapes:
                     gen = torch.Generator(device='cuda').manual_seed(2026101250+m+n)
                     a = torch.randn((m,k),device='cuda',dtype=torch.bfloat16,generator=gen)
                     weight = torch.randn((n,k),device='cuda',dtype=torch.bfloat16,generator=gen)
