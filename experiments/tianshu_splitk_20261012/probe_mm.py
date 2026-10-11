@@ -11,12 +11,6 @@ import subprocess
 import inspect
 import importlib.metadata
 
-import torch
-import vllm_fl  # use the same installed Iluvatar compatibility initialization
-import flag_gems
-from experimental_mm import prepare, mm
-
-
 def error(value, reference):
     delta = (value.float() - reference.float()).abs()
     failed = delta > (.02 + .01 * reference.float().abs())
@@ -38,6 +32,11 @@ def main():
     hardware = subprocess.check_output(['ixsmi'], text=True)
     assert 'No running processes found' in hardware, 'GPU jobs must be serial'
     (root / 'hardware_before.txt').write_text(hardware)
+    # Check ownership before compatibility imports can initialize our context.
+    import torch
+    import vllm_fl  # same installed Iluvatar compatibility initialization
+    import flag_gems
+    from experimental_mm import prepare, mm
     torch.set_num_threads(8)
     torch.backends.cuda.matmul.allow_tf32 = False
     configs = [dict(bm=bm, bn=bn, bk=64, splits=splits, warps=warps, stages=2)

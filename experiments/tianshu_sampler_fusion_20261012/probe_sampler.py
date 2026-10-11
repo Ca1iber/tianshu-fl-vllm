@@ -11,12 +11,6 @@ import subprocess
 import inspect
 import importlib.metadata
 
-import torch
-import vllm_fl  # use the same installed Iluvatar compatibility initialization
-import flag_gems
-from experimental_sampler import prepare, sample_with_noise
-
-
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--output', type=Path, required=True)
@@ -33,6 +27,11 @@ def main():
     hardware = subprocess.check_output(['ixsmi'], text=True)
     assert 'No running processes found' in hardware, 'GPU probe must run serially'
     (root / 'hardware_before.txt').write_text(hardware)
+    # Check ownership before compatibility imports can initialize our context.
+    import torch
+    import vllm_fl  # same installed Iluvatar compatibility initialization
+    import flag_gems
+    from experimental_sampler import prepare, sample_with_noise
     torch.set_num_threads(8)
     result = {'complete': False, 'official_benchmark': False,
               'installed_files_modified': False, 'adoption_allowed': False,
