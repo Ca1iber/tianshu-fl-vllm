@@ -24,11 +24,14 @@ def main():
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--no-graphs',action='store_true')
     parser.add_argument('--small-only',action='store_true')
+    parser.add_argument('--concurrency',type=int,choices=[16,64])
     parser.add_argument('--adaptive',choices=['0','1'],default='0')
     parser.add_argument('--tile',choices=['0','1'],default='0')
     parser.add_argument('--max-batched-tokens',type=int,choices=[2048,4096,8192],default=2048)
     parser.add_argument('--warmup-rounds',type=int,default=2)
     args=parser.parse_args();root=args.output.resolve();root.mkdir(parents=True,exist_ok=True)
+    if args.small_only and args.concurrency == 64:
+        parser.error('--small-only and --concurrency64 select different workloads')
     if args.warmup_rounds < 1:parser.error('At least one full-shape warmup round is required')
     if (root/'result.json').exists():raise RuntimeError('Refusing to overwrite a completed profile')
     traces=root/'traces'
@@ -142,7 +145,9 @@ def main():
                 if any(x['id']=='minicpm' for x in d['data']):break
             except Exception:pass
             time.sleep(3)
-        for index,concurrency in enumerate((16,) if args.small_only else (16,64)):
+        selected=(args.concurrency,) if args.concurrency else ((16,) if args.small_only else (16,64))
+        state['profile_concurrencies']=list(selected)
+        for index,concurrency in enumerate(selected):
             state['phase']=f'warmup_{concurrency}';save()
             warmup=[batch(concurrency,128,2026101140+1000*index+100*round_index)
                     for round_index in range(args.warmup_rounds)]
