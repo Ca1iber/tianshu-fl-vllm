@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: Apache-2.0
 """Audit independent EvalScope completion; --ignore-errors is not sufficient."""
 import argparse
+from collections import Counter
 from datetime import datetime, timezone
 import hashlib
 import json
@@ -31,6 +32,9 @@ def main():
     predictions = [json.loads(line) for line in prediction_path.read_text().splitlines()]
     assert len(reviews) == len(predictions) == 105
     assert len({r['index'] for r in reviews}) == 105
+    assert len({p['index'] for p in predictions}) == 105
+    assert all(p['model_output']['error'] is None for p in predictions)
+    stop_reasons = Counter(p['model_output']['choices'][0]['stop_reason'] for p in predictions)
     scores = [r['sample_score']['score'] for r in reviews]
     assert all(s['status'] == 'success' for s in scores)
     values = [s['value']['accuracy'] for s in scores]
@@ -46,6 +50,9 @@ def main():
         'accuracy': correct / 105, 'report_accuracy': metric['score'],
         'execution_summary': execution, 'review_statuses': {'success': 105},
         'incorrect_indices': [r['index'] for r, v in zip(reviews, values) if not v],
+        'generation_stop_reasons': dict(stop_reasons),
+        'max_tokens_indices': [p['index'] for p in predictions
+                               if p['model_output']['choices'][0]['stop_reason'] == 'max_tokens'],
         'hybrid_source': state['hybrid_source'], 'hybrid_sha256': state['hybrid_sha256'],
         'evaluation_command': state['evaluation_command'],
         'gpu_idle_after': True,
