@@ -243,6 +243,24 @@ class WorkerFL(WorkerBase):
 
         register_oot_ops()
 
+        from vllm_fl.worker.iluvatar_hybrid_attention import configure
+        if configure(self.vllm_config, logger):
+            stats_path = os.getenv("VLLM_FL_ILUVATAR_HYBRID_STATS_PATH", "")
+            if stats_path:
+                import atexit
+                import hashlib
+                import json
+                from pathlib import Path
+                from vllm_fl.worker import iluvatar_hybrid_attention as hybrid
+
+                def dump_hybrid_stats():
+                    data = dict(python_callbacks=hybrid.COUNTS,
+                        source=hybrid.__file__,
+                        source_sha256=hashlib.sha256(Path(hybrid.__file__).read_bytes()).hexdigest())
+                    Path(stats_path).write_text(json.dumps(data, indent=2) + "\n")
+
+                atexit.register(dump_hybrid_stats)
+
         if fl_envs.USE_FLAGGEMS:
             import flag_gems
 
