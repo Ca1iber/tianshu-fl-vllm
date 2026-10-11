@@ -22,6 +22,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--smoke',action='store_true')
+    parser.add_argument('--prefill',action='store_true')
     args = parser.parse_args()
     root = args.output.resolve()
     root.mkdir(parents=True, exist_ok=True)
@@ -45,6 +46,14 @@ def main():
                for splits in (1,2,4)]
     if args.smoke:
         configs=[c for c in configs if c['bm']==64 and c['bn']==64]
+    if args.prefill:
+        assert not args.smoke
+        configs=[dict(bm=bm,bn=bn,bk=bk,splits=1,warps=warps,stages=stages)
+                 for bm,bn,bk,warps,stages in (
+                     (64,128,64,4,2),(128,64,64,4,2),(128,128,32,8,2),
+                     (128,128,64,8,1),(128,128,64,8,2),(128,128,128,8,2),
+                     (128,256,64,8,2),(256,128,64,8,2),(256,256,32,16,2),
+                     (128,128,64,16,2),(128,256,64,16,2),(256,128,128,16,2))]
     result = {'complete': False, 'official_benchmark': False, 'adoption_allowed': False,
               'installed_files_modified': False, 'cases': [],
               'source_sha256': hashlib.sha256(Path(__file__).with_name('experimental_mm.py').read_bytes()).hexdigest()}
@@ -57,7 +66,7 @@ def main():
 
     try:
         with torch.inference_mode():
-            for m in ((64,) if args.smoke else (64, 8)):
+            for m in ((2048,) if args.prefill else ((64,) if args.smoke else (64, 8))):
                 shapes=(('qkv',2560,2048),) if args.smoke else (('qkv',2560,2048),('o_proj',2048,2048),
                                                                              ('gate_up',12288,2048),('down',2048,6144))
                 for name,n,k in shapes:
