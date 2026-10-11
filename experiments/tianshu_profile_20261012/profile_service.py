@@ -26,7 +26,10 @@ def main():
     parser.add_argument('--small-only',action='store_true')
     parser.add_argument('--adaptive',choices=['0','1'],default='0')
     parser.add_argument('--max-batched-tokens',type=int,choices=[2048,4096,8192],default=2048)
+    parser.add_argument('--warmup-rounds',type=int,default=2)
     args=parser.parse_args();root=args.output.resolve();root.mkdir(parents=True,exist_ok=True)
+    if args.warmup_rounds < 1:parser.error('At least one full-shape warmup round is required')
+    if (root/'result.json').exists():raise RuntimeError('Refusing to overwrite a completed profile')
     traces=root/'traces'
     profiler={'profiler':'torch','torch_profiler_dir':str(traces),
         'torch_profiler_with_stack':False,'torch_profiler_record_shapes':False,
@@ -129,8 +132,10 @@ def main():
             time.sleep(3)
         for index,concurrency in enumerate((16,) if args.small_only else (16,64)):
             state['phase']=f'warmup_{concurrency}';save()
-            warmup=batch(concurrency,16,2026101140+1000*index)
+            warmup=[batch(concurrency,128,2026101140+1000*index+100*round_index)
+                    for round_index in range(args.warmup_rounds)]
             before=set(traces.rglob('*'))
+            log_boundary=len((root/'server.log').read_text(errors='replace'))
             state['phase']=f'profiling_{concurrency}';save()
             post('/start_profile',{})
             try:measured=batch(concurrency,128,2026101540+1000*index)
@@ -140,6 +145,9 @@ def main():
             if analysis['gpu_kernel_total_ms']<=0:raise RuntimeError('No GPU activity events')
             state['cases'].append({'concurrency':concurrency,'input_tokens':4096,'output_tokens':128,
                 'warmup':warmup,'measured':measured,'trace_files':[str(p) for p in paths],'analysis':analysis})
+            state['cases'][-1]['observed_tuning_lines']=[
+                line for line in (root/'server.log').read_text(errors='replace')[log_boundary:].splitlines()
+                if 'autotuning' in line.lower() or 'AABS' in line]
             save()
         state['phase']='complete'
     except BaseException as error:
