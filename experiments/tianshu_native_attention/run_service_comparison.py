@@ -25,7 +25,12 @@ def main():
     parser.add_argument('--gather', choices=['0', '1'], default='0')
     parser.add_argument('--hybrid', choices=['0','1'], required=True)
     parser.add_argument('--output-tokens',type=int,default=128)
+    parser.add_argument('--concurrency', type=int, default=16)
+    parser.add_argument('--requests', type=int, default=16)
+    parser.add_argument('--rounds', type=int, default=5)
     args = parser.parse_args()
+    if min(args.output_tokens, args.concurrency, args.requests) < 1 or args.rounds < 2:
+        parser.error('Positive workload sizes and at least two rounds are required')
     if args.buckets != '0' or args.gather != '0':
         raise RuntimeError('Only the hybrid flag varies in this experiment')
     out = args.output.resolve()
@@ -48,9 +53,10 @@ def main():
     state = dict(hybrid=args.hybrid, phase='preparing', runner_pid=os.getpid(), buckets=args.buckets, gather=args.gather,
                  started_at_utc=datetime.now(timezone.utc).isoformat(), command=command,
                  rare_cases=[], short_4k_rounds=[], scored=False,
-                 workload={'input_tokens': 4096, 'output_tokens': args.output_tokens, 'concurrency': 16,
-                           'requests_per_round': 16, 'rounds': 5},
-                 note='Five short 4K rounds with 16 requests/concurrency16; not official 4K/1K 256-request score.')
+                 workload={'input_tokens': 4096, 'output_tokens': args.output_tokens,
+                           'concurrency': args.concurrency, 'requests_per_round': args.requests,
+                           'rounds': args.rounds, 'excluded_rounds': [1]},
+                 note='Short 4K experiment excluding round one; not the official 256-request average score.')
     server = None
 
     class StopRequested(BaseException):
@@ -182,29 +188,33 @@ def main():
             result['tune_records'] = tune_records(log_path.read_text()[before:])
             state['rare_cases'].append(result)
             save()
-        for round_index in range(5):
+        for round_index in range(args.rounds):
             deadline()
             state['phase'] = f'short_4k_round_{round_index + 1}'
             save()
             before = len(log_path.read_text())
             start = time.perf_counter()
-            with ThreadPoolExecutor(max_workers=16) as pool:
-                futures = [pool.submit(request, 4096, args.output_tokens, 2026101200 + 100 * round_index + i,
-                                       True, 1.0) for i in range(16)]
+            with ThreadPoolExecutor(max_workers=args.concurrency) as pool:
+                futures = [pool.submit(request, 4096, args.output_tokens,
+                                       2026101200 + max(100, args.requests) * round_index + i,
+                                       True, 1.0) for i in range(args.requests)]
                 responses = [future.result() for future in futures]
             duration = time.perf_counter() - start
             state['short_4k_rounds'].append(dict(round=round_index + 1, duration_seconds=duration,
-                    total_tokens_per_second=16 * (4096 + args.output_tokens) / duration,
-                    output_tokens_per_second=16 * args.output_tokens / duration,
+                    total_tokens_per_second=args.requests * (4096 + args.output_tokens) / duration,
+                    output_tokens_per_second=args.requests * args.output_tokens / duration,
                     mean_ttft_seconds=statistics.mean(r['ttft_seconds'] for r in responses),
                     successful_requests=len(responses),
                     tuning_records=tune_records(log_path.read_text()[before:]), responses=responses))
             save()
         state['runtime_tune_records'] = tune_records(log_path.read_text()[boundary:])
         values = [r['total_tokens_per_second'] for r in state['short_4k_rounds'][1:]]
-        state['later_four_stability'] = dict(mean=statistics.mean(values),
+        state['measured_round_stability'] = dict(mean=statistics.mean(values),
+                    count=len(values), excluded_rounds=[1],
                     min=min(values), max=max(values), population_stddev=statistics.pstdev(values),
                     spread_percent=100 * (max(values) - min(values)) / statistics.mean(values))
+        if args.rounds == 5:
+            state['later_four_stability'] = state['measured_round_stability']
         state['phase'] = 'complete'
     except StopRequested as error:
         state.update(phase='stopped', error=str(error))

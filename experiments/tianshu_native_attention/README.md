@@ -12,4 +12,6 @@
 
 独立7场景数值检查通过，原版部分Prefill误差也有记录。Pure Decode与未重排fallback位级一致。短服务原版3024.12→4547.85 total tok/s（+50.39%），TTFT10251.90→6089.29ms，KV容量两侧521840。不冒充官方成绩，不沿用原版数学准确率。当前独立MATH运行中。
 
-完整报告与原始数据位于workspace service-results/20261011_2100_native_attention_tianshu。GPU测试串行，只清理自有进程，23:58 watchdog仅基于2026-10-11用户已确认预约。次日不能沿用旧授权/旧deadline。
+run_service_series.py 支持独立指定 --output-tokens、--concurrency、--requests、--rounds，保留原默认16路/16请求/128输出/五轮。下一组使用4096/1024、64路/64请求/三轮，首轮不计入实验均值，仍不属于官方256请求成绩。
+
+完整报告与原始数据位于workspace service-results/20261011_2100_native_attention_tianshu。GPU测试串行，只清理自有进程。用户已明确续约到2026-10-12中午12:00，预约JSON截止更新为11:58；此前已启动的数学评测仍保留旧23:58 watchdog，完成后不会延用它。
