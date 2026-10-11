@@ -218,6 +218,10 @@ class PlatformFL(Platform):
         if compilation_config.compile_sizes is None:
             compilation_config.compile_sizes = []
 
+        if cls.vendor_name == "iluvatar":
+            from vllm_fl.worker.iluvatar_prefill_buckets import configure
+            configure(vllm_config, cls, logger)
+
         if (
             cls.device_type == "musa"
             and compilation_config.cudagraph_mode.has_full_cudagraphs()

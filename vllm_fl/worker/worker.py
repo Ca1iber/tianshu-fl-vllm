@@ -724,6 +724,10 @@ class WorkerFL(WorkerBase):
             self.model_runner._dummy_run(size, skip_eplb=True, remove_lora=False)
         self.model_runner.maybe_remove_all_loras(self.model_runner.lora_config)
 
+        if current_platform.vendor_name == "iluvatar":
+            from vllm_fl.worker.iluvatar_prefill_buckets import warmup
+            warmup(self, logger)
+
         ### NOTE(lms): can add gems kernel pretune here
         # Warmup and tune the kernels used during model execution before
         # cuda graph capture.

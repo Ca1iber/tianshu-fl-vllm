@@ -3947,6 +3947,21 @@ class ModelRunnerFL(
             num_tokens_padded, disable_full=use_cascade_attn or has_encoder_output
         )
         num_tokens_padded = batch_descriptor.num_tokens
+        # Bucket mixed/prefill GEMM rows independently of graph replay. Attention
+        # metadata and logits indices remain based on the real token count when
+        # the runtime mode is NONE; padded KV slots are filled with -1 later.
+        if (
+            cudagraph_mode == CUDAGraphMode.NONE
+            and not uniform_decode and not force_eager
+            and not use_cascade_attn and not has_encoder_output
+        ):
+            from vllm_fl.worker.iluvatar_prefill_buckets import enabled, padded_tokens
+            if enabled(self.vllm_config, current_platform):
+                bucket = padded_tokens(num_tokens_padded, self.max_num_tokens)
+                if bucket != num_tokens_padded:
+                    batch_descriptor = replace(batch_descriptor, num_tokens=bucket)
+                    num_tokens_padded = bucket
+                    logger.info_once('Iluvatar prefill bucket: actual=%d, padded=%d', num_tokens, bucket)
         if self.compilation_config.pass_config.enable_sp:
             assert (
                 batch_descriptor.num_tokens
@@ -4432,13 +4447,13 @@ class ModelRunnerFL(
                         kv_connector_output,
                     )
 
-                sample_hidden_states = hidden_states[logits_indices]
+                sample_hidden_states = self._select_sample_hidden_states(hidden_states, logits_indices)
                 logits = self.model.compute_logits(sample_hidden_states)
             else:
                 # Rare case.
                 assert not self.is_pooling_model
 
-                sample_hidden_states = hidden_states[logits_indices]
+                sample_hidden_states = self._select_sample_hidden_states(hidden_states, logits_indices)
                 if not get_pp_group().is_last_rank:
                     all_gather_tensors = {
                         "residual": not is_residual_scattered_for_sp(
@@ -6123,7 +6138,13 @@ class ModelRunnerFL(
         logit_indices_device = torch.from_numpy(logit_indices).to(
             self.device, non_blocking=True
         )
-        return hidden_states, hidden_states[logit_indices_device]
+        return hidden_states, self._select_sample_hidden_states(hidden_states, logit_indices_device)
+
+    def _select_sample_hidden_states(self, hidden_states, indices):
+        from vllm_fl.worker.iluvatar_logits_gather import enabled, gather_rows
+        if enabled(self.vllm_config, current_platform):
+            return gather_rows(hidden_states, indices)
+        return hidden_states[indices]
 
     @managed_inference_mode()
     def _dummy_sampler_run(

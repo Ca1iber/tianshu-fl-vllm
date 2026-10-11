@@ -1,0 +1,63 @@
+{
+  "control": {
+    "startup_seconds": 147.1046140131075,
+    "round_seconds": [
+      53.41877611516975,
+      20.25252488697879,
+      20.25413905712776,
+      20.277025740826502,
+      20.275907655945048
+    ],
+    "runtime_gemm_tune_events": 24,
+    "runtime_all_tune_events": 26,
+    "later_four_stability": {
+      "mean": 3284.498021126344,
+      "min": 3282.532697385972,
+      "max": 3286.503799967887,
+      "population_stddev": 1.8781947324116832,
+      "spread_percent": 0.12090439867439311
+    }
+  },
+  "candidate": {
+    "startup_seconds": 621.2470943159424,
+    "round_seconds": [
+      66.11509795719758,
+      20.26855674618855,
+      20.265612221090123,
+      20.28358546178788,
+      20.30472625186667
+    ],
+    "runtime_gemm_tune_events": 0,
+    "runtime_all_tune_events": 1,
+    "later_four_stability": {
+      "mean": 3281.952834222838,
+      "min": 3278.054536385634,
+      "max": 3284.38140796615,
+      "population_stddev": 2.506732597291764,
+      "spread_percent": 0.19277765099309602
+    }
+  },
+  "gather_candidate": {
+    "startup_seconds": 72.07175860204734,
+    "round_seconds": [
+      43.73893799004145,
+      20.30622320016846,
+      20.274143096990883,
+      20.23917963798158,
+      20.30354990903288
+    ],
+    "runtime_gemm_tune_events": 0,
+    "runtime_all_tune_events": 0,
+    "later_four_stability": {
+      "mean": 3281.9319013988907,
+      "min": 3277.812882478698,
+      "max": 3288.6708448938853,
+      "population_stddev": 4.3907999300515534,
+      "spread_percent": 0.3308405762642121
+    }
+  },
+  "decision": "GEMM runtime tuning eliminated, overall stability goal not met; keep both features default disabled.",
+  "official_scored": false,
+  "math_accuracy": null,
+  "cache_note": "A then B then C, existing persistent caches retained. C startup is warm and cannot be claimed as a cold-start speedup."
+}
