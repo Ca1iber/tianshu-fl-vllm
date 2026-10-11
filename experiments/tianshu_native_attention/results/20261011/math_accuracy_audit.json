@@ -1,0 +1,83 @@
+{
+  "audited_at_utc": "2026-10-11T14:44:10.669509+00:00",
+  "candidate": "native_decode_fa2_prefill",
+  "complete": true,
+  "reused_original_accuracy": false,
+  "correct": 100,
+  "total": 105,
+  "accuracy": 0.9523809523809523,
+  "report_accuracy": 0.9524,
+  "execution_summary": {
+    "requested": 105,
+    "succeeded": 105,
+    "errored": 0,
+    "incomplete": false,
+    "subsets": {
+      "Level 3": {
+        "requested": 105,
+        "succeeded": 105,
+        "errored": 0
+      }
+    }
+  },
+  "review_statuses": {
+    "success": 105
+  },
+  "incorrect_indices": [
+    16,
+    18,
+    42,
+    87,
+    101
+  ],
+  "generation_stop_reasons": {
+    "stop": 103,
+    "max_tokens": 2
+  },
+  "max_tokens_indices": [
+    83,
+    101
+  ],
+  "hybrid_source": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/iluvatar_hybrid_attention.py",
+  "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+  "evaluation_command": [
+    "evalscope",
+    "eval",
+    "--model",
+    "minicpm",
+    "--api-url",
+    "http://127.0.0.1:9031/v1/chat/completions",
+    "--api-key",
+    "EMPTY",
+    "--eval-type",
+    "openai_api",
+    "--datasets",
+    "math_500",
+    "--dataset-args",
+    "{\"math_500\":{\"dataset_id\":\"/workspace/evalscope-datasets/math_500\",\"subset_list\":[\"Level 3\"]}}",
+    "--eval-batch-size",
+    "8",
+    "--timeout",
+    "3600",
+    "--generation-config",
+    "{\"temperature\":1.0,\"top_p\":0.95,\"max_tokens\":32768}",
+    "--work-dir",
+    "/workspace/benchmark-results/20261011_2100_native_attention_tianshu/math_hybrid/evalscope",
+    "--ignore-errors"
+  ],
+  "gpu_idle_after": true,
+  "raw_files": {
+    "evalscope/20261011_220119/reports/minicpm/math_500.json": {
+      "bytes": 8942,
+      "sha256": "9907b69eb019503bce9248cfdf5795927be49bd1bd1b95aae5561dd51cad6cf2"
+    },
+    "evalscope/20261011_220119/reviews/minicpm/math_500_Level 3.jsonl": {
+      "bytes": 1748185,
+      "sha256": "0a42f7e98684ec0d0095878876edc0c4f14a08e5d3fe0ff0132a65aa403d8106"
+    },
+    "evalscope/20261011_220119/predictions/minicpm/math_500_Level 3.jsonl": {
+      "bytes": 2662482,
+      "sha256": "acb3ba6c9eb2099f2f3f5210863584902cdec33cb1bb636af85e38f345664e3c"
+    }
+  }
+}
