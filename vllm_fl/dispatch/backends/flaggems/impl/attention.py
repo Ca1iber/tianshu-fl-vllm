@@ -5,6 +5,7 @@
 # SPDX-FileCopyrightText: Copyright contributors to the vLLM project
 
 from dataclasses import dataclass
+import os
 from typing import ClassVar
 
 import numpy as np
@@ -190,6 +191,8 @@ class AttentionFLMetadata:
     max_num_splits: int = 0
 
     causal: bool = True
+    split_num_decodes: int = 0
+    split_prefill_query_start_loc: torch.Tensor | None = None
 
 
 def _get_sliding_window_configs(
@@ -286,6 +289,15 @@ class AttentionFLMetadataBuilder(AttentionMetadataBuilder[AttentionFLMetadata]):
         # Sliding window size to be used with the AOT scheduler will be
         # populated on first build() call.
         self.aot_sliding_window: tuple[int, int] | None = None
+        from flag_gems import vendor_name
+        self.split_mixed_enabled = (
+            vendor_name == "iluvatar"
+            and self.dcp_world_size == 1
+            and os.environ.get("VLLM_FL_ILUVATAR_SPLIT_MIXED_ATTN", "0") == "1"
+        )
+        if self.split_mixed_enabled:
+            self._init_reorder_batch_threshold(1)
+        self._split_logged = False
 
     def build(
         self,
@@ -412,6 +424,22 @@ class AttentionFLMetadataBuilder(AttentionMetadataBuilder[AttentionFLMetadata]):
             max_num_splits=max_num_splits,
             causal=causal,
         )
+        if self.split_mixed_enabled and not use_cascade and max_query_len > 1:
+            # CPU scheduler metadata already exists; never synchronize GPU
+            # query starts to infer the split in each attention layer.
+            starts_cpu = common_attn_metadata.query_start_loc_cpu[:num_reqs + 1].numpy()
+            lengths = np.diff(starts_cpu)
+            nonsingle = np.flatnonzero(lengths != 1)
+            boundary = int(nonsingle[0]) if nonsingle.size else 0
+            if 0 < boundary < num_reqs and np.all(lengths[boundary:] > 1):
+                attn_metadata.split_num_decodes = boundary
+                attn_metadata.split_prefill_query_start_loc = (
+                    query_start_loc[boundary:num_reqs + 1] - boundary
+                )
+                if not self._split_logged:
+                    logger.info("Iluvatar split mixed Attention active: decode=%d, prefill=%d",
+                                boundary, num_reqs - boundary)
+                    self._split_logged = True
         return attn_metadata
 
     def use_cascade_attention(self, *args, **kwargs) -> bool:
@@ -590,6 +618,24 @@ class AttentionFLImpl(AttentionImpl):
                 )
                 return output
             else:
+                if (
+                    attn_metadata.split_num_decodes > 0
+                    and attn_metadata.split_prefill_query_start_loc is not None
+                    and self.attn_type == AttentionType.DECODER
+                ):
+                    from .iluvatar_mixed_attention import flash_attn_split_mixed
+                    flash_attn_split_mixed(
+                        q=query[:num_actual_tokens], k=key_cache, v=value_cache,
+                        out=output[:num_actual_tokens], cu_seqlens_q=cu_seqlens_q,
+                        prefill_cu_seqlens_q=attn_metadata.split_prefill_query_start_loc,
+                        seqused_k=seqused_k, block_table=block_table,
+                        num_decodes=attn_metadata.split_num_decodes,
+                        max_seqlen_q=max_seqlen_q, max_seqlen_k=max_seqlen_k,
+                        softmax_scale=self.scale, causal=attn_metadata.causal,
+                        window_size=self.sliding_window,
+                        softcap=self.logits_soft_cap, alibi_slopes=self.alibi_slopes,
+                    )
+                    return output
                 flash_attn_varlen_func(
                     q=query[:num_actual_tokens],
                     k=key_cache,
