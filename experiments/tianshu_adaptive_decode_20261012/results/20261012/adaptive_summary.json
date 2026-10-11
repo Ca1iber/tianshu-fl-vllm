@@ -1,0 +1,126 @@
+{
+  "adaptive": "1",
+  "hybrid": "1",
+  "phase": "complete",
+  "runner_pid": 43418,
+  "buckets": "0",
+  "gather": "0",
+  "started_at_utc": "2026-10-11T16:41:37.170973+00:00",
+  "command": [
+    "vllm",
+    "serve",
+    "/workspace/MiniCPM5-2B",
+    "--port",
+    "9031",
+    "--compilation-config",
+    "{\"cudagraph_mode\": \"FULL_DECODE_ONLY\"}",
+    "--served-model-name",
+    "minicpm",
+    "--gpu-memory-utilization",
+    "0.85",
+    "--max-model-len",
+    "131072"
+  ],
+  "scored": false,
+  "workload": {
+    "input_tokens": 4096,
+    "output_tokens": 1024,
+    "concurrency": 64,
+    "requests_per_round": 64,
+    "rounds": 3,
+    "excluded_rounds": [
+      1
+    ]
+  },
+  "note": "Short 4K experiment excluding round one; not the official 256-request average score.",
+  "updated_at_utc": "2026-10-11T16:55:34.115261+00:00",
+  "server_pid": 43420,
+  "startup_seconds": 162.103011979023,
+  "ready_at_utc": "2026-10-11T16:44:19.277663+00:00",
+  "measured_round_stability": {
+    "mean": 2397.9985270269935,
+    "count": 2,
+    "excluded_rounds": [
+      1
+    ],
+    "min": 2392.5692971541694,
+    "max": 2403.4277568998173,
+    "population_stddev": 5.429229872823953,
+    "spread_percent": 0.45281344518214023
+  },
+  "single_decode_workload": {
+    "input_tokens": 4096,
+    "output_tokens": 4096,
+    "concurrency": 1,
+    "requests_per_round": 1,
+    "rounds": 3,
+    "excluded_rounds": [
+      1
+    ]
+  },
+  "finished_at_utc": "2026-10-11T16:55:34.115228+00:00",
+  "short_4k_rounds": [
+    {
+      "round": 1,
+      "duration_seconds": 224.0150462440215,
+      "total_tokens_per_second": 1462.7588882715288,
+      "output_tokens_per_second": 292.55177765430574,
+      "mean_ttft_seconds": 29.573048276652116,
+      "successful_requests": 64
+    },
+    {
+      "round": 2,
+      "duration_seconds": 136.95737063488923,
+      "total_tokens_per_second": 2392.5692971541694,
+      "output_tokens_per_second": 478.51385943083386,
+      "mean_ttft_seconds": 23.298100805521244,
+      "successful_requests": 64
+    },
+    {
+      "round": 3,
+      "duration_seconds": 136.33861016179435,
+      "total_tokens_per_second": 2403.4277568998173,
+      "output_tokens_per_second": 480.68555137996344,
+      "mean_ttft_seconds": 23.35522519076767,
+      "successful_requests": 64
+    }
+  ],
+  "single_decode_rounds": [
+    {
+      "input_tokens": 4096,
+      "output_tokens": 4096,
+      "seed": 2026101210,
+      "usage": {
+        "prompt_tokens": 4096,
+        "total_tokens": 8192,
+        "completion_tokens": 4096
+      },
+      "wall_seconds": 56.2398975470569,
+      "ttft_seconds": 0.6657935241237283
+    },
+    {
+      "input_tokens": 4096,
+      "output_tokens": 4096,
+      "seed": 2026101211,
+      "usage": {
+        "prompt_tokens": 4096,
+        "total_tokens": 8192,
+        "completion_tokens": 4096
+      },
+      "wall_seconds": 56.1279526532162,
+      "ttft_seconds": 0.6694939010776579
+    },
+    {
+      "input_tokens": 4096,
+      "output_tokens": 4096,
+      "seed": 2026101212,
+      "usage": {
+        "prompt_tokens": 4096,
+        "total_tokens": 8192,
+        "completion_tokens": 4096
+      },
+      "wall_seconds": 56.20985269593075,
+      "ttft_seconds": 0.6828754639718682
+    }
+  ]
+}
