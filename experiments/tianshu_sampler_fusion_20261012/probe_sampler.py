@@ -8,9 +8,11 @@ from pathlib import Path
 import signal
 import statistics
 import subprocess
-import time
+import inspect
+import importlib.metadata
 
 import torch
+import flag_gems
 from experimental_sampler import prepare, sample_with_noise
 
 
@@ -35,12 +37,21 @@ def main():
               'installed_files_modified': False, 'adoption_allowed': False,
               'source_sha256': hashlib.sha256(Path(__file__).with_name('experimental_sampler.py').read_bytes()).hexdigest(),
               'cases': [], 'timings': [], 'started_utc': datetime.now(timezone.utc).isoformat()}
+    result['packages']={name:importlib.metadata.version(name) for name in ('torch','flag-gems','vllm')}
+    result['baseline_sources']={}
+    for name in ('softmax','true_divide','argmax'):
+        file=Path(inspect.getsourcefile(getattr(flag_gems,name)))
+        result['baseline_sources'][name]={'path':str(file),'sha256':hashlib.sha256(file.read_bytes()).hexdigest()}
 
     def save():
         (root / 'result.json').write_text(json.dumps(result, indent=2) + '\n')
 
     def baseline(x, q):
         return (x.softmax(-1, dtype=torch.float32) / q).argmax(-1)
+
+    def gems_baseline(x, q):
+        # Match production's FlagGems softmax / div / argmax dispatch.
+        return flag_gems.argmax(flag_gems.true_divide(flag_gems.softmax(x,-1),q),-1)
 
     try:
         with torch.inference_mode():
@@ -62,13 +73,15 @@ def main():
                     xc, qc = x.double().cpu(), q.double().cpu()
                     expected = (xc - qc.log()).argmax(-1)
                     reference = baseline(x, q).cpu()
+                    production = gems_baseline(x,q).cpu()
                     for block in (1024, 2048, 4096):
                         got = sample_with_noise(x, q, prepare(x, block), block).cpu()
                         item = {'batch': batch, 'distribution': distribution, 'block': block,
                                 'baseline_equal': torch.equal(got, reference),
+                                'flaggems_baseline_equal':torch.equal(got,production),
                                 'cpu_oracle_equal': torch.equal(got, expected),
                                 'candidate': got.tolist(), 'reference': reference.tolist(),
-                                'oracle': expected.tolist()}
+                                'flaggems_reference':production.tolist(),'oracle': expected.tolist()}
                         result['cases'].append(item)
                         print(json.dumps(item), flush=True)
                     save()
@@ -78,30 +91,36 @@ def main():
                     x.normal_()
                     for _ in range(10):
                         baseline(x, q)
+                        gems_baseline(x,q)
                         sample_with_noise(x, q, scratch, block)
                     torch.cuda.synchronize()
-                    measurements = [[], []]
+                    graphs=[]
+                    for function in (lambda:baseline(x,q),lambda:gems_baseline(x,q),
+                                     lambda:sample_with_noise(x,q,scratch,block)):
+                        graph=torch.cuda.CUDAGraph()
+                        with torch.cuda.graph(graph):
+                            for _ in range(30):function()
+                        graphs.append(graph)
+                    measurements = [[], [], []]
                     for repetition in range(7):
-                        for selected in ((0, 1) if repetition % 2 == 0 else (1, 0)):
+                        order=[0,1,2]
+                        for selected in order[repetition%3:]+order[:repetition%3]:
                             start, end = torch.cuda.Event(enable_timing=True), torch.cuda.Event(enable_timing=True)
                             start.record()
-                            for _ in range(30):
-                                if selected:
-                                    sample_with_noise(x, q, scratch, block)
-                                else:
-                                    baseline(x, q)
+                            graphs[selected].replay()
                             end.record()
                             end.synchronize()
                             measurements[selected].append(start.elapsed_time(end) / 30)
-                    before, after = map(statistics.median, measurements)
-                    item = {'batch': batch, 'block': block, 'baseline_ms': before, 'candidate_ms': after,
+                    native,before,after=map(statistics.median,measurements)
+                    item = {'batch': batch, 'block': block, 'torch_native_ms':native,
+                            'flaggems_baseline_ms': before, 'candidate_ms': after,
                             'change_percent': 100 * (after / before - 1), 'raw_ms': measurements,
-                            'includes_noise_generation': False, 'timing_mode': 'eager_events'}
+                            'includes_noise_generation': False, 'timing_mode': 'graph_replay_events'}
                     result['timings'].append(item)
                     print(json.dumps(item), flush=True)
                     save()
             result.update(complete=True, finished_utc=datetime.now(timezone.utc).isoformat(),
-                          cases_passed=sum(c['baseline_equal'] and c['cpu_oracle_equal'] for c in result['cases']),
+                          cases_passed=sum(c['baseline_equal'] and c['flaggems_baseline_equal'] and c['cpu_oracle_equal'] for c in result['cases']),
                           cases_total=len(result['cases']))
     finally:
         save()

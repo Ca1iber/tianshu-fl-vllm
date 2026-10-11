@@ -8,6 +8,8 @@ from pathlib import Path
 import signal
 import statistics
 import subprocess
+import inspect
+import importlib.metadata
 
 import torch
 import flag_gems
@@ -43,6 +45,9 @@ def main():
     result = {'complete': False, 'official_benchmark': False, 'adoption_allowed': False,
               'installed_files_modified': False, 'cases': [],
               'source_sha256': hashlib.sha256(Path(__file__).with_name('experimental_mm.py').read_bytes()).hexdigest()}
+    actual=Path(inspect.getsourcefile(flag_gems.mm))
+    result['baseline_source']={'path':str(actual),'sha256':hashlib.sha256(actual.read_bytes()).hexdigest()}
+    result['packages']={name:importlib.metadata.version(name) for name in ('torch','flag-gems','vllm')}
 
     def save():
         (root / 'result.json').write_text(json.dumps(result, indent=2) + '\n')
