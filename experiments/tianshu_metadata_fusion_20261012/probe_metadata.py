@@ -33,32 +33,33 @@ def main():
     try:
         with torch.inference_mode():
             for index,(num_reqs,num_tokens) in enumerate(cases):
+                max_reqs=256 if index%2==0 else 1024
                 generator=torch.Generator().manual_seed(2026101270+index)
-                counts_cpu=torch.randint(0,131000,(256,),dtype=torch.int32,generator=generator)
+                counts_cpu=torch.randint(0,131000,(max_reqs,),dtype=torch.int32,generator=generator)
                 counts_cpu[0]=2147483647 # Verify casting occurs before int64 position addition.
                 ids_cpu=torch.arange(num_tokens,dtype=torch.int64)%num_reqs
                 query_cpu=torch.arange(num_tokens,dtype=torch.int64)//num_reqs
-                scheduled_cpu=torch.bincount(ids_cpu,minlength=256).to(torch.int32)
+                scheduled_cpu=torch.bincount(ids_cpu,minlength=max_reqs).to(torch.int32)
                 expected_positions=counts_cpu[ids_cpu].to(torch.int64)+query_cpu
-                expected_lens=torch.zeros(256,dtype=torch.int32)
+                expected_lens=torch.zeros(max_reqs,dtype=torch.int32)
                 expected_lens[:num_reqs]=counts_cpu[:num_reqs]+scheduled_cpu[:num_reqs]
                 counts=counts_cpu.cuda();ids=ids_cpu.cuda();query=query_cpu.cuda();scheduled=scheduled_cpu.cuda()
                 before_pos=torch.full((num_tokens+13,),-777,device='cuda',dtype=torch.int64)
-                after_pos=before_pos.clone();before_lens=torch.full((269,),-888,device='cuda',dtype=torch.int32)
+                after_pos=before_pos.clone();before_lens=torch.full((max_reqs+13,),-888,device='cuda',dtype=torch.int32)
                 after_lens=before_lens.clone()
                 def baseline():
                     before_pos[:num_tokens].copy_(counts[ids].to(torch.int64)+query)
                     before_lens[:num_reqs].copy_(counts[:num_reqs]+scheduled[:num_reqs])
-                    before_lens[num_reqs:256].fill_(0)
+                    before_lens[num_reqs:max_reqs].fill_(0)
                 with flag_gems.use_gems():baseline()
                 fill(counts,ids,query,scheduled,after_pos,after_lens,num_tokens,num_reqs)
                 checks={'candidate_positions_cpu_equal':torch.equal(after_pos[:num_tokens].cpu(),expected_positions),
-                        'candidate_seq_lens_cpu_equal':torch.equal(after_lens[:256].cpu(),expected_lens),
+                        'candidate_seq_lens_cpu_equal':torch.equal(after_lens[:max_reqs].cpu(),expected_lens),
                         'baseline_positions_cpu_equal':torch.equal(before_pos[:num_tokens].cpu(),expected_positions),
-                        'baseline_seq_lens_cpu_equal':torch.equal(before_lens[:256].cpu(),expected_lens),
+                        'baseline_seq_lens_cpu_equal':torch.equal(before_lens[:max_reqs].cpu(),expected_lens),
                         'position_tail_preserved':bool((after_pos[num_tokens:]==-777).all()),
-                        'seq_lens_tail_preserved':bool((after_lens[256:]==-888).all())}
-                item={'num_reqs':num_reqs,'num_tokens':num_tokens,'checks':checks,'passed':all(checks.values())}
+                        'seq_lens_tail_preserved':bool((after_lens[max_reqs:]==-888).all())}
+                item={'num_reqs':num_reqs,'num_tokens':num_tokens,'max_reqs':max_reqs,'checks':checks,'passed':all(checks.values())}
                 if item['passed']:
                     graphs=[]
                     for selected in (0,1):
