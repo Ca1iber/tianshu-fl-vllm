@@ -25,6 +25,7 @@ def main():
     parser.add_argument('--no-graphs',action='store_true')
     parser.add_argument('--small-only',action='store_true')
     parser.add_argument('--adaptive',choices=['0','1'],default='0')
+    parser.add_argument('--tile',choices=['0','1'],default='0')
     parser.add_argument('--max-batched-tokens',type=int,choices=[2048,4096,8192],default=2048)
     parser.add_argument('--warmup-rounds',type=int,default=2)
     args=parser.parse_args();root=args.output.resolve();root.mkdir(parents=True,exist_ok=True)
@@ -45,7 +46,7 @@ def main():
     state={'phase':'preparing','official_benchmark':False,'command':command,
            'runner_pid':os.getpid(),'cases':[],'started_utc':datetime.now(timezone.utc).isoformat(),
            'diagnostic_graphs_disabled':args.no_graphs,
-           'adaptive':args.adaptive, 'max_batched_tokens':args.max_batched_tokens}
+           'adaptive':args.adaptive, 'tile':args.tile, 'max_batched_tokens':args.max_batched_tokens}
     server=None
     deadline=datetime.fromisoformat(json.loads(Path('/workspace/benchmark-results/20261011_121020_baseline_tianshu/reservation_deadline.json').read_text())['stop_at_utc'])
 
@@ -112,11 +113,19 @@ def main():
             VLLM_FL_ILUVATAR_PREFILL_BUCKETS='0',VLLM_FL_ILUVATAR_LOGITS_GATHER='0',
             TRITON_PRINT_AUTOTUNING='1')
         env.pop('TIANSHU_PACK_PROBE_MODE',None);env.pop('PYTHONPATH',None)
+        env.pop('TIANSHU_FA2_TILE_PROBE',None)
+        if args.tile == '1':
+            hook=Path(__file__).resolve().parent.parent/'tianshu_fa2_tiles_20261012/hooks/sitecustomize.py'
+            env.update(PYTHONPATH=str(hook.parent),TIANSHU_FA2_TILE_PROBE='1',
+                       TIANSHU_FA2_TILE_RECORD_DIR=str(root/'tile_records'))
+            state['tile_hook']={'path':str(hook),'sha256':hashlib.sha256(hook.read_bytes()).hexdigest()}
         hardware=subprocess.check_output(['ixsmi'],text=True)
         (root/'hardware_before.txt').write_text(hardware)
         if 'No running processes found' not in hardware:raise RuntimeError('GPU not idle')
         installed=Path('/usr/local/lib/python3.12/site-packages/vllm_fl/worker')
         snapshots=root/'source_snapshot';snapshots.mkdir(exist_ok=True)
+        if args.tile == '1':
+            (snapshots/'tile_sitecustomize.py').write_bytes(hook.read_bytes())
         state['installed_sources']={}
         for name in ('worker.py','iluvatar_hybrid_attention.py','iluvatar_adaptive_decode.py'):
             source=installed/name;contents=source.read_bytes();(snapshots/name).write_bytes(contents)
@@ -152,6 +161,10 @@ def main():
                 line for line in (root/'server.log').read_text(errors='replace')[log_boundary:].splitlines()
                 if 'autotuning' in line.lower() or 'AABS' in line]
             save()
+        if args.tile == '1':
+            records=list((root/'tile_records').glob('tile_*.json'))
+            if not records:raise RuntimeError('Profile did not use the selected FA2 tile')
+            state['tile_routing_records']=[json.loads(p.read_text()) for p in records]
         state['phase']='complete'
     except BaseException as error:
         state.update(phase='failed',error=str(error),traceback=traceback.format_exc());print(state['traceback'],flush=True)
