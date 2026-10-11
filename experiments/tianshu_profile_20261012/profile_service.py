@@ -95,6 +95,9 @@ def main():
                         else:classes['attention_grid_unknown']+=e['dur']
         summed=sum(total.values())
         return {'gpu_kernel_total_ms':summed/1000,
+            'time_scope':'Recorded kernel events, not guaranteed to cover graph replay bodies',
+            'cuda_graph_body_coverage_verified':False,
+            'graphs_disabled_for_diagnostics':args.no_graphs,
             'attention_classes_ms':{k:v/1000 for k,v in classes.items()},
             'top_kernels':[{'name':name,'calls':calls[name],'total_ms':value/1000,
                 'percent':100*value/summed} for name,value in total.most_common(30)]}
