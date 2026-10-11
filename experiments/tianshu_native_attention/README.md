@@ -10,10 +10,12 @@
 
 默认关闭的VLLM_FL_ILUVATAR_HYBRID_ATTENTION：保留Native纯Decode，FlagGems FA2只处理Prefill；mixed batch在标准reorder threshold1基础上拆分。单卡BF16 dense MiniCPM，无量化、LoRA、投机、多模态或DCP。不适用时保留原版。性能服务显式设置FLAGGEMS_ILUVATAR_COMPACT_VARLEN=1，未启用之前失败的全FA后端。
 
-独立7场景数值检查通过，原版部分Prefill误差也有记录。Pure Decode与未重排fallback位级一致。短服务原版3024.12→4547.85 total tok/s（+50.39%），TTFT10251.90→6089.29ms，KV容量两侧521840。不冒充官方成绩，不沿用原版数学准确率。独立MATH已完成并逐项审计：100/105（95.24%），无请求/评分错误；原版101/105（96.19%），候选净少1题，不能宣称质量持平。两题达32768 token上限；错误与原始文本完整保留，默认开关仍0。
+独立7场景数值检查通过，原版部分Prefill误差也有记录。Pure Decode与未重排fallback位级一致。短服务原版3024.12→4547.85 total tok/s（+50.39%），TTFT10251.90→6089.29ms，KV容量两侧521840。不冒充官方成绩，不沿用原版数学准确率。独立MATH已完成并逐项审计：100/105（95.24%），无请求/评分错误；原版101/105（96.19%），候选净少1题。用户明确官方只要求大于95%，100/105已经过线，不要求追平原版。两题达32768 token上限；错误与原始文本完整保留，通用源码保持opt-in；天数专用启动配置显式开启已验证路径。
 
 run_service_series.py 支持独立指定 --output-tokens、--concurrency、--requests、--rounds，保留原默认16路/16请求/128输出/五轮。下一组使用4096/1024、64路/64请求/三轮，首轮不计入实验均值，仍不属于官方256请求成绩。
 
 完整报告与原始数据位于workspace service-results/20261011_2100_native_attention_tianshu。GPU测试串行，只清理自有进程。用户已明确续约到2026-10-12中午12:00，预约JSON截止更新为11:58；此前已启动的数学评测仍保留旧23:58 watchdog，完成后不会延用它。
 
 run_official_4k.py 仅在短4K A/B有明确收益后，执行原样官方脚本的 [[4096,1024,64,256]]：四轮，跳过首轮，检查全部请求成功、CSV均值、源码SHA及自有进程清理。用户2026-10-11已明确授权该完整4K终验，不启动16K。各次优化须保存独立报告，覆盖假设、代码版本、实际导入路径、数值/数学质量、性能边界、原始数据、失败记录与采用结论。
+
+serve_tianshu_minicpm.sh 是天数推荐启动配置，开启HYBRID_ATTENTION=1和COMPACT_VARLEN=1，保持官方serve参数。独立MATH100/105=95.2381%满足用户给出的官方>95%门槛；完整官方吞吐正在复测。运行：bash /workspace/vllm-plugin-FL/experiments/tianshu_native_attention/serve_tianshu_minicpm.sh。不要求达到原版101/105才采用。
