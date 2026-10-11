@@ -1,0 +1,128 @@
+{
+  "audited_at_utc": "2026-10-11T22:12:32.098481+00:00",
+  "candidate": "hybrid_adaptive_fa2_tile128",
+  "complete": true,
+  "adaptive_flag": "1",
+  "adaptive_sha256": "e5d983e43c3b343afb558440a9114255cebc5d01569cc192191290b0bb0c84c8",
+  "adaptive_source": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/iluvatar_adaptive_decode.py",
+  "reused_original_accuracy": false,
+  "correct": 103,
+  "total": 105,
+  "accuracy": 0.9809523809523809,
+  "report_accuracy": 0.981,
+  "official_requirement": "accuracy > 0.95",
+  "official_requirement_passed": true,
+  "execution_summary": {
+    "requested": 105,
+    "succeeded": 105,
+    "errored": 0,
+    "incomplete": false,
+    "subsets": {
+      "Level 3": {
+        "requested": 105,
+        "succeeded": 105,
+        "errored": 0
+      }
+    }
+  },
+  "review_statuses": {
+    "success": 105
+  },
+  "incorrect_indices": [
+    18,
+    87
+  ],
+  "generation_stop_reasons": {
+    "stop": 104,
+    "max_tokens": 1
+  },
+  "max_tokens_indices": [
+    23
+  ],
+  "hybrid_source": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/iluvatar_hybrid_attention.py",
+  "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+  "evaluation_command": [
+    "evalscope",
+    "eval",
+    "--model",
+    "minicpm",
+    "--api-url",
+    "http://127.0.0.1:9031/v1/chat/completions",
+    "--api-key",
+    "EMPTY",
+    "--eval-type",
+    "openai_api",
+    "--datasets",
+    "math_500",
+    "--dataset-args",
+    "{\"math_500\":{\"dataset_id\":\"/workspace/evalscope-datasets/math_500\",\"subset_list\":[\"Level 3\"]}}",
+    "--eval-batch-size",
+    "8",
+    "--timeout",
+    "3600",
+    "--generation-config",
+    "{\"temperature\":1.0,\"top_p\":0.95,\"max_tokens\":32768}",
+    "--work-dir",
+    "/workspace/benchmark-results/20261012_fa2_tiles_tianshu/math_tile128/evalscope",
+    "--ignore-errors"
+  ],
+  "server_command": [
+    "vllm",
+    "serve",
+    "/workspace/MiniCPM5-2B",
+    "--port",
+    "9031",
+    "--compilation-config",
+    "{\"cudagraph_mode\":\"FULL_DECODE_ONLY\"}",
+    "--served-model-name",
+    "minicpm",
+    "--gpu-memory-utilization",
+    "0.85",
+    "--max-model-len",
+    "131072",
+    "--max-num-batched-tokens",
+    "2048"
+  ],
+  "max_batched_tokens": 2048,
+  "worker_sha256": "6cf62f60ca8ea12b7c494f0009fa733f33270a73e014cdbd4a45cada787c032a",
+  "tile_hook": {
+    "path": "/workspace/vllm-plugin-FL/experiments/tianshu_fa2_tiles_20261012/hooks/sitecustomize.py",
+    "sha256": "82a829ee6de143b8879f9957d307465aeccf5ebf81b817cf3fd000b0ee0119f7"
+  },
+  "tile_configuration": {
+    "BLOCK_M": 128,
+    "BLOCK_N": 128,
+    "num_warps": 8,
+    "num_stages": 2
+  },
+  "tile_routing_records": [
+    {
+      "pid": 72687,
+      "config_key": "mha_block_128",
+      "configuration": {
+        "BLOCK_M": 128,
+        "BLOCK_N": 128,
+        "num_warps": 8,
+        "num_stages": 2
+      },
+      "module": "flag_gems.ops.flash_api",
+      "module_file": "/usr/local/lib/python3.12/site-packages/flag_gems/ops/flash_api.py",
+      "process_only_override": true
+    }
+  ],
+  "gpu_idle_after": true,
+  "raw_files": {
+    "evalscope/20261012_053537/reports/minicpm/math_500.json": {
+      "bytes": 8937,
+      "sha256": "c9aeecedaf1b8d04f8e02aa6a21bb5f718e048ce20f6e9ae985c117a259d03f4"
+    },
+    "evalscope/20261012_053537/reviews/minicpm/math_500_Level 3.jsonl": {
+      "bytes": 1540065,
+      "sha256": "929ca5a320353864d894c9069784f9cbcc5e21ddfd1cca0752ad5da056636112"
+    },
+    "evalscope/20261012_053537/predictions/minicpm/math_500_Level 3.jsonl": {
+      "bytes": 2541255,
+      "sha256": "09eefa29fe4c3e223e4ab5beb3b7f995faab68681698d4439f4c47661738d7ac"
+    }
+  }
+}

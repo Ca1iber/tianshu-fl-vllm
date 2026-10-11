@@ -1,4 +1,4 @@
-# 天数FA2 Prefill tile扫描（独立数学验证中）
+# 天数FA2 Prefill tile扫描（数学通过，官方4K验证中）
 
 42个组合完成固定FP32 atol0.02/rtol0.01检查，24个选定CPU参考检查通过，padded tail保留；没有数值失败。六个真实paged/interleaved/GQA16/2/D128场景均以BM128/BN128、8 warps、2 stages最优，算子耗时下降约29.5%–42.3%。BM64的一些候选更慢，全部失败/负例及原始计时都保留。当前仅为单层Attention测量，不能称为服务或正式吞吐收益。
 
@@ -19,4 +19,6 @@
 
 128输出完整备份SHA98e2bb4f07a9787bf3f328289e107942166e50d65fa2d0a46ca8f2bf72019ea8，1034293 bytes，已本地校验提取。1024输出完整备份SHA9adbf10ff0babb428c3cf50b62037f910ba08c7d67e831e94a2a269798f837d1，2359507 bytes，已逐块及整包SHA校验并本地提取。
 
-独立Math-500 Level 3于北京时间05:32启动，官方105题、batch8、temperature1/top_p0.95/max_tokens32768；截至06:00仍在评测，不复用此前任何准确率。通过严格>95%且完整审计后再运行未修改的官方4K/1024、64并发/256请求四轮评测。11:58停止GPU工作。
+独立Math-500 Level 3于北京时间05:32启动，官方105题、batch8、temperature1/top_p0.95/max_tokens32768，已审计完成103/105（98.095238%），全部105请求及评分成功、无错误，错误项18/87。104项stop，1项max_tokens，完整保留原始判定；不复用此前任何准确率，也不从一次随机结果推断精度改善。实际tile hook SHA82a829ee6de143b8879f9957d307465aeccf5ebf81b817cf3fd000b0ee0119f7，实际BM128/BN128、8 warps、2 stages有路由记录；Worker/Hybrid/adaptive分别6cf62f60…/5c55a8d5…/e5d983e4…保持冻结。
+
+数学完整备份SHA446e1de66555db35769cce069bff171b98759672c379b02175f35b602f1a7d62，878550 bytes，已逐块及整包SHA校验并本地提取。通过严格>95%且完整审计后，控制器已启动未修改的官方4K/1024、64并发/256请求四轮评测，runner73988/server73992，目录20261012_fa2_tile128_official4k_tianshu。最终均值仍待结果，不预先替换已有正式最佳2286.09 tok/s。11:58停止GPU工作。
