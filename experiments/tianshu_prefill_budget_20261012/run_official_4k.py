@@ -58,6 +58,8 @@ def main():
     assert hashlib.sha256(adaptive.read_bytes()).hexdigest() == audit['adaptive_sha256']
     snapshot=args.math_results/'source_snapshot/worker.py'
     assert snapshot.read_bytes() == SOURCE.with_name('worker.py').read_bytes()
+    for name, data in trials[1]['installed_sources'].items():
+        assert hashlib.sha256(SOURCE.with_name(name).read_bytes()).hexdigest() == data['sha256']
     assert hashlib.sha256(BENCH.read_bytes()).hexdigest() == BENCH_SHA
     assert 'No running processes found' in subprocess.check_output(['ixsmi'], text=True)
     state = {'phase': 'preparing', 'runner_pid': os.getpid(), 'official_benchmark': True,

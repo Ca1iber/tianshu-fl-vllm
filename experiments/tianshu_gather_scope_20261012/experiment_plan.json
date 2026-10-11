@@ -1,0 +1,31 @@
+{
+  "not_started": true,
+  "not_implemented": true,
+  "source_observations": [
+    {
+      "path": "flag_gems/ops/index.py:619",
+      "fact": "LinearizedAdjacentIndexFunction.arg_key includes the entire input shape; generated kernel embeds indexed dimension sizes"
+    },
+    {
+      "path": "vllm_fl/worker/iluvatar_logits_gather.py:enabled",
+      "fact": "Existing gather opt-in depends on prefill_buckets.enabled"
+    },
+    {
+      "path": "vllm_fl/worker/iluvatar_prefill_buckets.py:enabled",
+      "fact": "Existing bucket gate requires flag1 and token budget <=2048, so gather cannot be enabled independently for8192"
+    }
+  ],
+  "observed_runtime_evidence": "8192 pair first round has index tuner benchmark M33 with config bucket64; first round8 matched tuning records, later rounds0",
+  "hypothesis": "Separating the valid model geometry gate from bucket policy can permit fixed gather for8192 without padding cost, avoiding shape-dependent generated gather modules",
+  "claim_of_steady_gain": false,
+  "preserve_current_math_and_official_source": true,
+  "proposed_checks": [
+    "Bitwise row-copy equivalence for positive scheduler indices across rows1..8192 and selected count0..256",
+    "Contiguous and strided BF16 hidden states, int32/int64 indices, duplicates and tail preservation",
+    "Real model routing with buckets0/gather1 at2048 and8192",
+    "Separate cold-start latency, startup time, and after-first steady throughput",
+    "Independent quality if adopted"
+  ],
+  "do_not_reuse_old_padded_gather_result_as_new_result": true,
+  "requires_separate_experiment_after_current_math_and_official": true
+}
