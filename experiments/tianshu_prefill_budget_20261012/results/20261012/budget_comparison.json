@@ -1,0 +1,143 @@
+{
+  "official_benchmark": false,
+  "workload": {
+    "input_tokens": 4096,
+    "output_tokens": 128,
+    "concurrency": 16,
+    "requests_per_round": 16,
+    "rounds": 5,
+    "excluded_rounds": [
+      1
+    ]
+  },
+  "excluded_rounds": [
+    1
+  ],
+  "quality_validation_required_before_adoption": true,
+  "tpot_definition": "(client request wall time - first nonempty text time)/(output tokens - 1)",
+  "variants": {
+    "2048": {
+      "mean_total_tok_s": 4585.1539010618,
+      "mean_output_tok_s": 138.94405760793333,
+      "mean_ttft_ms": 6099.1906239360105,
+      "mean_tpot_ms": 64.64752108768438,
+      "mean_request_wall_seconds": 14.309425802071928,
+      "kv_cache_tokens": 521840,
+      "startup_seconds": 159.162802885985,
+      "stability": {
+        "mean": 4585.1539010618,
+        "count": 4,
+        "excluded_rounds": [
+          1
+        ],
+        "min": 4579.309059311654,
+        "max": 4590.994129789448,
+        "population_stddev": 4.4143102478906595,
+        "spread_percent": 0.2548457637395431
+      },
+      "successful_requests": 87,
+      "adaptive": "1",
+      "installed_sources": {
+        "worker.py": {
+          "path": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/worker.py",
+          "sha256": "6cf62f60ca8ea12b7c494f0009fa733f33270a73e014cdbd4a45cada787c032a"
+        },
+        "iluvatar_hybrid_attention.py": {
+          "path": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/iluvatar_hybrid_attention.py",
+          "sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4"
+        },
+        "iluvatar_adaptive_decode.py": {
+          "path": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/iluvatar_adaptive_decode.py",
+          "sha256": "e5d983e43c3b343afb558440a9114255cebc5d01569cc192191290b0bb0c84c8"
+        }
+      },
+      "total_tok_s_gain_percent": 0.0,
+      "ttft_change_percent": 0.0,
+      "tpot_change_percent": 0.0,
+      "greedy_probe_matches": 7,
+      "greedy_probe_count": 7
+    },
+    "4096": {
+      "mean_total_tok_s": 4895.477708030626,
+      "mean_output_tok_s": 148.34780933426137,
+      "mean_ttft_ms": 5906.74814209342,
+      "mean_tpot_ms": 60.090758425779875,
+      "mean_request_wall_seconds": 13.538274462167465,
+      "kv_cache_tokens": 522304,
+      "startup_seconds": 243.1411988309119,
+      "stability": {
+        "mean": 4895.477708030626,
+        "count": 4,
+        "excluded_rounds": [
+          1
+        ],
+        "min": 4893.198820837346,
+        "max": 4900.06426100346,
+        "population_stddev": 2.7888621112104515,
+        "spread_percent": 0.14024045405930569
+      },
+      "successful_requests": 87,
+      "adaptive": "1",
+      "installed_sources": {
+        "worker.py": {
+          "path": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/worker.py",
+          "sha256": "6cf62f60ca8ea12b7c494f0009fa733f33270a73e014cdbd4a45cada787c032a"
+        },
+        "iluvatar_hybrid_attention.py": {
+          "path": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/iluvatar_hybrid_attention.py",
+          "sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4"
+        },
+        "iluvatar_adaptive_decode.py": {
+          "path": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/iluvatar_adaptive_decode.py",
+          "sha256": "e5d983e43c3b343afb558440a9114255cebc5d01569cc192191290b0bb0c84c8"
+        }
+      },
+      "total_tok_s_gain_percent": 6.768012888225261,
+      "ttft_change_percent": -3.155213432539039,
+      "tpot_change_percent": -7.048627055202883,
+      "greedy_probe_matches": 7,
+      "greedy_probe_count": 7
+    },
+    "8192": {
+      "mean_total_tok_s": 5004.028220091119,
+      "mean_output_tok_s": 151.63721879063996,
+      "mean_ttft_ms": 6110.524978983449,
+      "mean_tpot_ms": 56.82260793280617,
+      "mean_request_wall_seconds": 13.326996186449833,
+      "kv_cache_tokens": 520336,
+      "startup_seconds": 234.15108082606457,
+      "stability": {
+        "mean": 5004.028220091119,
+        "count": 4,
+        "excluded_rounds": [
+          1
+        ],
+        "min": 5001.390175063978,
+        "max": 5006.823446366886,
+        "population_stddev": 2.089638232956774,
+        "spread_percent": 0.10857795088152125
+      },
+      "successful_requests": 87,
+      "adaptive": "1",
+      "installed_sources": {
+        "worker.py": {
+          "path": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/worker.py",
+          "sha256": "6cf62f60ca8ea12b7c494f0009fa733f33270a73e014cdbd4a45cada787c032a"
+        },
+        "iluvatar_hybrid_attention.py": {
+          "path": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/iluvatar_hybrid_attention.py",
+          "sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4"
+        },
+        "iluvatar_adaptive_decode.py": {
+          "path": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/iluvatar_adaptive_decode.py",
+          "sha256": "e5d983e43c3b343afb558440a9114255cebc5d01569cc192191290b0bb0c84c8"
+        }
+      },
+      "total_tok_s_gain_percent": 9.13544731687892,
+      "ttft_change_percent": 0.18583375641609834,
+      "tpot_change_percent": -12.10396473557729,
+      "greedy_probe_matches": 7,
+      "greedy_probe_count": 7
+    }
+  }
+}

@@ -1,7 +1,7 @@
-# 天数Prefill token budget短扫（尚未启动）
+# 天数Prefill预算实验
 
-前提是已验证的Native Decode + FA2 Prefill配置。当前服务max_num_batched_tokens=2048，4096输入需要至少两个chunk。假设把budget扩到4096或8192能减少重复执行和metadata开销；代价可能是单步阻塞更长、Decode TPOT及KV容量变化。
+短扫完成：4K输入/128输出、16并发/16请求、五轮跳首轮，2048/4096/8192分别4585.15/4895.48/5004.03 total tok/s；4096+6.768%，8192+9.135%。261请求全部成功，7个固定greedy探针一致。8192客户端TPOT−12.104%，TTFT+0.186%，实测KV容量−0.29%。这些是缩小实验数据，不是官方成绩。
 
-计划只变更一个CLI参数，保持模型、采样、Attention、dtype和原始benchmark脚本。先用4096输入/128输出、16并发/16请求、五轮跳首轮筛选，记录TTFT、TPOT、实际KV容量、greedy输出及失败；有收益后再测4096/1024较大批次。不把自定义短实验当作官方成绩。新计算批次范围须保存实际导入路径与独立质量验证。
+实际Worker/Hybrid/adaptive源码三组完全一致，保持冻结。8192尚无独立数学成绩，不能复用2048的102/105作为8192质量结论。run_budget_pair.py已开始2048/8192的4K/1K、64并发/64请求、三轮跳首轮对照；有收益再用run_math_eval.py独立评测新预算，audit_math_eval.py核验严格>95%及实际预算/源码。run_official_4k.py要求有清晰短测收益、对应源与预算的质量通过、未修改的官方脚本SHA，才运行256请求四轮跳首轮。
 
-本文件只是待验证假设，没有声称已有收益，当前GPU仍在Decode自适应策略A/B。
+完整报告和摘要见results/20261012，原始数据位于/workspace/benchmark-results/20261012_prefill_budget_tianshu及本地service-results/20261012_prefill_budget_tianshu。GPU性能任务串行，只清理自有服务，11:58停止GPU工作。
