@@ -1,5 +1,5 @@
-# 天数独立logits gather实验计划（未实现）
+# 天数独立logits gather实验计划（原型已准备、未运行）
 
 已确认FlagGems linearized index的代码缓存键包含完整input shape，生成代码带输入维度常量；8192对照首轮确有索引调优。现有fixed gather开关依赖prefill bucket开关且预算上限2048，不能在8192下独立使用。未来计划把模型geometry gate与padding policy分开，单独测试fixed gather。
 
-这与旧2048的padding+gather联合实验不同：新实验保持buckets0且预算8192。当前未修改/安装计算源码，不声称稳态吞吐收益。先做bitwise复制验证与真实模型routing，再区分冷启动和跳首轮结果；有收益且质量通过才采用。当前数学与正式基线工作优先，GPU串行。
+这与旧2048的padding+gather联合实验不同：新实验保持buckets0且预算8192。原型experimental_gather.py及独立CPU参考probe_gather.py已准备，尚未运行GPU验证；当前未修改/安装计算源码，不声称稳态吞吐收益。先做bitwise复制验证与真实模型routing，再区分冷启动和跳首轮结果；有收益且质量通过才采用。当前数学与正式基线工作优先，GPU串行。

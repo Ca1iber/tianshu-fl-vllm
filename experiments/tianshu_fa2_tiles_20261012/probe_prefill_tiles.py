@@ -4,6 +4,7 @@
 Only this process's heuristic lookup changes. Installed files stay untouched.
 """
 import argparse
+from datetime import datetime, timezone
 import hashlib
 import importlib.util
 import json
@@ -36,7 +37,12 @@ def main():
     root.mkdir(parents=True, exist_ok=True)
     if (root / 'result.json').exists():
         raise RuntimeError('Refusing to overwrite an existing tile sweep')
-    signal.alarm(1800)
+    lease = Path('/workspace/benchmark-results/20261011_121020_baseline_tianshu/reservation_deadline.json')
+    deadline = datetime.fromisoformat(json.loads(lease.read_text())['stop_at_utc'])
+    remaining = int((deadline - datetime.now(timezone.utc)).total_seconds())
+    if remaining <= 0:
+        raise RuntimeError('Reservation stop time reached')
+    signal.alarm(min(1800, remaining))
     torch.set_num_threads(8)
     torch.backends.cuda.matmul.allow_tf32 = False
     os.environ['VLLM_FL_ILUVATAR_HYBRID_ATTENTION'] = '1'
