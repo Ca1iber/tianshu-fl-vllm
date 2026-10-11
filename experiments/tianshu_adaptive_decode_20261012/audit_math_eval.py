@@ -50,6 +50,8 @@ def main():
         'adaptive_source': state['adaptive_source'],
         'reused_original_accuracy': False, 'correct': correct, 'total': 105,
         'accuracy': correct / 105, 'report_accuracy': metric['score'],
+        'official_requirement': 'accuracy > 0.95',
+        'official_requirement_passed': correct / 105 > 0.95,
         'execution_summary': execution, 'review_statuses': {'success': 105},
         'incorrect_indices': [r['index'] for r, v in zip(reviews, values) if not v],
         'generation_stop_reasons': dict(stop_reasons),

@@ -3,6 +3,7 @@
 import argparse
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -158,6 +159,22 @@ def main():
         else:
             connection.close()
             raise RuntimeError('Port 9031 is occupied; refusing to replace another service')
+        hardware = subprocess.run(['ixsmi'], capture_output=True, text=True, timeout=15)
+        (out / 'hardware_before.txt').write_text(hardware.stdout + hardware.stderr)
+        if hardware.returncode or 'No running processes found' not in hardware.stdout:
+            raise RuntimeError('GPU must be idle before a serialized budget trial')
+        installed = Path('/usr/local/lib/python3.12/site-packages/vllm_fl/worker')
+        source_dir = out / 'source_snapshot'
+        source_dir.mkdir(exist_ok=True)
+        sources = {}
+        for name in ('worker.py', 'iluvatar_hybrid_attention.py', 'iluvatar_adaptive_decode.py'):
+            source = installed / name
+            contents = source.read_bytes()
+            (source_dir / name).write_bytes(contents)
+            sources[name] = {'path': str(source), 'sha256': hashlib.sha256(contents).hexdigest()}
+        state['installed_sources'] = sources
+        state['environment_flags'] = {key: value for key, value in env.items()
+                                      if key.startswith(('VLLM_FL_', 'FLAGGEMS_ILUVATAR_'))}
         save()
         with (out / 'server.log').open('w') as log:
             server = subprocess.Popen(command, cwd='/workspace', env=env, stdout=log,
