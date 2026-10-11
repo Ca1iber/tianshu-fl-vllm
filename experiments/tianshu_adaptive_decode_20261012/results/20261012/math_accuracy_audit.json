@@ -1,0 +1,85 @@
+{
+  "audited_at_utc": "2026-10-11T17:47:59.788011+00:00",
+  "candidate": "hybrid_adaptive_decode",
+  "complete": true,
+  "adaptive_flag": "1",
+  "adaptive_sha256": "e5d983e43c3b343afb558440a9114255cebc5d01569cc192191290b0bb0c84c8",
+  "adaptive_source": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/iluvatar_adaptive_decode.py",
+  "reused_original_accuracy": false,
+  "correct": 102,
+  "total": 105,
+  "accuracy": 0.9714285714285714,
+  "report_accuracy": 0.9714,
+  "official_requirement": "accuracy > 0.95",
+  "official_requirement_passed": true,
+  "execution_summary": {
+    "requested": 105,
+    "succeeded": 105,
+    "errored": 0,
+    "incomplete": false,
+    "subsets": {
+      "Level 3": {
+        "requested": 105,
+        "succeeded": 105,
+        "errored": 0
+      }
+    }
+  },
+  "review_statuses": {
+    "success": 105
+  },
+  "incorrect_indices": [
+    18,
+    87,
+    101
+  ],
+  "generation_stop_reasons": {
+    "stop": 104,
+    "max_tokens": 1
+  },
+  "max_tokens_indices": [
+    101
+  ],
+  "hybrid_source": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/iluvatar_hybrid_attention.py",
+  "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+  "evaluation_command": [
+    "evalscope",
+    "eval",
+    "--model",
+    "minicpm",
+    "--api-url",
+    "http://127.0.0.1:9031/v1/chat/completions",
+    "--api-key",
+    "EMPTY",
+    "--eval-type",
+    "openai_api",
+    "--datasets",
+    "math_500",
+    "--dataset-args",
+    "{\"math_500\":{\"dataset_id\":\"/workspace/evalscope-datasets/math_500\",\"subset_list\":[\"Level 3\"]}}",
+    "--eval-batch-size",
+    "8",
+    "--timeout",
+    "3600",
+    "--generation-config",
+    "{\"temperature\":1.0,\"top_p\":0.95,\"max_tokens\":32768}",
+    "--work-dir",
+    "/workspace/benchmark-results/20261012_adaptive_decode_tianshu/math_adaptive/evalscope",
+    "--ignore-errors"
+  ],
+  "gpu_idle_after": true,
+  "raw_files": {
+    "evalscope/20261012_010943/reports/minicpm/math_500.json": {
+      "bytes": 8939,
+      "sha256": "90e48690dc2bab6a8fd73b7a8ef65b04257f91e6c56135eff0b7885be0e5c19a"
+    },
+    "evalscope/20261012_010943/reviews/minicpm/math_500_Level 3.jsonl": {
+      "bytes": 1583503,
+      "sha256": "e289a7f14e276b8dc46a03588d246099cbcb1afe47140f1288ca4e5f82ea6bf2"
+    },
+    "evalscope/20261012_010943/predictions/minicpm/math_500_Level 3.jsonl": {
+      "bytes": 2595014,
+      "sha256": "92c6ad41ed63a1b04bd2e72e8bb16e251bfd443c42599fe921943f84859cfc28"
+    }
+  }
+}
