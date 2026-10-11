@@ -1,0 +1,56 @@
+{
+  "official_benchmark": false,
+  "variants": {
+    "0": {
+      "mean_tok_s": 5109.3395404226685,
+      "mean_ttft_ms": 9229.844476598373,
+      "successful_requests": 583,
+      "stability": {
+        "mean": 5109.3395404226685,
+        "count": 2,
+        "excluded_rounds": [
+          1
+        ],
+        "min": 5108.713134457935,
+        "max": 5109.965946387401,
+        "population_stddev": 0.6264059647332942,
+        "spread_percent": 0.024520036680963073
+      },
+      "tile_routing_records": []
+    },
+    "1": {
+      "mean_tok_s": 6011.7195229233985,
+      "mean_ttft_ms": 7637.23811536814,
+      "successful_requests": 583,
+      "stability": {
+        "mean": 6011.7195229233985,
+        "count": 2,
+        "excluded_rounds": [
+          1
+        ],
+        "min": 6010.0385302972,
+        "max": 6013.400515549598,
+        "population_stddev": 1.6809926261989858,
+        "spread_percent": 0.05592385405836589
+      },
+      "tile_routing_records": [
+        {
+          "pid": 69839,
+          "config_key": "mha_block_128",
+          "configuration": {
+            "BLOCK_M": 128,
+            "BLOCK_N": 128,
+            "num_warps": 8,
+            "num_stages": 2
+          },
+          "module": "flag_gems.ops.flash_api",
+          "module_file": "/usr/local/lib/python3.12/site-packages/flag_gems/ops/flash_api.py",
+          "process_only_override": true
+        }
+      ]
+    }
+  },
+  "steady_gain_percent": 17.66138216811641,
+  "ttft_change_percent": -17.254964211674164,
+  "independent_quality_pending": true
+}
