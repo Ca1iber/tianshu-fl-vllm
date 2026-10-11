@@ -12,6 +12,7 @@ import inspect
 import importlib.metadata
 
 import torch
+import vllm_fl  # use the same installed Iluvatar compatibility initialization
 import flag_gems
 from experimental_mm import prepare, mm
 
