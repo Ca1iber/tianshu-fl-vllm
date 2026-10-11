@@ -33,6 +33,7 @@ def main():
     assert len(reviews) == len(predictions) == 105
     assert len({r['index'] for r in reviews}) == 105
     assert len({p['index'] for p in predictions}) == 105
+    assert {r['index'] for r in reviews} == {p['index'] for p in predictions}
     assert all(p['model_output']['error'] is None for p in predictions)
     stop_reasons = Counter(p['model_output']['choices'][0]['stop_reason'] for p in predictions)
     scores = [r['sample_score']['score'] for r in reviews]
@@ -59,6 +60,8 @@ def main():
                                if p['model_output']['choices'][0]['stop_reason'] == 'max_tokens'],
         'hybrid_source': state['hybrid_source'], 'hybrid_sha256': state['hybrid_sha256'],
         'evaluation_command': state['evaluation_command'],
+        'server_command': state['server_command'],
+        'max_batched_tokens': state.get('max_batched_tokens', 2048),
         'gpu_idle_after': True,
         'raw_files': {str(p.relative_to(root)): {
             'bytes': p.stat().st_size, 'sha256': hashlib.sha256(p.read_bytes()).hexdigest()
