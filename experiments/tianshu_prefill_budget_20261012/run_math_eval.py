@@ -66,6 +66,10 @@ def main():
         source=Path('/usr/local/lib/python3.12/site-packages/vllm_fl/worker/iluvatar_hybrid_attention.py')
         state['hybrid_source']=str(source);state['hybrid_sha256']=hashlib.sha256(source.read_bytes()).hexdigest()
         adaptive=source.with_name('iluvatar_adaptive_decode.py');state['adaptive_flag']=args.adaptive;state['adaptive_source']=str(adaptive);state['adaptive_sha256']=hashlib.sha256(adaptive.read_bytes()).hexdigest()
+        snapshots=root/'source_snapshot';snapshots.mkdir(exist_ok=True)
+        for name in ('worker.py','iluvatar_hybrid_attention.py','iluvatar_adaptive_decode.py'):
+            current=source.with_name(name);contents=current.read_bytes();(snapshots/name).write_bytes(contents)
+            if name=='worker.py':state['worker_sha256']=hashlib.sha256(contents).hexdigest()
         with (root/'server.log').open('w') as log:
             server=subprocess.Popen(command,cwd='/workspace',env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
         state.update(phase='starting',server_pid=server.pid);save();limit=time.monotonic()+2400
