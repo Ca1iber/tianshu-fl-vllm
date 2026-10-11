@@ -1,0 +1,3096 @@
+{
+  "official_benchmark": false,
+  "complete": true,
+  "installed_files_modified": false,
+  "actual_baseline_config": {
+    "BLOCK_M": 128,
+    "BLOCK_N": 32,
+    "num_warps": 4,
+    "num_stages": 3
+  },
+  "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+  "fixture_sha256": "47687cd2f7adbfc811d81d18f73d09970134b97c00df880911f7d1804fe865c5",
+  "cases": [
+    {
+      "name": "scenario0_m128_n32_w4_s3",
+      "qlens": [
+        2048
+      ],
+      "kv_lengths": [
+        2048
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.008634090423583984,
+        "mean_abs": 0.00011369117419235408,
+        "relative_rms": 0.002028884831815958,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.008634090423583984,
+        "mean_abs": 0.00011369117419235408,
+        "relative_rms": 0.002028884831815958,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 2.3724857330322267,
+        "hybrid": 2.3726934432983398
+      },
+      "samples_ms": {
+        "original": [
+          2.3695051193237306,
+          2.3723270416259767,
+          2.371375846862793,
+          2.3733661651611326,
+          2.3735849380493166,
+          2.3725671768188477,
+          2.3724857330322267
+        ],
+        "hybrid": [
+          2.3739383697509764,
+          2.372151565551758,
+          2.3726934432983398,
+          2.373503494262695,
+          2.3705333709716796,
+          2.373255157470703,
+          2.3725223541259766
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 128,
+        "BLOCK_N": 32,
+        "num_warps": 4,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario0_m128_n64_w4_s3",
+      "qlens": [
+        2048
+      ],
+      "kv_lengths": [
+        2048
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.008634090423583984,
+        "mean_abs": 0.00011369117419235408,
+        "relative_rms": 0.002028884831815958,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.008634090423583984,
+        "mean_abs": 0.00011411376181058586,
+        "relative_rms": 0.0020370366983115673,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 2.348008155822754,
+        "hybrid": 4.66003303527832
+      },
+      "samples_ms": {
+        "original": [
+          2.348008155822754,
+          2.347309684753418,
+          2.345978927612305,
+          2.3472366333007812,
+          2.349923515319824,
+          2.348434638977051,
+          2.350320053100586
+        ],
+        "hybrid": [
+          4.66003303527832,
+          4.660180282592774,
+          4.65941162109375,
+          4.658918380737305,
+          4.661669921875,
+          4.661117172241211,
+          4.658639907836914
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 128,
+        "BLOCK_N": 64,
+        "num_warps": 4,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario0_m128_n64_w8_s3",
+      "qlens": [
+        2048
+      ],
+      "kv_lengths": [
+        2048
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.008634090423583984,
+        "mean_abs": 0.00011369117419235408,
+        "relative_rms": 0.002028884831815958,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.008634090423583984,
+        "mean_abs": 0.00011411376181058586,
+        "relative_rms": 0.0020370366983115673,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 2.3691984176635743,
+        "hybrid": 2.2683860778808596
+      },
+      "samples_ms": {
+        "original": [
+          2.369348907470703,
+          2.3663806915283203,
+          2.367527389526367,
+          2.369997978210449,
+          2.3727108001708985,
+          2.365714263916016,
+          2.3691984176635743
+        ],
+        "hybrid": [
+          2.2777631759643553,
+          2.2756669998168944,
+          2.2701251983642576,
+          2.2670804977416994,
+          2.2683860778808596,
+          2.268025779724121,
+          2.267926788330078
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 128,
+        "BLOCK_N": 64,
+        "num_warps": 8,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario0_m128_n128_w8_s2",
+      "qlens": [
+        2048
+      ],
+      "kv_lengths": [
+        2048
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.008634090423583984,
+        "mean_abs": 0.00011369117419235408,
+        "relative_rms": 0.002028884831815958,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.008634090423583984,
+        "mean_abs": 0.00011467767762951553,
+        "relative_rms": 0.0020454905461519957,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 2.3443437576293946,
+        "hybrid": 1.651634979248047
+      },
+      "samples_ms": {
+        "original": [
+          2.344635009765625,
+          2.345636177062988,
+          2.3397064208984375,
+          2.3440160751342773,
+          2.342757987976074,
+          2.345466423034668,
+          2.3443437576293946
+        ],
+        "hybrid": [
+          1.6513866424560546,
+          1.651508903503418,
+          1.651634979248047,
+          1.6516307830810546,
+          1.6531373977661132,
+          1.653366470336914,
+          1.6517011642456054
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 128,
+        "BLOCK_N": 128,
+        "num_warps": 8,
+        "num_stages": 2
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario0_m64_n32_w4_s3",
+      "qlens": [
+        2048
+      ],
+      "kv_lengths": [
+        2048
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.008634090423583984,
+        "mean_abs": 0.00011369117419235408,
+        "relative_rms": 0.002028884831815958,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.008634090423583984,
+        "mean_abs": 0.0001136911814683117,
+        "relative_rms": 0.0020288857631385326,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 2.343942642211914,
+        "hybrid": 2.609065818786621
+      },
+      "samples_ms": {
+        "original": [
+          2.3528764724731444,
+          2.3430192947387694,
+          2.341568374633789,
+          2.3477548599243163,
+          2.343942642211914,
+          2.3463449478149414,
+          2.3414188385009767
+        ],
+        "hybrid": [
+          2.6156038284301757,
+          2.604314994812012,
+          2.626973533630371,
+          2.5975433349609376,
+          2.609065818786621,
+          2.607973098754883,
+          2.611227798461914
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 64,
+        "BLOCK_N": 32,
+        "num_warps": 4,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario0_m64_n64_w4_s3",
+      "qlens": [
+        2048
+      ],
+      "kv_lengths": [
+        2048
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.008634090423583984,
+        "mean_abs": 0.00011369117419235408,
+        "relative_rms": 0.002028884831815958,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.008634090423583984,
+        "mean_abs": 0.00011411373998271301,
+        "relative_rms": 0.0020370364654809237,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 2.330027389526367,
+        "hybrid": 3.6010948181152345
+      },
+      "samples_ms": {
+        "original": [
+          2.3344650268554688,
+          2.330027389526367,
+          2.3330381393432615,
+          2.324449348449707,
+          2.329463577270508,
+          2.3296476364135743,
+          2.332246780395508
+        ],
+        "hybrid": [
+          3.602800750732422,
+          3.604251480102539,
+          3.6010948181152345,
+          3.6001453399658203,
+          3.601358413696289,
+          3.600520706176758,
+          3.6008724212646483
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 64,
+        "BLOCK_N": 64,
+        "num_warps": 4,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario0_m64_n128_w8_s2",
+      "qlens": [
+        2048
+      ],
+      "kv_lengths": [
+        2048
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.008634090423583984,
+        "mean_abs": 0.00011369117419235408,
+        "relative_rms": 0.002028884831815958,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.008634090423583984,
+        "mean_abs": 0.00011467767762951553,
+        "relative_rms": 0.0020454905461519957,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 2.3519826889038087,
+        "hybrid": 3.1887922286987305
+      },
+      "samples_ms": {
+        "original": [
+          2.352443504333496,
+          2.352948760986328,
+          2.35125846862793,
+          2.3510807037353514,
+          2.3523065567016603,
+          2.3507123947143556,
+          2.3519826889038087
+        ],
+        "hybrid": [
+          3.1898616790771483,
+          3.1896215438842774,
+          3.184214973449707,
+          3.1937957763671876,
+          3.1840734481811523,
+          3.183756637573242,
+          3.1887922286987305
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 64,
+        "BLOCK_N": 128,
+        "num_warps": 8,
+        "num_stages": 2
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario1_m128_n32_w4_s3",
+      "qlens": [
+        2048
+      ],
+      "kv_lengths": [
+        4096
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0006060749292373657,
+        "mean_abs": 5.3310242947191e-05,
+        "relative_rms": 0.0022296258248388767,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0006060749292373657,
+        "mean_abs": 5.3310242947191e-05,
+        "relative_rms": 0.0022296258248388767,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 6.152352523803711,
+        "hybrid": 6.152487945556641
+      },
+      "samples_ms": {
+        "original": [
+          6.151315307617187,
+          6.152569198608399,
+          6.152811431884766,
+          6.152648544311523,
+          6.151341247558594,
+          6.150889205932617,
+          6.152352523803711
+        ],
+        "hybrid": [
+          6.152749633789062,
+          6.147906494140625,
+          6.152220153808594,
+          6.152487945556641,
+          6.1525218963623045,
+          6.153942489624024,
+          6.151954269409179
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 128,
+        "BLOCK_N": 32,
+        "num_warps": 4,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario1_m128_n64_w4_s3",
+      "qlens": [
+        2048
+      ],
+      "kv_lengths": [
+        4096
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0006060749292373657,
+        "mean_abs": 5.3310242947191e-05,
+        "relative_rms": 0.0022296258248388767,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0006060749292373657,
+        "mean_abs": 5.3342046157922596e-05,
+        "relative_rms": 0.0022308898624032736,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 6.086599731445313,
+        "hybrid": 12.217527770996094
+      },
+      "samples_ms": {
+        "original": [
+          6.091963195800782,
+          6.081122589111328,
+          6.090349197387695,
+          6.086599731445313,
+          6.0811717987060545,
+          6.080970001220703,
+          6.088554000854492
+        ],
+        "hybrid": [
+          12.217508697509766,
+          12.217301177978516,
+          12.303826904296875,
+          12.303704833984375,
+          12.217527770996094,
+          12.217272186279297,
+          12.28563232421875
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 128,
+        "BLOCK_N": 64,
+        "num_warps": 4,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario1_m128_n64_w8_s3",
+      "qlens": [
+        2048
+      ],
+      "kv_lengths": [
+        4096
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0006060749292373657,
+        "mean_abs": 5.3310242947191e-05,
+        "relative_rms": 0.0022296258248388767,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0006060749292373657,
+        "mean_abs": 5.3342046157922596e-05,
+        "relative_rms": 0.0022308898624032736,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 6.120306777954101,
+        "hybrid": 5.915629196166992
+      },
+      "samples_ms": {
+        "original": [
+          6.119447326660156,
+          6.120306777954101,
+          6.127007293701172,
+          6.109707641601562,
+          6.12196044921875,
+          6.131101989746094,
+          6.117342758178711
+        ],
+        "hybrid": [
+          5.913482284545898,
+          5.914635086059571,
+          5.915629196166992,
+          5.919330215454101,
+          5.915665817260742,
+          5.919203567504883,
+          5.912125778198242
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 128,
+        "BLOCK_N": 64,
+        "num_warps": 8,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario1_m128_n128_w8_s2",
+      "qlens": [
+        2048
+      ],
+      "kv_lengths": [
+        4096
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0006060749292373657,
+        "mean_abs": 5.3310242947191e-05,
+        "relative_rms": 0.0022296258248388767,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0006060749292373657,
+        "mean_abs": 5.3414125432027504e-05,
+        "relative_rms": 0.002233578125014901,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 6.120072555541992,
+        "hybrid": 4.09600715637207
+      },
+      "samples_ms": {
+        "original": [
+          6.129362487792969,
+          6.119035720825195,
+          6.122760009765625,
+          6.123580551147461,
+          6.1194580078125,
+          6.119760131835937,
+          6.120072555541992
+        ],
+        "hybrid": [
+          4.095175933837891,
+          4.09600715637207,
+          4.106147384643554,
+          4.106924819946289,
+          4.093230056762695,
+          4.092587280273437,
+          4.106622695922852
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 128,
+        "BLOCK_N": 128,
+        "num_warps": 8,
+        "num_stages": 2
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario1_m64_n32_w4_s3",
+      "qlens": [
+        2048
+      ],
+      "kv_lengths": [
+        4096
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0006060749292373657,
+        "mean_abs": 5.3310242947191e-05,
+        "relative_rms": 0.0022296258248388767,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0006060749292373657,
+        "mean_abs": 5.3310242947191e-05,
+        "relative_rms": 0.0022296258248388767,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 6.0912109375,
+        "hybrid": 6.8608757019042965
+      },
+      "samples_ms": {
+        "original": [
+          6.10461654663086,
+          6.090570068359375,
+          6.0912109375,
+          6.097101211547852,
+          6.087767028808594,
+          6.090629959106446,
+          6.0977424621582035
+        ],
+        "hybrid": [
+          6.8620353698730465,
+          6.856660461425781,
+          6.854907989501953,
+          6.868221282958984,
+          6.860039520263672,
+          6.873220825195313,
+          6.8608757019042965
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 64,
+        "BLOCK_N": 32,
+        "num_warps": 4,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario1_m64_n64_w4_s3",
+      "qlens": [
+        2048
+      ],
+      "kv_lengths": [
+        4096
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0006060749292373657,
+        "mean_abs": 5.3310242947191e-05,
+        "relative_rms": 0.0022296258248388767,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0006060749292373657,
+        "mean_abs": 5.3342046157922596e-05,
+        "relative_rms": 0.0022308898624032736,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 6.101758193969727,
+        "hybrid": 9.49756088256836
+      },
+      "samples_ms": {
+        "original": [
+          6.087094497680664,
+          6.107292938232422,
+          6.098847579956055,
+          6.101758193969727,
+          6.102822494506836,
+          6.096002197265625,
+          6.102388000488281
+        ],
+        "hybrid": [
+          9.493251037597656,
+          9.496482849121094,
+          9.510297393798828,
+          9.49756088256836,
+          9.504232788085938,
+          9.496620178222656,
+          9.502688598632812
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 64,
+        "BLOCK_N": 64,
+        "num_warps": 4,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario1_m64_n128_w8_s2",
+      "qlens": [
+        2048
+      ],
+      "kv_lengths": [
+        4096
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0006060749292373657,
+        "mean_abs": 5.3310242947191e-05,
+        "relative_rms": 0.0022296258248388767,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0006060749292373657,
+        "mean_abs": 5.3414125432027504e-05,
+        "relative_rms": 0.002233578125014901,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 6.105387878417969,
+        "hybrid": 7.972298431396484
+      },
+      "samples_ms": {
+        "original": [
+          6.100277328491211,
+          6.089427947998047,
+          6.106842422485352,
+          6.105387878417969,
+          6.109874725341797,
+          6.110696029663086,
+          6.104612350463867
+        ],
+        "hybrid": [
+          7.977274322509766,
+          7.9752197265625,
+          7.9723457336425785,
+          7.972298431396484,
+          7.971709442138672,
+          7.972229766845703,
+          7.971833801269531
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 64,
+        "BLOCK_N": 128,
+        "num_warps": 8,
+        "num_stages": 2
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario2_m128_n32_w4_s3",
+      "qlens": [
+        4096
+      ],
+      "kv_lengths": [
+        4096
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0073146820068359375,
+        "mean_abs": 8.367466216441244e-05,
+        "relative_rms": 0.002036657417193055,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0073146820068359375,
+        "mean_abs": 8.367466216441244e-05,
+        "relative_rms": 0.002036657417193055,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 8.26988525390625,
+        "hybrid": 8.268887329101563
+      },
+      "samples_ms": {
+        "original": [
+          8.27388687133789,
+          8.273217010498048,
+          8.252455139160157,
+          8.269913482666016,
+          8.26988525390625,
+          8.255499267578125,
+          8.247211456298828
+        ],
+        "hybrid": [
+          8.268887329101563,
+          8.274132537841798,
+          8.261095428466797,
+          8.262314605712891,
+          8.269881439208984,
+          8.24966812133789,
+          8.276943969726563
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 128,
+        "BLOCK_N": 32,
+        "num_warps": 4,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario2_m128_n64_w4_s3",
+      "qlens": [
+        4096
+      ],
+      "kv_lengths": [
+        4096
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0073146820068359375,
+        "mean_abs": 8.367466216441244e-05,
+        "relative_rms": 0.002036657417193055,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0073146820068359375,
+        "mean_abs": 8.392769086640328e-05,
+        "relative_rms": 0.0020441969390958548,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 8.244927215576173,
+        "hybrid": 16.666793823242188
+      },
+      "samples_ms": {
+        "original": [
+          8.250569915771484,
+          8.24309844970703,
+          8.244985961914063,
+          8.244237518310547,
+          8.249031066894531,
+          8.244927215576173,
+          8.242037200927735
+        ],
+        "hybrid": [
+          16.680006408691405,
+          16.663664245605467,
+          16.666383361816408,
+          16.669955444335937,
+          16.672079467773436,
+          16.666793823242188,
+          16.65679931640625
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 128,
+        "BLOCK_N": 64,
+        "num_warps": 4,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario2_m128_n64_w8_s3",
+      "qlens": [
+        4096
+      ],
+      "kv_lengths": [
+        4096
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0073146820068359375,
+        "mean_abs": 8.367466216441244e-05,
+        "relative_rms": 0.002036657417193055,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0073146820068359375,
+        "mean_abs": 8.392769086640328e-05,
+        "relative_rms": 0.0020441969390958548,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 8.235186767578124,
+        "hybrid": 8.052069091796875
+      },
+      "samples_ms": {
+        "original": [
+          8.2361572265625,
+          8.229379272460937,
+          8.236656951904298,
+          8.226493072509765,
+          8.229417419433593,
+          8.235186767578124,
+          8.235595703125
+        ],
+        "hybrid": [
+          8.052069091796875,
+          8.041064453125,
+          8.051626586914063,
+          8.044701385498048,
+          8.065178680419923,
+          8.074326324462891,
+          8.058699035644532
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 128,
+        "BLOCK_N": 64,
+        "num_warps": 8,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario2_m128_n128_w8_s2",
+      "qlens": [
+        4096
+      ],
+      "kv_lengths": [
+        4096
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0073146820068359375,
+        "mean_abs": 8.367466216441244e-05,
+        "relative_rms": 0.002036657417193055,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0073146820068359375,
+        "mean_abs": 8.421685924986377e-05,
+        "relative_rms": 0.0020515467040240765,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 8.2928955078125,
+        "hybrid": 5.671547317504883
+      },
+      "samples_ms": {
+        "original": [
+          8.294483184814453,
+          8.291048431396485,
+          8.291736602783203,
+          8.2928955078125,
+          8.293423461914063,
+          8.289984130859375,
+          8.295038604736328
+        ],
+        "hybrid": [
+          5.689245223999023,
+          5.687170791625976,
+          5.669773101806641,
+          5.670447540283203,
+          5.671547317504883,
+          5.669035720825195,
+          5.6804954528808596
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 128,
+        "BLOCK_N": 128,
+        "num_warps": 8,
+        "num_stages": 2
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario2_m64_n32_w4_s3",
+      "qlens": [
+        4096
+      ],
+      "kv_lengths": [
+        4096
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0073146820068359375,
+        "mean_abs": 8.367466216441244e-05,
+        "relative_rms": 0.002036657417193055,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0073146820068359375,
+        "mean_abs": 8.367464761249721e-05,
+        "relative_rms": 0.002036657417193055,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 8.238898468017577,
+        "hybrid": 9.419995880126953
+      },
+      "samples_ms": {
+        "original": [
+          8.243717193603516,
+          8.236161041259766,
+          8.234910583496093,
+          8.238898468017577,
+          8.250511932373048,
+          8.22741470336914,
+          8.241373443603516
+        ],
+        "hybrid": [
+          9.435533905029297,
+          9.419995880126953,
+          9.429118347167968,
+          9.421051788330079,
+          9.413695526123046,
+          9.413035583496093,
+          9.416758728027343
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 64,
+        "BLOCK_N": 32,
+        "num_warps": 4,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario2_m64_n64_w4_s3",
+      "qlens": [
+        4096
+      ],
+      "kv_lengths": [
+        4096
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0073146820068359375,
+        "mean_abs": 8.367466216441244e-05,
+        "relative_rms": 0.002036657417193055,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0073146820068359375,
+        "mean_abs": 8.39276981423609e-05,
+        "relative_rms": 0.0020441971719264984,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 8.187066650390625,
+        "hybrid": 12.820538330078126
+      },
+      "samples_ms": {
+        "original": [
+          8.226786804199218,
+          8.190940856933594,
+          8.192768859863282,
+          8.17724838256836,
+          8.187066650390625,
+          8.183423614501953,
+          8.179306793212891
+        ],
+        "hybrid": [
+          12.823738098144531,
+          12.835614013671876,
+          12.820538330078126,
+          12.815859985351562,
+          12.823994445800782,
+          12.819659423828124,
+          12.817198181152344
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 64,
+        "BLOCK_N": 64,
+        "num_warps": 4,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario2_m64_n128_w8_s2",
+      "qlens": [
+        4096
+      ],
+      "kv_lengths": [
+        4096
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0073146820068359375,
+        "mean_abs": 8.367466216441244e-05,
+        "relative_rms": 0.002036657417193055,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0073146820068359375,
+        "mean_abs": 8.421685924986377e-05,
+        "relative_rms": 0.0020515467040240765,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 8.234140777587891,
+        "hybrid": 11.109220123291015
+      },
+      "samples_ms": {
+        "original": [
+          8.235253143310548,
+          8.229962158203126,
+          8.232797241210937,
+          8.23858871459961,
+          8.233185577392579,
+          8.238478088378907,
+          8.234140777587891
+        ],
+        "hybrid": [
+          11.118846130371093,
+          11.119048309326171,
+          11.108650970458985,
+          11.109146118164062,
+          11.109220123291015,
+          11.108877563476563,
+          11.111223602294922
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 64,
+        "BLOCK_N": 128,
+        "num_warps": 8,
+        "num_stages": 2
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario3_m128_n32_w4_s3",
+      "qlens": [
+        4096,
+        4096
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.009152412414550781,
+        "mean_abs": 8.30665958346799e-05,
+        "relative_rms": 0.0020345912780612707,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.009152412414550781,
+        "mean_abs": 8.30665958346799e-05,
+        "relative_rms": 0.0020345912780612707,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 16.11973876953125,
+        "hybrid": 16.119963073730467
+      },
+      "samples_ms": {
+        "original": [
+          16.120843505859376,
+          16.11973876953125,
+          16.12055206298828,
+          16.11906280517578,
+          16.118333435058595,
+          16.120896911621095,
+          16.118736267089844
+        ],
+        "hybrid": [
+          16.117669677734376,
+          16.121734619140625,
+          16.119963073730467,
+          16.119853210449218,
+          16.11969757080078,
+          16.122418212890626,
+          16.120829772949218
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 128,
+        "BLOCK_N": 32,
+        "num_warps": 4,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario3_m128_n64_w4_s3",
+      "qlens": [
+        4096,
+        4096
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.009152412414550781,
+        "mean_abs": 8.30665958346799e-05,
+        "relative_rms": 0.0020345912780612707,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.009152412414550781,
+        "mean_abs": 8.335112215718254e-05,
+        "relative_rms": 0.0020432218443602324,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 16.11397705078125,
+        "hybrid": 33.3974853515625
+      },
+      "samples_ms": {
+        "original": [
+          16.122474670410156,
+          16.1121826171875,
+          16.11397705078125,
+          16.11420593261719,
+          16.110182189941405,
+          16.116436767578126,
+          16.113807678222656
+        ],
+        "hybrid": [
+          33.3974853515625,
+          33.39938049316406,
+          33.39473266601563,
+          33.39814147949219,
+          33.39701843261719,
+          33.399041748046876,
+          33.39692687988281
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 128,
+        "BLOCK_N": 64,
+        "num_warps": 4,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario3_m128_n64_w8_s3",
+      "qlens": [
+        4096,
+        4096
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.009152412414550781,
+        "mean_abs": 8.30665958346799e-05,
+        "relative_rms": 0.0020345912780612707,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.009152412414550781,
+        "mean_abs": 8.335112215718254e-05,
+        "relative_rms": 0.0020432218443602324,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 16.036126708984376,
+        "hybrid": 15.947215270996093
+      },
+      "samples_ms": {
+        "original": [
+          16.037567138671875,
+          16.03343505859375,
+          16.035554504394533,
+          16.024085998535156,
+          16.043125915527344,
+          16.036126708984376,
+          16.036894226074217
+        ],
+        "hybrid": [
+          15.950395202636718,
+          15.950140380859375,
+          15.936521911621094,
+          15.939610290527344,
+          15.942926025390625,
+          15.951055908203125,
+          15.947215270996093
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 128,
+        "BLOCK_N": 64,
+        "num_warps": 8,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario3_m128_n128_w8_s2",
+      "qlens": [
+        4096,
+        4096
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.009152412414550781,
+        "mean_abs": 8.30665958346799e-05,
+        "relative_rms": 0.0020345912780612707,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.009152412414550781,
+        "mean_abs": 8.36540712043643e-05,
+        "relative_rms": 0.0020503911655396223,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 16.087159729003908,
+        "hybrid": 11.226692199707031
+      },
+      "samples_ms": {
+        "original": [
+          16.090962219238282,
+          16.0805419921875,
+          16.08570556640625,
+          16.087159729003908,
+          16.08914794921875,
+          16.093251037597657,
+          16.08654327392578
+        ],
+        "hybrid": [
+          11.217848205566407,
+          11.218446350097656,
+          11.22493667602539,
+          11.226692199707031,
+          11.240357208251954,
+          11.237263488769532,
+          11.244893646240234
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 128,
+        "BLOCK_N": 128,
+        "num_warps": 8,
+        "num_stages": 2
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario3_m64_n32_w4_s3",
+      "qlens": [
+        4096,
+        4096
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.009152412414550781,
+        "mean_abs": 8.30665958346799e-05,
+        "relative_rms": 0.0020345912780612707,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.009152412414550781,
+        "mean_abs": 8.306658855872229e-05,
+        "relative_rms": 0.0020345915108919144,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 15.998091125488282,
+        "hybrid": 18.47876892089844
+      },
+      "samples_ms": {
+        "original": [
+          15.992013549804687,
+          16.0095703125,
+          15.995382690429688,
+          15.995065307617187,
+          15.999960327148438,
+          15.998091125488282,
+          16.000700378417967
+        ],
+        "hybrid": [
+          18.505586242675783,
+          18.484982299804688,
+          18.457518005371092,
+          18.47876892089844,
+          18.464822387695314,
+          18.478521728515624,
+          18.49097442626953
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 64,
+        "BLOCK_N": 32,
+        "num_warps": 4,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario3_m64_n64_w4_s3",
+      "qlens": [
+        4096,
+        4096
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.009152412414550781,
+        "mean_abs": 8.30665958346799e-05,
+        "relative_rms": 0.0020345912780612707,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.009152412414550781,
+        "mean_abs": 8.335113670909777e-05,
+        "relative_rms": 0.0020432223100215197,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 15.992160034179687,
+        "hybrid": 25.33173522949219
+      },
+      "samples_ms": {
+        "original": [
+          16.011074829101563,
+          15.992160034179687,
+          16.01204833984375,
+          16.008741760253905,
+          15.979598999023438,
+          15.976853942871093,
+          15.985623168945313
+        ],
+        "hybrid": [
+          25.33173522949219,
+          25.337451171875,
+          25.3306640625,
+          25.334185791015624,
+          25.33342742919922,
+          25.32216796875,
+          25.32934112548828
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 64,
+        "BLOCK_N": 64,
+        "num_warps": 4,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario3_m64_n128_w8_s2",
+      "qlens": [
+        4096,
+        4096
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.009152412414550781,
+        "mean_abs": 8.30665958346799e-05,
+        "relative_rms": 0.0020345912780612707,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.009152412414550781,
+        "mean_abs": 8.36540712043643e-05,
+        "relative_rms": 0.0020503911655396223,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 15.956858825683593,
+        "hybrid": 22.08576202392578
+      },
+      "samples_ms": {
+        "original": [
+          15.95873565673828,
+          15.963546752929688,
+          15.956858825683593,
+          15.954814147949218,
+          15.954216003417969,
+          15.962228393554687,
+          15.955502319335938
+        ],
+        "hybrid": [
+          22.08576202392578,
+          22.083599853515626,
+          22.089808654785156,
+          22.090675354003906,
+          22.08497314453125,
+          22.08468017578125,
+          22.098475646972656
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 64,
+        "BLOCK_N": 128,
+        "num_warps": 8,
+        "num_stages": 2
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario4_m128_n32_w4_s3",
+      "qlens": [
+        513,
+        2048
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0006380230188369751,
+        "mean_abs": 5.185022746445611e-05,
+        "relative_rms": 0.0022489253897219896,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0006380230188369751,
+        "mean_abs": 5.185022746445611e-05,
+        "relative_rms": 0.0022489253897219896,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 8.945010375976562,
+        "hybrid": 8.946538543701172
+      },
+      "samples_ms": {
+        "original": [
+          8.937065124511719,
+          8.945359802246093,
+          8.94592742919922,
+          8.945010375976562,
+          8.947349548339844,
+          8.944709777832031,
+          8.944931030273438
+        ],
+        "hybrid": [
+          8.94615478515625,
+          8.945811462402343,
+          8.946538543701172,
+          8.947296142578125,
+          8.939971923828125,
+          8.949017333984376,
+          8.947549438476562
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 128,
+        "BLOCK_N": 32,
+        "num_warps": 4,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario4_m128_n64_w4_s3",
+      "qlens": [
+        513,
+        2048
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0006380230188369751,
+        "mean_abs": 5.185022746445611e-05,
+        "relative_rms": 0.0022489253897219896,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0006380230188369751,
+        "mean_abs": 5.1894803618779406e-05,
+        "relative_rms": 0.0022506520617753267,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 8.87281494140625,
+        "hybrid": 18.004049682617186
+      },
+      "samples_ms": {
+        "original": [
+          8.87789535522461,
+          8.87281494140625,
+          8.873960876464844,
+          8.875975036621094,
+          8.871715545654297,
+          8.869137573242188,
+          8.872574615478516
+        ],
+        "hybrid": [
+          18.007415771484375,
+          18.020510864257812,
+          17.997023010253905,
+          18.02887420654297,
+          17.9941162109375,
+          17.991552734375,
+          18.004049682617186
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 128,
+        "BLOCK_N": 64,
+        "num_warps": 4,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario4_m128_n64_w8_s3",
+      "qlens": [
+        513,
+        2048
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0006380230188369751,
+        "mean_abs": 5.185022746445611e-05,
+        "relative_rms": 0.0022489253897219896,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0006380230188369751,
+        "mean_abs": 5.1894803618779406e-05,
+        "relative_rms": 0.0022506520617753267,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 8.948749542236328,
+        "hybrid": 8.662873077392579
+      },
+      "samples_ms": {
+        "original": [
+          8.939668273925781,
+          8.9402587890625,
+          8.943338775634766,
+          8.948749542236328,
+          8.950421142578126,
+          8.948987579345703,
+          8.949825286865234
+        ],
+        "hybrid": [
+          8.662873077392579,
+          8.661488342285157,
+          8.669226837158202,
+          8.66821517944336,
+          8.667906188964844,
+          8.662546539306641,
+          8.662180328369141
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 128,
+        "BLOCK_N": 64,
+        "num_warps": 8,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario4_m128_n128_w8_s2",
+      "qlens": [
+        513,
+        2048
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0006380230188369751,
+        "mean_abs": 5.185022746445611e-05,
+        "relative_rms": 0.0022489253897219896,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0006380230188369751,
+        "mean_abs": 5.194560071686283e-05,
+        "relative_rms": 0.0022523743100464344,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 8.868880462646484,
+        "hybrid": 5.998463439941406
+      },
+      "samples_ms": {
+        "original": [
+          8.87353973388672,
+          8.870909881591796,
+          8.868296051025391,
+          8.869577789306641,
+          8.868880462646484,
+          8.865167236328125,
+          8.868803405761719
+        ],
+        "hybrid": [
+          5.995491409301758,
+          5.994158554077148,
+          5.999093246459961,
+          5.998767471313476,
+          5.999076080322266,
+          5.998463439941406,
+          5.998397445678711
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 128,
+        "BLOCK_N": 128,
+        "num_warps": 8,
+        "num_stages": 2
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario4_m64_n32_w4_s3",
+      "qlens": [
+        513,
+        2048
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0006380230188369751,
+        "mean_abs": 5.185022746445611e-05,
+        "relative_rms": 0.0022489253897219896,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0006380230188369751,
+        "mean_abs": 5.1850234740413725e-05,
+        "relative_rms": 0.0022489256225526333,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 8.888841247558593,
+        "hybrid": 9.455108642578125
+      },
+      "samples_ms": {
+        "original": [
+          8.878067016601562,
+          8.888841247558593,
+          8.890013885498046,
+          8.883077239990234,
+          8.893216705322265,
+          8.895706939697266,
+          8.88565902709961
+        ],
+        "hybrid": [
+          9.464335632324218,
+          9.430226135253907,
+          9.455108642578125,
+          9.448757934570313,
+          9.463301086425782,
+          9.4558349609375,
+          9.44351806640625
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 64,
+        "BLOCK_N": 32,
+        "num_warps": 4,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario4_m64_n64_w4_s3",
+      "qlens": [
+        513,
+        2048
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0006380230188369751,
+        "mean_abs": 5.185022746445611e-05,
+        "relative_rms": 0.0022489253897219896,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0006380230188369751,
+        "mean_abs": 5.1894803618779406e-05,
+        "relative_rms": 0.0022506520617753267,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 8.884737396240235,
+        "hybrid": 13.057908630371093
+      },
+      "samples_ms": {
+        "original": [
+          8.878614044189453,
+          8.897622680664062,
+          8.886484527587891,
+          8.884737396240235,
+          8.876224517822266,
+          8.881090545654297,
+          8.89517593383789
+        ],
+        "hybrid": [
+          13.057908630371093,
+          13.05032958984375,
+          13.061810302734376,
+          13.046903991699219,
+          13.055368041992187,
+          13.062533569335937,
+          13.069699096679688
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 64,
+        "BLOCK_N": 64,
+        "num_warps": 4,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario4_m64_n128_w8_s2",
+      "qlens": [
+        513,
+        2048
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0006380230188369751,
+        "mean_abs": 5.185022746445611e-05,
+        "relative_rms": 0.0022489253897219896,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0006380230188369751,
+        "mean_abs": 5.194560071686283e-05,
+        "relative_rms": 0.0022523743100464344,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 8.935094451904297,
+        "hybrid": 11.03353042602539
+      },
+      "samples_ms": {
+        "original": [
+          8.969889068603516,
+          8.935094451904297,
+          8.945061492919923,
+          8.918991088867188,
+          8.934910583496094,
+          8.925162506103515,
+          8.950429534912109
+        ],
+        "hybrid": [
+          11.029877471923829,
+          11.032517242431641,
+          11.043946838378906,
+          11.043203735351563,
+          11.03353042602539,
+          11.025387573242188,
+          11.036116790771484
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 64,
+        "BLOCK_N": 128,
+        "num_warps": 8,
+        "num_stages": 2
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario5_m128_n32_w4_s3",
+      "qlens": [
+        577
+      ],
+      "kv_lengths": [
+        5120
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.00036941468715667725,
+        "mean_abs": 4.197084854240529e-05,
+        "relative_rms": 0.0022691916674375534,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.00036941468715667725,
+        "mean_abs": 4.197084854240529e-05,
+        "relative_rms": 0.0022691916674375534,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 3.3455268859863283,
+        "hybrid": 3.34599609375
+      },
+      "samples_ms": {
+        "original": [
+          3.3459964752197267,
+          3.3455268859863283,
+          3.347787857055664,
+          3.340995025634766,
+          3.346403884887695,
+          3.3425575256347657,
+          3.339175796508789
+        ],
+        "hybrid": [
+          3.3461227416992188,
+          3.34599609375,
+          3.343525695800781,
+          3.3388160705566405,
+          3.3493518829345703,
+          3.3465152740478517,
+          3.3364864349365235
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 128,
+        "BLOCK_N": 32,
+        "num_warps": 4,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario5_m128_n64_w4_s3",
+      "qlens": [
+        577
+      ],
+      "kv_lengths": [
+        5120
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.00036941468715667725,
+        "mean_abs": 4.197084854240529e-05,
+        "relative_rms": 0.0022691916674375534,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.00036941468715667725,
+        "mean_abs": 4.1994186176452786e-05,
+        "relative_rms": 0.0022702794522047043,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 3.3310890197753906,
+        "hybrid": 5.834674072265625
+      },
+      "samples_ms": {
+        "original": [
+          3.330844497680664,
+          3.3322093963623045,
+          3.3310890197753906,
+          3.3344932556152345,
+          3.326490020751953,
+          3.3294662475585937,
+          3.331643295288086
+        ],
+        "hybrid": [
+          5.834674072265625,
+          5.8347728729248045,
+          5.836148452758789,
+          5.834401702880859,
+          5.835330200195313,
+          5.834115219116211,
+          5.834513473510742
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 128,
+        "BLOCK_N": 64,
+        "num_warps": 4,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario5_m128_n64_w8_s3",
+      "qlens": [
+        577
+      ],
+      "kv_lengths": [
+        5120
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.00036941468715667725,
+        "mean_abs": 4.197084854240529e-05,
+        "relative_rms": 0.0022691916674375534,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.00036941468715667725,
+        "mean_abs": 4.1994186176452786e-05,
+        "relative_rms": 0.0022702794522047043,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 3.398740768432617,
+        "hybrid": 2.8067466735839846
+      },
+      "samples_ms": {
+        "original": [
+          3.3965484619140627,
+          3.398834991455078,
+          3.398740768432617,
+          3.3991439819335936,
+          3.3987598419189453,
+          3.398607635498047,
+          3.398258590698242
+        ],
+        "hybrid": [
+          2.8067466735839846,
+          2.807029151916504,
+          2.8067354202270507,
+          2.806733322143555,
+          2.806711959838867,
+          2.8070295333862303,
+          2.807101821899414
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 128,
+        "BLOCK_N": 64,
+        "num_warps": 8,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario5_m128_n128_w8_s2",
+      "qlens": [
+        577
+      ],
+      "kv_lengths": [
+        5120
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.00036941468715667725,
+        "mean_abs": 4.197084854240529e-05,
+        "relative_rms": 0.0022691916674375534,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.00036941468715667725,
+        "mean_abs": 4.201328192721121e-05,
+        "relative_rms": 0.0022715406958013773,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 3.350704574584961,
+        "hybrid": 1.932145881652832
+      },
+      "samples_ms": {
+        "original": [
+          3.349460983276367,
+          3.349795913696289,
+          3.350704574584961,
+          3.3492881774902346,
+          3.3558280944824217,
+          3.355868911743164,
+          3.358480453491211
+        ],
+        "hybrid": [
+          1.9326858520507812,
+          1.9324541091918945,
+          1.9313016891479493,
+          1.9312625885009767,
+          1.9320575714111328,
+          1.932145881652832,
+          1.9328273773193358
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 128,
+        "BLOCK_N": 128,
+        "num_warps": 8,
+        "num_stages": 2
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario5_m64_n32_w4_s3",
+      "qlens": [
+        577
+      ],
+      "kv_lengths": [
+        5120
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.00036941468715667725,
+        "mean_abs": 4.197084854240529e-05,
+        "relative_rms": 0.0022691916674375534,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.00036941468715667725,
+        "mean_abs": 4.197084854240529e-05,
+        "relative_rms": 0.0022691916674375534,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 3.3096538543701173,
+        "hybrid": 3.7598400115966797
+      },
+      "samples_ms": {
+        "original": [
+          3.310686492919922,
+          3.313079833984375,
+          3.311157989501953,
+          3.3096538543701173,
+          3.307825469970703,
+          3.3069599151611326,
+          3.295890045166016
+        ],
+        "hybrid": [
+          3.7618453979492186,
+          3.7685680389404297,
+          3.7598400115966797,
+          3.7539791107177733,
+          3.754193878173828,
+          3.7597324371337892,
+          3.763680267333984
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 64,
+        "BLOCK_N": 32,
+        "num_warps": 4,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario5_m64_n64_w4_s3",
+      "qlens": [
+        577
+      ],
+      "kv_lengths": [
+        5120
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.00036941468715667725,
+        "mean_abs": 4.197084854240529e-05,
+        "relative_rms": 0.0022691916674375534,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.00036941468715667725,
+        "mean_abs": 4.1994186176452786e-05,
+        "relative_rms": 0.0022702794522047043,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 3.369826889038086,
+        "hybrid": 4.570943450927734
+      },
+      "samples_ms": {
+        "original": [
+          3.396462631225586,
+          3.360462951660156,
+          3.3690040588378904,
+          3.3704292297363283,
+          3.3697601318359376,
+          3.371046447753906,
+          3.369826889038086
+        ],
+        "hybrid": [
+          4.570558166503906,
+          4.571820068359375,
+          4.570943450927734,
+          4.570356369018555,
+          4.571559143066406,
+          4.573080062866211,
+          4.56975212097168
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 64,
+        "BLOCK_N": 64,
+        "num_warps": 4,
+        "num_stages": 3
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    },
+    {
+      "name": "scenario5_m64_n128_w8_s2",
+      "qlens": [
+        577
+      ],
+      "kv_lengths": [
+        5120
+      ],
+      "strided": true,
+      "native_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.00036941468715667725,
+        "mean_abs": 4.197084854240529e-05,
+        "relative_rms": 0.0022691916674375534,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "candidate_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.00036941468715667725,
+        "mean_abs": 4.201328192721121e-05,
+        "relative_rms": 0.0022715406958013773,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "native_preserved_bitwise": null,
+      "num_decodes": 0,
+      "median_ms": {
+        "original": 3.319662857055664,
+        "hybrid": 3.8000675201416017
+      },
+      "samples_ms": {
+        "original": [
+          3.3215869903564452,
+          3.316553497314453,
+          3.3196239471435547,
+          3.3179550170898438,
+          3.319662857055664,
+          3.3230140686035154,
+          3.3260528564453127
+        ],
+        "hybrid": [
+          3.8000675201416017,
+          3.8003135681152345,
+          3.7976657867431642,
+          3.7980110168457033,
+          3.800944137573242,
+          3.800326919555664,
+          3.798505401611328
+        ]
+      },
+      "configuration": {
+        "BLOCK_M": 64,
+        "BLOCK_N": 128,
+        "num_warps": 8,
+        "num_stages": 2
+      },
+      "baseline_name": "default_fa2",
+      "candidate_name": "selected_fa2"
+    }
+  ],
+  "cpu_oracle_checks": [
+    {
+      "passed": true,
+      "max_abs": 1.7881393432617188e-07,
+      "mean_abs": 2.4690166355867404e-08,
+      "relative_rms": 7.956676029152732e-08,
+      "atol": 0.02,
+      "rtol": 0.01,
+      "sequence": 0,
+      "head": 0,
+      "positions": [
+        0,
+        127,
+        2047
+      ],
+      "qlens": [
+        2048
+      ],
+      "kv_lengths": [
+        2048
+      ]
+    },
+    {
+      "passed": true,
+      "max_abs": 1.341104507446289e-07,
+      "mean_abs": 1.6075167863505158e-08,
+      "relative_rms": 4.996052282990604e-08,
+      "atol": 0.02,
+      "rtol": 0.01,
+      "sequence": 0,
+      "head": 7,
+      "positions": [
+        0,
+        127,
+        2047
+      ],
+      "qlens": [
+        2048
+      ],
+      "kv_lengths": [
+        2048
+      ]
+    },
+    {
+      "passed": true,
+      "max_abs": 1.0803341865539551e-07,
+      "mean_abs": 1.3953486366347079e-08,
+      "relative_rms": 4.272477838185296e-08,
+      "atol": 0.02,
+      "rtol": 0.01,
+      "sequence": 0,
+      "head": 15,
+      "positions": [
+        0,
+        127,
+        2047
+      ],
+      "qlens": [
+        2048
+      ],
+      "kv_lengths": [
+        2048
+      ]
+    },
+    {
+      "passed": true,
+      "max_abs": 1.1920928955078125e-07,
+      "mean_abs": 2.168225954335412e-08,
+      "relative_rms": 9.618727290217066e-07,
+      "atol": 0.02,
+      "rtol": 0.01,
+      "sequence": 0,
+      "head": 0,
+      "positions": [
+        0,
+        127,
+        2047
+      ],
+      "qlens": [
+        2048
+      ],
+      "kv_lengths": [
+        4096
+      ]
+    },
+    {
+      "passed": true,
+      "max_abs": 1.4901161193847656e-07,
+      "mean_abs": 2.168409629632606e-08,
+      "relative_rms": 9.164127163785452e-07,
+      "atol": 0.02,
+      "rtol": 0.01,
+      "sequence": 0,
+      "head": 7,
+      "positions": [
+        0,
+        127,
+        2047
+      ],
+      "qlens": [
+        2048
+      ],
+      "kv_lengths": [
+        4096
+      ]
+    },
+    {
+      "passed": true,
+      "max_abs": 1.043081283569336e-07,
+      "mean_abs": 1.890631118328656e-08,
+      "relative_rms": 7.898370881775918e-07,
+      "atol": 0.02,
+      "rtol": 0.01,
+      "sequence": 0,
+      "head": 15,
+      "positions": [
+        0,
+        127,
+        2047
+      ],
+      "qlens": [
+        2048
+      ],
+      "kv_lengths": [
+        4096
+      ]
+    },
+    {
+      "passed": true,
+      "max_abs": 1.1920928955078125e-07,
+      "mean_abs": 1.4706226458827132e-08,
+      "relative_rms": 3.991709718320635e-08,
+      "atol": 0.02,
+      "rtol": 0.01,
+      "sequence": 0,
+      "head": 0,
+      "positions": [
+        0,
+        127,
+        4095
+      ],
+      "qlens": [
+        4096
+      ],
+      "kv_lengths": [
+        4096
+      ]
+    },
+    {
+      "passed": true,
+      "max_abs": 1.341104507446289e-07,
+      "mean_abs": 1.7957896503162374e-08,
+      "relative_rms": 4.8803819652221136e-08,
+      "atol": 0.02,
+      "rtol": 0.01,
+      "sequence": 0,
+      "head": 7,
+      "positions": [
+        0,
+        127,
+        4095
+      ],
+      "qlens": [
+        4096
+      ],
+      "kv_lengths": [
+        4096
+      ]
+    },
+    {
+      "passed": true,
+      "max_abs": 1.30385160446167e-07,
+      "mean_abs": 1.4510078472085297e-08,
+      "relative_rms": 4.186198054867418e-08,
+      "atol": 0.02,
+      "rtol": 0.01,
+      "sequence": 0,
+      "head": 15,
+      "positions": [
+        0,
+        127,
+        4095
+      ],
+      "qlens": [
+        4096
+      ],
+      "kv_lengths": [
+        4096
+      ]
+    },
+    {
+      "passed": true,
+      "max_abs": 1.4901161193847656e-07,
+      "mean_abs": 1.4478473531198688e-08,
+      "relative_rms": 3.933927672505888e-08,
+      "atol": 0.02,
+      "rtol": 0.01,
+      "sequence": 0,
+      "head": 0,
+      "positions": [
+        0,
+        127,
+        4095
+      ],
+      "qlens": [
+        4096,
+        4096
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ]
+    },
+    {
+      "passed": true,
+      "max_abs": 9.685754776000977e-08,
+      "mean_abs": 1.3855242286808789e-08,
+      "relative_rms": 3.814198379359368e-08,
+      "atol": 0.02,
+      "rtol": 0.01,
+      "sequence": 0,
+      "head": 7,
+      "positions": [
+        0,
+        127,
+        4095
+      ],
+      "qlens": [
+        4096,
+        4096
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ]
+    },
+    {
+      "passed": true,
+      "max_abs": 8.940696716308594e-08,
+      "mean_abs": 1.3742685212037031e-08,
+      "relative_rms": 3.600854725505087e-08,
+      "atol": 0.02,
+      "rtol": 0.01,
+      "sequence": 0,
+      "head": 15,
+      "positions": [
+        0,
+        127,
+        4095
+      ],
+      "qlens": [
+        4096,
+        4096
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ]
+    },
+    {
+      "passed": true,
+      "max_abs": 1.5273690223693848e-07,
+      "mean_abs": 1.6085664356069174e-08,
+      "relative_rms": 4.8683308051522545e-08,
+      "atol": 0.02,
+      "rtol": 0.01,
+      "sequence": 1,
+      "head": 0,
+      "positions": [
+        0,
+        127,
+        4095
+      ],
+      "qlens": [
+        4096,
+        4096
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ]
+    },
+    {
+      "passed": true,
+      "max_abs": 1.341104507446289e-07,
+      "mean_abs": 1.4222412580977561e-08,
+      "relative_rms": 4.341707082744506e-08,
+      "atol": 0.02,
+      "rtol": 0.01,
+      "sequence": 1,
+      "head": 7,
+      "positions": [
+        0,
+        127,
+        4095
+      ],
+      "qlens": [
+        4096,
+        4096
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ]
+    },
+    {
+      "passed": true,
+      "max_abs": 8.381903171539307e-08,
+      "mean_abs": 1.1866366556034791e-08,
+      "relative_rms": 3.288505467935465e-08,
+      "atol": 0.02,
+      "rtol": 0.01,
+      "sequence": 1,
+      "head": 15,
+      "positions": [
+        0,
+        127,
+        4095
+      ],
+      "qlens": [
+        4096,
+        4096
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ]
+    },
+    {
+      "passed": true,
+      "max_abs": 1.1920928955078125e-07,
+      "mean_abs": 2.0069355954888124e-08,
+      "relative_rms": 1.1504652093208279e-06,
+      "atol": 0.02,
+      "rtol": 0.01,
+      "sequence": 0,
+      "head": 0,
+      "positions": [
+        0,
+        127,
+        512
+      ],
+      "qlens": [
+        513,
+        2048
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ]
+    },
+    {
+      "passed": true,
+      "max_abs": 1.6763806343078613e-07,
+      "mean_abs": 2.0334207206929023e-08,
+      "relative_rms": 1.0633443707774859e-06,
+      "atol": 0.02,
+      "rtol": 0.01,
+      "sequence": 0,
+      "head": 7,
+      "positions": [
+        0,
+        127,
+        512
+      ],
+      "qlens": [
+        513,
+        2048
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ]
+    },
+    {
+      "passed": true,
+      "max_abs": 2.086162567138672e-07,
+      "mean_abs": 2.254533626455668e-08,
+      "relative_rms": 1.2466941825550748e-06,
+      "atol": 0.02,
+      "rtol": 0.01,
+      "sequence": 0,
+      "head": 15,
+      "positions": [
+        0,
+        127,
+        512
+      ],
+      "qlens": [
+        513,
+        2048
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ]
+    },
+    {
+      "passed": true,
+      "max_abs": 3.129243850708008e-07,
+      "mean_abs": 2.738636339927325e-08,
+      "relative_rms": 1.006465822683822e-06,
+      "atol": 0.02,
+      "rtol": 0.01,
+      "sequence": 1,
+      "head": 0,
+      "positions": [
+        0,
+        127,
+        2047
+      ],
+      "qlens": [
+        513,
+        2048
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ]
+    },
+    {
+      "passed": true,
+      "max_abs": 1.0803341865539551e-07,
+      "mean_abs": 2.1366934888078504e-08,
+      "relative_rms": 9.715425903777941e-07,
+      "atol": 0.02,
+      "rtol": 0.01,
+      "sequence": 1,
+      "head": 7,
+      "positions": [
+        0,
+        127,
+        2047
+      ],
+      "qlens": [
+        513,
+        2048
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ]
+    },
+    {
+      "passed": true,
+      "max_abs": 1.6391277313232422e-07,
+      "mean_abs": 2.17665583335247e-08,
+      "relative_rms": 9.005758556668297e-07,
+      "atol": 0.02,
+      "rtol": 0.01,
+      "sequence": 1,
+      "head": 15,
+      "positions": [
+        0,
+        127,
+        2047
+      ],
+      "qlens": [
+        513,
+        2048
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ]
+    },
+    {
+      "passed": true,
+      "max_abs": 1.564621925354004e-07,
+      "mean_abs": 2.269929133547066e-08,
+      "relative_rms": 1.2954780004292843e-06,
+      "atol": 0.02,
+      "rtol": 0.01,
+      "sequence": 0,
+      "head": 0,
+      "positions": [
+        0,
+        127,
+        576
+      ],
+      "qlens": [
+        577
+      ],
+      "kv_lengths": [
+        5120
+      ]
+    },
+    {
+      "passed": true,
+      "max_abs": 1.2665987014770508e-07,
+      "mean_abs": 2.2576577052291213e-08,
+      "relative_rms": 1.26977624859137e-06,
+      "atol": 0.02,
+      "rtol": 0.01,
+      "sequence": 0,
+      "head": 7,
+      "positions": [
+        0,
+        127,
+        576
+      ],
+      "qlens": [
+        577
+      ],
+      "kv_lengths": [
+        5120
+      ]
+    },
+    {
+      "passed": true,
+      "max_abs": 1.4901161193847656e-07,
+      "mean_abs": 2.2410659994420712e-08,
+      "relative_rms": 1.2489060736697866e-06,
+      "atol": 0.02,
+      "rtol": 0.01,
+      "sequence": 0,
+      "head": 15,
+      "positions": [
+        0,
+        127,
+        576
+      ],
+      "qlens": [
+        577
+      ],
+      "kv_lengths": [
+        5120
+      ]
+    }
+  ],
+  "cpu_oracle_pending": false,
+  "adoption_allowed": false,
+  "numerical_failures": 0
+}

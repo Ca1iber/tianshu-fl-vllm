@@ -1,0 +1,92 @@
+{
+  "official_benchmark": false,
+  "numerical_combinations_passed": 42,
+  "cpu_oracle_checks_passed": 24,
+  "chosen_configuration": {
+    "BLOCK_M": 128,
+    "BLOCK_N": 128,
+    "num_warps": 8,
+    "num_stages": 2
+  },
+  "cases": [
+    {
+      "name": "scenario0_m128_n128_w8_s2",
+      "qlens": [
+        2048
+      ],
+      "kv_lengths": [
+        2048
+      ],
+      "baseline_ms": 2.3443437576293946,
+      "candidate_ms": 1.651634979248047,
+      "latency_reduction_percent": 29.548088932222814
+    },
+    {
+      "name": "scenario1_m128_n128_w8_s2",
+      "qlens": [
+        2048
+      ],
+      "kv_lengths": [
+        4096
+      ],
+      "baseline_ms": 6.120072555541992,
+      "candidate_ms": 4.09600715637207,
+      "latency_reduction_percent": 33.07257194748521
+    },
+    {
+      "name": "scenario2_m128_n128_w8_s2",
+      "qlens": [
+        4096
+      ],
+      "kv_lengths": [
+        4096
+      ],
+      "baseline_ms": 8.2928955078125,
+      "candidate_ms": 5.671547317504883,
+      "latency_reduction_percent": 31.60956493227388
+    },
+    {
+      "name": "scenario3_m128_n128_w8_s2",
+      "qlens": [
+        4096,
+        4096
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ],
+      "baseline_ms": 16.087159729003908,
+      "candidate_ms": 11.226692199707031,
+      "latency_reduction_percent": 30.21333542510819
+    },
+    {
+      "name": "scenario4_m128_n128_w8_s2",
+      "qlens": [
+        513,
+        2048
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ],
+      "baseline_ms": 8.868880462646484,
+      "candidate_ms": 5.998463439941406,
+      "latency_reduction_percent": 32.36504353389991
+    },
+    {
+      "name": "scenario5_m128_n128_w8_s2",
+      "qlens": [
+        577
+      ],
+      "kv_lengths": [
+        5120
+      ],
+      "baseline_ms": 3.350704574584961,
+      "candidate_ms": 1.932145881652832,
+      "latency_reduction_percent": 42.33613144208156
+    }
+  ],
+  "service_result_pending": true,
+  "new_quality_result_pending": true,
+  "installed_files_modified": false
+}
