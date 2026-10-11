@@ -63,6 +63,9 @@ def main():
         'server_command': state['server_command'],
         'max_batched_tokens': state.get('max_batched_tokens', 2048),
         'worker_sha256': state.get('worker_sha256'),
+        'tile_hook': state.get('tile_hook'),
+        'tile_configuration': state.get('tile_configuration'),
+        'tile_routing_records': state.get('tile_routing_records'),
         'gpu_idle_after': True,
         'raw_files': {str(p.relative_to(root)): {
             'bytes': p.stat().st_size, 'sha256': hashlib.sha256(p.read_bytes()).hexdigest()

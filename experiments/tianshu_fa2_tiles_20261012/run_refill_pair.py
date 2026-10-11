@@ -11,6 +11,9 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--max-batched-tokens', choices=[2048, 4096, 8192], type=int, default=2048)
+    parser.add_argument('--requests', type=int, default=192)
+    parser.add_argument('--output-tokens', type=int, default=128)
+    parser.add_argument('--rounds', type=int, default=3)
     args = parser.parse_args()
     root = args.output.resolve()
     root.mkdir(parents=True, exist_ok=True)
@@ -23,8 +26,8 @@ def main():
         command = [sys.executable, '-u', str(trial), '--output', str(output),
                    '--buckets', '0', '--gather', '0', '--tile', tile, '--hybrid', '1', '--adaptive', '1',
                    '--max-batched-tokens', str(args.max_batched_tokens),
-                   '--requests', '192', '--concurrency', '64', '--output-tokens', '128',
-                   '--rounds', '3']
+                   '--requests', str(args.requests), '--concurrency', '64',
+                   '--output-tokens', str(args.output_tokens), '--rounds', str(args.rounds)]
         with (output / 'runner.log').open('w') as log:
             process = subprocess.run(command, stdout=log, stderr=subprocess.STDOUT)
         result = json.loads((output / 'result.json').read_text())
