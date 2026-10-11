@@ -18,10 +18,10 @@ import urllib.request
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--adaptive',choices=['0','1'],default='1')
-    parser.add_argument('--max-batched-tokens',type=int,choices=[2048],default=2048)
+    parser.add_argument('--max-batched-tokens',type=int,choices=[2048,4096],default=2048)
     args=parser.parse_args();root=args.output.resolve();root.mkdir(parents=True,exist_ok=True)
     if (root/'result.json').exists():raise RuntimeError('Refusing to overwrite a completed evaluation')
-    state={'max_batched_tokens':args.max_batched_tokens,'phase':'preparing','candidate':'hybrid_adaptive_fa2_tile128','reused_original_accuracy':False,
+    state={'max_batched_tokens':args.max_batched_tokens,'phase':'preparing','candidate':f'hybrid_adaptive_fa2_tile128_budget{args.max_batched_tokens}','reused_original_accuracy':False,
            'started_utc':datetime.now(timezone.utc).isoformat(),'runner_pid':os.getpid()}
     server=evaluator=None
     stop_at=datetime.fromisoformat(json.loads(Path('/workspace/benchmark-results/20261011_121020_baseline_tianshu/reservation_deadline.json').read_text())['stop_at_utc'])
