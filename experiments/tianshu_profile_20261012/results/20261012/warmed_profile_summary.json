@@ -1,0 +1,248 @@
+{
+  "phase": "complete",
+  "diagnostic_no_graphs": true,
+  "concurrency": 16,
+  "warmup_wall_s": [
+    99.0067734750919,
+    16.988099751994014
+  ],
+  "measured_wall_s": 20.900159480050206,
+  "analysis": {
+    "gpu_kernel_total_ms": 12701.353127000144,
+    "time_scope": "Recorded kernel events, not guaranteed to cover graph replay bodies",
+    "cuda_graph_body_coverage_verified": false,
+    "graphs_disabled_for_diagnostics": true,
+    "attention_classes_ms": {
+      "attention_3d": 2281.087793999977
+    },
+    "top_kernels": [
+      {
+        "name": "mm_kernel",
+        "calls": 26880,
+        "total_ms": 4972.3079750001625,
+        "percent": 39.1478602734868
+      },
+      {
+        "name": "flash_varlen_fwd_kernel",
+        "calls": 1386,
+        "total_ms": 4261.351657000011,
+        "percent": 33.55037541583944
+      },
+      {
+        "name": "kernel_unified_attention",
+        "calls": 6636,
+        "total_ms": 2281.087793999977,
+        "percent": 17.959407719724844
+      },
+      {
+        "name": "_topk_topp_kernel",
+        "calls": 132,
+        "total_ms": 219.18589500000002,
+        "percent": 1.7256893246599168
+      },
+      {
+        "name": "triton_poi_fused_mul_silu_slice_1",
+        "calls": 6720,
+        "total_ms": 207.74088899999407,
+        "percent": 1.6355807678347665
+      },
+      {
+        "name": "triton_red_fused_fused_add_rms_norm_2",
+        "calls": 6720,
+        "total_ms": 149.89387200000095,
+        "percent": 1.1801409700306749
+      },
+      {
+        "name": "linear_kernel",
+        "calls": 160,
+        "total_ms": 145.30469600000006,
+        "percent": 1.14400957557125
+      },
+      {
+        "name": "triton_poi_fused_3",
+        "calls": 6560,
+        "total_ms": 134.91707000000204,
+        "percent": 1.0622259585335008
+      },
+      {
+        "name": "triton_red_fused_fused_add_rms_norm_0",
+        "calls": 6720,
+        "total_ms": 97.22986999999699,
+        "percent": 0.7655079661812468
+      },
+      {
+        "name": "reshape_and_cache_kernel_flash",
+        "calls": 6720,
+        "total_ms": 69.60803299999809,
+        "percent": 0.548036357260452
+      },
+      {
+        "name": "reduce_segments",
+        "calls": 6636,
+        "total_ms": 53.647460000000294,
+        "percent": 0.42237594265415845
+      },
+      {
+        "name": "sweep",
+        "calls": 224,
+        "total_ms": 36.877338,
+        "percent": 0.29034180556406464
+      },
+      {
+        "name": "compute_global_hist_kernel",
+        "calls": 28,
+        "total_ms": 13.657662000000002,
+        "percent": 0.10752918892528833
+      },
+      {
+        "name": "true_div_func_kernel_rank_2",
+        "calls": 160,
+        "total_ms": 12.031339999999998,
+        "percent": 0.09472486812782291
+      },
+      {
+        "name": "argmax_kernel_inner",
+        "calls": 160,
+        "total_ms": 8.430141,
+        "percent": 0.06637199135956207
+      },
+      {
+        "name": "softmax_kernel_inner",
+        "calls": 188,
+        "total_ms": 6.944939000000001,
+        "percent": 0.054678733285799794
+      },
+      {
+        "name": "true_div_func_kernel_rank_1",
+        "calls": 160,
+        "total_ms": 4.302562,
+        "percent": 0.03387483173626397
+      },
+      {
+        "name": "_to_copy_func_kernel_rank_1",
+        "calls": 508,
+        "total_ms": 4.26745000000001,
+        "percent": 0.033598388749056955
+      },
+      {
+        "name": "fused_exponential_kernel_f32_unroll8",
+        "calls": 160,
+        "total_ms": 3.786410000000001,
+        "percent": 0.02981107573452916
+      },
+      {
+        "name": "triton_poi_fused_1",
+        "calls": 160,
+        "total_ms": 3.332063000000002,
+        "percent": 0.02623392143091278
+      },
+      {
+        "name": "triton_red_fused__to_copy_embedding_rms_norm_0",
+        "calls": 160,
+        "total_ms": 2.859711,
+        "percent": 0.02251501057726609
+      },
+      {
+        "name": "_copy_kernel_kernel_rank_1",
+        "calls": 470,
+        "total_ms": 1.7253570000000022,
+        "percent": 0.013584040871458739
+      },
+      {
+        "name": "_index_linearized_jit_function",
+        "calls": 328,
+        "total_ms": 1.3462600000000005,
+        "percent": 0.010599343129340784
+      },
+      {
+        "name": "add_func_kernel_rank_1",
+        "calls": 320,
+        "total_ms": 1.2712210000000006,
+        "percent": 0.010008547808167607
+      },
+      {
+        "name": "fill_scalar_func_kernel_rank_1",
+        "calls": 348,
+        "total_ms": 1.221239000000002,
+        "percent": 0.009615030680502299
+      },
+      {
+        "name": "_copy_kernel_kernel_rank_2",
+        "calls": 52,
+        "total_ms": 1.210459,
+        "percent": 0.00953015783355274
+      },
+      {
+        "name": "_compute_slot_mapping_kernel",
+        "calls": 160,
+        "total_ms": 1.1034650000000006,
+        "percent": 0.008687775144636273
+      },
+      {
+        "name": "zeros_kernel",
+        "calls": 252,
+        "total_ms": 0.8998199999999995,
+        "percent": 0.007084442035448883
+      },
+      {
+        "name": "_scatter_jit_function",
+        "calls": 36,
+        "total_ms": 0.8324340000000001,
+        "percent": 0.006553900137068369
+      },
+      {
+        "name": "le_func_kernel_rank_2",
+        "calls": 28,
+        "total_ms": 0.7157429999999999,
+        "percent": 0.005635171251781793
+      }
+    ]
+  },
+  "observed_tuning_lines": [
+    "(EngineCore pid=76108) Autotuning kernel _index_linearized_jit_function with config BLOCK_SIZE0: 8, BLOCK_SIZE1: 1, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None",
+    "(EngineCore pid=76108) [AABS] 1. adjust bs in tl.load or tma_device.load",
+    "(EngineCore pid=76108) [AABS] ==== Finish: _index_linearized_jit_function(input_ptr, indices0_ptr, out_ptr, M=16, N=1)",
+    "(EngineCore pid=76108) [AABS] ====         adjusted_config=BLOCK_SIZE0: 8, BLOCK_SIZE1: 1, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None",
+    "(EngineCore pid=76108) Triton autotuning for function _index_linearized_jit_function finished after 3.11s; config key: (16, 'torch.int32', 'torch.int64', 'torch.int32'), benchmark key: (16, 'torch.int32', 'torch.int64', 'torch.int32', 'triton_do_bench', 5, 10), best config selected: BLOCK_SIZE0: 8, BLOCK_SIZE1: 1, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None;",
+    "(EngineCore pid=76108) Autotuning kernel _index_linearized_jit_function with config BLOCK_SIZE0: 16, BLOCK_SIZE1: 1, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None",
+    "(EngineCore pid=76108) [AABS] 1. adjust bs in tl.load or tma_device.load",
+    "(EngineCore pid=76108) [AABS] tl.load: adjust BLOCK_SIZE0 16 => 8 because BLOCK_SIZE0 > 8",
+    "(EngineCore pid=76108) [AABS] ==== Finish: _index_linearized_jit_function(input_ptr, indices0_ptr, out_ptr, M=8, N=1)",
+    "(EngineCore pid=76108) [AABS] ====         adjusted_config=BLOCK_SIZE0: 8, BLOCK_SIZE1: 1, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None",
+    "(EngineCore pid=76108) Triton autotuning for function _index_linearized_jit_function finished after 0.02s; config key: (8, 'torch.int32', 'torch.int64', 'torch.int32'), benchmark key: (8, 'torch.int32', 'torch.int64', 'torch.int32', 'triton_do_bench', 5, 10), best config selected: BLOCK_SIZE0: 8, BLOCK_SIZE1: 1, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None;",
+    "(EngineCore pid=76108) Autotuning kernel _index_linearized_jit_function with config BLOCK_SIZE0: 8, BLOCK_SIZE1: 1, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None",
+    "(EngineCore pid=76108) [AABS] 1. adjust bs in tl.load or tma_device.load",
+    "(EngineCore pid=76108) [AABS] tl.load: adjust BLOCK_SIZE0 8 => 4 because BLOCK_SIZE0 > 4",
+    "(EngineCore pid=76108) [AABS] ==== Finish: _index_linearized_jit_function(input_ptr, indices0_ptr, out_ptr, M=4, N=1)",
+    "(EngineCore pid=76108) [AABS] ====         adjusted_config=BLOCK_SIZE0: 4, BLOCK_SIZE1: 1, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None",
+    "(EngineCore pid=76108) Autotuning kernel _index_linearized_jit_function with config BLOCK_SIZE0: 16, BLOCK_SIZE1: 1, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None",
+    "(EngineCore pid=76108) [AABS] 1. adjust bs in tl.load or tma_device.load",
+    "(EngineCore pid=76108) [AABS] tl.load: adjust BLOCK_SIZE0 16 => 4 because BLOCK_SIZE0 > 4",
+    "(EngineCore pid=76108) [AABS] ==== Finish: _index_linearized_jit_function(input_ptr, indices0_ptr, out_ptr, M=4, N=1)",
+    "(EngineCore pid=76108) [AABS] ====         adjusted_config=BLOCK_SIZE0: 4, BLOCK_SIZE1: 1, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None",
+    "(EngineCore pid=76108) Triton autotuning for function _index_linearized_jit_function finished after 0.02s; config key: (4, 'torch.int32', 'torch.int64', 'torch.int32'), benchmark key: (4, 'torch.int32', 'torch.int64', 'torch.int32', 'triton_do_bench', 5, 10), best config selected: BLOCK_SIZE0: 4, BLOCK_SIZE1: 1, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None;",
+    "(EngineCore pid=76108) Autotuning kernel _index_linearized_jit_function with config BLOCK_SIZE0: 8, BLOCK_SIZE1: 1, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None",
+    "(EngineCore pid=76108) [AABS] 1. adjust bs in tl.load or tma_device.load",
+    "(EngineCore pid=76108) [AABS] tl.load: adjust BLOCK_SIZE0 8 => 2 because BLOCK_SIZE0 > 2",
+    "(EngineCore pid=76108) [AABS] ==== Finish: _index_linearized_jit_function(input_ptr, indices0_ptr, out_ptr, M=2, N=1)",
+    "(EngineCore pid=76108) [AABS] ====         adjusted_config=BLOCK_SIZE0: 2, BLOCK_SIZE1: 1, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None",
+    "(EngineCore pid=76108) Autotuning kernel _index_linearized_jit_function with config BLOCK_SIZE0: 16, BLOCK_SIZE1: 1, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None",
+    "(EngineCore pid=76108) [AABS] 1. adjust bs in tl.load or tma_device.load",
+    "(EngineCore pid=76108) [AABS] tl.load: adjust BLOCK_SIZE0 16 => 2 because BLOCK_SIZE0 > 2",
+    "(EngineCore pid=76108) [AABS] ==== Finish: _index_linearized_jit_function(input_ptr, indices0_ptr, out_ptr, M=2, N=1)",
+    "(EngineCore pid=76108) [AABS] ====         adjusted_config=BLOCK_SIZE0: 2, BLOCK_SIZE1: 1, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None",
+    "(EngineCore pid=76108) Triton autotuning for function _index_linearized_jit_function finished after 0.02s; config key: (2, 'torch.int32', 'torch.int64', 'torch.int32'), benchmark key: (2, 'torch.int32', 'torch.int64', 'torch.int32', 'triton_do_bench', 5, 10), best config selected: BLOCK_SIZE0: 2, BLOCK_SIZE1: 1, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None;",
+    "(EngineCore pid=76108) Autotuning kernel _index_linearized_jit_function with config BLOCK_SIZE0: 8, BLOCK_SIZE1: 1, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None",
+    "(EngineCore pid=76108) [AABS] 1. adjust bs in tl.load or tma_device.load",
+    "(EngineCore pid=76108) [AABS] tl.load: adjust BLOCK_SIZE0 8 => 1 because BLOCK_SIZE0 > 1",
+    "(EngineCore pid=76108) [AABS] ==== Finish: _index_linearized_jit_function(input_ptr, indices0_ptr, out_ptr, M=1, N=1)",
+    "(EngineCore pid=76108) [AABS] ====         adjusted_config=BLOCK_SIZE0: 1, BLOCK_SIZE1: 1, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None",
+    "(EngineCore pid=76108) Autotuning kernel _index_linearized_jit_function with config BLOCK_SIZE0: 16, BLOCK_SIZE1: 1, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None",
+    "(EngineCore pid=76108) [AABS] 1. adjust bs in tl.load or tma_device.load",
+    "(EngineCore pid=76108) [AABS] tl.load: adjust BLOCK_SIZE0 16 => 1 because BLOCK_SIZE0 > 1",
+    "(EngineCore pid=76108) [AABS] ==== Finish: _index_linearized_jit_function(input_ptr, indices0_ptr, out_ptr, M=1, N=1)",
+    "(EngineCore pid=76108) [AABS] ====         adjusted_config=BLOCK_SIZE0: 1, BLOCK_SIZE1: 1, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None",
+    "(EngineCore pid=76108) Triton autotuning for function _index_linearized_jit_function finished after 0.02s; config key: (1, 'torch.int32', 'torch.int64', 'torch.int32'), benchmark key: (1, 'torch.int32', 'torch.int64', 'torch.int32', 'triton_do_bench', 5, 10), best config selected: BLOCK_SIZE0: 1, BLOCK_SIZE1: 1, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None;"
+  ],
+  "source_snapshot_available": true
+}
