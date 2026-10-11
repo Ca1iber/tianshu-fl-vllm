@@ -32,7 +32,7 @@ class MetadataLoader(importlib.abc.Loader):
             raise RuntimeError('Cannot replace a metadata function with closure variables')
         source=BASE/'tianshu_metadata_fusion_20261012/experimental_metadata.py'
         spec=importlib.util.spec_from_file_location('tianshu_metadata_probe_kernel',source)
-        kernel=importlib.util.module_from_spec(spec);spec.loader.exec_module(kernel)
+        kernel=importlib.util.module_from_spec(spec);sys.modules[spec.name]=kernel;spec.loader.exec_module(kernel)
         import torch
         from vllm.platforms import current_platform
         recorded=False
