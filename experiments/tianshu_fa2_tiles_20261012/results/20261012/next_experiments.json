@@ -1,0 +1,46 @@
+{
+  "as_of_local": "2026-10-12 06:24",
+  "lease_stop_local": "2026-10-12 11:58",
+  "current_quality_passed": {
+    "correct": 103,
+    "total": 105,
+    "accuracy": 0.9809523809523809
+  },
+  "current_formal_pending": true,
+  "gpu_serial_order": [
+    "Current unmodified official4K,4 runs/skip first",
+    "Warmed no-graph C16/4K/128 service profile",
+    "Same-noise sampling fusion CPU/FlagGems/PyTorch/graph comparison",
+    "FP32 split-K NT BF16 decode GEMM scan"
+  ],
+  "after_diagnostics": [
+    "Inspect actual kernel/CPU-event coverage before selecting a service experiment",
+    "Use only numerically supported, actually faster candidates in a paired service workload",
+    "Consider intermediate Prefill budget4096 with new tile only if profile shows remaining prefill scheduling cost; earlier8192 official result was negative",
+    "Independent official105-item Level3 evaluation for changed compute path; accuracy must be >95%",
+    "Repeat official4K only after clear larger short-workload gain"
+  ],
+  "do_not_repeat_blindly": [
+    "Full16K benchmark",
+    "Weight packing of all projections; existing evidence retained",
+    "Native decode tile32/64/128 sweep; existing negatives retained",
+    "Gather as a steady-throughput gain; measured -0.0336%",
+    "Budget8192 as current best; official -0.6054%"
+  ],
+  "source_scope": "Tianshu repositories only; MetaX references read-only",
+  "measurement_limits": [
+    "Graph profile events may omit replay bodies",
+    "Sampling microtiming excludes top-p and RNG, so does not establish full sampler speedup",
+    "Split-K adds FP32 scratch and another launch; service overhead must be measured",
+    "Short N128 results are not official N256 scores"
+  ],
+  "backup_policy": "Raw source, responses, reviews, logs; each part and whole archive SHA checked locally",
+  "additional_evidence_to_check": {
+    "baseline_cold_index_inclusive_ms": 116119.098244,
+    "baseline_cold_index_median_ms": 0.457792,
+    "baseline_cold_index_p99_ms": 12935.167947,
+    "source_shape_specialization": "LinearizedAdjacentIndexFunction.arg_key includes complete input shape",
+    "interpretation": "Potential compilation/tuning stalls; cold trace alone does not establish current steady cost",
+    "decision_gate": "Inspect fully warmed profile before any new gather service study"
+  }
+}
