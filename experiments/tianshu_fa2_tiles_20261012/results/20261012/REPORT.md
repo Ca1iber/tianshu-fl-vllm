@@ -1,4 +1,6 @@
-# 天数FA2 Prefill tile扫描（数学通过，官方4K验证中）
+# 天数FA2 Prefill tile扫描（正式4K和独立数学均通过）
+
+当前正式最佳为Hybrid/adaptive/FA2 tile128、预算2048：四轮排除首轮的均值2504.08 total tok/s、500.82 output tok/s、TTFT6326.71ms；共1024请求成功。独立Math-500 Level3为103/105（98.10%），通过严格>95%。相对先前正式Hybrid配置，吞吐+9.5355%、TTFT−16.4192%；相对实测原始配置分别+33.4321%、−48.6296%，相对公开基线分别+23.4747%、−45.3347%。正式组合相对先前包含adaptive和tile两项变化，单独tile效果由下面的短对照隔离。
 
 42个组合完成固定FP32 atol0.02/rtol0.01检查，24个选定CPU参考检查通过，padded tail保留；没有数值失败。六个真实paged/interleaved/GQA16/2/D128场景均以BM128/BN128、8 warps、2 stages最优，算子耗时下降约29.5%–42.3%。BM64的一些候选更慢，全部失败/负例及原始计时都保留。当前仅为单层Attention测量，不能称为服务或正式吞吐收益。
 
@@ -21,4 +23,6 @@
 
 独立Math-500 Level 3于北京时间05:32启动，官方105题、batch8、temperature1/top_p0.95/max_tokens32768，已审计完成103/105（98.095238%），全部105请求及评分成功、无错误，错误项18/87。104项stop，1项max_tokens，完整保留原始判定；不复用此前任何准确率，也不从一次随机结果推断精度改善。实际tile hook SHA82a829ee6de143b8879f9957d307465aeccf5ebf81b817cf3fd000b0ee0119f7，实际BM128/BN128、8 warps、2 stages有路由记录；Worker/Hybrid/adaptive分别6cf62f60…/5c55a8d5…/e5d983e4…保持冻结。
 
-数学完整备份SHA446e1de66555db35769cce069bff171b98759672c379b02175f35b602f1a7d62，878550 bytes，已逐块及整包SHA校验并本地提取。通过严格>95%且完整审计后，控制器已启动未修改的官方4K/1024、64并发/256请求四轮评测，runner73988/server73992，目录20261012_fa2_tile128_official4k_tianshu。最终均值仍待结果，不预先替换已有正式最佳2286.09 tok/s。11:58停止GPU工作。
+数学完整备份SHA446e1de66555db35769cce069bff171b98759672c379b02175f35b602f1a7d62，878550 bytes，已逐块及整包SHA校验并本地提取。官方4K四轮2001.08/2403.53/2536.73/2571.99 tok/s，排首轮均值2504.08；最后三轮吞吐极差/均值6.7274%，不选最快一轮充作均值。正式原始CSV、服务/benchmark日志、质量对应源快照及报告完整备份SHAf582adcea38a8b05f04983dc6732bf8db973aac00fe50e0053dfe12172cc940b，53983 bytes，本地校验提取完成。自动归档控制器出现一次shell转义错误，已保留错误日志并通过独立审计脚本完成归档；官方评测不受影响。
+
+新正式检查点tianshu-best-fa2tile128-20261012，commit4c6b8bf，本地及天数容器已同步，未推送GitHub。先前最佳tianshu-best-hybrid-20261012仍保留。预热后的NoGraph C16诊断已启动，后续采样融合与FP32 split-K探针串行排队，继续寻找改进。11:58停止GPU工作。
