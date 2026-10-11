@@ -1,0 +1,101 @@
+{
+  "audited_at_utc": "2026-10-11T19:03:03.693881+00:00",
+  "candidate": "hybrid_adaptive_prefill_budget",
+  "complete": true,
+  "adaptive_flag": "1",
+  "adaptive_sha256": "e5d983e43c3b343afb558440a9114255cebc5d01569cc192191290b0bb0c84c8",
+  "adaptive_source": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/iluvatar_adaptive_decode.py",
+  "reused_original_accuracy": false,
+  "correct": 102,
+  "total": 105,
+  "accuracy": 0.9714285714285714,
+  "report_accuracy": 0.9714,
+  "official_requirement": "accuracy > 0.95",
+  "official_requirement_passed": true,
+  "execution_summary": {
+    "requested": 105,
+    "succeeded": 105,
+    "errored": 0,
+    "incomplete": false,
+    "subsets": {
+      "Level 3": {
+        "requested": 105,
+        "succeeded": 105,
+        "errored": 0
+      }
+    }
+  },
+  "review_statuses": {
+    "success": 105
+  },
+  "incorrect_indices": [
+    18,
+    26,
+    87
+  ],
+  "generation_stop_reasons": {
+    "stop": 105
+  },
+  "max_tokens_indices": [],
+  "hybrid_source": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/iluvatar_hybrid_attention.py",
+  "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+  "evaluation_command": [
+    "evalscope",
+    "eval",
+    "--model",
+    "minicpm",
+    "--api-url",
+    "http://127.0.0.1:9031/v1/chat/completions",
+    "--api-key",
+    "EMPTY",
+    "--eval-type",
+    "openai_api",
+    "--datasets",
+    "math_500",
+    "--dataset-args",
+    "{\"math_500\":{\"dataset_id\":\"/workspace/evalscope-datasets/math_500\",\"subset_list\":[\"Level 3\"]}}",
+    "--eval-batch-size",
+    "8",
+    "--timeout",
+    "3600",
+    "--generation-config",
+    "{\"temperature\":1.0,\"top_p\":0.95,\"max_tokens\":32768}",
+    "--work-dir",
+    "/workspace/benchmark-results/20261012_prefill_budget_pair_tianshu/math_8192/evalscope",
+    "--ignore-errors"
+  ],
+  "server_command": [
+    "vllm",
+    "serve",
+    "/workspace/MiniCPM5-2B",
+    "--port",
+    "9031",
+    "--compilation-config",
+    "{\"cudagraph_mode\":\"FULL_DECODE_ONLY\"}",
+    "--served-model-name",
+    "minicpm",
+    "--gpu-memory-utilization",
+    "0.85",
+    "--max-model-len",
+    "131072",
+    "--max-num-batched-tokens",
+    "8192"
+  ],
+  "max_batched_tokens": 8192,
+  "worker_sha256": "6cf62f60ca8ea12b7c494f0009fa733f33270a73e014cdbd4a45cada787c032a",
+  "gpu_idle_after": true,
+  "raw_files": {
+    "evalscope/20261012_023453/reports/minicpm/math_500.json": {
+      "bytes": 8940,
+      "sha256": "959c90913487b4d8188a728b271fb16558e36a186d7faaf0022ca04fb7b42c53"
+    },
+    "evalscope/20261012_023453/reviews/minicpm/math_500_Level 3.jsonl": {
+      "bytes": 1370213,
+      "sha256": "ce433f1f7a4303a65ae4edf9ddff9cc39eed68cb5eb8bfc15a2e396e73895a2c"
+    },
+    "evalscope/20261012_023453/predictions/minicpm/math_500_Level 3.jsonl": {
+      "bytes": 2436270,
+      "sha256": "a6712dc3f9dd0b23bcd02b453656d58d259a1c0fa2a34eb0d1cb8ed07d96e692"
+    }
+  }
+}

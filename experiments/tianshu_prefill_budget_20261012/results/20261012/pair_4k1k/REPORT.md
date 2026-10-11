@@ -1,6 +1,6 @@
 # 天数Prefill预算4K/1K较大对照报告
 
-结论：2048→8192预算在64并发/64请求、4K输入/1K输出的三轮跳首轮对照中，total吞吐+3.7967%，TTFT−10.3952%；最后两轮候选均快于控制组。8192独立数学已于02:32启动，未出结果，暂未替换推荐配置。该缩小对照不是正式256请求成绩。
+结论：2048→8192预算在64并发/64请求、4K输入/1K输出的三轮跳首轮对照中，total吞吐+3.7967%，TTFT−10.3952%；最后两轮候选均快于控制组。8192独立数学已完成102/105（97.14%），105请求及评分齐全、无错误，全部正常stop，通过官方严格>95%门槛。正式4K复测已启动，等待成绩后决定最终推荐配置。该缩小对照不是正式256请求成绩。
 
 | 预算 | 后两轮total tok/s | output tok/s | TTFT/ms | 客户端TPOT/ms | spread/% | KV tokens |
 |---|---:|---:|---:|---:|---:|---:|
@@ -15,4 +15,4 @@
 
 完整原始响应/日志/source snapshots备份已下载、校验并提取，SHA256 a583ee40115c75f1b23d042918448879709b4aa0fdfcc201b3c642bcd6c4d99d，1243161 bytes。所有结果位于本地service-results/20261012_prefill_budget_pair_tianshu和远端对应目录。
 
-当前Math目录math_8192，runner61868/server61871，采用官方105项Level3、batch8、temperature1/top_p.95/max_tokens32768，实际--max-num-batched-tokens8192。启动前保存Worker/Hybrid/adaptive源码；完整评分与请求审计门槛为严格>95%。通过后再用未改动官方脚本跑4K256请求四轮跳首轮，并继续profiling/其他优化。GPU任务串行，11:58停止并备份。
+Math目录math_8192采用官方105项Level3、batch8、temperature1/top_p.95/max_tokens32768，实际--max-num-batched-tokens8192。预测/评分indices对应且唯一，错误项18、26、87，无max_tokens终止。原始数学备份SHA7117d720719aa5460a63136beb3a3ea63a7a0d1599e06b43fb200310ef9ec92e，829017 bytes，已在本地完整校验并提取。新预算独立评测没有复用2048结果。正式4K已于03:03启动，目录20261012_budget8192_official4k_tianshu、runner63101，四轮跳首轮。GPU任务串行，11:58停止并备份。
