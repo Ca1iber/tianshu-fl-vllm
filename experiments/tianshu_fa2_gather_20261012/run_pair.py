@@ -39,11 +39,18 @@ def main():
         print(json.dumps({'gather':gather,'phase':data['phase'],'returncode':proc.returncode}),flush=True)
         assert proc.returncode==0 and data['phase']=='complete'
         assert all(record['configuration']==quality['tile_configuration'] for record in data['tile_routing_records'])
+        for filename,key in (('worker.py','worker_sha256'),('iluvatar_hybrid_attention.py','hybrid_sha256'),
+                             ('iluvatar_adaptive_decode.py','adaptive_sha256')):
+            assert data['installed_sources'][filename]['sha256']==quality[key]
         assert 'No running processes found' in subprocess.check_output(['ixsmi'],text=True)
         results.append(data)
     assert results[0]['workload']==results[1]['workload']
     assert results[0]['installed_sources']==results[1]['installed_sources']
     assert results[0]['hook_dependencies']==results[1]['hook_dependencies']
+    greedy=[{'input_tokens':before['input_tokens'],'seed':before['seed'],
+             'matched':before['text']==after['text']}
+            for before,after in zip(results[0]['rare_cases'],results[1]['rare_cases'])]
+    assert len(greedy)==len(results[0]['rare_cases'])==len(results[1]['rare_cases'])==7
     means=[];ttfts=[]
     for data in results:
         rows=data['short_4k_rounds'][1:]
@@ -54,6 +61,7 @@ def main():
                 'gain_percent':100*(means[1]/means[0]-1),
                 'baseline_ttft_ms':ttfts[0],'candidate_ttft_ms':ttfts[1],
                 'ttft_change_percent':100*(ttfts[1]/ttfts[0]-1),
+                'greedy_probes':greedy,'greedy_probes_matched':all(x['matched'] for x in greedy),
                 'variants':[{'gather':r['gather'],'stability':r['measured_round_stability'],
                              'successful_requests':len(r['rare_cases'])+sum(x['successful_requests'] for x in r['short_4k_rounds'])} for r in results]}
     (root/'comparison.json').write_text(json.dumps(comparison,indent=2)+'\n')
