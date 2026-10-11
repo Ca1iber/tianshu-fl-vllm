@@ -243,6 +243,9 @@ class WorkerFL(WorkerBase):
 
         register_oot_ops()
 
+        from vllm_fl.worker.iluvatar_adaptive_decode import configure as configure_decode
+        configure_decode(self.vllm_config, logger)
+
         from vllm_fl.worker.iluvatar_hybrid_attention import configure
         if configure(self.vllm_config, logger):
             stats_path = os.getenv("VLLM_FL_ILUVATAR_HYBRID_STATS_PATH", "")
