@@ -17,7 +17,7 @@ class DSparkMarkovHead(nn.Module):
     def __init__(self, vocab_size, rank, prefix):
         super().__init__()
         self.markov_w1=nn.Embedding(vocab_size,rank)
-        self.markov_w2=ParallelLMHead(vocab_size,rank,bias=False,disable_tp=True,
+        self.markov_w2=ParallelLMHead(vocab_size,rank,bias=False,
                                     prefix=maybe_prefix(prefix,'markov_w2'))
 
     def embed(self, ids):
@@ -51,6 +51,8 @@ class DSparkForCausalLM(DFlashQwen3ForCausalLM):
     def __init__(self,*,vllm_config:VllmConfig,prefix=''):
         nn.Module.__init__(self)
         self.config=vllm_config.speculative_config.draft_model_config.hf_config
+        assert vllm_config.parallel_config.tensor_parallel_size==1
+        assert vllm_config.parallel_config.pipeline_parallel_size==1
         assert vllm_config.model_config.dtype==torch.bfloat16
         assert self.config.vocab_size==vllm_config.model_config.get_vocab_size()
         target_layers=vllm_config.model_config.get_num_layers(vllm_config.parallel_config)
