@@ -1,0 +1,54 @@
+{
+  "official_benchmark": false,
+  "accuracy_test": false,
+  "control_profile": "verified native Prefill+Hybrid+adaptive, budget2048",
+  "candidate_profile": "DSpark native L0+verify/Prefill tiles+dual-path fixed row index",
+  "control_results": "/workspace/benchmark-results/20261012_speculative_dspark_tianshu/standard_4k1k_selected/current_best_control",
+  "candidate_results": "/workspace/benchmark-results/20261012_speculative_dspark_tianshu/fp32_threshold_standard_4k1k",
+  "control_reused": true,
+  "same_input_seed_recipe": true,
+  "workload": {
+    "input_tokens": 4096,
+    "output_tokens": 1024,
+    "concurrency": 64,
+    "requests_per_round": 128,
+    "rounds": 3,
+    "excluded_rounds": [
+      1
+    ]
+  },
+  "control_mean_total_tok_s": 2731.41808330644,
+  "candidate_mean_total_tok_s": 1660.3262306086895,
+  "control_measured_rows": [
+    2677.3336955604345,
+    2785.5024710524463
+  ],
+  "candidate_measured_rows": [
+    1693.7740577448265,
+    1626.8784034725525
+  ],
+  "throughput_change_percent": -39.213764426761465,
+  "measured_tuning_clean": false,
+  "control_mean_ttft_ms": 7864.810282433609,
+  "candidate_mean_ttft_ms": 12711.2863994098,
+  "candidate_flags": [
+    "--zero-verify",
+    "--verify-tile",
+    "--prefill-tile",
+    "--fixed-index",
+    "--fp32-thresholds",
+    "--target-graphs",
+    "--concurrency",
+    "64",
+    "--request-timeout",
+    "3600"
+  ],
+  "candidate_source_sha256": {
+    "hooks/sitecustomize.py": "d569fa8bb35534daa09239eaa0414a11f76b944173d6a156561a829fc9ffcc7a",
+    "fixed_index.py": "f48351f7ad1251acb680927d742123f92ea4f3e23505d83dfde6a3b7c713cc06",
+    "rejection_compat.py": "80df34a4e9e5fb74d46f86698d7c50d68212d7fe94d0941fc32a893fb40bf415",
+    "tianshu_dspark_adapter/model.py": "23910b38e908a66d0733511e9fd4badab394aca791a3d352e03c45f152a2920a",
+    "tianshu_dspark_adapter/proposer.py": "7f697e89a8b04926067944b750958a9cdce4c3221dd239d9ef4cc6c06e5829af"
+  },
+  "promising": false
+}

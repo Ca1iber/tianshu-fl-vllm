@@ -1,0 +1,54 @@
+{
+  "complete": true,
+  "official_benchmark": false,
+  "accuracy_test": false,
+  "requests_successful": 384,
+  "candidate_source_sha256": {
+    "hooks/sitecustomize.py": "d569fa8bb35534daa09239eaa0414a11f76b944173d6a156561a829fc9ffcc7a",
+    "fixed_index.py": "f48351f7ad1251acb680927d742123f92ea4f3e23505d83dfde6a3b7c713cc06",
+    "rejection_compat.py": "80df34a4e9e5fb74d46f86698d7c50d68212d7fe94d0941fc32a893fb40bf415",
+    "tianshu_dspark_adapter/model.py": "23910b38e908a66d0733511e9fd4badab394aca791a3d352e03c45f152a2920a",
+    "tianshu_dspark_adapter/proposer.py": "7f697e89a8b04926067944b750958a9cdce4c3221dd239d9ef4cc6c06e5829af"
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "duration_seconds": 438.094161755871,
+      "total_tokens_per_second": 1495.934110085678,
+      "mean_ttft_seconds": 18.03590361307579,
+      "successful_requests": 128,
+      "tuning_record_count": 92
+    },
+    {
+      "round": 2,
+      "duration_seconds": 386.922917495016,
+      "total_tokens_per_second": 1693.7740577448265,
+      "mean_ttft_seconds": 12.671605274037574,
+      "successful_requests": 128,
+      "tuning_record_count": 18
+    },
+    {
+      "round": 3,
+      "duration_seconds": 402.83281073812395,
+      "total_tokens_per_second": 1626.8784034725525,
+      "mean_ttft_seconds": 12.750967524782027,
+      "successful_requests": 128,
+      "tuning_record_count": 20
+    }
+  ],
+  "threshold_routes": [
+    {
+      "dtype": "torch.float32",
+      "num_tokens": 64,
+      "minimum": 0.0059108734130859375,
+      "maximum": 0.9963496327400208,
+      "unique": 64,
+      "interval": "(0,1]",
+      "rejection_kernel_modified": false,
+      "synthetic_acceptance_enabled": false,
+      "probability_ratio_changed": false,
+      "scope": "FP32 uniform threshold generation compatibility only; request generators retained"
+    }
+  ],
+  "adopted": false
+}
