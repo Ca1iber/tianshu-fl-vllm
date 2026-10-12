@@ -1,0 +1,95 @@
+{
+  "complete": true,
+  "official_benchmark": false,
+  "accuracy_test": false,
+  "responses": [
+    {
+      "request": {
+        "model": "minicpm",
+        "prompt": "Compute 17 + 25 and briefly explain the answer.",
+        "max_tokens": 96,
+        "temperature": 0.0,
+        "top_p": 0.95,
+        "stream": false
+      },
+      "usage": {
+        "prompt_tokens": 13,
+        "total_tokens": 109,
+        "completion_tokens": 96,
+        "prompt_tokens_details": null
+      },
+      "seconds": 19.768054406158626
+    },
+    {
+      "request": {
+        "model": "minicpm",
+        "prompt": "Compute 17 + 25 and briefly explain the answer.",
+        "max_tokens": 96,
+        "temperature": 1.0,
+        "top_p": 0.95,
+        "stream": false
+      },
+      "usage": {
+        "prompt_tokens": 13,
+        "total_tokens": 109,
+        "completion_tokens": 96,
+        "prompt_tokens_details": null
+      },
+      "seconds": 12.872996295336634
+    }
+  ],
+  "proposal_records": [
+    {
+      "batch": 1,
+      "block_size": 2,
+      "query_slots_per_request": 7,
+      "backbone_block_size": 7,
+      "sampled_prefix_positions": 2,
+      "anchor_is_first_prediction": true,
+      "markov_head_used": true,
+      "probabilistic": false,
+      "target_rejection_sampler_modified": true,
+      "target_rejection_kernel_modified": false,
+      "positive_fp32_rejection_thresholds": true,
+      "confidence_adaptive_verification_enabled": false
+    },
+    {
+      "batch": 1,
+      "block_size": 2,
+      "query_slots_per_request": 7,
+      "backbone_block_size": 7,
+      "sampled_prefix_positions": 2,
+      "anchor_is_first_prediction": true,
+      "markov_head_used": true,
+      "probabilistic": true,
+      "target_rejection_sampler_modified": true,
+      "target_rejection_kernel_modified": false,
+      "positive_fp32_rejection_thresholds": true,
+      "confidence_adaptive_verification_enabled": false
+    }
+  ],
+  "scheduler_lookahead": [
+    {
+      "target_proposals": 2,
+      "lookahead_before": 3,
+      "lookahead_after": 7,
+      "draft_query_slots": 7,
+      "target_verification_width_unchanged": true
+    }
+  ],
+  "query_buffers": [
+    {
+      "max_batch_size": 8,
+      "backbone_query_slots": 7,
+      "max_query_tokens": 56,
+      "positions_capacity": 56,
+      "slot_mapping_capacity": 56,
+      "arange_capacity": 2105,
+      "max_context_tokens": 2048,
+      "target_proposals": 2
+    }
+  ],
+  "independent_math_done": false,
+  "service_performance_pending": true,
+  "adopted_as_best": false
+}

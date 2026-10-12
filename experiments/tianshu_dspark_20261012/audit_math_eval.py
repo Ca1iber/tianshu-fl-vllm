@@ -16,10 +16,19 @@ def main():
     assert state['accuracy_test'] and not state['official_benchmark']
     assert state['evalscope_exit_code']==0 and state['gpu_idle_after']
     spec=state['speculative_config']
-    assert spec['num_speculative_tokens']==7 and spec['draft_sample_method']=='probabilistic'
+    proposal_count=spec['num_speculative_tokens']
+    assert proposal_count in (1,2,3,7) and spec['draft_sample_method']=='probabilistic'
     assert state['environment_flags']['TIANSHU_DSPARK_COMPAT']=='1'
     routes=state['adapter_records']
-    assert any(x['probabilistic'] and x['markov_head_used'] and x['block_size']==7 for x in routes)
+    assert any(x['probabilistic'] and x['markov_head_used'] and x['block_size']==proposal_count for x in routes)
+    assert all(x.get('backbone_block_size',7)==7 and x['query_slots_per_request']==7 for x in routes)
+    if proposal_count<7:
+        lookahead=[json.loads(p.read_text()) for p in (root/'adapter_records/scheduler_lookahead').glob('*.json')]
+        assert lookahead and all(x['target_proposals']==proposal_count and x['lookahead_after']>=7 for x in lookahead)
+        capacities=[json.loads(p.read_text()) for p in (root/'adapter_records/query_buffers').glob('*.json')]
+        assert capacities and all(x['positions_capacity']>=x['max_batch_size']*7 and
+            x['slot_mapping_capacity']>=x['max_batch_size']*7 and
+            x['arange_capacity']>=x['max_context_tokens']+x['max_batch_size']*7+1 for x in capacities)
     threshold_compat=state['environment_flags'].get('TIANSHU_DSPARK_FP32_THRESHOLDS')=='1'
     assert all(x['target_rejection_sampler_modified']==threshold_compat for x in routes)
     if threshold_compat:

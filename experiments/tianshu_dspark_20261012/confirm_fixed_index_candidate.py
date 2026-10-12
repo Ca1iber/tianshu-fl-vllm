@@ -16,13 +16,15 @@ def main():
     parser.add_argument('--candidate',type=Path,required=True)
     parser.add_argument('--control',type=Path,required=True)
     parser.add_argument('--output',type=Path,required=True)
+    parser.add_argument('--speculative-tokens',type=int,choices=[1,2,3,7],default=7)
     args=parser.parse_args();root=args.output.resolve();assert not root.exists();root.mkdir(parents=True)
     directory=Path(__file__).resolve().parent
     deadline=datetime.fromisoformat(json.loads(Path(
         '/workspace/benchmark-results/20261011_121020_baseline_tianshu/reservation_deadline.json'
     ).read_text())['stop_at_utc'])
     flags=['--zero-verify','--verify-tile','--prefill-tile','--fixed-index','--fp32-thresholds',
-           '--target-graphs','--concurrency','64','--request-timeout','3600']
+           '--target-graphs','--concurrency','64','--request-timeout','3600',
+           '--speculative-tokens',str(args.speculative_tokens)]
     state={'phase':'waiting','runner_pid':os.getpid(),'candidate_flags':flags,
            'candidate_results':str(args.candidate),'control_results':str(args.control),
            'control_reused_with_same_profile':True,'accuracy_test_started':False,
@@ -55,6 +57,7 @@ def main():
         for round_index,row in enumerate(rows_a):
             assert all(x['seed']==2026101200+128*round_index+i for i,x in enumerate(row['responses']))
         assert b['workload']['seed_base']==2026101200 and b['workload']['seed_round_stride']==128
+        assert b['speculative_config']['num_speculative_tokens']==args.speculative_tokens
         routes=list((args.candidate/'adapter_records/fixed_index').glob('*.json'))
         assert routes and all(json.loads(p.read_text())['fixed_launch'] for p in routes)
         # Ensure a later quality run uses exactly the measured kernel sources.

@@ -40,6 +40,7 @@ def main():
     parser.add_argument('--fixed-index',action='store_true')
     parser.add_argument('--request-timeout',type=int,default=900)
     parser.add_argument('--fp32-thresholds',action='store_true')
+    parser.add_argument('--speculative-tokens',type=int,choices=[1,2,3,7],default=7)
     args=parser.parse_args()
     assert not args.verify_tile or args.zero_verify
     assert not args.prefill_tile or args.zero_verify
@@ -124,7 +125,7 @@ def main():
                  FLAGGEMS_ILUVATAR_COMPACT_VARLEN='1')
         for name in ['TIANSHU_NATIVE_PREFILL_PROBE','TIANSHU_FA2_TILE_PROBE','TIANSHU_PACK_PROBE_MODE']:
             env.pop(name,None)
-        spec={'method':'dflash','model':str(alias),'num_speculative_tokens':7,
+        spec={'method':'dflash','model':str(alias),'num_speculative_tokens':args.speculative_tokens,
               'draft_sample_method':'probabilistic','enforce_eager':True}
         command=['vllm','serve','/workspace/MiniCPM5-2B','--port','9031',
                  '--served-model-name','minicpm','--gpu-memory-utilization','.85',

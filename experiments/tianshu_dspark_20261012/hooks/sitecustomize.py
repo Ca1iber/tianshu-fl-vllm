@@ -83,6 +83,43 @@ class DSparkFinder(importlib.abc.MetaPathFinder):
         return spec
 
 
+def install_dspark_lookahead(module):
+    import json
+    original=module.Scheduler.__init__
+    def initialize(self,*args,**kwargs):
+        original(self,*args,**kwargs)
+        config=args[0] if args else kwargs['vllm_config']
+        spec=config.speculative_config
+        if spec is None or not spec.use_dflash():return
+        before=self.num_lookahead_tokens
+        # The target verifies N proposals, while the trained DSpark draft
+        # always writes seven query slots. Preserve sufficient physical KV
+        # reservation for the draft, including when a block boundary is crossed.
+        self.num_lookahead_tokens=max(before,7)
+        root=Path(os.environ['TIANSHU_DSPARK_RECORD_DIR'])/'scheduler_lookahead'
+        root.mkdir(parents=True,exist_ok=True)
+        (root/f'route_{os.getpid()}.json').write_text(json.dumps({
+            'target_proposals':self.num_spec_tokens,'lookahead_before':before,
+            'lookahead_after':self.num_lookahead_tokens,'draft_query_slots':7,
+            'target_verification_width_unchanged':True},indent=2)+'\n')
+    module.Scheduler.__init__=initialize
+
+
+class DSparkSchedulerLoader(importlib.abc.Loader):
+    def __init__(self,original):self.original=original
+    def create_module(self,spec):return self.original.create_module(spec)
+    def exec_module(self,module):
+        self.original.exec_module(module);install_dspark_lookahead(module)
+
+
+class DSparkSchedulerFinder(importlib.abc.MetaPathFinder):
+    def find_spec(self,fullname,path=None,target=None):
+        if fullname!='vllm.v1.core.sched.scheduler':return None
+        spec=importlib.machinery.PathFinder.find_spec(fullname,path)
+        assert spec is not None and spec.loader is not None
+        spec.loader=DSparkSchedulerLoader(spec.loader);return spec
+
+
 class VerificationAttentionLoader(importlib.abc.Loader):
     def __init__(self,original):self.original=original
     def create_module(self,spec):return self.original.create_module(spec)
@@ -149,6 +186,9 @@ if os.environ.get('TIANSHU_DSPARK_ZERO_VERIFY')=='1':
     sys.meta_path.insert(0,VerificationAttentionFinder())
 
 if os.environ.get('TIANSHU_DSPARK_COMPAT')=='1':
+    if 'vllm.v1.core.sched.scheduler' in sys.modules:
+        install_dspark_lookahead(sys.modules['vllm.v1.core.sched.scheduler'])
+    else:sys.meta_path.insert(0,DSparkSchedulerFinder())
     directory=Path(__file__).resolve().parents[1]
     sys.path.insert(0,str(directory))
     sys.meta_path.insert(0,DSparkFinder())
