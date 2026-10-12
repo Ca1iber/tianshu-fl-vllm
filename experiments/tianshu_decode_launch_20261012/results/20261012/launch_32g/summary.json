@@ -1,0 +1,90 @@
+{
+  "complete": true,
+  "official_benchmark": false,
+  "selected": {
+    "TILE_SIZE": 16,
+    "num_warps": 4,
+    "num_stages": 1
+  },
+  "long_cases": [
+    {
+      "batch": 1,
+      "kv_min": 4096,
+      "kv_max": 4096,
+      "baseline_ms": 0.03941307544708252,
+      "candidate_ms": 0.034518461227416995,
+      "time_change_percent": -12.418757389885037,
+      "candidate_bitwise_equal": true
+    },
+    {
+      "batch": 8,
+      "kv_min": 3874,
+      "kv_max": 4096,
+      "baseline_ms": 0.215134220123291,
+      "candidate_ms": 0.18510168075561523,
+      "time_change_percent": -13.959908075277127,
+      "candidate_bitwise_equal": true
+    },
+    {
+      "batch": 16,
+      "kv_min": 3872,
+      "kv_max": 4096,
+      "baseline_ms": 0.3977306365966797,
+      "candidate_ms": 0.3745212936401367,
+      "time_change_percent": -5.835442588768569,
+      "candidate_bitwise_equal": true
+    },
+    {
+      "batch": 32,
+      "kv_min": 3868,
+      "kv_max": 4096,
+      "baseline_ms": 0.7817214965820313,
+      "candidate_ms": 0.6712650299072266,
+      "time_change_percent": -14.129900118873573,
+      "candidate_bitwise_equal": true
+    },
+    {
+      "batch": 64,
+      "kv_min": 3858,
+      "kv_max": 4096,
+      "baseline_ms": 1.5396200561523437,
+      "candidate_ms": 1.1895076751708984,
+      "time_change_percent": -22.740180577824454,
+      "candidate_bitwise_equal": true
+    },
+    {
+      "batch": 64,
+      "kv_min": 4882,
+      "kv_max": 5120,
+      "baseline_ms": 1.9178167724609374,
+      "candidate_ms": 1.4887312316894532,
+      "time_change_percent": -22.37364626970505,
+      "candidate_bitwise_equal": true
+    },
+    {
+      "batch": 16,
+      "kv_min": 16160,
+      "kv_max": 16384,
+      "baseline_ms": 1.539575958251953,
+      "candidate_ms": 1.472631378173828,
+      "time_change_percent": -4.348247952256568,
+      "candidate_bitwise_equal": true
+    },
+    {
+      "batch": 2,
+      "kv_min": 32731,
+      "kv_max": 32768,
+      "baseline_ms": 0.7281488037109375,
+      "candidate_ms": 0.5561001205444336,
+      "time_change_percent": -23.62823124746961,
+      "candidate_bitwise_equal": true
+    }
+  ],
+  "long_variants": 112,
+  "cpu_vector_checks": 84,
+  "tile16_short_cases": 14,
+  "tile16_short_variants_passed": 28,
+  "tile32_short_failed": 14,
+  "service_pending": true,
+  "adopted": false
+}

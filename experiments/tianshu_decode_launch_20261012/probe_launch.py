@@ -13,6 +13,8 @@ import subprocess
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--short-boundaries',action='store_true')
+    parser.add_argument('--selected-tile',type=int,choices=[16,32],default=32)
     args = parser.parse_args()
     root = args.output.resolve()
     root.mkdir(parents=True, exist_ok=True)
@@ -46,6 +48,9 @@ def main():
     plans += [dict(TILE_SIZE=t, num_warps=w, num_stages=s)
               for t,w in [(16,4),(16,8),(32,4),(32,8),(64,8),(64,16),(128,16)]
               for s in (1,2)]
+    if args.short_boundaries:
+        plans=[{},dict(TILE_SIZE=args.selected_tile,num_warps=4,num_stages=1),
+               dict(TILE_SIZE=args.selected_tile,num_warps=4,num_stages=2)]
     routers = [LaunchRouter(original, plan) for plan in plans]
     data = {'complete': False, 'official_benchmark': False, 'adoption_allowed': False,
             'provenance': provenance, 'cases': [], 'started_utc': datetime.now(timezone.utc).isoformat(),
@@ -66,6 +71,9 @@ def main():
     scenarios = [(1,4096,False,False),(8,4096,False,False),(16,4096,False,False),
                  (32,4096,False,False),(64,4096,False,False),(64,5120,True,False),
                  (16,16384,True,False),(2,32768,True,False)]
+    if args.short_boundaries:
+        scenarios=[(1,n,False,False) for n in (1,7,13,15,16,17,31,32,33,63,64,65)]
+        scenarios += [(64,33,True,True),(64,65,True,True)]
     try:
         with torch.inference_mode():
             for case_id, (batch, length, strided, padded) in enumerate(scenarios):
