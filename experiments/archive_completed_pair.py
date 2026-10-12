@@ -15,20 +15,26 @@ def main():
     parser.add_argument('--source', type=Path, required=True)
     parser.add_argument('--label', required=True)
     parser.add_argument('--wait', action='store_true')
+    parser.add_argument('--single-probe', action='store_true')
     args = parser.parse_args()
     root = args.source.resolve()
     assert root.is_relative_to('/workspace/benchmark-results') and root.is_dir()
     assert args.label.replace('_', '').isalnum()
-    comparison = root / 'comparison.json'
+    comparison = root / ('result.json' if args.single_probe else 'comparison.json')
     deadline = datetime.fromisoformat(json.loads(Path(
         '/workspace/benchmark-results/20261011_121020_baseline_tianshu/reservation_deadline.json'
     ).read_text())['stop_at_utc'])
-    while not comparison.exists():
+    def completed():
+        if not comparison.exists():
+            return False
+        return not args.single_probe or json.loads(comparison.read_text()).get('complete') is True
+    while not completed():
         if not args.wait or datetime.now(timezone.utc) >= deadline:
             raise RuntimeError('No completed comparison to archive')
         time.sleep(5)
-    states = list(root.glob('*/result.json'))
-    assert len(states) == 2 and all(json.loads(p.read_text())['phase'] == 'complete' for p in states)
+    states = [comparison] if args.single_probe else list(root.glob('*/result.json'))
+    if not args.single_probe:
+        assert len(states) == 2 and all(json.loads(p.read_text())['phase'] == 'complete' for p in states)
     repository = Path('/workspace/vllm-plugin-FL')
     commit = subprocess.check_output(['git', '-C', str(repository), 'rev-parse', 'HEAD'], text=True).strip()
     bundle = root / 'source_repository.bundle'
