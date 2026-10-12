@@ -13,6 +13,7 @@ import subprocess
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--small-kv-only', action='store_true')
     args = parser.parse_args()
     root = args.output.resolve()
     root.mkdir(parents=True, exist_ok=True)
@@ -55,6 +56,8 @@ def main():
                  (16, 4096, False, False), (32, 4096, False, False), (64, 4096, False, False),
                  (8, 5120, True, False), (64, 5120, True, False),
                  (8, 257, True, True), (64, 4096, True, True)]
+    if args.small_kv_only:
+        scenarios = [(1,length,False,False) for length in (13,14,15,16,21,23,30)]
     try:
         with torch.inference_mode():
             for case_id, (batch, length, strided, padded) in enumerate(scenarios):
@@ -73,6 +76,8 @@ def main():
                 cu = torch.tensor([0] + qlens, device='cuda', dtype=torch.int32).cumsum(0).int()
                 used = torch.tensor(lengths, device='cuda', dtype=torch.int32)
                 segments = 64 if batch == 1 else 4 if batch >= 16 else 16
+                if args.small_kv_only:
+                    segments = 16  # Actual non-adaptive eager target path.
                 expected = []
                 cpu_checks = []
                 query_index = 0
