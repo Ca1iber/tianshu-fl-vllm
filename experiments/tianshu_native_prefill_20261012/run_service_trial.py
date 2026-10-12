@@ -34,6 +34,7 @@ def main():
     parser.add_argument('--concurrency', type=int, default=64)
     parser.add_argument('--requests', type=int, default=64)
     parser.add_argument('--rounds', type=int, default=3)
+    parser.add_argument('--decode-launch',choices=['0','1'],default='0')
     args = parser.parse_args()
     if min(args.output_tokens, args.concurrency, args.requests) < 1 or args.rounds < 2:
         parser.error('Positive workload sizes and at least two rounds are required')
@@ -62,18 +63,23 @@ def main():
     original_hook=Path(__file__).resolve().parent.parent/'tianshu_fa2_tiles_20261012/hooks/sitecustomize.py'
     env['PYTHONPATH']=str(original_hook.parent)
     env.pop('TIANSHU_NATIVE_PREFILL_PROBE',None)
-    if args.tile!='1' or args.max_batched_tokens!=2048:
-        raise RuntimeError('Prefill GEMM keeps tile1/budget2048')
+    if args.tile!='1':
+        raise RuntimeError('Native Prefill budget confirmation requires the verified tile')
     if args.native_prefill=='1':
         env['PYTHONPATH']=str(Path(__file__).resolve().parent/'hooks')
         env['TIANSHU_NATIVE_PREFILL_PROBE']='1'
         env['TIANSHU_NATIVE_PREFILL_RECORD_DIR']=str(out/'native_prefill_records')
+    if args.decode_launch=='1':
+        assert args.native_prefill=='1' and args.tile=='1'
+        env['PYTHONPATH']=str(Path(__file__).resolve().parents[1]/'tianshu_decode_launch_20261012/hooks')
+        env['TIANSHU_DECODE_LAUNCH_PROBE']='1'
+        env['TIANSHU_DECODE_LAUNCH_RECORD_DIR']=str(out/'decode_launch_records')
     command = ['vllm', 'serve', '/workspace/MiniCPM5-2B', '--port', '9031',
                '--compilation-config', '{"cudagraph_mode": "FULL_DECODE_ONLY"}',
                '--served-model-name', 'minicpm', '--gpu-memory-utilization', '0.85',
                '--max-model-len', '131072']
     command += ['--max-num-batched-tokens', str(args.max_batched_tokens)]
-    state = dict(native_prefill=args.native_prefill,tile=args.tile, max_batched_tokens=args.max_batched_tokens, adaptive=args.adaptive, single_decode_rounds=[], hybrid=args.hybrid, phase='preparing', runner_pid=os.getpid(), buckets=args.buckets, gather=args.gather,
+    state = dict(native_prefill=args.native_prefill,tile=args.tile,decode_launch=args.decode_launch,max_batched_tokens=args.max_batched_tokens, adaptive=args.adaptive, single_decode_rounds=[], hybrid=args.hybrid, phase='preparing', runner_pid=os.getpid(), buckets=args.buckets, gather=args.gather,
                  started_at_utc=datetime.now(timezone.utc).isoformat(), command=command,
                  rare_cases=[], short_4k_rounds=[], scored=False,
                  workload={'input_tokens': 4096, 'output_tokens': args.output_tokens,
@@ -199,7 +205,11 @@ def main():
         (source_dir/'zero_initialization.py').write_bytes(kernel.read_bytes())
         (source_dir/'original_tile_sitecustomize.py').write_bytes(original_hook.read_bytes())
         state['environment_flags'] = {key: value for key, value in env.items()
-                                      if key.startswith(('VLLM_FL_', 'FLAGGEMS_ILUVATAR_'))}
+                                      if key.startswith(('VLLM_FL_', 'FLAGGEMS_ILUVATAR_','TIANSHU_DECODE_'))}
+        if args.decode_launch=='1':
+            hook=Path(env['PYTHONPATH'])/'sitecustomize.py';contents=hook.read_bytes()
+            (source_dir/'decode_sitecustomize.py').write_bytes(contents)
+            state['decode_hook']={'path':str(hook),'sha256':hashlib.sha256(contents).hexdigest()}
         save()
         with (out / 'server.log').open('w') as log:
             server = subprocess.Popen(command, cwd='/workspace', env=env, stdout=log,

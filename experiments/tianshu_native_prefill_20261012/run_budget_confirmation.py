@@ -34,14 +34,16 @@ def main():
     root.mkdir(parents=True)
     shutil.copytree(args.control, root/'control_2048')
     candidate_dir = root/f'candidate_{args.budget}'
-    candidate_dir.mkdir()
     command = [sys.executable, '-u', str(directory/'run_service_trial.py'),
                '--output', str(candidate_dir), '--native-prefill', '1', '--buckets', '0',
                '--gather', '0', '--tile', '1', '--hybrid', '1', '--adaptive', '1',
                '--max-batched-tokens', str(args.budget), '--concurrency', '64',
                '--requests', '128', '--output-tokens', '1024', '--rounds', '3']
-    with (candidate_dir/'runner.log').open('w') as log:
+    # The service trial owns creation of its output directory and requires it
+    # not to exist. Keep the launcher log in the parent comparison directory.
+    with (root/'candidate_runner.log').open('w') as log:
         process = subprocess.run(command, stdout=log, stderr=subprocess.STDOUT)
+    assert process.returncode==0, f'Candidate exited {process.returncode}; see candidate_runner.log'
     candidate = json.loads((candidate_dir/'result.json').read_text())
     assert process.returncode==0 and candidate['phase']=='complete'
     assert baseline['workload']==candidate['workload']
