@@ -32,6 +32,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--hybrid-source', type=Path, required=True)
+    parser.add_argument('--plan', type=Path)
+    parser.add_argument('--baseline-tile', choices=['original', '128'], default='original')
     args = parser.parse_args()
     root = args.output.resolve()
     root.mkdir(parents=True, exist_ok=True)
@@ -105,16 +107,24 @@ def main():
 
     def baseline_forward(*forward_args, **forward_kwargs):
         selected_lookup = runtime.get_heuristic_config
-        runtime.get_heuristic_config = original_lookup
+        def baseline_lookup(name):
+            if name != 'mha_block_128' or args.baseline_tile == 'original':
+                return original_lookup(name)
+            tile = dict(BLOCK_M=128, BLOCK_N=128, num_warps=8, num_stages=2)
+            return {key: (lambda args, value=value: value) for key, value in tile.items()}
+        runtime.get_heuristic_config = baseline_lookup
         try:
             return wrapped_forward(*forward_args, **forward_kwargs)
         finally:
             runtime.get_heuristic_config = selected_lookup
 
-    plan = json.loads(Path(__file__).with_name('experiment_plan.json').read_text())
+    plan_path = args.plan or Path(__file__).with_name('experiment_plan.json')
+    plan = json.loads(plan_path.read_text())
     result = {
         'official_benchmark': False, 'complete': False,
         'installed_files_modified': False, 'actual_baseline_config': actual,
+        'comparison_baseline_tile': args.baseline_tile,
+        'plan_path': str(plan_path), 'plan_sha256': hashlib.sha256(plan_path.read_bytes()).hexdigest(),
         'hybrid_sha256': hashlib.sha256(args.hybrid_source.read_bytes()).hexdigest(),
         'fixture_sha256': hashlib.sha256(fixture_path.read_bytes()).hexdigest(),
         'cases': [],
@@ -143,7 +153,7 @@ def main():
                             hybrid, baseline_forward, name, scenario['query_lengths'],
                             scenario['kv_lengths'], True, 2026101240 + scenario_index)
                         case['configuration'] = tile
-                        case['baseline_name'] = 'default_fa2'
+                        case['baseline_name'] = 'default_fa2' if args.baseline_tile == 'original' else 'verified_fa2_tile128'
                         case['candidate_name'] = 'selected_fa2'
                         result['cases'].append(case)
                         print(json.dumps(case), flush=True)

@@ -1,0 +1,146 @@
+{
+  "not_started": true,
+  "official_benchmark": false,
+  "keep_current_best_and_source_frozen": true,
+  "source_observation": {
+    "varlen_kernel": "flag_gems.ops.flash_kernel.flash_varlen_fwd_kernel",
+    "config_entry": "runtime.get_heuristic_config(mha_block_128)",
+    "local_vendor_heuristics_sha256": "145fcb02a536e280cbe7007de8b965b971b8ffa93d5a4a4fb6205b4ac0599bc7",
+    "observed_config": {
+      "BLOCK_M": 128,
+      "BLOCK_N": 32,
+      "num_warps": 4,
+      "paged_num_stages": 3
+    },
+    "verify_installed_heuristics_before_running": true,
+    "installed_vendor_heuristics_sha256": "145fcb02a536e280cbe7007de8b965b971b8ffa93d5a4a4fb6205b4ac0599bc7",
+    "installed_matches_local": true
+  },
+  "configurations": [
+    {
+      "BLOCK_M": 128,
+      "BLOCK_N": 128,
+      "num_warps": 8,
+      "num_stages": 2
+    },
+    {
+      "BLOCK_M": 128,
+      "BLOCK_N": 128,
+      "num_warps": 8,
+      "num_stages": 1
+    },
+    {
+      "BLOCK_M": 128,
+      "BLOCK_N": 128,
+      "num_warps": 16,
+      "num_stages": 2
+    },
+    {
+      "BLOCK_M": 128,
+      "BLOCK_N": 256,
+      "num_warps": 8,
+      "num_stages": 1
+    },
+    {
+      "BLOCK_M": 128,
+      "BLOCK_N": 256,
+      "num_warps": 8,
+      "num_stages": 2
+    },
+    {
+      "BLOCK_M": 128,
+      "BLOCK_N": 256,
+      "num_warps": 16,
+      "num_stages": 1
+    },
+    {
+      "BLOCK_M": 128,
+      "BLOCK_N": 256,
+      "num_warps": 16,
+      "num_stages": 2
+    }
+  ],
+  "cases": [
+    {
+      "query_lengths": [
+        2048
+      ],
+      "kv_lengths": [
+        2048
+      ],
+      "interleaved_cache": true
+    },
+    {
+      "query_lengths": [
+        2048
+      ],
+      "kv_lengths": [
+        4096
+      ],
+      "interleaved_cache": true
+    },
+    {
+      "query_lengths": [
+        4096
+      ],
+      "kv_lengths": [
+        4096
+      ],
+      "interleaved_cache": true
+    },
+    {
+      "query_lengths": [
+        4096,
+        4096
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ],
+      "interleaved_cache": true
+    },
+    {
+      "query_lengths": [
+        513,
+        2048
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ],
+      "interleaved_cache": true
+    },
+    {
+      "query_lengths": [
+        577
+      ],
+      "kv_lengths": [
+        5120
+      ],
+      "interleaved_cache": true
+    }
+  ],
+  "dtype": "bfloat16",
+  "query_heads": 16,
+  "kv_heads": 2,
+  "head_dim": 128,
+  "page_size": 16,
+  "required_checks": [
+    "Fixed FP32 atol0.02/rtol0.01 comparison for all output elements",
+    "Selected CPU oracle checks",
+    "Output padded tail unchanged",
+    "Random physical paged layout and strided/interleaved cache",
+    "Alternating baseline/candidate CUDA event or graph timings after warmup",
+    "Preserve unsupported/failed configurations with errors"
+  ],
+  "micro_only_override": "Temporarily override mha_block_128 in isolated process; restore before baseline calls; no installed file changes",
+  "adoption_requires": [
+    "Clear service gain",
+    "Independent official Level3 accuracy >95%",
+    "Actual installed source and config provenance"
+  ],
+  "run_after_current_pair_and_quality_jobs": true,
+  "gpu_serial": true,
+  "no_full_16k": true,
+  "comparison_baseline": "current verified BM128/BN128/w8/s2"
+}
