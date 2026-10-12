@@ -18,10 +18,10 @@ import urllib.request
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--adaptive',choices=['1'],default='1')
-    parser.add_argument('--candidate',choices=['small-gemm','prefill-gemm','sampler','native-prefill'],required=True)
+    parser.add_argument('--candidate',choices=['small-gemm','prefill-gemm','sampler','native-prefill','decode-launch'],required=True)
     parser.add_argument('--max-batched-tokens',type=int,choices=[2048,4096,8192],default=2048)
     args=parser.parse_args();root=args.output.resolve();root.mkdir(parents=True,exist_ok=True)
-    if args.candidate!='native-prefill' and args.max_batched_tokens!=2048:
+    if args.candidate not in ('native-prefill','decode-launch') and args.max_batched_tokens!=2048:
         parser.error('GEMM/sampler candidates require their independently controlled budget2048 profile')
     if (root/'result.json').exists():raise RuntimeError('Refusing to overwrite a completed evaluation')
     state={'max_batched_tokens':args.max_batched_tokens,'phase':'preparing','candidate':f'hybrid_adaptive_fa2_tile128_budget{args.max_batched_tokens}_{args.candidate}','reused_original_accuracy':False,
@@ -65,7 +65,8 @@ def main():
         candidates={'small-gemm':('tianshu_small_gemm_20261012','TIANSHU_SMALL_GEMM_PROBE','TIANSHU_SMALL_GEMM_RECORD_DIR','small_mm_records','mm_*.json'),
                     'prefill-gemm':('tianshu_prefill_gemm_20261012','TIANSHU_PREFILL_GEMM_PROBE','TIANSHU_PREFILL_GEMM_RECORD_DIR','prefill_mm_records','mm_*.json'),
                     'sampler':('tianshu_sampler_fusion_20261012','TIANSHU_SAMPLER_FUSION_PROBE','TIANSHU_SAMPLER_RECORD_DIR','sampler_records','sampler_*.json'),
-                    'native-prefill':('tianshu_native_prefill_20261012','TIANSHU_NATIVE_PREFILL_PROBE','TIANSHU_NATIVE_PREFILL_RECORD_DIR','native_prefill_records','native_prefill_*.json')}
+                    'native-prefill':('tianshu_native_prefill_20261012','TIANSHU_NATIVE_PREFILL_PROBE','TIANSHU_NATIVE_PREFILL_RECORD_DIR','native_prefill_records','native_prefill_*.json'),
+                    'decode-launch':('tianshu_decode_launch_20261012','TIANSHU_DECODE_LAUNCH_PROBE','TIANSHU_DECODE_LAUNCH_RECORD_DIR','decode_launch_records','launch_*.json')}
         folder,flag,record_flag,record_dir,pattern=candidates[args.candidate]
         for _, candidate_flag, candidate_record_flag, _, _ in candidates.values():
             env.pop(candidate_flag, None)
@@ -73,6 +74,9 @@ def main():
         hook=base/folder/'hooks/sitecustomize.py'
         state['experimental_candidate']=args.candidate
         env[flag]='1';env[record_flag]=str(root/record_dir)
+        if args.candidate=='decode-launch':
+            env['TIANSHU_NATIVE_PREFILL_PROBE']='1'
+            env['TIANSHU_NATIVE_PREFILL_RECORD_DIR']=str(root/'native_prefill_records')
         env['PYTHONPATH']=str(hook.parent)
         env['TIANSHU_FA2_TILE_PROBE']='1'
         env['TIANSHU_FA2_TILE_RECORD_DIR']=str(root/'tile_records')
@@ -92,11 +96,18 @@ def main():
         (snapshots/'tile_sitecustomize.py').write_bytes(tile_hook.read_bytes())
         state['candidate_hook']=dict(state['tile_hook'])
         state['tile_hook']={'path':str(tile_hook),'sha256':hashlib.sha256(tile_hook.read_bytes()).hexdigest()}
-        kernel=base/('tianshu_sampler_fusion_20261012/experimental_sampler.py' if args.candidate=='sampler' else
+        kernel=Path('/usr/local/lib/python3.12/site-packages/vllm/v1/attention/ops/triton_unified_attention.py') if args.candidate=='decode-launch' else base/('tianshu_sampler_fusion_20261012/experimental_sampler.py' if args.candidate=='sampler' else
                     'tianshu_native_prefill_20261012/zero_initialization.py' if args.candidate=='native-prefill' else
                     'tianshu_splitk_20261012/experimental_mm.py')
         (snapshots/kernel.name).write_bytes(kernel.read_bytes())
         state['experimental_kernel']={'path':str(kernel),'sha256':hashlib.sha256(kernel.read_bytes()).hexdigest()}
+        if args.candidate=='decode-launch':
+            native_hook=base/'tianshu_native_prefill_20261012/hooks/sitecustomize.py'
+            generator=base/'tianshu_native_prefill_20261012/zero_initialization.py'
+            (snapshots/'native_prefill_sitecustomize.py').write_bytes(native_hook.read_bytes())
+            (snapshots/'zero_initialization.py').write_bytes(generator.read_bytes())
+            state['native_prefill_hook']={'path':str(native_hook),'sha256':hashlib.sha256(native_hook.read_bytes()).hexdigest()}
+            state['zero_generator']={'path':str(generator),'sha256':hashlib.sha256(generator.read_bytes()).hexdigest()}
         for name in ('worker.py','iluvatar_hybrid_attention.py','iluvatar_adaptive_decode.py'):
             current=source.with_name(name);contents=current.read_bytes();(snapshots/name).write_bytes(contents)
             if name=='worker.py':state['worker_sha256']=hashlib.sha256(contents).hexdigest()
@@ -124,13 +135,18 @@ def main():
         code=evaluator.wait();state['evalscope_exit_code']=code
         if code!=0:raise RuntimeError('EvalScope failed: '+str(code))
         records=list((root/'tile_records').glob('tile_*.json'))
-        if not records and args.candidate!='native-prefill':raise RuntimeError('Actual model did not use the experimental tile')
+        if not records and args.candidate not in ('native-prefill','decode-launch'):raise RuntimeError('Actual model did not use the experimental tile')
         state['tile_routing_records']=[json.loads(p.read_text()) for p in records]
         routes=[json.loads(p.read_text()) for p in (root/record_dir).glob(pattern)]
         if not routes:raise RuntimeError('Experimental candidate did not route in the evaluated model')
         if args.candidate in ('small-gemm','prefill-gemm') and len({tuple(x['shape']) for x in routes})!=3:
             raise RuntimeError('Evaluated GEMM candidate did not route all three checked shapes')
         state['candidate_routing_records']=routes
+        if args.candidate=='decode-launch':
+            native_routes=[json.loads(p.read_text()) for p in (root/'native_prefill_records').glob('native_prefill_*.json')]
+            assert native_routes and all(x['kernel_sha256']==state['zero_generator']['sha256'] for x in native_routes)
+            assert all(x['configuration']=={'TILE_SIZE':16,'num_warps':4,'num_stages':1} for x in routes)
+            state['native_prefill_routing_records']=native_routes
         state['phase']='evaluation_finished_pending_report_audit'
     except StopRequested as error:state.update(phase='stopped',error=str(error))
     except BaseException as error:state.update(phase='failed',error=str(error),traceback=traceback.format_exc())

@@ -33,6 +33,7 @@ def main():
     parser.add_argument('--max-batched-tokens', type=int, choices=[2048,4096,8192], required=True)
     parser.add_argument('--math-results', type=Path, required=True)
     parser.add_argument('--minimum-gain-percent', type=float, default=2)
+    parser.add_argument('--decode-launch',choices=['0','1'],default='0')
     args = parser.parse_args()
     root = args.output.resolve()
     root.mkdir(parents=True, exist_ok=True)
@@ -58,11 +59,18 @@ def main():
     assert hashlib.sha256(adaptive.read_bytes()).hexdigest() == audit['adaptive_sha256']
     tile_configuration={'BLOCK_M':128,'BLOCK_N':128,'num_warps':8,'num_stages':2}
     assert audit['tile_configuration']==tile_configuration
-    assert audit['experimental_candidate']=='native-prefill' and audit['candidate_routing_records']
-    hook=Path(__file__).resolve().parents[1]/'tianshu_native_prefill_20261012/hooks/sitecustomize.py'
+    candidate_kind='decode-launch' if args.decode_launch=='1' else 'native-prefill'
+    assert audit['experimental_candidate']==candidate_kind and audit['candidate_routing_records']
+    folder='tianshu_decode_launch_20261012' if args.decode_launch=='1' else 'tianshu_native_prefill_20261012'
+    hook=Path(__file__).resolve().parents[1]/folder/'hooks/sitecustomize.py'
     assert hashlib.sha256(hook.read_bytes()).hexdigest()==audit['candidate_hook']['sha256']
     assert hook.read_bytes()==(args.math_results/'source_snapshot/candidate_sitecustomize.py').read_bytes()
-    assert trials[1]['tile_hook']['sha256']==audit['candidate_hook']['sha256']
+    trial_hook=trials[1]['decode_hook'] if args.decode_launch=='1' else trials[1]['tile_hook']
+    assert trial_hook['sha256']==audit['candidate_hook']['sha256']
+    if args.decode_launch=='1':
+        assert trials[1]['tile_hook']['sha256']==audit['native_prefill_hook']['sha256']
+        for name,data in [('native_prefill_sitecustomize.py',audit['native_prefill_hook']),('zero_initialization.py',audit['zero_generator'])]:
+            assert Path(data['path']).read_bytes()==(args.math_results/'source_snapshot'/name).read_bytes()
     snapshot=args.math_results/'source_snapshot/worker.py'
     assert snapshot.read_bytes() == SOURCE.with_name('worker.py').read_bytes()
     for name, data in trials[1]['installed_sources'].items():
@@ -75,7 +83,8 @@ def main():
              'short_gain_percent': gain, 'official_script_sha256': BENCH_SHA,
              'max_batched_tokens':args.max_batched_tokens,
              'tile_configuration':tile_configuration, 'tile_hook':audit['tile_hook'], 'candidate_hook':audit['candidate_hook'],
-             'experimental_kernel':audit['experimental_kernel'], 'experimental_candidate':'native-prefill',
+             'experimental_kernel':audit['experimental_kernel'], 'experimental_candidate':candidate_kind,
+             'decode_launch':args.decode_launch,
              'adaptive_sha256':audit['adaptive_sha256'],
              'worker_sha256':hashlib.sha256(snapshot.read_bytes()).hexdigest(),
              'hybrid_source': str(SOURCE), 'hybrid_sha256': audit['hybrid_sha256'],
@@ -155,7 +164,10 @@ def main():
         env['TIANSHU_FA2_TILE_RECORD_DIR']=str(root/'tile_records')
         env['TIANSHU_NATIVE_PREFILL_PROBE']='1'
         env['TIANSHU_NATIVE_PREFILL_RECORD_DIR']=str(root/'native_prefill_records')
-        state['flags'] = {k: v for k, v in env.items() if k.startswith(('VLLM_FL_', 'FLAGGEMS_ILUVATAR_', 'VLLM_PLUGINS'))}
+        if args.decode_launch=='1':
+            env['TIANSHU_DECODE_LAUNCH_PROBE']='1'
+            env['TIANSHU_DECODE_LAUNCH_RECORD_DIR']=str(root/'decode_launch_records')
+        state['flags'] = {k: v for k, v in env.items() if k.startswith(('VLLM_FL_', 'FLAGGEMS_ILUVATAR_', 'VLLM_PLUGINS','TIANSHU_DECODE_'))}
         state['packages'] = {name: importlib.metadata.version(name)
                              for name in ('torch', 'vllm', 'vllm-plugin-fl', 'flag-gems', 'evalscope')}
         (root / 'hardware_before.txt').write_text(subprocess.check_output(['ixsmi'], text=True))
@@ -219,10 +231,18 @@ def main():
         records=list((root/'tile_records').glob('tile_*.json'))
         native_records=[json.loads(p.read_text()) for p in (root/'native_prefill_records').glob('native_prefill_*.json')]
         assert native_records, 'Actual model did not use quality-verified native prefill'
-        assert all(x['kernel_sha256']==audit['experimental_kernel']['sha256'] for x in native_records)
-        expected_generated={x['generated_kernel_sha256'] for x in audit['candidate_routing_records']}
+        zero_sha=audit['zero_generator']['sha256'] if args.decode_launch=='1' else audit['experimental_kernel']['sha256']
+        assert all(x['kernel_sha256']==zero_sha for x in native_records)
+        quality_native=audit['native_prefill_routing_records'] if args.decode_launch=='1' else audit['candidate_routing_records']
+        expected_generated={x['generated_kernel_sha256'] for x in quality_native}
         assert all(x['generated_kernel_sha256'] in expected_generated for x in native_records)
         state['candidate_routing_records']=native_records
+        if args.decode_launch=='1':
+            records_decode=[json.loads(p.read_text()) for p in (root/'decode_launch_records').glob('launch_*.json')]
+            assert records_decode and all(x['kernel_sha256']==audit['experimental_kernel']['sha256'] and
+                x['configuration']=={'TILE_SIZE':16,'num_warps':4,'num_stages':1} for x in records_decode)
+            state['candidate_routing_records']=records_decode
+            state['native_prefill_routing_records']=native_records
         state['tile_routing_records']=[json.loads(p.read_text()) for p in records]
         state.update(phase='complete', completed_runs=4, raw_runs=completed, official_summary=summary[0])
     except StopRequested as error:

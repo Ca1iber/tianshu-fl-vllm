@@ -46,11 +46,18 @@ def main():
     assert 'No running processes found' in hardware, 'GPU cleanup requires investigation'
     routes=state['candidate_routing_records']
     assert routes and all(x['kernel_sha256']==state['experimental_kernel']['sha256'] for x in routes)
+    if state['experimental_candidate']=='decode-launch':
+        assert all(x['configuration']=={'TILE_SIZE':16,'num_warps':4,'num_stages':1} for x in routes)
+        assert state['native_prefill_routing_records'] and all(x['kernel_sha256']==state['zero_generator']['sha256']
+            for x in state['native_prefill_routing_records'])
     audit = {
         'experimental_candidate':state['experimental_candidate'],
         'candidate_hook':state['candidate_hook'],
         'experimental_kernel':state['experimental_kernel'],
         'candidate_routing_records':routes,
+        'native_prefill_hook':state.get('native_prefill_hook'),
+        'native_prefill_routing_records':state.get('native_prefill_routing_records'),
+        'zero_generator':state.get('zero_generator'),
         'audited_at_utc': datetime.now(timezone.utc).isoformat(),
         'candidate': state['candidate'], 'complete': True,
         'adaptive_flag': state['adaptive_flag'], 'adaptive_sha256': state['adaptive_sha256'],
