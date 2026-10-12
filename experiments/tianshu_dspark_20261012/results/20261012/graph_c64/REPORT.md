@@ -1,0 +1,9 @@
+# DSpark 基础 C64 图模式短对照：负结果
+
+保持4K输入/128输出、C64/N128、三轮排首轮、temperature1/top_p0.95、ignore_eos。target使用FULL_DECODE_ONLY，Spec draft仍eager。两边budget2048/maxseq64/gmem0.85/maxlen131072、同一L0修正原native tile；Hybrid/adaptive关闭。不是官方4K/1K/N256协议，也不是当前最佳原生Prefill M256组合。
+
+基线三轮1297.111711/3227.503060/3226.088879 total tok/s，候选1216.746529/3188.651156/3187.337212。排首轮均值3226.795970→3187.994184（−1.202487%），TTFT21322.623183→59224.516449ms（+177.754364%）。各384成功请求、每个usage4096/128，后两轮均无新增调优，保留全部原始响应。两边冷轮416.827630/444.358777s，计时窗调优分别12/11条；startup中的调优另行保留。
+
+结论：C8 eager短对照+85.89%不能外推为C64或正式成绩。当前C64短输出受prefill影响，基础Spec尚未接入之前已验证的Prefill优化。此负结果不证明长输出或后续优化的Spec均无收益，不采用，不为它运行独立数学或正式benchmark。继续隔离验证GQA tile、已有Prefill、7-slot匹配预热，再做1K输出的短协议。
+
+基线完整备份13215410 bytes、SHA7d88d1a1e6509ad9dc8df5ef1183591d6519bbcea227943f75d5d0421e7b5c7b；候选13062398 bytes、SHAe259ea882feb1a3cea40ba95247bf7a4f702684f9edb9b7895d1265bea244d06，均已逐块及整包本地核验。代码和实验报告提交于天数实验分支，未推送GitHub，当前正式最佳2712.55保持不变。

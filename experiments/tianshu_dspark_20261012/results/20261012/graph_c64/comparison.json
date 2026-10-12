@@ -1,0 +1,139 @@
+{
+  "official_benchmark": false,
+  "accuracy_test": false,
+  "adopted": false,
+  "scope": "C64/N128/4K128, target FULL_DECODE_ONLY, draft eager, L0/default native tiles",
+  "control": {
+    "mean_total_tok_s": 3226.795969819607,
+    "mean_ttft_ms": 21322.623183097676,
+    "rows": [
+      {
+        "round": 1,
+        "duration_seconds": 416.82762965513393,
+        "total_tokens_per_second": 1297.1117112541936,
+        "mean_ttft_seconds": 39.57668079797804,
+        "successful_requests": 128,
+        "tuning_count": 12
+      },
+      {
+        "round": 2,
+        "duration_seconds": 167.5202129711397,
+        "total_tokens_per_second": 3227.503060142042,
+        "mean_ttft_seconds": 21.281682008182543,
+        "successful_requests": 128,
+        "tuning_count": 0
+      },
+      {
+        "round": 3,
+        "duration_seconds": 167.59364673309028,
+        "total_tokens_per_second": 3226.0888794971715,
+        "mean_ttft_seconds": 21.36356435801281,
+        "successful_requests": 128,
+        "tuning_count": 0
+      }
+    ],
+    "requests_successful": 384,
+    "command": [
+      "vllm",
+      "serve",
+      "/workspace/MiniCPM5-2B",
+      "--port",
+      "9031",
+      "--served-model-name",
+      "minicpm",
+      "--gpu-memory-utilization",
+      ".85",
+      "--max-model-len",
+      "131072",
+      "--max-num-batched-tokens",
+      "2048",
+      "--max-num-seqs",
+      "64",
+      "--compilation-config",
+      "{\"cudagraph_mode\":\"FULL_DECODE_ONLY\"}"
+    ],
+    "flags": {
+      "TRITON_PRINT_AUTOTUNING": "1",
+      "TIANSHU_DSPARK_COMPAT": "0",
+      "TIANSHU_DSPARK_RECORD_DIR": "/workspace/benchmark-results/20261012_speculative_dspark_tianshu/quick_graph_control_c64/adapter_records",
+      "TIANSHU_DSPARK_ZERO_VERIFY": "1",
+      "TIANSHU_DSPARK_SAMPLE_VIEW": "0",
+      "VLLM_FL_USE_FLAGGEMS_ATTN": "0",
+      "VLLM_FL_ILUVATAR_HYBRID_ATTENTION": "0",
+      "VLLM_FL_ILUVATAR_ADAPTIVE_DECODE_SEGMENTS": "0",
+      "VLLM_FL_ILUVATAR_PREFILL_BUCKETS": "0",
+      "VLLM_FL_ILUVATAR_LOGITS_GATHER": "0",
+      "FLAGGEMS_ILUVATAR_COMPACT_VARLEN": "1"
+    }
+  },
+  "candidate": {
+    "mean_total_tok_s": 3187.994183736198,
+    "mean_ttft_ms": 59224.51644927969,
+    "rows": [
+      {
+        "round": 1,
+        "duration_seconds": 444.35877741128206,
+        "total_tokens_per_second": 1216.7465288967928,
+        "mean_ttft_seconds": 158.0396628772578,
+        "successful_requests": 128,
+        "tuning_count": 11
+      },
+      {
+        "round": 2,
+        "duration_seconds": 169.56135168485343,
+        "total_tokens_per_second": 3188.651155629453,
+        "mean_ttft_seconds": 59.22196057007022,
+        "successful_requests": 128,
+        "tuning_count": 0
+      },
+      {
+        "round": 3,
+        "duration_seconds": 169.6312514380552,
+        "total_tokens_per_second": 3187.337211842943,
+        "mean_ttft_seconds": 59.22707232848916,
+        "successful_requests": 128,
+        "tuning_count": 0
+      }
+    ],
+    "requests_successful": 384,
+    "command": [
+      "vllm",
+      "serve",
+      "/workspace/MiniCPM5-2B",
+      "--port",
+      "9031",
+      "--served-model-name",
+      "minicpm",
+      "--gpu-memory-utilization",
+      ".85",
+      "--max-model-len",
+      "131072",
+      "--max-num-batched-tokens",
+      "2048",
+      "--max-num-seqs",
+      "64",
+      "--speculative-config",
+      "{\"method\": \"dflash\", \"model\": \"/workspace/benchmark-results/20261012_speculative_dspark_tianshu/quick_graph_dspark_c64/draft_config_alias\", \"num_speculative_tokens\": 7, \"draft_sample_method\": \"probabilistic\", \"enforce_eager\": true}",
+      "--compilation-config",
+      "{\"cudagraph_mode\":\"FULL_DECODE_ONLY\"}"
+    ],
+    "flags": {
+      "TRITON_PRINT_AUTOTUNING": "1",
+      "TIANSHU_DSPARK_COMPAT": "1",
+      "TIANSHU_DSPARK_RECORD_DIR": "/workspace/benchmark-results/20261012_speculative_dspark_tianshu/quick_graph_dspark_c64/adapter_records",
+      "TIANSHU_DSPARK_ZERO_VERIFY": "1",
+      "TIANSHU_DSPARK_SAMPLE_VIEW": "0",
+      "TIANSHU_DSPARK_VERIFY_TILE": "0",
+      "VLLM_FL_USE_FLAGGEMS_ATTN": "0",
+      "VLLM_FL_ILUVATAR_HYBRID_ATTENTION": "0",
+      "VLLM_FL_ILUVATAR_ADAPTIVE_DECODE_SEGMENTS": "0",
+      "VLLM_FL_ILUVATAR_PREFILL_BUCKETS": "0",
+      "VLLM_FL_ILUVATAR_LOGITS_GATHER": "0",
+      "FLAGGEMS_ILUVATAR_COMPACT_VARLEN": "1"
+    }
+  },
+  "throughput_change_percent": -1.2024865050757505,
+  "ttft_change_percent": 177.7543641826707,
+  "independent_quality_done": false,
+  "not_comparable_to_current_official_best": true
+}
