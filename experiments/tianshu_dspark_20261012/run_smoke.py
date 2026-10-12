@@ -159,6 +159,8 @@ def main():
             logpath=root/'server.log'
             for round_index in range(3):
                 state['phase']=f'quick_performance_round_{round_index+1}';save()
+                with urllib.request.urlopen('http://127.0.0.1:9031/metrics',timeout=3) as response:
+                    (root/f'metrics_before_round_{round_index+1}.txt').write_bytes(response.read())
                 before=len(logpath.read_text());started=time.monotonic()
                 payloads=[]
                 for i in range(args.concurrency*2):
@@ -169,6 +171,8 @@ def main():
                 with ThreadPoolExecutor(max_workers=args.concurrency) as pool:
                     responses=list(pool.map(lambda body:request(body,True),payloads))
                 elapsed=time.monotonic()-started
+                with urllib.request.urlopen('http://127.0.0.1:9031/metrics',timeout=3) as response:
+                    (root/f'metrics_after_round_{round_index+1}.txt').write_bytes(response.read())
                 assert all(x['response']['usage']['prompt_tokens']==4096 and
                            x['response']['usage']['completion_tokens']==128 for x in responses)
                 state['performance_rounds'].append({'round':round_index+1,'duration_seconds':elapsed,
