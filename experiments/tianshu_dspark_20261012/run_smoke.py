@@ -26,6 +26,7 @@ def main():
     parser.add_argument('--target-graphs',action='store_true')
     parser.add_argument('--sample-view',action='store_true')
     parser.add_argument('--verify-tile',action='store_true')
+    parser.add_argument('--matched-warmup',action='store_true')
     args=parser.parse_args()
     assert not args.verify_tile or args.zero_verify
     root=args.output.resolve();root.mkdir(parents=True,exist_ok=True)
@@ -90,6 +91,7 @@ def main():
                  TIANSHU_DSPARK_ZERO_VERIFY=('1' if args.zero_verify else '0'),
                  TIANSHU_DSPARK_SAMPLE_VIEW=('1' if args.sample_view else '0'),
                  TIANSHU_DSPARK_VERIFY_TILE=('1' if args.verify_tile else '0'),
+                 TIANSHU_DSPARK_MATCHED_WARMUP=('1' if args.matched_warmup else '0'),
                  VLLM_FL_USE_FLAGGEMS_ATTN='0',VLLM_FL_ILUVATAR_HYBRID_ATTENTION='0',
                  VLLM_FL_ILUVATAR_ADAPTIVE_DECODE_SEGMENTS='0',
                  VLLM_FL_ILUVATAR_PREFILL_BUCKETS='0',VLLM_FL_ILUVATAR_LOGITS_GATHER='0',

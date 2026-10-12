@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 import torch
 from vllm.v1.spec_decode.dflash import DFlashProposer as OriginalDFlashProposer
+from vllm.forward_context import set_forward_context
 
 
 class DSparkProposer(OriginalDFlashProposer):
@@ -16,6 +17,41 @@ class DSparkProposer(OriginalDFlashProposer):
         assert not self.use_fp64_gumbel, 'The observed CoreX FP64 cast path is unsuitable'
         self.max_query_tokens=self.max_batch_size*self.num_speculative_tokens
         self._recorded_sampling=set()
+
+    @torch.inference_mode()
+    def dummy_run(self,num_tokens,use_cudagraphs=True,is_graph_capturing=False,slot_mappings=None):
+        if os.getenv('TIANSHU_DSPARK_MATCHED_WARMUP')!='1':
+            return super().dummy_run(num_tokens,use_cudagraphs,is_graph_capturing,slot_mappings)
+        # Target uniform verification has K+1=8 rows per request, while
+        # DSpark has K=7 queries including its anchor. Warm the real drafter
+        # query sizes; keep the original unpadded context size and KV API.
+        batch=min(self.max_batch_size,max(1,(num_tokens+7)//8))
+        queries=batch*7
+        mode,padded,across_dp=self._determine_batch_execution_and_padding(
+            queries,use_cudagraphs=use_cudagraphs)
+        if (self._draft_attn_layer_names and slot_mappings is not None and
+            next(iter(self._draft_attn_layer_names)) in slot_mappings):
+            slots=self._get_slot_mapping(padded)
+        else:
+            slots=slot_mappings or {}
+        context=self.hidden_states[:num_tokens]
+        positions=self._context_positions_buffer[:num_tokens]
+        self.model.precompute_and_store_context_kv(context,positions)
+        with set_forward_context(None,self.vllm_config,num_tokens=padded,
+                num_tokens_across_dp=across_dp,cudagraph_runtime_mode=mode,slot_mapping=slots):
+            output=self.model(input_ids=self.input_ids[:padded],
+                              positions=self._get_positions(padded),inputs_embeds=None)
+        assert isinstance(output,torch.Tensor)
+        # These heads run outside the target graph and are skipped by the
+        # parent dummy run. No token sampling or RNG draw is performed.
+        self.model.compute_logits(output[:queries])
+        self.model.markov_bias(self.model.markov_embed(self.input_ids[:batch]))
+        root=Path(os.environ['TIANSHU_DSPARK_RECORD_DIR'])/'matched_warmup'
+        root.mkdir(parents=True,exist_ok=True)
+        (root/f'context_{num_tokens}_queries_{queries}.json').write_text(json.dumps({
+            'target_context_tokens':num_tokens,'draft_queries':queries,'draft_batch':batch,
+            'padded_draft_queries':padded,'lm_head_warmed':True,'markov_head_warmed':True,
+            'rng_draws_added':False,'target_rejection_sampler_modified':False},indent=2)+'\n')
 
     def set_inputs_first_pass(self,target_token_ids,next_token_ids,target_positions,
                               target_hidden_states,token_indices_to_sample,cad,
