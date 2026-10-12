@@ -23,6 +23,7 @@ def main():
     parser.add_argument('--zero-verify',action='store_true')
     parser.add_argument('--quick-performance',action='store_true')
     parser.add_argument('--concurrency',type=int,choices=[8,64],default=8)
+    parser.add_argument('--target-graphs',action='store_true')
     args=parser.parse_args()
     root=args.output.resolve();root.mkdir(parents=True,exist_ok=True)
     assert not (root/'state.json').exists()
@@ -94,6 +95,9 @@ def main():
         if args.baseline:
             command=command[:-2]
             spec=None
+        if args.target_graphs:
+            command.remove('--enforce-eager')
+            command+=['--compilation-config','{"cudagraph_mode":"FULL_DECODE_ONLY"}']
         state['command']=command;state['speculative_config']=spec
         state['environment_flags']={k:v for k,v in env.items() if k.startswith(
             ('VLLM_FL_','FLAGGEMS_ILUVATAR_','TIANSHU_DSPARK_','TRITON_PRINT_'))}
@@ -149,7 +153,8 @@ def main():
         if args.quick_performance:
             state['workload']={'input_tokens':4096,'output_tokens':128,'concurrency':args.concurrency,
                                'requests_per_round':args.concurrency*2,'rounds':3,'excluded_rounds':[1],
-                               'target_and_draft_eager':True,'official_benchmark':False}
+                               'target_eager':not args.target_graphs,'draft_eager':None if args.baseline else True,
+                               'official_benchmark':False}
             state['performance_rounds']=[]
             logpath=root/'server.log'
             for round_index in range(3):

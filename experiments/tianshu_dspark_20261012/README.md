@@ -13,3 +13,5 @@
 质量采用比赛要求的独立 Math-500 Level3 严格大于 95%，不要求输出与旧版本逐字一致。但未知的适配错误必须先排查。当前正式最佳仍为 `tianshu-best-native-prefill-20261012`：2712.55 total tok/s、TTFT 4720.38 ms、102/105（97.14%）。
 
 上游实现参考：[vLLM DSpark 模型](https://github.com/vllm-project/vllm/blob/main/vllm/model_executor/models/qwen3_dspark.py)、[DSpark speculator](https://github.com/vllm-project/vllm/blob/main/vllm/v1/worker/gpu/spec_decode/dspark/speculator.py)、[MiniCPM5 DSpark 兼容讨论](https://github.com/vllm-project/vllm/issues/57013)。上游不同环境的接受率或性能不作为天数测量结果。
+
+修正后固定前缀对照：第一个提示前8个greedy token一致；第二个提示前6个一致，第7个候选 ` of` 与 `,` 在非投机基线的logprob完全相等（−1.615134716），投机版本两者相差0.125，排序改变。首个token的前10候选logprobs两边逐项相等。后续target logits仍有小差异，尚未证明整个序列完全等价，不要求逐字匹配替代比赛质量门槛。继续补查原始短KV decode及draft16-head RoPE，通过后再进行短性能对照和独立数学评测。
