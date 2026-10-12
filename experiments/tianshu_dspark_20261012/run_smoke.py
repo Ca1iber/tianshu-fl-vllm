@@ -16,6 +16,7 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--baseline',action='store_true')
+    parser.add_argument('--diagnostic-prefixes',action='store_true')
     args=parser.parse_args()
     root=args.output.resolve();root.mkdir(parents=True,exist_ok=True)
     assert not (root/'state.json').exists()
@@ -98,9 +99,15 @@ def main():
             except Exception:pass
             time.sleep(3)
         state['phase']='requesting';save()
-        for temperature in (0.,1.):
-            body={'model':'minicpm','prompt':'Compute 17 + 25 and briefly explain the answer.',
-                  'max_tokens':96,'temperature':temperature,'top_p':.95,'stream':False}
+        bodies=[{'model':'minicpm','prompt':'Compute 17 + 25 and briefly explain the answer.',
+                 'max_tokens':96,'temperature':temperature,'top_p':.95,'stream':False}
+                for temperature in (0.,1.)]
+        if args.diagnostic_prefixes:
+            bodies=[{'model':'minicpm','prompt':prompt,'max_tokens':8,
+                     'temperature':0.,'top_p':1.,'stream':False,'logprobs':10}
+                    for prompt in ('Compute 17 + 25 and briefly explain the answer.',
+                                   'Compute 17 + 25 and briefly explain the answer. You are')]
+        for body in bodies:
             request=urllib.request.Request('http://127.0.0.1:9031/v1/completions',data=json.dumps(body).encode(),
                                            headers={'Content-Type':'application/json'})
             start=time.monotonic()
