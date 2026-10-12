@@ -57,6 +57,14 @@ class VerificationAttentionLoader(importlib.abc.Loader):
                         launch_grid=(kwargs['query_ptr'].shape[0]//block_q+kwargs['num_seqs'],grid[1])
                         kwargs.update(BLOCK_M=128,BLOCK_Q=block_q,TILE_SIZE=64,
                                       num_warps=8,num_stages=2)
+                    elif (not kwargs['IS_3D'] and os.getenv('TIANSHU_DSPARK_PREFILL_TILE')=='1'
+                        and kwargs['num_queries_per_kv']==8 and kwargs['HEAD_SIZE']==128
+                        and kwargs['USE_CAUSAL'] and not kwargs['USE_PER_SEQ_CAUSAL']
+                        and kwargs['query_ptr'].shape[0]>=32*kwargs['num_seqs']):
+                        block_q=256//kwargs['num_queries_per_kv']
+                        launch_grid=(kwargs['query_ptr'].shape[0]//block_q+kwargs['num_seqs'],grid[1])
+                        kwargs.update(BLOCK_M=256,BLOCK_Q=block_q,TILE_SIZE=128,
+                                      num_warps=16,num_stages=1)
                     return selected[launch_grid](*args,**kwargs)
                 return launch
         module.kernel_unified_attention=Router()

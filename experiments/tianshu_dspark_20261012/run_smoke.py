@@ -28,8 +28,10 @@ def main():
     parser.add_argument('--verify-tile',action='store_true')
     parser.add_argument('--matched-warmup',action='store_true')
     parser.add_argument('--math-level3',action='store_true')
+    parser.add_argument('--prefill-tile',action='store_true')
     args=parser.parse_args()
     assert not args.verify_tile or args.zero_verify
+    assert not args.prefill_tile or args.zero_verify
     assert not args.math_level3 or (not args.baseline and args.zero_verify and
                                    not args.quick_performance and not args.diagnostic_prefixes)
     root=args.output.resolve();root.mkdir(parents=True,exist_ok=True)
@@ -96,6 +98,7 @@ def main():
                  TIANSHU_DSPARK_SAMPLE_VIEW=('1' if args.sample_view else '0'),
                  TIANSHU_DSPARK_VERIFY_TILE=('1' if args.verify_tile else '0'),
                  TIANSHU_DSPARK_MATCHED_WARMUP=('1' if args.matched_warmup else '0'),
+                 TIANSHU_DSPARK_PREFILL_TILE=('1' if args.prefill_tile else '0'),
                  VLLM_FL_USE_FLAGGEMS_ATTN='0',VLLM_FL_ILUVATAR_HYBRID_ATTENTION='0',
                  VLLM_FL_ILUVATAR_ADAPTIVE_DECODE_SEGMENTS='0',
                  VLLM_FL_ILUVATAR_PREFILL_BUCKETS='0',VLLM_FL_ILUVATAR_LOGITS_GATHER='0',

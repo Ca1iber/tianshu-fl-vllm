@@ -22,6 +22,7 @@ def main():
     parser.add_argument('--zero-init', action='store_true')
     parser.add_argument('--spec-verification-only', action='store_true')
     parser.add_argument('--spec-tile-sweep', action='store_true')
+    parser.add_argument('--spec-prefill-sweep', action='store_true')
     args = parser.parse_args()
     root = args.output.resolve()
     root.mkdir(parents=True, exist_ok=True)
@@ -116,6 +117,11 @@ def main():
             scenarios += [([8]*8,[4096]*8),([8]*64,[4096]*64)]
     elif args.spec_tile_sweep:
         parser.error('--spec-tile-sweep requires --spec-verification-only')
+    if args.spec_prefill_sweep:
+        assert args.zero_init
+        plans = [(256,128,16,1)]
+        scenarios = [([8,2040],[4096,4096]),([1,8,2039],[4096]*3),
+                     ([8]*63+[1544],[4096]*64),([2048],[2048]),([2048],[4096])]
     data = {'complete': False, 'official_benchmark': False, 'adoption_allowed': False,
             'baseline': 'verified FA2 BM128/BN128/w8/s2', 'cases': [], 'cpu_checks': cpu_checks,
             'native_sha256': hashlib.sha256(Path(native.__file__).read_bytes()).hexdigest(),
