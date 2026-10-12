@@ -1,7 +1,13 @@
 # 天数原生 Decode 启动参数筛选
 
-旧联合扫描修改了分段与KV tile，没有覆盖warp数和流水线级数。该实验在当前adaptive分段策略下，保留原始M16/BLOCK_Q2网格和完整attention算术，仅在独立进程的kernel launcher选择KV tile16/32/64/128、warp4/8/16与stage1/2。原始启动配置作为控制，记录编译器实际metadata，不假设Triton默认stage值。
+在已验证Native GQA L0 Prefill、Hybrid和adaptive Decode基础上，独立进程筛选3D Decode启动参数；安装源码不改。
 
-8个场景：B1/8/16/32/64、4K上下文，B64/ragged 5K，B16/ragged 16K和B2/ragged 32K。真实K/V交错分页、随机physical page与非连续Query/KV；全量FP32、选定CPU、原生对照和输出/scratch尾部验证，轮转CUDA Graph事件计时。14个候选加原始控制；共享内存等编译失败单独保存，不能把失败组合当数值通过。
+原KV32/w4/stage1长8场景通过，但14个短KV/填充场景全部失败，不能采用。保持原KV16和w4、只将pipeline stage3改stage1后，长8场景及14短场景通过，stage2短场景也全部通过。原kernel body、grid和分块保留。
 
-这只是算子微测，不是完整16K benchmark。GPU尚未运行；尚无数值、实际服务、质量或正式成绩收益结论。安装源码保持冻结，串行等待先前融合数值实验清理GPU后运行，动态读取最新预约截止时间。
+实际4K/1K、C64/N128三轮排首轮3186.657122 total tok/s，比同规格控制2742.829558提升16.181376%；384请求usage4096/1024均合法，三轮均0新增调优。两测量轮极差/均值5.323760%，这是小规模协议。
+
+新的独立Math-500 Level3为102/105，97.142857%，无请求错误，严格>95%；真实Decode与Native Prefill路由、源码SHA以及全部原始预测/评审已审计并本地SHA备份。质量检查点tianshu-verified-decode-stage1-20261012。
+
+正式原脚本C64/N256四轮、排首轮正在运行；尚无本候选完整正式成绩。当前正式最好仍2712.55 tok/s。`serve_tianshu_minicpm.sh`复现质量通过的候选服务参数；原生Prefill目录保留上一正式最好启动器与标签。不会自动将短测数字写成正式最好。
+
+报告与原始索引位于results/20261012/launch_32g、service_stage1_32g和math_stage1_32g。未运行优化版完整16K；算子中少量长KV数值检查不等于完整16K性能评测。性能剖析TODO。

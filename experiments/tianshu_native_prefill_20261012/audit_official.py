@@ -68,7 +68,7 @@ def main():
         '|轮次|总tok/s|TTFT/ms|duration/s|纳入均值|','|---|---:|---:|---:|---|']
     lines.extend(f"|{i+1}|{x['Total tok/s']}|{x['Mean TTFT (ms)']}|{x['Benchmark Duration (s)']}|{'否' if i==0 else '是'}|" for i,x in enumerate(rows))
     lines+=['',f"相对先前正式最佳{args.previous_best_tok_s:.2f}tok/s，吞吐{result['vs_previous_best_throughput_percent']:+.6f}%；相对公开2028.01tok/s，吞吐{result['vs_public_throughput_percent']:+.6f}%。后3轮极差/均值{result['postfirst_spread_percent']:.6f}%。",'',
-        f"安装源码未改；与独立质量评测同进程钩子和预算。{'Decode选KV16/w4/s1，保留原kernel和grid；分块改变浮点归约顺序，质量已独立验证。' if is_decode else 'Decode保持原配置。'} 未运行优化版完整16K，不将短测或算子耗时当作官方分数。"]
+        f"安装源码未改；与独立质量评测同进程钩子和预算。{'Decode保留原KV16分块、kernel body与grid，仅pipeline stage3改stage1；独立质量已通过。' if is_decode else 'Decode保持原配置。'} 未运行优化版完整16K，不将短测或算子耗时当作官方分数。"]
     (root/'README.md').write_text('\n'.join(lines)+'\n')
     print(json.dumps(result,indent=2))
 
