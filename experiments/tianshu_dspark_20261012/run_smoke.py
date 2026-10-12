@@ -13,6 +13,7 @@ import random
 import statistics
 import subprocess
 import time
+import traceback
 import urllib.request
 
 
@@ -36,6 +37,8 @@ def main():
     parser.add_argument('--official-4k',action='store_true')
     parser.add_argument('--quality-results',type=Path)
     parser.add_argument('--standard-results',type=Path)
+    parser.add_argument('--fixed-index',action='store_true')
+    parser.add_argument('--request-timeout',type=int,default=900)
     args=parser.parse_args()
     assert not args.verify_tile or args.zero_verify
     assert not args.prefill_tile or args.zero_verify
@@ -108,6 +111,7 @@ def main():
                  TIANSHU_DSPARK_VERIFY_TILE=('1' if args.verify_tile else '0'),
                  TIANSHU_DSPARK_MATCHED_WARMUP=('1' if args.matched_warmup else '0'),
                  TIANSHU_DSPARK_PREFILL_TILE=('1' if args.prefill_tile else '0'),
+                 TIANSHU_DSPARK_FIXED_INDEX=('1' if args.fixed_index else '0'),
                  VLLM_FL_USE_FLAGGEMS_ATTN='0',VLLM_FL_ILUVATAR_HYBRID_ATTENTION='0',
                  VLLM_FL_ILUVATAR_ADAPTIVE_DECODE_SEGMENTS='0',
                  VLLM_FL_ILUVATAR_PREFILL_BUCKETS='0',VLLM_FL_ILUVATAR_LOGITS_GATHER='0',
@@ -190,7 +194,7 @@ def main():
                                            headers={'Content-Type':'application/json'})
             start=time.monotonic()
             first=None;text='';usage=None
-            with urllib.request.urlopen(request,timeout=900) as response:
+            with urllib.request.urlopen(request,timeout=args.request_timeout) as response:
                 if not stream:data=json.load(response)
                 else:
                     for raw in response:
@@ -298,7 +302,7 @@ def main():
         state['adapter_records']=[json.loads(p.read_text()) for p in records]
         state['phase']='evaluation_finished_pending_report_audit' if args.math_level3 else 'complete'
     except Exception as error:
-        state.update(phase='failed',error=str(error))
+        state.update(phase='failed',error=str(error),error_type=type(error).__name__,traceback=traceback.format_exc())
     finally:
         if evaluator is not None and evaluator.poll() is None:
             os.killpg(evaluator.pid,signal.SIGTERM)

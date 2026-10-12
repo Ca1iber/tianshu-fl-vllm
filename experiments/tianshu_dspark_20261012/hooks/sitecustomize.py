@@ -7,6 +7,40 @@ from pathlib import Path
 import sys
 
 
+def install_fixed_index(module):
+    import json
+    directory=Path(__file__).resolve().parents[1]
+    if str(directory) not in sys.path:sys.path.insert(0,str(directory))
+    from fixed_index import install
+    seen=set()
+    def record(source,indices,output):
+        key=(source.ndim,source.shape[-1] if source.ndim==2 else 1,str(source.dtype))
+        if key not in seen:
+            seen.add(key)
+            root=Path(os.environ['TIANSHU_DSPARK_RECORD_DIR'])/'fixed_index'
+            root.mkdir(parents=True,exist_ok=True)
+            (root/f'route_{os.getpid()}_{len(seen)}.json').write_text(json.dumps({
+                'source_shape':list(source.shape),'index_count':indices.numel(),
+                'dtype':str(source.dtype),'fixed_launch':True,
+                'scope':'Valid single1D integer indexing on axis0 of1D/2D source; fallback keeps other forms'},indent=2)+'\n')
+    install(module,record)
+
+
+class FixedIndexLoader(importlib.abc.Loader):
+    def __init__(self,original):self.original=original
+    def create_module(self,spec):return self.original.create_module(spec)
+    def exec_module(self,module):
+        self.original.exec_module(module);install_fixed_index(module)
+
+
+class FixedIndexFinder(importlib.abc.MetaPathFinder):
+    def find_spec(self,fullname,path=None,target=None):
+        if fullname!='flag_gems.ops.index':return None
+        spec=importlib.machinery.PathFinder.find_spec(fullname,path)
+        assert spec is not None and spec.loader is not None
+        spec.loader=FixedIndexLoader(spec.loader);return spec
+
+
 class DSparkLoader(importlib.abc.Loader):
     def __init__(self,original):self.original=original
     def create_module(self,spec):return self.original.create_module(spec)
@@ -79,6 +113,10 @@ class VerificationAttentionFinder(importlib.abc.MetaPathFinder):
         spec.loader=VerificationAttentionLoader(spec.loader)
         return spec
 
+
+if os.environ.get('TIANSHU_DSPARK_FIXED_INDEX')=='1':
+    if 'flag_gems.ops.index' in sys.modules:install_fixed_index(sys.modules['flag_gems.ops.index'])
+    else:sys.meta_path.insert(0,FixedIndexFinder())
 
 if os.environ.get('TIANSHU_DSPARK_ZERO_VERIFY')=='1':
     sys.meta_path.insert(0,VerificationAttentionFinder())
