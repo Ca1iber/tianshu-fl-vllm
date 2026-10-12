@@ -45,7 +45,9 @@ class DSparkProposer(OriginalDFlashProposer):
         # These heads run outside the target graph and are skipped by the
         # parent dummy run. No token sampling or RNG draw is performed.
         self.model.compute_logits(output[:queries])
-        self.model.markov_bias(self.model.markov_embed(self.input_ids[:batch]))
+        for dtype in {self.input_ids.dtype,torch.int64}:
+            dummy_ids=torch.zeros(batch,dtype=dtype,device=self.device)
+            self.model.markov_bias(self.model.markov_embed(dummy_ids))
         root=Path(os.environ['TIANSHU_DSPARK_RECORD_DIR'])/'matched_warmup'
         root.mkdir(parents=True,exist_ok=True)
         (root/f'context_{num_tokens}_queries_{queries}.json').write_text(json.dumps({
