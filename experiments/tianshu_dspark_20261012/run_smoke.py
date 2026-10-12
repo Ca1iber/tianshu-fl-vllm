@@ -1,12 +1,15 @@
 # SPDX-License-Identifier: Apache-2.0
 """Bring up the DSpark compatibility lane, retain every response and clean up."""
 import argparse
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime,timezone
 import hashlib
 import json
 import os
 from pathlib import Path
 import signal
+import random
+import statistics
 import subprocess
 import time
 import urllib.request
@@ -18,12 +21,16 @@ def main():
     parser.add_argument('--baseline',action='store_true')
     parser.add_argument('--diagnostic-prefixes',action='store_true')
     parser.add_argument('--zero-verify',action='store_true')
+    parser.add_argument('--quick-performance',action='store_true')
+    parser.add_argument('--concurrency',type=int,choices=[8,64],default=8)
     args=parser.parse_args()
     root=args.output.resolve();root.mkdir(parents=True,exist_ok=True)
     assert not (root/'state.json').exists()
     lease=Path('/workspace/benchmark-results/20261011_121020_baseline_tianshu/reservation_deadline.json')
     deadline=datetime.fromisoformat(json.loads(lease.read_text())['stop_at_utc'])
-    signal.alarm(min(2400,int((deadline-datetime.now(timezone.utc)).total_seconds())))
+    remaining=int((deadline-datetime.now(timezone.utc)).total_seconds())
+    assert remaining>0,'Reservation has ended'
+    signal.alarm(min(3600,remaining))
     assert 'No running processes found' in subprocess.check_output(['ixsmi'],text=True)
     directory=Path(__file__).resolve().parent
     draft=Path('/workspace/MiniCPM5-2B-DSpark')
@@ -68,6 +75,7 @@ def main():
     save()
     try:
         env=dict(os.environ,VLLM_PLUGINS='fl',PYTHONUNBUFFERED='1',
+                 TRITON_PRINT_AUTOTUNING='1',
                  PYTHONPATH=str(directory/'hooks'),TIANSHU_DSPARK_COMPAT=('0' if args.baseline else '1'),
                  TIANSHU_DSPARK_RECORD_DIR=str(root/'adapter_records'),
                  TIANSHU_DSPARK_ZERO_VERIFY=('1' if args.zero_verify else '0'),
@@ -82,11 +90,13 @@ def main():
         command=['vllm','serve','/workspace/MiniCPM5-2B','--port','9031',
                  '--served-model-name','minicpm','--gpu-memory-utilization','.85',
                  '--max-model-len','131072','--max-num-batched-tokens','2048',
-                 '--max-num-seqs','8','--enforce-eager','--speculative-config',json.dumps(spec)]
+                 '--max-num-seqs',str(args.concurrency),'--enforce-eager','--speculative-config',json.dumps(spec)]
         if args.baseline:
             command=command[:-2]
             spec=None
         state['command']=command;state['speculative_config']=spec
+        state['environment_flags']={k:v for k,v in env.items() if k.startswith(
+            ('VLLM_FL_','FLAGGEMS_ILUVATAR_','TIANSHU_DSPARK_','TRITON_PRINT_'))}
         with (root/'server.log').open('w') as log:
             server=subprocess.Popen(command,cwd='/workspace',env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
         state.update(phase='starting',server_pid=server.pid);save()
@@ -109,13 +119,60 @@ def main():
                      'temperature':0.,'top_p':1.,'stream':False,'logprobs':10}
                     for prompt in ('Compute 17 + 25 and briefly explain the answer.',
                                    'Compute 17 + 25 and briefly explain the answer. You are')]
-        for body in bodies:
+        if args.quick_performance:
+            assert args.zero_verify and not args.diagnostic_prefixes
+            bodies=bodies[:1]
+
+        def request(body,stream=False):
             request=urllib.request.Request('http://127.0.0.1:9031/v1/completions',data=json.dumps(body).encode(),
                                            headers={'Content-Type':'application/json'})
             start=time.monotonic()
-            with urllib.request.urlopen(request,timeout=600) as response:data=json.load(response)
-            state['responses'].append({'request':body,'response':data,'seconds':time.monotonic()-start})
+            first=None;text='';usage=None
+            with urllib.request.urlopen(request,timeout=900) as response:
+                if not stream:data=json.load(response)
+                else:
+                    for raw in response:
+                        line=raw.decode().strip()
+                        if not line.startswith('data: ') or line=='data: [DONE]':continue
+                        event=json.loads(line[6:])
+                        for choice in event.get('choices',[]):
+                            chunk=choice.get('text','');text+=chunk
+                            if chunk and first is None:first=time.monotonic()-start
+                        if event.get('usage'):usage=event['usage']
+                    assert usage is not None and first is not None
+                    data={'text':text,'usage':usage}
+            return {'request':body,'response':data,'seconds':time.monotonic()-start,'ttft_seconds':first}
+
+        for body in bodies:
+            state['responses'].append(request(body))
             save()
+        if args.quick_performance:
+            state['workload']={'input_tokens':4096,'output_tokens':128,'concurrency':args.concurrency,
+                               'requests_per_round':args.concurrency*2,'rounds':3,'excluded_rounds':[1],
+                               'target_and_draft_eager':True,'official_benchmark':False}
+            state['performance_rounds']=[]
+            logpath=root/'server.log'
+            for round_index in range(3):
+                state['phase']=f'quick_performance_round_{round_index+1}';save()
+                before=len(logpath.read_text());started=time.monotonic()
+                payloads=[]
+                for i in range(args.concurrency*2):
+                    rng=random.Random(2026101220+1000*round_index+i)
+                    payloads.append({'model':'minicpm','prompt':[rng.randrange(512,120000) for _ in range(4096)],
+                                     'max_tokens':128,'ignore_eos':True,'temperature':1.,'top_p':.95,
+                                     'stream':True,'stream_options':{'include_usage':True}})
+                with ThreadPoolExecutor(max_workers=args.concurrency) as pool:
+                    responses=list(pool.map(lambda body:request(body,True),payloads))
+                elapsed=time.monotonic()-started
+                assert all(x['response']['usage']['prompt_tokens']==4096 and
+                           x['response']['usage']['completion_tokens']==128 for x in responses)
+                state['performance_rounds'].append({'round':round_index+1,'duration_seconds':elapsed,
+                    'total_tokens_per_second':len(responses)*4224/elapsed,
+                    'mean_ttft_seconds':statistics.mean(x['ttft_seconds'] for x in responses),
+                    'successful_requests':len(responses),'responses':responses,
+                    'tuning_records':[x for x in logpath.read_text()[before:].splitlines()
+                                      if 'Triton autotuning for function' in x]})
+                save()
         with urllib.request.urlopen('http://127.0.0.1:9031/metrics',timeout=3) as response:
             (root/'metrics.txt').write_bytes(response.read())
         records=list((root/'adapter_records').glob('*.json'))
