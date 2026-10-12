@@ -30,6 +30,8 @@ def main():
     parser.add_argument('--math-level3',action='store_true')
     parser.add_argument('--prefill-tile',action='store_true')
     parser.add_argument('--output-tokens',type=int,choices=[128,1024],default=128)
+    parser.add_argument('--seed-base',type=int,default=2026101220)
+    parser.add_argument('--seed-round-stride',type=int,default=1000)
     args=parser.parse_args()
     assert not args.verify_tile or args.zero_verify
     assert not args.prefill_tile or args.zero_verify
@@ -175,6 +177,7 @@ def main():
             state['workload']={'input_tokens':4096,'output_tokens':args.output_tokens,'concurrency':args.concurrency,
                                'requests_per_round':args.concurrency*2,'rounds':3,'excluded_rounds':[1],
                                'target_eager':not args.target_graphs,'draft_eager':None if args.baseline else True,
+                               'seed_base':args.seed_base,'seed_round_stride':args.seed_round_stride,
                                'official_benchmark':False}
             state['performance_rounds']=[]
             logpath=root/'server.log'
@@ -185,7 +188,7 @@ def main():
                 before=len(logpath.read_text());started=time.monotonic()
                 payloads=[]
                 for i in range(args.concurrency*2):
-                    rng=random.Random(2026101220+1000*round_index+i)
+                    rng=random.Random(args.seed_base+args.seed_round_stride*round_index+i)
                     payloads.append({'model':'minicpm','prompt':[rng.randrange(512,120000) for _ in range(4096)],
                                      'max_tokens':args.output_tokens,'ignore_eos':True,'temperature':1.,'top_p':.95,
                                      'stream':True,'stream_options':{'include_usage':True}})
