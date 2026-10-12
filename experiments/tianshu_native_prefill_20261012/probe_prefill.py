@@ -121,7 +121,8 @@ def main():
         assert args.zero_init
         plans = [(256,128,16,1)]
         scenarios = [([8,2040],[4096,4096]),([1,8,2039],[4096]*3),
-                     ([8]*63+[1544],[4096]*64),([2048],[2048]),([2048],[4096])]
+                     ([8]*63+[1544],[4096]*64),([8]*63+[520],[4096]*64),
+                     ([2048],[2048]),([2048],[4096])]
     data = {'complete': False, 'official_benchmark': False, 'adoption_allowed': False,
             'baseline': 'verified FA2 BM128/BN128/w8/s2', 'cases': [], 'cpu_checks': cpu_checks,
             'native_sha256': hashlib.sha256(Path(native.__file__).read_bytes()).hexdigest(),
