@@ -1,0 +1,52 @@
+{
+  "official_benchmark": false,
+  "accuracy_test": false,
+  "adopted": false,
+  "control_profile": "Spec verification tile only; original Prefill",
+  "candidate_profile": "same Spec verification tile plus native Prefill M256",
+  "workload": {
+    "input_tokens": 4096,
+    "output_tokens": 128,
+    "concurrency": 64,
+    "requests_per_round": 128,
+    "rounds": 3,
+    "excluded_rounds": [
+      1
+    ],
+    "target_eager": false,
+    "draft_eager": true,
+    "official_benchmark": false
+  },
+  "control_mean_total_tok_s": 3200.4215047506386,
+  "candidate_mean_total_tok_s": 8133.276910171999,
+  "throughput_gain_percent": 154.1314291914091,
+  "candidate_mean_ttft_ms": 23005.200970894293,
+  "candidate_rows": [
+    {
+      "round": 1,
+      "duration_seconds": 274.8009409289807,
+      "total_tokens_per_second": 1967.504180197588,
+      "mean_ttft_seconds": 97.19023264315183,
+      "successful_requests": 128,
+      "tuning_count": 0
+    },
+    {
+      "round": 2,
+      "duration_seconds": 66.48746707988903,
+      "total_tokens_per_second": 8131.938600553805,
+      "mean_ttft_seconds": 23.01071356634202,
+      "successful_requests": 128,
+      "tuning_count": 0
+    },
+    {
+      "round": 3,
+      "duration_seconds": 66.46558999922127,
+      "total_tokens_per_second": 8134.615219790191,
+      "mean_ttft_seconds": 22.999688375446567,
+      "successful_requests": 128,
+      "tuning_count": 0
+    }
+  ],
+  "quality_pending": true,
+  "comparison_against_current_verified_best_pending": true
+}
