@@ -18,6 +18,7 @@ from types import SimpleNamespace
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--diagnostic-only', action='store_true')
     args = parser.parse_args()
     root = args.output.resolve()
     root.mkdir(parents=True, exist_ok=True)
@@ -91,6 +92,9 @@ def main():
              (128, 128, 8, 1), (128, 128, 16, 2), (256, 128, 16, 1)]
     scenarios = [([2048], [2048]), ([2048], [4096]), ([4096], [4096]),
                  ([513, 2048], [4096, 4096]), ([2048], [16384])]
+    if args.diagnostic_only:
+        plans = [(16, 16, 4, 3), (128, 64, 8, 2), (256, 128, 16, 1)]
+        scenarios = [([17], [17]), ([2048], [2048]), ([2048], [4096])]
     data = {'complete': False, 'official_benchmark': False, 'adoption_allowed': False,
             'baseline': 'verified FA2 BM128/BN128/w8/s2', 'cases': [], 'cpu_checks': cpu_checks,
             'native_sha256': hashlib.sha256(Path(native.__file__).read_bytes()).hexdigest(),
@@ -120,6 +124,8 @@ def main():
                 for bm, bn, warps, stages in plans:
                     outputs = {}
                     routes = []
+                    flags = []
+                    input_records = []
 
                     class Router:
                         def __getitem__(self, grid):
@@ -130,6 +136,8 @@ def main():
                                 kwargs.update(BLOCK_M=bm, BLOCK_Q=block_q, TILE_SIZE=bn, num_warps=warps, num_stages=stages)
                                 if (grid, new_grid) not in routes:
                                     routes.append((grid, new_grid))
+                                    flags.append({key: kwargs.get(key) for key in
+                                                  ('SLIDING_WINDOW', 'USE_CAUSAL', 'USE_PER_SEQ_CAUSAL', 'IS_3D', 'KV_QUANT_MODE')})
                                 return original_kernel[new_grid](**kwargs)
                             return launch
                     router = Router()
@@ -138,6 +146,8 @@ def main():
                         out = args[7] if len(args) > 7 else kwargs['output']
                         metadata = args[6] if len(args) > 6 else kwargs['attn_metadata']
                         outputs[out.data_ptr()] = (out, metadata.num_actual_tokens)
+                        if not input_records:
+                            input_records.append((args[2], args[5], metadata))
                         old = native.kernel_unified_attention
                         native.kernel_unified_attention = router
                         try:
@@ -156,6 +166,20 @@ def main():
                                      candidate_output_tail_preserved=all(bool((out[count:] == 17.).all()) for out, count in outputs.values()),
                                      routing_grids=routes)
                         entry['change_percent'] = 100 * (entry['candidate_native_ms'] / entry['verified_fa2_ms'] - 1)
+                        entry['kernel_flags'] = flags
+                        if args.diagnostic_only:
+                            expected = next(value for key, value in cache.items()
+                                            if key[0] == tuple(qlens) and key[1] == tuple(lengths))
+                            output, count = next(iter(outputs.values()))
+                            bad = (output[:count].float() - expected.float()).abs() > .02 + .01 * expected.float().abs()
+                            entry['mismatching_query_indices'] = bad.any(-1).any(-1).nonzero().flatten().cpu().tolist()
+                            positions = sorted({0, min(1,count-1), min(2,count-1), min(3,count-1), min(7,count-1), min(15,count-1), count-1})
+                            entry['selected_values'] = [{'query':pos,'head':head,
+                                'native':output[pos,head,:8].float().cpu().tolist(),
+                                'fp32':expected[pos,head,:8].float().cpu().tolist()}
+                                for pos in positions for head in (0,7,8,15)]
+                            _, _, metadata = input_records[0]
+                            entry['block_table_first_pages'] = metadata.block_table[:,:4].cpu().tolist()
                     except Exception as error:
                         entry['error'] = str(error)
                         if any(term in str(error).lower() for term in ('illegal memory', 'device-side assert')):
