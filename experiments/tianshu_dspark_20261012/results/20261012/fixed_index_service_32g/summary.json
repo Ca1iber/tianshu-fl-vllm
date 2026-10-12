@@ -1,0 +1,66 @@
+{
+  "complete": true,
+  "official_benchmark": false,
+  "accuracy_test": false,
+  "requests_successful": 384,
+  "source_commit": "da8cea5",
+  "rounds": [
+    {
+      "round": 1,
+      "duration_seconds": 164.46620245696977,
+      "total_tokens_per_second": 3984.770063450973,
+      "mean_ttft_seconds": 28.34699796480345,
+      "successful_requests": 128,
+      "tuning_record_count": 48
+    },
+    {
+      "round": 2,
+      "duration_seconds": 124.73031753208488,
+      "total_tokens_per_second": 5254.2157589827275,
+      "mean_ttft_seconds": 21.26152637625637,
+      "successful_requests": 128,
+      "tuning_record_count": 0
+    },
+    {
+      "round": 3,
+      "duration_seconds": 124.70606392482296,
+      "total_tokens_per_second": 5255.237631387943,
+      "mean_ttft_seconds": 21.269978240779892,
+      "successful_requests": 128,
+      "tuning_record_count": 0
+    }
+  ],
+  "fixed_index_routes": [
+    {
+      "source_shape": [
+        128,
+        130560
+      ],
+      "index_count": 64,
+      "dtype": "torch.bfloat16",
+      "fixed_launch": true,
+      "scope": "Valid single1D integer indexing on axis0 of1D/2D source; fallback keeps other forms"
+    },
+    {
+      "source_shape": [
+        64
+      ],
+      "index_count": 13,
+      "dtype": "torch.int32",
+      "fixed_launch": true,
+      "scope": "Valid single1D integer indexing on axis0 of1D/2D source; fallback keeps other forms"
+    },
+    {
+      "source_shape": [
+        2048,
+        2048
+      ],
+      "index_count": 64,
+      "dtype": "torch.bfloat16",
+      "fixed_launch": true,
+      "scope": "Valid single1D integer indexing on axis0 of1D/2D source; fallback keeps other forms"
+    }
+  ],
+  "math_status": "running; no accuracy result yet",
+  "adopted_as_best": false
+}
