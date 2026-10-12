@@ -23,14 +23,23 @@ class DSparkOpsProxy:
         return rms_norm_out(out,x,(x.shape[-1],),weight,eps=epsilon)
 
     def rotary_embedding(self,positions,query,key,head_size,cos_sin_cache,is_neox):
-        from flag_gems.fused.rotary_embedding import apply_rotary_pos_emb
+        from flag_gems.fused.rotary_embedding import apply_rotary_pos_emb, apply_rotary_pos_emb_inplace_kernel
+        import triton
         count=positions.numel()
         q=query.view(count,-1,head_size)
-        # FlagGems accepts zero key heads: its key loop is eliminated, so the
-        # query-only context-K rotation matches the native key=None API.
-        k=(key.view(count,-1,head_size) if key is not None else
-           torch.empty(count,0,head_size,device=query.device,dtype=query.dtype))
         cosine,sine=cos_sin_cache.chunk(2,dim=-1)
+        if key is None:
+            # Bypass the Python wrapper's ambiguous view(-1,0,D). The existing
+            # kernel eliminates its key loop for NUM_K_HEADS=0; q is a stand-in
+            # pointer and its key strides are never used.
+            with torch.cuda.device(q.device):
+                apply_rotary_pos_emb_inplace_kernel[(count,)](
+                    q,q,cosine,sine,positions,*q.stride(),*q.stride(),
+                    positions.stride(0),cosine.stride(0),sine.stride(0),0,
+                    q.shape[1],0,head_size,triton.next_power_of_2(head_size),not is_neox,
+                    MAX_POSITION_EMBEDDINGS=cosine.shape[0])
+            return None
+        k=key.view(count,-1,head_size)
         return apply_rotary_pos_emb(q,k,cosine,sine,positions,
                                     rotary_interleaved=not is_neox,inplace=True)
 
