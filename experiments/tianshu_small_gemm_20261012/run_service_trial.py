@@ -34,8 +34,9 @@ def main():
     parser.add_argument('--concurrency', type=int, default=64)
     parser.add_argument('--requests', type=int, default=64)
     parser.add_argument('--rounds', type=int, default=3)
+    parser.add_argument('--warmup-rounds', type=int, default=0)
     args = parser.parse_args()
-    if min(args.output_tokens, args.concurrency, args.requests) < 1 or args.rounds < 2:
+    if min(args.output_tokens, args.concurrency, args.requests) < 1 or args.rounds < 2 or args.warmup_rounds < 0:
         parser.error('Positive workload sizes and at least two rounds are required')
     if args.buckets != '0' or args.gather != '0':
         raise RuntimeError('Padding/gather flags must stay off for a token-budget trial')
@@ -75,7 +76,7 @@ def main():
     command += ['--max-num-batched-tokens', str(args.max_batched_tokens)]
     state = dict(small_gemm=args.small_gemm,tile=args.tile, max_batched_tokens=args.max_batched_tokens, adaptive=args.adaptive, single_decode_rounds=[], hybrid=args.hybrid, phase='preparing', runner_pid=os.getpid(), buckets=args.buckets, gather=args.gather,
                  started_at_utc=datetime.now(timezone.utc).isoformat(), command=command,
-                 rare_cases=[], short_4k_rounds=[], scored=False,
+                 rare_cases=[], warmup_4k_rounds=[], short_4k_rounds=[], scored=False,
                  workload={'input_tokens': 4096, 'output_tokens': args.output_tokens,
                            'concurrency': args.concurrency, 'requests_per_round': args.requests,
                            'rounds': args.rounds, 'excluded_rounds': [1]},
@@ -239,19 +240,22 @@ def main():
             result['tune_records'] = tune_records(log_path.read_text()[before:])
             state['rare_cases'].append(result)
             save()
-        for round_index in range(args.rounds):
+        state['warmup_round_count'] = args.warmup_rounds
+        for combined_index in range(args.warmup_rounds + args.rounds):
+            warmup = combined_index < args.warmup_rounds
+            round_index = combined_index if warmup else combined_index - args.warmup_rounds
             deadline()
-            state['phase'] = f'short_4k_round_{round_index + 1}'
+            state['phase'] = f"{'warmup' if warmup else 'short'}_4k_round_{round_index + 1}"
             save()
             before = len(log_path.read_text())
             start = time.perf_counter()
             with ThreadPoolExecutor(max_workers=args.concurrency) as pool:
                 futures = [pool.submit(request, 4096, args.output_tokens,
-                                       2026101200 + max(100, args.requests) * round_index + i,
+                                       (2026101400 if warmup else 2026101200) + max(100, args.requests) * round_index + i,
                                        True, 1.0) for i in range(args.requests)]
                 responses = [future.result() for future in futures]
             duration = time.perf_counter() - start
-            state['short_4k_rounds'].append(dict(round=round_index + 1, duration_seconds=duration,
+            state['warmup_4k_rounds' if warmup else 'short_4k_rounds'].append(dict(round=round_index + 1, duration_seconds=duration,
                     total_tokens_per_second=args.requests * (4096 + args.output_tokens) / duration,
                     output_tokens_per_second=args.requests * args.output_tokens / duration,
                     mean_ttft_seconds=statistics.mean(r['ttft_seconds'] for r in responses),
