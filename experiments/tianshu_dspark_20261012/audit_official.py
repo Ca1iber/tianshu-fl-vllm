@@ -41,8 +41,9 @@ def main():
     rates=[float(x['Total tok/s']) for x in rows[1:]]
     total=float(summary['Total tok/s']);ttft=float(summary['Mean TTFT (ms)'])
     proposal_count=state['speculative_config']['num_speculative_tokens']
+    draft_method=state['speculative_config']['draft_sample_method']
     result={'complete':True,'official_benchmark':True,'audited_utc':datetime.now(timezone.utc).isoformat(),
-        'profile':f'DSpark{proposal_count}-step probability draft +target native L0/GQA verification and Prefill',
+        'profile':f'DSpark{proposal_count}-step {draft_method} draft +target native L0/GQA verification and Prefill',
         'total_tok_s':total,'output_tok_s':float(summary['Output tok/s']),'ttft_ms':ttft,
         'math_correct':quality['correct'],'math_total':105,'math_accuracy':quality['accuracy'],
         'requests_successful':1024,'excluded_runs':[1],
@@ -64,7 +65,7 @@ def main():
     lines += [f"|{i+1}|{x['Total tok/s']}|{x['Mean TTFT (ms)']}|{x['Benchmark Duration (s)']}|{'否' if i==0 else '是'}|" for i,x in enumerate(rows)]
     lines += ['',f"相对前最佳{args.previous_total_tok_s:.2f}，吞吐{result['vs_previous_best_throughput_percent']:+.6f}%；后3轮极差/均值{result['postfirst_spread_percent']:.6f}%。",
               '',f"计时阶段共{result['benchmark_runtime_tuning_record_count']}条调优记录。若非零，不从全窗计数推断仅首轮调优。",
-              '', f'同独立质量评测的冻结模型钩子和运行参数，{proposal_count}-step Markov概率draft、7槽预训练骨干，正FP32随机拒绝阈值兼容；原始概率比、拒绝kernel及恢复采样保留。不修改目标模型权重、数据集、原始benchmark脚本。未运行优化版完整16K。']
+              '', f'同独立质量评测的冻结模型钩子和运行参数，{proposal_count}-step Markov {draft_method} draft、7槽预训练骨干，正FP32随机拒绝阈值兼容；主模型随机生成配置保持官方值，原始概率比、拒绝kernel及恢复采样保留。不修改目标模型权重、数据集、原始benchmark脚本。未运行优化版完整16K。']
     (root/'README.md').write_text('\n'.join(lines)+'\n');print(json.dumps(result))
 
 

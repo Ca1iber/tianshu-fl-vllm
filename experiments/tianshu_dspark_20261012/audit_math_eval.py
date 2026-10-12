@@ -17,10 +17,15 @@ def main():
     assert state['evalscope_exit_code']==0 and state['gpu_idle_after']
     spec=state['speculative_config']
     proposal_count=spec['num_speculative_tokens']
-    assert proposal_count in (1,2,3,7) and spec['draft_sample_method']=='probabilistic'
+    draft_method=spec['draft_sample_method']
+    assert proposal_count in (1,2,3,7) and draft_method in ('probabilistic','greedy')
+    assert spec.get('rejection_sample_method','standard')=='standard'
     assert state['environment_flags']['TIANSHU_DSPARK_COMPAT']=='1'
     routes=state['adapter_records']
-    assert any(x['probabilistic'] and x['markov_head_used'] and x['block_size']==proposal_count for x in routes)
+    assert any(x['markov_head_used'] and x['block_size']==proposal_count and
+               (x['probabilistic'] if draft_method=='probabilistic' else
+                not x['probabilistic'] and x['target_sampling_is_stochastic'] and
+                x['draft_probability_representation']=='one_hot_argmax') for x in routes)
     assert all(x.get('backbone_block_size',7)==7 and x['query_slots_per_request']==7 for x in routes)
     if proposal_count<7:
         lookahead=[json.loads(p.read_text()) for p in (root/'adapter_records/scheduler_lookahead').glob('*.json')]

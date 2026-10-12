@@ -41,6 +41,7 @@ def main():
     parser.add_argument('--request-timeout',type=int,default=900)
     parser.add_argument('--fp32-thresholds',action='store_true')
     parser.add_argument('--speculative-tokens',type=int,choices=[1,2,3,7],default=7)
+    parser.add_argument('--draft-sample-method',choices=['probabilistic','greedy'],default='probabilistic')
     args=parser.parse_args()
     assert not args.verify_tile or args.zero_verify
     assert not args.prefill_tile or args.zero_verify
@@ -126,7 +127,8 @@ def main():
         for name in ['TIANSHU_NATIVE_PREFILL_PROBE','TIANSHU_FA2_TILE_PROBE','TIANSHU_PACK_PROBE_MODE']:
             env.pop(name,None)
         spec={'method':'dflash','model':str(alias),'num_speculative_tokens':args.speculative_tokens,
-              'draft_sample_method':'probabilistic','enforce_eager':True}
+              'draft_sample_method':args.draft_sample_method,'rejection_sample_method':'standard',
+              'enforce_eager':True}
         command=['vllm','serve','/workspace/MiniCPM5-2B','--port','9031',
                  '--served-model-name','minicpm','--gpu-memory-utilization','.85',
                  '--max-model-len','131072','--max-num-batched-tokens','2048',

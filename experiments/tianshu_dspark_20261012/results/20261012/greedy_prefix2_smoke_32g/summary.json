@@ -1,0 +1,85 @@
+{
+  "complete": true,
+  "official_benchmark": false,
+  "accuracy_test": false,
+  "speculative_config": {
+    "method": "dflash",
+    "model": "/workspace/benchmark-results/20261012_speculative_dspark_tianshu/greedy_prefix2_smoke_v2/draft_config_alias",
+    "num_speculative_tokens": 2,
+    "draft_sample_method": "greedy",
+    "rejection_sample_method": "standard",
+    "enforce_eager": true
+  },
+  "proposal_records": [
+    {
+      "batch": 1,
+      "block_size": 2,
+      "query_slots_per_request": 7,
+      "backbone_block_size": 7,
+      "sampled_prefix_positions": 2,
+      "anchor_is_first_prediction": true,
+      "markov_head_used": true,
+      "probabilistic": false,
+      "target_sampling_is_stochastic": false,
+      "draft_probability_representation": "one_hot_argmax",
+      "target_rejection_sampler_modified": true,
+      "target_rejection_kernel_modified": false,
+      "positive_fp32_rejection_thresholds": true,
+      "confidence_adaptive_verification_enabled": false
+    },
+    {
+      "batch": 1,
+      "block_size": 2,
+      "query_slots_per_request": 7,
+      "backbone_block_size": 7,
+      "sampled_prefix_positions": 2,
+      "anchor_is_first_prediction": true,
+      "markov_head_used": true,
+      "probabilistic": false,
+      "target_sampling_is_stochastic": true,
+      "draft_probability_representation": "one_hot_argmax",
+      "target_rejection_sampler_modified": true,
+      "target_rejection_kernel_modified": false,
+      "positive_fp32_rejection_thresholds": true,
+      "confidence_adaptive_verification_enabled": false
+    }
+  ],
+  "responses": [
+    {
+      "request": {
+        "model": "minicpm",
+        "prompt": "Compute 17 + 25 and briefly explain the answer.",
+        "max_tokens": 96,
+        "temperature": 0.0,
+        "top_p": 0.95,
+        "stream": false
+      },
+      "usage": {
+        "prompt_tokens": 13,
+        "total_tokens": 109,
+        "completion_tokens": 96,
+        "prompt_tokens_details": null
+      },
+      "seconds": 1.5330571378581226
+    },
+    {
+      "request": {
+        "model": "minicpm",
+        "prompt": "Compute 17 + 25 and briefly explain the answer.",
+        "max_tokens": 96,
+        "temperature": 1.0,
+        "top_p": 0.95,
+        "stream": false
+      },
+      "usage": {
+        "prompt_tokens": 13,
+        "total_tokens": 109,
+        "completion_tokens": 96,
+        "prompt_tokens_details": null
+      },
+      "seconds": 5.497102928813547
+    }
+  ],
+  "performance_pending": true,
+  "adopted": false
+}
