@@ -19,8 +19,10 @@ def main():
     parser=argparse.ArgumentParser();parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--adaptive',choices=['1'],default='1')
     parser.add_argument('--candidate',choices=['small-gemm','prefill-gemm','sampler','native-prefill'],required=True)
-    parser.add_argument('--max-batched-tokens',type=int,choices=[2048],default=2048)
+    parser.add_argument('--max-batched-tokens',type=int,choices=[2048,4096,8192],default=2048)
     args=parser.parse_args();root=args.output.resolve();root.mkdir(parents=True,exist_ok=True)
+    if args.candidate!='native-prefill' and args.max_batched_tokens!=2048:
+        parser.error('GEMM/sampler candidates require their independently controlled budget2048 profile')
     if (root/'result.json').exists():raise RuntimeError('Refusing to overwrite a completed evaluation')
     state={'max_batched_tokens':args.max_batched_tokens,'phase':'preparing','candidate':f'hybrid_adaptive_fa2_tile128_budget{args.max_batched_tokens}_{args.candidate}','reused_original_accuracy':False,
            'started_utc':datetime.now(timezone.utc).isoformat(),'runner_pid':os.getpid()}
