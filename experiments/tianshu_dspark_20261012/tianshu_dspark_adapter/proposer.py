@@ -20,7 +20,7 @@ class DSparkProposer(OriginalDFlashProposer):
 
     @torch.inference_mode()
     def dummy_run(self,num_tokens,use_cudagraphs=True,is_graph_capturing=False,slot_mappings=None):
-        if os.getenv('TIANSHU_DSPARK_MATCHED_WARMUP')!='1':
+        if num_tokens<=0 or os.getenv('TIANSHU_DSPARK_MATCHED_WARMUP')!='1':
             return super().dummy_run(num_tokens,use_cudagraphs,is_graph_capturing,slot_mappings)
         # Target uniform verification has K+1=8 rows per request, while
         # DSpark has K=7 queries including its anchor. Warm the real drafter
