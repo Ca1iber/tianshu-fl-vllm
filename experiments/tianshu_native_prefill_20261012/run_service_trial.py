@@ -36,12 +36,12 @@ def main():
     parser.add_argument('--rounds', type=int, default=3)
     parser.add_argument('--decode-launch',choices=['0','1'],default='0')
     parser.add_argument('--stream-interval',type=int,choices=[1,4],default=1)
-    parser.add_argument('--bucket-trace',choices=['0','1'],default='0')
+    parser.add_argument('--bucket-trace',choices=['0','1','2'],default='0')
     args = parser.parse_args()
     if min(args.output_tokens, args.concurrency, args.requests) < 1 or args.rounds < 2:
         parser.error('Positive workload sizes and at least two rounds are required')
-    if args.gather != '0':
-        raise RuntimeError('Gather stays off to isolate the bucket trial')
+    if args.gather == '1' and args.buckets != '1':
+        raise RuntimeError('Fixed gather requires the independently checked bucket profile')
     if args.buckets == '1' and (args.max_batched_tokens != 2048 or args.native_prefill != '1'):
         raise RuntimeError('Bucket confirmation requires the verified native profile at budget2048')
     out = args.output.resolve()
@@ -78,9 +78,10 @@ def main():
         env['PYTHONPATH']=str(Path(__file__).resolve().parents[1]/'tianshu_decode_launch_20261012/hooks')
         env['TIANSHU_DECODE_LAUNCH_PROBE']='1'
         env['TIANSHU_DECODE_LAUNCH_RECORD_DIR']=str(out/'decode_launch_records')
-    if args.bucket_trace=='1':
+    if args.bucket_trace!='0':
         assert args.buckets==args.native_prefill==args.decode_launch=='1'
-        env['PYTHONPATH']=str(Path(__file__).resolve().parents[1]/'tianshu_buckets75_recheck_20261012/hooks')
+        folder='joint_hooks' if args.bucket_trace=='2' else 'hooks'
+        env['PYTHONPATH']=str(Path(__file__).resolve().parents[1]/'tianshu_buckets75_recheck_20261012'/folder)
         env['TIANSHU_BUCKET_RECHECK_TRACE']='1'
         env['TIANSHU_BUCKET_TRACE_DIR']=str(out/'bucket_trace_records')
     command = ['vllm', 'serve', '/workspace/MiniCPM5-2B', '--port', '9031',
@@ -223,10 +224,12 @@ def main():
             hook=Path(__file__).resolve().parents[1]/'tianshu_decode_launch_20261012/hooks/sitecustomize.py';contents=hook.read_bytes()
             (source_dir/'decode_sitecustomize.py').write_bytes(contents)
             state['decode_hook']={'path':str(hook),'sha256':hashlib.sha256(contents).hexdigest()}
-        if args.bucket_trace=='1':
+        if args.bucket_trace!='0':
             hook=Path(env['PYTHONPATH'])/'sitecustomize.py';contents=hook.read_bytes()
             (source_dir/'bucket_trace_sitecustomize.py').write_bytes(contents)
             state['bucket_trace_hook']={'path':str(hook),'sha256':hashlib.sha256(contents).hexdigest()}
+            component=Path(__file__).resolve().parents[1]/'tianshu_buckets75_recheck_20261012/hooks/sitecustomize.py'
+            (source_dir/'bucket_component_sitecustomize.py').write_bytes(component.read_bytes())
         save()
         with (out / 'server.log').open('w') as log:
             server = subprocess.Popen(command, cwd='/workspace', env=env, stdout=log,
