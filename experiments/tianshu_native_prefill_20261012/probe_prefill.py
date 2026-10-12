@@ -3,6 +3,7 @@
 import argparse
 from datetime import datetime, timezone
 import hashlib
+import importlib
 import importlib.util
 import json
 import logging
@@ -27,7 +28,9 @@ def main():
     remaining = int((deadline - datetime.now(timezone.utc)).total_seconds())
     assert remaining > 0
     signal.alarm(min(1800, remaining))
-    assert 'No running processes found' in subprocess.check_output(['ixsmi'], text=True)
+    hardware = subprocess.check_output(['ixsmi'], text=True)
+    assert 'No running processes found' in hardware
+    (root / 'hardware_before.txt').write_text(hardware)
     import torch
     import vllm_fl
     from flag_gems import runtime
@@ -92,6 +95,21 @@ def main():
             'baseline': 'verified FA2 BM128/BN128/w8/s2', 'cases': [], 'cpu_checks': cpu_checks,
             'native_sha256': hashlib.sha256(Path(native.__file__).read_bytes()).hexdigest(),
             'hybrid_sha256': hashlib.sha256(hybrid_source.read_bytes()).hexdigest()}
+    snapshots = root / 'source_snapshot'
+    snapshots.mkdir(exist_ok=True)
+    data['sources'] = {}
+    for name in ('vllm.v1.attention.ops.triton_unified_attention',
+                 'vllm.v1.attention.ops.triton_attention_helpers',
+                 'vllm.v1.attention.backends.triton_attn',
+                 'flag_gems.ops.flash_api', 'flag_gems.ops.flash_kernel'):
+        module = importlib.import_module(name)
+        path = Path(module.__file__)
+        content = path.read_bytes()
+        (snapshots / (name + '.py')).write_bytes(content)
+        data['sources'][name] = {'path': str(path), 'sha256': hashlib.sha256(content).hexdigest()}
+    (snapshots / 'hybrid.py').write_bytes(hybrid_source.read_bytes())
+    (snapshots / 'fixture.py').write_bytes(fixture_path.read_bytes())
+    data['packages'] = {'torch': torch.__version__, 'triton': native.triton.__version__}
 
     def save():
         (root / 'result.json').write_text(json.dumps(data, indent=2) + '\n')
