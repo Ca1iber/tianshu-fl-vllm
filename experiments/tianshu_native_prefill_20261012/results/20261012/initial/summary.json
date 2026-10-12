@@ -1,0 +1,345 @@
+{
+  "cases": 30,
+  "passed": 18,
+  "failed": 12,
+  "cpu_checks_passed": 24,
+  "adopted": false,
+  "scenarios": [
+    {
+      "query_lengths": [
+        2048
+      ],
+      "kv_lengths": [
+        2048
+      ],
+      "passed": 0,
+      "cases": 6,
+      "best": null
+    },
+    {
+      "query_lengths": [
+        2048
+      ],
+      "kv_lengths": [
+        4096
+      ],
+      "passed": 6,
+      "cases": 6,
+      "best": {
+        "query_lengths": [
+          2048
+        ],
+        "kv_lengths": [
+          4096
+        ],
+        "configuration": {
+          "BLOCK_M": 256,
+          "TILE_SIZE": 128,
+          "num_warps": 16,
+          "num_stages": 1
+        },
+        "name": "scenario1_m256_n128_w16_s1",
+        "qlens": [
+          2048
+        ],
+        "strided": true,
+        "native_vs_fp32": {
+          "passed": true,
+          "max_abs": 0.00947849452495575,
+          "mean_abs": 0.00019148821593262255,
+          "relative_rms": 0.009384977631270885,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        "candidate_vs_fp32": {
+          "passed": true,
+          "max_abs": 0.0006475001573562622,
+          "mean_abs": 5.262990453047678e-05,
+          "relative_rms": 0.002270359545946121,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        "native_preserved_bitwise": null,
+        "num_decodes": 0,
+        "median_ms": {
+          "original": 1.8119831085205078,
+          "hybrid": 4.1093505859375
+        },
+        "samples_ms": {
+          "original": [
+            1.8133733749389649,
+            1.812460708618164,
+            1.8117511749267579,
+            1.8119831085205078,
+            1.8113977432250976,
+            1.8121068954467774,
+            1.8111169815063477
+          ],
+          "hybrid": [
+            4.110077285766602,
+            4.108255767822266,
+            4.10772819519043,
+            4.108810806274414,
+            4.110456466674805,
+            4.1093505859375,
+            4.1094512939453125
+          ]
+        },
+        "candidate_native_vs_fp32": {
+          "passed": true,
+          "max_abs": 0.00947849452495575,
+          "mean_abs": 0.00019148821593262255,
+          "relative_rms": 0.009384977631270885,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        "verified_fa2_vs_fp32": {
+          "passed": true,
+          "max_abs": 0.0006475001573562622,
+          "mean_abs": 5.262990453047678e-05,
+          "relative_rms": 0.002270359545946121,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        "candidate_native_ms": 1.8119831085205078,
+        "verified_fa2_ms": 4.1093505859375,
+        "candidate_output_tail_preserved": true,
+        "routing_grids": [
+          [
+            [
+              1025,
+              2
+            ],
+            [
+              65,
+              2
+            ]
+          ]
+        ],
+        "change_percent": -55.90585250328246
+      }
+    },
+    {
+      "query_lengths": [
+        4096
+      ],
+      "kv_lengths": [
+        4096
+      ],
+      "passed": 0,
+      "cases": 6,
+      "best": null
+    },
+    {
+      "query_lengths": [
+        513,
+        2048
+      ],
+      "kv_lengths": [
+        4096,
+        4096
+      ],
+      "passed": 6,
+      "cases": 6,
+      "best": {
+        "query_lengths": [
+          513,
+          2048
+        ],
+        "kv_lengths": [
+          4096,
+          4096
+        ],
+        "configuration": {
+          "BLOCK_M": 256,
+          "TILE_SIZE": 128,
+          "num_warps": 16,
+          "num_stages": 1
+        },
+        "name": "scenario3_m256_n128_w16_s1",
+        "qlens": [
+          513,
+          2048
+        ],
+        "strided": true,
+        "native_vs_fp32": {
+          "passed": true,
+          "max_abs": 0.0220586359500885,
+          "mean_abs": 0.00018095604900736362,
+          "relative_rms": 0.00928471703082323,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        "candidate_vs_fp32": {
+          "passed": true,
+          "max_abs": 0.000639498233795166,
+          "mean_abs": 5.1296672609169036e-05,
+          "relative_rms": 0.0022744094021618366,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        "native_preserved_bitwise": null,
+        "num_decodes": 0,
+        "median_ms": {
+          "original": 2.4633773803710937,
+          "hybrid": 6.0103759765625
+        },
+        "samples_ms": {
+          "original": [
+            2.4642364501953127,
+            2.4632761001586916,
+            2.4643991470336912,
+            2.4616716384887694,
+            2.4616115570068358,
+            2.463743782043457,
+            2.4633773803710937
+          ],
+          "hybrid": [
+            6.012775421142578,
+            6.011159896850586,
+            6.010199737548828,
+            6.006214141845703,
+            6.012801742553711,
+            6.0103759765625,
+            6.00984001159668
+          ]
+        },
+        "candidate_native_vs_fp32": {
+          "passed": true,
+          "max_abs": 0.0220586359500885,
+          "mean_abs": 0.00018095604900736362,
+          "relative_rms": 0.00928471703082323,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        "verified_fa2_vs_fp32": {
+          "passed": true,
+          "max_abs": 0.000639498233795166,
+          "mean_abs": 5.1296672609169036e-05,
+          "relative_rms": 0.0022744094021618366,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        "candidate_native_ms": 2.4633773803710937,
+        "verified_fa2_ms": 6.0103759765625,
+        "candidate_output_tail_preserved": true,
+        "routing_grids": [
+          [
+            [
+              1282,
+              2
+            ],
+            [
+              82,
+              2
+            ]
+          ]
+        ],
+        "change_percent": -59.01458760688101
+      }
+    },
+    {
+      "query_lengths": [
+        2048
+      ],
+      "kv_lengths": [
+        16384
+      ],
+      "passed": 6,
+      "cases": 6,
+      "best": {
+        "query_lengths": [
+          2048
+        ],
+        "kv_lengths": [
+          16384
+        ],
+        "configuration": {
+          "BLOCK_M": 256,
+          "TILE_SIZE": 128,
+          "num_warps": 16,
+          "num_stages": 1
+        },
+        "name": "scenario4_m256_n128_w16_s1",
+        "qlens": [
+          2048
+        ],
+        "strided": true,
+        "native_vs_fp32": {
+          "passed": true,
+          "max_abs": 0.0011548325419425964,
+          "mean_abs": 3.322198608657345e-05,
+          "relative_rms": 0.0033621236216276884,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        "candidate_vs_fp32": {
+          "passed": true,
+          "max_abs": 0.0002471059560775757,
+          "mean_abs": 2.4104669137159362e-05,
+          "relative_rms": 0.0022697835229337215,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        "native_preserved_bitwise": null,
+        "num_decodes": 0,
+        "median_ms": {
+          "original": 8.481183624267578,
+          "hybrid": 19.044322204589843
+        },
+        "samples_ms": {
+          "original": [
+            8.479947662353515,
+            8.481183624267578,
+            8.481593322753906,
+            8.478548431396485,
+            8.481343078613282,
+            8.478649139404297,
+            8.482998657226563
+          ],
+          "hybrid": [
+            19.052688598632812,
+            19.044322204589843,
+            19.038597106933594,
+            19.050827026367188,
+            19.054736328125,
+            19.042498779296874,
+            19.043092346191408
+          ]
+        },
+        "candidate_native_vs_fp32": {
+          "passed": true,
+          "max_abs": 0.0011548325419425964,
+          "mean_abs": 3.322198608657345e-05,
+          "relative_rms": 0.0033621236216276884,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        "verified_fa2_vs_fp32": {
+          "passed": true,
+          "max_abs": 0.0002471059560775757,
+          "mean_abs": 2.4104669137159362e-05,
+          "relative_rms": 0.0022697835229337215,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        "candidate_native_ms": 8.481183624267578,
+        "verified_fa2_ms": 19.044322204589843,
+        "candidate_output_tail_preserved": true,
+        "routing_grids": [
+          [
+            [
+              1025,
+              2
+            ],
+            [
+              65,
+              2
+            ]
+          ]
+        ],
+        "change_percent": -55.46607785167833
+      }
+    }
+  ]
+}

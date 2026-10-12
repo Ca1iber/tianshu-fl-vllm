@@ -1,0 +1,94 @@
+{
+  "official_benchmark": false,
+  "independent_quality_pending": true,
+  "baseline_tok_s": 6017.4177567727465,
+  "candidate_tok_s": 6090.603145482946,
+  "throughput_gain_percent": 1.2162258242387702,
+  "baseline_ttft_ms": 7633.841630259364,
+  "candidate_ttft_ms": 7508.608671176868,
+  "ttft_change_percent": -1.6404972116017214,
+  "workload": {
+    "input_tokens": 4096,
+    "output_tokens": 128,
+    "concurrency": 64,
+    "requests_per_round": 192,
+    "rounds": 3,
+    "excluded_rounds": [
+      1
+    ]
+  },
+  "greedy_probes_matched": true,
+  "greedy_probe_count": 7,
+  "requests_successful": 1166,
+  "actual_prefill_mm_records": [
+    {
+      "pid": 92744,
+      "enabled": true,
+      "shape": [
+        2048,
+        2048,
+        2048
+      ],
+      "configuration": {
+        "bm": 256,
+        "bn": 256,
+        "bk": 32,
+        "splits": 1,
+        "warps": 16,
+        "stages": 2
+      },
+      "vendor_source": "/usr/local/lib/python3.12/site-packages/flag_gems/runtime/backend/_iluvatar/ops/mm.py",
+      "vendor_sha256": "4c2e23da2a6b65b89cbb8170967f14c5327d143e21137387f3907ccb4fcde090",
+      "kernel_source": "/workspace/vllm-plugin-FL/experiments/tianshu_splitk_20261012/experimental_mm.py",
+      "kernel_sha256": "86a2244f3fb30a8294d53174bd3aa6080f947b5b80ce43b6212a35b533463d56",
+      "output_copy": false,
+      "weights_reordered": false
+    },
+    {
+      "pid": 92744,
+      "enabled": true,
+      "shape": [
+        2048,
+        12288,
+        2048
+      ],
+      "configuration": {
+        "bm": 256,
+        "bn": 256,
+        "bk": 32,
+        "splits": 1,
+        "warps": 16,
+        "stages": 2
+      },
+      "vendor_source": "/usr/local/lib/python3.12/site-packages/flag_gems/runtime/backend/_iluvatar/ops/mm.py",
+      "vendor_sha256": "4c2e23da2a6b65b89cbb8170967f14c5327d143e21137387f3907ccb4fcde090",
+      "kernel_source": "/workspace/vllm-plugin-FL/experiments/tianshu_splitk_20261012/experimental_mm.py",
+      "kernel_sha256": "86a2244f3fb30a8294d53174bd3aa6080f947b5b80ce43b6212a35b533463d56",
+      "output_copy": false,
+      "weights_reordered": false
+    },
+    {
+      "pid": 92744,
+      "enabled": true,
+      "shape": [
+        2048,
+        2048,
+        6144
+      ],
+      "configuration": {
+        "bm": 256,
+        "bn": 256,
+        "bk": 32,
+        "splits": 1,
+        "warps": 16,
+        "stages": 2
+      },
+      "vendor_source": "/usr/local/lib/python3.12/site-packages/flag_gems/runtime/backend/_iluvatar/ops/mm.py",
+      "vendor_sha256": "4c2e23da2a6b65b89cbb8170967f14c5327d143e21137387f3907ccb4fcde090",
+      "kernel_source": "/workspace/vllm-plugin-FL/experiments/tianshu_splitk_20261012/experimental_mm.py",
+      "kernel_sha256": "86a2244f3fb30a8294d53174bd3aa6080f947b5b80ce43b6212a35b533463d56",
+      "output_copy": false,
+      "weights_reordered": false
+    }
+  ]
+}
