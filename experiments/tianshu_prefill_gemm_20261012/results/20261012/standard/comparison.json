@@ -1,0 +1,96 @@
+{
+  "official_benchmark": false,
+  "independent_quality_pending": true,
+  "baseline_tok_s": 2534.985991163958,
+  "candidate_tok_s": 2547.6776475750917,
+  "throughput_gain_percent": 0.5006598243687543,
+  "baseline_ttft_ms": 10719.228799600387,
+  "candidate_ttft_ms": 10543.449282966321,
+  "ttft_change_percent": -1.6398522684824002,
+  "workload": {
+    "input_tokens": 4096,
+    "output_tokens": 1024,
+    "concurrency": 64,
+    "requests_per_round": 128,
+    "rounds": 3,
+    "excluded_rounds": [
+      1
+    ]
+  },
+  "shared_control_source": "/workspace/benchmark-results/20261012_small_gemm_tianshu/service_c64_4k1k/small_0",
+  "control_sources_and_workload_verified_identical": true,
+  "greedy_probes_matched": true,
+  "greedy_probe_count": 7,
+  "requests_successful": 782,
+  "actual_prefill_mm_records": [
+    {
+      "pid": 118195,
+      "enabled": true,
+      "shape": [
+        2048,
+        2048,
+        2048
+      ],
+      "configuration": {
+        "bm": 256,
+        "bn": 256,
+        "bk": 32,
+        "splits": 1,
+        "warps": 16,
+        "stages": 2
+      },
+      "vendor_source": "/usr/local/lib/python3.12/site-packages/flag_gems/runtime/backend/_iluvatar/ops/mm.py",
+      "vendor_sha256": "4c2e23da2a6b65b89cbb8170967f14c5327d143e21137387f3907ccb4fcde090",
+      "kernel_source": "/workspace/vllm-plugin-FL/experiments/tianshu_splitk_20261012/experimental_mm.py",
+      "kernel_sha256": "86a2244f3fb30a8294d53174bd3aa6080f947b5b80ce43b6212a35b533463d56",
+      "output_copy": false,
+      "weights_reordered": false
+    },
+    {
+      "pid": 118195,
+      "enabled": true,
+      "shape": [
+        2048,
+        12288,
+        2048
+      ],
+      "configuration": {
+        "bm": 256,
+        "bn": 256,
+        "bk": 32,
+        "splits": 1,
+        "warps": 16,
+        "stages": 2
+      },
+      "vendor_source": "/usr/local/lib/python3.12/site-packages/flag_gems/runtime/backend/_iluvatar/ops/mm.py",
+      "vendor_sha256": "4c2e23da2a6b65b89cbb8170967f14c5327d143e21137387f3907ccb4fcde090",
+      "kernel_source": "/workspace/vllm-plugin-FL/experiments/tianshu_splitk_20261012/experimental_mm.py",
+      "kernel_sha256": "86a2244f3fb30a8294d53174bd3aa6080f947b5b80ce43b6212a35b533463d56",
+      "output_copy": false,
+      "weights_reordered": false
+    },
+    {
+      "pid": 118195,
+      "enabled": true,
+      "shape": [
+        2048,
+        2048,
+        6144
+      ],
+      "configuration": {
+        "bm": 256,
+        "bn": 256,
+        "bk": 32,
+        "splits": 1,
+        "warps": 16,
+        "stages": 2
+      },
+      "vendor_source": "/usr/local/lib/python3.12/site-packages/flag_gems/runtime/backend/_iluvatar/ops/mm.py",
+      "vendor_sha256": "4c2e23da2a6b65b89cbb8170967f14c5327d143e21137387f3907ccb4fcde090",
+      "kernel_source": "/workspace/vllm-plugin-FL/experiments/tianshu_splitk_20261012/experimental_mm.py",
+      "kernel_sha256": "86a2244f3fb30a8294d53174bd3aa6080f947b5b80ce43b6212a35b533463d56",
+      "output_copy": false,
+      "weights_reordered": false
+    }
+  ]
+}
