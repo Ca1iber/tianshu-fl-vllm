@@ -25,6 +25,9 @@ def main():
     directory=Path(__file__).resolve().parent
     draft=Path('/workspace/MiniCPM5-2B-DSpark')
     cfg=json.loads((draft/'config.json').read_text())
+    # The published auto_map names an SGLang/Transformers helper not shipped
+    # in this checkpoint. Use our registered native vLLM draft class.
+    cfg.pop('auto_map',None)
     assert cfg['target_layer_ids']==[1,10,20,30,39] and cfg['block_size']==7
     alias=root/'draft_config_alias';alias.mkdir()
     cfg['dflash_config']={'target_layer_ids':cfg['target_layer_ids'],'mask_token_id':cfg['mask_token_id'],
