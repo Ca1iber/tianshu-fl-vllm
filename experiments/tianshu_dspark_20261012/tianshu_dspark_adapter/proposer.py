@@ -38,7 +38,9 @@ class DSparkProposer(OriginalDFlashProposer):
         count=self.num_speculative_tokens
         assert hidden_states.shape[0]%count==0
         batch=hidden_states.shape[0]//count
-        assert sampling_metadata.temperature.shape[0]==batch
+        if not sampling_metadata.all_greedy:
+            assert sampling_metadata.temperature is not None
+            assert sampling_metadata.temperature.shape[0]==batch
         base=self.model.compute_logits(hidden_states).view(batch,count,-1)
         # Query offset0 is the target's sampled bonus token. Each Markov head
         # conditions the next proposal on the previous sampled draft token.
