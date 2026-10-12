@@ -1,0 +1,9 @@
+# DSpark7-slot及LM/Markov预热：实际覆盖确认，但未见收益
+
+原DFlash dummy将target8B行数作为draft query数，DSpark实际7B。可选覆盖按targetcontext数估计batch并使用7B query，保持原context/KV接口，同时调用LM及Markov头，用有效零ID覆盖anchor int32和采样int64；不进行token采样、不增加RNGdraw。49个实际预热记录确认生效，48/48 target CUDA graphs捕获完成，日志engine init271.82s；这里是引擎初始化，不等于整个服务启动耗时。
+
+相同Spec、双tile、4K/128/C64/N128三轮排首轮：8133.276910→8124.984627 tok/s（约−0.102%），冷轮274.800941→273.344113s（改善约0.53%），两边三轮均无新增调优记录。候选三轮1977.990287/8124.793300/8125.175954，共384成功。已覆盖真实尺寸，但在该负载中没有观察到明显冷轮或稳态收益，保持匹配预热开关关闭，不采用。
+
+额外投影预热也参与内存峰值profiling，可能影响自动KV容量；不将此修改简单视为零成本。当前选择原双tile进行1K输出对当前最佳的匹配确认。
+
+完整备份13096739 bytes、SHA8217bf8e89f331237f855bee7f3b8095eb1100ef0bbe25626c76f8281a2603b3已本地逐块及整包核验；所有形状、source snapshot、serverlog、metrics和请求保留。正式最佳2712.55不变。
