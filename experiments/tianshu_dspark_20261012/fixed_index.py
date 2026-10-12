@@ -31,6 +31,7 @@ def install(module,record=None):
     original=module._index_func
     def selected(source,indices,output):
         if (source.ndim in (1,2) and len(indices)==1 and indices[0].ndim==1
+            and source.dtype in (torch.bfloat16,torch.float32,torch.int32,torch.int64)
             and indices[0].dtype in (torch.int32,torch.int64) and output.is_contiguous()):
             if record is not None:record(source,indices[0],output)
             return fixed_into(source,indices[0],output)
