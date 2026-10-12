@@ -19,6 +19,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--diagnostic-only', action='store_true')
+    parser.add_argument('--zero-init', action='store_true')
     args = parser.parse_args()
     root = args.output.resolve()
     root.mkdir(parents=True, exist_ok=True)
@@ -46,6 +47,11 @@ def main():
     spec.loader.exec_module(fixture)
     original_forward = backend.TritonAttentionImpl.forward
     original_kernel = native.kernel_unified_attention
+    candidate_kernel = original_kernel
+    zero_provenance = None
+    if args.zero_init:
+        from zero_initialization import load_kernel
+        candidate_kernel, zero_provenance = load_kernel(native, root / 'zero_init_source')
     original_lookup = runtime.get_heuristic_config
     hybrid_source = Path('/usr/local/lib/python3.12/site-packages/vllm_fl/worker/iluvatar_hybrid_attention.py')
     hybrid = fixture.load_hybrid(hybrid_source)
@@ -99,6 +105,7 @@ def main():
             'baseline': 'verified FA2 BM128/BN128/w8/s2', 'cases': [], 'cpu_checks': cpu_checks,
             'native_sha256': hashlib.sha256(Path(native.__file__).read_bytes()).hexdigest(),
             'hybrid_sha256': hashlib.sha256(hybrid_source.read_bytes()).hexdigest()}
+    data['zero_initialization'] = zero_provenance
     snapshots = root / 'source_snapshot'
     snapshots.mkdir(exist_ok=True)
     data['sources'] = {}
@@ -138,7 +145,7 @@ def main():
                                     routes.append((grid, new_grid))
                                     flags.append({key: getattr(kwargs.get(key), 'value', kwargs.get(key)) for key in
                                                   ('SLIDING_WINDOW', 'USE_CAUSAL', 'USE_PER_SEQ_CAUSAL', 'IS_3D', 'KV_QUANT_MODE')})
-                                return original_kernel[new_grid](**kwargs)
+                                return candidate_kernel[new_grid](**kwargs)
                             return launch
                     router = Router()
 
