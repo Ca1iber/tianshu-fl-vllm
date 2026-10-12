@@ -18,7 +18,7 @@ import urllib.request
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--adaptive',choices=['1'],default='1')
-    parser.add_argument('--candidate',choices=['small-gemm','prefill-gemm','sampler'],required=True)
+    parser.add_argument('--candidate',choices=['small-gemm','prefill-gemm','sampler','native-prefill'],required=True)
     parser.add_argument('--max-batched-tokens',type=int,choices=[2048],default=2048)
     args=parser.parse_args();root=args.output.resolve();root.mkdir(parents=True,exist_ok=True)
     if (root/'result.json').exists():raise RuntimeError('Refusing to overwrite a completed evaluation')
@@ -62,7 +62,8 @@ def main():
         base=Path(__file__).resolve().parents[1]
         candidates={'small-gemm':('tianshu_small_gemm_20261012','TIANSHU_SMALL_GEMM_PROBE','TIANSHU_SMALL_GEMM_RECORD_DIR','small_mm_records','mm_*.json'),
                     'prefill-gemm':('tianshu_prefill_gemm_20261012','TIANSHU_PREFILL_GEMM_PROBE','TIANSHU_PREFILL_GEMM_RECORD_DIR','prefill_mm_records','mm_*.json'),
-                    'sampler':('tianshu_sampler_fusion_20261012','TIANSHU_SAMPLER_FUSION_PROBE','TIANSHU_SAMPLER_RECORD_DIR','sampler_records','sampler_*.json')}
+                    'sampler':('tianshu_sampler_fusion_20261012','TIANSHU_SAMPLER_FUSION_PROBE','TIANSHU_SAMPLER_RECORD_DIR','sampler_records','sampler_*.json'),
+                    'native-prefill':('tianshu_native_prefill_20261012','TIANSHU_NATIVE_PREFILL_PROBE','TIANSHU_NATIVE_PREFILL_RECORD_DIR','native_prefill_records','native_prefill_*.json')}
         folder,flag,record_flag,record_dir,pattern=candidates[args.candidate]
         for _, candidate_flag, candidate_record_flag, _, _ in candidates.values():
             env.pop(candidate_flag, None)
@@ -89,7 +90,9 @@ def main():
         (snapshots/'tile_sitecustomize.py').write_bytes(tile_hook.read_bytes())
         state['candidate_hook']=dict(state['tile_hook'])
         state['tile_hook']={'path':str(tile_hook),'sha256':hashlib.sha256(tile_hook.read_bytes()).hexdigest()}
-        kernel=base/('tianshu_sampler_fusion_20261012/experimental_sampler.py' if args.candidate=='sampler' else 'tianshu_splitk_20261012/experimental_mm.py')
+        kernel=base/('tianshu_sampler_fusion_20261012/experimental_sampler.py' if args.candidate=='sampler' else
+                    'tianshu_native_prefill_20261012/zero_initialization.py' if args.candidate=='native-prefill' else
+                    'tianshu_splitk_20261012/experimental_mm.py')
         (snapshots/kernel.name).write_bytes(kernel.read_bytes())
         state['experimental_kernel']={'path':str(kernel),'sha256':hashlib.sha256(kernel.read_bytes()).hexdigest()}
         for name in ('worker.py','iluvatar_hybrid_attention.py','iluvatar_adaptive_decode.py'):
@@ -119,11 +122,11 @@ def main():
         code=evaluator.wait();state['evalscope_exit_code']=code
         if code!=0:raise RuntimeError('EvalScope failed: '+str(code))
         records=list((root/'tile_records').glob('tile_*.json'))
-        if not records:raise RuntimeError('Actual model did not use the experimental tile')
+        if not records and args.candidate!='native-prefill':raise RuntimeError('Actual model did not use the experimental tile')
         state['tile_routing_records']=[json.loads(p.read_text()) for p in records]
         routes=[json.loads(p.read_text()) for p in (root/record_dir).glob(pattern)]
         if not routes:raise RuntimeError('Experimental candidate did not route in the evaluated model')
-        if args.candidate!='sampler' and len({tuple(x['shape']) for x in routes})!=3:
+        if args.candidate in ('small-gemm','prefill-gemm') and len({tuple(x['shape']) for x in routes})!=3:
             raise RuntimeError('Evaluated GEMM candidate did not route all three checked shapes')
         state['candidate_routing_records']=routes
         state['phase']='evaluation_finished_pending_report_audit'
