@@ -136,7 +136,7 @@ def main():
                                 kwargs.update(BLOCK_M=bm, BLOCK_Q=block_q, TILE_SIZE=bn, num_warps=warps, num_stages=stages)
                                 if (grid, new_grid) not in routes:
                                     routes.append((grid, new_grid))
-                                    flags.append({key: kwargs.get(key) for key in
+                                    flags.append({key: getattr(kwargs.get(key), 'value', kwargs.get(key)) for key in
                                                   ('SLIDING_WINDOW', 'USE_CAUSAL', 'USE_PER_SEQ_CAUSAL', 'IS_3D', 'KV_QUANT_MODE')})
                                 return original_kernel[new_grid](**kwargs)
                             return launch

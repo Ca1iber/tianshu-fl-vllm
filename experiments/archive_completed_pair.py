@@ -27,7 +27,10 @@ def main():
     def completed():
         if not comparison.exists():
             return False
-        return not args.single_probe or json.loads(comparison.read_text()).get('complete') is True
+        if not args.single_probe:
+            return True
+        result = json.loads(comparison.read_text())
+        return result.get('complete') is True or result.get('phase') == 'complete'
     while not completed():
         if not args.wait or datetime.now(timezone.utc) >= deadline:
             raise RuntimeError('No completed comparison to archive')
