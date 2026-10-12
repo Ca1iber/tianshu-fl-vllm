@@ -49,10 +49,15 @@ def main():
     (alias/'config.json').write_text(json.dumps(cfg,indent=2)+'\n')
     (alias/'model.safetensors').symlink_to(draft/'model.safetensors')
     snapshot=root/'source_snapshot';snapshot.mkdir()
+    frozen_directory=snapshot/'experiments'/directory.name
     for p in directory.rglob('*.py'):
         if 'results' in p.parts:continue
-        target=snapshot/p.relative_to(directory);target.parent.mkdir(parents=True,exist_ok=True)
+        target=frozen_directory/p.relative_to(directory);target.parent.mkdir(parents=True,exist_ok=True)
         target.write_bytes(p.read_bytes())
+    generator=directory.parent/'tianshu_native_prefill_20261012/zero_initialization.py'
+    frozen_generator=snapshot/'experiments'/'tianshu_native_prefill_20261012'/generator.name
+    frozen_generator.parent.mkdir(parents=True,exist_ok=True)
+    frozen_generator.write_bytes(generator.read_bytes())
     installed=Path('/usr/local/lib/python3.12/site-packages')
     sources={}
     for rel in ['vllm_fl/worker/worker.py','vllm_fl/worker/model_runner.py',
@@ -80,7 +85,7 @@ def main():
     try:
         env=dict(os.environ,VLLM_PLUGINS='fl',PYTHONUNBUFFERED='1',
                  TRITON_PRINT_AUTOTUNING='1',
-                 PYTHONPATH=str(directory/'hooks'),TIANSHU_DSPARK_COMPAT=('0' if args.baseline else '1'),
+                 PYTHONPATH=str(frozen_directory/'hooks'),TIANSHU_DSPARK_COMPAT=('0' if args.baseline else '1'),
                  TIANSHU_DSPARK_RECORD_DIR=str(root/'adapter_records'),
                  TIANSHU_DSPARK_ZERO_VERIFY=('1' if args.zero_verify else '0'),
                  TIANSHU_DSPARK_SAMPLE_VIEW=('1' if args.sample_view else '0'),
@@ -104,6 +109,7 @@ def main():
             command.remove('--enforce-eager')
             command+=['--compilation-config','{"cudagraph_mode":"FULL_DECODE_ONLY"}']
         state['command']=command;state['speculative_config']=spec
+        state['frozen_hook_directory']=str(frozen_directory/'hooks')
         state['environment_flags']={k:v for k,v in env.items() if k.startswith(
             ('VLLM_FL_','FLAGGEMS_ILUVATAR_','TIANSHU_DSPARK_','TRITON_PRINT_'))}
         with (root/'server.log').open('w') as log:
