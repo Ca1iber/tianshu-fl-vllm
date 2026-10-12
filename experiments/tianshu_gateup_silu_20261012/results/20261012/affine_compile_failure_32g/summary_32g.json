@@ -1,0 +1,11 @@
+{
+  "complete_experiment": true,
+  "functional_passed": false,
+  "configurations": 56,
+  "compile_errors": 56,
+  "performance_valid": false,
+  "source_sha256": "5011a28bf65f9db7f8707747b384215ce640570489dacb7dba23b26436abd0d5",
+  "first_error": "at 8:30:\ndef _affine_gateup(A,W,O,M:tl.constexpr,I:tl.constexpr,K:tl.constexpr,OS:tl.constexpr,\n                  BM:tl.constexpr,BN:tl.constexpr,BK:tl.constexpr):\n    # Keep two affine weight loads and two accumulators. This removes the\n    # non-affine concatenated column map and accumulator reshape/split path\n    # from the failed first prototype, without changing projection rounding.\n    half=BN//2;grid_n=tl.cdiv(I,half);pid=tl.program_id(0)\n    rows=(pid//grid_n)*BM+tl.arange(0,BM)\n    columns=(pid%grid_n)*half+tl.arange(0,half)\n                              ^\narange's arguments must be of type tl.constexpr",
+  "correction_in_worktree": "half: tl.constexpr = BN//2",
+  "corrected_version_gpu_tested": false
+}

@@ -1,0 +1,7 @@
+# BI-V150 32G：affine GateUp/SiLU 首版编译错误记录
+
+第一版paired kernel完整intermediate6144数值失败后，改为两个连续weight loads和两个独立dot accumulators，保留BF16 projection→FP32 SiLU/product→BF16。该affine版本56个场景/配置全部在tl.arange(0,half)编译失败：half=BN//2没有显式constexpr，CoreX/FlagTree报arange arguments must be tl.constexpr。没有得到候选数值或性能结果，不能称56次数值失败或使用任何吞吐收益。对照CPU/FP32检查仍正常。
+
+失败时源SHA5011a28bf65f9db7f8707747b384215ce640570489dacb7dba23b26436abd0d5，全量1910044 bytes、8分块和整包SHA39314807cad6f8553a6d28080ec7478bd20efc8d1f9ccb8e1e41e8cb53902729本地核验，源文件快照保留于原始归档；没有把不能编译的候选作为已通过实现提交。
+
+当前工作树已将half声明为tl.constexpr，py_compile通过，尚未GPU验证。其后续等待任务因优先处理真实索引调优而取消；用户要求当前索引三轮后停止，不能再自动恢复此原型。下一次明确恢复时先做GPU编译和完整数值验证，再考虑性能。该源和probe仍是未提交的独立实验改动。没有采集新profile，不改安装源码或当前最好服务。
