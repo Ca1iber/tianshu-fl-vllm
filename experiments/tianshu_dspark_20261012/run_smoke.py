@@ -15,6 +15,7 @@ import urllib.request
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--output',type=Path,required=True)
+    parser.add_argument('--baseline',action='store_true')
     args=parser.parse_args()
     root=args.output.resolve();root.mkdir(parents=True,exist_ok=True)
     assert not (root/'state.json').exists()
@@ -47,7 +48,7 @@ def main():
         p=installed/rel;sources[rel]=hashlib.sha256(p.read_bytes()).hexdigest()
         target=snapshot/'installed'/rel;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(p.read_bytes())
     state={'phase':'preparing','official_benchmark':False,'accuracy_test':False,
-           'speculative_algorithm':'DSpark compatibility on vLLM0.24 DFlash transport',
+           'speculative_algorithm':('none' if args.baseline else 'DSpark compatibility on vLLM0.24 DFlash transport'),
            'runner_pid':os.getpid(),'started_utc':datetime.now(timezone.utc).isoformat(),
            'installed_source_sha256':sources,'responses':[]}
     state['draft_weights_source']={'path':str(draft/'model.safetensors'),
@@ -65,7 +66,7 @@ def main():
     save()
     try:
         env=dict(os.environ,VLLM_PLUGINS='fl',PYTHONUNBUFFERED='1',
-                 PYTHONPATH=str(directory/'hooks'),TIANSHU_DSPARK_COMPAT='1',
+                 PYTHONPATH=str(directory/'hooks'),TIANSHU_DSPARK_COMPAT=('0' if args.baseline else '1'),
                  TIANSHU_DSPARK_RECORD_DIR=str(root/'adapter_records'),
                  VLLM_FL_USE_FLAGGEMS_ATTN='0',VLLM_FL_ILUVATAR_HYBRID_ATTENTION='0',
                  VLLM_FL_ILUVATAR_ADAPTIVE_DECODE_SEGMENTS='0',
@@ -79,6 +80,9 @@ def main():
                  '--served-model-name','minicpm','--gpu-memory-utilization','.85',
                  '--max-model-len','131072','--max-num-batched-tokens','2048',
                  '--max-num-seqs','8','--enforce-eager','--speculative-config',json.dumps(spec)]
+        if args.baseline:
+            command=command[:-2]
+            spec=None
         state['command']=command;state['speculative_config']=spec
         with (root/'server.log').open('w') as log:
             server=subprocess.Popen(command,cwd='/workspace',env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
@@ -106,7 +110,7 @@ def main():
         with urllib.request.urlopen('http://127.0.0.1:9031/metrics',timeout=3) as response:
             (root/'metrics.txt').write_bytes(response.read())
         records=list((root/'adapter_records').glob('*.json'))
-        assert records, 'No actual sequential Markov proposal record'
+        assert records or args.baseline, 'No actual sequential Markov proposal record'
         state['adapter_records']=[json.loads(p.read_text()) for p in records]
         state['phase']='complete'
     except Exception as error:
