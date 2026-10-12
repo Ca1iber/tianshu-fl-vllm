@@ -1,0 +1,206 @@
+{
+  "phase": "complete",
+  "diagnostic_no_graphs": true,
+  "warmup_wall_s": [
+    887.7881206288002,
+    38.31106226379052
+  ],
+  "measured_wall_s": 42.98122855788097,
+  "observed_tuning_records": [
+    "(EngineCore pid=125006) Triton autotuning for function _index_linearized_jit_function finished after 7.36s; config key: (32, 'torch.bfloat16', 'torch.int32', 'torch.bfloat16'), benchmark key: (18, 'torch.bfloat16', 'torch.int32', 'torch.bfloat16', 'triton_do_bench', 5, 10), best config selected: BLOCK_SIZE0: 8, BLOCK_SIZE1: 128, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None;",
+    "(EngineCore pid=125006) Triton autotuning for function _index_linearized_jit_function finished after 7.46s; config key: (32, 'torch.bfloat16', 'torch.int32', 'torch.bfloat16'), benchmark key: (17, 'torch.bfloat16', 'torch.int32', 'torch.bfloat16', 'triton_do_bench', 5, 10), best config selected: BLOCK_SIZE0: 8, BLOCK_SIZE1: 128, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None;"
+  ],
+  "analysis": {
+    "gpu_kernel_total_ms": 36429.91068400086,
+    "time_scope": "Recorded kernel events, not guaranteed to cover graph replay bodies",
+    "cuda_graph_body_coverage_verified": false,
+    "graphs_disabled_for_diagnostics": true,
+    "attention_classes_ms": {
+      "attention_3d": 9719.820950000018,
+      "attention_2d": 7081.964818000041
+    },
+    "top_kernels": [
+      {
+        "name": "kernel_unified_attention",
+        "calls": 16170,
+        "total_ms": 16801.785768000314,
+        "percent": 46.12085358578509
+      },
+      {
+        "name": "mm_kernel",
+        "calls": 43176,
+        "total_ms": 15774.378514000535,
+        "percent": 43.30062362993457
+      },
+      {
+        "name": "_topk_topp_kernel",
+        "calls": 229,
+        "total_ms": 962.1639510000003,
+        "percent": 2.6411372768546473
+      },
+      {
+        "name": "triton_poi_fused_mul_silu_slice_1",
+        "calls": 10794,
+        "total_ms": 783.9004730000045,
+        "percent": 2.151804542700333
+      },
+      {
+        "name": "triton_red_fused_fused_add_rms_norm_2",
+        "calls": 10794,
+        "total_ms": 496.7953780000001,
+        "percent": 1.3637018830742857
+      },
+      {
+        "name": "triton_poi_fused_3",
+        "calls": 10537,
+        "total_ms": 473.0708620000006,
+        "percent": 1.2985781549219169
+      },
+      {
+        "name": "triton_red_fused_fused_add_rms_norm_0",
+        "calls": 10794,
+        "total_ms": 311.92403200000075,
+        "percent": 0.8562305702741959
+      },
+      {
+        "name": "linear_kernel",
+        "calls": 257,
+        "total_ms": 256.0870750000002,
+        "percent": 0.7029582839808265
+      },
+      {
+        "name": "reshape_and_cache_kernel_flash",
+        "calls": 10794,
+        "total_ms": 204.84290200000208,
+        "percent": 0.5622931765516631
+      },
+      {
+        "name": "reduce_segments",
+        "calls": 10710,
+        "total_ms": 134.62276500000084,
+        "percent": 0.3695391025460952
+      },
+      {
+        "name": "true_div_func_kernel_rank_2",
+        "calls": 257,
+        "total_ms": 46.39666399999998,
+        "percent": 0.12735870917294423
+      },
+      {
+        "name": "sweep",
+        "calls": 224,
+        "total_ms": 37.21389900000002,
+        "percent": 0.10215204567148024
+      },
+      {
+        "name": "true_div_func_kernel_rank_1",
+        "calls": 257,
+        "total_ms": 24.926606999999983,
+        "percent": 0.06842346448833637
+      },
+      {
+        "name": "softmax_kernel_inner",
+        "calls": 285,
+        "total_ms": 24.909669000000005,
+        "percent": 0.06837696972707576
+      },
+      {
+        "name": "argmax_kernel_inner",
+        "calls": 257,
+        "total_ms": 18.030001999999993,
+        "percent": 0.04949230360841465
+      },
+      {
+        "name": "fused_exponential_kernel_f32_unroll8",
+        "calls": 257,
+        "total_ms": 13.766986000000008,
+        "percent": 0.03779033695530343
+      },
+      {
+        "name": "compute_global_hist_kernel",
+        "calls": 28,
+        "total_ms": 13.626763,
+        "percent": 0.03740542522379707
+      },
+      {
+        "name": "_to_copy_func_kernel_rank_1",
+        "calls": 799,
+        "total_ms": 13.57960699999998,
+        "percent": 0.03727598213948907
+      },
+      {
+        "name": "triton_poi_fused_1",
+        "calls": 257,
+        "total_ms": 11.603227999999998,
+        "percent": 0.0318508274715476
+      },
+      {
+        "name": "triton_red_fused__to_copy_embedding_rms_norm_0",
+        "calls": 257,
+        "total_ms": 6.918821,
+        "percent": 0.018992143735994883
+      },
+      {
+        "name": "_index_linearized_jit_function",
+        "calls": 547,
+        "total_ms": 2.9007970000000034,
+        "percent": 0.007962679417915683
+      },
+      {
+        "name": "_copy_kernel_kernel_rank_1",
+        "calls": 736,
+        "total_ms": 2.8813880000000056,
+        "percent": 0.007909401768765362
+      },
+      {
+        "name": "add_func_kernel_rank_1",
+        "calls": 514,
+        "total_ms": 2.2174609999999984,
+        "percent": 0.006086924064224659
+      },
+      {
+        "name": "_compute_slot_mapping_kernel",
+        "calls": 257,
+        "total_ms": 2.216267999999999,
+        "percent": 0.006083649282657535
+      },
+      {
+        "name": "fill_scalar_func_kernel_rank_1",
+        "calls": 542,
+        "total_ms": 1.9941230000000014,
+        "percent": 0.005473861896882916
+      },
+      {
+        "name": "sub_func_tensor_scalar_kernel_rank_1",
+        "calls": 385,
+        "total_ms": 1.4326870000000016,
+        "percent": 0.003932721692422933
+      },
+      {
+        "name": "_copy_kernel_kernel_rank_2",
+        "calls": 52,
+        "total_ms": 1.278601,
+        "percent": 0.00350975606580757
+      },
+      {
+        "name": "_scatter_jit_function",
+        "calls": 61,
+        "total_ms": 0.968046,
+        "percent": 0.0026572834844339668
+      },
+      {
+        "name": "zeros_kernel",
+        "calls": 252,
+        "total_ms": 0.9606709999999999,
+        "percent": 0.0026370391306556333
+      },
+      {
+        "name": "le_func_kernel_rank_2",
+        "calls": 28,
+        "total_ms": 0.7510849999999999,
+        "percent": 0.0020617261637423073
+      }
+    ]
+  },
+  "not_official_score": true
+}
