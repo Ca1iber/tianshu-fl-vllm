@@ -223,6 +223,10 @@ def main():
             time.sleep(3)
         state['startup_seconds'] = time.monotonic() - started
         state['ready_at_utc'] = datetime.now(timezone.utc).isoformat()
+        if args.small_gemm == '1':
+            routes = [json.loads(p.read_text()) for p in (out/'small_mm_records').glob('mm_*.json')]
+            if len({tuple(x['shape']) for x in routes}) != 3:
+                raise RuntimeError('Graph warmup did not route all three M8 shapes; refusing timed requests')
         log_path = out / 'server.log'
         boundary = len(log_path.read_text())
         state['startup_tune_records'] = tune_records(log_path.read_text())

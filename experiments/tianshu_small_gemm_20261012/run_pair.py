@@ -10,7 +10,7 @@ import sys
 
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--output',type=Path,required=True)
+    parser=argparse.ArgumentParser();parser.add_argument('--output',type=Path,required=True);parser.add_argument('--reuse-complete-control',action='store_true')
     args=parser.parse_args();root=args.output.resolve();root.mkdir(parents=True,exist_ok=True)
     numeric=Path('/workspace/benchmark-results/20261012_next_diagnostics_tianshu/splitk_v2_full/result.json')
     data=json.loads(numeric.read_text())
@@ -21,7 +21,14 @@ def main():
     results=[]
     for flag in ('0','1'):
         assert 'No running processes found' in subprocess.check_output(['ixsmi'],text=True)
-        out=root/f'small_{flag}';out.mkdir(exist_ok=True);assert not (out/'state.json').exists()
+        out=root/f'small_{flag}';out.mkdir(exist_ok=True)
+        if flag=='0' and args.reuse_complete_control:
+            result=json.loads((out/'result.json').read_text())
+            assert result['phase']=='complete' and result['small_gemm']=='0'
+            assert result['experimental_mm']['sha256']==data['source_sha256']
+            assert result['workload']=={'input_tokens':4096,'output_tokens':1024,'concurrency':8,'requests_per_round':16,'rounds':3,'excluded_rounds':[1]}
+            results.append(result);continue
+        assert not (out/'state.json').exists()
         command=[sys.executable,'-u',str(Path(__file__).with_name('run_service_trial.py')),
                  '--output',str(out),'--small-gemm',flag,'--buckets','0','--gather','0',
                  '--tile','1','--hybrid','1','--adaptive','1','--max-batched-tokens','2048',

@@ -58,7 +58,8 @@ class SmallLoader(importlib.abc.Loader):
 
 class SmallFinder(importlib.abc.MetaPathFinder):
     def find_spec(self,fullname,path=None,target=None):
-        if fullname!='flag_gems.runtime.backend._iluvatar.ops.mm':return None
+        # FlagGems imports the vendor package via sys.path as _iluvatar.
+        if fullname not in ('_iluvatar.ops.mm','flag_gems.runtime.backend._iluvatar.ops.mm'):return None
         spec=importlib.machinery.PathFinder.find_spec(fullname,path)
         if spec is None or spec.loader is None:raise RuntimeError('Vendor GEMM module unavailable')
         spec.loader=SmallLoader(spec.loader);return spec
