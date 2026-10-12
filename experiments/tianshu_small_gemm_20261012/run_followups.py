@@ -12,7 +12,7 @@ def main():
     root = Path('/workspace/benchmark-results/20261012_small_gemm_tianshu')
     state_path = root / 'followup_state.json'
     assert not state_path.exists()
-    state = {'phase': 'waiting_for_prefill_pair', 'started_utc': datetime.now(timezone.utc).isoformat(), 'jobs': []}
+    state = {'phase': 'waiting_for_native_prefill_probe', 'started_utc': datetime.now(timezone.utc).isoformat(), 'jobs': []}
 
     def save():
         state_path.write_text(json.dumps(state, indent=2) + '\n')
@@ -22,8 +22,8 @@ def main():
     deadline = datetime.fromisoformat(json.loads(Path(
         '/workspace/benchmark-results/20261011_121020_baseline_tianshu/reservation_deadline.json'
     ).read_text())['stop_at_utc'])
-    dependency = Path('/workspace/benchmark-results/20261012_prefill_gemm_tianshu/refill128/comparison.json')
-    while not dependency.exists():
+    dependency = Path('/workspace/benchmark-results/20261012_native_prefill_tianshu/controller_state.json')
+    while not (dependency.exists() and json.loads(dependency.read_text()).get('phase') in ('complete', 'failed')):
         if datetime.now(timezone.utc) >= deadline:
             state['phase'] = 'deadline_reached'
             save()
