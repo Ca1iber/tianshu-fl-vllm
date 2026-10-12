@@ -17,6 +17,7 @@ def main():
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--baseline',action='store_true')
     parser.add_argument('--diagnostic-prefixes',action='store_true')
+    parser.add_argument('--zero-verify',action='store_true')
     args=parser.parse_args()
     root=args.output.resolve();root.mkdir(parents=True,exist_ok=True)
     assert not (root/'state.json').exists()
@@ -69,6 +70,7 @@ def main():
         env=dict(os.environ,VLLM_PLUGINS='fl',PYTHONUNBUFFERED='1',
                  PYTHONPATH=str(directory/'hooks'),TIANSHU_DSPARK_COMPAT=('0' if args.baseline else '1'),
                  TIANSHU_DSPARK_RECORD_DIR=str(root/'adapter_records'),
+                 TIANSHU_DSPARK_ZERO_VERIFY=('1' if args.zero_verify else '0'),
                  VLLM_FL_USE_FLAGGEMS_ATTN='0',VLLM_FL_ILUVATAR_HYBRID_ATTENTION='0',
                  VLLM_FL_ILUVATAR_ADAPTIVE_DECODE_SEGMENTS='0',
                  VLLM_FL_ILUVATAR_PREFILL_BUCKETS='0',VLLM_FL_ILUVATAR_LOGITS_GATHER='0',
