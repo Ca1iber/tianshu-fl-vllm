@@ -69,10 +69,11 @@ def main():
     def save():
         p=root/'result.tmp';p.write_text(json.dumps(data, indent=2)+'\n');p.replace(root/'result.json')
 
+    case_atol=.1
     def check(a,b):
-        a,b=a.float(),b.float();diff=(a-b).abs();bad=diff>.1+.02*b.abs()
+        a,b=a.float(),b.float();diff=(a-b).abs();bad=diff>case_atol+.02*b.abs()
         return dict(passed=bool(torch.isfinite(a).all() and torch.isfinite(b).all() and not bad.any()),
-                    failed_elements=bad.sum().item(), max_abs=diff.max().item(), atol=.1, rtol=.02)
+                    failed_elements=bad.sum().item(), max_abs=diff.max().item(), atol=case_atol, rtol=.02)
 
     def activation(projected, output):
         inter=projected.shape[1]//2
@@ -96,6 +97,7 @@ def main():
     save()
     with torch.inference_mode():
         for case_id,(m,inter,k,xscale,wscale) in enumerate(scenarios):
+            case_atol=.001 if xscale*wscale<.1 else .1
             torch.manual_seed(2026101700+case_id)
             x=torch.randn(m,k,device='cuda',dtype=torch.bfloat16)*xscale
             weight=torch.randn(2*inter,k,device='cuda',dtype=x.dtype)*wscale
