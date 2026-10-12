@@ -27,12 +27,15 @@ def main():
     parser.add_argument('--concurrency',type=int,choices=[16,64])
     parser.add_argument('--adaptive',choices=['0','1'],default='0')
     parser.add_argument('--tile',choices=['0','1'],default='0')
+    parser.add_argument('--native-prefill',choices=['0','1'],default='0')
     parser.add_argument('--max-batched-tokens',type=int,choices=[2048,4096,8192],default=2048)
     parser.add_argument('--warmup-rounds',type=int,default=2)
     args=parser.parse_args();root=args.output.resolve();root.mkdir(parents=True,exist_ok=True)
     if args.small_only and args.concurrency == 64:
         parser.error('--small-only and --concurrency64 select different workloads')
     if args.warmup_rounds < 1:parser.error('At least one full-shape warmup round is required')
+    if args.native_prefill == '1' and (args.adaptive, args.tile, args.max_batched_tokens) != ('1', '1', 2048):
+        parser.error('Native-prefill profiling requires the independently evaluated adaptive1/tile1/budget2048 profile')
     if (root/'result.json').exists():raise RuntimeError('Refusing to overwrite a completed profile')
     traces=root/'traces'
     profiler={'profiler':'torch','torch_profiler_dir':str(traces),
@@ -49,7 +52,8 @@ def main():
     state={'phase':'preparing','official_benchmark':False,'command':command,
            'runner_pid':os.getpid(),'cases':[],'started_utc':datetime.now(timezone.utc).isoformat(),
            'diagnostic_graphs_disabled':args.no_graphs,
-           'adaptive':args.adaptive, 'tile':args.tile, 'max_batched_tokens':args.max_batched_tokens}
+           'adaptive':args.adaptive, 'tile':args.tile, 'native_prefill':args.native_prefill,
+           'max_batched_tokens':args.max_batched_tokens}
     server=None
     deadline=datetime.fromisoformat(json.loads(Path('/workspace/benchmark-results/20261011_121020_baseline_tianshu/reservation_deadline.json').read_text())['stop_at_utc'])
 
@@ -117,11 +121,26 @@ def main():
             TRITON_PRINT_AUTOTUNING='1')
         env.pop('TIANSHU_PACK_PROBE_MODE',None);env.pop('PYTHONPATH',None)
         env.pop('TIANSHU_FA2_TILE_PROBE',None)
+        env.pop('TIANSHU_NATIVE_PREFILL_PROBE',None)
+        env.pop('TIANSHU_NATIVE_PREFILL_RECORD_DIR',None)
         if args.tile == '1':
             hook=Path(__file__).resolve().parent.parent/'tianshu_fa2_tiles_20261012/hooks/sitecustomize.py'
             env.update(PYTHONPATH=str(hook.parent),TIANSHU_FA2_TILE_PROBE='1',
                        TIANSHU_FA2_TILE_RECORD_DIR=str(root/'tile_records'))
             state['tile_hook']={'path':str(hook),'sha256':hashlib.sha256(hook.read_bytes()).hexdigest()}
+        if args.native_prefill == '1':
+            quality=Path('/workspace/benchmark-results/20261012_native_prefill_tianshu/math/accuracy_audit.json')
+            audit=json.loads(quality.read_text())
+            assert audit['complete'] and audit['total']==105 and audit['accuracy']>.95
+            assert audit['experimental_candidate']=='native-prefill'
+            native_hook=Path(__file__).resolve().parents[1]/'tianshu_native_prefill_20261012/hooks/sitecustomize.py'
+            generator=native_hook.parents[1]/'zero_initialization.py'
+            assert hashlib.sha256(native_hook.read_bytes()).hexdigest()==audit['candidate_hook']['sha256']
+            assert hashlib.sha256(generator.read_bytes()).hexdigest()==audit['experimental_kernel']['sha256']
+            env.update(PYTHONPATH=str(native_hook.parent),TIANSHU_NATIVE_PREFILL_PROBE='1',
+                       TIANSHU_NATIVE_PREFILL_RECORD_DIR=str(root/'native_prefill_records'))
+            state.update(candidate_hook=audit['candidate_hook'], experimental_kernel=audit['experimental_kernel'],
+                         corresponding_math={'correct':audit['correct'],'total':105,'accuracy':audit['accuracy']})
         hardware=subprocess.check_output(['ixsmi'],text=True)
         (root/'hardware_before.txt').write_text(hardware)
         if 'No running processes found' not in hardware:raise RuntimeError('GPU not idle')
@@ -129,10 +148,17 @@ def main():
         snapshots=root/'source_snapshot';snapshots.mkdir(exist_ok=True)
         if args.tile == '1':
             (snapshots/'tile_sitecustomize.py').write_bytes(hook.read_bytes())
+        if args.native_prefill == '1':
+            (snapshots/'candidate_sitecustomize.py').write_bytes(native_hook.read_bytes())
+            (snapshots/'zero_initialization.py').write_bytes(generator.read_bytes())
         state['installed_sources']={}
         for name in ('worker.py','iluvatar_hybrid_attention.py','iluvatar_adaptive_decode.py'):
             source=installed/name;contents=source.read_bytes();(snapshots/name).write_bytes(contents)
             state['installed_sources'][name]={'path':str(source),'sha256':hashlib.sha256(contents).hexdigest()}
+        if args.native_prefill == '1':
+            assert state['installed_sources']['worker.py']['sha256']==audit['worker_sha256']
+            assert state['installed_sources']['iluvatar_hybrid_attention.py']['sha256']==audit['hybrid_sha256']
+            assert state['installed_sources']['iluvatar_adaptive_decode.py']['sha256']==audit['adaptive_sha256']
         with (root/'server.log').open('w') as log:
             server=subprocess.Popen(command,cwd='/workspace',env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
         state.update(phase='starting',server_pid=server.pid);save()
@@ -168,8 +194,14 @@ def main():
             save()
         if args.tile == '1':
             records=list((root/'tile_records').glob('tile_*.json'))
-            if not records:raise RuntimeError('Profile did not use the selected FA2 tile')
+            if not records and args.native_prefill != '1':raise RuntimeError('Profile did not use the selected FA2 tile')
             state['tile_routing_records']=[json.loads(p.read_text()) for p in records]
+        if args.native_prefill == '1':
+            records=list((root/'native_prefill_records').glob('native_prefill_*.json'))
+            assert records, 'Profile did not use the selected native Prefill kernel'
+            state['candidate_routing_records']=[json.loads(p.read_text()) for p in records]
+            generated={r['generated_kernel_sha256'] for r in audit['candidate_routing_records']}
+            assert all(r['generated_kernel_sha256'] in generated for r in state['candidate_routing_records'])
         state['phase']='complete'
     except BaseException as error:
         state.update(phase='failed',error=str(error),traceback=traceback.format_exc());print(state['traceback'],flush=True)
