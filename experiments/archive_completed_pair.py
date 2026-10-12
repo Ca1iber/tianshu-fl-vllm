@@ -16,11 +16,12 @@ def main():
     parser.add_argument('--label', required=True)
     parser.add_argument('--wait', action='store_true')
     parser.add_argument('--single-probe', action='store_true')
+    parser.add_argument('--completion-file', choices=['result.json','accuracy_audit.json'], default='result.json')
     args = parser.parse_args()
     root = args.source.resolve()
     assert root.is_relative_to('/workspace/benchmark-results') and root.is_dir()
     assert args.label.replace('_', '').isalnum()
-    comparison = root / ('result.json' if args.single_probe else 'comparison.json')
+    comparison = root / (args.completion_file if args.single_probe else 'comparison.json')
     deadline = datetime.fromisoformat(json.loads(Path(
         '/workspace/benchmark-results/20261011_121020_baseline_tianshu/reservation_deadline.json'
     ).read_text())['stop_at_utc'])
