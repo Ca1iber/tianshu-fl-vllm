@@ -31,7 +31,11 @@ class DSparkProposer(OriginalDFlashProposer):
         finally:
             self.num_speculative_tokens=original_count
         assert total==cad.batch_size()*original_count
-        indices=self.arange[:total]
+        # In this anchor-first parallel lane all query rows are sampled, in
+        # order. BaseProposer indexes once then immediately exits through its
+        # parallel branch. A prefix view avoids an otherwise redundant gather.
+        indices=(slice(0,total) if os.getenv('TIANSHU_DSPARK_SAMPLE_VIEW')=='1'
+                 else self.arange[:total])
         return total,indices,metadata
 
     def _sample_draft_tokens(self,hidden_states,sampling_metadata):

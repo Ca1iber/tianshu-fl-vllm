@@ -24,6 +24,7 @@ def main():
     parser.add_argument('--quick-performance',action='store_true')
     parser.add_argument('--concurrency',type=int,choices=[8,64],default=8)
     parser.add_argument('--target-graphs',action='store_true')
+    parser.add_argument('--sample-view',action='store_true')
     args=parser.parse_args()
     root=args.output.resolve();root.mkdir(parents=True,exist_ok=True)
     assert not (root/'state.json').exists()
@@ -80,6 +81,7 @@ def main():
                  PYTHONPATH=str(directory/'hooks'),TIANSHU_DSPARK_COMPAT=('0' if args.baseline else '1'),
                  TIANSHU_DSPARK_RECORD_DIR=str(root/'adapter_records'),
                  TIANSHU_DSPARK_ZERO_VERIFY=('1' if args.zero_verify else '0'),
+                 TIANSHU_DSPARK_SAMPLE_VIEW=('1' if args.sample_view else '0'),
                  VLLM_FL_USE_FLAGGEMS_ATTN='0',VLLM_FL_ILUVATAR_HYBRID_ATTENTION='0',
                  VLLM_FL_ILUVATAR_ADAPTIVE_DECODE_SEGMENTS='0',
                  VLLM_FL_ILUVATAR_PREFILL_BUCKETS='0',VLLM_FL_ILUVATAR_LOGITS_GATHER='0',
