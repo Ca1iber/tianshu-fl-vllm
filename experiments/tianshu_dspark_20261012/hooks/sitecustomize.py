@@ -32,5 +32,6 @@ if os.environ.get('TIANSHU_DSPARK_COMPAT')=='1':
     sys.path.insert(0,str(directory))
     sys.meta_path.insert(0,DSparkFinder())
     from vllm import ModelRegistry
-    ModelRegistry.register_model('Qwen3DSparkModel',
-        'tianshu_dspark_adapter.model:DSparkForCausalLM')
+    for architecture in ('Qwen3DSparkModel','DFlashQwen3DSparkModel'):
+        ModelRegistry.register_model(architecture,
+            'tianshu_dspark_adapter.model:DSparkForCausalLM')
