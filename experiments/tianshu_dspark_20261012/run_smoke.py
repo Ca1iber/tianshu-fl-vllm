@@ -149,10 +149,12 @@ def main():
                 return values
             assert normalized_server_command(quality['server_command'])==normalized_server_command(command)
             relevant=('TIANSHU_DSPARK_COMPAT','TIANSHU_DSPARK_ZERO_VERIFY','TIANSHU_DSPARK_SAMPLE_VIEW',
-                      'TIANSHU_DSPARK_VERIFY_TILE','TIANSHU_DSPARK_PREFILL_TILE','TIANSHU_DSPARK_MATCHED_WARMUP')
+                      'TIANSHU_DSPARK_VERIFY_TILE','TIANSHU_DSPARK_PREFILL_TILE','TIANSHU_DSPARK_MATCHED_WARMUP',
+                      'TIANSHU_DSPARK_FIXED_INDEX')
             assert all(quality['environment_flags'].get(k,'0')==env.get(k,'0') for k in relevant)
             quality_directory=Path(quality_state['frozen_hook_directory']).parent
-            for rel in ('hooks/sitecustomize.py','tianshu_dspark_adapter/model.py','tianshu_dspark_adapter/proposer.py'):
+            for rel in ('hooks/sitecustomize.py','tianshu_dspark_adapter/model.py','tianshu_dspark_adapter/proposer.py',
+                        'fixed_index.py'):
                 assert (frozen_directory/rel).read_bytes()==(quality_directory/rel).read_bytes()
             quality_generator=quality_directory.parent/'tianshu_native_prefill_20261012/zero_initialization.py'
             assert frozen_generator.read_bytes()==quality_generator.read_bytes()
@@ -201,11 +203,13 @@ def main():
                         line=raw.decode().strip()
                         if not line.startswith('data: ') or line=='data: [DONE]':continue
                         event=json.loads(line[6:])
+                        if 'error' in event:
+                            raise RuntimeError(f'Server streaming error: {event["error"]}')
                         for choice in event.get('choices',[]):
                             chunk=choice.get('text','');text+=chunk
                             if chunk and first is None:first=time.monotonic()-start
                         if event.get('usage'):usage=event['usage']
-                    assert usage is not None and first is not None
+                    assert usage is not None and first is not None,'Incomplete completion stream: missing usage or first token'
                     data={'text':text,'usage':usage}
             return {'request':body,'response':data,'seconds':time.monotonic()-start,'ttft_seconds':first}
 

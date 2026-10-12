@@ -21,6 +21,9 @@ def main():
     routes=state['adapter_records']
     assert any(x['probabilistic'] and x['markov_head_used'] and x['block_size']==7 for x in routes)
     assert all(not x['target_rejection_sampler_modified'] for x in routes)
+    index_routes=[json.loads(p.read_text()) for p in (root/'adapter_records/fixed_index').glob('*.json')]
+    if state['environment_flags'].get('TIANSHU_DSPARK_FIXED_INDEX')=='1':
+        assert index_routes and all(x['fixed_launch'] for x in index_routes)
     command=state['evaluation_command']
     assert json.loads(command[command.index('--generation-config')+1])=={
         'temperature':1.,'top_p':.95,'max_tokens':32768}
@@ -54,6 +57,7 @@ def main():
         'generation_stop_reasons':dict(stop),'server_command':state['command'],
         'speculative_config':spec,'environment_flags':state['environment_flags'],
         'installed_source_sha256':state['installed_source_sha256'],'adapter_records':routes,
+        'fixed_index_routes':index_routes,
         'evaluation_command':command,'gpu_idle_after':True,
         'raw_files':{str(p.relative_to(root)):{'bytes':p.stat().st_size,
             'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in (report_path,review_path,prediction_path)}}

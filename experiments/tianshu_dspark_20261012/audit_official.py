@@ -23,7 +23,8 @@ def main():
     assert quality['installed_source_sha256']==state['installed_source_sha256']
     assert state['independent_math']=={'correct':quality['correct'],'total':105,'accuracy':quality['accuracy']}
     keys=('TIANSHU_DSPARK_COMPAT','TIANSHU_DSPARK_ZERO_VERIFY','TIANSHU_DSPARK_SAMPLE_VIEW',
-          'TIANSHU_DSPARK_VERIFY_TILE','TIANSHU_DSPARK_PREFILL_TILE','TIANSHU_DSPARK_MATCHED_WARMUP')
+          'TIANSHU_DSPARK_VERIFY_TILE','TIANSHU_DSPARK_PREFILL_TILE','TIANSHU_DSPARK_MATCHED_WARMUP',
+          'TIANSHU_DSPARK_FIXED_INDEX')
     assert all(state['environment_flags'].get(k,'0')==quality['environment_flags'].get(k,'0') for k in keys)
     benchmark=Path('/workspace/vllm-plugin-FL/benchmarks/benchmark_throughput_serve.py')
     assert (hashlib.sha256(benchmark.read_bytes()).hexdigest()==state['official_script_sha256']==
