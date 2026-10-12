@@ -107,6 +107,9 @@ class DSparkProposer(OriginalDFlashProposer):
             (root/f'sequential_sampler_{os.getpid()}_{batch}_{int(probs is not None)}.json').write_text(json.dumps({
                 'batch':batch,'block_size':count,'query_slots_per_request':count,
                 'anchor_is_first_prediction':True,'markov_head_used':True,
-                'probabilistic':probs is not None,'target_rejection_sampler_modified':False,
+                'probabilistic':probs is not None,
+                'target_rejection_sampler_modified':os.getenv('TIANSHU_DSPARK_FP32_THRESHOLDS')=='1',
+                'target_rejection_kernel_modified':False,
+                'positive_fp32_rejection_thresholds':os.getenv('TIANSHU_DSPARK_FP32_THRESHOLDS')=='1',
                 'confidence_adaptive_verification_enabled':False},indent=2)+'\n')
         return proposals,probs

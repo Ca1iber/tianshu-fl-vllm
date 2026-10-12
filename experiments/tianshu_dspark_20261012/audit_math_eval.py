@@ -20,7 +20,14 @@ def main():
     assert state['environment_flags']['TIANSHU_DSPARK_COMPAT']=='1'
     routes=state['adapter_records']
     assert any(x['probabilistic'] and x['markov_head_used'] and x['block_size']==7 for x in routes)
-    assert all(not x['target_rejection_sampler_modified'] for x in routes)
+    threshold_compat=state['environment_flags'].get('TIANSHU_DSPARK_FP32_THRESHOLDS')=='1'
+    assert all(x['target_rejection_sampler_modified']==threshold_compat for x in routes)
+    if threshold_compat:
+        assert all(x['positive_fp32_rejection_thresholds'] and not x['target_rejection_kernel_modified'] for x in routes)
+        threshold_routes=[json.loads(p.read_text()) for p in (root/'adapter_records/rejection_threshold').glob('*.json')]
+        assert threshold_routes and all(x['dtype']=='torch.float32' and 0<x['minimum']<=x['maximum']<=1.
+            and not x['rejection_kernel_modified'] and not x['probability_ratio_changed'] for x in threshold_routes)
+    else:threshold_routes=[]
     index_routes=[json.loads(p.read_text()) for p in (root/'adapter_records/fixed_index').glob('*.json')]
     if state['environment_flags'].get('TIANSHU_DSPARK_FIXED_INDEX')=='1':
         assert index_routes and all(x['fixed_launch'] for x in index_routes)
@@ -58,6 +65,7 @@ def main():
         'speculative_config':spec,'environment_flags':state['environment_flags'],
         'installed_source_sha256':state['installed_source_sha256'],'adapter_records':routes,
         'fixed_index_routes':index_routes,
+        'rejection_threshold_routes':threshold_routes,
         'evaluation_command':command,'gpu_idle_after':True,
         'raw_files':{str(p.relative_to(root)):{'bytes':p.stat().st_size,
             'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in (report_path,review_path,prediction_path)}}

@@ -41,6 +41,28 @@ class FixedIndexFinder(importlib.abc.MetaPathFinder):
         spec.loader=FixedIndexLoader(spec.loader);return spec
 
 
+def install_rejection_threshold(module):
+    directory=Path(__file__).resolve().parents[1]
+    if str(directory) not in sys.path:sys.path.insert(0,str(directory))
+    from rejection_compat import install
+    install(module)
+
+
+class RejectionThresholdLoader(importlib.abc.Loader):
+    def __init__(self,original):self.original=original
+    def create_module(self,spec):return self.original.create_module(spec)
+    def exec_module(self,module):
+        self.original.exec_module(module);install_rejection_threshold(module)
+
+
+class RejectionThresholdFinder(importlib.abc.MetaPathFinder):
+    def find_spec(self,fullname,path=None,target=None):
+        if fullname!='vllm.v1.sample.rejection_sampler':return None
+        spec=importlib.machinery.PathFinder.find_spec(fullname,path)
+        assert spec is not None and spec.loader is not None
+        spec.loader=RejectionThresholdLoader(spec.loader);return spec
+
+
 class DSparkLoader(importlib.abc.Loader):
     def __init__(self,original):self.original=original
     def create_module(self,spec):return self.original.create_module(spec)
@@ -113,6 +135,11 @@ class VerificationAttentionFinder(importlib.abc.MetaPathFinder):
         spec.loader=VerificationAttentionLoader(spec.loader)
         return spec
 
+
+if os.environ.get('TIANSHU_DSPARK_FP32_THRESHOLDS')=='1':
+    if 'vllm.v1.sample.rejection_sampler' in sys.modules:
+        install_rejection_threshold(sys.modules['vllm.v1.sample.rejection_sampler'])
+    else:sys.meta_path.insert(0,RejectionThresholdFinder())
 
 if os.environ.get('TIANSHU_DSPARK_FIXED_INDEX')=='1':
     if 'flag_gems.ops.index' in sys.modules:install_fixed_index(sys.modules['flag_gems.ops.index'])

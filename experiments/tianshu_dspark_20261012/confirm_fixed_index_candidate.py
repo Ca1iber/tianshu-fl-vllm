@@ -21,7 +21,7 @@ def main():
     deadline=datetime.fromisoformat(json.loads(Path(
         '/workspace/benchmark-results/20261011_121020_baseline_tianshu/reservation_deadline.json'
     ).read_text())['stop_at_utc'])
-    flags=['--zero-verify','--verify-tile','--prefill-tile','--fixed-index',
+    flags=['--zero-verify','--verify-tile','--prefill-tile','--fixed-index','--fp32-thresholds',
            '--target-graphs','--concurrency','64','--request-timeout','3600']
     state={'phase':'waiting','runner_pid':os.getpid(),'candidate_flags':flags,
            'candidate_results':str(args.candidate),'control_results':str(args.control),
@@ -59,13 +59,13 @@ def main():
         assert routes and all(json.loads(p.read_text())['fixed_launch'] for p in routes)
         # Ensure a later quality run uses exactly the measured kernel sources.
         frozen=Path(b['frozen_hook_directory']).parent
-        core=('hooks/sitecustomize.py','fixed_index.py','tianshu_dspark_adapter/model.py',
+        core=('hooks/sitecustomize.py','fixed_index.py','rejection_compat.py','tianshu_dspark_adapter/model.py',
               'tianshu_dspark_adapter/proposer.py')
         for rel in core:assert (directory/rel).read_bytes()==(frozen/rel).read_bytes(),rel+' changed'
         source_sha={rel:hashlib.sha256((frozen/rel).read_bytes()).hexdigest() for rel in core}
         assert all(b['environment_flags'].get(k)=='1' for k in (
             'TIANSHU_DSPARK_COMPAT','TIANSHU_DSPARK_ZERO_VERIFY','TIANSHU_DSPARK_VERIFY_TILE',
-            'TIANSHU_DSPARK_PREFILL_TILE','TIANSHU_DSPARK_FIXED_INDEX'))
+            'TIANSHU_DSPARK_PREFILL_TILE','TIANSHU_DSPARK_FIXED_INDEX','TIANSHU_DSPARK_FP32_THRESHOLDS'))
         assert all(b['environment_flags'].get(k)=='0' for k in (
             'TIANSHU_DSPARK_SAMPLE_VIEW','TIANSHU_DSPARK_MATCHED_WARMUP'))
         av=[x['total_tokens_per_second'] for x in rows_a[1:]]

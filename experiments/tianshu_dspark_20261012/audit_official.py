@@ -20,11 +20,12 @@ def main():
     assert state['benchmark_exit_code']==0 and state['runs']==state['completed_runs']==4 and state['skip_first']==1
     assert quality['complete'] and quality['total']==105 and not quality['reused_accuracy']
     assert quality['accuracy']>.95 and quality['correct']/105>.95 and quality['official_requirement_passed']
+    assert state['environment_flags'].get('TIANSHU_DSPARK_FP32_THRESHOLDS')=='1'
     assert quality['installed_source_sha256']==state['installed_source_sha256']
     assert state['independent_math']=={'correct':quality['correct'],'total':105,'accuracy':quality['accuracy']}
     keys=('TIANSHU_DSPARK_COMPAT','TIANSHU_DSPARK_ZERO_VERIFY','TIANSHU_DSPARK_SAMPLE_VIEW',
           'TIANSHU_DSPARK_VERIFY_TILE','TIANSHU_DSPARK_PREFILL_TILE','TIANSHU_DSPARK_MATCHED_WARMUP',
-          'TIANSHU_DSPARK_FIXED_INDEX')
+          'TIANSHU_DSPARK_FIXED_INDEX','TIANSHU_DSPARK_FP32_THRESHOLDS')
     assert all(state['environment_flags'].get(k,'0')==quality['environment_flags'].get(k,'0') for k in keys)
     benchmark=Path('/workspace/vllm-plugin-FL/benchmarks/benchmark_throughput_serve.py')
     assert (hashlib.sha256(benchmark.read_bytes()).hexdigest()==state['official_script_sha256']==
@@ -62,7 +63,7 @@ def main():
     lines += [f"|{i+1}|{x['Total tok/s']}|{x['Mean TTFT (ms)']}|{x['Benchmark Duration (s)']}|{'否' if i==0 else '是'}|" for i,x in enumerate(rows)]
     lines += ['',f"相对前最佳{args.previous_total_tok_s:.2f}，吞吐{result['vs_previous_best_throughput_percent']:+.6f}%；后3轮极差/均值{result['postfirst_spread_percent']:.6f}%。",
               '',f"计时阶段共{result['benchmark_runtime_tuning_record_count']}条调优记录。若非零，不从全窗计数推断仅首轮调优。",
-              '', '同独立质量评测的冻结模型钩子和运行参数，7-step Markov概率draft，原始target rejection sampler；不修改目标模型权重、数据集、原始benchmark脚本。未运行优化版完整16K。']
+              '', '同独立质量评测的冻结模型钩子和运行参数，7-step Markov概率draft，正FP32随机拒绝阈值兼容；原始概率比、拒绝kernel及恢复采样保留。不修改目标模型权重、数据集、原始benchmark脚本。未运行优化版完整16K。']
     (root/'README.md').write_text('\n'.join(lines)+'\n');print(json.dumps(result))
 
 

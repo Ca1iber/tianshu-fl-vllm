@@ -39,6 +39,7 @@ def main():
     parser.add_argument('--standard-results',type=Path)
     parser.add_argument('--fixed-index',action='store_true')
     parser.add_argument('--request-timeout',type=int,default=900)
+    parser.add_argument('--fp32-thresholds',action='store_true')
     args=parser.parse_args()
     assert not args.verify_tile or args.zero_verify
     assert not args.prefill_tile or args.zero_verify
@@ -46,6 +47,10 @@ def main():
                                    not args.quick_performance and not args.diagnostic_prefixes)
     assert not args.official_4k or (not args.baseline and args.zero_verify and args.target_graphs and
         not args.quick_performance and not args.math_level3 and args.quality_results and args.standard_results)
+    assert not (args.math_level3 or args.official_4k) or args.fp32_thresholds, \
+        'CoreX FP64 rejection threshold path fails CPU oracle; validated FP32 compatibility is required'
+    assert args.baseline or not args.quick_performance or args.fp32_thresholds, \
+        'Stochastic speculative performance requires validated FP32 rejection thresholds'
     root=args.output.resolve();root.mkdir(parents=True,exist_ok=True)
     assert not (root/'state.json').exists()
     lease=Path('/workspace/benchmark-results/20261011_121020_baseline_tianshu/reservation_deadline.json')
@@ -112,6 +117,7 @@ def main():
                  TIANSHU_DSPARK_MATCHED_WARMUP=('1' if args.matched_warmup else '0'),
                  TIANSHU_DSPARK_PREFILL_TILE=('1' if args.prefill_tile else '0'),
                  TIANSHU_DSPARK_FIXED_INDEX=('1' if args.fixed_index else '0'),
+                 TIANSHU_DSPARK_FP32_THRESHOLDS=('1' if args.fp32_thresholds else '0'),
                  VLLM_FL_USE_FLAGGEMS_ATTN='0',VLLM_FL_ILUVATAR_HYBRID_ATTENTION='0',
                  VLLM_FL_ILUVATAR_ADAPTIVE_DECODE_SEGMENTS='0',
                  VLLM_FL_ILUVATAR_PREFILL_BUCKETS='0',VLLM_FL_ILUVATAR_LOGITS_GATHER='0',
@@ -150,11 +156,11 @@ def main():
             assert normalized_server_command(quality['server_command'])==normalized_server_command(command)
             relevant=('TIANSHU_DSPARK_COMPAT','TIANSHU_DSPARK_ZERO_VERIFY','TIANSHU_DSPARK_SAMPLE_VIEW',
                       'TIANSHU_DSPARK_VERIFY_TILE','TIANSHU_DSPARK_PREFILL_TILE','TIANSHU_DSPARK_MATCHED_WARMUP',
-                      'TIANSHU_DSPARK_FIXED_INDEX')
+                      'TIANSHU_DSPARK_FIXED_INDEX','TIANSHU_DSPARK_FP32_THRESHOLDS')
             assert all(quality['environment_flags'].get(k,'0')==env.get(k,'0') for k in relevant)
             quality_directory=Path(quality_state['frozen_hook_directory']).parent
             for rel in ('hooks/sitecustomize.py','tianshu_dspark_adapter/model.py','tianshu_dspark_adapter/proposer.py',
-                        'fixed_index.py'):
+                        'fixed_index.py','rejection_compat.py'):
                 assert (frozen_directory/rel).read_bytes()==(quality_directory/rel).read_bytes()
             quality_generator=quality_directory.parent/'tianshu_native_prefill_20261012/zero_initialization.py'
             assert frozen_generator.read_bytes()==quality_generator.read_bytes()
