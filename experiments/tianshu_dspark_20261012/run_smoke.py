@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: Apache-2.0
 """Bring up the DSpark compatibility lane, retain every response and clean up."""
 import argparse
+import csv
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime,timezone
 import hashlib
@@ -32,18 +33,23 @@ def main():
     parser.add_argument('--output-tokens',type=int,choices=[128,1024],default=128)
     parser.add_argument('--seed-base',type=int,default=2026101220)
     parser.add_argument('--seed-round-stride',type=int,default=1000)
+    parser.add_argument('--official-4k',action='store_true')
+    parser.add_argument('--quality-results',type=Path)
+    parser.add_argument('--standard-results',type=Path)
     args=parser.parse_args()
     assert not args.verify_tile or args.zero_verify
     assert not args.prefill_tile or args.zero_verify
     assert not args.math_level3 or (not args.baseline and args.zero_verify and
                                    not args.quick_performance and not args.diagnostic_prefixes)
+    assert not args.official_4k or (not args.baseline and args.zero_verify and args.target_graphs and
+        not args.quick_performance and not args.math_level3 and args.quality_results and args.standard_results)
     root=args.output.resolve();root.mkdir(parents=True,exist_ok=True)
     assert not (root/'state.json').exists()
     lease=Path('/workspace/benchmark-results/20261011_121020_baseline_tianshu/reservation_deadline.json')
     deadline=datetime.fromisoformat(json.loads(lease.read_text())['stop_at_utc'])
     remaining=int((deadline-datetime.now(timezone.utc)).total_seconds())
     assert remaining>0,'Reservation has ended'
-    signal.alarm(min(10800 if args.math_level3 else 3600,remaining))
+    signal.alarm(min(10800 if args.math_level3 else 7200 if args.official_4k else 3600,remaining))
     assert 'No running processes found' in subprocess.check_output(['ixsmi'],text=True)
     directory=Path(__file__).resolve().parent
     draft=Path('/workspace/MiniCPM5-2B-DSpark')
@@ -74,7 +80,7 @@ def main():
                 'vllm/v1/spec_decode/llm_base_proposer.py','vllm/model_executor/models/qwen3_dflash.py']:
         p=installed/rel;sources[rel]=hashlib.sha256(p.read_bytes()).hexdigest()
         target=snapshot/'installed'/rel;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(p.read_bytes())
-    state={'phase':'preparing','official_benchmark':False,'accuracy_test':args.math_level3,
+    state={'phase':'preparing','official_benchmark':args.official_4k,'accuracy_test':args.math_level3,
            'speculative_algorithm':('none' if args.baseline else 'DSpark compatibility on vLLM0.24 DFlash transport'),
            'runner_pid':os.getpid(),'started_utc':datetime.now(timezone.utc).isoformat(),
            'installed_source_sha256':sources,'responses':[]}
@@ -124,6 +130,35 @@ def main():
         state['frozen_hook_directory']=str(frozen_directory/'hooks')
         state['environment_flags']={k:v for k,v in env.items() if k.startswith(
             ('VLLM_FL_','FLAGGEMS_ILUVATAR_','TIANSHU_DSPARK_','TRITON_PRINT_'))}
+        if args.official_4k:
+            quality=json.loads((args.quality_results/'accuracy_audit.json').read_text())
+            quality_state=json.loads((args.quality_results/'result.json').read_text())
+            standard=json.loads((args.standard_results/'comparison.json').read_text())
+            assert quality['complete'] and quality['total']==105 and quality['accuracy']>.95
+            assert quality['official_requirement_passed'] and not quality['reused_accuracy']
+            assert standard['promising'] and standard['measured_tuning_clean']
+            assert quality['installed_source_sha256']==sources
+            def normalized_server_command(values):
+                values=list(values);index=values.index('--speculative-config')+1
+                specification=json.loads(values[index]);specification['model']='same_readonly_draft'
+                values[index]=json.dumps(specification,sort_keys=True)
+                return values
+            assert normalized_server_command(quality['server_command'])==normalized_server_command(command)
+            relevant=('TIANSHU_DSPARK_COMPAT','TIANSHU_DSPARK_ZERO_VERIFY','TIANSHU_DSPARK_SAMPLE_VIEW',
+                      'TIANSHU_DSPARK_VERIFY_TILE','TIANSHU_DSPARK_PREFILL_TILE','TIANSHU_DSPARK_MATCHED_WARMUP')
+            assert all(quality['environment_flags'].get(k,'0')==env.get(k,'0') for k in relevant)
+            quality_directory=Path(quality_state['frozen_hook_directory']).parent
+            for rel in ('hooks/sitecustomize.py','tianshu_dspark_adapter/model.py','tianshu_dspark_adapter/proposer.py'):
+                assert (frozen_directory/rel).read_bytes()==(quality_directory/rel).read_bytes()
+            quality_generator=quality_directory.parent/'tianshu_native_prefill_20261012/zero_initialization.py'
+            assert frozen_generator.read_bytes()==quality_generator.read_bytes()
+            bench=directory.parents[1]/'benchmarks/benchmark_throughput_serve.py'
+            benchmark_sha='0813eba574e9d1eb50c297c515baa426da1bcb61ce8c78a398b482f246005565'
+            assert hashlib.sha256(bench.read_bytes()).hexdigest()==benchmark_sha
+            state.update(official_script_sha256=benchmark_sha,runs=4,skip_first=1,
+                         test_cases=[[4096,1024,64,256]],independent_math={
+                             'correct':quality['correct'],'total':105,'accuracy':quality['accuracy']},
+                         standard_comparison=standard)
         with (root/'server.log').open('w') as log:
             server=subprocess.Popen(command,cwd='/workspace',env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
         state.update(phase='starting',server_pid=server.pid);save()
@@ -146,7 +181,7 @@ def main():
                      'temperature':0.,'top_p':1.,'stream':False,'logprobs':10}
                     for prompt in ('Compute 17 + 25 and briefly explain the answer.',
                                    'Compute 17 + 25 and briefly explain the answer. You are')]
-        if args.quick_performance or args.math_level3:
+        if args.quick_performance or args.math_level3 or args.official_4k:
             assert args.zero_verify and not args.diagnostic_prefixes
             bodies=bodies[:1]
 
@@ -221,6 +256,41 @@ def main():
             state.update(phase='evaluating',evaluator_pid=evaluator.pid);save()
             state['evalscope_exit_code']=evaluator.wait()
             assert state['evalscope_exit_code']==0,'EvalScope failed'
+        if args.official_4k:
+            command=['python3','-u',str(bench),'--model','/workspace/MiniCPM5-2B',
+                     '--served-model-name','minicpm','--port','9031',
+                     '--test-cases','[[4096,1024,64,256]]']
+            state['benchmark_command']=command
+            boundary=len((root/'server.log').read_text())
+            with (root/'benchmark.log').open('w') as log:
+                evaluator=subprocess.Popen(command,cwd=root,env=env,stdout=log,
+                                           stderr=subprocess.STDOUT,start_new_session=True)
+            state.update(phase='benchmarking',benchmark_pid=evaluator.pid);save()
+            while evaluator.poll() is None:
+                files=list((root/'benchmark_results').glob('raw_runs_*.csv'))
+                if files:
+                    assert len(files)==1
+                    with files[0].open(newline='') as file:rows=list(csv.DictReader(file))
+                    if state.get('completed_runs')!=len(rows):
+                        state.update(completed_runs=len(rows),raw_runs=rows);save()
+                time.sleep(5)
+            state['benchmark_exit_code']=evaluator.returncode;assert evaluator.returncode==0
+            raw=list((root/'benchmark_results').glob('raw_runs_*.csv'))
+            summaries=list((root/'benchmark_results').glob('summary_*.csv'))
+            assert len(raw)==len(summaries)==1
+            with raw[0].open(newline='') as file:rows=list(csv.DictReader(file))
+            with summaries[0].open(newline='') as file:summary=list(csv.DictReader(file))
+            assert len(rows)==4 and len(summary)==1
+            for row in rows:
+                assert row['Run Status']=='SUCCESS' and int(float(row['Successful Requests']))==256
+                assert [int(row[k]) for k in ('Prefill','Decode','Conc','Num Prompts')]==[4096,1024,64,256]
+                assert int(float(row['Total Input Tokens']))==1048576 and int(float(row['Total Output Tokens']))==262144
+            for key in ('Total tok/s','Output tok/s','Mean TTFT (ms)'):
+                assert abs(float(summary[0][key])-statistics.mean(float(x[key]) for x in rows[1:]))<.011
+            assert hashlib.sha256(bench.read_bytes()).hexdigest()==benchmark_sha
+            state.update(completed_runs=4,raw_runs=rows,official_summary=summary[0],
+                benchmark_runtime_tuning_records=[x for x in (root/'server.log').read_text()[boundary:].splitlines()
+                                                 if 'Triton autotuning for function' in x])
         with urllib.request.urlopen('http://127.0.0.1:9031/metrics',timeout=3) as response:
             (root/'metrics.txt').write_bytes(response.read())
         records=list((root/'adapter_records').glob('*.json'))
