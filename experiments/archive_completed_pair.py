@@ -47,7 +47,8 @@ def main():
         'created_utc': datetime.now(timezone.utc).isoformat(), 'repository_commit': commit,
         'repository_dirty_status': subprocess.check_output(['git', '-C', str(repository), 'status', '--porcelain'], text=True),
         'completed_results': [str(p.relative_to(root)) for p in states],
-        'full_raw_responses_and_logs_included': True}, indent=2) + '\n')
+        'all_existing_raw_files_included': True,
+        'raw_response_scope': 'All response files produced by the original experiment; no missing response bodies are reconstructed'}, indent=2) + '\n')
     archive = Path('/tmp') / f'tianshu_{args.label}.tgz'
     assert not archive.exists(), 'Archive names are immutable'
     with tarfile.open(archive, 'w:gz') as tar:
