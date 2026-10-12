@@ -27,15 +27,18 @@ def main():
     parser.add_argument('--sample-view',action='store_true')
     parser.add_argument('--verify-tile',action='store_true')
     parser.add_argument('--matched-warmup',action='store_true')
+    parser.add_argument('--math-level3',action='store_true')
     args=parser.parse_args()
     assert not args.verify_tile or args.zero_verify
+    assert not args.math_level3 or (not args.baseline and args.zero_verify and
+                                   not args.quick_performance and not args.diagnostic_prefixes)
     root=args.output.resolve();root.mkdir(parents=True,exist_ok=True)
     assert not (root/'state.json').exists()
     lease=Path('/workspace/benchmark-results/20261011_121020_baseline_tianshu/reservation_deadline.json')
     deadline=datetime.fromisoformat(json.loads(lease.read_text())['stop_at_utc'])
     remaining=int((deadline-datetime.now(timezone.utc)).total_seconds())
     assert remaining>0,'Reservation has ended'
-    signal.alarm(min(3600,remaining))
+    signal.alarm(min(10800 if args.math_level3 else 3600,remaining))
     assert 'No running processes found' in subprocess.check_output(['ixsmi'],text=True)
     directory=Path(__file__).resolve().parent
     draft=Path('/workspace/MiniCPM5-2B-DSpark')
@@ -66,13 +69,13 @@ def main():
                 'vllm/v1/spec_decode/llm_base_proposer.py','vllm/model_executor/models/qwen3_dflash.py']:
         p=installed/rel;sources[rel]=hashlib.sha256(p.read_bytes()).hexdigest()
         target=snapshot/'installed'/rel;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(p.read_bytes())
-    state={'phase':'preparing','official_benchmark':False,'accuracy_test':False,
+    state={'phase':'preparing','official_benchmark':False,'accuracy_test':args.math_level3,
            'speculative_algorithm':('none' if args.baseline else 'DSpark compatibility on vLLM0.24 DFlash transport'),
            'runner_pid':os.getpid(),'started_utc':datetime.now(timezone.utc).isoformat(),
            'installed_source_sha256':sources,'responses':[]}
     state['draft_weights_source']={'path':str(draft/'model.safetensors'),
                                     'bytes':(draft/'model.safetensors').stat().st_size}
-    server=None
+    server=evaluator=None
 
     def save():
         p=root/'state.tmp';p.write_text(json.dumps(state,indent=2)+'\n');p.replace(root/'state.json')
@@ -80,6 +83,7 @@ def main():
 
     def stop(signum,frame):
         if server is not None and server.poll() is None:os.killpg(server.pid,signal.SIGTERM)
+        if evaluator is not None and evaluator.poll() is None:os.killpg(evaluator.pid,signal.SIGTERM)
         raise RuntimeError(f'Stopped by signal {signum}')
     signal.signal(signal.SIGTERM,stop);signal.signal(signal.SIGINT,stop);signal.signal(signal.SIGALRM,stop)
     save()
@@ -136,7 +140,7 @@ def main():
                      'temperature':0.,'top_p':1.,'stream':False,'logprobs':10}
                     for prompt in ('Compute 17 + 25 and briefly explain the answer.',
                                    'Compute 17 + 25 and briefly explain the answer. You are')]
-        if args.quick_performance:
+        if args.quick_performance or args.math_level3:
             assert args.zero_verify and not args.diagnostic_prefixes
             bodies=bodies[:1]
 
@@ -195,20 +199,40 @@ def main():
                     'tuning_records':[x for x in logpath.read_text()[before:].splitlines()
                                       if 'Triton autotuning for function' in x]})
                 save()
+        if args.math_level3:
+            evaluation=['evalscope','eval','--model','minicpm',
+                '--api-url','http://127.0.0.1:9031/v1/chat/completions','--api-key','EMPTY',
+                '--eval-type','openai_api','--datasets','math_500',
+                '--dataset-args','{"math_500":{"dataset_id":"/workspace/evalscope-datasets/math_500","subset_list":["Level 3"]}}',
+                '--eval-batch-size','8','--timeout','3600',
+                '--generation-config','{"temperature":1.0,"top_p":0.95,"max_tokens":32768}',
+                '--work-dir',str(root/'evalscope'),'--ignore-errors']
+            state['evaluation_command']=evaluation
+            with (root/'evalscope.log').open('w') as log:
+                evaluator=subprocess.Popen(evaluation,cwd='/workspace',env=env,stdout=log,
+                                           stderr=subprocess.STDOUT,start_new_session=True)
+            state.update(phase='evaluating',evaluator_pid=evaluator.pid);save()
+            state['evalscope_exit_code']=evaluator.wait()
+            assert state['evalscope_exit_code']==0,'EvalScope failed'
         with urllib.request.urlopen('http://127.0.0.1:9031/metrics',timeout=3) as response:
             (root/'metrics.txt').write_bytes(response.read())
         records=list((root/'adapter_records').glob('*.json'))
         assert records or args.baseline, 'No actual sequential Markov proposal record'
         state['adapter_records']=[json.loads(p.read_text()) for p in records]
-        state['phase']='complete'
+        state['phase']='evaluation_finished_pending_report_audit' if args.math_level3 else 'complete'
     except Exception as error:
         state.update(phase='failed',error=str(error))
     finally:
+        if evaluator is not None and evaluator.poll() is None:
+            os.killpg(evaluator.pid,signal.SIGTERM)
+            try:evaluator.wait(timeout=10)
+            except subprocess.TimeoutExpired:os.killpg(evaluator.pid,signal.SIGKILL);evaluator.wait(timeout=5)
         if server is not None and server.poll() is None:
             os.killpg(server.pid,signal.SIGTERM)
             try:server.wait(timeout=10)
             except subprocess.TimeoutExpired:os.killpg(server.pid,signal.SIGKILL);server.wait(timeout=5)
         state['hardware_after']=subprocess.check_output(['ixsmi'],text=True)
+        (root/'hardware_after.txt').write_text(state['hardware_after'])
         state['gpu_idle_after']='No running processes found' in state['hardware_after']
         link=alias/'model.safetensors'
         assert link.is_symlink() and link.resolve()==(draft/'model.safetensors').resolve()
@@ -216,7 +240,7 @@ def main():
         state['temporary_weight_symlink_removed_after_cleanup']=True
         state['finished_utc']=datetime.now(timezone.utc).isoformat();save()
         (root/'result.json').write_text(json.dumps(state,indent=2)+'\n')
-    return 0 if state['phase']=='complete' and state['gpu_idle_after'] else 1
+    return 0 if state['phase'] in ('complete','evaluation_finished_pending_report_audit') and state['gpu_idle_after'] else 1
 
 
 if __name__=='__main__':raise SystemExit(main())
