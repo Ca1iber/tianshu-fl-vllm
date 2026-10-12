@@ -55,6 +55,19 @@ def main():
         archive = [sys.executable, '-u', str(Path(__file__).resolve().parents[1] / 'archive_completed_pair.py'),
                    '--source', str(output), '--label', f'small_gemm_{name}_20261012']
         subprocess.run(archive, check=True)
+        if name == 'service_c64_4k1k':
+            prefill = json.loads(Path('/workspace/benchmark-results/20261012_prefill_gemm_tianshu/refill128/comparison.json').read_text())
+            if prefill['throughput_gain_percent'] > .5 and (deadline - datetime.now(timezone.utc)).total_seconds() > 4500:
+                directory = Path(__file__).resolve().parents[1] / 'tianshu_prefill_gemm_20261012'
+                prefill_output = Path('/workspace/benchmark-results/20261012_prefill_gemm_tianshu/service_c64_4k1k')
+                state.update(phase='running', current_job='prefill_gemm_standard_confirmation')
+                save()
+                with (root/'prefill_standard_controller.log').open('w') as log:
+                    result = subprocess.run([sys.executable,'-u',str(directory/'confirm_with_shared_control.py'),
+                        '--output',str(prefill_output),'--control',str(output/'small_0')],stdout=log,stderr=subprocess.STDOUT)
+                state['jobs'].append({'name':'prefill_gemm_standard_confirmation','exit_code':result.returncode,'output':str(prefill_output)})
+                if result.returncode:
+                    state['phase']='failed';save();return 1
     state.update(phase='complete', finished_utc=datetime.now(timezone.utc).isoformat())
     save()
     return 0
