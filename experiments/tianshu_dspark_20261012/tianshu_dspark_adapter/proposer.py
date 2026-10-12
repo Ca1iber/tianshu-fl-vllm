@@ -15,7 +15,7 @@ class DSparkProposer(OriginalDFlashProposer):
         assert self.parallel_drafting and self.eagle3_use_aux_hidden_state
         assert not self.use_fp64_gumbel, 'The observed CoreX FP64 cast path is unsuitable'
         self.max_query_tokens=self.max_batch_size*self.num_speculative_tokens
-        self._recorded_sampling=False
+        self._recorded_sampling=set()
 
     def set_inputs_first_pass(self,target_token_ids,next_token_ids,target_positions,
                               target_hidden_states,token_indices_to_sample,cad,
@@ -56,10 +56,11 @@ class DSparkProposer(OriginalDFlashProposer):
         proposals=torch.stack(ids,dim=1).reshape(-1)
         probs=(torch.stack(probabilities,dim=1).reshape(batch*count,-1)
                if probabilities else None)
-        if not self._recorded_sampling:
-            self._recorded_sampling=True
+        record_key=(batch,probs is not None)
+        if record_key not in self._recorded_sampling:
+            self._recorded_sampling.add(record_key)
             root=Path(os.environ['TIANSHU_DSPARK_RECORD_DIR']);root.mkdir(parents=True,exist_ok=True)
-            (root/f'sequential_sampler_{os.getpid()}.json').write_text(json.dumps({
+            (root/f'sequential_sampler_{os.getpid()}_{batch}_{int(probs is not None)}.json').write_text(json.dumps({
                 'batch':batch,'block_size':count,'query_slots_per_request':count,
                 'anchor_is_first_prediction':True,'markov_head_used':True,
                 'probabilistic':probs is not None,'target_rejection_sampler_modified':False,

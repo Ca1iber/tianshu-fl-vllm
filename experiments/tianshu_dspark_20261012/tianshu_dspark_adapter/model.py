@@ -13,6 +13,34 @@ from vllm.model_executor.models.qwen3_dflash import DFlashQwen3ForCausalLM, DFla
 from vllm.model_executor.models.utils import AutoWeightsLoader, maybe_prefix, process_eagle_weight
 
 
+class DSparkOpsProxy:
+    """Keep the draft's native APIs while replacing unavailable CUDA _C ops."""
+    def __init__(self,original):self.original=original
+    def __getattr__(self,name):return getattr(self.original,name)
+
+    def rms_norm(self,out,x,weight,epsilon):
+        from flag_gems.ops.rms_norm import rms_norm_out
+        return rms_norm_out(out,x,(x.shape[-1],),weight,eps=epsilon)
+
+    def rotary_embedding(self,positions,query,key,head_size,cos_sin_cache,is_neox):
+        from flag_gems.fused.rotary_embedding import apply_rotary_pos_emb
+        count=positions.numel()
+        q=query.view(count,-1,head_size)
+        # FlagGems accepts zero key heads: its key loop is eliminated, so the
+        # query-only context-K rotation matches the native key=None API.
+        k=(key.view(count,-1,head_size) if key is not None else
+           torch.empty(count,0,head_size,device=query.device,dtype=query.dtype))
+        cosine,sine=cos_sin_cache.chunk(2,dim=-1)
+        return apply_rotary_pos_emb(q,k,cosine,sine,positions,
+                                    rotary_interleaved=not is_neox,inplace=True)
+
+
+# This changes only the DFlash draft module's reference, never the globally
+# shared vllm._custom_ops module or installed sources.
+import vllm.model_executor.models.qwen3_dflash as draft_module
+draft_module.ops=DSparkOpsProxy(draft_module.ops)
+
+
 class DSparkMarkovHead(nn.Module):
     def __init__(self, vocab_size, rank, prefix):
         super().__init__()
