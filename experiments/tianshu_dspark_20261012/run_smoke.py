@@ -29,6 +29,7 @@ def main():
     parser.add_argument('--matched-warmup',action='store_true')
     parser.add_argument('--math-level3',action='store_true')
     parser.add_argument('--prefill-tile',action='store_true')
+    parser.add_argument('--output-tokens',type=int,choices=[128,1024],default=128)
     args=parser.parse_args()
     assert not args.verify_tile or args.zero_verify
     assert not args.prefill_tile or args.zero_verify
@@ -171,7 +172,7 @@ def main():
             state['responses'].append(request(body))
             save()
         if args.quick_performance:
-            state['workload']={'input_tokens':4096,'output_tokens':128,'concurrency':args.concurrency,
+            state['workload']={'input_tokens':4096,'output_tokens':args.output_tokens,'concurrency':args.concurrency,
                                'requests_per_round':args.concurrency*2,'rounds':3,'excluded_rounds':[1],
                                'target_eager':not args.target_graphs,'draft_eager':None if args.baseline else True,
                                'official_benchmark':False}
@@ -186,7 +187,7 @@ def main():
                 for i in range(args.concurrency*2):
                     rng=random.Random(2026101220+1000*round_index+i)
                     payloads.append({'model':'minicpm','prompt':[rng.randrange(512,120000) for _ in range(4096)],
-                                     'max_tokens':128,'ignore_eos':True,'temperature':1.,'top_p':.95,
+                                     'max_tokens':args.output_tokens,'ignore_eos':True,'temperature':1.,'top_p':.95,
                                      'stream':True,'stream_options':{'include_usage':True}})
                 with ThreadPoolExecutor(max_workers=args.concurrency) as pool:
                     responses=list(pool.map(lambda body:request(body,True),payloads))
@@ -194,9 +195,9 @@ def main():
                 with urllib.request.urlopen('http://127.0.0.1:9031/metrics',timeout=3) as response:
                     (root/f'metrics_after_round_{round_index+1}.txt').write_bytes(response.read())
                 assert all(x['response']['usage']['prompt_tokens']==4096 and
-                           x['response']['usage']['completion_tokens']==128 for x in responses)
+                           x['response']['usage']['completion_tokens']==args.output_tokens for x in responses)
                 state['performance_rounds'].append({'round':round_index+1,'duration_seconds':elapsed,
-                    'total_tokens_per_second':len(responses)*4224/elapsed,
+                    'total_tokens_per_second':len(responses)*(4096+args.output_tokens)/elapsed,
                     'mean_ttft_seconds':statistics.mean(x['ttft_seconds'] for x in responses),
                     'successful_requests':len(responses),'responses':responses,
                     'tuning_records':[x for x in logpath.read_text()[before:].splitlines()
