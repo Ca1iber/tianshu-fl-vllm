@@ -82,6 +82,7 @@ def main():
         'workload': results[0]['workload'],
         'greedy_probes_matched': all(a['text'] == b['text'] for a, b in zip(results[0]['rare_cases'], results[1]['rare_cases'])),
         'greedy_probe_count': len(results[0]['rare_cases']),
+        'greedy_temperature_zero_probes_exercise_sampling_fusion': False,
         'requests_successful': sum(len(r['rare_cases']) + sum(x['successful_requests'] for x in r['short_4k_rounds']) for r in results),
         'actual_sampler_records': results[1]['sampler_routing_records']}
     (root / 'comparison.json').write_text(json.dumps(comparison, indent=2) + '\n')

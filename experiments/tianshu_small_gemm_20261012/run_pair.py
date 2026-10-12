@@ -55,6 +55,7 @@ def main():
             'baseline_tok_s':means[0],'candidate_tok_s':means[1],'throughput_gain_percent':100*(means[1]/means[0]-1),
             'baseline_ttft_ms':ttfts[0],'candidate_ttft_ms':ttfts[1],'ttft_change_percent':100*(ttfts[1]/ttfts[0]-1),
             'greedy_probes_matched':all(greedy),'greedy_probe_count':len(greedy),
+            'greedy_single_request_probes_exercise_m8':False,
             'requests_successful':sum(len(r['rare_cases'])+sum(x['successful_requests'] for x in r['short_4k_rounds']) for r in results),
             'actual_small_mm_records':results[1]['small_mm_routing_records']}
     result['timed_round_tuning_counts'] = [
