@@ -35,11 +35,15 @@ def main():
     parser.add_argument('--requests', type=int, default=64)
     parser.add_argument('--rounds', type=int, default=3)
     parser.add_argument('--decode-launch',choices=['0','1'],default='0')
+    parser.add_argument('--stream-interval',type=int,choices=[1,4],default=1)
+    parser.add_argument('--bucket-trace',choices=['0','1'],default='0')
     args = parser.parse_args()
     if min(args.output_tokens, args.concurrency, args.requests) < 1 or args.rounds < 2:
         parser.error('Positive workload sizes and at least two rounds are required')
-    if args.buckets != '0' or args.gather != '0':
-        raise RuntimeError('Padding/gather flags must stay off for a token-budget trial')
+    if args.gather != '0':
+        raise RuntimeError('Gather stays off to isolate the bucket trial')
+    if args.buckets == '1' and (args.max_batched_tokens != 2048 or args.native_prefill != '1'):
+        raise RuntimeError('Bucket confirmation requires the verified native profile at budget2048')
     out = args.output.resolve()
     out.mkdir(parents=True, exist_ok=True)
     if (out / 'result.json').exists():
@@ -74,11 +78,18 @@ def main():
         env['PYTHONPATH']=str(Path(__file__).resolve().parents[1]/'tianshu_decode_launch_20261012/hooks')
         env['TIANSHU_DECODE_LAUNCH_PROBE']='1'
         env['TIANSHU_DECODE_LAUNCH_RECORD_DIR']=str(out/'decode_launch_records')
+    if args.bucket_trace=='1':
+        assert args.buckets==args.native_prefill==args.decode_launch=='1'
+        env['PYTHONPATH']=str(Path(__file__).resolve().parents[1]/'tianshu_buckets75_recheck_20261012/hooks')
+        env['TIANSHU_BUCKET_RECHECK_TRACE']='1'
+        env['TIANSHU_BUCKET_TRACE_DIR']=str(out/'bucket_trace_records')
     command = ['vllm', 'serve', '/workspace/MiniCPM5-2B', '--port', '9031',
                '--compilation-config', '{"cudagraph_mode": "FULL_DECODE_ONLY"}',
                '--served-model-name', 'minicpm', '--gpu-memory-utilization', '0.85',
                '--max-model-len', '131072']
     command += ['--max-num-batched-tokens', str(args.max_batched_tokens)]
+    if args.stream_interval!=1:
+        command += ['--stream-interval',str(args.stream_interval)]
     state = dict(native_prefill=args.native_prefill,tile=args.tile,decode_launch=args.decode_launch,max_batched_tokens=args.max_batched_tokens, adaptive=args.adaptive, single_decode_rounds=[], hybrid=args.hybrid, phase='preparing', runner_pid=os.getpid(), buckets=args.buckets, gather=args.gather,
                  started_at_utc=datetime.now(timezone.utc).isoformat(), command=command,
                  rare_cases=[], short_4k_rounds=[], scored=False,
@@ -86,6 +97,7 @@ def main():
                            'concurrency': args.concurrency, 'requests_per_round': args.requests,
                            'rounds': args.rounds, 'excluded_rounds': [1]},
                  note='Short 4K experiment excluding round one; not the official 256-request average score.')
+    state['stream_interval']=args.stream_interval
     server = None
 
     class StopRequested(BaseException):
@@ -190,7 +202,8 @@ def main():
         source_dir = out / 'source_snapshot'
         source_dir.mkdir(exist_ok=True)
         sources = {}
-        for name in ('worker.py', 'iluvatar_hybrid_attention.py', 'iluvatar_adaptive_decode.py'):
+        for name in ('worker.py', 'iluvatar_hybrid_attention.py', 'iluvatar_adaptive_decode.py',
+                     'model_runner.py', 'iluvatar_prefill_buckets.py', 'iluvatar_logits_gather.py'):
             source = installed / name
             contents = source.read_bytes()
             (source_dir / name).write_bytes(contents)
@@ -207,9 +220,13 @@ def main():
         state['environment_flags'] = {key: value for key, value in env.items()
                                       if key.startswith(('VLLM_FL_', 'FLAGGEMS_ILUVATAR_','TIANSHU_DECODE_'))}
         if args.decode_launch=='1':
-            hook=Path(env['PYTHONPATH'])/'sitecustomize.py';contents=hook.read_bytes()
+            hook=Path(__file__).resolve().parents[1]/'tianshu_decode_launch_20261012/hooks/sitecustomize.py';contents=hook.read_bytes()
             (source_dir/'decode_sitecustomize.py').write_bytes(contents)
             state['decode_hook']={'path':str(hook),'sha256':hashlib.sha256(contents).hexdigest()}
+        if args.bucket_trace=='1':
+            hook=Path(env['PYTHONPATH'])/'sitecustomize.py';contents=hook.read_bytes()
+            (source_dir/'bucket_trace_sitecustomize.py').write_bytes(contents)
+            state['bucket_trace_hook']={'path':str(hook),'sha256':hashlib.sha256(contents).hexdigest()}
         save()
         with (out / 'server.log').open('w') as log:
             server = subprocess.Popen(command, cwd='/workspace', env=env, stdout=log,

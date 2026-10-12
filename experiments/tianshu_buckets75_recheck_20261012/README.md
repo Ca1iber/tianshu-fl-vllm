@@ -1,0 +1,13 @@
+# 天数当前 Native/Decode 组合重新验证75点预热
+
+参考用户指定沐曦commit e7aba7b38f8d4fbfa9f3199121d8ad90c53f98ea，仅只读取得Git对象。CPU核验天数已有bucket helper的75个点与该commit完全一致，1..2048全部向上补齐结果一致，565→576、1537→1664。
+
+当前最高已测正式均值2808.93的profile使用Native GQA L0 Prefill、Hybrid、adaptive Decode KV16/w4/stage1、预算2048，但bucket flag为0，正式四轮后三轮极差/均值16.78%。早期75点实验在旧Attention组合中消除了运行期GEMM调优，却没有明确吞吐收益；不能用旧短实验结论排除当前组合的收益。
+
+天数保留FULL_DECODE_ONLY。启用已有VLLM_FL_ILUVATAR_PREFILL_BUCKETS=1，显式_dummy_run预热全部75点；真实Graph NONE Prefill/混合批次GEMM向上补齐，attention/采样使用真实请求元数据。Decode图按请求数范围捕获，未迁移MetaX限定PIECEWISE或packed workspace按stream缓存的方案。安装源码不修改，helper原SHA保留。
+
+本次新试验C64/N128、4K/1K共五轮。比较前三轮时使用旧同profile N128三轮控制、相同提示seed，排除首轮；额外第四/五轮只补充候选后四轮稳定性，不混用不同数量样本比较。记录启动/请求期所有Triton调优条目、7个固定greedy探针、每个请求usage。此实验不是N256原始正式成绩，新的bucket质量和正式4K尚未完成，adoption_allowed=False。
+
+试验首次启动缺少INFO日志，被root错误判断为未生效并在部分启动阶段停止；直接构建相同EngineArgs后确认原配置其实enabledTrue/75点。保留该停止结果，未使用性能数据。新own进程trace组合原stage1 hook，仅记录真实configure结果、逐点warmup调用和新actual!=padded映射。CPU检查验证原函数返回值、调用参数、padding结果、成功和异常路径方法恢复均保留。23:12实际配置True75/max2048/FULL_DECODE_ONLY，75/75_dummy_run完成，耗时334.878926秒。
+
+实际新根/workspace/benchmark-results/20261012_decode_stage1_buckets75_trace_tianshu。runner276089、auditor276090。首次停止根20261012_decode_stage1_buckets75_tianshu只作启动诊断。audit_when_complete.py要求真实trace75完整、实际padding、配对source/seed/usage一致，再形成comparison并全量归档label decode_stage1_buckets75_20261012。性能与调优结果仍待五轮完成；没有承诺0.1%稳定性。

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Decode KV16/w4/stage1: independent Math102/105; official4K score pending.
+# Decode KV16/w4/stage1: independent Math102/105; official4K mean2808.93 total tok/s.
 # Quality checkpoint tianshu-verified-decode-stage1-20261012.
 script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 export VLLM_PLUGINS=fl
