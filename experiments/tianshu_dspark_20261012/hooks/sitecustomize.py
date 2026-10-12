@@ -49,6 +49,7 @@ class VerificationAttentionLoader(importlib.abc.Loader):
                     launch_grid=grid
                     if (not kwargs['IS_3D'] and os.getenv('TIANSHU_DSPARK_VERIFY_TILE')=='1'
                         and kwargs['num_queries_per_kv']==8 and kwargs['HEAD_SIZE']==128
+                        and kwargs['USE_CAUSAL'] and not kwargs['USE_PER_SEQ_CAUSAL']
                         and kwargs['query_ptr'].shape[0]<=8*kwargs['num_seqs']):
                         # Numerically checked for Q8, mixed Q1/Q8, B1/2/8/64.
                         # Larger prefill batches retain their original tile.
