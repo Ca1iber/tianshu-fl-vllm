@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Experimental native Prefill candidate; quality and formal performance are recorded separately.
+# Verified native Prefill: independent Math102/105; official4K2712.55 total tok/s.
+# Reproduce tag tianshu-best-native-prefill-20261012; previous profiles remain tagged.
 script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 export VLLM_PLUGINS=fl
 export VLLM_FL_ILUVATAR_HYBRID_ATTENTION=1
