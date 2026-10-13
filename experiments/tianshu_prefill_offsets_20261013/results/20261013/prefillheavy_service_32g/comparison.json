@@ -1,0 +1,1991 @@
+{
+  "complete": true,
+  "official_benchmark": false,
+  "adopted": false,
+  "excluded_rounds": [
+    1,
+    2
+  ],
+  "control_reused": false,
+  "control_root": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/control",
+  "workload": {
+    "input_tokens": 16384,
+    "output_tokens": 128,
+    "requests_per_round": 32,
+    "concurrency": 32
+  },
+  "control_total_tok_s": 5241.451594244526,
+  "candidate_total_tok_s": 5524.074349335227,
+  "gain_percent": 5.3920703074133325,
+  "control_rounds": [
+    3605.959170006797,
+    5241.014264880741,
+    5246.874846839008,
+    5243.686500496574,
+    5233.793435397996
+  ],
+  "candidate_rounds": [
+    3753.8561939749347,
+    5530.6996239199525,
+    5530.031936759984,
+    5518.461478554996,
+    5523.7296326907035
+  ],
+  "actual_prefill_stage2_records": [
+    {
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "base_native_hook_sha256": "98356838abbabf53eec706a1a4a5622f2c372167b3dcccd29c2543625997800a",
+      "same_configuration_object_used_by_kernel_router": true,
+      "decode_unchanged": true,
+      "kernel_body_and_grid_unchanged": true
+    }
+  ],
+  "actual_prefill_routes": [
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 565,
+      "prefill_sequences": 1,
+      "max_query_len": 565,
+      "decode_prefix_sequences": 0,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 577,
+      "prefill_sequences": 1,
+      "max_query_len": 577,
+      "decode_prefix_sequences": 0,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 599,
+      "prefill_sequences": 1,
+      "max_query_len": 599,
+      "decode_prefix_sequences": 0,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 1537,
+      "prefill_sequences": 1,
+      "max_query_len": 1537,
+      "decode_prefix_sequences": 0,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 1561,
+      "prefill_sequences": 1,
+      "max_query_len": 1561,
+      "decode_prefix_sequences": 0,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2048,
+      "prefill_sequences": 1,
+      "max_query_len": 2048,
+      "decode_prefix_sequences": 0,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2047,
+      "prefill_sequences": 1,
+      "max_query_len": 2047,
+      "decode_prefix_sequences": 1,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2047,
+      "prefill_sequences": 2,
+      "max_query_len": 2039,
+      "decode_prefix_sequences": 1,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2046,
+      "prefill_sequences": 1,
+      "max_query_len": 2046,
+      "decode_prefix_sequences": 2,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2046,
+      "prefill_sequences": 2,
+      "max_query_len": 2023,
+      "decode_prefix_sequences": 2,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2045,
+      "prefill_sequences": 1,
+      "max_query_len": 2045,
+      "decode_prefix_sequences": 3,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2045,
+      "prefill_sequences": 2,
+      "max_query_len": 1999,
+      "decode_prefix_sequences": 3,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2044,
+      "prefill_sequences": 1,
+      "max_query_len": 2044,
+      "decode_prefix_sequences": 4,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2044,
+      "prefill_sequences": 2,
+      "max_query_len": 1967,
+      "decode_prefix_sequences": 4,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2043,
+      "prefill_sequences": 1,
+      "max_query_len": 2043,
+      "decode_prefix_sequences": 5,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2043,
+      "prefill_sequences": 2,
+      "max_query_len": 1927,
+      "decode_prefix_sequences": 5,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2042,
+      "prefill_sequences": 1,
+      "max_query_len": 2042,
+      "decode_prefix_sequences": 6,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2042,
+      "prefill_sequences": 2,
+      "max_query_len": 1879,
+      "decode_prefix_sequences": 6,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2041,
+      "prefill_sequences": 1,
+      "max_query_len": 2041,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2041,
+      "prefill_sequences": 2,
+      "max_query_len": 1823,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2040,
+      "prefill_sequences": 1,
+      "max_query_len": 2040,
+      "decode_prefix_sequences": 8,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2040,
+      "prefill_sequences": 2,
+      "max_query_len": 1759,
+      "decode_prefix_sequences": 8,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2039,
+      "prefill_sequences": 1,
+      "max_query_len": 2039,
+      "decode_prefix_sequences": 9,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2039,
+      "prefill_sequences": 2,
+      "max_query_len": 1687,
+      "decode_prefix_sequences": 9,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2038,
+      "prefill_sequences": 1,
+      "max_query_len": 2038,
+      "decode_prefix_sequences": 10,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2038,
+      "prefill_sequences": 2,
+      "max_query_len": 1607,
+      "decode_prefix_sequences": 10,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2037,
+      "prefill_sequences": 1,
+      "max_query_len": 2037,
+      "decode_prefix_sequences": 11,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2037,
+      "prefill_sequences": 2,
+      "max_query_len": 1519,
+      "decode_prefix_sequences": 11,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2036,
+      "prefill_sequences": 1,
+      "max_query_len": 2036,
+      "decode_prefix_sequences": 12,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2036,
+      "prefill_sequences": 2,
+      "max_query_len": 1423,
+      "decode_prefix_sequences": 12,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2035,
+      "prefill_sequences": 1,
+      "max_query_len": 2035,
+      "decode_prefix_sequences": 13,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2035,
+      "prefill_sequences": 2,
+      "max_query_len": 1319,
+      "decode_prefix_sequences": 13,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2034,
+      "prefill_sequences": 1,
+      "max_query_len": 2034,
+      "decode_prefix_sequences": 14,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2034,
+      "prefill_sequences": 2,
+      "max_query_len": 1207,
+      "decode_prefix_sequences": 14,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2033,
+      "prefill_sequences": 1,
+      "max_query_len": 2033,
+      "decode_prefix_sequences": 15,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2033,
+      "prefill_sequences": 2,
+      "max_query_len": 1087,
+      "decode_prefix_sequences": 15,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2032,
+      "prefill_sequences": 1,
+      "max_query_len": 2032,
+      "decode_prefix_sequences": 16,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2033,
+      "prefill_sequences": 2,
+      "max_query_len": 1072,
+      "decode_prefix_sequences": 15,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2033,
+      "prefill_sequences": 2,
+      "max_query_len": 1199,
+      "decode_prefix_sequences": 15,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2033,
+      "prefill_sequences": 2,
+      "max_query_len": 1326,
+      "decode_prefix_sequences": 15,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2033,
+      "prefill_sequences": 2,
+      "max_query_len": 1453,
+      "decode_prefix_sequences": 15,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2033,
+      "prefill_sequences": 2,
+      "max_query_len": 1580,
+      "decode_prefix_sequences": 15,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2033,
+      "prefill_sequences": 2,
+      "max_query_len": 1707,
+      "decode_prefix_sequences": 15,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2033,
+      "prefill_sequences": 2,
+      "max_query_len": 1834,
+      "decode_prefix_sequences": 15,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2033,
+      "prefill_sequences": 2,
+      "max_query_len": 1961,
+      "decode_prefix_sequences": 15,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2033,
+      "prefill_sequences": 2,
+      "max_query_len": 1978,
+      "decode_prefix_sequences": 15,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2033,
+      "prefill_sequences": 2,
+      "max_query_len": 1852,
+      "decode_prefix_sequences": 15,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2033,
+      "prefill_sequences": 2,
+      "max_query_len": 1726,
+      "decode_prefix_sequences": 15,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2033,
+      "prefill_sequences": 2,
+      "max_query_len": 1600,
+      "decode_prefix_sequences": 15,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2033,
+      "prefill_sequences": 2,
+      "max_query_len": 1474,
+      "decode_prefix_sequences": 15,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2033,
+      "prefill_sequences": 2,
+      "max_query_len": 1348,
+      "decode_prefix_sequences": 15,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 2033,
+      "prefill_sequences": 2,
+      "max_query_len": 1222,
+      "decode_prefix_sequences": 15,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 41013,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 2
+      },
+      "prefill_query_tokens": 937,
+      "prefill_sequences": 1,
+      "max_query_len": 937,
+      "decode_prefix_sequences": 15,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_prefill_stage2_prefillheavy_service_tianshu/candidate/native_prefill_records/source_snapshot/41013/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    }
+  ],
+  "actual_address_routes": [
+    {
+      "batch": 48,
+      "segments": 4,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4556799,
+        285292543,
+        285292543,
+        4556799,
+        2096,
+        2095,
+        17172479,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 40,
+      "segments": 4,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4540415,
+        285292543,
+        285292543,
+        4540415,
+        2088,
+        2087,
+        17106943,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 32,
+      "segments": 4,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4524031,
+        285292543,
+        285292543,
+        4524031,
+        2080,
+        2079,
+        17041407,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 24,
+      "segments": 4,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4507647,
+        285292543,
+        285292543,
+        4507647,
+        2072,
+        2071,
+        16975871,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 16,
+      "segments": 4,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4491263,
+        285292543,
+        285292543,
+        4491263,
+        2064,
+        2063,
+        16910335,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 8,
+      "segments": 16,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4474879,
+        285292543,
+        285292543,
+        4474879,
+        2056,
+        2055,
+        16844799,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 4,
+      "segments": 16,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4466687,
+        285292543,
+        285292543,
+        4466687,
+        2052,
+        2051,
+        16812031,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 5,
+      "segments": 16,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4468735,
+        285292543,
+        285292543,
+        4468735,
+        2053,
+        2052,
+        16820223,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 6,
+      "segments": 16,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4470783,
+        285292543,
+        285292543,
+        4470783,
+        2054,
+        2053,
+        16828415,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 7,
+      "segments": 16,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4472831,
+        285292543,
+        285292543,
+        4472831,
+        2055,
+        2054,
+        16836607,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 9,
+      "segments": 16,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4476927,
+        285292543,
+        285292543,
+        4476927,
+        2057,
+        2056,
+        16852991,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 10,
+      "segments": 16,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4478975,
+        285292543,
+        285292543,
+        4478975,
+        2058,
+        2057,
+        16861183,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 11,
+      "segments": 16,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4481023,
+        285292543,
+        285292543,
+        4481023,
+        2059,
+        2058,
+        16869375,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 12,
+      "segments": 16,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4483071,
+        285292543,
+        285292543,
+        4483071,
+        2060,
+        2059,
+        16877567,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 13,
+      "segments": 16,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4485119,
+        285292543,
+        285292543,
+        4485119,
+        2061,
+        2060,
+        16885759,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 14,
+      "segments": 16,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4487167,
+        285292543,
+        285292543,
+        4487167,
+        2062,
+        2061,
+        16893951,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 15,
+      "segments": 16,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4489215,
+        285292543,
+        285292543,
+        4489215,
+        2063,
+        2062,
+        16902143,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    }
+  ],
+  "independent_math_not_run": true,
+  "new_original_official_not_run": true
+}

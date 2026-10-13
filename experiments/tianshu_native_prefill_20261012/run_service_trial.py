@@ -37,6 +37,7 @@ def main():
     parser.add_argument('--decode-graph-max',type=int,choices=[0,64],default=0)
     parser.add_argument('--sort-buffer-mode',choices=['original','index32','scan32','both32'],default='original')
     parser.add_argument('--address32',choices=['0','1'],default='0')
+    parser.add_argument('--prefill-stages',type=int,choices=[1,2],default=1)
     parser.add_argument('--request-timeout',type=int,default=900)
     parser.add_argument('--concurrency', type=int, default=64)
     parser.add_argument('--requests', type=int, default=64)
@@ -125,6 +126,14 @@ def main():
     else:
         env.pop('TIANSHU_ADDRESS32_PROBE',None)
         env.pop('TIANSHU_ADDRESS32_RECORD_DIR',None)
+    if args.prefill_stages==2:
+        assert args.address32=='1'
+        env['PYTHONPATH']=str(Path(__file__).resolve().parents[1]/'tianshu_prefill_offsets_20261013/hooks_stage2')
+        env['TIANSHU_PREFILL_STAGE2_PROBE']='1'
+        env['TIANSHU_PREFILL_STAGE2_RECORD_DIR']=str(out/'prefill_stage2_records')
+    else:
+        env.pop('TIANSHU_PREFILL_STAGE2_PROBE',None)
+        env.pop('TIANSHU_PREFILL_STAGE2_RECORD_DIR',None)
     command = ['vllm', 'serve', '/workspace/MiniCPM5-2B', '--port', '9031',
                '--compilation-config', '{"cudagraph_mode": "FULL_DECODE_ONLY"}',
                '--served-model-name', 'minicpm', '--gpu-memory-utilization', '0.85',
@@ -145,6 +154,7 @@ def main():
                  decode_graph_max=args.decode_graph_max,
                  sort_buffer_mode=args.sort_buffer_mode,
                  address32=args.address32,
+                 prefill_stages=args.prefill_stages,
                  official_benchmark=False)
     state['stream_interval']=args.stream_interval
     server = None
@@ -309,12 +319,16 @@ def main():
                 contents=path.read_bytes();(source_dir/name).write_bytes(contents)
                 state['sort_buffer_sources'][name]={'path':str(path),'sha256':hashlib.sha256(contents).hexdigest()}
         if args.address32=='1':
-            paths={'address32_sitecustomize.py':Path(env['PYTHONPATH'])/'sitecustomize.py',
+            paths={'address32_sitecustomize.py':Path(__file__).resolve().parents[1]/'tianshu_attention_offsets_20261013/hooks/sitecustomize.py',
                    'address32.py':Path(__file__).resolve().parents[1]/'tianshu_attention_offsets_20261013/address32.py'}
             state['address32_sources']={}
             for name,path in paths.items():
                 contents=path.read_bytes();(source_dir/name).write_bytes(contents)
                 state['address32_sources'][name]={'path':str(path),'sha256':hashlib.sha256(contents).hexdigest()}
+        if args.prefill_stages==2:
+            path=Path(env['PYTHONPATH'])/'sitecustomize.py';contents=path.read_bytes()
+            (source_dir/'prefill_stage2_sitecustomize.py').write_bytes(contents)
+            state['prefill_stage2_hook']={'path':str(path),'sha256':hashlib.sha256(contents).hexdigest()}
         (source_dir/'run_service_trial.py').write_bytes(Path(__file__).read_bytes())
         save()
         with (out / 'server.log').open('w') as log:
@@ -419,6 +433,13 @@ def main():
             records=[json.loads(f.read_text()) for f in (out/'address32_records').glob('route_*.json')]
             assert records and all(4<=r['batch']<=48 and max(r['bounds'])<2**31 for r in records)
             state['address32_routing_records']=records
+        if args.prefill_stages==2:
+            files=(out/'prefill_stage2_records').glob('configured_*.json')
+            records=[json.loads(f.read_text()) for f in files]
+            assert records and all(x['configuration']['num_stages']==2 for x in records)
+            assert all(x['configuration']==dict(BLOCK_M=256,TILE_SIZE=128,num_warps=16,num_stages=2)
+                       for x in state['native_prefill_routing_records'])
+            state['prefill_stage2_configuration_records']=records
 
         state['phase'] = 'complete'
     except StopRequested as error:
