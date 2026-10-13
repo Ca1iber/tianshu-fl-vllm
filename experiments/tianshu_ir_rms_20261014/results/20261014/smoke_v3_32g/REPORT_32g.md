@@ -1,0 +1,11 @@
+# 天数 BI-V150 32g：实际IR RMS模型绑定成功
+
+opaque provider经170项actualepsilon1e-6 CPU/native/alias/Graph检查后，模型v3成功通过Inductor编译和FULL_DECODE_ONLY捕获预热，4096输入/16输出temperature0短请求正常结束。实际150组normal/fused记录，BF16权重，source SHA790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c；rows<=64编译w8/s1，其余w4/s1。这证明真实模型确实调用新provider，而不只是设置了开关或直接算子测试。
+
+指定--kernel-config.ir_op_priority两个norm都是[tianshu_ir_rms,native]。非native首选会自动打开fuse_norm_quant，CoreXOOT不导入RMSNormQuantFusionPass导致v1 NameError；明确pass_config.fuse_norm_quant=false避开此不使用的FP8融合。v2仍裸Triton被Inductor make_fx展开，FakeTensor.data_ptr失败；v3使用Torch CUDA opaque custom_op及fake返回新输出，保留正常Inductor与Graph，没有force eager或关编译。
+
+本服务仅验证编译/绑定/基本请求，不提供4K性能或Math质量分数；temperature0请求不能覆盖官方随机采样质量。后续三轮4K/1K/C64/N64同期对照在两组都设置fuse_norm_quant=false，只有候选IR provider启用；新Math105仍需在ROI明确之后重新执行，不复用旧103/105。
+
+原始包2425536bytes/10分片，SHA256 2630a61528237d49ca51753b08a61ded5de1c47dfefcc3cf28335e823f9d06c4。分片/整包、150实际编译字段、4096/16 usage、真实CLI两份JSON配置、3份源快照本地核验。原件service-results/20261014_tianshu/ir_rms_smoke_v3/20261014_ir_rms_service_smoke_v3_tianshu。API/engine结束后GPU空闲证据保存。
+
+结论：修正后的真实调用路径已通过，允许进入短服务对照。当前正式最好3506.84/Math103/tag tianshu-best-topp-w16-20261014不变。性能剖析：TODO图内kernel覆盖；安装源、权重和原benchmark保持，沐曦只读。

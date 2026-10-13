@@ -1,0 +1,2451 @@
+{
+  "phase": "complete",
+  "runner_pid": 78219,
+  "official_benchmark": false,
+  "adopted": false,
+  "command": [
+    "vllm",
+    "serve",
+    "/workspace/MiniCPM5-2B",
+    "--port",
+    "9031",
+    "--compilation-config",
+    "{\"cudagraph_mode\":\"FULL_DECODE_ONLY\",\"pass_config\":{\"fuse_norm_quant\":false}}",
+    "--served-model-name",
+    "minicpm",
+    "--gpu-memory-utilization",
+    "0.85",
+    "--max-model-len",
+    "131072",
+    "--max-num-batched-tokens",
+    "2048",
+    "--kernel-config",
+    "{\"ir_op_priority\": {\"rms_norm\": [\"tianshu_ir_rms\", \"native\"], \"fused_add_rms_norm\": [\"tianshu_ir_rms\", \"native\"]}}"
+  ],
+  "kernel_config": {
+    "ir_op_priority": {
+      "rms_norm": [
+        "tianshu_ir_rms",
+        "native"
+      ],
+      "fused_add_rms_norm": [
+        "tianshu_ir_rms",
+        "native"
+      ]
+    }
+  },
+  "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+  "server_pid": 78221,
+  "complete": true,
+  "actual_provider_records": [
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 2048,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 2048,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 1920,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 1920,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 1792,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 1792,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 1664,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 1664,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 1536,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 1536,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 1408,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 1408,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 1280,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 1280,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 1152,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 1152,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 1024,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 1024,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 992,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 992,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 960,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 960,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 928,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 928,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 896,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 896,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 864,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 864,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 832,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 832,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 800,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 800,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 768,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 768,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 736,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 736,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 704,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 704,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 672,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 672,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 640,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 640,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 608,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 608,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 576,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 576,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 544,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 544,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 512,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 512,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 496,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 496,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 480,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 480,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 464,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 464,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 448,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 448,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 432,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 432,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 416,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 416,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 400,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 400,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 384,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 384,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 368,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 368,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 352,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 352,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 336,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 336,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 320,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 320,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 304,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 304,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 288,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 288,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 272,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 272,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 256,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 256,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 248,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 248,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 240,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 240,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 232,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 232,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 224,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 224,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 216,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 216,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 208,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 208,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 200,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 200,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 192,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 192,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 184,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 184,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 176,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 176,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 168,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 168,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 160,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 160,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 152,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 152,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 144,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 144,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 136,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 136,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 128,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 128,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 120,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 120,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 112,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 112,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 104,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 104,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 96,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 96,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 88,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 88,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 80,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 80,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 72,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 72,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 16
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 64,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 8,
+        "num_stages": 1,
+        "shared": 32
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 64,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 8,
+        "num_stages": 1,
+        "shared": 32
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 56,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 8,
+        "num_stages": 1,
+        "shared": 32
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 56,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 8,
+        "num_stages": 1,
+        "shared": 32
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 48,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 8,
+        "num_stages": 1,
+        "shared": 32
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 48,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 8,
+        "num_stages": 1,
+        "shared": 32
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 40,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 8,
+        "num_stages": 1,
+        "shared": 32
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 40,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 8,
+        "num_stages": 1,
+        "shared": 32
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 32,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 8,
+        "num_stages": 1,
+        "shared": 32
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 32,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 8,
+        "num_stages": 1,
+        "shared": 32
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 24,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 8,
+        "num_stages": 1,
+        "shared": 32
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 24,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 8,
+        "num_stages": 1,
+        "shared": 32
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 16,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 8,
+        "num_stages": 1,
+        "shared": 32
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 16,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 8,
+        "num_stages": 1,
+        "shared": 32
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 8,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 8,
+        "num_stages": 1,
+        "shared": 32
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 8,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 8,
+        "num_stages": 1,
+        "shared": 32
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 4,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 8,
+        "num_stages": 1,
+        "shared": 32
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 4,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 8,
+        "num_stages": 1,
+        "shared": 32
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 2,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 8,
+        "num_stages": 1,
+        "shared": 32
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 2,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 8,
+        "num_stages": 1,
+        "shared": 32
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "normal",
+      "rows": 1,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 8,
+        "num_stages": 1,
+        "shared": 32
+      }
+    },
+    {
+      "provider": "tianshu_ir_rms",
+      "kind": "fused",
+      "rows": 1,
+      "columns": 2048,
+      "activation_dtype": "torch.bfloat16",
+      "weight_dtype": "torch.bfloat16",
+      "source_sha256": "790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c",
+      "functional_inputs_unchanged": true,
+      "native_normalized_weight_dtype_rounding_preserved": true,
+      "compiled_metadata": {
+        "num_warps": 8,
+        "num_stages": 1,
+        "shared": 32
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 4096,
+    "total_tokens": 4112,
+    "completion_tokens": 16,
+    "prompt_tokens_details": null
+  },
+  "binding_verified": true,
+  "new_independent_math_not_run": true,
+  "gpu_idle_after": true
+}
