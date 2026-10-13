@@ -1,0 +1,9 @@
+# 天数 BI-V150 32g：贪心控制192请求完成后的TopP校验错误
+
+新greedy0/p1 N64/C64/4K1K控制组3轮全部64/64成功，原始吞吐1376.025681、3845.268092、3848.234383，预排首轮后均值3846.751238。随后wrapper沿用旧随机实验的TopP非空断言而返回1，父流程phase=failed，候选没有启动。真实请求greedy argmax记录B64可证，TopP记录0符合请求路径；不能把该失败说成推理错误或伪装旧流程已完成。
+
+修复只删除推理全部结束之后的TopP记录非空要求，保留有记录时配置检查，推理/请求/其他source字节不变。7份冻结源snapshot及SHA核验，除该单一postassert delta外与当前字节一致；192实际usage4096/1024/5120和原始文本、采样参数0/1、实际argmaxB64与75warm已核验。
+
+原失败root及phase保留，全包2856269bytes/11分片，SHA256 3b7343316e3b10b1eeb91147ebb54d3af4a7fe608e17c245a5e4f72498de1293。分片/整包及192原始记录本地核验。新continue_service_pair.py在独立root复制并逐文件核验原control字节、保留原result和失败/source快照，只重建基于真实trace的75warm postvalidation字段，并只继续candidate。control_recovery_audit会明确control_reused_from、前后trial SHA和仅postassert修复，不能声称新鲜重跑控制。候选结果尚待实际完成。
+
+原件service-results/20261014_tianshu/greedy_argmax_postvalidation_failure/20261014_greedy_argmax_service_tianshu。当前正式3640.16/Math103不变，无候选吞吐新结论，无16K。此次错误和恢复依据保存供复现，避免继续对贪心强制要求TopP命中。
