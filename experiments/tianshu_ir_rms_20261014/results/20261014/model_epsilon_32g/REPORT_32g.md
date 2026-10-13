@@ -1,0 +1,9 @@
+# 天数 BI-V150 32g：实际模型epsilon1e-6独立170项通过
+
+/workspace/MiniCPM5-2B/config.json实际rms_norm_eps=1e-6；此前170项用1e-5，原结果保留，新增独立脚本读取模型配置并在所有argv/CPU reference中使用1e-6。实现函数体与注册hook不变，source SHA7b2b77bca09e5f83f722d65fe877252a9106ac7f02d24a8f612cc13d59224200。
+
+170项CPU/nativeGPU/functional alias/Graph检查全部通过；137项与native逐位一致，33项浮点差异保留。120项新provider、50项native回退，实际24种路由。完整场景及门槛同numerics_32g，未放宽tolerance，不把旧epsilon结果当作实际模型覆盖。
+
+原始包2324485bytes/9分片，SHA256 c8e99017c2f16aacd61cbf5942809d64ea7b759071372167106c2b9c70829dd5，分片/整包、170项状态及3份源快照已本地核验。原件service-results/20261014_tianshu/ir_rms_model_epsilon/20261014_ir_rms_model_epsilon_tianshu。
+
+真实模型首次启动遇到CoreX norm_quant pass缺类，关闭该pass的v2又遇到FakeTensor直接进入裸Triton调用；二者为编译/框架集成问题，不能将数值微测通过写成模型已命中。下一步使用opaque自定义算子+fake输出封装，保持编译与Graph、数学函数体和actualepsilon不变，另测其语义再独立服务重试。尚无模型吞吐/质量新分数；正式最好3506.84/Math103保留。性能剖析：TODO有效图内kernel覆盖。
