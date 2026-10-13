@@ -1,0 +1,983 @@
+{
+  "complete": true,
+  "official_benchmark": false,
+  "adoption_allowed": false,
+  "cases": [
+    {
+      "batch": 1,
+      "vocab": 130560,
+      "strided": false,
+      "pattern": "normal",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true,
+          "baseline_ms": 0.047102537155151364,
+          "candidate_ms": 0.05191115379333496,
+          "time_change_percent": 10.208827228020567,
+          "raw_ms": [
+            [
+              0.04731261730194092,
+              0.04710384845733642,
+              0.04709053993225098,
+              0.047086691856384276,
+              0.04698730945587158,
+              0.047102537155151364,
+              0.04710807800292969
+            ],
+            [
+              0.05196599960327149,
+              0.05191161632537842,
+              0.05191499710083008,
+              0.05191115379333496,
+              0.051910691261291504,
+              0.051907310485839846,
+              0.05190000057220459
+            ]
+          ]
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true,
+          "baseline_ms": 0.04707561492919922,
+          "candidate_ms": 0.012143537998199463,
+          "time_change_percent": -74.20418614507086,
+          "raw_ms": [
+            [
+              0.04729069232940674,
+              0.04709784507751465,
+              0.04707645893096924,
+              0.04703399658203125,
+              0.04707561492919922,
+              0.04703315258026123,
+              0.04699630737304687
+            ],
+            [
+              0.012054768800735473,
+              0.012216461896896362,
+              0.012143537998199463,
+              0.012094769477844238,
+              0.012192000150680542,
+              0.012245999574661255,
+              0.012140998840332031
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "batch": 1,
+      "vocab": 130560,
+      "strided": false,
+      "pattern": "zero_tie",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        }
+      ]
+    },
+    {
+      "batch": 1,
+      "vocab": 130560,
+      "strided": false,
+      "pattern": "nan_first",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "error": "AssertionError()"
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        }
+      ]
+    },
+    {
+      "batch": 1,
+      "vocab": 130560,
+      "strided": false,
+      "pattern": "infinity",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        }
+      ]
+    },
+    {
+      "batch": 1,
+      "vocab": 130560,
+      "strided": false,
+      "pattern": "negative_infinity",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        }
+      ]
+    },
+    {
+      "batch": 1,
+      "vocab": 130560,
+      "strided": false,
+      "pattern": "large",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        }
+      ]
+    },
+    {
+      "batch": 7,
+      "vocab": 130560,
+      "strided": false,
+      "pattern": "normal",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true,
+          "baseline_ms": 0.14869800567626953,
+          "candidate_ms": 0.052604999542236325,
+          "time_change_percent": -64.62292866471748,
+          "raw_ms": [
+            [
+              0.14835599899291993,
+              0.14882223129272462,
+              0.1487087631225586,
+              0.14864530563354492,
+              0.1487233066558838,
+              0.1485322380065918,
+              0.14869800567626953
+            ],
+            [
+              0.05261007785797119,
+              0.05261054039001465,
+              0.052606306076049804,
+              0.052592616081237796,
+              0.052604999542236325,
+              0.052604999542236325,
+              0.05259768962860108
+            ]
+          ]
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true,
+          "baseline_ms": 0.14873053550720214,
+          "candidate_ms": 0.014302768707275391,
+          "time_change_percent": -90.38343494259604,
+          "raw_ms": [
+            [
+              0.14864053726196289,
+              0.14873053550720214,
+              0.1488882350921631,
+              0.14879406929016115,
+              0.1485367774963379,
+              0.14866546630859376,
+              0.14884499549865723
+            ],
+            [
+              0.014331001043319701,
+              0.014302307367324829,
+              0.014291538000106812,
+              0.014308692216873168,
+              0.014281307458877563,
+              0.014307460784912109,
+              0.014302768707275391
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "batch": 7,
+      "vocab": 130560,
+      "strided": false,
+      "pattern": "zero_tie",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        }
+      ]
+    },
+    {
+      "batch": 7,
+      "vocab": 130560,
+      "strided": false,
+      "pattern": "nan_first",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "error": "AssertionError()"
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        }
+      ]
+    },
+    {
+      "batch": 7,
+      "vocab": 130560,
+      "strided": false,
+      "pattern": "infinity",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        }
+      ]
+    },
+    {
+      "batch": 7,
+      "vocab": 130560,
+      "strided": false,
+      "pattern": "negative_infinity",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        }
+      ]
+    },
+    {
+      "batch": 7,
+      "vocab": 130560,
+      "strided": false,
+      "pattern": "large",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        }
+      ]
+    },
+    {
+      "batch": 64,
+      "vocab": 130560,
+      "strided": false,
+      "pattern": "normal",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true,
+          "baseline_ms": 0.5600777053833008,
+          "candidate_ms": 0.08604299545288085,
+          "time_change_percent": -84.63731110418053,
+          "raw_ms": [
+            [
+              0.5607141494750977,
+              0.5601933670043945,
+              0.5600473022460938,
+              0.5598502349853516,
+              0.560113296508789,
+              0.5598140716552734,
+              0.5600777053833008
+            ],
+            [
+              0.08604515075683594,
+              0.08604299545288085,
+              0.0860023021697998,
+              0.08597185134887696,
+              0.08669177055358887,
+              0.08608968734741211,
+              0.08586430549621582
+            ]
+          ]
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true,
+          "baseline_ms": 0.560291519165039,
+          "candidate_ms": 0.06310584545135497,
+          "time_change_percent": -88.73696222541491,
+          "raw_ms": [
+            [
+              0.5606721496582031,
+              0.5602863693237304,
+              0.5600576019287109,
+              0.5603027725219727,
+              0.5604547882080078,
+              0.560291519165039,
+              0.5602594757080078
+            ],
+            [
+              0.06313669204711914,
+              0.06309553623199463,
+              0.06306515216827392,
+              0.06312422752380371,
+              0.06310022830963134,
+              0.06311269283294678,
+              0.06310584545135497
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "batch": 64,
+      "vocab": 130560,
+      "strided": false,
+      "pattern": "zero_tie",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        }
+      ]
+    },
+    {
+      "batch": 64,
+      "vocab": 130560,
+      "strided": false,
+      "pattern": "nan_first",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "error": "AssertionError()"
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        }
+      ]
+    },
+    {
+      "batch": 64,
+      "vocab": 130560,
+      "strided": false,
+      "pattern": "infinity",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        }
+      ]
+    },
+    {
+      "batch": 64,
+      "vocab": 130560,
+      "strided": false,
+      "pattern": "negative_infinity",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        }
+      ]
+    },
+    {
+      "batch": 64,
+      "vocab": 130560,
+      "strided": false,
+      "pattern": "large",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        }
+      ]
+    },
+    {
+      "batch": 64,
+      "vocab": 130560,
+      "strided": true,
+      "pattern": "normal",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true,
+          "baseline_ms": 0.5706351470947265,
+          "candidate_ms": 0.2029286193847656,
+          "time_change_percent": -64.43811419294173,
+          "raw_ms": [
+            [
+              0.5712480163574218,
+              0.5706775283813477,
+              0.5708897018432617,
+              0.570447006225586,
+              0.5705550003051758,
+              0.5706351470947265,
+              0.5704546737670898
+            ],
+            [
+              0.2029286193847656,
+              0.20312053680419923,
+              0.20307130813598634,
+              0.20284799575805665,
+              0.20277692794799804,
+              0.20296707153320312,
+              0.2027469253540039
+            ]
+          ]
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true,
+          "baseline_ms": 0.5706363677978515,
+          "candidate_ms": 0.07423284530639648,
+          "time_change_percent": -86.99121726277819,
+          "raw_ms": [
+            [
+              0.5708793640136719,
+              0.5706363677978515,
+              0.5705592727661133,
+              0.5708605575561524,
+              0.5706047058105469,
+              0.5704645919799805,
+              0.5707654571533203
+            ],
+            [
+              0.07434599876403808,
+              0.07423284530639648,
+              0.07421823024749756,
+              0.07425815582275391,
+              0.07435976982116699,
+              0.07421869277954102,
+              0.0741835355758667
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "batch": 64,
+      "vocab": 130560,
+      "strided": true,
+      "pattern": "zero_tie",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        }
+      ]
+    },
+    {
+      "batch": 64,
+      "vocab": 130560,
+      "strided": true,
+      "pattern": "nan_first",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "error": "AssertionError()"
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        }
+      ]
+    },
+    {
+      "batch": 64,
+      "vocab": 130560,
+      "strided": true,
+      "pattern": "infinity",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        }
+      ]
+    },
+    {
+      "batch": 64,
+      "vocab": 130560,
+      "strided": true,
+      "pattern": "negative_infinity",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        }
+      ]
+    },
+    {
+      "batch": 64,
+      "vocab": 130560,
+      "strided": true,
+      "pattern": "large",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        }
+      ]
+    },
+    {
+      "batch": 3,
+      "vocab": 13,
+      "strided": true,
+      "pattern": "normal",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true,
+          "baseline_ms": 0.01191807746887207,
+          "candidate_ms": 0.01185553789138794,
+          "time_change_percent": -0.5247455191281669,
+          "raw_ms": [
+            [
+              0.01041599988937378,
+              0.0106903076171875,
+              0.011177154779434205,
+              0.012017154693603515,
+              0.012065538167953492,
+              0.01191807746887207,
+              0.011931384801864625
+            ],
+            [
+              0.010297691822052002,
+              0.010267692804336547,
+              0.012030845880508423,
+              0.011907923221588134,
+              0.01239261507987976,
+              0.011812691688537597,
+              0.01185553789138794
+            ]
+          ]
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true,
+          "baseline_ms": 0.011969153881072997,
+          "candidate_ms": 0.01195753812789917,
+          "time_change_percent": -0.09704740443010618,
+          "raw_ms": [
+            [
+              0.012081384658813477,
+              0.011969153881072997,
+              0.012522000074386596,
+              0.01189669132232666,
+              0.011942538022994996,
+              0.01205230712890625,
+              0.011795153617858887
+            ],
+            [
+              0.012079308032989502,
+              0.011924076080322265,
+              0.011843999624252319,
+              0.01195753812789917,
+              0.01212430715560913,
+              0.012172307968139649,
+              0.011618537902832031
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "batch": 3,
+      "vocab": 13,
+      "strided": true,
+      "pattern": "zero_tie",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        }
+      ]
+    },
+    {
+      "batch": 3,
+      "vocab": 13,
+      "strided": true,
+      "pattern": "nan_first",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "error": "AssertionError()"
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        }
+      ]
+    },
+    {
+      "batch": 3,
+      "vocab": 13,
+      "strided": true,
+      "pattern": "infinity",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        }
+      ]
+    },
+    {
+      "batch": 3,
+      "vocab": 13,
+      "strided": true,
+      "pattern": "negative_infinity",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        }
+      ]
+    },
+    {
+      "batch": 3,
+      "vocab": 13,
+      "strided": true,
+      "pattern": "large",
+      "cpu_native_indices_equal": true,
+      "variants": [
+        {
+          "configuration": {
+            "provider": "explicit_flag_gems"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        },
+        {
+          "configuration": {
+            "provider": "custom"
+          },
+          "cpu_native_and_graph_exact": true,
+          "input_bytes_unchanged": true,
+          "RNG_unchanged": true
+        }
+      ]
+    }
+  ],
+  "baseline": "Actual Sampler.greedy_sample => torch.argmax, standalone provider; model binding not yet proven",
+  "source_sha256": "23ace17a292f4f20ce2a8b69c3f65146af023cac352281bdda3143035e4f01d0",
+  "argmax_cuda_registration": "Undefined: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nCPU: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCPU_0.cpp:1793 [kernel]\nCUDA: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCUDA_0.cpp:3388 [kernel]\nHIP: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nMPS: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nIPU: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nXPU: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nHPU: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nVE: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nMTIA: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nMAIA: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nPrivateUse1: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nPrivateUse2: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nPrivateUse3: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nMeta: registered at /usr/local/lib/python3.12/site-packages/torch/_meta_registrations.py:51 [kernel]\nFPGA: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nVulkan: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nMetal: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nQuantizedCPU: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nQuantizedCUDA: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nQuantizedHIP: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nQuantizedMPS: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nQuantizedIPU: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nQuantizedXPU: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nQuantizedHPU: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nQuantizedVE: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nQuantizedMTIA: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nQuantizedMAIA: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nQuantizedPrivateUse1: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nQuantizedPrivateUse2: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nQuantizedPrivateUse3: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nQuantizedMeta: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nCustomRNGKeyId: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nMkldnnCPU: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nSparseCsrCPU: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nSparseCsrCUDA: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nSparseCsrHIP: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nSparseCsrMPS: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nSparseCsrIPU: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nSparseCsrXPU: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nSparseCsrHPU: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nSparseCsrVE: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nSparseCsrMTIA: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nSparseCsrMAIA: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nSparseCsrPrivateUse1: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nSparseCsrPrivateUse2: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nSparseCsrPrivateUse3: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nSparseCsrMeta: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeExplicitAutogradNonFunctional_0.cpp:1824 [default backend kernel]\nBackendSelect: fallthrough registered at /home/corex/sw_home/apps/pytorch/aten/src/ATen/core/BackendSelectFallbackKernel.cpp:3 [backend fallback]\nPython: registered at /home/corex/sw_home/apps/pytorch/aten/src/ATen/core/PythonFallbackKernel.cpp:198 [backend fallback]\nFuncTorchDynamicLayerBackMode: registered at /home/corex/sw_home/apps/pytorch/aten/src/ATen/functorch/DynamicLayer.cpp:477 [backend fallback]\nFunctionalize: registered at /home/corex/sw_home/apps/pytorch/aten/src/ATen/FunctionalizeFallbackKernel.cpp:384 [backend fallback]\nNamed: registered at /home/corex/sw_home/apps/pytorch/aten/src/ATen/core/NamedRegistrations.cpp:5 [backend fallback]\nConjugate: registered at /home/corex/sw_home/apps/pytorch/aten/src/ATen/ConjugateFallback.cpp:17 [backend fallback]\nNegative: registered at /home/corex/sw_home/apps/pytorch/aten/src/ATen/native/NegateFallback.cpp:18 [backend fallback]\nZeroTensor: registered at /home/corex/sw_home/apps/pytorch/aten/src/ATen/ZeroTensorFallback.cpp:115 [backend fallback]\nADInplaceOrView: fallthrough registered at /home/corex/sw_home/apps/pytorch/aten/src/ATen/core/VariableFallbackKernel.cpp:103 [backend fallback]\nAutogradOther: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/VariableType_0.cpp:18396 [autograd kernel]\nAutogradCPU: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/VariableType_0.cpp:18396 [autograd kernel]\nAutogradCUDA: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/VariableType_0.cpp:18396 [autograd kernel]\nAutogradHIP: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/VariableType_0.cpp:18396 [autograd kernel]\nAutogradXLA: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/VariableType_0.cpp:18396 [autograd kernel]\nAutogradMPS: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/VariableType_0.cpp:18396 [autograd kernel]\nAutogradIPU: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/VariableType_0.cpp:18396 [autograd kernel]\nAutogradXPU: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/VariableType_0.cpp:18396 [autograd kernel]\nAutogradHPU: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/VariableType_0.cpp:18396 [autograd kernel]\nAutogradVE: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/VariableType_0.cpp:18396 [autograd kernel]\nAutogradLazy: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/VariableType_0.cpp:18396 [autograd kernel]\nAutogradMTIA: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/VariableType_0.cpp:18396 [autograd kernel]\nAutogradMAIA: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/VariableType_0.cpp:18396 [autograd kernel]\nAutogradPrivateUse1: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/VariableType_0.cpp:18396 [autograd kernel]\nAutogradPrivateUse2: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/VariableType_0.cpp:18396 [autograd kernel]\nAutogradPrivateUse3: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/VariableType_0.cpp:18396 [autograd kernel]\nAutogradMeta: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/VariableType_0.cpp:18396 [autograd kernel]\nAutogradNestedTensor: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/VariableType_0.cpp:18396 [autograd kernel]\nTracer: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/TraceType_0.cpp:17365 [kernel]\nAutocastCPU: fallthrough registered at /home/corex/sw_home/apps/pytorch/aten/src/ATen/autocast_mode.cpp:324 [backend fallback]\nAutocastMTIA: fallthrough registered at /home/corex/sw_home/apps/pytorch/aten/src/ATen/autocast_mode.cpp:468 [backend fallback]\nAutocastMAIA: fallthrough registered at /home/corex/sw_home/apps/pytorch/aten/src/ATen/autocast_mode.cpp:506 [backend fallback]\nAutocastXPU: fallthrough registered at /home/corex/sw_home/apps/pytorch/aten/src/ATen/autocast_mode.cpp:544 [backend fallback]\nAutocastMPS: fallthrough registered at /home/corex/sw_home/apps/pytorch/aten/src/ATen/autocast_mode.cpp:209 [backend fallback]\nAutocastCUDA: fallthrough registered at /home/corex/sw_home/apps/pytorch/aten/src/ATen/autocast_mode.cpp:165 [backend fallback]\nFuncTorchBatched: registered at /home/corex/sw_home/apps/pytorch/aten/src/ATen/functorch/BatchRulesReduceOps.cpp:449 [kernel]\nBatchedNestedTensor: registered at /home/corex/sw_home/apps/pytorch/aten/src/ATen/functorch/LegacyBatchingRegistrations.cpp:754 [backend fallback]\nFuncTorchVmapMode: fallthrough registered at /home/corex/sw_home/apps/pytorch/aten/src/ATen/functorch/VmapModeRegistrations.cpp:22 [backend fallback]\nBatched: registered at /home/corex/sw_home/apps/pytorch/aten/src/ATen/LegacyBatchingRegistrations.cpp:1072 [backend fallback]\nVmapMode: fallthrough registered at /home/corex/sw_home/apps/pytorch/aten/src/ATen/VmapModeRegistrations.cpp:32 [backend fallback]\nFuncTorchGradWrapper: registered at /home/corex/sw_home/apps/pytorch/aten/src/ATen/functorch/TensorWrapper.cpp:210 [backend fallback]\nPythonTLSSnapshot: registered at /home/corex/sw_home/apps/pytorch/aten/src/ATen/core/PythonFallbackKernel.cpp:206 [backend fallback]\nFuncTorchDynamicLayerFrontMode: registered at /home/corex/sw_home/apps/pytorch/aten/src/ATen/functorch/DynamicLayer.cpp:473 [backend fallback]\nPreDispatch: registered at /home/corex/sw_home/apps/pytorch/aten/src/ATen/core/PythonFallbackKernel.cpp:210 [backend fallback]\nPythonDispatcher: registered at /home/corex/sw_home/apps/pytorch/aten/src/ATen/core/PythonFallbackKernel.cpp:202 [backend fallback]\n",
+  "flag_gems_source": "/usr/local/lib/python3.12/site-packages/flag_gems/ops/argmax.py",
+  "flag_gems_sha256": "646a6e1cf1a8b1b9d24fb772b3e09e1f7bdea2f0449167ba9abfafaaf23576c8",
+  "numerical_checks_passed": false
+}
