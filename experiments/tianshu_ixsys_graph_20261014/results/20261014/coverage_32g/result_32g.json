@@ -1,0 +1,50 @@
+{
+  "phase": "complete",
+  "runner_pid": 75121,
+  "official_benchmark": false,
+  "adopted": false,
+  "command": [
+    "/usr/local/corex/bin/ixsys",
+    "-t",
+    "cuda",
+    "-o",
+    "/workspace/benchmark-results/20261014_ixsys_graph_coverage_tianshu/trace",
+    "--profile-from-start",
+    "off",
+    "--print-gpu-summary",
+    "--print-gpu-trace",
+    "python3",
+    "-u",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_ixsys_graph_20261014/probe_coverage.py",
+    "--output",
+    "/workspace/benchmark-results/20261014_ixsys_graph_coverage_tianshu/workload"
+  ],
+  "profiler_coverage_verified": false,
+  "stop_at_utc": "2026-10-14T15:58:00+00:00",
+  "source_hashes": {
+    "run_coverage.py": "0d3289244e1c29695d53883bad57388eb21a10eb3fb8c8e87062b1574ed57c0c",
+    "probe_coverage.py": "0058f4dd59e411d957042954e39e72c57861a20b21c5fd8f7693352757c625da"
+  },
+  "child_pid": 75166,
+  "ixsys_exit_code": 0,
+  "complete": true,
+  "workload": {
+    "complete": true,
+    "official_benchmark": false,
+    "adopted": false,
+    "scope": "Profiler coverage probe, not model performance",
+    "graph_replays_inside_profiler_range": 20,
+    "expected_device_kernel_calls": {
+      "tianshu_coverage_add": 20,
+      "tianshu_coverage_mul": 20
+    },
+    "graph_output_correct": true,
+    "profiler_coverage_verified": false,
+    "compiled_kernel_names": [
+      "tianshu_coverage_add",
+      "tianshu_coverage_mul"
+    ],
+    "torch_version": "2.10.0"
+  },
+  "gpu_idle_after": true
+}

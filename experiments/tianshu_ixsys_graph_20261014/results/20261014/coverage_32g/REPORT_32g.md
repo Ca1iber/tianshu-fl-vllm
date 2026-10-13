@@ -1,0 +1,11 @@
+# 天数 BI-V150 32g：IXsys覆盖Graph整体，未覆盖内部kernel
+
+已知工作负载每个Graph包含两个独立Triton kernel，cuProfilerStart后20次replay，意图验证20+20个内部device事件。IXsys以-t cuda、profile-from-start off启动，原始CLI输出GPU summary/trace；程序输出CPU精确校验通过，工具和工作负载退出码均0。
+
+实际原始SQLite：cuda_graph_data=20、cuda_kernel_data=0、cuda_api_data=184，20个Graph duration都>0。整段Graph replay计时和次数可验证；内部两个kernel的40次事件没有被记录，不能据此得到norm/attention/GEMM的图内独立耗时占比。CLI summary只报告CUDA Graph 1共20次，与SQLite一致。原结果profiler_coverage_verified=false保留，独立coverage_audit区分whole-Graph true与internal-kernel false。
+
+这与external=True事件读取旧时间戳是两个不同的证据：IXsys确实给出了GPU Graph整体事件，仍未获得内部kernel覆盖。以后可用整图对照验证改动，也可用于Host/Graph整体耗时排查；不得用非Graph旧profile的比例代替当前Graph内部真实比例。
+
+原始包2338823bytes/9分片，SHA256 0d19fb14d4e93a33797f6053432bc168fc9e9f6902f0ed9c11c4355a15f11fef；整包/分片、trace SHA 80b2f7c9d66555bc567d3a381d0ccd08a041dffdc6a512956e1c3b5c7d6a2808、SQLite三张表、源2文件和两份result/audit均本地核验。原件service-results/20261014_tianshu/ixsys_graph_coverage/20261014_ixsys_graph_coverage_tianshu；原始trace466944bytes，CLI帮助及版本同包保存。
+
+结论：工具可追踪Graph整体，但本测试没有完整内部kernel性能剖析；TODO其他覆盖方式。纯诊断不计模型分数。当前正式最好3506.84/TTFT4494.12/Math103仍保留，tag tianshu-best-topp-w16-20261014；后续优化转向实际vLLM IR native RMS调用路径。安装源与权重不变、沐曦只读。
