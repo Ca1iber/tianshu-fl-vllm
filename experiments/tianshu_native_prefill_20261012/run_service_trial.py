@@ -36,6 +36,7 @@ def main():
     parser.add_argument('--hist-count-bits',choices=['off','64','32','16','8'],default='off')
     parser.add_argument('--decode-graph-max',type=int,choices=[0,64],default=0)
     parser.add_argument('--sort-buffer-mode',choices=['original','index32','scan32','both32'],default='original')
+    parser.add_argument('--address32',choices=['0','1'],default='0')
     parser.add_argument('--request-timeout',type=int,default=900)
     parser.add_argument('--concurrency', type=int, default=64)
     parser.add_argument('--requests', type=int, default=64)
@@ -116,6 +117,14 @@ def main():
     else:
         env.pop('TIANSHU_SORT_BUFFER_MODE',None)
         env.pop('TIANSHU_SORT_BUFFER_RECORD_DIR',None)
+    if args.address32=='1':
+        assert args.hist_count_bits=='off' and args.decode_graph_max==0 and args.sort_buffer_mode=='original' and args.bucket_trace=='2'
+        env['PYTHONPATH']=str(Path(__file__).resolve().parents[1]/'tianshu_attention_offsets_20261013/hooks')
+        env['TIANSHU_ADDRESS32_PROBE']='1'
+        env['TIANSHU_ADDRESS32_RECORD_DIR']=str(out/'address32_records')
+    else:
+        env.pop('TIANSHU_ADDRESS32_PROBE',None)
+        env.pop('TIANSHU_ADDRESS32_RECORD_DIR',None)
     command = ['vllm', 'serve', '/workspace/MiniCPM5-2B', '--port', '9031',
                '--compilation-config', '{"cudagraph_mode": "FULL_DECODE_ONLY"}',
                '--served-model-name', 'minicpm', '--gpu-memory-utilization', '0.85',
@@ -135,6 +144,7 @@ def main():
                  watermark=args.watermark, histogram_count_bits=args.hist_count_bits,
                  decode_graph_max=args.decode_graph_max,
                  sort_buffer_mode=args.sort_buffer_mode,
+                 address32=args.address32,
                  official_benchmark=False)
     state['stream_interval']=args.stream_interval
     server = None
@@ -298,6 +308,13 @@ def main():
             for name,path in paths.items():
                 contents=path.read_bytes();(source_dir/name).write_bytes(contents)
                 state['sort_buffer_sources'][name]={'path':str(path),'sha256':hashlib.sha256(contents).hexdigest()}
+        if args.address32=='1':
+            paths={'address32_sitecustomize.py':Path(env['PYTHONPATH'])/'sitecustomize.py',
+                   'address32.py':Path(__file__).resolve().parents[1]/'tianshu_attention_offsets_20261013/address32.py'}
+            state['address32_sources']={}
+            for name,path in paths.items():
+                contents=path.read_bytes();(source_dir/name).write_bytes(contents)
+                state['address32_sources'][name]={'path':str(path),'sha256':hashlib.sha256(contents).hexdigest()}
         (source_dir/'run_service_trial.py').write_bytes(Path(__file__).read_bytes())
         save()
         with (out / 'server.log').open('w') as log:
@@ -398,6 +415,10 @@ def main():
             records=[json.loads(f.read_text()) for f in (out/'sort_buffer_records').glob('route_*.json')]
             assert records and all(r['public_index_dtype']=='torch.int64' for r in records)
             state['sort_buffer_routing_records']=records
+        if args.address32=='1':
+            records=[json.loads(f.read_text()) for f in (out/'address32_records').glob('route_*.json')]
+            assert records and all(4<=r['batch']<=48 and max(r['bounds'])<2**31 for r in records)
+            state['address32_routing_records']=records
 
         state['phase'] = 'complete'
     except StopRequested as error:

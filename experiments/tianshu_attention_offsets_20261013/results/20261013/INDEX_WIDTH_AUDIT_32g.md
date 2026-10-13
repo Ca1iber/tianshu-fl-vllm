@@ -16,3 +16,5 @@
 独立框架发现：冷首轮CPU栈主要在FlagGems配置读取的SQLAlchemy全库反射。自己的算子仓库已在本地Python3.13、真实只读902表快照核验只反射目标表，配置等价，现有表约4–5ms vs全库1.5–1.99s，缺失表直接返回约1.2ms。这里只是本地CPU证据，尚无天数服务收益；未混入attention对照，未更改缓存配置值或pool key。
 
 证据路径：hist服务 `tianshu_sort_counts_20261013/results/20261013/service_32g`；index服务 `tianshu_sort_buffers_20261013/results/20261013/service_32g`；offset真实参数 `tianshu_attention_offsets_20261013/results/20261013/bf16_descales_32g`；SQL在自己的ops仓库 `tianshu_sql_reflection_20261013/results/20261013/local_cpu_v2`。所有沐曦仓库只读参考。原benchmark SHA保持0813eba574e9d1eb50c297c515baa426da1bcb61ce8c78a398b482f246005565。
+
+13:47更新：地址32服务三轮全部完成，计分 2393.194947→2562.170850，+7.060683%，候选计分轮波动0.118906%。30种实际路由、384吞吐成功、7greedy相同，全部raw已本地SHA核验。见service_32g报告；新Math和正式成绩仍待完成。
