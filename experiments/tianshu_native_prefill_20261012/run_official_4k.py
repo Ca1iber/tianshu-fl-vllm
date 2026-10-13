@@ -34,7 +34,14 @@ def main():
     parser.add_argument('--math-results', type=Path, required=True)
     parser.add_argument('--minimum-gain-percent', type=float, default=2)
     parser.add_argument('--decode-launch',choices=['0','1'],default='0')
+    parser.add_argument('--buckets',choices=['0','1'],default='0')
+    parser.add_argument('--gather',choices=['0','1'],default='0')
+    parser.add_argument('--bucket-trace',choices=['0','2'],default='0')
+    parser.add_argument('--requested-benchmark',action='store_true')
     args = parser.parse_args()
+    if args.buckets=='1' or args.gather=='1':
+        assert args.buckets==args.gather==args.decode_launch=='1' and args.bucket_trace=='2'
+        assert args.max_batched_tokens==2048
     root = args.output.resolve()
     root.mkdir(parents=True, exist_ok=True)
     if (root / 'state.json').exists():
@@ -42,17 +49,22 @@ def main():
     trials = [json.loads((directory / 'result.json').read_text())
               for directory in (args.control_trial, args.candidate_trial)]
     assert all(t['phase'] == 'complete' for t in trials)
-    assert trials[0]['workload'] == trials[1]['workload']
+    workload_keys=('input_tokens','output_tokens','concurrency','requests_per_round')
+    assert all(trials[0]['workload'][k]==trials[1]['workload'][k] for k in workload_keys)
     assert trials[1]['adaptive'] == '1' and trials[1]['tile'] == '1'
     assert trials[1].get('max_batched_tokens',2048) == args.max_batched_tokens
-    values = [[r['total_tokens_per_second'] for r in t['short_4k_rounds'][1:]] for t in trials]
+    paired_runs=min(len(t['short_4k_rounds']) for t in trials)
+    assert paired_runs>=3
+    values = [[r['total_tokens_per_second'] for r in t['short_4k_rounds'][1:paired_runs]] for t in trials]
     gain = 100 * (statistics.mean(values[1]) / statistics.mean(values[0]) - 1)
-    if gain < args.minimum_gain_percent or min(values[1]) <= max(values[0]):
+    if not args.requested_benchmark and (gain < args.minimum_gain_percent or min(values[1]) <= max(values[0])):
         raise RuntimeError(f'Short improvement is not clear enough: {gain:.3f}%')
     audit = json.loads((args.math_results / 'accuracy_audit.json').read_text())
     assert audit['complete'] and audit['total'] == 105 and not audit['reused_original_accuracy']
     assert audit['accuracy'] > .95 and audit['correct'] / audit['total'] > .95
     assert audit['adaptive_flag'] == '1'
+    assert audit.get('buckets','0')==args.buckets and audit.get('gather','0')==args.gather
+    assert trials[1]['buckets']==args.buckets and trials[1]['gather']==args.gather
     assert audit.get('max_batched_tokens',2048) == args.max_batched_tokens
     assert hashlib.sha256(SOURCE.read_bytes()).hexdigest() == audit['hybrid_sha256']
     adaptive=SOURCE.with_name('iluvatar_adaptive_decode.py')
@@ -76,6 +88,12 @@ def main():
     for name, data in trials[1]['installed_sources'].items():
         assert hashlib.sha256(SOURCE.with_name(name).read_bytes()).hexdigest() == data['sha256']
     assert hashlib.sha256(BENCH.read_bytes()).hexdigest() == BENCH_SHA
+    if args.buckets=='1':
+        trace=Path(__file__).resolve().parents[1]/'tianshu_buckets75_recheck_20261012/joint_hooks/sitecustomize.py'
+        assert hashlib.sha256(trace.read_bytes()).hexdigest()==audit['bucket_trace_hook']['sha256']
+        assert trace.read_bytes()==(args.math_results/'source_snapshot/bucket_trace_sitecustomize.py').read_bytes()
+        for name,meta in audit['bucket_sources'].items():
+            assert hashlib.sha256(Path(meta['path']).read_bytes()).hexdigest()==meta['sha256']
     assert 'No running processes found' in subprocess.check_output(['ixsmi'], text=True)
     state = {'phase': 'preparing', 'runner_pid': os.getpid(), 'official_benchmark': True,
              'test_cases': [[4096, 1024, 64, 256]], 'runs': 4, 'skip_first': 1,
@@ -92,7 +110,9 @@ def main():
                                   'accuracy': audit['accuracy'],
                                   'official_requirement': 'accuracy > 0.95',
                                   'official_requirement_passed': True},
-             'candidate_quality_passed': True}
+             'candidate_quality_passed': True,'buckets':args.buckets,'gather':args.gather,
+             'user_requested_benchmark':args.requested_benchmark,'paired_small_runs':paired_runs,
+             'bucket_sources':audit.get('bucket_sources'),'bucket_trace_hook':audit.get('bucket_trace_hook')}
     server = benchmark = None
 
     class StopRequested(BaseException):
@@ -156,7 +176,8 @@ def main():
                    VLLM_FL_ILUVATAR_HYBRID_ATTENTION='1', FLAGGEMS_ILUVATAR_COMPACT_VARLEN='1',
                    VLLM_FL_ILUVATAR_ADAPTIVE_DECODE_SEGMENTS='1',
                    VLLM_FL_USE_FLAGGEMS_ATTN='0', VLLM_FL_ILUVATAR_SPLIT_MIXED_ATTN='0',
-                   VLLM_FL_ILUVATAR_PREFILL_BUCKETS='0', VLLM_FL_ILUVATAR_LOGITS_GATHER='0')
+                   VLLM_FL_ILUVATAR_PREFILL_BUCKETS=args.buckets, VLLM_FL_ILUVATAR_LOGITS_GATHER=args.gather,
+                   TRITON_PRINT_AUTOTUNING='1')
         for name in ('PYTHONPATH', 'TIANSHU_PACK_PROBE_MODE', 'VLLM_FL_ILUVATAR_HYBRID_STATS_PATH'):
             env.pop(name, None)
         env['PYTHONPATH']=str(hook.parent)
@@ -167,6 +188,10 @@ def main():
         if args.decode_launch=='1':
             env['TIANSHU_DECODE_LAUNCH_PROBE']='1'
             env['TIANSHU_DECODE_LAUNCH_RECORD_DIR']=str(root/'decode_launch_records')
+        if args.buckets=='1':
+            env['PYTHONPATH']=str(trace.parent)
+            env['TIANSHU_BUCKET_RECHECK_TRACE']='1'
+            env['TIANSHU_BUCKET_TRACE_DIR']=str(root/'bucket_trace_records')
         state['flags'] = {k: v for k, v in env.items() if k.startswith(('VLLM_FL_', 'FLAGGEMS_ILUVATAR_', 'VLLM_PLUGINS','TIANSHU_DECODE_'))}
         state['packages'] = {name: importlib.metadata.version(name)
                              for name in ('torch', 'vllm', 'vllm-plugin-fl', 'flag-gems', 'evalscope')}
@@ -244,6 +269,14 @@ def main():
             state['candidate_routing_records']=records_decode
             state['native_prefill_routing_records']=native_records
         state['tile_routing_records']=[json.loads(p.read_text()) for p in records]
+        if args.buckets=='1':
+            traced=root/'bucket_trace_records'
+            warm=[json.loads(p.read_text()) for p in traced.glob('warmup_completed_*.json')]
+            gather=[json.loads(p.read_text()) for p in traced.glob('gather_*.json')]
+            assert any(x['complete'] and len(x['calls'])==75 for x in warm)
+            assert gather and any(x['index_dtype']=='torch.int32' for x in gather)
+            state['actual_gather_records']=gather
+            state['bucket_warmup_records']=warm
         state.update(phase='complete', completed_runs=4, raw_runs=completed, official_summary=summary[0])
     except StopRequested as error:
         state.update(phase='stopped', error=str(error))

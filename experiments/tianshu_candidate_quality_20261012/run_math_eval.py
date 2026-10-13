@@ -20,11 +20,18 @@ def main():
     parser.add_argument('--adaptive',choices=['1'],default='1')
     parser.add_argument('--candidate',choices=['small-gemm','prefill-gemm','sampler','native-prefill','decode-launch'],required=True)
     parser.add_argument('--max-batched-tokens',type=int,choices=[2048,4096,8192],default=2048)
+    parser.add_argument('--buckets',choices=['0','1'],default='0')
+    parser.add_argument('--gather',choices=['0','1'],default='0')
+    parser.add_argument('--bucket-trace',choices=['0','2'],default='0')
     args=parser.parse_args();root=args.output.resolve();root.mkdir(parents=True,exist_ok=True)
+    if args.buckets=='1' or args.gather=='1' or args.bucket_trace!='0':
+        assert args.candidate=='decode-launch' and args.max_batched_tokens==2048
+        assert args.gather!='1' or args.buckets=='1'
+        assert args.bucket_trace=='0' or args.buckets==args.gather=='1'
     if args.candidate not in ('native-prefill','decode-launch') and args.max_batched_tokens!=2048:
         parser.error('GEMM/sampler candidates require their independently controlled budget2048 profile')
     if (root/'result.json').exists():raise RuntimeError('Refusing to overwrite a completed evaluation')
-    state={'max_batched_tokens':args.max_batched_tokens,'phase':'preparing','candidate':f'hybrid_adaptive_fa2_tile128_budget{args.max_batched_tokens}_{args.candidate}','reused_original_accuracy':False,
+    state={'buckets':args.buckets,'gather':args.gather,'max_batched_tokens':args.max_batched_tokens,'phase':'preparing','candidate':f'hybrid_adaptive_fa2_tile128_budget{args.max_batched_tokens}_{args.candidate}','reused_original_accuracy':False,
            'started_utc':datetime.now(timezone.utc).isoformat(),'runner_pid':os.getpid()}
     server=evaluator=None
     stop_at=datetime.fromisoformat(json.loads(Path('/workspace/benchmark-results/20261011_121020_baseline_tianshu/reservation_deadline.json').read_text())['stop_at_utc'])
@@ -58,7 +65,7 @@ def main():
         if 'No running processes found' not in hardware:raise RuntimeError('GPU not idle')
         env=dict(os.environ,VLLM_PLUGINS='fl',VLLM_FL_USE_FLAGGEMS_ATTN='0',
             FLAGGEMS_ILUVATAR_COMPACT_VARLEN='1',VLLM_FL_ILUVATAR_SPLIT_MIXED_ATTN='0',
-            VLLM_FL_ILUVATAR_PREFILL_BUCKETS='0',VLLM_FL_ILUVATAR_LOGITS_GATHER='0',
+            VLLM_FL_ILUVATAR_PREFILL_BUCKETS=args.buckets,VLLM_FL_ILUVATAR_LOGITS_GATHER=args.gather,TRITON_PRINT_AUTOTUNING='1',
             VLLM_FL_ILUVATAR_HYBRID_ATTENTION='1',VLLM_FL_ILUVATAR_ADAPTIVE_DECODE_SEGMENTS=args.adaptive,VLLM_FL_ILUVATAR_HYBRID_STATS_PATH=str(root/'routing_stats.json'))
         env.pop('PYTHONPATH',None);env.pop('TIANSHU_PACK_PROBE_MODE',None)
         base=Path(__file__).resolve().parents[1]
@@ -82,6 +89,12 @@ def main():
         env['TIANSHU_FA2_TILE_RECORD_DIR']=str(root/'tile_records')
         state['tile_hook']={'path':str(hook),'sha256':hashlib.sha256(hook.read_bytes()).hexdigest()}
         state['tile_configuration']={'BLOCK_M':128,'BLOCK_N':128,'num_warps':8,'num_stages':2}
+        if args.bucket_trace=='2':
+            trace=base/'tianshu_buckets75_recheck_20261012/joint_hooks/sitecustomize.py'
+            env['PYTHONPATH']=str(trace.parent)
+            env['TIANSHU_BUCKET_RECHECK_TRACE']='1'
+            env['TIANSHU_BUCKET_TRACE_DIR']=str(root/'bucket_trace_records')
+            state['bucket_trace_hook']={'path':str(trace),'sha256':hashlib.sha256(trace.read_bytes()).hexdigest()}
         command=['vllm','serve','/workspace/MiniCPM5-2B','--port','9031',
             '--compilation-config','{"cudagraph_mode":"FULL_DECODE_ONLY"}',
             '--served-model-name','minicpm','--gpu-memory-utilization','0.85','--max-model-len','131072']
@@ -111,6 +124,15 @@ def main():
         for name in ('worker.py','iluvatar_hybrid_attention.py','iluvatar_adaptive_decode.py'):
             current=source.with_name(name);contents=current.read_bytes();(snapshots/name).write_bytes(contents)
             if name=='worker.py':state['worker_sha256']=hashlib.sha256(contents).hexdigest()
+        if args.buckets=='1':
+            state['bucket_sources']={}
+            for name in ('model_runner.py','iluvatar_prefill_buckets.py','iluvatar_logits_gather.py'):
+                current=source.with_name(name);contents=current.read_bytes();(snapshots/name).write_bytes(contents)
+                state['bucket_sources'][name]={'path':str(current),'sha256':hashlib.sha256(contents).hexdigest()}
+        if args.bucket_trace=='2':
+            (snapshots/'bucket_trace_sitecustomize.py').write_bytes(trace.read_bytes())
+            (snapshots/'bucket_component_sitecustomize.py').write_bytes((base/'tianshu_buckets75_recheck_20261012/hooks/sitecustomize.py').read_bytes())
+        state['environment_flags']={k:v for k,v in env.items() if k.startswith(('VLLM_FL_','TIANSHU_','TRITON_PRINT_'))}
         with (root/'server.log').open('w') as log:
             server=subprocess.Popen(command,cwd='/workspace',env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
         state.update(phase='starting',server_pid=server.pid);save();limit=time.monotonic()+2400

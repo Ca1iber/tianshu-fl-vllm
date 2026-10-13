@@ -24,6 +24,14 @@ def main():
     assert not quality['reused_original_accuracy'] and quality['experimental_candidate']==state['experimental_candidate']
     assert state['candidate_hook']==quality['candidate_hook']
     assert state['experimental_kernel']==quality['experimental_kernel']
+    assert state.get('buckets','0')==quality.get('buckets','0')
+    assert state.get('gather','0')==quality.get('gather','0')
+    assert state['max_batched_tokens']==quality['max_batched_tokens']
+    if state.get('buckets')=='1':
+        assert state['bucket_sources']==quality['bucket_sources']
+        assert state['bucket_trace_hook']==quality['bucket_trace_hook']
+        assert state['actual_gather_records'] and any(x['index_dtype']=='torch.int32' for x in state['actual_gather_records'])
+        assert any(x['complete'] and len(x['calls'])==75 for x in state['bucket_warmup_records'])
     rows=state['raw_runs'];assert len(rows)==4
     for row in rows:
         assert row['Run Status']=='SUCCESS' and int(float(row['Successful Requests']))==256
@@ -61,7 +69,10 @@ def main():
         'postfirst_spread_percent':100*(max(values)-min(values))/statistics.mean(values),
         'adopt_as_best':total>args.previous_best_tok_s,'profile':f"Hybrid +adaptive Decode{' KV16/w4/s1' if is_decode else ''} +native GQA Prefill M256/KV128/w16/s1, L0, budget{state['max_batched_tokens']}",
         'candidate_hook':quality['candidate_hook'],'experimental_kernel':quality['experimental_kernel'],
+        'buckets':state.get('buckets','0'),'gather':state.get('gather','0'),
+        'bucket_sources':quality.get('bucket_sources'),'bucket_trace_hook':quality.get('bucket_trace_hook'),
         'optimized_full_16k_not_run':True}
+    if state.get('buckets')=='1':result['profile']+=' +75point Prefill buckets +fixed last-token gather'
     (root/'comparison.json').write_text(json.dumps(result,indent=2)+'\n')
     lines=['# 天数原生 GQA 预填充正式4K结果','',
         f"完整四轮排除首轮，均值{total:.2f}total tok/s、{result['output_tok_s']:.2f}output tok/s、TTFT{ttft:.2f}ms。对应独立Math{quality['correct']}/105（{quality['accuracy']*100:.6f}%），严格>95%。四轮均256/256成功，总计1024请求。",'',

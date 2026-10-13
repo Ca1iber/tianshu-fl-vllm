@@ -50,8 +50,22 @@ def main():
         assert all(x['configuration']=={'TILE_SIZE':16,'num_warps':4,'num_stages':1} for x in routes)
         assert state['native_prefill_routing_records'] and all(x['kernel_sha256']==state['zero_generator']['sha256']
             for x in state['native_prefill_routing_records'])
+    if state.get('buckets','0')=='1':
+        assert state['environment_flags']['VLLM_FL_ILUVATAR_PREFILL_BUCKETS']=='1'
+        for name,meta in state['bucket_sources'].items():
+            assert hashlib.sha256((root/'source_snapshot'/name).read_bytes()).hexdigest()==meta['sha256']
+        traces=root/'bucket_trace_records'
+        configured=[json.loads(p.read_text()) for p in traces.glob('configured_*.json')]
+        warmed=[json.loads(p.read_text()) for p in traces.glob('warmup_completed_*.json')]
+        assert any(x['enabled'] and len(x['points'])==75 for x in configured)
+        assert any(x['complete'] and len(x['calls'])==75 for x in warmed)
+        if state.get('gather')=='1':
+            gather=[json.loads(p.read_text()) for p in traces.glob('gather_*.json')]
+            assert gather and any(x['index_dtype']=='torch.int32' for x in gather)
     audit = {
         'experimental_candidate':state['experimental_candidate'],
+        'buckets':state.get('buckets','0'),'gather':state.get('gather','0'),
+        'bucket_sources':state.get('bucket_sources'),'bucket_trace_hook':state.get('bucket_trace_hook'),
         'candidate_hook':state['candidate_hook'],
         'experimental_kernel':state['experimental_kernel'],
         'candidate_routing_records':routes,
