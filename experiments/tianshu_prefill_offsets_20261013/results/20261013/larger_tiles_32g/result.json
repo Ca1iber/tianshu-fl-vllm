@@ -1,0 +1,565 @@
+{
+  "complete": true,
+  "official_benchmark": false,
+  "adopted": false,
+  "installed_sources_modified": false,
+  "baseline": [
+    256,
+    128,
+    16,
+    1
+  ],
+  "source": {
+    "offset_bits": 64,
+    "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+    "float_body_L0_preserved": true,
+    "pointer_types_unmodified": true,
+    "stride_annotations_changed": 0,
+    "offset_casts_changed": 0
+  },
+  "cases": [
+    {
+      "query_lengths": [
+        2048
+      ],
+      "kv_lengths": [
+        2048
+      ],
+      "variants": [
+        {
+          "label": "m256_n128_w16_s1",
+          "configuration": [
+            256,
+            128,
+            16,
+            1
+          ],
+          "vs_fp32": {
+            "passed": true,
+            "max_abs": 0.00829172134399414,
+            "mean_abs": 0.00011412108869990334,
+            "relative_rms": 0.0020337088499218225,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "padded_tail_preserved": true,
+          "numerical_passed": true,
+          "raw_ms": [
+            0.6876299858093262,
+            0.6874340534210205,
+            0.6870923042297363,
+            0.6871821403503418,
+            0.6869549751281738,
+            0.6869646072387695,
+            0.6873096466064453
+          ],
+          "median_ms": 0.6871821403503418
+        },
+        {
+          "label": "m512_n128_w16_s1",
+          "configuration": [
+            512,
+            128,
+            16,
+            1
+          ],
+          "numerical_passed": false,
+          "error": "OutOfResources(196608, 131072, 'shared memory')"
+        },
+        {
+          "label": "m512_n64_w16_s1",
+          "configuration": [
+            512,
+            64,
+            16,
+            1
+          ],
+          "numerical_passed": false,
+          "error": "OutOfResources(163840, 131072, 'shared memory')"
+        },
+        {
+          "label": "m256_n256_w16_s1",
+          "configuration": [
+            256,
+            256,
+            16,
+            1
+          ],
+          "numerical_passed": false,
+          "error": "OutOfResources(196608, 131072, 'shared memory')"
+        },
+        {
+          "label": "m256_n128_w8_s1",
+          "configuration": [
+            256,
+            128,
+            8,
+            1
+          ],
+          "vs_fp32": {
+            "passed": true,
+            "max_abs": 0.00829172134399414,
+            "mean_abs": 0.00011412108869990334,
+            "relative_rms": 0.0020337088499218225,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "padded_tail_preserved": true,
+          "numerical_passed": true,
+          "raw_ms": [
+            1.0983879089355468,
+            1.098121166229248,
+            1.0979528427124023,
+            1.0981230735778809,
+            1.0978532791137696,
+            1.0986386299133302,
+            1.0977923393249511
+          ],
+          "median_ms": 1.098121166229248
+        },
+        {
+          "label": "m256_n128_w16_s2",
+          "configuration": [
+            256,
+            128,
+            16,
+            2
+          ],
+          "vs_fp32": {
+            "passed": true,
+            "max_abs": 0.00829172134399414,
+            "mean_abs": 0.00011412108869990334,
+            "relative_rms": 0.0020337088499218225,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "padded_tail_preserved": true,
+          "numerical_passed": true,
+          "raw_ms": [
+            0.6208071231842041,
+            0.620786714553833,
+            0.620570182800293,
+            0.6206517219543457,
+            0.6207149982452392,
+            0.6206205368041993,
+            0.620573616027832
+          ],
+          "median_ms": 0.6206517219543457
+        }
+      ]
+    },
+    {
+      "query_lengths": [
+        2048
+      ],
+      "kv_lengths": [
+        4096
+      ],
+      "variants": [
+        {
+          "label": "m256_n128_w16_s1",
+          "configuration": [
+            256,
+            128,
+            16,
+            1
+          ],
+          "vs_fp32": {
+            "passed": true,
+            "max_abs": 0.0006185472011566162,
+            "mean_abs": 5.297076131682843e-05,
+            "relative_rms": 0.0022528567351400852,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "padded_tail_preserved": true,
+          "numerical_passed": true,
+          "raw_ms": [
+            1.816630744934082,
+            1.814561653137207,
+            1.8141427993774415,
+            1.8133533477783204,
+            1.8137861251831056,
+            1.8139104843139648,
+            1.813055419921875
+          ],
+          "median_ms": 1.8139104843139648
+        },
+        {
+          "label": "m512_n128_w16_s1",
+          "configuration": [
+            512,
+            128,
+            16,
+            1
+          ],
+          "numerical_passed": false,
+          "error": "OutOfResources(196608, 131072, 'shared memory')"
+        },
+        {
+          "label": "m512_n64_w16_s1",
+          "configuration": [
+            512,
+            64,
+            16,
+            1
+          ],
+          "numerical_passed": false,
+          "error": "OutOfResources(163840, 131072, 'shared memory')"
+        },
+        {
+          "label": "m256_n256_w16_s1",
+          "configuration": [
+            256,
+            256,
+            16,
+            1
+          ],
+          "numerical_passed": false,
+          "error": "OutOfResources(196608, 131072, 'shared memory')"
+        },
+        {
+          "label": "m256_n128_w8_s1",
+          "configuration": [
+            256,
+            128,
+            8,
+            1
+          ],
+          "vs_fp32": {
+            "passed": true,
+            "max_abs": 0.0006185472011566162,
+            "mean_abs": 5.297076131682843e-05,
+            "relative_rms": 0.0022528567351400852,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "padded_tail_preserved": true,
+          "numerical_passed": true,
+          "raw_ms": [
+            2.903215789794922,
+            2.9017402648925783,
+            2.9023326873779296,
+            2.902225685119629,
+            2.9016998291015623,
+            2.901773452758789,
+            2.9025428771972654
+          ],
+          "median_ms": 2.902225685119629
+        },
+        {
+          "label": "m256_n128_w16_s2",
+          "configuration": [
+            256,
+            128,
+            16,
+            2
+          ],
+          "vs_fp32": {
+            "passed": true,
+            "max_abs": 0.0006185472011566162,
+            "mean_abs": 5.297076131682843e-05,
+            "relative_rms": 0.0022528567351400852,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "padded_tail_preserved": true,
+          "numerical_passed": true,
+          "raw_ms": [
+            1.6244850158691406,
+            1.6242124557495117,
+            1.6243478775024414,
+            1.6240348815917969,
+            1.6240476608276366,
+            1.6234563827514648,
+            1.624125099182129
+          ],
+          "median_ms": 1.624125099182129
+        }
+      ]
+    },
+    {
+      "query_lengths": [
+        2048
+      ],
+      "kv_lengths": [
+        16384
+      ],
+      "variants": [
+        {
+          "label": "m256_n128_w16_s1",
+          "configuration": [
+            256,
+            128,
+            16,
+            1
+          ],
+          "vs_fp32": {
+            "passed": true,
+            "max_abs": 0.00024133175611495972,
+            "mean_abs": 2.3750544642098248e-05,
+            "relative_rms": 0.0023078317753970623,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "padded_tail_preserved": true,
+          "numerical_passed": true,
+          "raw_ms": [
+            8.493538665771485,
+            8.494720458984375,
+            8.494775390625,
+            8.49420623779297,
+            8.494559478759765,
+            8.494307708740234,
+            8.496146392822265
+          ],
+          "median_ms": 8.494559478759765
+        },
+        {
+          "label": "m512_n128_w16_s1",
+          "configuration": [
+            512,
+            128,
+            16,
+            1
+          ],
+          "numerical_passed": false,
+          "error": "OutOfResources(196608, 131072, 'shared memory')"
+        },
+        {
+          "label": "m512_n64_w16_s1",
+          "configuration": [
+            512,
+            64,
+            16,
+            1
+          ],
+          "numerical_passed": false,
+          "error": "OutOfResources(163840, 131072, 'shared memory')"
+        },
+        {
+          "label": "m256_n256_w16_s1",
+          "configuration": [
+            256,
+            256,
+            16,
+            1
+          ],
+          "numerical_passed": false,
+          "error": "OutOfResources(196608, 131072, 'shared memory')"
+        },
+        {
+          "label": "m256_n128_w8_s1",
+          "configuration": [
+            256,
+            128,
+            8,
+            1
+          ],
+          "vs_fp32": {
+            "passed": true,
+            "max_abs": 0.00024133175611495972,
+            "mean_abs": 2.3750544642098248e-05,
+            "relative_rms": 0.0023078317753970623,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "padded_tail_preserved": true,
+          "numerical_passed": true,
+          "raw_ms": [
+            13.275726318359375,
+            13.273873901367187,
+            13.276264953613282,
+            13.276866149902343,
+            13.276657104492188,
+            13.276641845703125,
+            13.274943542480468
+          ],
+          "median_ms": 13.276264953613282
+        },
+        {
+          "label": "m256_n128_w16_s2",
+          "configuration": [
+            256,
+            128,
+            16,
+            2
+          ],
+          "vs_fp32": {
+            "passed": true,
+            "max_abs": 0.00024133175611495972,
+            "mean_abs": 2.3750544642098248e-05,
+            "relative_rms": 0.0023078317753970623,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "padded_tail_preserved": true,
+          "numerical_passed": true,
+          "raw_ms": [
+            7.620308685302734,
+            7.6195526123046875,
+            7.619708251953125,
+            7.620159149169922,
+            7.619213104248047,
+            7.620050048828125,
+            7.6197456359863285
+          ],
+          "median_ms": 7.6197456359863285
+        }
+      ]
+    },
+    {
+      "query_lengths": [
+        1537,
+        511
+      ],
+      "kv_lengths": [
+        16384,
+        4096
+      ],
+      "variants": [
+        {
+          "label": "m256_n128_w16_s1",
+          "configuration": [
+            256,
+            128,
+            16,
+            1
+          ],
+          "vs_fp32": {
+            "passed": true,
+            "max_abs": 0.0005033612251281738,
+            "mean_abs": 2.9143284336896613e-05,
+            "relative_rms": 0.002305177738890052,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "padded_tail_preserved": true,
+          "numerical_passed": true,
+          "raw_ms": [
+            7.857598114013672,
+            7.855680847167969,
+            7.856105041503906,
+            7.853361511230469,
+            7.854617309570313,
+            7.8542427062988285,
+            7.856488037109375
+          ],
+          "median_ms": 7.855680847167969
+        },
+        {
+          "label": "m512_n128_w16_s1",
+          "configuration": [
+            512,
+            128,
+            16,
+            1
+          ],
+          "numerical_passed": false,
+          "error": "OutOfResources(196608, 131072, 'shared memory')"
+        },
+        {
+          "label": "m512_n64_w16_s1",
+          "configuration": [
+            512,
+            64,
+            16,
+            1
+          ],
+          "numerical_passed": false,
+          "error": "OutOfResources(163840, 131072, 'shared memory')"
+        },
+        {
+          "label": "m256_n256_w16_s1",
+          "configuration": [
+            256,
+            256,
+            16,
+            1
+          ],
+          "numerical_passed": false,
+          "error": "OutOfResources(196608, 131072, 'shared memory')"
+        },
+        {
+          "label": "m256_n128_w8_s1",
+          "configuration": [
+            256,
+            128,
+            8,
+            1
+          ],
+          "vs_fp32": {
+            "passed": true,
+            "max_abs": 0.0005033612251281738,
+            "mean_abs": 2.9143284336896613e-05,
+            "relative_rms": 0.002305177738890052,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "padded_tail_preserved": true,
+          "numerical_passed": true,
+          "raw_ms": [
+            12.182652282714844,
+            12.181256103515626,
+            12.182479095458984,
+            12.180575561523437,
+            12.182500457763672,
+            12.182056427001953,
+            12.183731842041016
+          ],
+          "median_ms": 12.182479095458984
+        },
+        {
+          "label": "m256_n128_w16_s2",
+          "configuration": [
+            256,
+            128,
+            16,
+            2
+          ],
+          "vs_fp32": {
+            "passed": true,
+            "max_abs": 0.0005033612251281738,
+            "mean_abs": 2.9143284336896613e-05,
+            "relative_rms": 0.002305177738890052,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "padded_tail_preserved": true,
+          "numerical_passed": true,
+          "raw_ms": [
+            7.057331848144531,
+            7.05711669921875,
+            7.057539367675782,
+            7.057576751708984,
+            7.057578277587891,
+            7.057402038574219,
+            7.057551574707031
+          ],
+          "median_ms": 7.057539367675782
+        }
+      ]
+    }
+  ],
+  "all_scenario_valid_configurations": [
+    [
+      256,
+      128,
+      16,
+      1
+    ],
+    [
+      256,
+      128,
+      8,
+      1
+    ],
+    [
+      256,
+      128,
+      16,
+      2
+    ]
+  ],
+  "baseline_passed": true
+}
