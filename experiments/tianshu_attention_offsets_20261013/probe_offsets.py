@@ -14,6 +14,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--real-layout', action='store_true')
+    parser.add_argument('--bf16-descales', action='store_true')
     args = parser.parse_args()
     root = args.output.resolve()
     assert not root.exists()
@@ -38,6 +39,7 @@ def main():
     data = dict(complete=False, numerical_checks_passed=False, official_benchmark=False,
                 adopted=False, installed_sources_modified=False, provenance=provenance, cases=[],
                 actual_interleaved_cache_layout=args.real_layout)
+    data['bf16_unused_kv_descales_passed']=args.bf16_descales
     snapshot=root/'source_snapshot';snapshot.mkdir()
     for path in (Path(__file__),Path(__file__).with_name('address32.py')):
         (snapshot/path.name).write_bytes(path.read_bytes())
@@ -75,6 +77,8 @@ def main():
                 row=dict(batch=batch,lengths=lengths,strided=strided,segments=segments,variants=[],
                          q_stride=list(q.stride()),kv_stride=list(k.stride()))
                 graphs=[]
+                k_descale=torch.ones((),device='cuda',dtype=torch.float32).expand(batch,2) if args.bf16_descales else None
+                v_descale=torch.ones((),device='cuda',dtype=torch.float32).expand(batch,2) if args.bf16_descales else None
                 for label,module in [('original64',native),('address32',candidate)]:
                     output=torch.empty_like(q)
                     partial=torch.empty((batch,16,segments,128),device='cuda',dtype=torch.float32)
@@ -85,7 +89,7 @@ def main():
                         module.unified_attention(q=q,k=k,v=v,out=output,cu_seqlens_q=cu,
                             max_seqlen_q=1,seqused_k=used,max_seqlen_k=max(lengths),
                             softmax_scale=128**-.5,causal=True,window_size=(-1,-1),
-                            block_table=table,softcap=0.,q_descale=None,k_descale=None,v_descale=None,
+                            block_table=table,softcap=0.,q_descale=None,k_descale=k_descale,v_descale=v_descale,
                             seq_threshold_3D=64,num_par_softmax_segments=segments,
                             softmax_segm_output=partial,softmax_segm_max=maximum,softmax_segm_expsum=expsum)
                     for _ in range(3):invoke()
