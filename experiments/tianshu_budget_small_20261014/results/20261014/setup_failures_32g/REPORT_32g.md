@@ -1,0 +1,9 @@
+# 天数 BI-V150 32g：预算对照本地harness迁移两次setup失败
+
+为允许原生bucket策略支持范围内的budget1024，独立复制本地小测harness，添加1024参数和真实预热数量断言。首次漏迁移self.parent/hooks环境路径，源码快照读不到原生hook；修正两处环境路径后，第二次仍有with_name(hooks)快照读取路径未改。两次都在server启动前失败：父/control phase failed，server_pid缺失，short_4k_rounds空，没有模型推理或性能分数。
+
+第三次前把三处路径全部指回原tianshu_native_prefill_20261012/hooks，预检八个实际依赖文件存在，随后独立retry2根目录真正启动。请求/计时/清理七个helper函数AST与原harness完全一致；只扩展setup预算范围、预算对应bucket点断言和相对路径。未改官方benchmark或安装源。
+
+两次失败的旧目录/各自源快照保留，第三次不覆盖旧结果。完整原始合包250812bytes/1分片，SHA256 2902ec8543226ee3140b5a5eb84d48af0d8923dd65136d769060d141223eb839，分片与整包、两组failed/无server/无round断言及错误路径本地核验。原件service-results/20261014_tianshu/budget1024_setup_failures；现行代码尚在运行，待真实对照完成后另有报告和源检查点，不能将这份失败记录标为成功实验。
+
+当前控制预算2048已确认75点及75次真实预热，候选1024预期67点及67次；后续必须核对真实日志，不伪造75点完成。该候选尚无ROI/Math，正式最好3506.84/Math103不变。性能剖析TODO，沐曦只读。
