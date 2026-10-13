@@ -1,0 +1,1578 @@
+{
+  "complete": true,
+  "official_benchmark": false,
+  "adoption_allowed": false,
+  "provenance": {
+    "baseline": "current L0 KV32/w2/s1 B8..64",
+    "native_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+    "grid_changed": false,
+    "kernel_body_changed": true,
+    "tile_reduction_order_may_change": true,
+    "producer_and_reducer_tile_matched": true,
+    "installed_sources_modified": false,
+    "zero_initialization": {
+      "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+      "generated_source": "/workspace/benchmark-results/20261014_decode_kv16_w2_mid_tianshu/zero_initialization/generated_zero_initialization.py",
+      "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "no_sink_denominator_initial_value": 0,
+      "sink_initialization_unchanged": true,
+      "installed_sources_modified": false
+    }
+  },
+  "cases": [
+    {
+      "batch": 24,
+      "query_lengths": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "kv_lengths": [
+        5120,
+        5083,
+        5046,
+        5009,
+        4972,
+        4935,
+        4898,
+        5118,
+        5081,
+        5044,
+        5007,
+        4970,
+        4933,
+        4896,
+        5116,
+        5079,
+        5042,
+        5005,
+        4968,
+        4931,
+        4894,
+        5114,
+        5077,
+        5040
+      ],
+      "strided": true,
+      "segments": 4,
+      "original_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0002989247441291809,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "cpu_reference_checks": [
+        {
+          "passed": true,
+          "max_abs": 1.3783574104309082e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.2665987014770508e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.6763806343078613e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 8.940696716308594e-08,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.4901161193847656e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.0058283805847168e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.0058283805847168e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.043081283569336e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.0617077350616455e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 9.685754776000977e-08,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.471489667892456e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.3783574104309082e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        }
+      ],
+      "baseline_ms": 0.5158174896240234,
+      "baseline_tail_preserved": true,
+      "baseline_launch_metadata": {
+        "num_warps": 2,
+        "num_stages": 1,
+        "shared": 20480,
+        "producer_and_reducer_tile": 32
+      },
+      "variants": [
+        {
+          "configuration": {
+            "TILE_SIZE": 16,
+            "num_warps": 2,
+            "num_stages": 1
+          },
+          "candidate_ms": 0.5752927780151367,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.0003369823098182678,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.00048828125,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": false,
+          "tails_preserved": true,
+          "raw_ms": [
+            0.5752927780151367,
+            0.5768052291870117,
+            0.5789443206787109,
+            0.5706446075439453,
+            0.5767889785766601,
+            0.5757295608520507,
+            0.5734440231323242,
+            0.57412109375,
+            0.5744386672973633
+          ],
+          "launch_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 12288,
+            "producer_and_reducer_tile": 16
+          },
+          "time_change_percent": 11.530296972765397
+        },
+        {
+          "configuration": {
+            "TILE_SIZE": 16,
+            "num_warps": 1,
+            "num_stages": 1
+          },
+          "candidate_ms": 0.5859552383422851,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.0003369823098182678,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.00048828125,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": false,
+          "tails_preserved": true,
+          "raw_ms": [
+            0.5859552383422851,
+            0.5875936889648438,
+            0.5857229995727539,
+            0.5861503219604492,
+            0.5882236862182617,
+            0.584249153137207,
+            0.5851405334472656,
+            0.5846245193481445,
+            0.5869495391845703
+          ],
+          "launch_metadata": {
+            "num_warps": 1,
+            "num_stages": 1,
+            "shared": 12288,
+            "producer_and_reducer_tile": 16
+          },
+          "time_change_percent": 13.59739639099573
+        },
+        {
+          "configuration": {
+            "TILE_SIZE": 16,
+            "num_warps": 2,
+            "num_stages": 2
+          },
+          "candidate_ms": 0.8576249694824218,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.0003369823098182678,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.00048828125,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": false,
+          "tails_preserved": true,
+          "raw_ms": [
+            0.8530927276611329,
+            0.8620756530761718,
+            0.8568457794189454,
+            0.8575611114501953,
+            0.8613234710693359,
+            0.8614289855957031,
+            0.8576249694824218,
+            0.8572276306152343,
+            0.8587178039550781
+          ],
+          "launch_metadata": {
+            "num_warps": 2,
+            "num_stages": 2,
+            "shared": 12288,
+            "producer_and_reducer_tile": 16
+          },
+          "time_change_percent": 66.26519781396712
+        },
+        {
+          "configuration": {
+            "TILE_SIZE": 64,
+            "num_warps": 2,
+            "num_stages": 1
+          },
+          "candidate_ms": 0.7381302642822266,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.0002952888607978821,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.00048828125,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": false,
+          "tails_preserved": true,
+          "raw_ms": [
+            0.7345658111572265,
+            0.74099609375,
+            0.7384192657470703,
+            0.7341518402099609,
+            0.740090103149414,
+            0.7396599578857422,
+            0.7375704956054687,
+            0.7381302642822266,
+            0.7373322296142578
+          ],
+          "launch_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 36864,
+            "producer_and_reducer_tile": 64
+          },
+          "time_change_percent": 43.099115313101485
+        }
+      ],
+      "baseline_raw_ms": [
+        0.5158174896240234,
+        0.5185533905029297,
+        0.5133124542236328,
+        0.5089996719360351,
+        0.5224440002441406,
+        0.5153331756591797,
+        0.5184415435791015,
+        0.5166561508178711,
+        0.5157763290405274
+      ]
+    },
+    {
+      "batch": 40,
+      "query_lengths": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "kv_lengths": [
+        5120,
+        5083,
+        5046,
+        5009,
+        4972,
+        4935,
+        4898,
+        5118,
+        5081,
+        5044,
+        5007,
+        4970,
+        4933,
+        4896,
+        5116,
+        5079,
+        5042,
+        5005,
+        4968,
+        4931,
+        4894,
+        5114,
+        5077,
+        5040,
+        5003,
+        4966,
+        4929,
+        4892,
+        5112,
+        5075,
+        5038,
+        5001,
+        4964,
+        4927,
+        4890,
+        5110,
+        5073,
+        5036,
+        4999,
+        4962
+      ],
+      "strided": true,
+      "segments": 4,
+      "original_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.00034642964601516724,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "cpu_reference_checks": [
+        {
+          "passed": true,
+          "max_abs": 1.2293457984924316e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.1175870895385742e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.0058283805847168e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.4156103134155273e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 7.450580596923828e-08,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.7136335372924805e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.043081283569336e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.1175870895385742e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.1175870895385742e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 9.685754776000977e-08,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.0803341865539551e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 7.82310962677002e-08,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        }
+      ],
+      "baseline_ms": 0.8132687377929687,
+      "baseline_tail_preserved": true,
+      "baseline_launch_metadata": {
+        "num_warps": 2,
+        "num_stages": 1,
+        "shared": 20480,
+        "producer_and_reducer_tile": 32
+      },
+      "variants": [
+        {
+          "configuration": {
+            "TILE_SIZE": 16,
+            "num_warps": 2,
+            "num_stages": 1
+          },
+          "candidate_ms": 0.8062957763671875,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.0003218650817871094,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.00048828125,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": false,
+          "tails_preserved": true,
+          "raw_ms": [
+            0.8035726928710938,
+            0.8054044342041016,
+            0.8045657348632812,
+            0.8092033386230468,
+            0.8031937408447266,
+            0.8062957763671875,
+            0.8079034423828125,
+            0.8084632110595703,
+            0.8093643951416015
+          ],
+          "launch_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 12288,
+            "producer_and_reducer_tile": 16
+          },
+          "time_change_percent": -0.8573994181436562
+        },
+        {
+          "configuration": {
+            "TILE_SIZE": 16,
+            "num_warps": 1,
+            "num_stages": 1
+          },
+          "candidate_ms": 0.7006855773925781,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.0003218650817871094,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.00048828125,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": false,
+          "tails_preserved": true,
+          "raw_ms": [
+            0.7036698150634766,
+            0.696839599609375,
+            0.6987955474853516,
+            0.708057861328125,
+            0.7006855773925781,
+            0.6978827667236328,
+            0.7010104370117187,
+            0.7013677978515624,
+            0.69612548828125
+          ],
+          "launch_metadata": {
+            "num_warps": 1,
+            "num_stages": 1,
+            "shared": 12288,
+            "producer_and_reducer_tile": 16
+          },
+          "time_change_percent": -13.8432912970338
+        },
+        {
+          "configuration": {
+            "TILE_SIZE": 16,
+            "num_warps": 2,
+            "num_stages": 2
+          },
+          "candidate_ms": 1.036766586303711,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.0003218650817871094,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.00048828125,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": false,
+          "tails_preserved": true,
+          "raw_ms": [
+            1.0412498474121095,
+            1.036766586303711,
+            1.040697784423828,
+            1.0351842498779298,
+            1.0376090240478515,
+            1.037115020751953,
+            1.0324842834472656,
+            1.0356269836425782,
+            1.0346326446533203
+          ],
+          "launch_metadata": {
+            "num_warps": 2,
+            "num_stages": 2,
+            "shared": 12288,
+            "producer_and_reducer_tile": 16
+          },
+          "time_change_percent": 27.48142626473826
+        },
+        {
+          "configuration": {
+            "TILE_SIZE": 64,
+            "num_warps": 2,
+            "num_stages": 1
+          },
+          "candidate_ms": 1.2106607055664063,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.00034642964601516724,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.00048828125,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": false,
+          "tails_preserved": true,
+          "raw_ms": [
+            1.210760498046875,
+            1.2077969360351561,
+            1.2110990905761718,
+            1.2117042541503906,
+            1.2098108673095702,
+            1.21060546875,
+            1.2077344512939454,
+            1.2130277252197266,
+            1.2106607055664063
+          ],
+          "launch_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 36864,
+            "producer_and_reducer_tile": 64
+          },
+          "time_change_percent": 48.863548948392065
+        }
+      ],
+      "baseline_raw_ms": [
+        0.8129623413085938,
+        0.8154377746582031,
+        0.8138211059570313,
+        0.8129185485839844,
+        0.8132687377929687,
+        0.8120549774169922,
+        0.8139955902099609,
+        0.8142955017089843,
+        0.8131404876708984
+      ]
+    },
+    {
+      "batch": 48,
+      "query_lengths": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "kv_lengths": [
+        5120,
+        5083,
+        5046,
+        5009,
+        4972,
+        4935,
+        4898,
+        5118,
+        5081,
+        5044,
+        5007,
+        4970,
+        4933,
+        4896,
+        5116,
+        5079,
+        5042,
+        5005,
+        4968,
+        4931,
+        4894,
+        5114,
+        5077,
+        5040,
+        5003,
+        4966,
+        4929,
+        4892,
+        5112,
+        5075,
+        5038,
+        5001,
+        4964,
+        4927,
+        4890,
+        5110,
+        5073,
+        5036,
+        4999,
+        4962,
+        4925,
+        4888,
+        5108,
+        5071,
+        5034,
+        4997,
+        4960,
+        4923
+      ],
+      "strided": true,
+      "segments": 4,
+      "original_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.00032833218574523926,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "cpu_reference_checks": [
+        {
+          "passed": true,
+          "max_abs": 1.601874828338623e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.1175870895385742e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 9.313225746154785e-08,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.0803341865539551e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.210719347000122e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.3783574104309082e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.6391277313232422e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.4156103134155273e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.1175870895385742e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 9.872019290924072e-08,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.1175870895385742e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.1920928955078125e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        }
+      ],
+      "baseline_ms": 0.9503150939941406,
+      "baseline_tail_preserved": true,
+      "baseline_launch_metadata": {
+        "num_warps": 2,
+        "num_stages": 1,
+        "shared": 20480,
+        "producer_and_reducer_tile": 32
+      },
+      "variants": [
+        {
+          "configuration": {
+            "TILE_SIZE": 16,
+            "num_warps": 2,
+            "num_stages": 1
+          },
+          "candidate_ms": 0.9879354858398437,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.00032833218574523926,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.00048828125,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": false,
+          "tails_preserved": true,
+          "raw_ms": [
+            0.982648696899414,
+            0.9888201141357422,
+            0.9903990173339844,
+            0.982498779296875,
+            0.9867655944824218,
+            0.9885214233398437,
+            0.9876509857177734,
+            0.9889928436279297,
+            0.9879354858398437
+          ],
+          "launch_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 12288,
+            "producer_and_reducer_tile": 16
+          },
+          "time_change_percent": 3.958728224297259
+        },
+        {
+          "configuration": {
+            "TILE_SIZE": 16,
+            "num_warps": 1,
+            "num_stages": 1
+          },
+          "candidate_ms": 0.9219403076171875,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.00032833218574523926,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.00048828125,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": false,
+          "tails_preserved": true,
+          "raw_ms": [
+            0.9219403076171875,
+            0.9206909942626953,
+            0.9231895446777344,
+            0.9226576995849609,
+            0.9225789642333985,
+            0.9213617706298828,
+            0.9190066528320312,
+            0.9217996978759766,
+            0.92310302734375
+          ],
+          "launch_metadata": {
+            "num_warps": 1,
+            "num_stages": 1,
+            "shared": 12288,
+            "producer_and_reducer_tile": 16
+          },
+          "time_change_percent": -2.985829285073749
+        },
+        {
+          "configuration": {
+            "TILE_SIZE": 16,
+            "num_warps": 2,
+            "num_stages": 2
+          },
+          "candidate_ms": 1.374227294921875,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.00032833218574523926,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.00048828125,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": false,
+          "tails_preserved": true,
+          "raw_ms": [
+            1.377323455810547,
+            1.3757841491699219,
+            1.3698155212402343,
+            1.3722959899902343,
+            1.371132354736328,
+            1.3782411193847657,
+            1.3753678894042969,
+            1.3711233520507813,
+            1.374227294921875
+          ],
+          "launch_metadata": {
+            "num_warps": 2,
+            "num_stages": 2,
+            "shared": 12288,
+            "producer_and_reducer_tile": 16
+          },
+          "time_change_percent": 44.607541604547876
+        },
+        {
+          "configuration": {
+            "TILE_SIZE": 64,
+            "num_warps": 2,
+            "num_stages": 1
+          },
+          "candidate_ms": 1.4474734497070312,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.00032833218574523926,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.00048828125,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": false,
+          "tails_preserved": true,
+          "raw_ms": [
+            1.4451617431640624,
+            1.4489752197265624,
+            1.4417840576171874,
+            1.4445767211914062,
+            1.4490269470214843,
+            1.451749267578125,
+            1.4474734497070312,
+            1.4498358154296875,
+            1.4390501403808593
+          ],
+          "launch_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 36864,
+            "producer_and_reducer_tile": 64
+          },
+          "time_change_percent": 52.31510673195263
+        }
+      ],
+      "baseline_raw_ms": [
+        0.9543582916259765,
+        0.9504433441162109,
+        0.9492938232421875,
+        0.9529066467285157,
+        0.9492355346679687,
+        0.9503150939941406,
+        0.9499281311035156,
+        0.9519415283203125,
+        0.9490518188476562
+      ]
+    },
+    {
+      "batch": 56,
+      "query_lengths": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "kv_lengths": [
+        5120,
+        5083,
+        5046,
+        5009,
+        4972,
+        4935,
+        4898,
+        5118,
+        5081,
+        5044,
+        5007,
+        4970,
+        4933,
+        4896,
+        5116,
+        5079,
+        5042,
+        5005,
+        4968,
+        4931,
+        4894,
+        5114,
+        5077,
+        5040,
+        5003,
+        4966,
+        4929,
+        4892,
+        5112,
+        5075,
+        5038,
+        5001,
+        4964,
+        4927,
+        4890,
+        5110,
+        5073,
+        5036,
+        4999,
+        4962,
+        4925,
+        4888,
+        5108,
+        5071,
+        5034,
+        4997,
+        4960,
+        4923,
+        4886,
+        5106,
+        5069,
+        5032,
+        4995,
+        4958,
+        4921,
+        4884
+      ],
+      "strided": true,
+      "segments": 4,
+      "original_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.00033152103424072266,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "cpu_reference_checks": [
+        {
+          "passed": true,
+          "max_abs": 1.30385160446167e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.4156103134155273e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.7881393432617188e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.4156103134155273e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.7508864402770996e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.5459954738616943e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.4156103134155273e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.7881393432617188e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 9.685754776000977e-08,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.7136335372924805e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.1548399925231934e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 9.685754776000977e-08,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        }
+      ],
+      "baseline_ms": 1.0666320037841797,
+      "baseline_tail_preserved": true,
+      "baseline_launch_metadata": {
+        "num_warps": 2,
+        "num_stages": 1,
+        "shared": 20480,
+        "producer_and_reducer_tile": 32
+      },
+      "variants": [
+        {
+          "configuration": {
+            "TILE_SIZE": 16,
+            "num_warps": 2,
+            "num_stages": 1
+          },
+          "candidate_ms": 1.100726089477539,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.00033152103424072266,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.00048828125,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": false,
+          "tails_preserved": true,
+          "raw_ms": [
+            1.099154510498047,
+            1.1016419982910157,
+            1.099665985107422,
+            1.0955947875976562,
+            1.0980449676513673,
+            1.104146957397461,
+            1.1015687561035157,
+            1.100726089477539,
+            1.1034513854980468
+          ],
+          "launch_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 12288,
+            "producer_and_reducer_tile": 16
+          },
+          "time_change_percent": 3.196424406205778
+        },
+        {
+          "configuration": {
+            "TILE_SIZE": 16,
+            "num_warps": 1,
+            "num_stages": 1
+          },
+          "candidate_ms": 0.9776044464111329,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.00033152103424072266,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.00048828125,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": false,
+          "tails_preserved": true,
+          "raw_ms": [
+            0.9786060333251954,
+            0.9754846954345703,
+            0.976300277709961,
+            0.977756118774414,
+            0.979768295288086,
+            0.9789740753173828,
+            0.9772444152832032,
+            0.9776044464111329,
+            0.9769860076904296
+          ],
+          "launch_metadata": {
+            "num_warps": 1,
+            "num_stages": 1,
+            "shared": 12288,
+            "producer_and_reducer_tile": 16
+          },
+          "time_change_percent": -8.34660473876616
+        },
+        {
+          "configuration": {
+            "TILE_SIZE": 16,
+            "num_warps": 2,
+            "num_stages": 2
+          },
+          "candidate_ms": 1.4596859741210937,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.00033152103424072266,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.00048828125,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": false,
+          "tails_preserved": true,
+          "raw_ms": [
+            1.4593247985839843,
+            1.460868377685547,
+            1.459795684814453,
+            1.4599501037597655,
+            1.4589073181152343,
+            1.4627584838867187,
+            1.4596859741210937,
+            1.4594674682617188,
+            1.458563232421875
+          ],
+          "launch_metadata": {
+            "num_warps": 2,
+            "num_stages": 2,
+            "shared": 12288,
+            "producer_and_reducer_tile": 16
+          },
+          "time_change_percent": 36.85000721358853
+        },
+        {
+          "configuration": {
+            "TILE_SIZE": 64,
+            "num_warps": 2,
+            "num_stages": 1
+          },
+          "candidate_ms": 1.6691212463378906,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.00033152103424072266,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.00048828125,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": false,
+          "tails_preserved": true,
+          "raw_ms": [
+            1.6688218688964844,
+            1.672010498046875,
+            1.6751689147949218,
+            1.6659930419921876,
+            1.6683921813964844,
+            1.6721730041503906,
+            1.6691212463378906,
+            1.666365966796875,
+            1.6699501037597657
+          ],
+          "launch_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 36864,
+            "producer_and_reducer_tile": 64
+          },
+          "time_change_percent": 56.485202058086514
+        }
+      ],
+      "baseline_raw_ms": [
+        1.0680630493164063,
+        1.0703302001953126,
+        1.0627196502685547,
+        1.066787109375,
+        1.066476821899414,
+        1.0666320037841797,
+        1.0720157623291016,
+        1.0658232879638672,
+        1.0659642791748047
+      ]
+    }
+  ],
+  "started_utc": "2026-10-13T23:46:00.911392+00:00",
+  "probe_sha256": "37176922cd5f95a377b4b9993ed02e03dc66af1385d0ecb132e1ed39e87e355e",
+  "configurations": [
+    {
+      "TILE_SIZE": 32,
+      "num_warps": 2,
+      "num_stages": 1
+    },
+    {
+      "TILE_SIZE": 16,
+      "num_warps": 2,
+      "num_stages": 1
+    },
+    {
+      "TILE_SIZE": 16,
+      "num_warps": 1,
+      "num_stages": 1
+    },
+    {
+      "TILE_SIZE": 16,
+      "num_warps": 2,
+      "num_stages": 2
+    },
+    {
+      "TILE_SIZE": 64,
+      "num_warps": 2,
+      "num_stages": 1
+    }
+  ],
+  "numerical_checks_passed": true,
+  "valid_configurations": [
+    {
+      "TILE_SIZE": 16,
+      "num_warps": 2,
+      "num_stages": 1
+    },
+    {
+      "TILE_SIZE": 16,
+      "num_warps": 1,
+      "num_stages": 1
+    },
+    {
+      "TILE_SIZE": 16,
+      "num_warps": 2,
+      "num_stages": 2
+    },
+    {
+      "TILE_SIZE": 64,
+      "num_warps": 2,
+      "num_stages": 1
+    }
+  ],
+  "producer_and_reducer_tile_matched": true,
+  "finished_utc": "2026-10-13T23:46:16.015454+00:00"
+}
