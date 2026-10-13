@@ -1,0 +1,7 @@
+# 天数 BI-V150 32g：Graph外部事件新鲜度检查失败
+
+使用同一BF16 GEMM+add图，对比普通捕获与external=True事件捕获。捕获后先在图外用同一组event记录50次GEMM，再回放一次图，要求回放后的GEMM时间>0并且小于图外50次的1/5，排除读取旧时间戳。本次该条件失败，result.supported=false；不声称获得有效Graph内部耗时覆盖，不产生模型性能或官方吞吐成绩。
+
+局限：v1在断言失败前没有将outside_mm_ms/replay_mm_ms写进结果，不能区分零值、未更新旧值，或真实计时超过设定比例。当前错误文字不能当作后端全局不支持external event的证明。下一步应在独立v2目录保存断言前数值，再解释失败；保留本次源码和原始失败证据。用户的正式最好3506.84和Math103不受该诊断影响。
+
+原始包2257022bytes/9分片，SHA256 14a0422e0c8a4e5955980d3eb45bafc862555dd787b506d5ff7c4d518d59ed35，全部分片/整包与实际probe源码均已本地核验。原件service-results/20261014_tianshu/graph_external_events/graph_events。性能剖析：TODO，Graph内部覆盖仍未确认。安装源和模型不变、沐曦只读。

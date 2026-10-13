@@ -1,0 +1,2501 @@
+{
+  "complete": true,
+  "official_benchmark": false,
+  "adopted": false,
+  "cases": [
+    {
+      "rows": 1,
+      "kind": "normal",
+      "variants": [
+        {
+          "label": "default",
+          "configuration": {},
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 3,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.003034124970436096,
+            0.00302957683801651,
+            0.003025182783603668,
+            0.003025711476802826,
+            0.0030262017250061034,
+            0.0030256155133247375,
+            0.003025182783603668
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.003025711476802826
+        },
+        {
+          "label": "w1s1",
+          "configuration": {
+            "num_warps": 1,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 1,
+            "num_stages": 1,
+            "shared": 0
+          },
+          "samples_ms": [
+            0.005516250133514405,
+            0.005514047741889953,
+            0.005513249635696411,
+            0.005513038635253906,
+            0.005513029098510742,
+            0.0055128753185272215,
+            0.00551422119140625
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.005513249635696411
+        },
+        {
+          "label": "w2s1",
+          "configuration": {
+            "num_warps": 2,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 8
+          },
+          "samples_ms": [
+            0.003950413465499878,
+            0.00394279807806015,
+            0.003946182727813721,
+            0.003941682875156402,
+            0.003940394222736359,
+            0.003945904076099396,
+            0.003940403759479523
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.00394279807806015
+        },
+        {
+          "label": "w4s1",
+          "configuration": {
+            "num_warps": 4,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.0030512788891792295,
+            0.0030461826920509336,
+            0.0030508366227149962,
+            0.003047471046447754,
+            0.0030443656444549562,
+            0.003047192394733429,
+            0.0030485865473747252
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.003047471046447754
+        },
+        {
+          "label": "w8s1",
+          "configuration": {
+            "num_warps": 8,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 1,
+            "shared": 32
+          },
+          "samples_ms": [
+            0.0026604712009429933,
+            0.0026619136333465576,
+            0.002665288746356964,
+            0.0026665768027305603,
+            0.0026564425230026245,
+            0.0026589614152908326,
+            0.002655961513519287
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.0026604712009429933
+        }
+      ]
+    },
+    {
+      "rows": 1,
+      "kind": "fused",
+      "variants": [
+        {
+          "label": "default",
+          "configuration": {},
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 3,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.007262086868286133,
+            0.007242047786712646,
+            0.00724006712436676,
+            0.007240816950798035,
+            0.007241144180297852,
+            0.0072439807653427125,
+            0.007240384817123413
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.007241144180297852
+        },
+        {
+          "label": "w1s1",
+          "configuration": {
+            "num_warps": 1,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 1,
+            "num_stages": 1,
+            "shared": 0
+          },
+          "samples_ms": [
+            0.014069883823394776,
+            0.014072037935256958,
+            0.014068710803985595,
+            0.014067423343658448,
+            0.01406893253326416,
+            0.014071760177612304,
+            0.01406925082206726
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.01406925082206726
+        },
+        {
+          "label": "w2s1",
+          "configuration": {
+            "num_warps": 2,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 8
+          },
+          "samples_ms": [
+            0.009571173191070557,
+            0.009566086530685424,
+            0.009565125107765199,
+            0.009565981030464172,
+            0.009568125009536743,
+            0.009566673040390015,
+            0.00956597089767456
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.009566086530685424
+        },
+        {
+          "label": "w4s1",
+          "configuration": {
+            "num_warps": 4,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.007236586213111878,
+            0.007221105694770813,
+            0.007216182947158814,
+            0.007216711640357971,
+            0.007217952013015747,
+            0.007220788598060608,
+            0.007217249870300293
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.007217952013015747
+        },
+        {
+          "label": "w8s1",
+          "configuration": {
+            "num_warps": 8,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 1,
+            "shared": 32
+          },
+          "samples_ms": [
+            0.006075644493103027,
+            0.00607574999332428,
+            0.006075798273086548,
+            0.006082980632781982,
+            0.006074202060699463,
+            0.006076067090034485,
+            0.006073874831199646
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.00607574999332428
+        }
+      ]
+    },
+    {
+      "rows": 4,
+      "kind": "normal",
+      "variants": [
+        {
+          "label": "default",
+          "configuration": {},
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 3,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.0030794036388397217,
+            0.0030764999985694887,
+            0.003074086606502533,
+            0.0030768752098083497,
+            0.003075961470603943,
+            0.003077307641506195,
+            0.0030743077397346495
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.0030764999985694887
+        },
+        {
+          "label": "w1s1",
+          "configuration": {
+            "num_warps": 1,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 1,
+            "num_stages": 1,
+            "shared": 0
+          },
+          "samples_ms": [
+            0.005594730973243713,
+            0.005596817135810852,
+            0.005596721172332763,
+            0.005598807334899902,
+            0.005601644515991211,
+            0.005596499443054199,
+            0.005598961114883423
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.005596817135810852
+        },
+        {
+          "label": "w2s1",
+          "configuration": {
+            "num_warps": 2,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 8
+          },
+          "samples_ms": [
+            0.003993211686611176,
+            0.003995365500450134,
+            0.003994759619235993,
+            0.003993913531303406,
+            0.0039912787079811095,
+            0.003991875052452088,
+            0.003990423083305359
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.003993211686611176
+        },
+        {
+          "label": "w4s1",
+          "configuration": {
+            "num_warps": 4,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.003062673211097717,
+            0.0030889230966567992,
+            0.003064124882221222,
+            0.0030640673637390135,
+            0.003076547980308533,
+            0.0030636441707611083,
+            0.003065413534641266
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.003064124882221222
+        },
+        {
+          "label": "w8s1",
+          "configuration": {
+            "num_warps": 8,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 1,
+            "shared": 32
+          },
+          "samples_ms": [
+            0.002710932493209839,
+            0.002704278826713562,
+            0.0026997306942939756,
+            0.002708413600921631,
+            0.002717413604259491,
+            0.002696673274040222,
+            0.002712970972061157
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.002708413600921631
+        }
+      ]
+    },
+    {
+      "rows": 4,
+      "kind": "fused",
+      "variants": [
+        {
+          "label": "default",
+          "configuration": {},
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 3,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.007413480877876282,
+            0.0074089902639389036,
+            0.00740898072719574,
+            0.007408403754234314,
+            0.0074230188131332395,
+            0.007410798072814941,
+            0.007408345937728882
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.0074089902639389036
+        },
+        {
+          "label": "w1s1",
+          "configuration": {
+            "num_warps": 1,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 1,
+            "num_stages": 1,
+            "shared": 0
+          },
+          "samples_ms": [
+            0.014280211925506592,
+            0.014279999732971192,
+            0.014280643463134766,
+            0.014279682636260987,
+            0.014280691146850585,
+            0.01428155779838562,
+            0.014281979799270629
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.014280643463134766
+        },
+        {
+          "label": "w2s1",
+          "configuration": {
+            "num_warps": 2,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 8
+          },
+          "samples_ms": [
+            0.009763288497924804,
+            0.009762750267982482,
+            0.009762211441993714,
+            0.009763711094856263,
+            0.00976322114467621,
+            0.009775875210762024,
+            0.009762115478515625
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.00976322114467621
+        },
+        {
+          "label": "w4s1",
+          "configuration": {
+            "num_warps": 4,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.007389634251594544,
+            0.007389913201332092,
+            0.007391682267189026,
+            0.007388519644737243,
+            0.007391519546508789,
+            0.007388682365417481,
+            0.007391893863677978
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.007389913201332092
+        },
+        {
+          "label": "w8s1",
+          "configuration": {
+            "num_warps": 8,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 1,
+            "shared": 32
+          },
+          "samples_ms": [
+            0.006247779130935669,
+            0.00625055730342865,
+            0.00624808669090271,
+            0.00624750018119812,
+            0.00624466359615326,
+            0.006247875094413757,
+            0.00624750018119812
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.006247779130935669
+        }
+      ]
+    },
+    {
+      "rows": 8,
+      "kind": "normal",
+      "variants": [
+        {
+          "label": "default",
+          "configuration": {},
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 3,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.0030988940596580507,
+            0.003095884621143341,
+            0.003096163272857666,
+            0.0030957883596420288,
+            0.003096586465835571,
+            0.0030962598323822023,
+            0.0030958366394042967
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.003096163272857666
+        },
+        {
+          "label": "w1s1",
+          "configuration": {
+            "num_warps": 1,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 1,
+            "num_stages": 1,
+            "shared": 0
+          },
+          "samples_ms": [
+            0.005604269504547119,
+            0.005610913038253784,
+            0.005600788593292236,
+            0.005615355968475341,
+            0.005599663257598877,
+            0.00560240387916565,
+            0.005600788593292236
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.00560240387916565
+        },
+        {
+          "label": "w2s1",
+          "configuration": {
+            "num_warps": 2,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 8
+          },
+          "samples_ms": [
+            0.003994182646274567,
+            0.003994500041007995,
+            0.00398893266916275,
+            0.0039915481209754945,
+            0.003989576995372772,
+            0.003992144167423248,
+            0.003992038369178772
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.003992038369178772
+        },
+        {
+          "label": "w4s1",
+          "configuration": {
+            "num_warps": 4,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.003108057975769043,
+            0.0030867883563041685,
+            0.003100875020027161,
+            0.0030918270349502563,
+            0.0030905863642692565,
+            0.0030890864133834837,
+            0.003092624843120575
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.0030918270349502563
+        },
+        {
+          "label": "w8s1",
+          "configuration": {
+            "num_warps": 8,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 1,
+            "shared": 32
+          },
+          "samples_ms": [
+            0.0027326828241348265,
+            0.002741778790950775,
+            0.00273176908493042,
+            0.002732201814651489,
+            0.002729471027851105,
+            0.0027341827750205993,
+            0.0027309614419937134
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.002732201814651489
+        }
+      ]
+    },
+    {
+      "rows": 8,
+      "kind": "fused",
+      "variants": [
+        {
+          "label": "default",
+          "configuration": {},
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 3,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.008123307824134826,
+            0.008108721375465392,
+            0.00810850977897644,
+            0.00810766339302063,
+            0.008107874989509583,
+            0.008108028769493103,
+            0.008107288479804993
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.008108028769493103
+        },
+        {
+          "label": "w1s1",
+          "configuration": {
+            "num_warps": 1,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 1,
+            "num_stages": 1,
+            "shared": 0
+          },
+          "samples_ms": [
+            0.014941922426223754,
+            0.014943057298660278,
+            0.014945528507232665,
+            0.014942789077758789,
+            0.014956663846969604,
+            0.01494234561920166,
+            0.01494400978088379
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.014943057298660278
+        },
+        {
+          "label": "w2s1",
+          "configuration": {
+            "num_warps": 2,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 8
+          },
+          "samples_ms": [
+            0.010476057529449462,
+            0.010475412607192994,
+            0.010474759340286254,
+            0.010474404096603393,
+            0.010475038290023804,
+            0.01048821210861206,
+            0.01047310471534729
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.010475038290023804
+        },
+        {
+          "label": "w4s1",
+          "configuration": {
+            "num_warps": 4,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.008098336458206177,
+            0.008109856247901916,
+            0.008098345994949342,
+            0.008100000023841859,
+            0.00809780776500702,
+            0.008098769187927245,
+            0.008099528551101685
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.008098769187927245
+        },
+        {
+          "label": "w8s1",
+          "configuration": {
+            "num_warps": 8,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 1,
+            "shared": 32
+          },
+          "samples_ms": [
+            0.006981596350669861,
+            0.00698320209980011,
+            0.0069836825132369995,
+            0.006981971263885498,
+            0.006982230544090271,
+            0.006981374621391296,
+            0.006978490352630615
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.006981971263885498
+        }
+      ]
+    },
+    {
+      "rows": 16,
+      "kind": "normal",
+      "variants": [
+        {
+          "label": "default",
+          "configuration": {},
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 3,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.003136548101902008,
+            0.003136827051639557,
+            0.003135490417480469,
+            0.003134567439556122,
+            0.003134576976299286,
+            0.003133278787136078,
+            0.003133932650089264
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.003134576976299286
+        },
+        {
+          "label": "w1s1",
+          "configuration": {
+            "num_warps": 1,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 1,
+            "num_stages": 1,
+            "shared": 0
+          },
+          "samples_ms": [
+            0.005626336336135864,
+            0.005627999901771545,
+            0.005626663565635681,
+            0.005625480413436889,
+            0.0056259620189666746,
+            0.005626288652420044,
+            0.005626499652862549
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.005626336336135864
+        },
+        {
+          "label": "w2s1",
+          "configuration": {
+            "num_warps": 2,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 8
+          },
+          "samples_ms": [
+            0.018255105018615724,
+            0.0040112116932868955,
+            0.004004788398742676,
+            0.0040044614672660826,
+            0.004005701839923858,
+            0.004003067314624786,
+            0.004024336636066436
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.004005701839923858
+        },
+        {
+          "label": "w4s1",
+          "configuration": {
+            "num_warps": 4,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.003121932744979858,
+            0.003119567334651947,
+            0.003119942247867584,
+            0.003120470941066742,
+            0.0031306058168411254,
+            0.0031195095181465148,
+            0.0031170961260795593
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.003119942247867584
+        },
+        {
+          "label": "w8s1",
+          "configuration": {
+            "num_warps": 8,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 1,
+            "shared": 32
+          },
+          "samples_ms": [
+            0.20426931381225585,
+            0.002773500084877014,
+            0.0027726924419403075,
+            0.002772538363933563,
+            0.002772423028945923,
+            0.0027841633558273317,
+            0.0027715194225311278
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.0027726924419403075
+        }
+      ]
+    },
+    {
+      "rows": 16,
+      "kind": "fused",
+      "variants": [
+        {
+          "label": "default",
+          "configuration": {},
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 3,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.009526827335357667,
+            0.009509941935539246,
+            0.009527038931846619,
+            0.009513058066368103,
+            0.00951005756855011,
+            0.009511874914169311,
+            0.009510374665260314
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.009511874914169311
+        },
+        {
+          "label": "w1s1",
+          "configuration": {
+            "num_warps": 1,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 1,
+            "num_stages": 1,
+            "shared": 0
+          },
+          "samples_ms": [
+            0.016421884298324585,
+            0.01640421152114868,
+            0.016402173042297363,
+            0.01640191435813904,
+            0.0164029324054718,
+            0.016417288780212404,
+            0.01640356659889221
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.01640356659889221
+        },
+        {
+          "label": "w2s1",
+          "configuration": {
+            "num_warps": 2,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 8
+          },
+          "samples_ms": [
+            0.011855682134628296,
+            0.011859586238861084,
+            0.011870740652084351,
+            0.011859056949615478,
+            0.011859375238418578,
+            0.011859269142150878,
+            0.011923547983169556
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.011859375238418578
+        },
+        {
+          "label": "w4s1",
+          "configuration": {
+            "num_warps": 4,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.00949719250202179,
+            0.009492048025131226,
+            0.009505336880683899,
+            0.009489211440086364,
+            0.00950737476348877,
+            0.009492798447608948,
+            0.009492586255073548
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.009492798447608948
+        },
+        {
+          "label": "w8s1",
+          "configuration": {
+            "num_warps": 8,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 1,
+            "shared": 32
+          },
+          "samples_ms": [
+            0.00837857723236084,
+            0.008368711471557617,
+            0.008381836414337158,
+            0.008375365734100342,
+            0.008380345702171325,
+            0.008368557691574097,
+            0.00836785614490509
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.008375365734100342
+        }
+      ]
+    },
+    {
+      "rows": 32,
+      "kind": "normal",
+      "variants": [
+        {
+          "label": "default",
+          "configuration": {},
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 3,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.2245684814453125,
+            0.003212519288063049,
+            0.003209153711795807,
+            0.003209942281246185,
+            0.0032107982039451598,
+            0.003208923041820526,
+            0.003210846185684204
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.0032107982039451598
+        },
+        {
+          "label": "w1s1",
+          "configuration": {
+            "num_warps": 1,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 1,
+            "num_stages": 1,
+            "shared": 0
+          },
+          "samples_ms": [
+            0.005641500353813171,
+            0.0056423074007034306,
+            0.005642249584197998,
+            0.005651038885116577,
+            0.005639625191688538,
+            0.005642951726913452,
+            0.005642951726913452
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.0056423074007034306
+        },
+        {
+          "label": "w2s1",
+          "configuration": {
+            "num_warps": 2,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 8
+          },
+          "samples_ms": [
+            0.24338590621948242,
+            0.004087769091129303,
+            0.004088346064090729,
+            0.004086374938488006,
+            0.004086865186691284,
+            0.004086798131465912,
+            0.004084557592868805
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.004086865186691284
+        },
+        {
+          "label": "w4s1",
+          "configuration": {
+            "num_warps": 4,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.0032135385274887087,
+            0.003165115416049957,
+            0.003163759708404541,
+            0.003163009583950043,
+            0.0031632402539253234,
+            0.0031635576486587526,
+            0.003172711431980133
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.003163759708404541
+        },
+        {
+          "label": "w8s1",
+          "configuration": {
+            "num_warps": 8,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 1,
+            "shared": 32
+          },
+          "samples_ms": [
+            0.002797596454620361,
+            0.0027909135818481447,
+            0.0027905383706092832,
+            0.0027893656492233277,
+            0.002789086401462555,
+            0.002791990339756012,
+            0.0027921923995018003
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.0027909135818481447
+        }
+      ]
+    },
+    {
+      "rows": 32,
+      "kind": "fused",
+      "variants": [
+        {
+          "label": "default",
+          "configuration": {},
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 3,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.24860088348388673,
+            0.01315612554550171,
+            0.012350249290466308,
+            0.01232587456703186,
+            0.012320942878723144,
+            0.012323778867721558,
+            0.012324970960617066
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.01232587456703186
+        },
+        {
+          "label": "w1s1",
+          "configuration": {
+            "num_warps": 1,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 1,
+            "num_stages": 1,
+            "shared": 0
+          },
+          "samples_ms": [
+            0.23830635070800782,
+            0.019187952280044555,
+            0.019227374792099,
+            0.019200692176818846,
+            0.019201557636260986,
+            0.019200692176818846,
+            0.019200749397277832
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.019200749397277832
+        },
+        {
+          "label": "w2s1",
+          "configuration": {
+            "num_warps": 2,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 8
+          },
+          "samples_ms": [
+            0.017265586853027343,
+            0.014666951894760132,
+            0.014651999473571778,
+            0.014659289121627807,
+            0.014661316871643066,
+            0.014660403728485108,
+            0.014657682180404663
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.014660403728485108
+        },
+        {
+          "label": "w4s1",
+          "configuration": {
+            "num_warps": 4,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.01382753849029541,
+            0.012354538440704346,
+            0.012330595254898071,
+            0.012341470718383788,
+            0.012325124740600586,
+            0.012325922250747681,
+            0.012329624891281128
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.012330595254898071
+        },
+        {
+          "label": "w8s1",
+          "configuration": {
+            "num_warps": 8,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 1,
+            "shared": 32
+          },
+          "samples_ms": [
+            0.011853489875793457,
+            0.011201412677764892,
+            0.011187644004821777,
+            0.011188231706619263,
+            0.011186624765396119,
+            0.011185990571975708,
+            0.011187374591827393
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.011187644004821777
+        }
+      ]
+    },
+    {
+      "rows": 64,
+      "kind": "normal",
+      "variants": [
+        {
+          "label": "default",
+          "configuration": {},
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 3,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.0032340478897094726,
+            0.003229124844074249,
+            0.0032273557782173156,
+            0.003229970932006836,
+            0.003224999904632568,
+            0.0032278364896774292,
+            0.003225538432598114
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.0032278364896774292
+        },
+        {
+          "label": "w1s1",
+          "configuration": {
+            "num_warps": 1,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 1,
+            "num_stages": 1,
+            "shared": 0
+          },
+          "samples_ms": [
+            0.23720420837402345,
+            0.005779288411140442,
+            0.005779288411140442,
+            0.005780355930328369,
+            0.005789144039154053,
+            0.0057728558778762816,
+            0.005778807401657105
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.005779288411140442
+        },
+        {
+          "label": "w2s1",
+          "configuration": {
+            "num_warps": 2,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 8
+          },
+          "samples_ms": [
+            0.004184095859527588,
+            0.004171769320964813,
+            0.004169942140579224,
+            0.0041807213425636295,
+            0.004171663522720337,
+            0.0041821059584617615,
+            0.004171817302703857
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.004171817302703857
+        },
+        {
+          "label": "w4s1",
+          "configuration": {
+            "num_warps": 4,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.003260471224784851,
+            0.003262019157409668,
+            0.00326324999332428,
+            0.0032689809799194337,
+            0.0032614326477050782,
+            0.0032626059651374817,
+            0.0032613751292228698
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.003262019157409668
+        },
+        {
+          "label": "w8s1",
+          "configuration": {
+            "num_warps": 8,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 1,
+            "shared": 32
+          },
+          "samples_ms": [
+            0.0030395865440368654,
+            0.0030386248230934144,
+            0.0030373364686965944,
+            0.0030387210845947265,
+            0.0030374425649642945,
+            0.0030370673537254336,
+            0.003040182888507843
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.0030386248230934144
+        }
+      ]
+    },
+    {
+      "rows": 64,
+      "kind": "fused",
+      "variants": [
+        {
+          "label": "default",
+          "configuration": {},
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0078125,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 3,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.23190610885620117,
+            0.015480279922485352,
+            0.015472557544708252,
+            0.015485519170761108,
+            0.015487442016601563,
+            0.015487394332885741,
+            0.01548241376876831
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.015485519170761108
+        },
+        {
+          "label": "w1s1",
+          "configuration": {
+            "num_warps": 1,
+            "num_stages": 1
+          },
+          "exact_equal_default": false,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0078125,
+          "compiled_metadata": {
+            "num_warps": 1,
+            "num_stages": 1,
+            "shared": 0
+          },
+          "samples_ms": [
+            0.022336347103118895,
+            0.022271943092346192,
+            0.022245962619781495,
+            0.02223942518234253,
+            0.022237181663513184,
+            0.022227749824523926,
+            0.02225078821182251
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.022245962619781495
+        },
+        {
+          "label": "w2s1",
+          "configuration": {
+            "num_warps": 2,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0078125,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 8
+          },
+          "samples_ms": [
+            0.23309009552001952,
+            0.017770229578018187,
+            0.01778919219970703,
+            0.017788816690444947,
+            0.017792086601257324,
+            0.017798625230789185,
+            0.017782336473464964
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.01778919219970703
+        },
+        {
+          "label": "w4s1",
+          "configuration": {
+            "num_warps": 4,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0078125,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.015502653121948241,
+            0.015405105352401733,
+            0.015417749881744386,
+            0.015406817197799683,
+            0.015417643785476685,
+            0.015399162769317626,
+            0.015412875413894654
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.015412875413894654
+        },
+        {
+          "label": "w8s1",
+          "configuration": {
+            "num_warps": 8,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0078125,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 1,
+            "shared": 32
+          },
+          "samples_ms": [
+            0.014674240350723266,
+            0.014570461511611938,
+            0.014570461511611938,
+            0.014565856456756591,
+            0.014560720920562743,
+            0.014569654464721679,
+            0.014578769207000733
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.014570461511611938
+        }
+      ]
+    },
+    {
+      "rows": 128,
+      "kind": "normal",
+      "variants": [
+        {
+          "label": "default",
+          "configuration": {},
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 3,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.2254656982421875,
+            0.003589067459106445,
+            0.0035856923460960387,
+            0.0035884326696395876,
+            0.0035878941416740417,
+            0.003587519526481628,
+            0.0035884326696395876
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.0035884326696395876
+        },
+        {
+          "label": "w1s1",
+          "configuration": {
+            "num_warps": 1,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 1,
+            "num_stages": 1,
+            "shared": 0
+          },
+          "samples_ms": [
+            0.006025124788284302,
+            0.005927471518516541,
+            0.005925807952880859,
+            0.005927249789237976,
+            0.005925422906875611,
+            0.00592795193195343,
+            0.005926442742347718
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.005927249789237976
+        },
+        {
+          "label": "w2s1",
+          "configuration": {
+            "num_warps": 2,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 8
+          },
+          "samples_ms": [
+            0.004408230781555176,
+            0.004401105940341949,
+            0.004400298297405243,
+            0.004400624930858612,
+            0.00439612478017807,
+            0.004398798048496247,
+            0.004398971199989319
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.004400298297405243
+        },
+        {
+          "label": "w4s1",
+          "configuration": {
+            "num_warps": 4,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.003662894070148468,
+            0.003661019206047058,
+            0.003661990463733673,
+            0.003659740388393402,
+            0.0036613941192626953,
+            0.0036602210998535156,
+            0.0036700192093849183
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.0036613941192626953
+        },
+        {
+          "label": "w8s1",
+          "configuration": {
+            "num_warps": 8,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 1,
+            "shared": 32
+          },
+          "samples_ms": [
+            0.0037947309017181395,
+            0.0038007307052612305,
+            0.003795163333415985,
+            0.0037931248545646666,
+            0.0037956345081329346,
+            0.003796451985836029,
+            0.003791403770446777
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.003795163333415985
+        }
+      ]
+    },
+    {
+      "rows": 128,
+      "kind": "fused",
+      "variants": [
+        {
+          "label": "default",
+          "configuration": {},
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.00390625,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 3,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.23342819213867189,
+            0.017990249395370483,
+            0.01797428846359253,
+            0.017986067533493043,
+            0.017969192266464235,
+            0.01797712445259094,
+            0.017971500158309936
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.01797712445259094
+        },
+        {
+          "label": "w1s1",
+          "configuration": {
+            "num_warps": 1,
+            "num_stages": 1
+          },
+          "exact_equal_default": false,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.00390625,
+          "compiled_metadata": {
+            "num_warps": 1,
+            "num_stages": 1,
+            "shared": 0
+          },
+          "samples_ms": [
+            0.024358606338500975,
+            0.024277181625366212,
+            0.024237165451049803,
+            0.02422499895095825,
+            0.02422966480255127,
+            0.024233038425445556,
+            0.024233999252319335
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.024233999252319335
+        },
+        {
+          "label": "w2s1",
+          "configuration": {
+            "num_warps": 2,
+            "num_stages": 1
+          },
+          "exact_equal_default": false,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.00390625,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 8
+          },
+          "samples_ms": [
+            0.019931471347808837,
+            0.019827258586883546,
+            0.019806960821151732,
+            0.019810663461685182,
+            0.019809961318969727,
+            0.019820250272750854,
+            0.019810875654220583
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.019810875654220583
+        },
+        {
+          "label": "w4s1",
+          "configuration": {
+            "num_warps": 4,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.00390625,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.01806899905204773,
+            0.017982797622680666,
+            0.017977664470672606,
+            0.01797370195388794,
+            0.018003000020980833,
+            0.017996730804443358,
+            0.017985807657241823
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.017985807657241823
+        },
+        {
+          "label": "w8s1",
+          "configuration": {
+            "num_warps": 8,
+            "num_stages": 1
+          },
+          "exact_equal_default": false,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.00390625,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 1,
+            "shared": 32
+          },
+          "samples_ms": [
+            0.01743600010871887,
+            0.017372095584869386,
+            0.01737573981285095,
+            0.017365336418151855,
+            0.01737229824066162,
+            0.0173654043674469,
+            0.017367316484451292
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.017372095584869386
+        }
+      ]
+    },
+    {
+      "rows": 576,
+      "kind": "normal",
+      "variants": [
+        {
+          "label": "default",
+          "configuration": {},
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 3,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.006720374822616577,
+            0.006591480374336243,
+            0.006578192114830017,
+            0.006587682366371155,
+            0.0065815097093582155,
+            0.0065847885608673095,
+            0.006588269472122193
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.006587682366371155
+        },
+        {
+          "label": "w1s1",
+          "configuration": {
+            "num_warps": 1,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 1,
+            "num_stages": 1,
+            "shared": 0
+          },
+          "samples_ms": [
+            0.00831004798412323,
+            0.008097702264785766,
+            0.008092711567878724,
+            0.008095605373382568,
+            0.00812796175479889,
+            0.008109115362167359,
+            0.008089874982833862
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.008097702264785766
+        },
+        {
+          "label": "w2s1",
+          "configuration": {
+            "num_warps": 2,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 8
+          },
+          "samples_ms": [
+            0.006808173060417175,
+            0.006794250011444092,
+            0.006797307729721069,
+            0.0067892116308212284,
+            0.006811346411705017,
+            0.006793932914733887,
+            0.006793500185012818
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.006794250011444092
+        },
+        {
+          "label": "w4s1",
+          "configuration": {
+            "num_warps": 4,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.00657718300819397,
+            0.006572134494781494,
+            0.006570702195167541,
+            0.006566567420959473,
+            0.006582374572753906,
+            0.0065725773572921755,
+            0.006570480465888977
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.006572134494781494
+        },
+        {
+          "label": "w8s1",
+          "configuration": {
+            "num_warps": 8,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 1,
+            "shared": 32
+          },
+          "samples_ms": [
+            0.00804675042629242,
+            0.008045567274093628,
+            0.00804294228553772,
+            0.008038923144340515,
+            0.008040105700492859,
+            0.008052317500114441,
+            0.008035403490066529
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.00804294228553772
+        }
+      ]
+    },
+    {
+      "rows": 576,
+      "kind": "fused",
+      "variants": [
+        {
+          "label": "default",
+          "configuration": {},
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0078125,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 3,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.034074914455413816,
+            0.03365068197250366,
+            0.03364907741546631,
+            0.03364280939102173,
+            0.03363374948501587,
+            0.03364805698394775,
+            0.03364971160888672
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.03364907741546631
+        },
+        {
+          "label": "w1s1",
+          "configuration": {
+            "num_warps": 1,
+            "num_stages": 1
+          },
+          "exact_equal_default": false,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0078125,
+          "compiled_metadata": {
+            "num_warps": 1,
+            "num_stages": 1,
+            "shared": 0
+          },
+          "samples_ms": [
+            0.0448195219039917,
+            0.044672789573669436,
+            0.04468387603759766,
+            0.04467198848724365,
+            0.04466972827911377,
+            0.04467407703399658,
+            0.04468204975128174
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.04467407703399658
+        },
+        {
+          "label": "w2s1",
+          "configuration": {
+            "num_warps": 2,
+            "num_stages": 1
+          },
+          "exact_equal_default": false,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0078125,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 8
+          },
+          "samples_ms": [
+            0.037145845890045166,
+            0.03704614400863648,
+            0.03704908609390259,
+            0.03705471992492676,
+            0.03703751802444458,
+            0.03702182531356812,
+            0.03703778028488159
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.03704614400863648
+        },
+        {
+          "label": "w4s1",
+          "configuration": {
+            "num_warps": 4,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0078125,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.033668787479400636,
+            0.033601558208465575,
+            0.03360063552856445,
+            0.03358853816986084,
+            0.03361891508102417,
+            0.03358825922012329,
+            0.03358730792999268
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.03360063552856445
+        },
+        {
+          "label": "w8s1",
+          "configuration": {
+            "num_warps": 8,
+            "num_stages": 1
+          },
+          "exact_equal_default": false,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0078125,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 1,
+            "shared": 32
+          },
+          "samples_ms": [
+            0.033806307315826414,
+            0.033740952014923095,
+            0.03374984502792358,
+            0.0337479043006897,
+            0.03373870372772217,
+            0.03374737501144409,
+            0.03373821020126343
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.03374737501144409
+        }
+      ]
+    },
+    {
+      "rows": 2048,
+      "kind": "normal",
+      "variants": [
+        {
+          "label": "default",
+          "configuration": {},
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 3,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.23188051223754882,
+            0.01569942235946655,
+            0.015705326795578,
+            0.01569797992706299,
+            0.015702807903289796,
+            0.015695470571517944,
+            0.01569819211959839
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.01569942235946655
+        },
+        {
+          "label": "w1s1",
+          "configuration": {
+            "num_warps": 1,
+            "num_stages": 1
+          },
+          "exact_equal_default": false,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.015625,
+          "compiled_metadata": {
+            "num_warps": 1,
+            "num_stages": 1,
+            "shared": 0
+          },
+          "samples_ms": [
+            0.01849773049354553,
+            0.01849456787109375,
+            0.018512576818466187,
+            0.018491730690002442,
+            0.01846831798553467,
+            0.018500298261642456,
+            0.018509470224380493
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.01849773049354553
+        },
+        {
+          "label": "w2s1",
+          "configuration": {
+            "num_warps": 2,
+            "num_stages": 1
+          },
+          "exact_equal_default": false,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.015625,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 8
+          },
+          "samples_ms": [
+            0.014117778539657592,
+            0.01412689447402954,
+            0.014118154048919678,
+            0.014138153791427611,
+            0.014121162891387939,
+            0.014119759798049927,
+            0.014119596481323242
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.014119759798049927
+        },
+        {
+          "label": "w4s1",
+          "configuration": {
+            "num_warps": 4,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.015691778659820556,
+            0.015689952373504637,
+            0.015683730840682985,
+            0.01569251894950867,
+            0.015686519145965576,
+            0.01568202018737793,
+            0.01568711519241333
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.01568711519241333
+        },
+        {
+          "label": "w8s1",
+          "configuration": {
+            "num_warps": 8,
+            "num_stages": 1
+          },
+          "exact_equal_default": false,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.0078125,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 1,
+            "shared": 32
+          },
+          "samples_ms": [
+            0.021795530319213868,
+            0.02178508520126343,
+            0.021781816482543945,
+            0.021791672706604003,
+            0.021782846450805665,
+            0.021786527633666994,
+            0.021775922775268554
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.02178508520126343
+        }
+      ]
+    },
+    {
+      "rows": 2048,
+      "kind": "fused",
+      "variants": [
+        {
+          "label": "default",
+          "configuration": {},
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.015625,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 3,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.2722199058532715,
+            0.08415717124938965,
+            0.0841502857208252,
+            0.08416402816772461,
+            0.08415589332580567,
+            0.08416549682617187,
+            0.08415648460388184
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.08415717124938965
+        },
+        {
+          "label": "w1s1",
+          "configuration": {
+            "num_warps": 1,
+            "num_stages": 1
+          },
+          "exact_equal_default": false,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.015625,
+          "compiled_metadata": {
+            "num_warps": 1,
+            "num_stages": 1,
+            "shared": 0
+          },
+          "samples_ms": [
+            0.10223003387451172,
+            0.10204779624938964,
+            0.1019898796081543,
+            0.10200112342834472,
+            0.10202443122863769,
+            0.10199362754821778,
+            0.10208572387695312
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.10202443122863769
+        },
+        {
+          "label": "w2s1",
+          "configuration": {
+            "num_warps": 2,
+            "num_stages": 1
+          },
+          "exact_equal_default": false,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.015625,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 8
+          },
+          "samples_ms": [
+            0.09020319938659668,
+            0.09012203216552735,
+            0.0901055908203125,
+            0.09017340660095215,
+            0.09015036582946777,
+            0.09023951530456543,
+            0.09023453712463379
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.09017340660095215
+        },
+        {
+          "label": "w4s1",
+          "configuration": {
+            "num_warps": 4,
+            "num_stages": 1
+          },
+          "exact_equal_default": true,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.015625,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 16
+          },
+          "samples_ms": [
+            0.08422178268432617,
+            0.08414541244506836,
+            0.08416359901428222,
+            0.08418097496032714,
+            0.08415958404541016,
+            0.0841773796081543,
+            0.08415637969970703
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.08416359901428222
+        },
+        {
+          "label": "w8s1",
+          "configuration": {
+            "num_warps": 8,
+            "num_stages": 1
+          },
+          "exact_equal_default": false,
+          "residual_equal_default": true,
+          "cpu_fp32_reference_passed": true,
+          "max_abs_error_cpu_fp32": 0.015625,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 1,
+            "shared": 32
+          },
+          "samples_ms": [
+            0.08836045265197753,
+            0.0883043098449707,
+            0.08831485748291015,
+            0.08830441474914551,
+            0.08829562187194824,
+            0.08830730438232422,
+            0.08828947067260742
+          ],
+          "graph_replay_matches_eager": true,
+          "median_ms": 0.08830441474914551
+        }
+      ]
+    }
+  ],
+  "dtype": "bfloat16",
+  "columns": 2048,
+  "timing_includes_input_reset": true,
+  "use_c_extension": false,
+  "kernel_bodies_unchanged": true,
+  "source_hashes": {
+    "flag_gems.ops.rms_norm": "58407466be597c05442b3288c95abb2c33e47f0f6b98cff624b2f2e8a00823e3",
+    "flag_gems.fused.fused_add_rms_norm": "192cbddc2283a564a9eaf90bfae1641a8a052398c0d7dd14f83f6a67f76ec3b9"
+  },
+  "errors": []
+}
