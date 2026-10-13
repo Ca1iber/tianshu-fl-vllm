@@ -1,0 +1,60 @@
+{
+  "complete": true,
+  "official_benchmark": true,
+  "audited_utc": "2026-10-13T02:31:42.748642+00:00",
+  "total_tok_s": 2440.62,
+  "output_tok_s": 143.57,
+  "ttft_ms": 200982.18,
+  "math_correct": 102,
+  "math_total": 105,
+  "math_accuracy": 0.9714285714285714,
+  "requests_successful": 512,
+  "excluded_runs": [
+    1
+  ],
+  "previous_best_total_tok_s": 915.15,
+  "previous_best_ttft_ms": 599262.03,
+  "vs_previous_best_throughput_percent": 166.69070644156693,
+  "vs_previous_best_ttft_percent": -66.46171959201219,
+  "vs_public_throughput_percent": 166.69070644156693,
+  "vs_public_ttft_percent": -66.46171959201219,
+  "reference_label": "public16K baseline",
+  "workload": [
+    16384,
+    1024,
+    64,
+    128
+  ],
+  "postfirst_spread_percent": 0.15037142150844277,
+  "adopt_as_best": true,
+  "profile": "Hybrid +adaptive Decode KV16/w4/s1 +native GQA Prefill M256/KV128/w16/s1, L0, budget2048 +75point Prefill buckets +fixed last-token gather",
+  "candidate_hook": {
+    "path": "/workspace/vllm-plugin-FL/experiments/tianshu_decode_launch_20261012/hooks/sitecustomize.py",
+    "sha256": "934e54ccf7c68879797941f6afdf6854c1fd3d010195ac5b33342715ea02ec3c"
+  },
+  "experimental_kernel": {
+    "path": "/usr/local/lib/python3.12/site-packages/vllm/v1/attention/ops/triton_unified_attention.py",
+    "sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0"
+  },
+  "buckets": "1",
+  "gather": "1",
+  "bucket_sources": {
+    "model_runner.py": {
+      "path": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/model_runner.py",
+      "sha256": "b0144bcff96bef15b04eb1ad45385b01c47faea056bc56352a6486b7c497fa2e"
+    },
+    "iluvatar_prefill_buckets.py": {
+      "path": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/iluvatar_prefill_buckets.py",
+      "sha256": "966aad18aad80ef488928cafc8672cbfa2d547a832f9b151346f719ea3abc6db"
+    },
+    "iluvatar_logits_gather.py": {
+      "path": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/iluvatar_logits_gather.py",
+      "sha256": "7bca296afddd37e9a3d2c4e1ce9f91ea6bae252956da867ccc1bd7da2506c513"
+    }
+  },
+  "bucket_trace_hook": {
+    "path": "/workspace/vllm-plugin-FL/experiments/tianshu_buckets75_recheck_20261012/joint_hooks/sitecustomize.py",
+    "sha256": "1319ae4a600794cd71788b0c9089a2a1dc9d67240d6f194f1017fa0af8f2747f"
+  },
+  "optimized_full_16k_not_run": false
+}
