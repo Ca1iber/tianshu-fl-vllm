@@ -1,0 +1,1155 @@
+{
+  "complete": true,
+  "official_benchmark": true,
+  "audited_utc": "2026-10-13T07:13:25.962788+00:00",
+  "total_tok_s": 2600.48,
+  "output_tok_s": 152.97,
+  "ttft_ms": 189964.79,
+  "math_correct": 102,
+  "math_total": 105,
+  "math_accuracy": 0.9714285714285714,
+  "requests_successful": 512,
+  "excluded_runs": [
+    1
+  ],
+  "previous_best_total_tok_s": 2440.62,
+  "previous_best_ttft_ms": 200982.18,
+  "vs_previous_best_throughput_percent": 6.549975006350861,
+  "vs_previous_best_ttft_percent": -5.481774553345964,
+  "vs_public_throughput_percent": 184.15888105775008,
+  "vs_public_ttft_percent": -68.30021251304709,
+  "reference_label": "public16K baseline",
+  "workload": [
+    16384,
+    1024,
+    64,
+    128
+  ],
+  "postfirst_spread_percent": 0.10382685270047003,
+  "adopt_as_best": true,
+  "profile": "Hybrid +adaptive Decode KV16/w4/s1 +native GQA Prefill M256/KV128/w16/s1, L0, budget2048 +75point Prefill buckets +fixed last-token gather +guarded int32 Decode element offsets/strides B4..48",
+  "candidate_hook": {
+    "path": "/workspace/vllm-plugin-FL/experiments/tianshu_decode_launch_20261012/hooks/sitecustomize.py",
+    "sha256": "934e54ccf7c68879797941f6afdf6854c1fd3d010195ac5b33342715ea02ec3c"
+  },
+  "experimental_kernel": {
+    "path": "/usr/local/lib/python3.12/site-packages/vllm/v1/attention/ops/triton_unified_attention.py",
+    "sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0"
+  },
+  "buckets": "1",
+  "gather": "1",
+  "bucket_sources": {
+    "model_runner.py": {
+      "path": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/model_runner.py",
+      "sha256": "b0144bcff96bef15b04eb1ad45385b01c47faea056bc56352a6486b7c497fa2e"
+    },
+    "iluvatar_prefill_buckets.py": {
+      "path": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/iluvatar_prefill_buckets.py",
+      "sha256": "966aad18aad80ef488928cafc8672cbfa2d547a832f9b151346f719ea3abc6db"
+    },
+    "iluvatar_logits_gather.py": {
+      "path": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/iluvatar_logits_gather.py",
+      "sha256": "7bca296afddd37e9a3d2c4e1ce9f91ea6bae252956da867ccc1bd7da2506c513"
+    }
+  },
+  "bucket_trace_hook": {
+    "path": "/workspace/vllm-plugin-FL/experiments/tianshu_buckets75_recheck_20261012/joint_hooks/sitecustomize.py",
+    "sha256": "1319ae4a600794cd71788b0c9089a2a1dc9d67240d6f194f1017fa0af8f2747f"
+  },
+  "optimized_full_16k_not_run": false,
+  "address32_sources": {
+    "address32_sitecustomize.py": {
+      "path": "/workspace/vllm-plugin-FL/experiments/tianshu_attention_offsets_20261013/hooks/sitecustomize.py",
+      "sha256": "c4023287ae355e659d40d833e124d81682b39c39f96ca4f9e0414bacd1836ab0"
+    },
+    "address32.py": {
+      "path": "/workspace/vllm-plugin-FL/experiments/tianshu_attention_offsets_20261013/address32.py",
+      "sha256": "5ac7a68d1a8a2f666261dcb147a5fe32174c2ce6b36ab5331c2687cdac66730e"
+    }
+  },
+  "address32_routing_records": [
+    {
+      "batch": 48,
+      "segments": 4,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4556799,
+        285292543,
+        285292543,
+        4556799,
+        2096,
+        2095,
+        17172479,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 40,
+      "segments": 4,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4540415,
+        285292543,
+        285292543,
+        4540415,
+        2088,
+        2087,
+        17106943,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 32,
+      "segments": 4,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4524031,
+        285292543,
+        285292543,
+        4524031,
+        2080,
+        2079,
+        17041407,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 24,
+      "segments": 4,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4507647,
+        285292543,
+        285292543,
+        4507647,
+        2072,
+        2071,
+        16975871,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 16,
+      "segments": 4,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4491263,
+        285292543,
+        285292543,
+        4491263,
+        2064,
+        2063,
+        16910335,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 8,
+      "segments": 16,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4474879,
+        285292543,
+        285292543,
+        4474879,
+        2056,
+        2055,
+        16844799,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 4,
+      "segments": 16,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4466687,
+        285292543,
+        285292543,
+        4466687,
+        2052,
+        2051,
+        16812031,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 5,
+      "segments": 16,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4468735,
+        285292543,
+        285292543,
+        4468735,
+        2053,
+        2052,
+        16820223,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 6,
+      "segments": 16,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4470783,
+        285292543,
+        285292543,
+        4470783,
+        2054,
+        2053,
+        16828415,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 7,
+      "segments": 16,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4472831,
+        285292543,
+        285292543,
+        4472831,
+        2055,
+        2054,
+        16836607,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 9,
+      "segments": 16,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4476927,
+        285292543,
+        285292543,
+        4476927,
+        2057,
+        2056,
+        16852991,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 10,
+      "segments": 16,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4478975,
+        285292543,
+        285292543,
+        4478975,
+        2058,
+        2057,
+        16861183,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 11,
+      "segments": 16,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4481023,
+        285292543,
+        285292543,
+        4481023,
+        2059,
+        2058,
+        16869375,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 12,
+      "segments": 16,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4483071,
+        285292543,
+        285292543,
+        4483071,
+        2060,
+        2059,
+        16877567,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 13,
+      "segments": 16,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4485119,
+        285292543,
+        285292543,
+        4485119,
+        2061,
+        2060,
+        16885759,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 14,
+      "segments": 16,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4487167,
+        285292543,
+        285292543,
+        4487167,
+        2062,
+        2061,
+        16893951,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 15,
+      "segments": 16,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4489215,
+        285292543,
+        285292543,
+        4489215,
+        2063,
+        2062,
+        16902143,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 17,
+      "segments": 4,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4493311,
+        285292543,
+        285292543,
+        4493311,
+        2065,
+        2064,
+        16918527,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 18,
+      "segments": 4,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4495359,
+        285292543,
+        285292543,
+        4495359,
+        2066,
+        2065,
+        16926719,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 19,
+      "segments": 4,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4497407,
+        285292543,
+        285292543,
+        4497407,
+        2067,
+        2066,
+        16934911,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 20,
+      "segments": 4,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4499455,
+        285292543,
+        285292543,
+        4499455,
+        2068,
+        2067,
+        16943103,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 21,
+      "segments": 4,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4501503,
+        285292543,
+        285292543,
+        4501503,
+        2069,
+        2068,
+        16951295,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 22,
+      "segments": 4,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4503551,
+        285292543,
+        285292543,
+        4503551,
+        2070,
+        2069,
+        16959487,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 23,
+      "segments": 4,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4505599,
+        285292543,
+        285292543,
+        4505599,
+        2071,
+        2070,
+        16967679,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 25,
+      "segments": 4,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4509695,
+        285292543,
+        285292543,
+        4509695,
+        2073,
+        2072,
+        16984063,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 26,
+      "segments": 4,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4511743,
+        285292543,
+        285292543,
+        4511743,
+        2074,
+        2073,
+        16992255,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 27,
+      "segments": 4,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4513791,
+        285292543,
+        285292543,
+        4513791,
+        2075,
+        2074,
+        17000447,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 28,
+      "segments": 4,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4515839,
+        285292543,
+        285292543,
+        4515839,
+        2076,
+        2075,
+        17008639,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 29,
+      "segments": 4,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4517887,
+        285292543,
+        285292543,
+        4517887,
+        2077,
+        2076,
+        17016831,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 30,
+      "segments": 4,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4519935,
+        285292543,
+        285292543,
+        4519935,
+        2078,
+        2077,
+        17025023,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    }
+  ],
+  "fresh_math_for_address32": true,
+  "canonical_best_not_yet_changed": true,
+  "full4k_pending": true
+}
