@@ -1,0 +1,11 @@
+# 天数 BI-V150 32g：独立缓存RoPE真实绑定75组成功
+
+native RoPE opaque融合已通过40项native/CPU/Graph/alias逐位测试；模型v2用独立compile_cache与VLLM_DISABLE_COMPILE_CACHE=1阻止旧AOT和vLLM缓存复用，保留Inductor、FULL_DECODE_ONLY、TopP16/Decode32/nativePrefill/B75G1/budget2048。没有IRRMSprovider、没有额外kernel-config或norm_quant pass改动。
+
+实际重新编译且正常预热，75组RoPE GPU记录均Q/K实际rowstride2560，int64位置、BF16中间乘法舍入/FMA关闭，source04d617914ab7a6541f1530d7156415b5f96937912483b41381a248400b7d7132。4096输入/16输出temperature0请求正常完成，GPU清理完成。命中来源正确，无旧AOT load日志，真正验证了新static method而不是仅设置开关。
+
+首版复用旧0b5dea52a6 AOT图，虽然请求成功但新RoPE记录0，绑定assert失败；该结果另存，不计ROI。v2独立缓存通过；性能对照必须两组使用相同禁用旧缓存策略，只比较native与新RoPE。后续正式launcher若采用应隔离编译缓存/源码hash，不能让旧baseline缓存绕过补丁。
+
+原始包2477914bytes/10分片，SHA256 423ace06c6def0919465287eec3b1ada538c2e0e1dfb02761742e54750717042；整包/分片、75真实记录、源码3份、实际CLI/cache日志、4096/16usage已本地核验。原件service-results/20261014_tianshu/native_rope_smoke_v2/20261014_native_rope_service_smoke_v2_tianshu。
+
+此为绑定/编译检查，未提供吞吐或Math质量成绩，greedy请求不能代替新Math。三轮4K/1K C64 N64同期对照正在运行；ROI明确才freshMath105>95及原脚本正式4K。当前正式最好3506.84/Math103仍保留。性能剖析：TODO图内kernel覆盖；安装源/权重/原benchmark不变、沐曦只读。
