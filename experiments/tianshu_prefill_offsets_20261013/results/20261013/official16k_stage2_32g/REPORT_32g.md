@@ -15,4 +15,4 @@
 
 原始归档2348350bytes、9分片与整包SHA256 0b35cf62b7315f49e7eca41bee9a666dfce0aecbcfa55e96c336b4c17b1d1d45全部本地verified。目录service-results/20261013_tianshu/prefill_stage2_official16k/official16384，完整四轮响应/CSV/源/质量匹配证据保留。Git CSV为LF副本，原始归档原字节不改。原benchmark SHA0813eba574e9d1eb50c297c515baa426da1bcb61ce8c78a398b482f246005565未修改。
 
-同一新profile正式4K正在顺序运行，最终统一profile/default选择等两项都闭合后更新。历史4K3222.52仍保留，未把不同profile的最好成绩合成一次运行。
+同一新profile正式4K已完成3213.13、TTFT4456.78ms，1024请求全部成功；统一报告见上级REPORT_32g.md。历史4K3222.52仍保留，未把不同profile的最好成绩合成一次运行。用户明确要求后续优化以4K测试为主，不再常规跑16K。
