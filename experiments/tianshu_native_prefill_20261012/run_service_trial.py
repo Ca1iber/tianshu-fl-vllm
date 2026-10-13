@@ -31,6 +31,11 @@ def main():
     parser.add_argument('--native-prefill',choices=['0','1'],required=True)
     parser.add_argument('--single-probe-output', type=int, default=0)
     parser.add_argument('--output-tokens',type=int,default=1024)
+    parser.add_argument('--input-tokens',type=int,default=4096)
+    parser.add_argument('--watermark',type=float,default=0.0)
+    parser.add_argument('--hist-count-bits',choices=['off','64','32','16','8'],default='off')
+    parser.add_argument('--decode-graph-max',type=int,choices=[0,64],default=0)
+    parser.add_argument('--request-timeout',type=int,default=900)
     parser.add_argument('--concurrency', type=int, default=64)
     parser.add_argument('--requests', type=int, default=64)
     parser.add_argument('--rounds', type=int, default=3)
@@ -38,8 +43,10 @@ def main():
     parser.add_argument('--stream-interval',type=int,choices=[1,4],default=1)
     parser.add_argument('--bucket-trace',choices=['0','1','2'],default='0')
     args = parser.parse_args()
-    if min(args.output_tokens, args.concurrency, args.requests) < 1 or args.rounds < 2:
+    if min(args.input_tokens, args.output_tokens, args.concurrency, args.requests, args.request_timeout) < 1 or args.rounds < 2:
         parser.error('Positive workload sizes and at least two rounds are required')
+    if not 0 <= args.watermark < 1 or args.input_tokens + args.output_tokens > 131072:
+        parser.error('Watermark must be in [0,1), and the workload must fit the model length')
     if args.gather == '1' and args.buckets != '1':
         raise RuntimeError('Fixed gather requires the independently checked bucket profile')
     if args.buckets == '1' and (args.max_batched_tokens != 2048 or args.native_prefill != '1'):
@@ -84,20 +91,41 @@ def main():
         env['PYTHONPATH']=str(Path(__file__).resolve().parents[1]/'tianshu_buckets75_recheck_20261012'/folder)
         env['TIANSHU_BUCKET_RECHECK_TRACE']='1'
         env['TIANSHU_BUCKET_TRACE_DIR']=str(out/'bucket_trace_records')
+    if args.hist_count_bits!='off':
+        assert args.bucket_trace=='2' and args.gather=='1'
+        env['PYTHONPATH']=str(Path(__file__).resolve().parents[1]/'tianshu_sort_counts_20261013/hooks')
+        env['TIANSHU_SORT_COUNT_BITS']=args.hist_count_bits
+        env['TIANSHU_SORT_COUNT_RECORD_DIR']=str(out/'sort_count_records')
+    else:
+        env.pop('TIANSHU_SORT_COUNT_BITS',None)
+        env.pop('TIANSHU_SORT_COUNT_RECORD_DIR',None)
+    if args.decode_graph_max:
+        assert args.hist_count_bits=='off' and args.bucket_trace=='2'
+        env['PYTHONPATH']=str(Path(__file__).resolve().parents[1]/'tianshu_decode_graphs_20261013/hooks')
+        env['TIANSHU_DECODE_GRAPH_MAX_ROWS']=str(args.decode_graph_max)
+        env['TIANSHU_DECODE_GRAPH_RECORD_DIR']=str(out/'decode_graph_records')
+    else:
+        env.pop('TIANSHU_DECODE_GRAPH_MAX_ROWS',None)
+        env.pop('TIANSHU_DECODE_GRAPH_RECORD_DIR',None)
     command = ['vllm', 'serve', '/workspace/MiniCPM5-2B', '--port', '9031',
                '--compilation-config', '{"cudagraph_mode": "FULL_DECODE_ONLY"}',
                '--served-model-name', 'minicpm', '--gpu-memory-utilization', '0.85',
                '--max-model-len', '131072']
     command += ['--max-num-batched-tokens', str(args.max_batched_tokens)]
+    if args.watermark:
+        command += ['--watermark',str(args.watermark)]
     if args.stream_interval!=1:
         command += ['--stream-interval',str(args.stream_interval)]
     state = dict(native_prefill=args.native_prefill,tile=args.tile,decode_launch=args.decode_launch,max_batched_tokens=args.max_batched_tokens, adaptive=args.adaptive, single_decode_rounds=[], hybrid=args.hybrid, phase='preparing', runner_pid=os.getpid(), buckets=args.buckets, gather=args.gather,
                  started_at_utc=datetime.now(timezone.utc).isoformat(), command=command,
                  rare_cases=[], short_4k_rounds=[], scored=False,
-                 workload={'input_tokens': 4096, 'output_tokens': args.output_tokens,
+                 workload={'input_tokens': args.input_tokens, 'output_tokens': args.output_tokens,
                            'concurrency': args.concurrency, 'requests_per_round': args.requests,
                            'rounds': args.rounds, 'excluded_rounds': [1]},
-                 note='Short 4K experiment excluding round one; not the official 256-request average score.')
+                 note='Local service experiment excluding round one; not an official benchmark score.',
+                 watermark=args.watermark, histogram_count_bits=args.hist_count_bits,
+                 decode_graph_max=args.decode_graph_max,
+                 official_benchmark=False)
     state['stream_interval']=args.stream_interval
     server = None
 
@@ -157,7 +185,7 @@ def main():
         text = ''
         ttft = None
         usage = None
-        with urllib.request.urlopen(req, timeout=900) as response:
+        with urllib.request.urlopen(req, timeout=args.request_timeout) as response:
             if stream:
                 for raw in response:
                     line = raw.decode().strip()
@@ -186,6 +214,13 @@ def main():
 
     def tune_records(text):
         return [line for line in text.splitlines() if 'Triton autotuning for function' in line]
+
+    def metrics_snapshot(name):
+        with urllib.request.urlopen('http://127.0.0.1:9031/metrics', timeout=5) as response:
+            contents=response.read().decode()
+        (out/f'{name}_metrics.txt').write_text(contents)
+        return {'file':f'{name}_metrics.txt',
+                'utc':datetime.now(timezone.utc).isoformat()}
 
     try:
         try:
@@ -225,11 +260,27 @@ def main():
             (source_dir/'decode_sitecustomize.py').write_bytes(contents)
             state['decode_hook']={'path':str(hook),'sha256':hashlib.sha256(contents).hexdigest()}
         if args.bucket_trace!='0':
-            hook=Path(env['PYTHONPATH'])/'sitecustomize.py';contents=hook.read_bytes()
+            folder='joint_hooks' if args.bucket_trace=='2' else 'hooks'
+            hook=Path(__file__).resolve().parents[1]/'tianshu_buckets75_recheck_20261012'/folder/'sitecustomize.py'
+            contents=hook.read_bytes()
             (source_dir/'bucket_trace_sitecustomize.py').write_bytes(contents)
             state['bucket_trace_hook']={'path':str(hook),'sha256':hashlib.sha256(contents).hexdigest()}
             component=Path(__file__).resolve().parents[1]/'tianshu_buckets75_recheck_20261012/hooks/sitecustomize.py'
             (source_dir/'bucket_component_sitecustomize.py').write_bytes(component.read_bytes())
+        if args.hist_count_bits!='off':
+            count=Path(__file__).resolve().parents[1]/'tianshu_sort_counts_20261013'
+            paths={'count_sitecustomize.py':count/'hooks/sitecustomize.py',
+                   'histogram_width.py':count/'histogram_width.py',
+                   'original_sort.py':Path('/usr/local/lib/python3.12/site-packages/flag_gems/ops/sort.py')}
+            state['count_sources']={}
+            for name,path in paths.items():
+                contents=path.read_bytes();(source_dir/name).write_bytes(contents)
+                state['count_sources'][name]={'path':str(path),'sha256':hashlib.sha256(contents).hexdigest()}
+        if args.decode_graph_max:
+            hook=Path(env['PYTHONPATH'])/'sitecustomize.py';contents=hook.read_bytes()
+            (source_dir/'decode_graph_sitecustomize.py').write_bytes(contents)
+            state['decode_graph_hook']={'path':str(hook),'sha256':hashlib.sha256(contents).hexdigest()}
+        (source_dir/'run_service_trial.py').write_bytes(Path(__file__).read_bytes())
         save()
         with (out / 'server.log').open('w') as log:
             server = subprocess.Popen(command, cwd='/workspace', env=env, stdout=log,
@@ -270,19 +321,22 @@ def main():
             state['phase'] = f'short_4k_round_{round_index + 1}'
             save()
             before = len(log_path.read_text())
+            metric_before=metrics_snapshot(f'round{round_index+1}_before')
             start = time.perf_counter()
             with ThreadPoolExecutor(max_workers=args.concurrency) as pool:
-                futures = [pool.submit(request, 4096, args.output_tokens,
+                futures = [pool.submit(request, args.input_tokens, args.output_tokens,
                                        2026101200 + max(100, args.requests) * round_index + i,
                                        True, 1.0) for i in range(args.requests)]
                 responses = [future.result() for future in futures]
             duration = time.perf_counter() - start
+            metric_after=metrics_snapshot(f'round{round_index+1}_after')
             state['short_4k_rounds'].append(dict(round=round_index + 1, duration_seconds=duration,
-                    total_tokens_per_second=args.requests * (4096 + args.output_tokens) / duration,
+                    total_tokens_per_second=args.requests * (args.input_tokens + args.output_tokens) / duration,
                     output_tokens_per_second=args.requests * args.output_tokens / duration,
                     mean_ttft_seconds=statistics.mean(r['ttft_seconds'] for r in responses),
                     successful_requests=len(responses),
-                    tuning_records=tune_records(log_path.read_text()[before:]), responses=responses))
+                    tuning_records=tune_records(log_path.read_text()[before:]), responses=responses,
+                    metrics_before=metric_before, metrics_after=metric_after))
             save()
         state['runtime_tune_records'] = tune_records(log_path.read_text()[boundary:])
         values = [r['total_tokens_per_second'] for r in state['short_4k_rounds'][1:]]
@@ -311,6 +365,17 @@ def main():
             if not records:
                 raise RuntimeError('Native prefill did not route on actual model')
             state['native_prefill_routing_records']=records
+        if args.hist_count_bits!='off':
+            records=[json.loads(f.read_text()) for f in (out/'sort_count_records').glob('route_*.json')]
+            assert records, 'Count override did not route on the actual model'
+            state['sort_count_routing_records']=records
+        if args.decode_graph_max:
+            records=[json.loads(f.read_text()) for f in (out/'decode_graph_records').glob('configured_*.json')]
+            assert records and all(max(r['decode_graph_sizes'])==64 and
+                                   len(r['prefill_warmup_sizes'])==75 for r in records)
+            warmups=[json.loads(f.read_text()) for f in (out/'bucket_trace_records').glob('warmup_completed_*.json')]
+            assert any(r['complete'] and len(r['calls'])==75 for r in warmups)
+            state['decode_graph_configuration_records']=records
 
         state['phase'] = 'complete'
     except StopRequested as error:
