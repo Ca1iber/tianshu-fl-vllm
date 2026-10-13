@@ -1,0 +1,41 @@
+{
+  "complete": true,
+  "argv": [
+    "vllm",
+    "serve",
+    "/workspace/MiniCPM5-2B",
+    "--port",
+    "9031",
+    "--compilation-config",
+    "{\"cudagraph_mode\": \"FULL_DECODE_ONLY\"}",
+    "--served-model-name",
+    "minicpm",
+    "--gpu-memory-utilization",
+    "0.85",
+    "--max-model-len",
+    "131072",
+    "--max-num-batched-tokens",
+    "2048",
+    "--long-prefill-token-threshold",
+    "0"
+  ],
+  "flags": {
+    "VLLM_PLUGINS": "fl",
+    "VLLM_FL_ILUVATAR_HYBRID_ATTENTION": "1",
+    "FLAGGEMS_ILUVATAR_COMPACT_VARLEN": "1",
+    "VLLM_FL_ILUVATAR_ADAPTIVE_DECODE_SEGMENTS": "1",
+    "VLLM_FL_USE_FLAGGEMS_ATTN": "0",
+    "VLLM_FL_ILUVATAR_SPLIT_MIXED_ATTN": "0",
+    "VLLM_FL_ILUVATAR_PREFILL_BUCKETS": "1",
+    "VLLM_FL_ILUVATAR_LOGITS_GATHER": "1",
+    "TIANSHU_TOPP_LAUNCH_PROBE": "1",
+    "TIANSHU_DECODE_COHERENT_PROBE": "1",
+    "TIANSHU_NATIVE_PREFILL_PROBE": "1",
+    "TIANSHU_FA2_TILE_PROBE": "1",
+    "TIANSHU_DECODE_LAUNCH_PROBE": "1",
+    "TIANSHU_BUCKET_RECHECK_TRACE": "1"
+  },
+  "math_and_official_argv_equal": true,
+  "no_real_vllm_started": true,
+  "bash_n_passed": true
+}
