@@ -9,3 +9,5 @@
 原始包2297107bytes/9分片，SHA256 7739c01b4efce844e597ef044a3a7238396266f5379a29ab65172f0c98fd906d；整包/分片、80唯一case、8真实路由、probe及hook快照均已本地核验。hook SHA 48fe65892c63c90a807cec9d21ae71fadaddfc95bc7a1966d0ea151a91873d28。原件service-results/20261014_tianshu/rms_router_boundaries/20261014_rms_router_boundaries_tianshu。
 
 结论：可以进入同期小规模4K服务对照，尚无新的模型性能分数。若服务收益明确，再重新独立Math105及正式4K，不复用TopP旧103/105；不跑16K。当前最好仍3506.84/TTFT4494.12/Math103，tag tianshu-best-topp-w16-20261014。性能剖析：TODO，Graph内部覆盖尚未得到有效计时。安装源、权重和官方benchmark保持原件，沐曦只读。
+
+后续服务发现模型走vLLM IR native RMS而没有命中这里的FlagGems路由；80项仅覆盖直接FlagGems调用。本绑定路线已停止，详见service_unrouted_32g报告，不将边界通过描述为实际模型路径已优化。
