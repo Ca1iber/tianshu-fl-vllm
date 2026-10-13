@@ -1,0 +1,9 @@
+# 天数 BI-V150 32g：首版RoPE模型绑定被旧AOT缓存绕过
+
+首版patch真实RotaryEmbedding.forward_static，40数值直接API场景全部逐位正确。模型启动却加载旧0b5dea52a6 AOT编译图，4096/16请求成功但新RoPE GPU记录0；绑定assert失败，result.phase=failed，GPU清理完成。请求成功不证明新路径生效，不能算性能/质量收益。
+
+该直接staticmethod补丁没有自动改变现有vLLM编译缓存hash。后续独立v2设置新的compilation.cache_dir及VLLM_DISABLE_COMPILE_CACHE=1，已通过重编译、75真实GPU记录和请求检查，详见smoke_v2_32g。禁用的是旧编译结果复用，Inductor/FULL_DECODE_ONLY保留；后续同期对照两组同策略，避免不公平缓存差别。没有删除共享cache目录，没有覆写首次失败。
+
+原始失败包87144bytes/1分片，SHA256 65f6ebb1d8c31dd138790b75894e30debf9db1c9250b114c32ab160a9dcb06e9；整包/分片、failed结果、0命中、旧AOT加载日志、3份实际源快照及成功的旧路径响应都本地核验。原件service-results/20261014_tianshu/native_rope_smoke_unrouted/20261014_native_rope_service_smoke_tianshu。
+
+保存首版实际源码以防重踩缓存陷阱，不将其作为正确启动脚本。当前真实RoPE三轮对照运行中，尚无新ROI或Math；正式最好3506.84/Math103保留。性能剖析：TODO，沐曦只读、安装源/权重/原benchmark不变。
