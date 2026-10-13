@@ -1,0 +1,7 @@
+# 天数 BI-V150 32g：Graph外部事件读取了图外旧时间戳
+
+独立v2保留v1完全相同的0<replay<outside/5门槛，只在断言之前记录计时数值和query结果。图外50次GEMM=1.026811599731445ms；一次Graph replay后读取完全相同的1.026811599731445ms，比例1.0；start/middle/end query均true。证据表明这次external=True捕获/回放模式未刷新事件时间戳，读取了已完成的图外区间。query=true不能证明时间戳更新，不将该时间当作Graph kernel耗时。
+
+不将这个模式的失败扩展成所有Graph profiling方式或整个后端绝对不支持。未改检查比例，没有以放宽门槛获得通过。普通图外event包裹整个replay的微测与这里图内external事件分别记录；没有据此否认已验证的吞吐测试或RMS整体Graph计时。下一步考虑其他覆盖方式，当前先继续RMS服务优化。
+
+源快照与本检查点probe_external_events_v2.py逐字一致；原始包2289262bytes/9分片，SHA256 db3dcd12912fa14cd15bb17134625b95967ea86ec4991bdb0a47eed8d108e04a，整包与分片全部核验。原件service-results/20261014_tianshu/graph_external_events_v2/20261014_graph_external_events_v2_tianshu。性能剖析：TODO，图内覆盖未确认；纯能力诊断不计模型分数。正式最好仍TopP3506.84/Math103，tag tianshu-best-topp-w16-20261014。沐曦只读、安装源与权重不变。
