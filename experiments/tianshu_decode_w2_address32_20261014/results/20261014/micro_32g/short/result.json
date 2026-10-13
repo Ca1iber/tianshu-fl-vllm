@@ -1,0 +1,2294 @@
+{
+  "complete": true,
+  "official_benchmark": false,
+  "adoption_allowed": false,
+  "provenance": {
+    "baseline": "current L0 KV32/w2 B8..64 / w4 otherwise, stage1",
+    "native_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+    "grid_changed": false,
+    "kernel_body_changed": true,
+    "tile_reduction_order_may_change": true,
+    "producer_and_reducer_tile_matched": true,
+    "installed_sources_modified": false,
+    "address32_generation": {
+      "original_l0_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "generated_sha256": "68fa87320d87de08e95c789dcc6d6a93c0607e8be0343490681cf2c88b39cfd8",
+      "annotations_changed": 28,
+      "address_casts_changed": 6,
+      "integer_element_offsets_bits": 32,
+      "physical_pointer_types_unchanged": true,
+      "floating_point_source_changes": false,
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261014_decode_w2_address32_short_tianshu/generated/original_l0/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      }
+    },
+    "baseline_profile": "current L0 KV32 warp2 batch8..64 / warp4otherwise",
+    "candidate_floating_source_unchanged_relative_to_L0": true,
+    "candidate_changes_integer_element_offsets_only": true
+  },
+  "cases": [
+    {
+      "batch": 1,
+      "query_lengths": [
+        1
+      ],
+      "kv_lengths": [
+        1
+      ],
+      "strided": false,
+      "segments": 64,
+      "original_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "cpu_reference_checks": [
+        {
+          "passed": true,
+          "max_abs": 0.0,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 0.0,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 0.0,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 0.0,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        }
+      ],
+      "baseline_ms": 0.017072154283523558,
+      "baseline_tail_preserved": true,
+      "baseline_launch_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 20480,
+        "producer_and_reducer_tile": 32,
+        "offset_bits": 64,
+        "bounds": null,
+        "producer_source_module": "tianshu_native_zero_initialization"
+      },
+      "reducer_source_modules": [
+        "vllm.v1.attention.ops.triton_unified_attention",
+        "_tianshu_w2_l0_address32_68fa87320d87"
+      ],
+      "variants": [
+        {
+          "configuration": {
+            "offset_bits": 32
+          },
+          "candidate_ms": 0.01627369284629822,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.0,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.0,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": true,
+          "tails_preserved": true,
+          "raw_ms": [
+            0.016546769142150877,
+            0.01651669144630432,
+            0.01629692316055298,
+            0.016525770425796508,
+            0.016228307485580445,
+            0.01627369284629822,
+            0.01614853858947754,
+            0.01620546221733093,
+            0.016270307302474977
+          ],
+          "launch_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 20480,
+            "producer_and_reducer_tile": 32,
+            "offset_bits": 32,
+            "bounds": [
+              4466687,
+              285607935,
+              2231295,
+              2231295,
+              4460543,
+              17569791,
+              17569791,
+              4096,
+              2048,
+              17569791,
+              17569791,
+              0,
+              0,
+              2049
+            ],
+            "producer_source_module": "_tianshu_w2_l0_address32_68fa87320d87"
+          },
+          "time_change_percent": -4.676981146989401
+        }
+      ],
+      "baseline_raw_ms": [
+        0.01740899920463562,
+        0.01732800006866455,
+        0.01700446128845215,
+        0.01737299919128418,
+        0.017072154283523558,
+        0.017111077308654785,
+        0.017056231498718263,
+        0.01700269341468811,
+        0.016982537508010865
+      ]
+    },
+    {
+      "batch": 1,
+      "query_lengths": [
+        1
+      ],
+      "kv_lengths": [
+        7
+      ],
+      "strided": false,
+      "segments": 64,
+      "original_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.005512714385986328,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "cpu_reference_checks": [
+        {
+          "passed": true,
+          "max_abs": 1.1920928955078125e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 2.384185791015625e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.1920928955078125e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.1920928955078125e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        }
+      ],
+      "baseline_ms": 0.017097846269607545,
+      "baseline_tail_preserved": true,
+      "baseline_launch_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 20480,
+        "producer_and_reducer_tile": 32,
+        "offset_bits": 64,
+        "bounds": null,
+        "producer_source_module": "tianshu_native_zero_initialization"
+      },
+      "reducer_source_modules": [
+        "vllm.v1.attention.ops.triton_unified_attention",
+        "_tianshu_w2_l0_address32_68fa87320d87"
+      ],
+      "variants": [
+        {
+          "configuration": {
+            "offset_bits": 32
+          },
+          "candidate_ms": 0.016385538578033446,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.005512714385986328,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.0,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": true,
+          "tails_preserved": true,
+          "raw_ms": [
+            0.016364153623580933,
+            0.016363692283630372,
+            0.016361154317855835,
+            0.016385538578033446,
+            0.01643446207046509,
+            0.016456692218780516,
+            0.016398385763168336,
+            0.0163555383682251,
+            0.016413846015930177
+          ],
+          "launch_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 20480,
+            "producer_and_reducer_tile": 32,
+            "offset_bits": 32,
+            "bounds": [
+              4466687,
+              285607935,
+              2231295,
+              2231295,
+              4460543,
+              17569791,
+              17569791,
+              4096,
+              2048,
+              17569791,
+              17569791,
+              0,
+              0,
+              2049
+            ],
+            "producer_source_module": "_tianshu_w2_l0_address32_68fa87320d87"
+          },
+          "time_change_percent": -4.166066768539545
+        }
+      ],
+      "baseline_raw_ms": [
+        0.017016847133636475,
+        0.017111538648605346,
+        0.01710392355918884,
+        0.017032307386398316,
+        0.01704215407371521,
+        0.01718053936958313,
+        0.017097846269607545,
+        0.017065306901931764,
+        0.017121384143829344
+      ]
+    },
+    {
+      "batch": 1,
+      "query_lengths": [
+        1
+      ],
+      "kv_lengths": [
+        13
+      ],
+      "strided": false,
+      "segments": 64,
+      "original_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.005426883697509766,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "cpu_reference_checks": [
+        {
+          "passed": true,
+          "max_abs": 2.384185791015625e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 5.364418029785156e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.7881393432617188e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 8.940696716308594e-08,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        }
+      ],
+      "baseline_ms": 0.01709915280342102,
+      "baseline_tail_preserved": true,
+      "baseline_launch_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 20480,
+        "producer_and_reducer_tile": 32,
+        "offset_bits": 64,
+        "bounds": null,
+        "producer_source_module": "tianshu_native_zero_initialization"
+      },
+      "reducer_source_modules": [
+        "vllm.v1.attention.ops.triton_unified_attention",
+        "_tianshu_w2_l0_address32_68fa87320d87"
+      ],
+      "variants": [
+        {
+          "configuration": {
+            "offset_bits": 32
+          },
+          "candidate_ms": 0.016444307565689088,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.005426883697509766,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.0,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": true,
+          "tails_preserved": true,
+          "raw_ms": [
+            0.01647900104522705,
+            0.016549307107925414,
+            0.01642199993133545,
+            0.016372768878936766,
+            0.016444307565689088,
+            0.01649176836013794,
+            0.01646577000617981,
+            0.016321769952774047,
+            0.016443001031875612
+          ],
+          "launch_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 20480,
+            "producer_and_reducer_tile": 32,
+            "offset_bits": 32,
+            "bounds": [
+              4466687,
+              285607935,
+              2231295,
+              2231295,
+              4460543,
+              17569791,
+              17569791,
+              4096,
+              2048,
+              17569791,
+              17569791,
+              0,
+              0,
+              2049
+            ],
+            "producer_source_module": "_tianshu_w2_l0_address32_68fa87320d87"
+          },
+          "time_change_percent": -3.8296940512802413
+        }
+      ],
+      "baseline_raw_ms": [
+        0.017142000198364257,
+        0.01721269130706787,
+        0.017199385166168212,
+        0.01707861542701721,
+        0.017032231092453002,
+        0.017063076496124267,
+        0.01709915280342102,
+        0.01711623191833496,
+        0.017093154191970824
+      ]
+    },
+    {
+      "batch": 1,
+      "query_lengths": [
+        1
+      ],
+      "kv_lengths": [
+        15
+      ],
+      "strided": false,
+      "segments": 64,
+      "original_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.004854559898376465,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "cpu_reference_checks": [
+        {
+          "passed": true,
+          "max_abs": 1.7881393432617188e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.9371509552001953e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 5.960464477539062e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.7881393432617188e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        }
+      ],
+      "baseline_ms": 0.017141538858413696,
+      "baseline_tail_preserved": true,
+      "baseline_launch_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 20480,
+        "producer_and_reducer_tile": 32,
+        "offset_bits": 64,
+        "bounds": null,
+        "producer_source_module": "tianshu_native_zero_initialization"
+      },
+      "reducer_source_modules": [
+        "vllm.v1.attention.ops.triton_unified_attention",
+        "_tianshu_w2_l0_address32_68fa87320d87"
+      ],
+      "variants": [
+        {
+          "configuration": {
+            "offset_bits": 32
+          },
+          "candidate_ms": 0.01648592233657837,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.004854559898376465,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.0,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": true,
+          "tails_preserved": true,
+          "raw_ms": [
+            0.016450307369232177,
+            0.01648592233657837,
+            0.016521384716033937,
+            0.016463615894317628,
+            0.01645799994468689,
+            0.016508076190948486,
+            0.0165347695350647,
+            0.016497461795806884,
+            0.01645207643508911
+          ],
+          "launch_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 20480,
+            "producer_and_reducer_tile": 32,
+            "offset_bits": 32,
+            "bounds": [
+              4466687,
+              285607935,
+              2231295,
+              2231295,
+              4460543,
+              17569791,
+              17569791,
+              4096,
+              2048,
+              17569791,
+              17569791,
+              0,
+              0,
+              2049
+            ],
+            "producer_source_module": "_tianshu_w2_l0_address32_68fa87320d87"
+          },
+          "time_change_percent": -3.824723831685195
+        }
+      ],
+      "baseline_raw_ms": [
+        0.017154461145401,
+        0.01706315279006958,
+        0.017043923139572145,
+        0.017190768718719482,
+        0.016968538761138918,
+        0.01715100049972534,
+        0.017190384864807128,
+        0.017141538858413696,
+        0.01706476926803589
+      ]
+    },
+    {
+      "batch": 1,
+      "query_lengths": [
+        1
+      ],
+      "kv_lengths": [
+        16
+      ],
+      "strided": false,
+      "segments": 64,
+      "original_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.002892136573791504,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "cpu_reference_checks": [
+        {
+          "passed": true,
+          "max_abs": 1.4901161193847656e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.7881393432617188e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.1920928955078125e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.1920928955078125e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        }
+      ],
+      "baseline_ms": 0.017087615728378296,
+      "baseline_tail_preserved": true,
+      "baseline_launch_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 20480,
+        "producer_and_reducer_tile": 32,
+        "offset_bits": 64,
+        "bounds": null,
+        "producer_source_module": "tianshu_native_zero_initialization"
+      },
+      "reducer_source_modules": [
+        "vllm.v1.attention.ops.triton_unified_attention",
+        "_tianshu_w2_l0_address32_68fa87320d87"
+      ],
+      "variants": [
+        {
+          "configuration": {
+            "offset_bits": 32
+          },
+          "candidate_ms": 0.01642930746078491,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.002892136573791504,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.0,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": true,
+          "tails_preserved": true,
+          "raw_ms": [
+            0.016479384899139405,
+            0.016480307579040527,
+            0.01642930746078491,
+            0.01648592233657837,
+            0.016419923305511473,
+            0.016435308456420897,
+            0.01639330744743347,
+            0.016409615278244017,
+            0.016383384466171266
+          ],
+          "launch_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 20480,
+            "producer_and_reducer_tile": 32,
+            "offset_bits": 32,
+            "bounds": [
+              4466687,
+              285607935,
+              2231295,
+              2231295,
+              4460543,
+              17569791,
+              17569791,
+              4096,
+              2048,
+              17569791,
+              17569791,
+              0,
+              0,
+              2049
+            ],
+            "producer_source_module": "_tianshu_w2_l0_address32_68fa87320d87"
+          },
+          "time_change_percent": -3.8525460664479816
+        }
+      ],
+      "baseline_raw_ms": [
+        0.017158308029174806,
+        0.01716523051261902,
+        0.017007460594177248,
+        0.017104307413101195,
+        0.017087615728378296,
+        0.017116308212280273,
+        0.017015999555587767,
+        0.01708161473274231,
+        0.017058000564575196
+      ]
+    },
+    {
+      "batch": 1,
+      "query_lengths": [
+        1
+      ],
+      "kv_lengths": [
+        17
+      ],
+      "strided": false,
+      "segments": 64,
+      "original_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.004019021987915039,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "cpu_reference_checks": [
+        {
+          "passed": true,
+          "max_abs": 2.682209014892578e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.7881393432617188e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 2.086162567138672e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.1920928955078125e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        }
+      ],
+      "baseline_ms": 0.017117999792099,
+      "baseline_tail_preserved": true,
+      "baseline_launch_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 20480,
+        "producer_and_reducer_tile": 32,
+        "offset_bits": 64,
+        "bounds": null,
+        "producer_source_module": "tianshu_native_zero_initialization"
+      },
+      "reducer_source_modules": [
+        "vllm.v1.attention.ops.triton_unified_attention",
+        "_tianshu_w2_l0_address32_68fa87320d87"
+      ],
+      "variants": [
+        {
+          "configuration": {
+            "offset_bits": 32
+          },
+          "candidate_ms": 0.016461384296417237,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.004019021987915039,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.0,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": true,
+          "tails_preserved": true,
+          "raw_ms": [
+            0.01635215401649475,
+            0.016459308862686158,
+            0.01664399981498718,
+            0.016552231311798095,
+            0.016510307788848877,
+            0.016492769718170167,
+            0.016399308443069457,
+            0.016461384296417237,
+            0.016440000534057617
+          ],
+          "launch_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 20480,
+            "producer_and_reducer_tile": 32,
+            "offset_bits": 32,
+            "bounds": [
+              4466687,
+              285607935,
+              2231295,
+              2231295,
+              4460543,
+              17577983,
+              17577983,
+              6145,
+              2048,
+              17577983,
+              17577983,
+              0,
+              0,
+              2049
+            ],
+            "producer_source_module": "_tianshu_w2_l0_address32_68fa87320d87"
+          },
+          "time_change_percent": -3.8358190422740246
+        }
+      ],
+      "baseline_raw_ms": [
+        0.017308231592178345,
+        0.017118844985961914,
+        0.017242307662963866,
+        0.017146693468093874,
+        0.0170952308177948,
+        0.017058923244476318,
+        0.017105231285095213,
+        0.017117999792099,
+        0.017063230276107788
+      ]
+    },
+    {
+      "batch": 1,
+      "query_lengths": [
+        1
+      ],
+      "kv_lengths": [
+        31
+      ],
+      "strided": false,
+      "segments": 64,
+      "original_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.002510368824005127,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "cpu_reference_checks": [
+        {
+          "passed": true,
+          "max_abs": 1.1920928955078125e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.7881393432617188e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.1920928955078125e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.341104507446289e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        }
+      ],
+      "baseline_ms": 0.017359230518341064,
+      "baseline_tail_preserved": true,
+      "baseline_launch_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 20480,
+        "producer_and_reducer_tile": 32,
+        "offset_bits": 64,
+        "bounds": null,
+        "producer_source_module": "tianshu_native_zero_initialization"
+      },
+      "reducer_source_modules": [
+        "vllm.v1.attention.ops.triton_unified_attention",
+        "_tianshu_w2_l0_address32_68fa87320d87"
+      ],
+      "variants": [
+        {
+          "configuration": {
+            "offset_bits": 32
+          },
+          "candidate_ms": 0.016895999908447267,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.002510368824005127,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.0,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": true,
+          "tails_preserved": true,
+          "raw_ms": [
+            0.016881462335586548,
+            0.01683730721473694,
+            0.016923384666442873,
+            0.016968846321105957,
+            0.016895999908447267,
+            0.016997615098953246,
+            0.01695515275001526,
+            0.016852691173553466,
+            0.016831308603286743
+          ],
+          "launch_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 20480,
+            "producer_and_reducer_tile": 32,
+            "offset_bits": 32,
+            "bounds": [
+              4466687,
+              285607935,
+              2231295,
+              2231295,
+              4460543,
+              17577983,
+              17577983,
+              6145,
+              2048,
+              17577983,
+              17577983,
+              0,
+              0,
+              2049
+            ],
+            "producer_source_module": "_tianshu_w2_l0_address32_68fa87320d87"
+          },
+          "time_change_percent": -2.668497370343492
+        }
+      ],
+      "baseline_raw_ms": [
+        0.01737553834915161,
+        0.017389692068099975,
+        0.01733146071434021,
+        0.017378537654876708,
+        0.017359230518341064,
+        0.017329692840576172,
+        0.017288615703582765,
+        0.01743000030517578,
+        0.01721146106719971
+      ]
+    },
+    {
+      "batch": 1,
+      "query_lengths": [
+        1
+      ],
+      "kv_lengths": [
+        32
+      ],
+      "strided": false,
+      "segments": 64,
+      "original_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0025258660316467285,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "cpu_reference_checks": [
+        {
+          "passed": true,
+          "max_abs": 1.4901161193847656e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.7881393432617188e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.4901161193847656e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.7881393432617188e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        }
+      ],
+      "baseline_ms": 0.0173352313041687,
+      "baseline_tail_preserved": true,
+      "baseline_launch_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 20480,
+        "producer_and_reducer_tile": 32,
+        "offset_bits": 64,
+        "bounds": null,
+        "producer_source_module": "tianshu_native_zero_initialization"
+      },
+      "reducer_source_modules": [
+        "vllm.v1.attention.ops.triton_unified_attention",
+        "_tianshu_w2_l0_address32_68fa87320d87"
+      ],
+      "variants": [
+        {
+          "configuration": {
+            "offset_bits": 32
+          },
+          "candidate_ms": 0.016888768672943116,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.0025258660316467285,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.0,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": true,
+          "tails_preserved": true,
+          "raw_ms": [
+            0.016902384757995607,
+            0.016975308656692504,
+            0.016875001192092894,
+            0.016888768672943116,
+            0.01687069296836853,
+            0.016853538751602174,
+            0.016901999711990356,
+            0.01684499979019165,
+            0.016919538974761963
+          ],
+          "launch_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 20480,
+            "producer_and_reducer_tile": 32,
+            "offset_bits": 32,
+            "bounds": [
+              4466687,
+              285607935,
+              2231295,
+              2231295,
+              4460543,
+              17577983,
+              17577983,
+              6145,
+              2048,
+              17577983,
+              17577983,
+              0,
+              0,
+              2049
+            ],
+            "producer_source_module": "_tianshu_w2_l0_address32_68fa87320d87"
+          },
+          "time_change_percent": -2.5754639404103052
+        }
+      ],
+      "baseline_raw_ms": [
+        0.01720923066139221,
+        0.017479231357574464,
+        0.01733569264411926,
+        0.01732884645462036,
+        0.017307846546173095,
+        0.017411999702453614,
+        0.01730023145675659,
+        0.0173352313041687,
+        0.017375153303146363
+      ]
+    },
+    {
+      "batch": 1,
+      "query_lengths": [
+        1
+      ],
+      "kv_lengths": [
+        33
+      ],
+      "strided": false,
+      "segments": 64,
+      "original_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0026092529296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "cpu_reference_checks": [
+        {
+          "passed": true,
+          "max_abs": 1.4901161193847656e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.1920928955078125e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 2.980232238769531e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.7881393432617188e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        }
+      ],
+      "baseline_ms": 0.017497692108154297,
+      "baseline_tail_preserved": true,
+      "baseline_launch_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 20480,
+        "producer_and_reducer_tile": 32,
+        "offset_bits": 64,
+        "bounds": null,
+        "producer_source_module": "tianshu_native_zero_initialization"
+      },
+      "reducer_source_modules": [
+        "vllm.v1.attention.ops.triton_unified_attention",
+        "_tianshu_w2_l0_address32_68fa87320d87"
+      ],
+      "variants": [
+        {
+          "configuration": {
+            "offset_bits": 32
+          },
+          "candidate_ms": 0.01698169231414795,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.0026092529296875,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.0,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": true,
+          "tails_preserved": true,
+          "raw_ms": [
+            0.017087076902389527,
+            0.017048076391220093,
+            0.016898615360260008,
+            0.016895077228546142,
+            0.016815845966339112,
+            0.01684161424636841,
+            0.01699923038482666,
+            0.0169881534576416,
+            0.01698169231414795
+          ],
+          "launch_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 20480,
+            "producer_and_reducer_tile": 32,
+            "offset_bits": 32,
+            "bounds": [
+              4466687,
+              285607935,
+              2231295,
+              2231295,
+              4460543,
+              17586175,
+              17586175,
+              8194,
+              2048,
+              17586175,
+              17586175,
+              0,
+              0,
+              2049
+            ],
+            "producer_source_module": "_tianshu_w2_l0_address32_68fa87320d87"
+          },
+          "time_change_percent": -2.9489591588246045
+        }
+      ],
+      "baseline_raw_ms": [
+        0.017511000633239748,
+        0.017563692331314086,
+        0.017497692108154297,
+        0.017533230781555175,
+        0.017411538362503053,
+        0.017486615180969237,
+        0.01746984601020813,
+        0.017586385011672975,
+        0.017436922788619996
+      ]
+    },
+    {
+      "batch": 1,
+      "query_lengths": [
+        1
+      ],
+      "kv_lengths": [
+        63
+      ],
+      "strided": false,
+      "segments": 64,
+      "original_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0024307966232299805,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "cpu_reference_checks": [
+        {
+          "passed": true,
+          "max_abs": 1.7881393432617188e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.471489667892456e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.1920928955078125e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 8.940696716308594e-08,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        }
+      ],
+      "baseline_ms": 0.017525538206100463,
+      "baseline_tail_preserved": true,
+      "baseline_launch_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 20480,
+        "producer_and_reducer_tile": 32,
+        "offset_bits": 64,
+        "bounds": null,
+        "producer_source_module": "tianshu_native_zero_initialization"
+      },
+      "reducer_source_modules": [
+        "vllm.v1.attention.ops.triton_unified_attention",
+        "_tianshu_w2_l0_address32_68fa87320d87"
+      ],
+      "variants": [
+        {
+          "configuration": {
+            "offset_bits": 32
+          },
+          "candidate_ms": 0.017146693468093874,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.0024307966232299805,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.0,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": true,
+          "tails_preserved": true,
+          "raw_ms": [
+            0.017259845733642577,
+            0.017072999477386476,
+            0.017269307374954225,
+            0.017124462127685546,
+            0.01716692328453064,
+            0.017038307189941405,
+            0.017146693468093874,
+            0.017078537940979004,
+            0.017147153615951538
+          ],
+          "launch_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 20480,
+            "producer_and_reducer_tile": 32,
+            "offset_bits": 32,
+            "bounds": [
+              4466687,
+              285607935,
+              2231295,
+              2231295,
+              4460543,
+              17594367,
+              17594367,
+              10243,
+              2048,
+              17594367,
+              17594367,
+              0,
+              0,
+              2049
+            ],
+            "producer_source_module": "_tianshu_w2_l0_address32_68fa87320d87"
+          },
+          "time_change_percent": -2.1616724893202877
+        }
+      ],
+      "baseline_raw_ms": [
+        0.017475000619888305,
+        0.01755861520767212,
+        0.017454462051391603,
+        0.017663999795913696,
+        0.0175706148147583,
+        0.01749853730201721,
+        0.017408615350723265,
+        0.017627538442611695,
+        0.017525538206100463
+      ]
+    },
+    {
+      "batch": 1,
+      "query_lengths": [
+        1
+      ],
+      "kv_lengths": [
+        64
+      ],
+      "strided": false,
+      "segments": 64,
+      "original_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0021440982818603516,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "cpu_reference_checks": [
+        {
+          "passed": true,
+          "max_abs": 2.384185791015625e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.7881393432617188e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.7881393432617188e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.4901161193847656e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        }
+      ],
+      "baseline_ms": 0.017610923051834107,
+      "baseline_tail_preserved": true,
+      "baseline_launch_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 20480,
+        "producer_and_reducer_tile": 32,
+        "offset_bits": 64,
+        "bounds": null,
+        "producer_source_module": "tianshu_native_zero_initialization"
+      },
+      "reducer_source_modules": [
+        "vllm.v1.attention.ops.triton_unified_attention",
+        "_tianshu_w2_l0_address32_68fa87320d87"
+      ],
+      "variants": [
+        {
+          "configuration": {
+            "offset_bits": 32
+          },
+          "candidate_ms": 0.017235461473464966,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.0021440982818603516,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.0,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": true,
+          "tails_preserved": true,
+          "raw_ms": [
+            0.017235461473464966,
+            0.017101691961288454,
+            0.017279152870178224,
+            0.017007384300231933,
+            0.01727953791618347,
+            0.017137230634689332,
+            0.017330615520477294,
+            0.017120153903961183,
+            0.017258538007736204
+          ],
+          "launch_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 20480,
+            "producer_and_reducer_tile": 32,
+            "offset_bits": 32,
+            "bounds": [
+              4466687,
+              285607935,
+              2231295,
+              2231295,
+              4460543,
+              17594367,
+              17594367,
+              10243,
+              2048,
+              17594367,
+              17594367,
+              0,
+              0,
+              2049
+            ],
+            "producer_source_module": "_tianshu_w2_l0_address32_68fa87320d87"
+          },
+          "time_change_percent": -2.1319812554063677
+        }
+      ],
+      "baseline_raw_ms": [
+        0.017648539543151855,
+        0.017637462615966798,
+        0.017621538639068603,
+        0.017610923051834107,
+        0.017616000175476074,
+        0.017556847333908082,
+        0.01756107687950134,
+        0.017587308883666993,
+        0.017588999271392822
+      ]
+    },
+    {
+      "batch": 1,
+      "query_lengths": [
+        1
+      ],
+      "kv_lengths": [
+        65
+      ],
+      "strided": false,
+      "segments": 64,
+      "original_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.0028682947158813477,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "cpu_reference_checks": [
+        {
+          "passed": true,
+          "max_abs": 8.940696716308594e-08,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 7.450580596923828e-08,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.4901161193847656e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.4901161193847656e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        }
+      ],
+      "baseline_ms": 0.017624154090881347,
+      "baseline_tail_preserved": true,
+      "baseline_launch_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 20480,
+        "producer_and_reducer_tile": 32,
+        "offset_bits": 64,
+        "bounds": null,
+        "producer_source_module": "tianshu_native_zero_initialization"
+      },
+      "reducer_source_modules": [
+        "vllm.v1.attention.ops.triton_unified_attention",
+        "_tianshu_w2_l0_address32_68fa87320d87"
+      ],
+      "variants": [
+        {
+          "configuration": {
+            "offset_bits": 32
+          },
+          "candidate_ms": 0.017104307413101195,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.0028682947158813477,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.0,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": true,
+          "tails_preserved": true,
+          "raw_ms": [
+            0.0169722318649292,
+            0.017001384496688844,
+            0.01706492304801941,
+            0.017104307413101195,
+            0.01718146204948425,
+            0.017206768989562988,
+            0.01716523051261902,
+            0.017156076431274415,
+            0.016991539001464842
+          ],
+          "launch_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 20480,
+            "producer_and_reducer_tile": 32,
+            "offset_bits": 32,
+            "bounds": [
+              4466687,
+              285607935,
+              2231295,
+              2231295,
+              4460543,
+              17602559,
+              17602559,
+              12292,
+              2048,
+              17602559,
+              17602559,
+              0,
+              0,
+              2049
+            ],
+            "producer_source_module": "_tianshu_w2_l0_address32_68fa87320d87"
+          },
+          "time_change_percent": -2.9496262634762016
+        }
+      ],
+      "baseline_raw_ms": [
+        0.017555999755859374,
+        0.01762069225311279,
+        0.017510154247283936,
+        0.017742460966110228,
+        0.01766230821609497,
+        0.017627999782562256,
+        0.017681076526641845,
+        0.017624154090881347,
+        0.017552999258041383
+      ]
+    },
+    {
+      "batch": 64,
+      "query_lengths": [
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "kv_lengths": [
+        33,
+        29,
+        25,
+        21,
+        17,
+        13,
+        9,
+        5,
+        1,
+        30,
+        26,
+        22,
+        18,
+        14,
+        10,
+        6,
+        2,
+        31,
+        27,
+        23,
+        19,
+        15,
+        11,
+        7,
+        3,
+        32,
+        28,
+        24,
+        20,
+        16,
+        12,
+        8,
+        4,
+        33,
+        29,
+        25,
+        21,
+        17,
+        13,
+        9,
+        5,
+        1,
+        30,
+        26,
+        22,
+        18,
+        14,
+        10,
+        6,
+        2,
+        31,
+        27,
+        23,
+        19,
+        15,
+        11,
+        7,
+        3,
+        32,
+        28,
+        24,
+        20,
+        16,
+        12
+      ],
+      "strided": true,
+      "segments": 4,
+      "original_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.007568359375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "cpu_reference_checks": [
+        {
+          "passed": true,
+          "max_abs": 1.7415732145309448e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 3.5762786865234375e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.1920928955078125e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 8.940696716308594e-08,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.1920928955078125e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.1920928955078125e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 2.980232238769531e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 2.384185791015625e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.1920928955078125e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.1920928955078125e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.1920928955078125e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.1920928955078125e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        }
+      ],
+      "baseline_ms": 0.031187539100646974,
+      "baseline_tail_preserved": true,
+      "baseline_launch_metadata": {
+        "num_warps": 2,
+        "num_stages": 1,
+        "shared": 20480,
+        "producer_and_reducer_tile": 32,
+        "offset_bits": 64,
+        "bounds": null,
+        "producer_source_module": "tianshu_native_zero_initialization"
+      },
+      "reducer_source_modules": [
+        "vllm.v1.attention.ops.triton_unified_attention",
+        "_tianshu_w2_l0_address32_68fa87320d87"
+      ],
+      "variants": [
+        {
+          "configuration": {
+            "offset_bits": 32
+          },
+          "candidate_ms": 0.03064330816268921,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.007568359375,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.0,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": true,
+          "tails_preserved": true,
+          "raw_ms": [
+            0.030692615509033204,
+            0.03064330816268921,
+            0.030714461803436278,
+            0.030588922500610353,
+            0.030605614185333252,
+            0.03061630725860596,
+            0.030650153160095214,
+            0.03065476894378662,
+            0.03059746265411377
+          ],
+          "launch_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 20480,
+            "producer_and_reducer_tile": 32,
+            "offset_bits": 32,
+            "bounds": [
+              4552703,
+              291112959,
+              2274303,
+              2274303,
+              5616639,
+              37476351,
+              37476351,
+              8383,
+              2111,
+              37476351,
+              37476351,
+              0,
+              0,
+              2112
+            ],
+            "producer_source_module": "_tianshu_w2_l0_address32_68fa87320d87"
+          },
+          "time_change_percent": -1.745026871794686
+        }
+      ],
+      "baseline_raw_ms": [
+        0.03168215274810791,
+        0.03116999864578247,
+        0.03112630605697632,
+        0.03124969244003296,
+        0.031226537227630614,
+        0.03119999885559082,
+        0.031131384372711183,
+        0.03117215394973755,
+        0.031187539100646974
+      ]
+    },
+    {
+      "batch": 64,
+      "query_lengths": [
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "kv_lengths": [
+        65,
+        28,
+        56,
+        19,
+        47,
+        10,
+        38,
+        1,
+        29,
+        57,
+        20,
+        48,
+        11,
+        39,
+        2,
+        30,
+        58,
+        21,
+        49,
+        12,
+        40,
+        3,
+        31,
+        59,
+        22,
+        50,
+        13,
+        41,
+        4,
+        32,
+        60,
+        23,
+        51,
+        14,
+        42,
+        5,
+        33,
+        61,
+        24,
+        52,
+        15,
+        43,
+        6,
+        34,
+        62,
+        25,
+        53,
+        16,
+        44,
+        7,
+        35,
+        63,
+        26,
+        54,
+        17,
+        45,
+        8,
+        36,
+        64,
+        27,
+        55,
+        18,
+        46,
+        9
+      ],
+      "strided": true,
+      "segments": 4,
+      "original_vs_fp32": {
+        "passed": true,
+        "max_abs": 0.008364200592041016,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "cpu_reference_checks": [
+        {
+          "passed": true,
+          "max_abs": 1.1920928955078125e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.1920928955078125e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.1920928955078125e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 8.940696716308594e-08,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.1920928955078125e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.2665987014770508e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.1920928955078125e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 1.7881393432617188e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 3.5762786865234375e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 4.76837158203125e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 2.384185791015625e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        },
+        {
+          "passed": true,
+          "max_abs": 2.384185791015625e-07,
+          "failed_elements": 0,
+          "atol": 0.02,
+          "rtol": 0.01
+        }
+      ],
+      "baseline_ms": 0.034843769073486325,
+      "baseline_tail_preserved": true,
+      "baseline_launch_metadata": {
+        "num_warps": 2,
+        "num_stages": 1,
+        "shared": 20480,
+        "producer_and_reducer_tile": 32,
+        "offset_bits": 64,
+        "bounds": null,
+        "producer_source_module": "tianshu_native_zero_initialization"
+      },
+      "reducer_source_modules": [
+        "vllm.v1.attention.ops.triton_unified_attention",
+        "_tianshu_w2_l0_address32_68fa87320d87"
+      ],
+      "variants": [
+        {
+          "configuration": {
+            "offset_bits": 32
+          },
+          "candidate_ms": 0.03453900098800659,
+          "candidate_vs_fp32": {
+            "passed": true,
+            "max_abs": 0.008364200592041016,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_vs_native": {
+            "passed": true,
+            "max_abs": 0.0,
+            "failed_elements": 0,
+            "atol": 0.02,
+            "rtol": 0.01
+          },
+          "candidate_bitwise_equal": true,
+          "tails_preserved": true,
+          "raw_ms": [
+            0.034540307521820066,
+            0.034523539543151856,
+            0.03453900098800659,
+            0.03459561586380005,
+            0.03452700138092041,
+            0.034513692855834964,
+            0.03445538520812988,
+            0.034607999324798584,
+            0.03463453769683838
+          ],
+          "launch_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 20480,
+            "producer_and_reducer_tile": 32,
+            "offset_bits": 32,
+            "bounds": [
+              4552703,
+              291112959,
+              2274303,
+              2274303,
+              5616639,
+              39573503,
+              39573503,
+              12607,
+              2111,
+              39573503,
+              39573503,
+              0,
+              0,
+              2112
+            ],
+            "producer_source_module": "_tianshu_w2_l0_address32_68fa87320d87"
+          },
+          "time_change_percent": -0.8746702598016021
+        }
+      ],
+      "baseline_raw_ms": [
+        0.0348754620552063,
+        0.034825694561004636,
+        0.034746923446655274,
+        0.034801692962646485,
+        0.03489038467407227,
+        0.034843769073486325,
+        0.03472322940826416,
+        0.0348754620552063,
+        0.03487892150878906
+      ]
+    }
+  ],
+  "started_utc": "2026-10-13T22:20:58.154843+00:00",
+  "probe_sha256": "1f5e822ff47acb153ec3e99204f666a082afc2fdca3fd9bdff8fbd1f7532f8e7",
+  "configurations": [
+    {
+      "offset_bits": 64
+    },
+    {
+      "offset_bits": 32
+    }
+  ],
+  "numerical_checks_passed": true,
+  "valid_configurations": [
+    {
+      "offset_bits": 32
+    }
+  ],
+  "producer_and_reducer_tile_matched": true,
+  "finished_utc": "2026-10-13T22:21:06.957274+00:00"
+}
