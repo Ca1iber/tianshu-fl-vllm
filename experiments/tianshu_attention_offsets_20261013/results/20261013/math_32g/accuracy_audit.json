@@ -1,0 +1,2260 @@
+{
+  "experimental_candidate": "decode-launch",
+  "buckets": "1",
+  "gather": "1",
+  "bucket_sources": {
+    "model_runner.py": {
+      "path": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/model_runner.py",
+      "sha256": "b0144bcff96bef15b04eb1ad45385b01c47faea056bc56352a6486b7c497fa2e"
+    },
+    "iluvatar_prefill_buckets.py": {
+      "path": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/iluvatar_prefill_buckets.py",
+      "sha256": "966aad18aad80ef488928cafc8672cbfa2d547a832f9b151346f719ea3abc6db"
+    },
+    "iluvatar_logits_gather.py": {
+      "path": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/iluvatar_logits_gather.py",
+      "sha256": "7bca296afddd37e9a3d2c4e1ce9f91ea6bae252956da867ccc1bd7da2506c513"
+    }
+  },
+  "bucket_trace_hook": {
+    "path": "/workspace/vllm-plugin-FL/experiments/tianshu_buckets75_recheck_20261012/joint_hooks/sitecustomize.py",
+    "sha256": "1319ae4a600794cd71788b0c9089a2a1dc9d67240d6f194f1017fa0af8f2747f"
+  },
+  "candidate_hook": {
+    "path": "/workspace/vllm-plugin-FL/experiments/tianshu_decode_launch_20261012/hooks/sitecustomize.py",
+    "sha256": "934e54ccf7c68879797941f6afdf6854c1fd3d010195ac5b33342715ea02ec3c"
+  },
+  "experimental_kernel": {
+    "path": "/usr/local/lib/python3.12/site-packages/vllm/v1/attention/ops/triton_unified_attention.py",
+    "sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0"
+  },
+  "candidate_routing_records": [
+    {
+      "batch": 64,
+      "configuration": {
+        "TILE_SIZE": 16,
+        "num_warps": 4,
+        "num_stages": 1
+      },
+      "original_grid_unchanged": true,
+      "original_kernel_body_unchanged": true,
+      "kernel_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 12288
+      }
+    },
+    {
+      "batch": 56,
+      "configuration": {
+        "TILE_SIZE": 16,
+        "num_warps": 4,
+        "num_stages": 1
+      },
+      "original_grid_unchanged": true,
+      "original_kernel_body_unchanged": true,
+      "kernel_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 12288
+      }
+    },
+    {
+      "batch": 2,
+      "configuration": {
+        "TILE_SIZE": 16,
+        "num_warps": 4,
+        "num_stages": 1
+      },
+      "original_grid_unchanged": true,
+      "original_kernel_body_unchanged": true,
+      "kernel_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 12288
+      }
+    },
+    {
+      "batch": 1,
+      "configuration": {
+        "TILE_SIZE": 16,
+        "num_warps": 4,
+        "num_stages": 1
+      },
+      "original_grid_unchanged": true,
+      "original_kernel_body_unchanged": true,
+      "kernel_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+      "compiled_metadata": {
+        "num_warps": 4,
+        "num_stages": 1,
+        "shared": 12288
+      }
+    }
+  ],
+  "native_prefill_hook": {
+    "path": "/workspace/vllm-plugin-FL/experiments/tianshu_native_prefill_20261012/hooks/sitecustomize.py",
+    "sha256": "98356838abbabf53eec706a1a4a5622f2c372167b3dcccd29c2543625997800a"
+  },
+  "native_prefill_routing_records": [
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 71,
+      "prefill_sequences": 1,
+      "max_query_len": 71,
+      "decode_prefix_sequences": 0,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 348,
+      "prefill_sequences": 7,
+      "max_query_len": 72,
+      "decode_prefix_sequences": 1,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 48,
+      "prefill_sequences": 1,
+      "max_query_len": 48,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 55,
+      "prefill_sequences": 1,
+      "max_query_len": 55,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 47,
+      "prefill_sequences": 1,
+      "max_query_len": 47,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 60,
+      "prefill_sequences": 1,
+      "max_query_len": 60,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 49,
+      "prefill_sequences": 1,
+      "max_query_len": 49,
+      "decode_prefix_sequences": 6,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 93,
+      "prefill_sequences": 1,
+      "max_query_len": 93,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 131,
+      "prefill_sequences": 2,
+      "max_query_len": 74,
+      "decode_prefix_sequences": 6,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 65,
+      "prefill_sequences": 1,
+      "max_query_len": 65,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 66,
+      "prefill_sequences": 1,
+      "max_query_len": 66,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 100,
+      "prefill_sequences": 1,
+      "max_query_len": 100,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 251,
+      "prefill_sequences": 1,
+      "max_query_len": 251,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 107,
+      "prefill_sequences": 1,
+      "max_query_len": 107,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 77,
+      "prefill_sequences": 1,
+      "max_query_len": 77,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 176,
+      "prefill_sequences": 1,
+      "max_query_len": 176,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 89,
+      "prefill_sequences": 1,
+      "max_query_len": 89,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 36,
+      "prefill_sequences": 1,
+      "max_query_len": 36,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 118,
+      "prefill_sequences": 2,
+      "max_query_len": 70,
+      "decode_prefix_sequences": 6,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 64,
+      "prefill_sequences": 1,
+      "max_query_len": 64,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 73,
+      "prefill_sequences": 1,
+      "max_query_len": 73,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 94,
+      "prefill_sequences": 1,
+      "max_query_len": 94,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 38,
+      "prefill_sequences": 1,
+      "max_query_len": 38,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 232,
+      "prefill_sequences": 1,
+      "max_query_len": 232,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 54,
+      "prefill_sequences": 1,
+      "max_query_len": 54,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 46,
+      "prefill_sequences": 1,
+      "max_query_len": 46,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 272,
+      "prefill_sequences": 1,
+      "max_query_len": 272,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 41,
+      "prefill_sequences": 1,
+      "max_query_len": 41,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 110,
+      "prefill_sequences": 2,
+      "max_query_len": 59,
+      "decode_prefix_sequences": 6,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 79,
+      "prefill_sequences": 1,
+      "max_query_len": 79,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 75,
+      "prefill_sequences": 1,
+      "max_query_len": 75,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 144,
+      "prefill_sequences": 1,
+      "max_query_len": 144,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 84,
+      "prefill_sequences": 1,
+      "max_query_len": 84,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 52,
+      "prefill_sequences": 1,
+      "max_query_len": 52,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 51,
+      "prefill_sequences": 1,
+      "max_query_len": 51,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 88,
+      "prefill_sequences": 1,
+      "max_query_len": 88,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 82,
+      "prefill_sequences": 1,
+      "max_query_len": 82,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 62,
+      "prefill_sequences": 1,
+      "max_query_len": 62,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 44,
+      "prefill_sequences": 1,
+      "max_query_len": 44,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 160,
+      "prefill_sequences": 2,
+      "max_query_len": 91,
+      "decode_prefix_sequences": 6,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 119,
+      "prefill_sequences": 2,
+      "max_query_len": 64,
+      "decode_prefix_sequences": 6,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 63,
+      "prefill_sequences": 1,
+      "max_query_len": 63,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 45,
+      "prefill_sequences": 1,
+      "max_query_len": 45,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 57,
+      "prefill_sequences": 1,
+      "max_query_len": 57,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 99,
+      "prefill_sequences": 1,
+      "max_query_len": 99,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 61,
+      "prefill_sequences": 1,
+      "max_query_len": 61,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 123,
+      "prefill_sequences": 1,
+      "max_query_len": 123,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 58,
+      "prefill_sequences": 1,
+      "max_query_len": 58,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 116,
+      "prefill_sequences": 2,
+      "max_query_len": 64,
+      "decode_prefix_sequences": 6,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 59,
+      "prefill_sequences": 1,
+      "max_query_len": 59,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 86,
+      "prefill_sequences": 1,
+      "max_query_len": 86,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 101,
+      "prefill_sequences": 1,
+      "max_query_len": 101,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 56,
+      "prefill_sequences": 1,
+      "max_query_len": 56,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 97,
+      "prefill_sequences": 1,
+      "max_query_len": 97,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 259,
+      "prefill_sequences": 1,
+      "max_query_len": 259,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 42,
+      "prefill_sequences": 1,
+      "max_query_len": 42,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 149,
+      "prefill_sequences": 1,
+      "max_query_len": 149,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 105,
+      "prefill_sequences": 1,
+      "max_query_len": 105,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 248,
+      "prefill_sequences": 1,
+      "max_query_len": 248,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 166,
+      "prefill_sequences": 2,
+      "max_query_len": 102,
+      "decode_prefix_sequences": 6,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 70,
+      "prefill_sequences": 1,
+      "max_query_len": 70,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 158,
+      "prefill_sequences": 1,
+      "max_query_len": 158,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 113,
+      "prefill_sequences": 1,
+      "max_query_len": 113,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 90,
+      "prefill_sequences": 1,
+      "max_query_len": 90,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 132,
+      "prefill_sequences": 1,
+      "max_query_len": 132,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 37,
+      "prefill_sequences": 1,
+      "max_query_len": 37,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 74,
+      "prefill_sequences": 1,
+      "max_query_len": 74,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    },
+    {
+      "pid": 30995,
+      "configuration": {
+        "BLOCK_M": 256,
+        "TILE_SIZE": 128,
+        "num_warps": 16,
+        "num_stages": 1
+      },
+      "prefill_query_tokens": 96,
+      "prefill_sequences": 1,
+      "max_query_len": 96,
+      "decode_prefix_sequences": 7,
+      "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+      "kernel_sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+      "generated_kernel_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+      "zero_initialization": {
+        "original_source_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+        "generated_source": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/native_prefill_records/source_snapshot/30995/generated_zero_initialization.py",
+        "generated_sha256": "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e",
+        "no_sink_denominator_initial_value": 0,
+        "sink_initialization_unchanged": true,
+        "installed_sources_modified": false
+      },
+      "decode_arithmetic_changed": false
+    }
+  ],
+  "zero_generator": {
+    "path": "/workspace/vllm-plugin-FL/experiments/tianshu_native_prefill_20261012/zero_initialization.py",
+    "sha256": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e"
+  },
+  "audited_at_utc": "2026-10-13T06:10:46.590775+00:00",
+  "candidate": "hybrid_adaptive_fa2_tile128_budget2048_decode-launch",
+  "complete": true,
+  "adaptive_flag": "1",
+  "adaptive_sha256": "e5d983e43c3b343afb558440a9114255cebc5d01569cc192191290b0bb0c84c8",
+  "adaptive_source": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/iluvatar_adaptive_decode.py",
+  "reused_original_accuracy": false,
+  "correct": 102,
+  "total": 105,
+  "accuracy": 0.9714285714285714,
+  "report_accuracy": 0.9714,
+  "official_requirement": "accuracy > 0.95",
+  "official_requirement_passed": true,
+  "execution_summary": {
+    "requested": 105,
+    "succeeded": 105,
+    "errored": 0,
+    "incomplete": false,
+    "subsets": {
+      "Level 3": {
+        "requested": 105,
+        "succeeded": 105,
+        "errored": 0
+      }
+    }
+  },
+  "review_statuses": {
+    "success": 105
+  },
+  "incorrect_indices": [
+    18,
+    70,
+    87
+  ],
+  "generation_stop_reasons": {
+    "stop": 105
+  },
+  "max_tokens_indices": [],
+  "hybrid_source": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/iluvatar_hybrid_attention.py",
+  "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+  "evaluation_command": [
+    "evalscope",
+    "eval",
+    "--model",
+    "minicpm",
+    "--api-url",
+    "http://127.0.0.1:9031/v1/chat/completions",
+    "--api-key",
+    "EMPTY",
+    "--eval-type",
+    "openai_api",
+    "--datasets",
+    "math_500",
+    "--dataset-args",
+    "{\"math_500\":{\"dataset_id\":\"/workspace/evalscope-datasets/math_500\",\"subset_list\":[\"Level 3\"]}}",
+    "--eval-batch-size",
+    "8",
+    "--timeout",
+    "3600",
+    "--generation-config",
+    "{\"temperature\":1.0,\"top_p\":0.95,\"max_tokens\":32768}",
+    "--work-dir",
+    "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/evalscope",
+    "--ignore-errors"
+  ],
+  "server_command": [
+    "vllm",
+    "serve",
+    "/workspace/MiniCPM5-2B",
+    "--port",
+    "9031",
+    "--compilation-config",
+    "{\"cudagraph_mode\":\"FULL_DECODE_ONLY\"}",
+    "--served-model-name",
+    "minicpm",
+    "--gpu-memory-utilization",
+    "0.85",
+    "--max-model-len",
+    "131072",
+    "--max-num-batched-tokens",
+    "2048"
+  ],
+  "max_batched_tokens": 2048,
+  "worker_sha256": "6cf62f60ca8ea12b7c494f0009fa733f33270a73e014cdbd4a45cada787c032a",
+  "tile_hook": {
+    "path": "/workspace/vllm-plugin-FL/experiments/tianshu_fa2_tiles_20261012/hooks/sitecustomize.py",
+    "sha256": "82a829ee6de143b8879f9957d307465aeccf5ebf81b817cf3fd000b0ee0119f7"
+  },
+  "tile_configuration": {
+    "BLOCK_M": 128,
+    "BLOCK_N": 128,
+    "num_warps": 8,
+    "num_stages": 2
+  },
+  "tile_routing_records": [],
+  "gpu_idle_after": true,
+  "raw_files": {
+    "evalscope/20261013_135409/reports/minicpm/math_500.json": {
+      "bytes": 8938,
+      "sha256": "5e84f5a8817a2a9235760f15766a6c675fdb82983f9759140f81b04c1f842092"
+    },
+    "evalscope/20261013_135409/reviews/minicpm/math_500_Level 3.jsonl": {
+      "bytes": 1227748,
+      "sha256": "1cdb2a4e07df6987aa1e309e30e08f8732693129c2b46078ef789f7200d1db23"
+    },
+    "evalscope/20261013_135409/predictions/minicpm/math_500_Level 3.jsonl": {
+      "bytes": 2152067,
+      "sha256": "0b668f926ae86cf87a025696edea94cc8fb3c4bab252e8ab7dbda579ebcc24e5"
+    }
+  },
+  "address32_sources": {
+    "address32_sitecustomize.py": {
+      "path": "/workspace/vllm-plugin-FL/experiments/tianshu_attention_offsets_20261013/hooks/sitecustomize.py",
+      "sha256": "c4023287ae355e659d40d833e124d81682b39c39f96ca4f9e0414bacd1836ab0"
+    },
+    "address32.py": {
+      "path": "/workspace/vllm-plugin-FL/experiments/tianshu_attention_offsets_20261013/address32.py",
+      "sha256": "5ac7a68d1a8a2f666261dcb147a5fe32174c2ce6b36ab5331c2687cdac66730e"
+    }
+  },
+  "address32_routing_records": [
+    {
+      "batch": 48,
+      "segments": 4,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4556799,
+        285243391,
+        285243391,
+        4556799,
+        2096,
+        2095,
+        17172479,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 40,
+      "segments": 4,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4540415,
+        285243391,
+        285243391,
+        4540415,
+        2088,
+        2087,
+        17106943,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 32,
+      "segments": 4,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4524031,
+        285243391,
+        285243391,
+        4524031,
+        2080,
+        2079,
+        17041407,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 24,
+      "segments": 4,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4507647,
+        285243391,
+        285243391,
+        4507647,
+        2072,
+        2071,
+        16975871,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 16,
+      "segments": 4,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4491263,
+        285243391,
+        285243391,
+        4491263,
+        2064,
+        2063,
+        16910335,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 8,
+      "segments": 16,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4474879,
+        285243391,
+        285243391,
+        4474879,
+        2056,
+        2055,
+        16844799,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 4,
+      "segments": 16,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4466687,
+        285243391,
+        285243391,
+        4466687,
+        2052,
+        2051,
+        16812031,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 7,
+      "segments": 16,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4472831,
+        285243391,
+        285243391,
+        4472831,
+        2055,
+        2054,
+        16836607,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    },
+    {
+      "batch": 6,
+      "segments": 16,
+      "q_stride": [
+        2048,
+        128,
+        1
+      ],
+      "kv_stride": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "bounds": [
+        4470783,
+        285243391,
+        285243391,
+        4470783,
+        2054,
+        2053,
+        16828415,
+        293865471,
+        2295807,
+        2295807
+      ],
+      "kv_quant_mode": 0,
+      "unused_kv_descales_present": [
+        true,
+        true
+      ],
+      "generated_sha256": "c4072580f4274f89ee509c1eda1929d9eb5d74b2209a8c339534e543679fbf66",
+      "offset_bits": 32,
+      "pointer_types_unmodified": true,
+      "floating_point_body_unmodified": true
+    }
+  ],
+  "address32_environment": {
+    "PYTHONPATH": "/workspace/vllm-plugin-FL/experiments/tianshu_attention_offsets_20261013/hooks",
+    "TIANSHU_ADDRESS32_PROBE": "1",
+    "TIANSHU_ADDRESS32_RECORD_DIR": "/workspace/benchmark-results/20261013_attention_address32_followups_tianshu/math/address32_records"
+  },
+  "matched_service_root": "/workspace/benchmark-results/20261013_attention_address32_16k_service_v2_tianshu",
+  "fresh_math_for_address32": true
+}
