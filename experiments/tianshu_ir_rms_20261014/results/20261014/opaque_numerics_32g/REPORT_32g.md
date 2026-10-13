@@ -1,0 +1,9 @@
+# 天数 BI-V150 32g：opaque IR算子封装独立170项通过
+
+真实服务v2已选择新IR provider，但Inductor make_fx展开裸Triton调用导致FakeTensor.data_ptr错误。按当前Torch2.10 custom_op/register_fake接口，将CUDA实现封装成tianshu_ir_rms::normal/fused opaque算子，声明mutates_args=()、device_types=cuda；fake返回新empty_like(s)而不触碰数据地址。IR provider签名/guard/数学Triton函数体保持，编译可把opaque算子保留为leaf；没有禁用Inductor或Graph。
+
+独立170项用实际模型epsilon=1e-6：120实际provider/50native回退，CPU/nativeGPU/functional alias/Graph全部通过，137逐位同native，33浮点差异保留。真实24组编译记录 source SHA 790ca19c3c216401eda988af348effb9963ac78e71a79e3d1ec7f0170458687c。与未封装版本actualepsilon170得到相同的137逐位数，但本次是重新执行、不复用旧测试。
+
+原始包2324652bytes/9分片，SHA256 909aad7c54c78372bfa99080e13b8e1c96624be822bc438dbb53fb05613e7dd3；整包/分片、170结果、24记录及opaque实现/hook/probe3份源逐字核验。原件service-results/20261014_tianshu/ir_rms_opaque_numerics/20261014_ir_rms_opaque_numerics_tianshu。
+
+结论：封装保持数值和调用契约，可独立真实模型v3验证。该服务关闭CoreX缺类的fuse_norm_quant pass，保持FULL_DECODE_ONLY和Inductor，显式IR优先级新provider+native；实际模型命中与编译成功仍以v3结果为准。本轮没有端到端吞吐或质量分数，当前正式最好3506.84/Math103不变。后续ROI明确须新独立Math105>95再正式4K。性能剖析：TODO图内kernel覆盖，安装源/权重/benchmark不改，沐曦只读。
