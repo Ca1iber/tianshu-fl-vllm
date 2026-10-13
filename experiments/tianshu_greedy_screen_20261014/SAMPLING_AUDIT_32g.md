@@ -1,0 +1,11 @@
+# 天数吞吐筛选采样路径核对
+
+2026-10-14只读核对当前原始benchmark0813及其实际vllm backend。原脚本调用vllm bench serve backend=vllm，无temperature/top_p/extra-body覆盖；backend_request_func的OpenAICompletions payload明确temperature0、repetition_penalty1、stream/usage，默认top_p1。Sampler.sample在all_greedy时调用logits.argmax并提前返回，不进入top-k/top-p随机路径。
+
+旧自定义N64/C64短测foundation明确temperature1、top_p.95。旧控制/候选同参配对结果仍属于那个随机工作负载，不能直接当正式贪心采样热点的因果收益；已完成原脚本正式3640.16与独立Math103的数据有效，保留原始记录，不追改成绩。尤其TopP在正式服务启动预热命中，不单独证明正式请求热路径命中，后续采样优化必须实际请求阶段验证。
+
+本目录新clone把未来吞吐筛选改为temperature0/top_p1/rep1/logprobsNone，保持N64、4096/1024/并发64作低成本比较，并保存request_sampling_config。旧foundation和原官方benchmark均未修改。已在greedy_argmax_service_recovered实验完成两组各3轮，384请求的usage和实际请求阶段Sampler绑定经本地核验。提示输入和请求发起器仍为自定义实现，正式分数最终仍依原脚本N256四轮排首轮。
+
+Math-500继续官方temperature1/top_p.95/max_tokens32768，不用贪心吞吐参数替代质量评测。下一项优先研究真实贪心argmax，先CPU/native精确indices、NaNs/ties、Graph和实际服务绑定证明；随机路径和公开index类型保留。
+
+原始当前源的路径及SHA保存在source_reference/sources.json。实际请求阶段B64的aten::argmax CUDA注册指向FlagGems；独立算子测试的Torch基线没有保存注册提供者，不能将其88.7%的局部耗时下降当作模型内实际提供者的下降。模型服务对照3846.751238→候选3847.885980 tok/s，仅+0.029499%，不采用。没有改安装源码/权重/原官方采样策略。当前正式最好3640.16/728.03/TTFT4465.17/newMath103/tag tianshu-best-decode-kv32-w2-20261014不变，目标继续优化。
