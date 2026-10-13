@@ -5,3 +5,5 @@
 报告与两份完整rawSHA：results/20261013/micro_real_32g/REPORT_32g.md。helper/probe已GPU微测验证；servicehook/harness及16K双组服务实验仍在跑，未采纳，不把micro当正式吞吐。所有安装源/benchmark未改，沐曦只读。
 
 BF16 服务会传入未使用的 K/V descales；已核对模式 NONE 的原内核加载分支并修正守卫，新增真实参数 10 场景 FP32/逐位一致验证。见 `results/20261013/bf16_descales_32g/REPORT_32g.md`。修正后的服务对照未完成，不能将微测收益当作服务成绩。
+
+完整验证已结束：新Math102/105；原始16K2600.48（+6.55%）、4K3202.05（−0.64%）。见 `results/20261013/REPORT_32g.md`。新launcher复现同一hook/flags，启动脚本已bash语法检查，未替换旧4K最好配置。
