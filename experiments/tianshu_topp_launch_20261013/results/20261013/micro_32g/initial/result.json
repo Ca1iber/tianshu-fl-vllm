@@ -1,0 +1,1403 @@
+{
+  "complete": true,
+  "numerical_checks_passed": true,
+  "official_benchmark": false,
+  "adopted": false,
+  "native_source_sha256": "64c66699cd398c2eafe9eb91f0e189162f83a6f83a209651048e163d7d6fcee8",
+  "vocab_size": 130560,
+  "body_grid_tiles_and_rng_unchanged": true,
+  "timing_includes_identical_input_restore": true,
+  "cases": [
+    {
+      "batch": 8,
+      "distribution": "normal",
+      "topk": false,
+      "baseline_kept_counts": [
+        96746,
+        96774,
+        96719,
+        96736,
+        96691,
+        96627,
+        96695,
+        96723
+      ],
+      "variants": [
+        {
+          "label": "default",
+          "requested_warps": null,
+          "requested_stages": null,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 3,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            1.6250442504882812,
+            1.5946907997131348,
+            1.6037916183471679,
+            1.6051349639892578,
+            1.6090330123901366,
+            1.6090238571166993,
+            1.6228822708129882
+          ],
+          "median_ms": 1.6090238571166993
+        },
+        {
+          "label": "w2s1",
+          "requested_warps": 2,
+          "requested_stages": 1,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            3.547907257080078,
+            3.5799407958984375,
+            3.5825401306152345,
+            3.616851043701172,
+            3.5804058074951173,
+            3.5807140350341795,
+            3.6144508361816405
+          ],
+          "median_ms": 3.5807140350341795
+        },
+        {
+          "label": "w4s1",
+          "requested_warps": 4,
+          "requested_stages": 1,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            1.613161849975586,
+            1.6084373474121094,
+            1.5936514854431152,
+            1.5932849884033202,
+            1.6284238815307617,
+            1.621630859375,
+            1.608728790283203
+          ],
+          "median_ms": 1.608728790283203
+        },
+        {
+          "label": "w8s1",
+          "requested_warps": 8,
+          "requested_stages": 1,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 1,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            1.1575326919555664,
+            1.1580366134643554,
+            1.155721950531006,
+            1.1554696083068847,
+            1.1534999847412108,
+            1.1543404579162597,
+            1.1533845901489257
+          ],
+          "median_ms": 1.1554696083068847
+        },
+        {
+          "label": "w16s1",
+          "requested_warps": 16,
+          "requested_stages": 1,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 16,
+            "num_stages": 1,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            1.0644638061523437,
+            1.0638195991516113,
+            1.0648284912109376,
+            1.0640119552612304,
+            1.0655226707458496,
+            1.0622123718261718,
+            1.0643568992614747
+          ],
+          "median_ms": 1.0643568992614747
+        },
+        {
+          "label": "w2s3",
+          "requested_warps": 2,
+          "requested_stages": 3,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 3,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            3.558066558837891,
+            3.5894615173339846,
+            3.5889278411865235,
+            3.6124546051025392,
+            3.5787410736083984,
+            3.588850402832031,
+            3.6101505279541017
+          ],
+          "median_ms": 3.5889278411865235
+        },
+        {
+          "label": "w8s3",
+          "requested_warps": 8,
+          "requested_stages": 3,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 3,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            1.1561123847961425,
+            1.1550515174865723,
+            1.1535041809082032,
+            1.1528980255126953,
+            1.1569392204284668,
+            1.157097625732422,
+            1.155073070526123
+          ],
+          "median_ms": 1.155073070526123
+        }
+      ]
+    },
+    {
+      "batch": 32,
+      "distribution": "normal",
+      "topk": false,
+      "baseline_kept_counts": [
+        96610,
+        96621,
+        96837,
+        96707,
+        96785,
+        96589,
+        96642,
+        96648,
+        96635,
+        96725,
+        96457,
+        96612,
+        96649,
+        96654,
+        96693,
+        96579,
+        96621,
+        96752,
+        96777,
+        96645,
+        96754,
+        96562,
+        96633,
+        96641,
+        96664,
+        96695,
+        96720,
+        96670,
+        96657,
+        96656,
+        96621,
+        96827
+      ],
+      "variants": [
+        {
+          "label": "default",
+          "requested_warps": null,
+          "requested_stages": null,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 3,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            3.5371868133544924,
+            3.602567672729492,
+            3.5281692504882813,
+            3.548106002807617,
+            3.5096683502197266,
+            3.534040069580078,
+            3.530436706542969
+          ],
+          "median_ms": 3.534040069580078
+        },
+        {
+          "label": "w2s1",
+          "requested_warps": 2,
+          "requested_stages": 1,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            7.941981506347656,
+            7.883674621582031,
+            7.941683197021485,
+            7.890224456787109,
+            7.859468841552735,
+            7.942437744140625,
+            7.875796508789063
+          ],
+          "median_ms": 7.890224456787109
+        },
+        {
+          "label": "w4s1",
+          "requested_warps": 4,
+          "requested_stages": 1,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            3.5435611724853517,
+            3.554383087158203,
+            3.498809814453125,
+            3.5738910675048827,
+            3.5650821685791017,
+            3.5439552307128905,
+            3.5862598419189453
+          ],
+          "median_ms": 3.554383087158203
+        },
+        {
+          "label": "w8s1",
+          "requested_warps": 8,
+          "requested_stages": 1,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 1,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            2.5583208084106444,
+            2.5621435165405275,
+            2.550539970397949,
+            2.5610530853271483,
+            2.5644342422485353,
+            2.5546543121337892,
+            2.55501651763916
+          ],
+          "median_ms": 2.5583208084106444
+        },
+        {
+          "label": "w16s1",
+          "requested_warps": 16,
+          "requested_stages": 1,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 16,
+            "num_stages": 1,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            2.355702781677246,
+            2.348391532897949,
+            2.346833610534668,
+            2.3466060638427733,
+            2.35089225769043,
+            2.3493621826171873,
+            2.3463771820068358
+          ],
+          "median_ms": 2.348391532897949
+        },
+        {
+          "label": "w2s3",
+          "requested_warps": 2,
+          "requested_stages": 3,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 3,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            7.931794738769531,
+            7.929904174804688,
+            7.873139953613281,
+            7.9064079284667965,
+            7.877674865722656,
+            7.91113510131836,
+            7.899745941162109
+          ],
+          "median_ms": 7.9064079284667965
+        },
+        {
+          "label": "w8s3",
+          "requested_warps": 8,
+          "requested_stages": 3,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 3,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            2.561080741882324,
+            2.5598466873168944,
+            2.556865692138672,
+            2.5570669174194336,
+            2.554146385192871,
+            2.5451166152954103,
+            2.5544076919555665
+          ],
+          "median_ms": 2.556865692138672
+        }
+      ]
+    },
+    {
+      "batch": 64,
+      "distribution": "normal",
+      "topk": false,
+      "baseline_kept_counts": [
+        96424,
+        96544,
+        96829,
+        96539,
+        96671,
+        96673,
+        96553,
+        96692,
+        96745,
+        96680,
+        96741,
+        96645,
+        96605,
+        96824,
+        96587,
+        96571,
+        96687,
+        96731,
+        96611,
+        96676,
+        96592,
+        96787,
+        96550,
+        96754,
+        96684,
+        96731,
+        96727,
+        96758,
+        96548,
+        96704,
+        96830,
+        96572,
+        96677,
+        96657,
+        96793,
+        96713,
+        96826,
+        96597,
+        96789,
+        96660,
+        96700,
+        96616,
+        96829,
+        96614,
+        96850,
+        96644,
+        96603,
+        96565,
+        96836,
+        96666,
+        96768,
+        96698,
+        96863,
+        96648,
+        96589,
+        96624,
+        96688,
+        96850,
+        96849,
+        96600,
+        96586,
+        96797,
+        96842,
+        96700
+      ],
+      "variants": [
+        {
+          "label": "default",
+          "requested_warps": null,
+          "requested_stages": null,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 3,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            7.011844635009766,
+            7.027490234375,
+            6.980640411376953,
+            6.9922538757324215,
+            6.98348388671875,
+            6.985896301269531,
+            6.985821533203125
+          ],
+          "median_ms": 6.985896301269531
+        },
+        {
+          "label": "w2s1",
+          "requested_warps": 2,
+          "requested_stages": 1,
+          "exact_equal": false,
+          "keep_mask_equal": false,
+          "mask_difference": 13,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 512,
+            "num_ctas": 1
+          }
+        },
+        {
+          "label": "w4s1",
+          "requested_warps": 4,
+          "requested_stages": 1,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            6.979056549072266,
+            6.958458709716797,
+            6.960910797119141,
+            6.9974815368652346,
+            6.968783569335938,
+            6.988674163818359,
+            7.005757904052734
+          ],
+          "median_ms": 6.979056549072266
+        },
+        {
+          "label": "w8s1",
+          "requested_warps": 8,
+          "requested_stages": 1,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 1,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            4.968638610839844,
+            4.960594558715821,
+            4.953857040405273,
+            4.9563133239746096,
+            4.949753189086914,
+            4.97154655456543,
+            4.956102752685547
+          ],
+          "median_ms": 4.9563133239746096
+        },
+        {
+          "label": "w16s1",
+          "requested_warps": 16,
+          "requested_stages": 1,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 16,
+            "num_stages": 1,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            4.558755111694336,
+            4.545692443847656,
+            4.551137161254883,
+            4.5579833984375,
+            4.558819580078125,
+            4.552956390380859,
+            4.544367980957031
+          ],
+          "median_ms": 4.552956390380859
+        },
+        {
+          "label": "w2s3",
+          "requested_warps": 2,
+          "requested_stages": 3,
+          "exact_equal": false,
+          "keep_mask_equal": false,
+          "mask_difference": 13,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 3,
+            "shared": 512,
+            "num_ctas": 1
+          }
+        },
+        {
+          "label": "w8s3",
+          "requested_warps": 8,
+          "requested_stages": 3,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 3,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            4.973369979858399,
+            4.960234832763672,
+            4.96234016418457,
+            4.954294204711914,
+            4.968332290649414,
+            4.966633224487305,
+            4.961852264404297
+          ],
+          "median_ms": 4.96234016418457
+        }
+      ]
+    },
+    {
+      "batch": 64,
+      "distribution": "peaked",
+      "topk": false,
+      "baseline_kept_counts": [
+        1622,
+        1795,
+        1970,
+        1849,
+        1316,
+        2449,
+        367,
+        219,
+        1783,
+        1000,
+        1561,
+        2775,
+        1414,
+        1785,
+        1795,
+        2208,
+        68,
+        1926,
+        2680,
+        702,
+        212,
+        2245,
+        1430,
+        1814,
+        21,
+        222,
+        2491,
+        1993,
+        2531,
+        2092,
+        1866,
+        919,
+        2324,
+        1949,
+        1700,
+        1349,
+        1027,
+        2013,
+        1065,
+        2117,
+        1691,
+        1307,
+        640,
+        130,
+        1868,
+        802,
+        2406,
+        910,
+        2225,
+        2632,
+        2132,
+        1548,
+        1628,
+        1640,
+        1676,
+        2341,
+        1382,
+        1905,
+        1960,
+        1448,
+        1270,
+        1274,
+        2616,
+        2030
+      ],
+      "variants": [
+        {
+          "label": "default",
+          "requested_warps": null,
+          "requested_stages": null,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 3,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            3.921312713623047,
+            3.929327392578125,
+            3.923025131225586,
+            3.917157745361328,
+            3.927561569213867,
+            3.9249576568603515,
+            3.9162128448486326
+          ],
+          "median_ms": 3.923025131225586
+        },
+        {
+          "label": "w2s1",
+          "requested_warps": 2,
+          "requested_stages": 1,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            8.932872772216797,
+            8.933821868896484,
+            8.903252410888673,
+            8.912166595458984,
+            8.904156494140626,
+            8.963881683349609,
+            8.900685119628907
+          ],
+          "median_ms": 8.912166595458984
+        },
+        {
+          "label": "w4s1",
+          "requested_warps": 4,
+          "requested_stages": 1,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            3.9362186431884765,
+            3.9235435485839845,
+            3.919602966308594,
+            3.9293827056884765,
+            3.9271175384521486,
+            3.92541618347168,
+            3.90841064453125
+          ],
+          "median_ms": 3.92541618347168
+        },
+        {
+          "label": "w8s1",
+          "requested_warps": 8,
+          "requested_stages": 1,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 1,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            2.9168746948242186,
+            2.9046703338623048,
+            2.906850051879883,
+            2.91018009185791,
+            2.915067672729492,
+            2.901025581359863,
+            2.899832344055176
+          ],
+          "median_ms": 2.906850051879883
+        },
+        {
+          "label": "w16s1",
+          "requested_warps": 16,
+          "requested_stages": 1,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 16,
+            "num_stages": 1,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            2.852888488769531,
+            2.853634071350098,
+            2.8528911590576174,
+            2.850921630859375,
+            2.8549861907958984,
+            2.858224296569824,
+            2.857793426513672
+          ],
+          "median_ms": 2.853634071350098
+        },
+        {
+          "label": "w2s3",
+          "requested_warps": 2,
+          "requested_stages": 3,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 3,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            8.907672882080078,
+            8.864434814453125,
+            8.891736602783203,
+            8.905992889404297,
+            8.87985610961914,
+            8.881581115722657,
+            8.87784194946289
+          ],
+          "median_ms": 8.881581115722657
+        },
+        {
+          "label": "w8s3",
+          "requested_warps": 8,
+          "requested_stages": 3,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 3,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            2.9104288101196287,
+            2.8934249877929688,
+            2.90098876953125,
+            2.914296531677246,
+            2.9124515533447264,
+            2.91292724609375,
+            2.9101396560668946
+          ],
+          "median_ms": 2.9104288101196287
+        }
+      ]
+    },
+    {
+      "batch": 8,
+      "distribution": "masked",
+      "topk": false,
+      "baseline_kept_counts": [
+        64468,
+        64469,
+        64526,
+        64469,
+        64579,
+        64430,
+        64374,
+        64512
+      ],
+      "variants": [
+        {
+          "label": "default",
+          "requested_warps": null,
+          "requested_stages": null,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 3,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            1.758704948425293,
+            1.763961410522461,
+            1.7561273574829102,
+            1.7570446014404297,
+            1.7706472396850585,
+            1.771125030517578,
+            1.7566692352294921
+          ],
+          "median_ms": 1.758704948425293
+        },
+        {
+          "label": "w2s1",
+          "requested_warps": 2,
+          "requested_stages": 1,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            3.8825550079345703,
+            3.918461227416992,
+            3.918304443359375,
+            3.9191593170166015,
+            3.9180839538574217,
+            3.9192836761474608,
+            3.9195022583007812
+          ],
+          "median_ms": 3.918461227416992
+        },
+        {
+          "label": "w4s1",
+          "requested_warps": 4,
+          "requested_stages": 1,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            1.7555377960205079,
+            1.7641006469726563,
+            1.726311492919922,
+            1.7584972381591797,
+            1.7579463958740233,
+            1.7576295852661132,
+            1.7514923095703125
+          ],
+          "median_ms": 1.7576295852661132
+        },
+        {
+          "label": "w8s1",
+          "requested_warps": 8,
+          "requested_stages": 1,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 1,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            1.258750820159912,
+            1.2568907737731934,
+            1.2558557510375976,
+            1.2581100463867188,
+            1.258206558227539,
+            1.2583115577697754,
+            1.257111167907715
+          ],
+          "median_ms": 1.2581100463867188
+        },
+        {
+          "label": "w16s1",
+          "requested_warps": 16,
+          "requested_stages": 1,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 16,
+            "num_stages": 1,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            1.153439998626709,
+            1.1523411750793457,
+            1.1530734062194825,
+            1.1519011497497558,
+            1.1522850036621093,
+            1.1503350257873535,
+            1.1529773712158202
+          ],
+          "median_ms": 1.1523411750793457
+        },
+        {
+          "label": "w2s3",
+          "requested_warps": 2,
+          "requested_stages": 3,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 3,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            3.88902587890625,
+            3.917552185058594,
+            3.9151237487792967,
+            3.9154457092285155,
+            3.9146354675292967,
+            3.915244293212891,
+            3.9144577026367187
+          ],
+          "median_ms": 3.9151237487792967
+        },
+        {
+          "label": "w8s3",
+          "requested_warps": 8,
+          "requested_stages": 3,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 3,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            1.2589438438415528,
+            1.2583865165710448,
+            1.2576257705688476,
+            1.2545507431030274,
+            1.2568968772888183,
+            1.2572873115539551,
+            1.2553072929382325
+          ],
+          "median_ms": 1.2572873115539551
+        }
+      ]
+    },
+    {
+      "batch": 8,
+      "distribution": "ties",
+      "topk": false,
+      "baseline_kept_counts": [
+        94459,
+        94422,
+        94247,
+        94336,
+        94287,
+        94400,
+        94184,
+        94199
+      ],
+      "variants": [
+        {
+          "label": "default",
+          "requested_warps": null,
+          "requested_stages": null,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 3,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            1.1631258010864258,
+            1.1589149475097655,
+            1.162784957885742,
+            1.1591338157653808,
+            1.162969207763672,
+            1.1591873168945312,
+            1.162725067138672
+          ],
+          "median_ms": 1.162725067138672
+        },
+        {
+          "label": "w2s1",
+          "requested_warps": 2,
+          "requested_stages": 1,
+          "exact_equal": false,
+          "keep_mask_equal": false,
+          "mask_difference": 3,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 512,
+            "num_ctas": 1
+          }
+        },
+        {
+          "label": "w4s1",
+          "requested_warps": 4,
+          "requested_stages": 1,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            1.1595772743225097,
+            1.1623545646667481,
+            1.1590565681457519,
+            1.1621891975402832,
+            1.1591160774230957,
+            1.1625323295593262,
+            1.1591292381286622
+          ],
+          "median_ms": 1.1595772743225097
+        },
+        {
+          "label": "w8s1",
+          "requested_warps": 8,
+          "requested_stages": 1,
+          "exact_equal": false,
+          "keep_mask_equal": false,
+          "mask_difference": 1,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 1,
+            "shared": 512,
+            "num_ctas": 1
+          }
+        },
+        {
+          "label": "w16s1",
+          "requested_warps": 16,
+          "requested_stages": 1,
+          "exact_equal": false,
+          "keep_mask_equal": false,
+          "mask_difference": 1,
+          "compiled_metadata": {
+            "num_warps": 16,
+            "num_stages": 1,
+            "shared": 512,
+            "num_ctas": 1
+          }
+        },
+        {
+          "label": "w2s3",
+          "requested_warps": 2,
+          "requested_stages": 3,
+          "exact_equal": false,
+          "keep_mask_equal": false,
+          "mask_difference": 3,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 3,
+            "shared": 512,
+            "num_ctas": 1
+          }
+        },
+        {
+          "label": "w8s3",
+          "requested_warps": 8,
+          "requested_stages": 3,
+          "exact_equal": false,
+          "keep_mask_equal": false,
+          "mask_difference": 1,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 3,
+            "shared": 512,
+            "num_ctas": 1
+          }
+        }
+      ]
+    },
+    {
+      "batch": 32,
+      "distribution": "normal",
+      "topk": true,
+      "baseline_kept_counts": [
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        93,
+        94,
+        94,
+        94,
+        93,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        94,
+        93
+      ],
+      "variants": [
+        {
+          "label": "default",
+          "requested_warps": null,
+          "requested_stages": null,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 3,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            0.8424580574035645,
+            0.8460450172424316,
+            0.83743314743042,
+            0.8436489105224609,
+            0.8376131057739258,
+            0.8428973197937012,
+            0.8442061424255372
+          ],
+          "median_ms": 0.8428973197937012
+        },
+        {
+          "label": "w2s1",
+          "requested_warps": 2,
+          "requested_stages": 1,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 1,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            1.7254673004150392,
+            1.7253814697265626,
+            1.7251094818115233,
+            1.7257457733154298,
+            1.7258766174316407,
+            1.7267377853393555,
+            1.7259750366210938
+          ],
+          "median_ms": 1.7257457733154298
+        },
+        {
+          "label": "w4s1",
+          "requested_warps": 4,
+          "requested_stages": 1,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 4,
+            "num_stages": 1,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            0.838780403137207,
+            0.8451426506042481,
+            0.8384614944458008,
+            0.8474976539611816,
+            0.8381888389587402,
+            0.8463623046875,
+            0.8472023010253906
+          ],
+          "median_ms": 0.8451426506042481
+        },
+        {
+          "label": "w8s1",
+          "requested_warps": 8,
+          "requested_stages": 1,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 1,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            0.592701530456543,
+            0.5917846202850342,
+            0.5951015472412109,
+            0.5944842338562012,
+            0.5923842430114746,
+            0.5920114994049073,
+            0.5930826663970947
+          ],
+          "median_ms": 0.592701530456543
+        },
+        {
+          "label": "w16s1",
+          "requested_warps": 16,
+          "requested_stages": 1,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 16,
+            "num_stages": 1,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            0.551882266998291,
+            0.5542049884796143,
+            0.5632649898529053,
+            0.5513080596923828,
+            0.5630699634552002,
+            0.5557734489440918,
+            0.559291934967041
+          ],
+          "median_ms": 0.5557734489440918
+        },
+        {
+          "label": "w2s3",
+          "requested_warps": 2,
+          "requested_stages": 3,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 2,
+            "num_stages": 3,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            1.7279766082763672,
+            1.7297292709350587,
+            1.7317758560180665,
+            1.731882667541504,
+            1.728379249572754,
+            1.7298385620117187,
+            1.7294486999511718
+          ],
+          "median_ms": 1.7297292709350587
+        },
+        {
+          "label": "w8s3",
+          "requested_warps": 8,
+          "requested_stages": 3,
+          "exact_equal": true,
+          "keep_mask_equal": true,
+          "mask_difference": 0,
+          "compiled_metadata": {
+            "num_warps": 8,
+            "num_stages": 3,
+            "shared": 512,
+            "num_ctas": 1
+          },
+          "raw_ms": [
+            0.592705774307251,
+            0.5932288646697998,
+            0.5925084590911865,
+            0.5939311981201172,
+            0.5925149917602539,
+            0.5919469356536865,
+            0.5919253826141357
+          ],
+          "median_ms": 0.5925149917602539
+        }
+      ]
+    }
+  ],
+  "exact_passing_plans": [
+    "default",
+    "w4s1"
+  ],
+  "candidate_service_not_run": true,
+  "independent_math_not_run": true
+}
