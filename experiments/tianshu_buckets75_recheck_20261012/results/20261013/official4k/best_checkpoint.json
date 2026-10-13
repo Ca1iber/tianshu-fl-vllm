@@ -1,0 +1,55 @@
+{
+  "as_of_local": "2026-10-13T09:28:51.963690+08:00",
+  "tag": "tianshu-best-buckets75-gather-20261013",
+  "profile": "Hybrid +adaptive Decode KV16/w4/s1 +native GQA Prefill M256/KV128/w16/s1, L0, budget2048 +75point Prefill buckets +fixed last-token gather",
+  "official_4k_total_tok_s": 3222.52,
+  "official_4k_output_tok_s": 644.51,
+  "official_4k_mean_ttft_ms": 4510.23,
+  "official_requests_successful": 1024,
+  "official_runs": 4,
+  "excluded_runs": [
+    1
+  ],
+  "math_level3_correct": 102,
+  "math_level3_total": 105,
+  "math_accuracy": 0.9714285714285714,
+  "official_accuracy_requirement": ">95%",
+  "benchmark_script_unmodified": true,
+  "official_archive_sha256": "44e74d9641cd8edfda89d330488303dbacdea577f91c245d822ecce678e8a8d9",
+  "math_archive_sha256": "98ceaec2c577df29725f3f5e79e77a99fe14886e7896ceed437108bca1dc552a",
+  "both_archives_verified_locally": true,
+  "postfirst_spread_percent": 5.820594006560081,
+  "vs_public_throughput_percent": 58.90059713709499,
+  "vs_public_ttft_percent": -61.029780887939985,
+  "launcher": "/workspace/vllm-plugin-FL/experiments/tianshu_buckets75_recheck_20261012/serve_tianshu_minicpm.sh",
+  "full_16k_optimized_profile_not_benchmarked": true,
+  "ongoing_optimization": true,
+  "gpu_work_stop_local": "2026-10-13T23:58:00+08:00",
+  "lease_end_local": "2026-10-14T00:00:00+08:00",
+  "previous_best": {
+    "tag": "tianshu-best-decode-stage1-20261012",
+    "commit": "ac2eb4d27a5a7a87ed92b4fb18e4980dc118d1ce",
+    "total_tok_s": 2808.93,
+    "ttft_ms": 4827.51
+  },
+  "vs_previous_best_throughput_percent": 14.72411202842363,
+  "vs_previous_best_ttft_percent": -6.572332320388785,
+  "buckets": "1",
+  "gather": "1",
+  "bucket_sources": {
+    "model_runner.py": {
+      "path": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/model_runner.py",
+      "sha256": "b0144bcff96bef15b04eb1ad45385b01c47faea056bc56352a6486b7c497fa2e"
+    },
+    "iluvatar_prefill_buckets.py": {
+      "path": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/iluvatar_prefill_buckets.py",
+      "sha256": "966aad18aad80ef488928cafc8672cbfa2d547a832f9b151346f719ea3abc6db"
+    },
+    "iluvatar_logits_gather.py": {
+      "path": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/iluvatar_logits_gather.py",
+      "sha256": "7bca296afddd37e9a3d2c4e1ce9f91ea6bae252956da867ccc1bd7da2506c513"
+    }
+  },
+  "stability_study_pending": true,
+  "commit_resolution": "git rev-parse tianshu-best-buckets75-gather-20261013^{}"
+}
