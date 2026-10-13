@@ -51,6 +51,17 @@ def launch(logits, config):
 
 
 def supported(logits, metadata):
+    from vllm.v1.sample.logits_processor.builtin import (
+        LogitBiasLogitsProcessor, MinTokensLogitsProcessor,
+    )
+
+    # These exact built-ins are always initialized, even without active requests.
+    # Unknown/subclass processors retain their original execution path.
+    processors_idle = all(
+        (type(p) is LogitBiasLogitsProcessor and not p.biases)
+        or (type(p) is MinTokensLogitsProcessor and not p.min_toks)
+        for p in metadata.logitsprocs.non_argmax_invariant
+    )
     holder = metadata.thinking_budget_state_holder
     return (
         logits.is_cuda and logits.ndim == 2
@@ -61,7 +72,7 @@ def supported(logits, metadata):
         and metadata.max_num_logprobs is None and not metadata.logprob_token_ids
         and metadata.no_penalties
         and metadata.allowed_token_ids_mask is None and not metadata.bad_words_token_ids
-        and not metadata.logitsprocs.non_argmax_invariant
+        and processors_idle
         and (holder is None or not holder.has_tracked_requests())
     )
 

@@ -25,6 +25,7 @@ def main():
     import vllm_fl
     import flag_gems
     from vllm.v1.sample.sampler import Sampler
+    from vllm.v1.sample.logits_processor.builtin import LogitBiasLogitsProcessor, MinTokensLogitsProcessor
     from implementation import sample_direct, supported
     torch.set_num_threads(8)
     base = Path(__file__).resolve().parent
@@ -44,10 +45,14 @@ def main():
         (root / "result.json").write_text(json.dumps(data, indent=2) + "\n")
 
     def metadata(batch):
+        bias = LogitBiasLogitsProcessor.__new__(LogitBiasLogitsProcessor)
+        bias.biases = {}
+        minimum = MinTokensLogitsProcessor.__new__(MinTokensLogitsProcessor)
+        minimum.min_toks = {}
         return SimpleNamespace(
             all_greedy=True, all_random=False, max_num_logprobs=None,
             logprob_token_ids=None, no_penalties=True, allowed_token_ids_mask=None,
-            bad_words_token_ids={}, logitsprocs=SimpleNamespace(non_argmax_invariant=[], argmax_invariant=[]),
+            bad_words_token_ids={}, logitsprocs=SimpleNamespace(non_argmax_invariant=[minimum, bias], argmax_invariant=[]),
             thinking_budget_state_holder=None, output_token_ids=[[] for _ in range(batch)],
         )
 
@@ -82,6 +87,11 @@ def main():
                     if pattern == "normal":
                         for key, value in mutations.items():
                             bad = metadata(batch); setattr(bad, key, value)
+                            assert not supported(x, bad), key
+                        for key in ("biases", "min_toks"):
+                            bad = metadata(batch)
+                            processor = next(p for p in bad.logitsprocs.non_argmax_invariant if hasattr(p, key))
+                            setattr(processor, key, {0: object()})
                             assert not supported(x, bad), key
                         assert not supported(x.cpu(), meta)
                         assert not supported(x[:, :13], meta)

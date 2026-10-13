@@ -1,0 +1,9 @@
+# 天数 BI-V150 32g：常驻内置processor的精确放行复验
+
+原strict空列表条件会拒绝实际常驻MinTokens/LogitBias，因此启动尝试已中止、零完成benchmark轮，原stopped与日志/七源保留。新guard仅接受这两个精确内置类型且min_toks/biases为空；子类、自定义、活跃字典及原9类metadata条件均回退。
+
+48场景再次CPU/Graph/输入位/RNG通过；非NaN与原完整Sampler一致，8条已知FlagGems首NaN差异单列。测试metadata包含真实内置类对象的空闲状态，同时检查两类字典活跃时被拒绝。不是仅用空list伪造可达路径；服务实际命中仍需另行验证。
+
+B64连续局部数据：[{"batch": 64, "dtype": "torch.bfloat16", "strided": false, "pattern": "normal", "CPU_and_graph_exact": true, "input_bits_unchanged": true, "RNG_unchanged": true, "native_exact": true, "baseline_ms": 0.17212675094604493, "candidate_ms": 0.046270771026611326, "time_change_percent": -73.11819878531523, "raw_ms": [[0.17209623336791993, 0.17206884384155274, 0.17212675094604493, 0.17218154907226563, 0.17208000183105468, 0.17234231948852538, 0.17232261657714842], [0.04628915309906006, 0.04611646175384521, 0.046270771026611326, 0.046098461151123045, 0.04629300117492676, 0.04614853858947754, 0.04627707481384277]]}, {"batch": 64, "dtype": "torch.float32", "strided": false, "pattern": "normal", "CPU_and_graph_exact": true, "input_bits_unchanged": true, "RNG_unchanged": true, "native_exact": true, "baseline_ms": 0.08865092277526855, "candidate_ms": 0.06313323497772216, "time_change_percent": -28.784458185769957, "raw_ms": [[0.08867307662963868, 0.08868900299072266, 0.08857545852661133, 0.08867831230163574, 0.08865092277526855, 0.08860892295837403, 0.08841984748840331], [0.06310761451721192, 0.06313323497772216, 0.06315253734588623, 0.06316415309906005, 0.06314877033233643, 0.06304846286773681, 0.06311361312866211]]}]
+
+原包2584277bytes/10分片，SHA256 83d02cc63156bd46e61e05361de292e390b27e97b1e17b14f78fb69ebee812fd，整包/分片/三源已本地核验。原件service-results/20261014_tianshu/greedy_bf16_idle_micro/20261014_greedy_bf16_idle_micro_tianshu。没有新Math或正式成绩，best3640.16保持。硬件profile：TODO有效图内覆盖。
