@@ -1,0 +1,11 @@
+# 天数 BI-V150 32g：IR模型启动两次失败及修复
+
+v1注册新IR provider并设置优先级后，配置enable_norm_fusion谓词发现首选provider!=native，自动启用fuse_norm_quant。CoreXOOT未满足cuda_alike/xpu导入条件，RMSNormQuantFusionPass全局未定义，pass_manager.configure167仍尝试调用并NameError。模型未就绪、没有完成请求、没有性能或质量成绩。
+
+v2保留Inductor/FULL_DECODE_ONLY，只明确pass_config.fuse_norm_quant=false，并要求数值测试使用实际epsilon1e-6。IR实际优先级日志正确，但make_fx展开裸Triton调用试图读取FakeTensor.data_ptr，InductorError。该次同样未完成请求，无模型收益可计算。
+
+v3修复路线：保留相同数学核，改CUDA torch.library.custom_op opaque包装并注册fake新输出，避免FakeTensor访问真实指针。独立170项actualepsilon1e-6 CPU/native/alias/Graph全部通过；真实v3模型随后成功并有150条normal/fused GPU源命中，4096/16请求usage正常，详见opaque_numerics_32g和smoke_v3_32g报告。没有通过禁用Inductor、force eager或关闭Graph来绕过集成。
+
+v1完整失败包81512bytes/SHA d0e4883f8eaeb1e5cfd95ff7abe01868a4322fe0ce7b7099aa81865e56be4ce6；v2包83816bytes/SHA 00dd7e733c9f085737585c646c38b6d6a76d56746ab671dba1b613d9f36b05fd。分片/整包、父result failed、清理GPU历史证据、没有response、3份源快照及首个根因日志均本地核验。原件service-results/20261014_tianshu/ir_rms_smoke_failed_v1和ir_rms_smoke_failed_v2。
+
+源码保存这两次实际失败，不追改旧结果。后续v3与性能对照使用独立文件/目录；当前正式最好仍3506.84/Math103，尚未采用IR候选。性能剖析：TODO图内kernel覆盖。安装源/权重/原benchmark不变，沐曦只读。

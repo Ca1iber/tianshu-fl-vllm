@@ -1,0 +1,41 @@
+{
+  "phase": "failed",
+  "runner_pid": 76493,
+  "official_benchmark": false,
+  "adopted": false,
+  "command": [
+    "vllm",
+    "serve",
+    "/workspace/MiniCPM5-2B",
+    "--port",
+    "9031",
+    "--compilation-config",
+    "{\"cudagraph_mode\":\"FULL_DECODE_ONLY\"}",
+    "--served-model-name",
+    "minicpm",
+    "--gpu-memory-utilization",
+    "0.85",
+    "--max-model-len",
+    "131072",
+    "--max-num-batched-tokens",
+    "2048",
+    "--kernel-config",
+    "{\"ir_op_priority\": {\"rms_norm\": [\"tianshu_ir_rms\", \"native\"], \"fused_add_rms_norm\": [\"tianshu_ir_rms\", \"native\"]}}"
+  ],
+  "kernel_config": {
+    "ir_op_priority": {
+      "rms_norm": [
+        "tianshu_ir_rms",
+        "native"
+      ],
+      "fused_add_rms_norm": [
+        "tianshu_ir_rms",
+        "native"
+      ]
+    }
+  },
+  "source_sha256": "7b2b77bca09e5f83f722d65fe877252a9106ac7f02d24a8f612cc13d59224200",
+  "server_pid": 76495,
+  "error": "AssertionError('Server exited')",
+  "gpu_idle_after": true
+}
