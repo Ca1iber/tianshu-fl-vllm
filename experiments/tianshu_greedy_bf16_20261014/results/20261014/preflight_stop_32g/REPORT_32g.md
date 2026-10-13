@@ -1,0 +1,5 @@
+# 天数 BI-V150 32g：保护条件预检中止
+
+启动后确认MinTokens/LogitBias常驻，strict空列表判断会拒绝实际BF16贪心请求，因此在零完成benchmark轮时发送SIGTERM中止。不报性能分数，保留stopped真实状态、日志与七份源。新guard只放行两个精确内置类型的空字典并完成48场景补测，后续服务用新目录idle_service。
+
+原包249955bytes/1分片，SHA256 c09111e1fd86ffb743659a98d9f569b5aa03b6417b8a8eb131602b9370991de2，整包/七份快照/零完成轮已本地核验。原件service-results/20261014_tianshu/greedy_bf16_preflight_stop/20261014_greedy_bf16_service_tianshu。当前正式best3640.16不变，无Math或16K服务，硬件profile TODO有效覆盖。
