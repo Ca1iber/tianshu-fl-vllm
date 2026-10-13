@@ -35,6 +35,7 @@ def main():
     parser.add_argument('--watermark',type=float,default=0.0)
     parser.add_argument('--hist-count-bits',choices=['off','64','32','16','8'],default='off')
     parser.add_argument('--decode-graph-max',type=int,choices=[0,64],default=0)
+    parser.add_argument('--sort-buffer-mode',choices=['original','index32','scan32','both32'],default='original')
     parser.add_argument('--request-timeout',type=int,default=900)
     parser.add_argument('--concurrency', type=int, default=64)
     parser.add_argument('--requests', type=int, default=64)
@@ -107,6 +108,14 @@ def main():
     else:
         env.pop('TIANSHU_DECODE_GRAPH_MAX_ROWS',None)
         env.pop('TIANSHU_DECODE_GRAPH_RECORD_DIR',None)
+    if args.sort_buffer_mode!='original':
+        assert args.hist_count_bits=='off' and args.decode_graph_max==0 and args.bucket_trace=='2'
+        env['PYTHONPATH']=str(Path(__file__).resolve().parents[1]/'tianshu_sort_buffers_20261013/hooks')
+        env['TIANSHU_SORT_BUFFER_MODE']=args.sort_buffer_mode
+        env['TIANSHU_SORT_BUFFER_RECORD_DIR']=str(out/'sort_buffer_records')
+    else:
+        env.pop('TIANSHU_SORT_BUFFER_MODE',None)
+        env.pop('TIANSHU_SORT_BUFFER_RECORD_DIR',None)
     command = ['vllm', 'serve', '/workspace/MiniCPM5-2B', '--port', '9031',
                '--compilation-config', '{"cudagraph_mode": "FULL_DECODE_ONLY"}',
                '--served-model-name', 'minicpm', '--gpu-memory-utilization', '0.85',
@@ -125,6 +134,7 @@ def main():
                  note='Local service experiment excluding round one; not an official benchmark score.',
                  watermark=args.watermark, histogram_count_bits=args.hist_count_bits,
                  decode_graph_max=args.decode_graph_max,
+                 sort_buffer_mode=args.sort_buffer_mode,
                  official_benchmark=False)
     state['stream_interval']=args.stream_interval
     server = None
@@ -280,6 +290,14 @@ def main():
             hook=Path(env['PYTHONPATH'])/'sitecustomize.py';contents=hook.read_bytes()
             (source_dir/'decode_graph_sitecustomize.py').write_bytes(contents)
             state['decode_graph_hook']={'path':str(hook),'sha256':hashlib.sha256(contents).hexdigest()}
+        if args.sort_buffer_mode!='original':
+            paths={'sort_buffer_sitecustomize.py':Path(env['PYTHONPATH'])/'sitecustomize.py',
+                   'buffer_variants.py':Path('/workspace/FlagGems/experiments/tianshu_sort_buffers_20261013/buffer_variants.py'),
+                   'original_sort.py':Path('/usr/local/lib/python3.12/site-packages/flag_gems/ops/sort.py')}
+            state['sort_buffer_sources']={}
+            for name,path in paths.items():
+                contents=path.read_bytes();(source_dir/name).write_bytes(contents)
+                state['sort_buffer_sources'][name]={'path':str(path),'sha256':hashlib.sha256(contents).hexdigest()}
         (source_dir/'run_service_trial.py').write_bytes(Path(__file__).read_bytes())
         save()
         with (out / 'server.log').open('w') as log:
@@ -376,6 +394,10 @@ def main():
             warmups=[json.loads(f.read_text()) for f in (out/'bucket_trace_records').glob('warmup_completed_*.json')]
             assert any(r['complete'] and len(r['calls'])==75 for r in warmups)
             state['decode_graph_configuration_records']=records
+        if args.sort_buffer_mode!='original':
+            records=[json.loads(f.read_text()) for f in (out/'sort_buffer_records').glob('route_*.json')]
+            assert records and all(r['public_index_dtype']=='torch.int64' for r in records)
+            state['sort_buffer_routing_records']=records
 
         state['phase'] = 'complete'
     except StopRequested as error:

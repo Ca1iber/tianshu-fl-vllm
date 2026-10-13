@@ -19,3 +19,5 @@
 结论：不采纳为正式最好，不重复完整benchmark或Math。保留4K3222.52、16K2440.62及Math102/105，转向独立Decode图范围与KV容量实验。int16/int8微测未优于int32，未重复服务测试。
 
 原始归档4442995bytes、17parts、SHA256 dafd3b701a586450b63192056cdb83ff965f75950010f98725bb17e99b5da9d2，全部本地核验。含原始响应/usage、五轮计时、metrics、实际进程hook/harness源码；新服务工具仍处实验WIP，实际完整源码以归档为准，本报告不将后续未验证图实验标成通过。官方benchmark及所有安装源未改，沐曦只读。
+
+后续热路径核查：天数vLLM batch>=8走原生Triton top-p，仅batch<8走FlagGems sort；MetaX补丁强制PyTorch排序。因此M64 sorter微测不能作为天数大批次热路径收益证明，详见vLLM私有索引服务报告。
