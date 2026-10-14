@@ -5,3 +5,5 @@
 当前CPU检查使用显式worker fixtures，真实Loader AST验证control256/control128/candidate64和错误candidate128拒绝，保存的fixture值不是天数服务观测。没有新GPU吞吐分数，没有把预分配减少宣称为提速。
 
 run_after_quality.py等待现有.cv质量链的实际进程结束、阶段complete、完整官方归档存在且CV正式优于旧最佳，GPU空闲后才串行启动。若上游失败/质量不通过/正式不改善或租期不足则不启动，不并行挤占评测。新控制器冻结17份源，当前质量链23源不改。参数作用可包括worker/modelrunner预分配与dummy/Graph准备范围；即使冷启动节省时间，也需独立计分轮次证明稳态吞吐。
+
+已准备独立5+5确认入口run_confirm_pair.py（未启动），必须显式传--screen-root，实际3+3完整384请求结果须>=2%且排除首轮后两组不重叠才允许进入；两边全新服务，预先排除前2轮，保留后3轮，共640请求。run_confirm_trial.py及本目录foundation_confirm_trial.py冻结实际5轮参数，verify_confirm_cli_cpu.py已验证真实嵌套argv、Popen拦截、两组预算4096与仅候选max-num-seqs64；CPU检查不代表运行时吞吐。verify_downloaded_confirm.py核验640原始请求、实际worker配置及.cv源。当前3+3尚未启动，不将准备工作写成收益，原17冻结等待源码不改。
