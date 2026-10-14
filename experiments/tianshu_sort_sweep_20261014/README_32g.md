@@ -20,3 +20,6 @@ CPU整数身份验证通过：6581组打包计数/秩（包含穷举3^8个Tile�
 
 
 2026-10-14 13:26+08再次只读获取远端：contest f376e13、ops b765ed231、reports0062369。三项排序实现与已检查快照相同，新增加的是12:23提交的阶段profile报告；本天数仓库保留引用快照和SHA。该C500诊断中稳态Attention/GEMM/sweep分别34.45%/24.50%/18.99%，GPU kernel累计耗时分母；不能套为BI-V150占比，也不能以512输出短诊断替代官方1024输出。其建议先独立复现Attention与GEMM，和天数当前方向一致。天数正式请求temperature0的greedy路径不执行sort，故不直接移植排序以期待正式吞吐收益。当前4096/83点新对照继续优先，未改任何参考仓库工作区或活动GPU冻结源码。
+
+
+当前复核：正式默认随机采样1/.95，前文所有“正式贪心、不经过sort”推断均已撤销。当前采用4000.99 tok/s不含sweep；安装generic sort仍SHA4f63aad。准备probe_sort.py隔离比较6份不可变快照（installed、empty-only、MetaX int32-reference/empty-bin/two-bin/repeat-digit），13组B1/4/7/64×三分布及升序边界。每组检查CPU稳定排序INT64索引与FP32值位模式、改变输入后Graph重放，轮换版本顺序采12个完整sort设备event。B64仅算子对照，不代表服务B64使用generic sort。当前仅CPU AST/入口检查通过，GPU尚未执行；参考快照可能包含已有INT32/prefix实现，按相邻阶段比较，不把组合收益单算为sweep新机制。
