@@ -1,0 +1,9 @@
+# 天数32g：前缀缓存开关的独立服务筛选准备
+
+当前正式随机token吞吐负载的prefix-cache命中率记录为0，调度器与AsyncScheduler仍维护KV块缓存。准备在同一B64S8、页长16最好配置上，仅比较显式开启和关闭prefix caching。关闭是进程整体策略，不识别benchmark请求；没有修改数据、token数、采样或停止条件。
+
+从实际安装vLLM读取了core scheduler、async scheduler和scheduler config，命名空间副本在工作区service-results/20261014_tianshu/scheduler_source_review，源SHA见SOURCE_REVIEW_32g.json。V1 core未使用max_num_partial_prefills/max_long_partial_prefills两个字段；config更改它们还可能调整long threshold，因此没有为这两个参数盲跑。实际消费的threshold0保持不变。
+
+新控制与候选各跑4K/1K、C64/N64三轮，预排首轮。both B64S8、75点预热、budget2048、threshold0、原生Prefill L0与guardedKV16/warp1保持一致，CLI只有--enable-prefix-caching与--no-enable-prefix-caching差别。要求实际Engine配置日志、producer/reducer及B64S8策略记录验证，不能只以CLI判断开关生效。
+
+源码AST检查通过，服务结果待定。控制器准备等待direct Decode组件成功退出及归档、GPU空闲后才启动，调用服务pair自身的归档，不二次覆盖不可变包。小测收益达标后仍需独立五轮、新Math105和原版正式4K。未采用为最好配置，未运行16K或改安装文件。
