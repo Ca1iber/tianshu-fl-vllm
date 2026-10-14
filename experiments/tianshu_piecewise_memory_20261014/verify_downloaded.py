@@ -5,6 +5,7 @@ import hashlib
 import json
 from pathlib import Path
 import statistics
+import re
 import struct
 
 
@@ -41,6 +42,14 @@ def main():
         assert trial["request_sampling_config"] == dict(temperature=1., top_p=.95,
             repetition_penalty=1., logprobs=None, ignore_eos=True, stream=True)
         assert trial["actual_service_command"] == trial["command"]
+        command = trial["command"]
+        assert command[command.index("--gpu-memory-utilization") + 1] == "0.70"
+        assert trial["common_gpu_memory_utilization"] == .70
+        assert trial["actual_KV_cache_tokens"] >= 64 * 5120
+        for metric_path in folder.glob("round*_metrics.txt"):
+            text = metric_path.read_text()
+            samples = re.findall(r"^vllm:num_preemptions_total(?:\{[^}]*\})? ([0-9.eE+\-]+)$", text, re.MULTILINE)
+            assert samples and all(float(value) == 0 for value in samples), metric_path
         assert sha(repo / Path(trial["active_hook"]["path"]).relative_to("/workspace/vllm-plugin-FL")) == trial["active_hook"]["sha256"]
         for name, metadata in trial["installed_sources"].items():
             assert sha(folder / "source_snapshot" / name) == metadata["sha256"]

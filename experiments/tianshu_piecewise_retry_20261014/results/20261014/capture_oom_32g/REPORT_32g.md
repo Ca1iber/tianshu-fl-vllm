@@ -1,0 +1,9 @@
+# 天数BI-V150 32g：分段图实际捕获OOM
+
+导入递归修复后，control FULL_DECODE_ONLY完成3801.58897（排除）/4046.78616/4055.11305total tok/s，后两轮4050.94960。candidate FULL_AND_PIECEWISE实际编译完成并开始mixed prefill-decode PIECEWISE图捕获，在第二个83点shape附近torch.OutOfMemoryError，申请46MiB时仅40MiB空闲。双方使用gpu-memory-utilization0.85、4096预算、83点、同.cv/S8/KV16/nativeTopP及Prefill。
+
+候选零性能轮次，未形成完整比较，不称为吞吐负优化或模式完全不支持。已清理GPU。control192个请求4096/1024用量、TTFT和吞吐重算、17冻结源码与完整快照逐一SHA核验，OOM与实际PIECEWISE捕获原始日志均核验。
+
+归档1175564bytes/5parts，SHA256 f9e25c9611263b0ad647975689395ffb72f33849b2bd4062e163d710bcb6c359，本机service-results/20261014_tianshu/piecewise_capture_oom/20261014_piecewise_graph_retry_service_tianshu。模型profile未采集，无新质量或正式结果，当前best4091.29不变。
+
+下一轮独立tianshu_piecewise_memory_20261014双方都改0.70预留图显存，仍同83预热、4096预算，核对KV容量至少327680与无抢占。不能将新0.70control与旧0.85差异都归因图模式。
