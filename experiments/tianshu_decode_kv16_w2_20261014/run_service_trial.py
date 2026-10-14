@@ -1,0 +1,101 @@
+# SPDX-License-Identifier: Apache-2.0
+"""Current-best vs L0 Decode KV32 warp2 for batches8..64; paired short4K."""
+import argparse
+import hashlib
+import importlib.util
+import json
+from pathlib import Path
+import subprocess
+import sys
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--mode", choices=["control", "candidate"], required=True)
+    args = parser.parse_args()
+    root = args.output.resolve()
+    assert not root.exists()
+    base = Path(__file__).resolve().parents[1]
+    trial = base / "tianshu_greedy_screen_20261014/run_service_trial.py"
+    topp_hook = base / "tianshu_decode_low_warps_20261014/hooks/sitecustomize.py"
+    coherent = base / "tianshu_decode_tiles_coherent_20261013/hooks/sitecustomize.py"
+    budget = 2048
+    threshold = 0
+    candidate_hook = Path(__file__).resolve().parent / "hooks/sitecustomize.py"
+    hook = candidate_hook
+    root.mkdir(parents=True)
+    snapshot = root / "budget_source_snapshot"
+    snapshot.mkdir()
+    for name,path in [("run_service_trial.py",Path(__file__)),("foundation_service_trial.py",trial),
+                      ("topp_sitecustomize.py",topp_hook),("coherent_sitecustomize.py",coherent)]:
+        (snapshot/name).write_bytes(path.read_bytes())
+    for name in ("sitecustomize.py", "decode_sitecustomize.py"):
+        (snapshot / ("candidate_"+name)).write_bytes((Path(__file__).resolve().parent/"hooks"/name).read_bytes())
+    original = subprocess.Popen
+    actual_env = dict(PYTHONPATH=str(hook.parent), TIANSHU_TOPP_LAUNCH_PROBE="1",
+                      TIANSHU_TOPP_LAUNCH_RECORD_DIR=str(root / "topp_launch_records"),
+                      TIANSHU_DECODE_COHERENT_PROBE="1",
+                      TIANSHU_DECODE_COHERENT_RECORD_DIR=str(root / "decode_coherent_records"),
+                      TIANSHU_IR_RMS_PROBE="0", TIANSHU_KV16_SERVICE_MODE=args.mode)
+
+    def popen(command, *positional, **kwargs):
+        if isinstance(command, list) and command[:2] == ["vllm", "serve"]:
+            command.extend(["--long-prefill-token-threshold", str(threshold)])
+            kwargs["env"] = dict(kwargs["env"], **actual_env)
+        return original(command, *positional, **kwargs)
+
+    spec = importlib.util.spec_from_file_location("_tianshu_budget_trial_foundation", trial)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    subprocess.Popen = popen
+    sys.argv = [str(trial), "--output", str(root), "--buckets", "1", "--gather", "1",
+                "--bucket-trace", "2", "--hybrid", "1", "--adaptive", "1", "--tile", "1",
+                "--native-prefill", "1", "--decode-launch", "1", "--max-batched-tokens", str(budget),
+                "--hist-count-bits", "off", "--address32", "0", "--prefill-stages", "1",
+                "--input-tokens", "4096", "--output-tokens", "1024", "--concurrency", "64",
+                "--requests", "64", "--rounds", "3", "--request-timeout", "3600"]
+    try:
+        code = module.main()
+    finally:
+        subprocess.Popen = original
+    state = json.loads((root / "result.json").read_text())
+    topp = [json.loads(p.read_text()) for p in (root / "topp_launch_records").glob("route_*.json")]
+    decode = [json.loads(p.read_text()) for p in (root / "decode_coherent_records").glob("producer_*.json")]
+    reducers = [json.loads(p.read_text()) for p in (root / "decode_coherent_records").glob("reducer_*.json")]
+    state.update(lowwarps_mode=args.mode, actual_budget=budget, actual_threshold=threshold, actual_composed_environment=actual_env,
+                 topp_launch_records=topp,
+                 decode_coherent_records=decode, decode_coherent_reducer_records=reducers,
+                 foundation_topp_hook_sha256=hashlib.sha256(topp_hook.read_bytes()).hexdigest(),
+                 foundation_coherent_hook_sha256=hashlib.sha256(coherent.read_bytes()).hexdigest(),
+                 active_hook=dict(path=str(hook), sha256=hashlib.sha256(hook.read_bytes()).hexdigest()),
+                 new_independent_math_not_run=True)
+    (root / "result.json").write_text(json.dumps(state, indent=2) + "\n")
+    if code == 0:
+        assert all(r["configuration"] == dict(num_warps=16, num_stages=1) for r in topp)
+        assert decode and reducers
+        for r in decode:
+            expected_tile = 16 if args.mode == "candidate" and r["batch"] in (8,16,32,40,48,56,64) else 32
+            expected_warps = 1 if expected_tile == 16 else 2 if 8 <= r["batch"] <= 64 else 4
+            assert r["configuration"] == dict(TILE_SIZE=expected_tile, num_warps=expected_warps, num_stages=1)
+            assert r["compiled_metadata"]["num_warps"] == expected_warps
+        if args.mode == "candidate":
+            assert any(r["batch"] == 64 and r["configuration"] == dict(TILE_SIZE=16,num_warps=1,num_stages=1) for r in decode)
+        assert {(r["batch"], r["segments"]) for r in decode} == {(r["batch"], r["segments"]) for r in reducers}
+        producer_tiles = {(r["batch"],r["segments"]):r["configuration"]["TILE_SIZE"] for r in decode}
+        assert all(r["actual_tile"] == producer_tiles[r["batch"],r["segments"]] for r in reducers)
+        assert state["request_sampling_config"] == dict(temperature=0.,top_p=1.,repetition_penalty=1.,logprobs=None,ignore_eos=True,stream=True)
+        assert state["max_batched_tokens"] == budget
+        assert state["command"][state["command"].index("--max-num-batched-tokens")+1] == str(budget)
+        configured = [json.loads(p.read_text()) for p in (root / "bucket_trace_records").glob("configured_*.json")]
+        warmed = [json.loads(p.read_text()) for p in (root / "bucket_trace_records").glob("warmup_completed_*.json")]
+        expected = 75
+        assert any(r["enabled"] and max(r["points"]) == budget and len(r["points"]) == expected for r in configured)
+        assert any(r["complete"] and len(r["calls"]) == expected for r in warmed)
+        state["actual_bucket_points"] = expected
+        (root / "result.json").write_text(json.dumps(state, indent=2) + "\n")
+    return code
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
