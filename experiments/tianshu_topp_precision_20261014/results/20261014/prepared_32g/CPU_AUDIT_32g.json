@@ -1,0 +1,341 @@
+{
+  "complete": true,
+  "cpu_only": true,
+  "gpu_execution": false,
+  "actual_router12_cases_verified": true,
+  "source_reversibility_and_TopK_AST_verified": true,
+  "generated_sha256": "029d805b1a19be91f74afa03afb25c834409c8f08b3d30f7eabd1771c4aefedf",
+  "fake_JIT_not_runtime_evidence": true,
+  "configurations": [
+    {
+      "topk": false,
+      "plan": [
+        "adopted",
+        8192,
+        4096,
+        16
+      ],
+      "metadata": {
+        "label": "adopted",
+        "corrected_source_active": false,
+        "source_module": "native",
+        "BLOCK_SIZE": 8192,
+        "BLOCK_SIZE_TRUNC": 4096,
+        "num_warps": 16,
+        "num_stages": 1,
+        "shared": 0,
+        "grid": [
+          64
+        ],
+        "n_regs": 64,
+        "n_spills": 0,
+        "VOCAB_SIZE": 130560,
+        "TOPK_ENABLED": false,
+        "TOPP_ENABLED": true
+      }
+    },
+    {
+      "topk": false,
+      "plan": [
+        "identity",
+        8192,
+        4096,
+        16
+      ],
+      "metadata": {
+        "label": "identity",
+        "corrected_source_active": false,
+        "source_module": "native",
+        "BLOCK_SIZE": 8192,
+        "BLOCK_SIZE_TRUNC": 4096,
+        "num_warps": 16,
+        "num_stages": 1,
+        "shared": 0,
+        "grid": [
+          64
+        ],
+        "n_regs": 64,
+        "n_spills": 0,
+        "VOCAB_SIZE": 130560,
+        "TOPK_ENABLED": false,
+        "TOPP_ENABLED": true
+      }
+    },
+    {
+      "topk": false,
+      "plan": [
+        "fixed8k",
+        8192,
+        4096,
+        16
+      ],
+      "metadata": {
+        "label": "fixed8k",
+        "corrected_source_active": true,
+        "source_module": "fixed",
+        "BLOCK_SIZE": 8192,
+        "BLOCK_SIZE_TRUNC": 4096,
+        "num_warps": 16,
+        "num_stages": 1,
+        "shared": 0,
+        "grid": [
+          64
+        ],
+        "n_regs": 64,
+        "n_spills": 0,
+        "VOCAB_SIZE": 130560,
+        "TOPK_ENABLED": false,
+        "TOPP_ENABLED": true
+      }
+    },
+    {
+      "topk": false,
+      "plan": [
+        "fixed16k",
+        16384,
+        8192,
+        16
+      ],
+      "metadata": {
+        "label": "fixed16k",
+        "corrected_source_active": true,
+        "source_module": "fixed",
+        "BLOCK_SIZE": 16384,
+        "BLOCK_SIZE_TRUNC": 8192,
+        "num_warps": 16,
+        "num_stages": 1,
+        "shared": 0,
+        "grid": [
+          64
+        ],
+        "n_regs": 64,
+        "n_spills": 0,
+        "VOCAB_SIZE": 130560,
+        "TOPK_ENABLED": false,
+        "TOPP_ENABLED": true
+      }
+    },
+    {
+      "topk": false,
+      "plan": [
+        "fixed16kw32",
+        16384,
+        8192,
+        32
+      ],
+      "metadata": {
+        "label": "fixed16kw32",
+        "corrected_source_active": true,
+        "source_module": "fixed",
+        "BLOCK_SIZE": 16384,
+        "BLOCK_SIZE_TRUNC": 8192,
+        "num_warps": 32,
+        "num_stages": 1,
+        "shared": 0,
+        "grid": [
+          64
+        ],
+        "n_regs": 64,
+        "n_spills": 0,
+        "VOCAB_SIZE": 130560,
+        "TOPK_ENABLED": false,
+        "TOPP_ENABLED": true
+      }
+    },
+    {
+      "topk": false,
+      "plan": [
+        "fixed4k",
+        4096,
+        2048,
+        16
+      ],
+      "metadata": {
+        "label": "fixed4k",
+        "corrected_source_active": true,
+        "source_module": "fixed",
+        "BLOCK_SIZE": 4096,
+        "BLOCK_SIZE_TRUNC": 2048,
+        "num_warps": 16,
+        "num_stages": 1,
+        "shared": 0,
+        "grid": [
+          64
+        ],
+        "n_regs": 64,
+        "n_spills": 0,
+        "VOCAB_SIZE": 130560,
+        "TOPK_ENABLED": false,
+        "TOPP_ENABLED": true
+      }
+    },
+    {
+      "topk": true,
+      "plan": [
+        "adopted",
+        8192,
+        4096,
+        16
+      ],
+      "metadata": {
+        "label": "adopted",
+        "corrected_source_active": false,
+        "source_module": "native",
+        "BLOCK_SIZE": 8192,
+        "BLOCK_SIZE_TRUNC": 4096,
+        "num_warps": 16,
+        "num_stages": 1,
+        "shared": 0,
+        "grid": [
+          64
+        ],
+        "n_regs": 64,
+        "n_spills": 0,
+        "VOCAB_SIZE": 130560,
+        "TOPK_ENABLED": true,
+        "TOPP_ENABLED": true
+      }
+    },
+    {
+      "topk": true,
+      "plan": [
+        "identity",
+        8192,
+        4096,
+        16
+      ],
+      "metadata": {
+        "label": "identity",
+        "corrected_source_active": false,
+        "source_module": "native",
+        "BLOCK_SIZE": 8192,
+        "BLOCK_SIZE_TRUNC": 4096,
+        "num_warps": 16,
+        "num_stages": 1,
+        "shared": 0,
+        "grid": [
+          64
+        ],
+        "n_regs": 64,
+        "n_spills": 0,
+        "VOCAB_SIZE": 130560,
+        "TOPK_ENABLED": true,
+        "TOPP_ENABLED": true
+      }
+    },
+    {
+      "topk": true,
+      "plan": [
+        "fixed8k",
+        8192,
+        4096,
+        16
+      ],
+      "metadata": {
+        "label": "fixed8k",
+        "corrected_source_active": false,
+        "source_module": "native",
+        "BLOCK_SIZE": 8192,
+        "BLOCK_SIZE_TRUNC": 4096,
+        "num_warps": 16,
+        "num_stages": 1,
+        "shared": 0,
+        "grid": [
+          64
+        ],
+        "n_regs": 64,
+        "n_spills": 0,
+        "VOCAB_SIZE": 130560,
+        "TOPK_ENABLED": true,
+        "TOPP_ENABLED": true
+      }
+    },
+    {
+      "topk": true,
+      "plan": [
+        "fixed16k",
+        16384,
+        8192,
+        16
+      ],
+      "metadata": {
+        "label": "fixed16k",
+        "corrected_source_active": false,
+        "source_module": "native",
+        "BLOCK_SIZE": 8192,
+        "BLOCK_SIZE_TRUNC": 4096,
+        "num_warps": 16,
+        "num_stages": 1,
+        "shared": 0,
+        "grid": [
+          64
+        ],
+        "n_regs": 64,
+        "n_spills": 0,
+        "VOCAB_SIZE": 130560,
+        "TOPK_ENABLED": true,
+        "TOPP_ENABLED": true
+      }
+    },
+    {
+      "topk": true,
+      "plan": [
+        "fixed16kw32",
+        16384,
+        8192,
+        32
+      ],
+      "metadata": {
+        "label": "fixed16kw32",
+        "corrected_source_active": false,
+        "source_module": "native",
+        "BLOCK_SIZE": 8192,
+        "BLOCK_SIZE_TRUNC": 4096,
+        "num_warps": 16,
+        "num_stages": 1,
+        "shared": 0,
+        "grid": [
+          64
+        ],
+        "n_regs": 64,
+        "n_spills": 0,
+        "VOCAB_SIZE": 130560,
+        "TOPK_ENABLED": true,
+        "TOPP_ENABLED": true
+      }
+    },
+    {
+      "topk": true,
+      "plan": [
+        "fixed4k",
+        4096,
+        2048,
+        16
+      ],
+      "metadata": {
+        "label": "fixed4k",
+        "corrected_source_active": false,
+        "source_module": "native",
+        "BLOCK_SIZE": 8192,
+        "BLOCK_SIZE_TRUNC": 4096,
+        "num_warps": 16,
+        "num_stages": 1,
+        "shared": 0,
+        "grid": [
+          64
+        ],
+        "n_regs": 64,
+        "n_spills": 0,
+        "VOCAB_SIZE": 130560,
+        "TOPK_ENABLED": true,
+        "TOPP_ENABLED": true
+      }
+    }
+  ],
+  "sources": {
+    "verify_cpu.py": "4ab1e61b3f6f32d94c2774fa543164d00bf8202d29c9df7030e23d853ea1b7eb",
+    "router.py": "03519eaf69ff1f17e574a798fa9cb269b54073e95e86e46fd13d9e280630bdb3",
+    "precision.py": "9dc5cf2198060f8e0ebd1517412d589b9c8d4dd51c35eedae7f40cf365b84a8e",
+    "probe_precision.py": "e42e3ed014cc6b253446d18afe06cee864c3785cc4df9b9437a57f008d4543af"
+  }
+}
