@@ -1,0 +1,130 @@
+{
+  "complete": true,
+  "cpu_only": true,
+  "gpu_execution": false,
+  "actual_probe_adapter_and_existing_LaunchRouter_executed": true,
+  "actual_cv_source32_rendered": true,
+  "generated_sha256": "afcbdf259ae8a1aa60342d4fb3899ff34e8bb85d1b614d30d5cdd5507c4510a8",
+  "masked_lane_overflow_rejected": true,
+  "fake_native_and_JIT_not_runtime_evidence": true,
+  "configurations": [
+    {
+      "mode": "control",
+      "producer": {
+        "num_warps": 1,
+        "num_stages": 1,
+        "shared": 0,
+        "producer_and_reducer_tile": 16,
+        "actual_BLOCK_SIZE": 16,
+        "actual_BLOCK_M": 16,
+        "actual_BLOCK_Q": 2,
+        "actual_grid": [
+          96,
+          2,
+          8
+        ],
+        "address_mode": "control",
+        "address_bounds": [],
+        "producer_source_module": "producer64",
+        "n_regs": 85,
+        "n_spills": 0,
+        "requested_cache_modifier": ".cv"
+      },
+      "reducer": {
+        "source_module": "reducer64",
+        "actual_num_warps": 4,
+        "actual_num_stages": 3,
+        "grid": [
+          64,
+          16
+        ],
+        "TILE_SIZE": 16,
+        "NUM_SEGMENTS_PER_SEQ": 8,
+        "n_regs": 85,
+        "n_spills": 0
+      }
+    },
+    {
+      "mode": "producer32",
+      "producer": {
+        "num_warps": 1,
+        "num_stages": 1,
+        "shared": 0,
+        "producer_and_reducer_tile": 16,
+        "actual_BLOCK_SIZE": 16,
+        "actual_BLOCK_M": 16,
+        "actual_BLOCK_Q": 2,
+        "actual_grid": [
+          96,
+          2,
+          8
+        ],
+        "address_mode": "producer32",
+        "address_bounds": [
+          4589567
+        ],
+        "producer_source_module": "producer32",
+        "n_regs": 85,
+        "n_spills": 0,
+        "requested_cache_modifier": ".cv"
+      },
+      "reducer": {
+        "source_module": "reducer64",
+        "actual_num_warps": 4,
+        "actual_num_stages": 3,
+        "grid": [
+          64,
+          16
+        ],
+        "TILE_SIZE": 16,
+        "NUM_SEGMENTS_PER_SEQ": 8,
+        "n_regs": 85,
+        "n_spills": 0
+      }
+    },
+    {
+      "mode": "both32",
+      "producer": {
+        "num_warps": 1,
+        "num_stages": 1,
+        "shared": 0,
+        "producer_and_reducer_tile": 16,
+        "actual_BLOCK_SIZE": 16,
+        "actual_BLOCK_M": 16,
+        "actual_BLOCK_Q": 2,
+        "actual_grid": [
+          96,
+          2,
+          8
+        ],
+        "address_mode": "both32",
+        "address_bounds": [
+          4589567
+        ],
+        "producer_source_module": "producer32",
+        "n_regs": 85,
+        "n_spills": 0,
+        "requested_cache_modifier": ".cv"
+      },
+      "reducer": {
+        "source_module": "reducer32",
+        "actual_num_warps": 4,
+        "actual_num_stages": 3,
+        "grid": [
+          64,
+          16
+        ],
+        "TILE_SIZE": 16,
+        "NUM_SEGMENTS_PER_SEQ": 8,
+        "n_regs": 85,
+        "n_spills": 0
+      }
+    }
+  ],
+  "sources": {
+    "verify_dispatch_cpu.py": "d3be0cc70a7366cdef4d803efaa02cb7495f7bb3551b98c1ecd6cfad5a95f2db",
+    "probe_address.py": "22b2e3d4b06e9390c63b3969c74c9b0a47a9c38356fa43ca454abd7d21085bee",
+    "address32.py": "f4ff09be11fd75fc2f7a671ca65887e386a0aece4810706b2ed815dfc406763c",
+    "launch_router.py": "3d01df27575e64da34f1b0d6eedd7aac2f464a53a76126f31dbf2a813b2be7f3"
+  }
+}
