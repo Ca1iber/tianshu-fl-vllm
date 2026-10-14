@@ -1,0 +1,32 @@
+{
+  "cpu_only": true,
+  "GPU_not_run": true,
+  "probe_sha256": "be7c69310e01aff7e2cdaf6742639098d06630e836e3a190e29049efff4298fd",
+  "helper_path": "experiments/tianshu_prefill_gemm_tiles_20261014/experimental_mm.py",
+  "helper_sha256": "cb556d7a6025e50d95a87a7858154fd10e547d9c145a5a18b65133122ab8c880",
+  "M": 4096,
+  "shapes": [
+    [
+      "qkv",
+      2560,
+      2048
+    ],
+    [
+      "o",
+      2048,
+      2048
+    ],
+    [
+      "gateup",
+      12288,
+      2048
+    ],
+    [
+      "down",
+      2048,
+      6144
+    ]
+  ],
+  "configs": 10,
+  "expected_cases": 40
+}
