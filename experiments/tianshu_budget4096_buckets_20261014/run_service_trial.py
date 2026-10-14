@@ -17,7 +17,7 @@ def main():
     root = args.output.resolve()
     assert not root.exists()
     base = Path(__file__).resolve().parents[1]
-    trial = base / "tianshu_greedy_screen_20261014/run_service_trial.py"
+    trial = Path(__file__).with_name("foundation_service_trial.py")
     topp_hook = base / "tianshu_decode_kv16_w2_20261014/hooks/sitecustomize.py"
     coherent = base / "tianshu_decode_tiles_coherent_20261013/hooks/sitecustomize.py"
     budget = 2048 if args.mode=="control" else 4096

@@ -27,7 +27,7 @@ def main():
              base.parent / "tianshu_decode_kv16_w2_20261014/hooks/sitecustomize.py",
              base.parent / "tianshu_decode_kv16_w2_20261014/hooks/decode_sitecustomize.py",
              base.parent / "tianshu_decode_tiles_coherent_20261013/hooks/sitecustomize.py",
-             base.parent / "tianshu_greedy_screen_20261014/run_service_trial.py",
+             base / "foundation_service_trial.py",
              base.parent / "tianshu_kv16_segments_20261014/hooks/sitecustomize.py",
              base / "hooks/sitecustomize.py",base/"extend_buckets.py",
              base.parent/"tianshu_sql_workflow_20261014/hooks/sitecustomize.py",

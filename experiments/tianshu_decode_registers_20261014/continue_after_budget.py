@@ -32,7 +32,8 @@ def main():
            base.parent/'tianshu_budget4096_buckets_20261014/run_service_pair.py',
            base.parent/'tianshu_budget4096_buckets_20261014/run_service_trial.py',
            base.parent/'tianshu_budget4096_buckets_20261014/hooks/sitecustomize.py',
-           base.parent/'tianshu_budget4096_buckets_20261014/extend_buckets.py']
+           base.parent/'tianshu_budget4096_buckets_20261014/extend_buckets.py',
+           base.parent/'tianshu_budget4096_buckets_20261014/foundation_service_trial.py']
     frozen={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}
     for p in paths:
         dest=root/'source_snapshot'/p.relative_to(base.parent)

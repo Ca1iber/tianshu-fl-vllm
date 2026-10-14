@@ -27,7 +27,7 @@ def main():
     root.mkdir(parents=True)
     base=Path(__file__).resolve().parent
     paths=[Path(__file__).resolve(),base/'run_service_pair.py',base/'run_service_trial.py',
-           base/'hooks/sitecustomize.py',base/'extend_buckets.py',
+           base/'hooks/sitecustomize.py',base/'extend_buckets.py',base/'foundation_service_trial.py',
            base.parent/'tianshu_sql_workflow_20261014/hooks/sitecustomize.py',
            base.parent/'tianshu_sql_workflow_20261014/reflect_one.py',
            base.parent/'tianshu_kv16_segments_20261014/hooks/sitecustomize.py',
