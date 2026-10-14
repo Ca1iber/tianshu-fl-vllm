@@ -53,8 +53,11 @@ def main():
     assert float(summary[0]["Total tok/s"]) == result["total_tok_s"]
     assert float(summary[0]["Mean TTFT (ms)"]) == result["ttft_ms"]
     assert result["math_correct"] == quality["correct"]
-    assert result["previous_best_total_tok_s"] == 3826.24
-    assert result["adopt_as_best"] == (result["total_tok_s"] > 3826.24)
+    assert result["previous_best_total_tok_s"] == 4000.99
+    assert result["previous_best_ttft_ms"] == 4291.71
+    assert result["adopt_as_best"] == (result["total_tok_s"] > 4000.99)
+    assert abs(result["vs_previous_best_throughput_percent"] -
+               100 * (result["total_tok_s"] / 4000.99 - 1)) < 1e-9
     assert result["excluded_runs"] == [1]
     benchmark = root / "source_snapshot/benchmark_throughput_serve.py"
     assert sha256(benchmark) == state["official_script_sha256"] == "0813eba574e9d1eb50c297c515baa426da1bcb61ce8c78a398b482f246005565"
