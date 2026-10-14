@@ -57,7 +57,16 @@ def main():
     save()
     try:
         while True:
-            upstream=json.loads((args.wait_for/'state.json').read_text())
+            upstream_state=args.wait_for/'state.json'
+            if not upstream_state.exists():
+                process=Path('/proc')/str(args.upstream_pid)
+                stat=process/'stat'
+                if not stat.exists() or stat.read_text().split()[2]=='Z':
+                    raise Stopped('Upstream exited before initial state file')
+                assert str(args.wait_for).encode() in (process/'cmdline').read_bytes()
+                time.sleep(1)
+                continue
+            upstream=json.loads(upstream_state.read_text())
             assert upstream['runner_pid']==args.upstream_pid
             phase=upstream['phase']
             if phase.startswith('held_'):
