@@ -1,0 +1,17 @@
+# 天数 BI-V150 32g：沐曦新增排序方案的适用性核对
+
+只读获取了用户沐曦仓库和reports子模块的新历史。contest ce57aaa→9aba176；reports fc827a4→d9d69dd；ops主分支仍980c7e1。新增方案在reports实验源码中，新算法快照保存在reports。原版权头保留，参考快照只写入本天数仓库。
+
+三项机制：空桶仍发布计数及完整lookback，只跳过零输出的局部scan/store；双桶把Tile内两组计数置于UINT32的低/高16位，共享sum/cumsum，局部Tile<65536且全局计数保持UINT32、公开索引INT64；重复digit使用OR(key XOR(key>>k_bits))严格检测相邻字段一致，身份轮次仅由group0原位置复制，其他行走原排序。非整除32字段回退。
+
+沐曦报告记录4K双桶+4.12%、重复digit再+2.57%，属于C50064G的验证结论，不能当作天数收益。其质量报告按用户在该任务允许的正确题下界停于104/105，也不能沿用为本天数新Math的完整105题结果。
+
+天数当前安装的vLLM topk_topp_sampler.py SHA35b9a1ffeb1e50b73b0ddd1ffc0f968910ee21cf9cc5455dd879fde547b6ddc1，apply_top_k_top_p在p/k均空时直接返回，HAS_TRITON且batch>=8时调用原生topk_topp_triton（64c66699...），batch<8才走PyTorch排序分支。此处为已读源码的路由边界证据，不宣称本轮对每次调用做了运行时计数。
+
+下一步先在GPU空闲后测试小批次B1/B4/B7与对照B64、词表130560，有限FP32、BF16转换、重复值/-Inf混合输入，比较排序值的位模式与INT64稳定索引、改变输入分布的CUDA Graph重放、全sort设备event耗时。不要为制造收益而把天数batch>=8的原生top-p切回排序。若只有小批次收益，应明确区分Math尾部耗时和正式benchmark吞吐。
+
+本目录已准备当前天数generic sort基线副本和一个只改空桶局部扫描的独立候选，不混入之前INT32/prefix优化；另保留四份沐曦阶段快照供后续分机制对比。当前已完成AST/源码审阅及CPU整数验证，尚未GPU执行或接入服务。当前新B64S8 Math及其后正式4K仍优先、源码不变，不启动并行GPU实验。
+
+CPU整数身份验证通过：6581组打包计数/秩（包含穷举3^8个Tile模式和65535边界），121组32/64位键、2527个相邻digit字段检查与相同直方图反例。对应CPU_INTEGER_AUDIT_32g.json；这只证明独立整数参考的等价关系，不证明Triton编译或天数性能。天数baseline_sort.py字节与当前安装generic sort的SHA4f63aad...一致。
+
+另外核对了当前正式benchmark请求：原脚本0813使用backend=vllm，实际映射async_request_openai_completions并发送temperature=0；backend源码SHA81076cc75a79a314c004a2023df5454eb16385876d09f8d827332907e2af9a9f。当前Sampler（SHA1a2f18ddc91c89f3744ab5a93624be056bf20b7a8b2e6e13d0236182718a2253）在all_greedy分支直接返回。因此这三项排序优化对当前天数正式贪心场景预计没有直接收益；后续优先级应低于实际attention/框架热路径，不花时间为其重复完整正式benchmark。这里只作静态调用链结论，保留运行时验证与小批次随机采样的探索空间。

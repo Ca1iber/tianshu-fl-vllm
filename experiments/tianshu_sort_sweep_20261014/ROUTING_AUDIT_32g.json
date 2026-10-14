@@ -1,0 +1,15 @@
+{
+  "complete": true,
+  "evidence_scope": "Read current installed source and AST, not per-request runtime counters",
+  "benchmark_backend": "vllm",
+  "request_function": "async_request_openai_completions",
+  "request_temperature": 0.0,
+  "backend_source_sha256": "81076cc75a79a314c004a2023df5454eb16385876d09f8d827332907e2af9a9f",
+  "sampler_source_sha256": "1a2f18ddc91c89f3744ab5a93624be056bf20b7a8b2e6e13d0236182718a2253",
+  "all_greedy_has_early_return": true,
+  "topk_topp_sampler_sha256": "35b9a1ffeb1e50b73b0ddd1ffc0f968910ee21cf9cc5455dd879fde547b6ddc1",
+  "native_topk_topp_triton_sha256": "64c66699cd398c2eafe9eb91f0e189162f83a6f83a209651048e163d7d6fcee8",
+  "native_topk_topp_minimum_batch": 8,
+  "inference": "New sort algorithms target random-sampling small-batch fallback, not an expected direct gain to current Tianshu formal greedy throughput",
+  "GPU_experiment_not_run": true
+}
