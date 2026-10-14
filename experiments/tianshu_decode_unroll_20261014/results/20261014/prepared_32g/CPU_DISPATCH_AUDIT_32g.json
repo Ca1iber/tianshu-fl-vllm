@@ -1,0 +1,152 @@
+{
+  "complete": true,
+  "cpu_only": true,
+  "gpu_execution": false,
+  "actual_probe_adapter_and_existing_LaunchRouter_executed": true,
+  "generated_source_reversible_to_actual_cv": true,
+  "generated_sha256": "c8d7f3d17ee95969ba1f2dd0a52adaf0e1ed9306e69e2a8d54c7d6c246b28cd3",
+  "fake_native_and_JIT_not_runtime_evidence": true,
+  "configurations": [
+    {
+      "factor": null,
+      "producer": {
+        "num_warps": 1,
+        "num_stages": 1,
+        "shared": 0,
+        "producer_and_reducer_tile": 16,
+        "actual_BLOCK_SIZE": 16,
+        "actual_BLOCK_M": 16,
+        "actual_BLOCK_Q": 2,
+        "actual_grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 85,
+        "n_spills": 0,
+        "requested_cache_modifier": ".cv",
+        "requested_unroll_factor": null
+      },
+      "reducer_kwargs": {
+        "TILE_SIZE": 16,
+        "NUM_SEGMENTS_PER_SEQ": 8,
+        "HEAD_SIZE": 128,
+        "num_query_heads": 16
+      }
+    },
+    {
+      "factor": 1,
+      "producer": {
+        "num_warps": 1,
+        "num_stages": 1,
+        "shared": 0,
+        "producer_and_reducer_tile": 16,
+        "actual_BLOCK_SIZE": 16,
+        "actual_BLOCK_M": 16,
+        "actual_BLOCK_Q": 2,
+        "actual_grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 85,
+        "n_spills": 0,
+        "requested_cache_modifier": ".cv",
+        "requested_unroll_factor": 1
+      },
+      "reducer_kwargs": {
+        "TILE_SIZE": 16,
+        "NUM_SEGMENTS_PER_SEQ": 8,
+        "HEAD_SIZE": 128,
+        "num_query_heads": 16
+      }
+    },
+    {
+      "factor": 2,
+      "producer": {
+        "num_warps": 1,
+        "num_stages": 1,
+        "shared": 0,
+        "producer_and_reducer_tile": 16,
+        "actual_BLOCK_SIZE": 16,
+        "actual_BLOCK_M": 16,
+        "actual_BLOCK_Q": 2,
+        "actual_grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 85,
+        "n_spills": 0,
+        "requested_cache_modifier": ".cv",
+        "requested_unroll_factor": 2
+      },
+      "reducer_kwargs": {
+        "TILE_SIZE": 16,
+        "NUM_SEGMENTS_PER_SEQ": 8,
+        "HEAD_SIZE": 128,
+        "num_query_heads": 16
+      }
+    },
+    {
+      "factor": 4,
+      "producer": {
+        "num_warps": 1,
+        "num_stages": 1,
+        "shared": 0,
+        "producer_and_reducer_tile": 16,
+        "actual_BLOCK_SIZE": 16,
+        "actual_BLOCK_M": 16,
+        "actual_BLOCK_Q": 2,
+        "actual_grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 85,
+        "n_spills": 0,
+        "requested_cache_modifier": ".cv",
+        "requested_unroll_factor": 4
+      },
+      "reducer_kwargs": {
+        "TILE_SIZE": 16,
+        "NUM_SEGMENTS_PER_SEQ": 8,
+        "HEAD_SIZE": 128,
+        "num_query_heads": 16
+      }
+    },
+    {
+      "factor": 8,
+      "producer": {
+        "num_warps": 1,
+        "num_stages": 1,
+        "shared": 0,
+        "producer_and_reducer_tile": 16,
+        "actual_BLOCK_SIZE": 16,
+        "actual_BLOCK_M": 16,
+        "actual_BLOCK_Q": 2,
+        "actual_grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 85,
+        "n_spills": 0,
+        "requested_cache_modifier": ".cv",
+        "requested_unroll_factor": 8
+      },
+      "reducer_kwargs": {
+        "TILE_SIZE": 16,
+        "NUM_SEGMENTS_PER_SEQ": 8,
+        "HEAD_SIZE": 128,
+        "num_query_heads": 16
+      }
+    }
+  ],
+  "sources": {
+    "verify_dispatch_cpu.py": "42ec13eb1fb7beaae6b17af0f44f1c72a1376f2754271bd54936fe338218ebdc",
+    "probe_unroll.py": "8db05b7c3f798f8967aae8709ac9ed8fac2daf01d56add4f2882930fe1c3422e",
+    "unroll.py": "a896724bbb7f7ca3a5f98371877f27f6c147b16f50e54f31ec79f9ba9fca26cb",
+    "launch_router.py": "3d01df27575e64da34f1b0d6eedd7aac2f464a53a76126f31dbf2a813b2be7f3"
+  }
+}
