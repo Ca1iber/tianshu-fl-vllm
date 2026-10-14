@@ -1,0 +1,36 @@
+{
+  "command": [
+    "vllm",
+    "serve",
+    "/workspace/MiniCPM5-2B",
+    "--port",
+    "9031",
+    "--compilation-config",
+    "{\"cudagraph_mode\": \"FULL_DECODE_ONLY\"}",
+    "--served-model-name",
+    "minicpm",
+    "--gpu-memory-utilization",
+    "0.85",
+    "--max-model-len",
+    "131072",
+    "--max-num-batched-tokens",
+    "4096",
+    "--long-prefill-token-threshold",
+    "0"
+  ],
+  "environment": {
+    "PYTHONPATH": "/home/czw_ubuntu_wsl/flagOS/tianshu-fl-vllm/experiments/tianshu_budget4096_buckets_20261014/hooks",
+    "TIANSHU_EXTENDED_BUCKET_PROBE": "1",
+    "TIANSHU_SQL_REFLECTION_PROBE": "1",
+    "TIANSHU_SEGMENT_POLICY_PROBE": "1",
+    "TIANSHU_KV16_SERVICE_MODE": "candidate",
+    "VLLM_FL_ILUVATAR_PREFILL_BUCKETS": "1",
+    "VLLM_FL_ILUVATAR_LOGITS_GATHER": "1"
+  },
+  "complete": true,
+  "cpu_only": true,
+  "actual_shell_exec_intercepted": true,
+  "actual_math_argv_match": true,
+  "not_adopted": true,
+  "launcher_sha256": "9f6433d66ae61f8d8027d3fae8730efcffae9c2c95277547cf35a440585f5ef0"
+}
