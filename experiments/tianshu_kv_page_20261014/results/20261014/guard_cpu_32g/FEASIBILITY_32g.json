@@ -1,0 +1,22 @@
+{
+  "as_of_utc": "2026-10-14T02:39:55.906920+00:00",
+  "candidate": "KV page32 vs16, framework configuration plus expanded exact supported geometry",
+  "GPU_experiment_not_started": true,
+  "source_read_verified": true,
+  "original_native_sha256": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+  "hybrid_sha256": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+  "facts": [
+    "Installed hybrid.supported requires k.shape[1:] == (16,2,128); naive --block-size32 would silently lose native-prefill profile via fallback.",
+    "Native unified_attention sets block_size=v.shape[1] and passes BLOCK_SIZE=block_size to generated attention kernel; original/native L0 body otherwise unchanged.",
+    "Installed TritonAttentionBackend.get_supported_kernel_block_sizes returns MultipleOf(16), supports_block_size returns block_size%16==0; 32 allowed by backend.",
+    "Native-prefill process hook invokes module.supported before L0 M256/KV128/w16/s1 route, so expanding that exact geometry guard may preserve current hot path. This is a feasibility inference, not GPU proof."
+  ],
+  "required_next": [
+    "Wait for current B64S8 quality/formal and audit; choose adopted baseline S4 orS8 according actual result.",
+    "Before service, numerical+CUDA Graph probe both page16/32 with identical logical KV data and permuted page tables; causal prefill/mixed/decode, B1/8/24/64, 4K/5K and short31/32/33 boundaries, padded/strided buffers; no16K benchmark.",
+    "Prepare isolated own hook that loads current validated base. Chain existing NativePrefillFinder loader instead of bypassing it with raw PathFinder; after original loader finishes, replace only supported predicate via exact source/SHA checked clone accepting pages16/32, preserve all other guards. Avoid modifying installed source or frozen active sources.",
+    "Same new guard on both service sides, sole argv difference --block-size16/32; verify actual cache shape and native-prefill/decode routes on page32. Keep KV16/w1 guard incl B24fallback, L0 nativeprefill and75warm/G1 etc.",
+    "Independent small4K N64 3+3 then5+5 if clear\u22652%; fresh Math105 strict>95 before new original4KN256formal. Never inherit old quality for changed page layout."
+  ],
+  "sort_review": "New MetaXsort review complete, direct formal greedy hotpath absent; lower priority smallrandom fallback only. See own experiments/tianshu_sort_sweep_20261014 at commitc225a5e."
+}
