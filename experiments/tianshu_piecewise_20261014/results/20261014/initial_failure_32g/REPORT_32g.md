@@ -1,0 +1,7 @@
+# 天数BI-V150 32g：Prefill piecewise对照初始导入失败
+
+原配置组启动前hook与原有bucket扩展Finder相互委托，递归抛出RecursionError；API退出1。未加载完成模型、零吞吐轮次，没有性能或质量成绩，不能归因GPU性能或piecewise能力。controller实际终态failed，已验证GPU清理。17份冻结源码与源快照本地逐一SHA核验，原结果和日志均未重写。
+
+完整归档147857bytes，SHA256 79d08ebcfab4178560d15ee64bdbdd288853cb94a92d9a3862b54bb115f6d681，本机service-results/20261014_tianshu/piecewise_initial_failure/20261014_piecewise_graph_service_tianshu。
+
+独立重试tianshu_piecewise_retry_20261014在向内层Finder委托期间临时摘除自身，finally恢复位置；实际Finder AST两个模块正常/异常四分支检查只一次委托且恢复完整，资格180例和CLI重新通过。GPU重试结果尚待完成。本实验不改当前best4091.29。
