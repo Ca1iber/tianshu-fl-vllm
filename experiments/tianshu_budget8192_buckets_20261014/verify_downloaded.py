@@ -39,7 +39,7 @@ def main():
         points=83 if mode=='control' else 99
         assert trial['actual_budget']==budget and trial['actual_threshold']==0
         assert trial['actual_bucket_points']==points
-        assert trial['request_sampling_config'] == dict(temperature=0.,top_p=1.,repetition_penalty=1.,logprobs=None,ignore_eos=True,stream=True)
+        assert trial['request_sampling_config'] == dict(temperature=1.,top_p=.95,repetition_penalty=1.,logprobs=None,ignore_eos=True,stream=True)
         for name, meta in trial['installed_sources'].items():
             assert sha(root/mode/'source_snapshot'/name) == meta['sha256']
         rounds = trial['short_4k_rounds']

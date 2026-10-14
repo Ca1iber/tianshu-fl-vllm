@@ -96,7 +96,7 @@ def main():
         assert any(r["batch"]==64 and r["segments"]==8 for r in decode)
         assert {(r["batch"], r["segments"]) for r in decode} == {(r["batch"], r["segments"]) for r in reducers}
         assert all(r["actual_tile"] == (16 if r["batch"] in (8,16,32,40,48,56,64) else 32) for r in reducers)
-        assert state["request_sampling_config"] == dict(temperature=0.,top_p=1.,repetition_penalty=1.,logprobs=None,ignore_eos=True,stream=True)
+        assert state["request_sampling_config"] == dict(temperature=1.,top_p=.95,repetition_penalty=1.,logprobs=None,ignore_eos=True,stream=True)
         assert state["max_batched_tokens"] == budget
         assert state["command"][state["command"].index("--max-num-batched-tokens")+1] == str(budget)
         configured = [json.loads(p.read_text()) for p in (root / "bucket_trace_records").glob("configured_*.json")]

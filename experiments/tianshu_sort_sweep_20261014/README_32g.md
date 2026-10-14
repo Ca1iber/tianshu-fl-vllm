@@ -1,3 +1,5 @@
+> 更正：本文后续关于“当前正式benchmark是temperature0、无排序”的判断无效，误读了旧请求模块。实际安装CLI使用lib/endpoint_request_func.py，省略温度/top_p，模型默认为1/.95。详见相邻tianshu_sampling_route_audit_20261014。保留原判断作为错误记录，不再据此安排实验。
+
 # 天数 BI-V150 32g：沐曦新增排序方案的适用性核对
 
 只读获取了用户沐曦仓库和reports子模块的新历史。contest ce57aaa→9aba176；reports fc827a4→d9d69dd；ops主分支仍980c7e1。新增方案在reports实验源码中，新算法快照保存在reports。原版权头保留，参考快照只写入本天数仓库。

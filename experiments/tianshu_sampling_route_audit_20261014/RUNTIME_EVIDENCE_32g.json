@@ -1,0 +1,82 @@
+{
+  "as_of_utc": "2026-10-14T06:11:49.695925+00:00",
+  "official_script_sha256": "0813eba574e9d1eb50c297c515baa426da1bcb61ce8c78a398b482f246005565",
+  "partial_server_log_bytes": 103658,
+  "partial_server_log_sha256": "4b57b32e2dd809e49cb3c814ec30c4b9e9913568fbd7d0a3212abc540630220e",
+  "completed_autotunes_after_API_ready": [
+    {
+      "line": 368,
+      "text": "(EngineCore pid=196669) Triton autotuning for function fused_exponential_kernel_f32_unroll8 finished after 0.80s; config key: (7964160, 'torch.float32'), benchmark key: (7964160, 'torch.float32', 'triton_do_bench', 25, 100), best config selected: BLOCK: 256, num_warps: 4, num_ctas: 1, num_stages: 3, maxnreg: None;"
+    },
+    {
+      "line": 638,
+      "text": "(EngineCore pid=196669) Triton autotuning for function _index_linearized_jit_function finished after 0.28s; config key: (3200, 'torch.int32', 'torch.int64', 'torch.int32'), benchmark key: (3187, 'torch.int32', 'torch.int64', 'torch.int32', 'triton_do_bench', 5, 10), best config selected: BLOCK_SIZE0: 64, BLOCK_SIZE1: 1, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None;"
+    }
+  ],
+  "current_CLI_default_warning_count": 2,
+  "generation_config": {
+    "_from_model_config": true,
+    "bos_token_id": 0,
+    "eos_token_id": [
+      1,
+      130073
+    ],
+    "pad_token_id": 1,
+    "do_sample": true,
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "transformers_version": "5.6.2"
+  },
+  "generation_config_sha256": "9ac4f32e5f32358697a9f438a3ea89ef80e6ba786c72c49e932f9f21c122fdb1",
+  "formal_sampling_mode_not_changed": true,
+  "completed_formal_rounds": [
+    {
+      "Prefill": "4096",
+      "Decode": "1024",
+      "Conc": "64",
+      "Num Prompts": "256",
+      "Successful Requests": "256.0",
+      "Run Status": "SUCCESS",
+      "Benchmark Duration (s)": "333.22",
+      "Total Input Tokens": "1048576.0",
+      "Total Output Tokens": "262144.0",
+      "Req/s": "0.77",
+      "Output tok/s": "786.7",
+      "Peak Output tok/s": "1195.0",
+      "Total tok/s": "3933.52",
+      "Mean TTFT (ms)": "5908.0",
+      "Median TTFT (ms)": "1918.28",
+      "P99 TTFT (ms)": "28952.77",
+      "Mean TPOT (ms)": "75.36",
+      "Median TPOT (ms)": "77.66",
+      "P99 TPOT (ms)": "78.78",
+      "Mean ITL (ms)": "75.36",
+      "Median ITL (ms)": "58.29",
+      "P99 ITL (ms)": "414.57"
+    },
+    {
+      "Prefill": "4096",
+      "Decode": "1024",
+      "Conc": "64",
+      "Num Prompts": "256",
+      "Successful Requests": "256.0",
+      "Run Status": "SUCCESS",
+      "Benchmark Duration (s)": "327.38",
+      "Total Input Tokens": "1048576.0",
+      "Total Output Tokens": "262144.0",
+      "Req/s": "0.78",
+      "Output tok/s": "800.73",
+      "Peak Output tok/s": "1205.0",
+      "Total tok/s": "4003.63",
+      "Mean TTFT (ms)": "4292.01",
+      "Median TTFT (ms)": "1686.04",
+      "P99 TTFT (ms)": "22844.18",
+      "Mean TPOT (ms)": "75.55",
+      "Median TPOT (ms)": "77.97",
+      "P99 TPOT (ms)": "78.62",
+      "Mean ITL (ms)": "75.55",
+      "Median ITL (ms)": "58.89",
+      "P99 ITL (ms)": "414.1"
+    }
+  ]
+}

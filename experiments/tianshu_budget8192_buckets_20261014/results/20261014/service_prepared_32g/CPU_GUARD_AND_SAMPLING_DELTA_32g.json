@@ -1,0 +1,56 @@
+{
+  "complete": true,
+  "cpu_only": true,
+  "foundation_exact_budget_guard_and_sampling_delta_verified": true,
+  "old_sha256": "bf246a150954876773a48a52b78b04d179082ad12f590421b12a0549bb3fe6b9",
+  "new_sha256": "79493ca81e67c95f4cbec4f3ecafed0843b03d4826a28bdb962f19cd960e1568",
+  "changed_source_fragments": [
+    [
+      "args.max_batched_tokens not in (2048,4096)",
+      "args.max_batched_tokens not in (4096,8192)"
+    ],
+    [
+      "This83-point experiment requires native Prefill and budget2048 or4096",
+      "This99-point experiment requires native Prefill and budget4096 or8192"
+    ],
+    [
+      "Greedy4K throughput screen matching official temperature0/top_p1; historical base preserved.",
+      "4K screen with current official model-default sampling1.0/top_p0.95."
+    ],
+    [
+      "dict(temperature=0.0, top_p=1.0, repetition_penalty=1.0",
+      "dict(temperature=1.0, top_p=0.95, repetition_penalty=1.0"
+    ],
+    [
+      "def request(length, output, seed, stream, temperature):",
+      "def request(length, output, seed, stream, temperature, top_p=1.0):"
+    ],
+    [
+      "temperature=temperature, top_p=1.0",
+      "temperature=temperature, top_p=top_p"
+    ],
+    [
+      "True, 0.0) for i in range(args.requests)]",
+      "True, 1.0, 0.95) for i in range(args.requests)]"
+    ]
+  ],
+  "outcomes": [
+    {
+      "budget": 2048,
+      "accepted": false
+    },
+    {
+      "budget": 4096,
+      "accepted": true
+    },
+    {
+      "budget": 8192,
+      "accepted": true
+    },
+    {
+      "budget": 16384,
+      "accepted": false
+    }
+  ],
+  "old_guard_only_report_is_historical_pre_sampling_correction": true
+}

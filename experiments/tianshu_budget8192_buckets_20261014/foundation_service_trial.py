@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Greedy4K throughput screen matching official temperature0/top_p1; historical base preserved."""
+"""4K screen with current official model-default sampling1.0/top_p0.95."""
 import argparse
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
@@ -158,7 +158,7 @@ def main():
                  prefill_stages=args.prefill_stages,
                  official_benchmark=False)
     state['stream_interval']=args.stream_interval
-    state['request_sampling_config'] = dict(temperature=0.0, top_p=1.0, repetition_penalty=1.0, logprobs=None, ignore_eos=True, stream=True)
+    state['request_sampling_config'] = dict(temperature=1.0, top_p=0.95, repetition_penalty=1.0, logprobs=None, ignore_eos=True, stream=True)
     state['screen_sampling_matches_official_greedy'] = True
     server = None
 
@@ -204,10 +204,10 @@ def main():
         if datetime.now(timezone.utc) >= stop:
             raise StopRequested('Reservation deadline reached')
 
-    def request(length, output, seed, stream, temperature):
+    def request(length, output, seed, stream, temperature, top_p=1.0):
         rng = random.Random(seed)
         payload = dict(model='minicpm', prompt=[rng.randrange(512, 120000) for _ in range(length)],
-                       max_tokens=output, ignore_eos=True, temperature=temperature, top_p=1.0, repetition_penalty=1.0, logprobs=None,
+                       max_tokens=output, ignore_eos=True, temperature=temperature, top_p=top_p, repetition_penalty=1.0, logprobs=None,
                        stream=stream)
         if stream:
             payload['stream_options'] = {'include_usage': True}
@@ -381,7 +381,7 @@ def main():
             with ThreadPoolExecutor(max_workers=args.concurrency) as pool:
                 futures = [pool.submit(request, args.input_tokens, args.output_tokens,
                                        2026101200 + max(100, args.requests) * round_index + i,
-                                       True, 0.0) for i in range(args.requests)]
+                                       True, 1.0, 0.95) for i in range(args.requests)]
                 responses = [future.result() for future in futures]
             duration = time.perf_counter() - start
             metric_after=metrics_snapshot(f'round{round_index+1}_after')
