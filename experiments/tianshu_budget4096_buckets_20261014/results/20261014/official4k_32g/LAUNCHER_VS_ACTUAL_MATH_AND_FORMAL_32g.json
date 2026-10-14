@@ -1,0 +1,42 @@
+{
+  "command": [
+    "vllm",
+    "serve",
+    "/workspace/MiniCPM5-2B",
+    "--port",
+    "9031",
+    "--compilation-config",
+    "{\"cudagraph_mode\": \"FULL_DECODE_ONLY\"}",
+    "--served-model-name",
+    "minicpm",
+    "--gpu-memory-utilization",
+    "0.85",
+    "--max-model-len",
+    "131072",
+    "--max-num-batched-tokens",
+    "4096",
+    "--long-prefill-token-threshold",
+    "0"
+  ],
+  "flags": {
+    "VLLM_FL_ILUVATAR_HYBRID_ATTENTION": "1",
+    "VLLM_FL_ILUVATAR_ADAPTIVE_DECODE_SEGMENTS": "1",
+    "VLLM_FL_USE_FLAGGEMS_ATTN": "0",
+    "VLLM_FL_ILUVATAR_SPLIT_MIXED_ATTN": "0",
+    "VLLM_FL_ILUVATAR_PREFILL_BUCKETS": "1",
+    "VLLM_FL_ILUVATAR_LOGITS_GATHER": "1",
+    "TIANSHU_KV16_SERVICE_MODE": "candidate",
+    "TIANSHU_SEGMENT_POLICY_PROBE": "1",
+    "TIANSHU_SQL_REFLECTION_PROBE": "1",
+    "TIANSHU_EXTENDED_BUCKET_PROBE": "1",
+    "TIANSHU_TOPP_LAUNCH_PROBE": "1",
+    "TIANSHU_DECODE_COHERENT_PROBE": "1",
+    "TIANSHU_NATIVE_PREFILL_PROBE": "1"
+  },
+  "PYTHONPATH": "/home/czw_ubuntu_wsl/flagOS/tianshu-fl-vllm/experiments/tianshu_budget4096_buckets_20261014/hooks",
+  "complete": true,
+  "actual_completed_Math_and_formal_argv_and_flags_matched": true,
+  "source_hook_matched": true,
+  "launcher_sha256": "acc80f8858a161f3c559049ab9d47f874b289437d19ff6c591953c27db9b3a58",
+  "new_best_eligible": true
+}
