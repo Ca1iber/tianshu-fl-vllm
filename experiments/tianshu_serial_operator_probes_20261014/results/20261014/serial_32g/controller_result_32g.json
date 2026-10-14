@@ -1,0 +1,73 @@
+{
+  "phase": "complete",
+  "runner_pid": 144724,
+  "upstream_root": "/workspace/benchmark-results/20261014_decode_kv16_w1_pipeline_tianshu",
+  "upstream_pid": 142960,
+  "stop_at_utc": "2026-10-14T15:58:00+00:00",
+  "frozen_sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_serial_operator_probes_20261014/continue_probes.py": "f4cd62563bc49750a7b3079d47061bd99abb45013d1e71e0f2dc5231a10268ad",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_gemm_low_warps_20261014/probe_mm.py": "215ea26ed636c59790b932445f6d2bb04d24f3427a699294791293788df3e570",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_kv16_segments_20261014/probe_launch.py": "2a75f2b6e73f9895c26985bcfdebb1e363282fdf6b81671d06fc6d7e78658791",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_kv16_segments_20261014/launch_router.py": "0ebd07262dc93a2bb0d1e6ef13a7c88d30bc5c4ff7eedc5e23a538320dcbd343",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_splitk_20261012/experimental_mm.py": "86a2244f3fb30a8294d53174bd3aa6080f947b5b80ce43b6212a35b533463d56",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_native_prefill_20261012/zero_initialization.py": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e"
+  },
+  "jobs": [
+    {
+      "name": "gemm_low_warps",
+      "exit_code": 0,
+      "result": {
+        "complete": true,
+        "numerical_checks_passed": null,
+        "valid_configurations": null,
+        "error": null
+      }
+    },
+    {
+      "name": "kv16_segments_long",
+      "exit_code": 0,
+      "result": {
+        "complete": true,
+        "numerical_checks_passed": true,
+        "valid_configurations": [
+          {
+            "segment_multiplier": 0.5
+          },
+          {
+            "segment_multiplier": 2
+          },
+          {
+            "segment_multiplier": 4
+          }
+        ],
+        "error": null
+      }
+    },
+    {
+      "name": "kv16_segments_short",
+      "exit_code": 0,
+      "result": {
+        "complete": true,
+        "numerical_checks_passed": true,
+        "valid_configurations": [
+          {
+            "segment_multiplier": 0.5
+          },
+          {
+            "segment_multiplier": 2
+          },
+          {
+            "segment_multiplier": 4
+          }
+        ],
+        "error": null
+      }
+    }
+  ],
+  "adopted": false,
+  "official_benchmark": false,
+  "upstream_completion_verified": true,
+  "formal_total_tok_s": 3701.31,
+  "current_job": "kv16_segments_short",
+  "child_pid": 148435
+}

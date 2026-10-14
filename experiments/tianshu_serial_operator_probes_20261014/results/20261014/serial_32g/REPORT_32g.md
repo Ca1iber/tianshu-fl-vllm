@@ -1,0 +1,7 @@
+# 天数 BI-V150 32g：正式4K后的三个串行算子实验
+
+控制器等待真实上游pipeline142960结束，要求正式结果complete与归档清单存在、GPU空闲和端口9031关闭后，串行执行低warp GEMM80、KV16分段长场景10、短边界14。三个进程退出0，完成后逐个归档。每个child result的原始字节与分别下载并独立核验的归档一致，六份冻结源及快照与当前代码一致。
+
+退出0只代表执行结束；数值/性能结论由两个算子报告单独说明：GEMM80全部数值通过，但M64无收益；KV16分段24场景72候选数值通过，B64S8约6%算子收益进入新服务对照。控制器未采用候选，也不产生新正式成绩。实际运行时的代码以冻结源与子实验快照为准，archive_provenance里的Git HEAD是后续归档时刻，不冒充实验启动提交。
+
+完整父目录原始归档10,847,225bytes，42分片及全包SHA均已本地核验：`9ce22e22b3a15c124df61875cf15b98c59f23032bf4187f52c0388eb5bf4ede0`。原件service-results/20261014_tianshu/serial_operator_probes_controller/20261014_serial_operator_probes_after_kv16_tianshu。三项结果已经分别归档、报告及Git检查点；该父目录补齐控制器源码和串行执行证据。
