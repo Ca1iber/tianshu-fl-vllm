@@ -1,0 +1,207 @@
+{
+  "complete": true,
+  "cpu_only": true,
+  "gpu_execution": false,
+  "actual_Router_executed": true,
+  "fake_JIT_not_runtime_evidence": true,
+  "configurations": [
+    {
+      "plan": [
+        "adopted",
+        8192,
+        4096,
+        16
+      ],
+      "metadata": {
+        "label": "adopted",
+        "BLOCK_SIZE": 8192,
+        "BLOCK_SIZE_TRUNC": 4096,
+        "num_warps": 16,
+        "num_stages": 1,
+        "shared": 0,
+        "grid": [
+          64
+        ],
+        "n_regs": 64,
+        "n_spills": 0,
+        "VOCAB_SIZE": 130560,
+        "TOPK_ENABLED": false,
+        "TOPP_ENABLED": true
+      }
+    },
+    {
+      "plan": [
+        "identity",
+        8192,
+        4096,
+        16
+      ],
+      "metadata": {
+        "label": "identity",
+        "BLOCK_SIZE": 8192,
+        "BLOCK_SIZE_TRUNC": 4096,
+        "num_warps": 16,
+        "num_stages": 1,
+        "shared": 0,
+        "grid": [
+          64
+        ],
+        "n_regs": 64,
+        "n_spills": 0,
+        "VOCAB_SIZE": 130560,
+        "TOPK_ENABLED": false,
+        "TOPP_ENABLED": true
+      }
+    },
+    {
+      "plan": [
+        "b4096w8",
+        4096,
+        2048,
+        8
+      ],
+      "metadata": {
+        "label": "b4096w8",
+        "BLOCK_SIZE": 4096,
+        "BLOCK_SIZE_TRUNC": 2048,
+        "num_warps": 8,
+        "num_stages": 1,
+        "shared": 0,
+        "grid": [
+          64
+        ],
+        "n_regs": 64,
+        "n_spills": 0,
+        "VOCAB_SIZE": 130560,
+        "TOPK_ENABLED": false,
+        "TOPP_ENABLED": true
+      }
+    },
+    {
+      "plan": [
+        "b4096w16",
+        4096,
+        2048,
+        16
+      ],
+      "metadata": {
+        "label": "b4096w16",
+        "BLOCK_SIZE": 4096,
+        "BLOCK_SIZE_TRUNC": 2048,
+        "num_warps": 16,
+        "num_stages": 1,
+        "shared": 0,
+        "grid": [
+          64
+        ],
+        "n_regs": 64,
+        "n_spills": 0,
+        "VOCAB_SIZE": 130560,
+        "TOPK_ENABLED": false,
+        "TOPP_ENABLED": true
+      }
+    },
+    {
+      "plan": [
+        "b2048w8",
+        2048,
+        1024,
+        8
+      ],
+      "metadata": {
+        "label": "b2048w8",
+        "BLOCK_SIZE": 2048,
+        "BLOCK_SIZE_TRUNC": 1024,
+        "num_warps": 8,
+        "num_stages": 1,
+        "shared": 0,
+        "grid": [
+          64
+        ],
+        "n_regs": 64,
+        "n_spills": 0,
+        "VOCAB_SIZE": 130560,
+        "TOPK_ENABLED": false,
+        "TOPP_ENABLED": true
+      }
+    },
+    {
+      "plan": [
+        "b16384w16",
+        16384,
+        8192,
+        16
+      ],
+      "metadata": {
+        "label": "b16384w16",
+        "BLOCK_SIZE": 16384,
+        "BLOCK_SIZE_TRUNC": 8192,
+        "num_warps": 16,
+        "num_stages": 1,
+        "shared": 0,
+        "grid": [
+          64
+        ],
+        "n_regs": 64,
+        "n_spills": 0,
+        "VOCAB_SIZE": 130560,
+        "TOPK_ENABLED": false,
+        "TOPP_ENABLED": true
+      }
+    },
+    {
+      "plan": [
+        "b8192w32",
+        8192,
+        4096,
+        32
+      ],
+      "metadata": {
+        "label": "b8192w32",
+        "BLOCK_SIZE": 8192,
+        "BLOCK_SIZE_TRUNC": 4096,
+        "num_warps": 32,
+        "num_stages": 1,
+        "shared": 0,
+        "grid": [
+          64
+        ],
+        "n_regs": 64,
+        "n_spills": 0,
+        "VOCAB_SIZE": 130560,
+        "TOPK_ENABLED": false,
+        "TOPP_ENABLED": true
+      }
+    },
+    {
+      "plan": [
+        "b16384w32",
+        16384,
+        8192,
+        32
+      ],
+      "metadata": {
+        "label": "b16384w32",
+        "BLOCK_SIZE": 16384,
+        "BLOCK_SIZE_TRUNC": 8192,
+        "num_warps": 32,
+        "num_stages": 1,
+        "shared": 0,
+        "grid": [
+          64
+        ],
+        "n_regs": 64,
+        "n_spills": 0,
+        "VOCAB_SIZE": 130560,
+        "TOPK_ENABLED": false,
+        "TOPP_ENABLED": true
+      }
+    }
+  ],
+  "unchanged_grid_positional_arguments_topk_topp_vocab_and_mask": true,
+  "sources": {
+    "verify_router_cpu.py": "01813f78ae91d12594a91960f8b9cf23149dc2066ff426a7dcae278a970ccca0",
+    "router.py": "fdf35666568dad2761b70684d9344e78f57f2e6b0f6bc74dabb0c2938a759d49",
+    "probe_tiles.py": "914a2e80d4d87ab5557b2701b58ba5ab34885e269ec85274a951d1b9f103bf4a"
+  }
+}
