@@ -1,0 +1,9 @@
+# 天数BI-V150 32g：非持有别名使捕获从2点推进37点但仍OOM
+
+同mem0.70/83点/4096预算，候选仅在FL GraphWrapper输出处理处使用经过独立CPU/Graph验证的ATen非持有别名。实际两种输出签名绑定记录指向同一C++0f1ea4f4、so7a074e25与原graph源ba78ed0a；不修改全局_C注册或安装源。捕获从未修复时2/83推进37/83后CUDA AcceleratorError out-of-memory，仍零性能轮次。
+
+这说明该改动改善了实际捕获推进范围，支持输出引用是内存问题之一；没有证明其为全部根因，也没有取得模型吞吐或质量收益。20冻结源与完整快照、实际alias记录、37/83与OOM日志、候选零轮/GPU清理均本地复核。
+
+原始1188967bytes/5parts，SHA256 a66cbf78519240254af8d0707ecf8b64c7f8d8f0fc318286f26e0026d5d3f35b，raw在service-results/20261014_tianshu/weak_alias_capture_oom/20261014_weak_alias_candidate_tianshu。
+
+下一独立实验保留全部83个GEMM预热点，只捕获18个图点；旧configured83记录与真实worker18列表明确区分，不声称83图仍在。当前正式best4091.29不变，模型profile未采集。
