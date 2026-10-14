@@ -1,0 +1,9 @@
+# 天数BI-V150 32g：图池输出非持有别名验证通过
+
+实际FL weak_ref_tensor fallback为lambda t:t，GraphWrapper原本意图把输出转为不持有原张量的别名。新C++仅ATen from_blob共享pointer/shape/stride/dtype/device且no-op析构，不计算、不拷贝、不量化。仅适用于CUDA Graph池拥有原分配的输出，不能替代普通CPU/CUDA张量所有权。
+
+CPU三种连续/带gap/转置stride检查同pointer/shape/stride/值，删除原owner并gc后弱引用均None；不再读取CPU悬空别名。CUDA同池四shape各改变输入并十次重放，原owner释放，输出逐位正确；最后按捕获顺序重放并立即消费输出均通过。这是生命周期可行性，不代表完整模型或任意图调度正确。
+
+三份当前源与快照SHA、实际编译so SHA、实际FL graph/fallback源字节均已本地复核。编译模块SHA7a074e25205cc52cb3a2b0e532e6812d53e2c4142b967182bb8ed55012a41040，C++源0f1ea4f4a712d6d470c45edde192287722d03a35a295c2fdb8dfa46446cee717。
+
+完整原始3467436bytes/14parts，SHA256 5912a16bd244764a5a03f34d02eabdcfe73b3dd22cedd3d4b1af11eb2041b773，本机service-results/20261014_tianshu/weak_alias_probe/20261014_weak_alias_probe_tianshu。该验证不产生服务吞吐、新Math或正式分数。
