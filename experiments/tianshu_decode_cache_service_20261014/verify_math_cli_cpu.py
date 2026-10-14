@@ -77,7 +77,7 @@ def main():
             assert module.main() == 1
         state = json.loads((output/'result.json').read_text())
         assert state['phase'] == 'failed' and state['error'].startswith('CPU-only interception')
-        assert len(state['segment_sources']) == 10
+        assert len(state['segment_sources']) == 13
         assert captured['command'] == trial['command']
         for path,digest in state['segment_sources'].items():
             assert hashlib.sha256(Path(path).read_bytes()).hexdigest() == digest
