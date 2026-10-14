@@ -3,7 +3,8 @@ set -euo pipefail
 
 # Guarded L0 Decode KV16/w1 for batches8/16/32/40/48/56/64.
 # Other supported batches retain KV32/w2 (B8..64) or w4.
-# Candidate: B64 segments4 to8 only; fresh Math and formal4K pending.
+# B64 segments8 only; other batches keep their previous segments.
+# Fresh Math102/105; original4K3826.24 total tok/s, TTFT4457.42ms.
 script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 record_dir="${TIANSHU_SEGMENTS_SERVICE_RECORD_DIR:-/workspace/benchmark-results/kv16_B64S8_records}"
 export VLLM_PLUGINS=fl
