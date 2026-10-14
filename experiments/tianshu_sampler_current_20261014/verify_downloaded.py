@@ -98,7 +98,7 @@ def main():
             generated = Path(record["zero_initialization"]["generated_source"])
             remote_folder = Path(trial["actual_composed_environment"]["TIANSHU_DECODE_COHERENT_RECORD_DIR"]).parent
             assert sha(folder / generated.relative_to(remote_folder)) == record["generated_source_sha256"]
-        assert any(r["batch"] == 64 and r["segments"] == 8 and r["configuration"]["TILE_SIZE"] == 18 for r in producers)
+        assert any(r["batch"] == 64 and r["segments"] == 8 and r["configuration"]["TILE_SIZE"] == 16 for r in producers)
         assert {(r["batch"], r["segments"]) for r in producers} == {(r["batch"], r["segments"]) for r in reducers}
         assert all(r["actual_tile"] == (16 if r["batch"] in (8,16,32,40,48,56,64) else 32) for r in reducers)
         assert trial["sql_reflection_enabled"] and trial["actual_sql_mode_verified"] and trial["actual_extended_policy_verified"]
