@@ -82,7 +82,9 @@ def main():
         warps = 1 if tile == 16 else 2 if 8 <= x["batch"] <= 64 else 4
         assert x["configuration"] == dict(TILE_SIZE=tile, num_warps=warps, num_stages=1)
         assert x["compiled_metadata"]["num_warps"] == warps
-        assert x["generated_source_sha256"] == "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e"
+        assert x["generated_source_sha256"] == "8deb8967fdacf354f3b38e6a9687163493f6163764f3e8663dce916250cd1289"
+        assert x["cache_service_mode"] == "candidate" and x["actual_cache_modifier"] == ".cv"
+        assert x["cache_policy_generation"]["original_L0_sha256"] == "4a1f8bdfdb5b9399702941a0e499e62b52f104737aba6012a9056ef36f5c4d4e"
     assert any(x["batch"] == 64 and x["configuration"] == dict(TILE_SIZE=16,num_warps=1,num_stages=1) for x in routes)
     reducers = state["decode_coherent_reducer_records"]
     assert {(x["batch"], x["segments"]) for x in routes} == {(x["batch"], x["segments"]) for x in reducers}

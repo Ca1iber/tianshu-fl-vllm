@@ -5,8 +5,8 @@ set -euo pipefail
 # Other supported batches retain KV32/w2 (B8..64) or w4.
 # B64 segments8 only; other batches keep their previous segments.
 # Experimental Decode K/V .cv hints on the verified4096/83 S8 base.
-# Fresh .cv Math103/105 passed (one official max_tokens stop); official4K pending.
-# Experimental launcher; adoption requires completed official4K and local audits.
+# Fresh .cv Math103/105 and official4K4091.29 passed with full local audits.
+# Adopted reproducible launcher: serve_tianshu_minicpm.sh in this directory.
 script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 record_dir="${TIANSHU_CACHE_SERVICE_RECORD_DIR:-/workspace/benchmark-results/decode_cache_cv_candidate_records}"
 export VLLM_PLUGINS=fl
