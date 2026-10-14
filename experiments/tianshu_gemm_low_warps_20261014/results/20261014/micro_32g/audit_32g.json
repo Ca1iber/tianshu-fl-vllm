@@ -1,0 +1,168 @@
+{
+  "complete": true,
+  "original_shape_config_count": 80,
+  "timed_configurations": 80,
+  "error_count": 0,
+  "numerical_failure_count": 0,
+  "all_numerical_configurations_passed": true,
+  "errors": [],
+  "numerical_failures": [],
+  "source_snapshots_verified": true,
+  "explicit_baseline_provider": "FlagGems.mm",
+  "timed_configurations_passed_gpu_fp32_cpu_subset_native": true,
+  "timing_scope": "7 alternating CUDA Graph timings,20 calls per replay; CPU reference subset8rows32columns, no whole-matrix CPU claim",
+  "official_benchmark": false,
+  "adopted": false,
+  "best_per_shape": [
+    {
+      "m": 64,
+      "name": "qkv",
+      "config": {
+        "bm": 32,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_ms": 0.028077691793441772,
+      "candidate_ms": 0.037270769476890564,
+      "change_percent": 32.74157203191488
+    },
+    {
+      "m": 64,
+      "name": "o_proj",
+      "config": {
+        "bm": 32,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_ms": 0.019554615020751953,
+      "candidate_ms": 0.037347882986068726,
+      "change_percent": 90.99267843644078
+    },
+    {
+      "m": 64,
+      "name": "gate_up",
+      "config": {
+        "bm": 64,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_ms": 0.09307615160942077,
+      "candidate_ms": 0.12567230463027954,
+      "change_percent": 35.02095054127648
+    },
+    {
+      "m": 64,
+      "name": "down",
+      "config": {
+        "bm": 32,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_ms": 0.0548090398311615,
+      "candidate_ms": 0.1332707643508911,
+      "change_percent": 143.15471455334722
+    },
+    {
+      "m": 64,
+      "name": "lm_head",
+      "config": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_ms": 1.032503604888916,
+      "candidate_ms": 1.155569076538086,
+      "change_percent": 11.919132394933406
+    },
+    {
+      "m": 16,
+      "name": "qkv",
+      "config": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 1,
+        "stages": 1
+      },
+      "baseline_ms": 0.03895076811313629,
+      "candidate_ms": 0.03378442525863647,
+      "change_percent": -13.26377656916462
+    },
+    {
+      "m": 16,
+      "name": "o_proj",
+      "config": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 1,
+        "stages": 1
+      },
+      "baseline_ms": 0.026019808650016785,
+      "candidate_ms": 0.030931922793388366,
+      "change_percent": 18.878363824433464
+    },
+    {
+      "m": 16,
+      "name": "gate_up",
+      "config": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 1,
+        "stages": 1
+      },
+      "baseline_ms": 0.08158077001571655,
+      "candidate_ms": 0.10060826539993287,
+      "change_percent": 23.323505503258502
+    },
+    {
+      "m": 16,
+      "name": "down",
+      "config": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 1,
+        "stages": 1
+      },
+      "baseline_ms": 0.09158037900924683,
+      "candidate_ms": 0.11365711688995361,
+      "change_percent": 24.106405891241955
+    },
+    {
+      "m": 16,
+      "name": "lm_head",
+      "config": {
+        "bm": 32,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_ms": 0.8545842170715332,
+      "candidate_ms": 0.9107324600219726,
+      "change_percent": 6.570241039887992
+    }
+  ]
+}

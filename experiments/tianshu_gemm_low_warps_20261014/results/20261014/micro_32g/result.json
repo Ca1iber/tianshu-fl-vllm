@@ -1,0 +1,6258 @@
+{
+  "complete": true,
+  "official_benchmark": false,
+  "adoption_allowed": false,
+  "installed_files_modified": false,
+  "cases": [
+    {
+      "name": "qkv",
+      "m": 64,
+      "n": 2560,
+      "k": 2048,
+      "config": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 1,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4993896484375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4398651123046875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4993896484375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4398651123046875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.028095000982284547,
+      "candidate_ms": 0.06242249608039856,
+      "change_percent": 122.1836408539704,
+      "raw_ms": [
+        [
+          0.028201153874397276,
+          0.028224614262580872,
+          0.02831769287586212,
+          0.0280926913022995,
+          0.028028461337089538,
+          0.027957883477211,
+          0.028095000982284547
+        ],
+        [
+          0.06242249608039856,
+          0.06244711279869079,
+          0.062337881326675414,
+          0.06248769164085388,
+          0.062306731939315796,
+          0.06241500377655029,
+          0.0624923050403595
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "qkv",
+      "m": 64,
+      "n": 2560,
+      "k": 2048,
+      "config": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 1,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4993896484375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4398651123046875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4993896484375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4398651123046875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.028168845176696777,
+      "candidate_ms": 0.04053750038146973,
+      "change_percent": 43.90898926522255,
+      "raw_ms": [
+        [
+          0.028300768136978148,
+          0.028168845176696777,
+          0.027880769968032838,
+          0.02795577049255371,
+          0.02821826934814453,
+          0.028196731209754945,
+          0.027944037318229677
+        ],
+        [
+          0.04055673182010651,
+          0.04051192402839661,
+          0.04064346253871918,
+          0.04055807590484619,
+          0.04053750038146973,
+          0.04050634503364563,
+          0.04052673280239105
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "qkv",
+      "m": 64,
+      "n": 2560,
+      "k": 2048,
+      "config": {
+        "bm": 32,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4993896484375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4398651123046875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4993896484375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4398651123046875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.02805750072002411,
+      "candidate_ms": 0.05728827118873596,
+      "change_percent": 104.18166165402751,
+      "raw_ms": [
+        [
+          0.028030577301979064,
+          0.028107884526252746,
+          0.027905383706092836,
+          0.027918270230293273,
+          0.02805750072002411,
+          0.028152692317962646,
+          0.028220385313034058
+        ],
+        [
+          0.05722172856330872,
+          0.05731307864189148,
+          0.057324618101119995,
+          0.05728827118873596,
+          0.057285964488983154,
+          0.05717250108718872,
+          0.05738673210144043
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "qkv",
+      "m": 64,
+      "n": 2560,
+      "k": 2048,
+      "config": {
+        "bm": 32,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4993896484375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4398651123046875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4993896484375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4398651123046875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.028077691793441772,
+      "candidate_ms": 0.037270769476890564,
+      "change_percent": 32.74157203191488,
+      "raw_ms": [
+        [
+          0.028077691793441772,
+          0.028200000524520874,
+          0.0280361533164978,
+          0.02814115285873413,
+          0.02833615243434906,
+          0.027977114915847777,
+          0.028030768036842346
+        ],
+        [
+          0.03731576800346374,
+          0.03732942044734955,
+          0.037259039282798764,
+          0.03726519346237182,
+          0.037270769476890564,
+          0.03724384605884552,
+          0.0372880756855011
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "qkv",
+      "m": 64,
+      "n": 2560,
+      "k": 2048,
+      "config": {
+        "bm": 64,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4993896484375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4398651123046875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4993896484375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4398651123046875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.0280673086643219,
+      "candidate_ms": 0.060001921653747556,
+      "change_percent": 113.7786788585816,
+      "raw_ms": [
+        [
+          0.0280673086643219,
+          0.02817307710647583,
+          0.028148651123046875,
+          0.027998653054237366,
+          0.028145384788513184,
+          0.02786461412906647,
+          0.027933266758918763
+        ],
+        [
+          0.060001921653747556,
+          0.0599976897239685,
+          0.059972310066223146,
+          0.060004234313964844,
+          0.060003268718719485,
+          0.06000846028327942,
+          0.05999673008918762
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "qkv",
+      "m": 64,
+      "n": 2560,
+      "k": 2048,
+      "config": {
+        "bm": 64,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4993896484375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4398651123046875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4993896484375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4398651123046875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.028042498230934142,
+      "candidate_ms": 0.04634673297405243,
+      "change_percent": 65.27319567743287,
+      "raw_ms": [
+        [
+          0.028042498230934142,
+          0.028024229407310485,
+          0.027933266758918763,
+          0.02763519287109375,
+          0.02817326784133911,
+          0.02821826934814453,
+          0.02807019054889679
+        ],
+        [
+          0.046352118253707886,
+          0.04634673297405243,
+          0.04634365439414978,
+          0.046352118253707886,
+          0.046329808235168454,
+          0.04633923172950745,
+          0.046366924047470094
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "qkv",
+      "m": 64,
+      "n": 2560,
+      "k": 2048,
+      "config": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4993896484375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4398651123046875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4993896484375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4398651123046875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.028078845143318175,
+      "candidate_ms": 0.0676682710647583,
+      "change_percent": 140.99378275484767,
+      "raw_ms": [
+        [
+          0.028122887015342712,
+          0.02792576849460602,
+          0.028078845143318175,
+          0.02815403640270233,
+          0.02775326669216156,
+          0.02798057794570923,
+          0.028219231963157655
+        ],
+        [
+          0.06782673001289367,
+          0.067599618434906,
+          0.06771326661109925,
+          0.0676682710647583,
+          0.06764365434646606,
+          0.06767134666442871,
+          0.06760384440422058
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "qkv",
+      "m": 64,
+      "n": 2560,
+      "k": 2048,
+      "config": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4993896484375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4398651123046875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4993896484375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4398651123046875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.028148651123046875,
+      "candidate_ms": 0.09276326894760131,
+      "change_percent": 229.5478299905136,
+      "raw_ms": [
+        [
+          0.028189420700073242,
+          0.0282524973154068,
+          0.02795884609222412,
+          0.028148651123046875,
+          0.02804884612560272,
+          0.028059616684913635,
+          0.028206345438957215
+        ],
+        [
+          0.09279980659484863,
+          0.09268922805786133,
+          0.09283288717269897,
+          0.09275788068771362,
+          0.09282000064849853,
+          0.09276326894760131,
+          0.0926723062992096
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "o_proj",
+      "m": 64,
+      "n": 2048,
+      "k": 2048,
+      "config": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 1,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4990692138671875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.318634033203125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4990692138671875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.318634033203125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.019275000691413878,
+      "candidate_ms": 0.057250767946243286,
+      "change_percent": 197.02083472166026,
+      "raw_ms": [
+        [
+          0.01959211528301239,
+          0.019254615902900694,
+          0.019275000691413878,
+          0.019596345722675323,
+          0.019309230148792267,
+          0.019256730377674103,
+          0.019234423339366914
+        ],
+        [
+          0.05744461417198181,
+          0.05714480876922608,
+          0.057396543025970456,
+          0.05722403526306152,
+          0.057229232788085935,
+          0.057250767946243286,
+          0.057296735048294065
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "o_proj",
+      "m": 64,
+      "n": 2048,
+      "k": 2048,
+      "config": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 1,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4990692138671875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.318634033203125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4990692138671875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.318634033203125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.019314615428447722,
+      "candidate_ms": 0.04128634333610535,
+      "change_percent": 113.75700432169285,
+      "raw_ms": [
+        [
+          0.019314807653427125,
+          0.019314615428447722,
+          0.01930384635925293,
+          0.019644615054130555,
+          0.019377884268760682,
+          0.01928461492061615,
+          0.019306154549121858
+        ],
+        [
+          0.041295000910758974,
+          0.041230577230453494,
+          0.04130365550518036,
+          0.041231924295425416,
+          0.04130461513996124,
+          0.04127365648746491,
+          0.04128634333610535
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "o_proj",
+      "m": 64,
+      "n": 2048,
+      "k": 2048,
+      "config": {
+        "bm": 32,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4990692138671875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.318634033203125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4990692138671875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.318634033203125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.019315768778324128,
+      "candidate_ms": 0.05375019311904907,
+      "change_percent": 178.27105271298728,
+      "raw_ms": [
+        [
+          0.019930577278137206,
+          0.01931365430355072,
+          0.019302693009376527,
+          0.020241345465183257,
+          0.019315768778324128,
+          0.01956326961517334,
+          0.01926211565732956
+        ],
+        [
+          0.05376423597335815,
+          0.05370750427246094,
+          0.053724426031112674,
+          0.053772687911987305,
+          0.05375019311904907,
+          0.053700000047683716,
+          0.053767502307891846
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "o_proj",
+      "m": 64,
+      "n": 2048,
+      "k": 2048,
+      "config": {
+        "bm": 32,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4990692138671875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.318634033203125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4990692138671875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.318634033203125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.019554615020751953,
+      "candidate_ms": 0.037347882986068726,
+      "change_percent": 90.99267843644078,
+      "raw_ms": [
+        [
+          0.019581538438796998,
+          0.019554615020751953,
+          0.01927596181631088,
+          0.01990923136472702,
+          0.01925884634256363,
+          0.019811923801898956,
+          0.019286730885505678
+        ],
+        [
+          0.0373413473367691,
+          0.03731769323348999,
+          0.03728153705596924,
+          0.037357500195503233,
+          0.037347882986068726,
+          0.03736076951026916,
+          0.03736269176006317
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "o_proj",
+      "m": 64,
+      "n": 2048,
+      "k": 2048,
+      "config": {
+        "bm": 64,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4990692138671875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.318634033203125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4990692138671875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.318634033203125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.018581730127334595,
+      "candidate_ms": 0.05537999868392944,
+      "change_percent": 198.03467332927664,
+      "raw_ms": [
+        [
+          0.019834230840206146,
+          0.019023077189922334,
+          0.018581730127334595,
+          0.0185699999332428,
+          0.01857423037290573,
+          0.018578654527664183,
+          0.01858711540699005
+        ],
+        [
+          0.059948462247848514,
+          0.06000846028327942,
+          0.055378842353820804,
+          0.05537999868392944,
+          0.05539596080780029,
+          0.05536941885948181,
+          0.05536057949066162
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "o_proj",
+      "m": 64,
+      "n": 2048,
+      "k": 2048,
+      "config": {
+        "bm": 64,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4990692138671875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.318634033203125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4990692138671875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.318634033203125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.019363845884799957,
+      "candidate_ms": 0.045415768027305604,
+      "change_percent": 134.53898723164096,
+      "raw_ms": [
+        [
+          0.019429422914981842,
+          0.01941326856613159,
+          0.019402499496936797,
+          0.019363845884799957,
+          0.01858057677745819,
+          0.018571731448173524,
+          0.018586154282093047
+        ],
+        [
+          0.045434999465942386,
+          0.045445770025253296,
+          0.045415768027305604,
+          0.045415768027305604,
+          0.04360403716564178,
+          0.04361019134521484,
+          0.043617692589759824
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "o_proj",
+      "m": 64,
+      "n": 2048,
+      "k": 2048,
+      "config": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4990692138671875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.318634033203125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4990692138671875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.318634033203125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.018584999442100524,
+      "candidate_ms": 0.06313596367835998,
+      "change_percent": 239.71463854520402,
+      "raw_ms": [
+        [
+          0.020169807970523833,
+          0.01869211494922638,
+          0.01858288496732712,
+          0.018574999272823335,
+          0.018584999442100524,
+          0.018570961058139802,
+          0.018595768511295317
+        ],
+        [
+          0.06504961252212524,
+          0.065076345205307,
+          0.06309846043586731,
+          0.06316826939582824,
+          0.06313596367835998,
+          0.06308153867721558,
+          0.06311461329460144
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "o_proj",
+      "m": 64,
+      "n": 2048,
+      "k": 2048,
+      "config": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4990692138671875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.318634033203125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4990692138671875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.318634033203125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.019275000691413878,
+      "candidate_ms": 0.091777503490448,
+      "change_percent": 376.14786095095,
+      "raw_ms": [
+        [
+          0.019424039125442504,
+          0.019402499496936797,
+          0.019369231164455415,
+          0.01903730779886246,
+          0.018573269248008728,
+          0.019275000691413878,
+          0.018605384230613708
+        ],
+        [
+          0.09203365445137024,
+          0.09204000234603882,
+          0.09185365438461304,
+          0.091777503490448,
+          0.09172499775886536,
+          0.09171845912933349,
+          0.09170461297035218
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "gate_up",
+      "m": 64,
+      "n": 12288,
+      "k": 2048,
+      "config": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 1,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4998779296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.320220947265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4998779296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.320220947265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.0933213472366333,
+      "candidate_ms": 0.24160308837890626,
+      "change_percent": 158.89369960152587,
+      "raw_ms": [
+        [
+          0.0942042350769043,
+          0.09327114820480346,
+          0.09349403977394104,
+          0.0933213472366333,
+          0.09348846077919007,
+          0.0928467333316803,
+          0.09290480613708496
+        ],
+        [
+          0.24160308837890626,
+          0.24119365215301514,
+          0.24178500175476075,
+          0.24203577041625976,
+          0.24130730628967284,
+          0.24107999801635743,
+          0.2418524980545044
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "gate_up",
+      "m": 64,
+      "n": 12288,
+      "k": 2048,
+      "config": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 1,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4998779296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.320220947265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4998779296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.320220947265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.09306846261024475,
+      "candidate_ms": 0.2211696147918701,
+      "change_percent": 137.6418483649952,
+      "raw_ms": [
+        [
+          0.09400384426116944,
+          0.09290153980255127,
+          0.09287999868392945,
+          0.0926807701587677,
+          0.09310076832771301,
+          0.09342634677886963,
+          0.09306846261024475
+        ],
+        [
+          0.22151460647583007,
+          0.22089750766754152,
+          0.2211696147918701,
+          0.22127556800842285,
+          0.22151248455047606,
+          0.22085578441619874,
+          0.22033922672271727
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "gate_up",
+      "m": 64,
+      "n": 12288,
+      "k": 2048,
+      "config": {
+        "bm": 32,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4998779296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.320220947265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4998779296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.320220947265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.09339095950126648,
+      "candidate_ms": 0.20152616500854492,
+      "change_percent": 115.78765876777615,
+      "raw_ms": [
+        [
+          0.09442711472511292,
+          0.09265807867050171,
+          0.09339095950126648,
+          0.09347788095474244,
+          0.09317153692245483,
+          0.0955424964427948,
+          0.09313076734542847
+        ],
+        [
+          0.2013932704925537,
+          0.20065827369689943,
+          0.20153577327728273,
+          0.20096249580383302,
+          0.20152616500854492,
+          0.20197710990905762,
+          0.20203173160552979
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "gate_up",
+      "m": 64,
+      "n": 12288,
+      "k": 2048,
+      "config": {
+        "bm": 32,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4998779296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.320220947265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4998779296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.320220947265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.09319403767585754,
+      "candidate_ms": 0.16796998977661132,
+      "change_percent": 80.23684128896254,
+      "raw_ms": [
+        [
+          0.0948074996471405,
+          0.09288634657859803,
+          0.09301922917366028,
+          0.09291114807128906,
+          0.09319403767585754,
+          0.09319807887077332,
+          0.09338037967681885
+        ],
+        [
+          0.1675746202468872,
+          0.168009614944458,
+          0.16784788370132447,
+          0.16757769584655763,
+          0.16859153509140015,
+          0.16877057552337646,
+          0.16796998977661132
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "gate_up",
+      "m": 64,
+      "n": 12288,
+      "k": 2048,
+      "config": {
+        "bm": 64,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4998779296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.320220947265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4998779296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.320220947265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.09307615160942077,
+      "candidate_ms": 0.12567230463027954,
+      "change_percent": 35.02095054127648,
+      "raw_ms": [
+        [
+          0.09442942142486573,
+          0.09307615160942077,
+          0.09304172992706299,
+          0.0930525004863739,
+          0.09302692413330078,
+          0.09312096238136292,
+          0.09316596388816833
+        ],
+        [
+          0.12567230463027954,
+          0.12561653852462767,
+          0.12518577575683593,
+          0.1256700038909912,
+          0.1261725068092346,
+          0.12621961832046508,
+          0.12631826400756835
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "gate_up",
+      "m": 64,
+      "n": 12288,
+      "k": 2048,
+      "config": {
+        "bm": 64,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4998779296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.320220947265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4998779296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.320220947265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.09331711530685424,
+      "candidate_ms": 0.1414626955986023,
+      "change_percent": 51.59351543758201,
+      "raw_ms": [
+        [
+          0.0941709578037262,
+          0.0932613492012024,
+          0.09322615265846253,
+          0.09331711530685424,
+          0.09360980987548828,
+          0.09280269742012023,
+          0.09363327026367188
+        ],
+        [
+          0.14182827472686768,
+          0.14159576892852782,
+          0.14241327047348024,
+          0.14093462228775025,
+          0.1411692261695862,
+          0.1410684585571289,
+          0.1414626955986023
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "gate_up",
+      "m": 64,
+      "n": 12288,
+      "k": 2048,
+      "config": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4998779296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.320220947265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4998779296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.320220947265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.09332365393638611,
+      "candidate_ms": 0.14269057512283326,
+      "change_percent": 52.89861584298661,
+      "raw_ms": [
+        [
+          0.09466403722763062,
+          0.09332365393638611,
+          0.093083655834198,
+          0.09348538517951965,
+          0.09268269538879395,
+          0.09282115697860718,
+          0.09357095956802368
+        ],
+        [
+          0.14284499883651733,
+          0.14269057512283326,
+          0.14300365447998048,
+          0.14305922985076905,
+          0.14253634214401245,
+          0.14247750043869017,
+          0.14246345758438111
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "gate_up",
+      "m": 64,
+      "n": 12288,
+      "k": 2048,
+      "config": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4998779296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.320220947265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4998779296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.320220947265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.0935046136379242,
+      "candidate_ms": 0.13292038440704346,
+      "change_percent": 42.15382453934098,
+      "raw_ms": [
+        [
+          0.09461461305618286,
+          0.09301077127456665,
+          0.09338577389717102,
+          0.0935046136379242,
+          0.0933323085308075,
+          0.09363095760345459,
+          0.09357442259788513
+        ],
+        [
+          0.13405404090881348,
+          0.13279500007629394,
+          0.1332009553909302,
+          0.13312711715698242,
+          0.13281115293502807,
+          0.13292038440704346,
+          0.13240383863449096
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "down",
+      "m": 64,
+      "n": 2048,
+      "k": 6144,
+      "config": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 1,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.989776611328125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4886474609375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.989776611328125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4886474609375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.055906152725219725,
+      "candidate_ms": 0.2020401954650879,
+      "change_percent": 261.3916995113597,
+      "raw_ms": [
+        [
+          0.05617403984069824,
+          0.05539172887802124,
+          0.057218462228775024,
+          0.055906152725219725,
+          0.055841922760009766,
+          0.05543365478515625,
+          0.05604749917984009
+        ],
+        [
+          0.20136518478393556,
+          0.2020401954650879,
+          0.20218806266784667,
+          0.20165462493896485,
+          0.20172557830810547,
+          0.2021357774734497,
+          0.20217750072479249
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "down",
+      "m": 64,
+      "n": 2048,
+      "k": 6144,
+      "config": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 1,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.989776611328125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4886474609375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.989776611328125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4886474609375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.055355191230773926,
+      "candidate_ms": 0.15679942369461058,
+      "change_percent": 183.26055823909826,
+      "raw_ms": [
+        [
+          0.055691927671432495,
+          0.05559442639350891,
+          0.055355191230773926,
+          0.05498557686805725,
+          0.05500384569168091,
+          0.055735766887664795,
+          0.05515807867050171
+        ],
+        [
+          0.15679942369461058,
+          0.15694711208343506,
+          0.15727596282958983,
+          0.1569503903388977,
+          0.15643807649612426,
+          0.15673500299453735,
+          0.15658385753631593
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "down",
+      "m": 64,
+      "n": 2048,
+      "k": 6144,
+      "config": {
+        "bm": 32,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.989776611328125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4886474609375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.989776611328125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4886474609375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.055583655834198,
+      "candidate_ms": 0.19149750471115112,
+      "change_percent": 244.52124790491334,
+      "raw_ms": [
+        [
+          0.055524617433547974,
+          0.05568845868110657,
+          0.055528849363327026,
+          0.056261730194091794,
+          0.05598423480987549,
+          0.05550961494445801,
+          0.055583655834198
+        ],
+        [
+          0.19132730960845948,
+          0.19160250425338746,
+          0.1915392279624939,
+          0.1915594220161438,
+          0.19147173166275025,
+          0.19131423234939576,
+          0.19149750471115112
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "down",
+      "m": 64,
+      "n": 2048,
+      "k": 6144,
+      "config": {
+        "bm": 32,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.989776611328125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4886474609375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.989776611328125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4886474609375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.0548090398311615,
+      "candidate_ms": 0.1332707643508911,
+      "change_percent": 143.15471455334722,
+      "raw_ms": [
+        [
+          0.055572688579559326,
+          0.05476731061935425,
+          0.054782307147979735,
+          0.054984426498413085,
+          0.054555964469909665,
+          0.05497922897338867,
+          0.0548090398311615
+        ],
+        [
+          0.13510173559188843,
+          0.1332707643508911,
+          0.13320211172103882,
+          0.13316153287887572,
+          0.1332846164703369,
+          0.1331559658050537,
+          0.13352365493774415
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "down",
+      "m": 64,
+      "n": 2048,
+      "k": 6144,
+      "config": {
+        "bm": 64,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.989776611328125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4886474609375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.989776611328125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4886474609375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.05568211674690247,
+      "candidate_ms": 0.1913669228553772,
+      "change_percent": 243.67752886481767,
+      "raw_ms": [
+        [
+          0.055135577917099,
+          0.05530403852462769,
+          0.05583980679512024,
+          0.05568211674690247,
+          0.05606346130371094,
+          0.05608077049255371,
+          0.054589229822158816
+        ],
+        [
+          0.19126057624816895,
+          0.19139152765274048,
+          0.19136576652526854,
+          0.19129942655563353,
+          0.1913669228553772,
+          0.19143518209457397,
+          0.19142019748687744
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "down",
+      "m": 64,
+      "n": 2048,
+      "k": 6144,
+      "config": {
+        "bm": 64,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.989776611328125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4886474609375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.989776611328125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4886474609375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.05553981065750122,
+      "candidate_ms": 0.15105750560760497,
+      "change_percent": 171.98059161406795,
+      "raw_ms": [
+        [
+          0.05549884438514709,
+          0.05553981065750122,
+          0.056264036893844606,
+          0.055357503890991214,
+          0.05585442185401916,
+          0.05548596382141113,
+          0.05602307915687561
+        ],
+        [
+          0.1511796236038208,
+          0.15134577751159667,
+          0.15100383758544922,
+          0.15081326961517333,
+          0.15105750560760497,
+          0.15075865983963013,
+          0.15148615837097168
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "down",
+      "m": 64,
+      "n": 2048,
+      "k": 6144,
+      "config": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.989776611328125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4886474609375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.989776611328125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4886474609375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.05618442296981811,
+      "candidate_ms": 0.20719828605651855,
+      "change_percent": 268.78244022871615,
+      "raw_ms": [
+        [
+          0.05629711151123047,
+          0.05634750127792358,
+          0.05618442296981811,
+          0.05565519332885742,
+          0.05496557354927063,
+          0.05661422610282898,
+          0.05595114827156067
+        ],
+        [
+          0.20719828605651855,
+          0.20738577842712402,
+          0.20704827308654786,
+          0.2065190315246582,
+          0.2073030948638916,
+          0.20681674480438234,
+          0.20722596645355223
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "down",
+      "m": 64,
+      "n": 2048,
+      "k": 6144,
+      "config": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.989776611328125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4886474609375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.989776611328125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4886474609375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.055391925573349,
+      "candidate_ms": 0.28636171817779543,
+      "change_percent": 416.9737560370605,
+      "raw_ms": [
+        [
+          0.055733466148376466,
+          0.05486577153205872,
+          0.05654153823852539,
+          0.05536192059516907,
+          0.055391925573349,
+          0.055561918020248416,
+          0.05486249923706055
+        ],
+        [
+          0.2863682746887207,
+          0.28636171817779543,
+          0.28642385005950927,
+          0.28617095947265625,
+          0.2860970973968506,
+          0.28616039752960204,
+          0.2863713502883911
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "lm_head",
+      "m": 64,
+      "n": 130560,
+      "k": 2048,
+      "config": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 1,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5001068115234375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.249725341796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5001068115234375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.249725341796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 1.025992488861084,
+      "candidate_ms": 2.3320457458496096,
+      "change_percent": 127.29657099520546,
+      "raw_ms": [
+        [
+          1.0282381057739258,
+          1.0228713035583497,
+          1.0260909080505372,
+          1.0234360694885254,
+          1.0238411903381348,
+          1.0279444694519042,
+          1.025992488861084
+        ],
+        [
+          2.3367116928100584,
+          2.3354196548461914,
+          2.3320457458496096,
+          2.3314702987670897,
+          2.3327293395996094,
+          2.3312957763671873,
+          2.3293329238891602
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "lm_head",
+      "m": 64,
+      "n": 130560,
+      "k": 2048,
+      "config": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 1,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5001068115234375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.249725341796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5001068115234375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.249725341796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 1.0249672889709474,
+      "candidate_ms": 2.2662439346313477,
+      "change_percent": 121.10402536910465,
+      "raw_ms": [
+        [
+          1.0317138671875,
+          1.0222444534301758,
+          1.0230525016784668,
+          1.0249672889709474,
+          1.0262249946594237,
+          1.0248225212097168,
+          1.0293107986450196
+        ],
+        [
+          2.2654754638671877,
+          2.2705499649047853,
+          2.2683629989624023,
+          2.2662439346313477,
+          2.2613636016845704,
+          2.2626609802246094,
+          2.272147560119629
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "lm_head",
+      "m": 64,
+      "n": 130560,
+      "k": 2048,
+      "config": {
+        "bm": 32,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5001068115234375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.249725341796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5001068115234375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.249725341796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 1.0293770790100099,
+      "candidate_ms": 1.691874885559082,
+      "change_percent": 64.35909833801826,
+      "raw_ms": [
+        [
+          1.0304924964904785,
+          1.0293770790100099,
+          1.0301570892333984,
+          1.027467918395996,
+          1.0281352043151855,
+          1.0311890602111817,
+          1.0280592918395997
+        ],
+        [
+          1.6916519165039063,
+          1.691874885559082,
+          1.6920890808105469,
+          1.6921146392822266,
+          1.6924758911132813,
+          1.6914718627929688,
+          1.690665054321289
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "lm_head",
+      "m": 64,
+      "n": 130560,
+      "k": 2048,
+      "config": {
+        "bm": 32,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5001068115234375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.249725341796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5001068115234375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.249725341796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 1.0308878898620606,
+      "candidate_ms": 1.5819087028503418,
+      "change_percent": 53.451089920360914,
+      "raw_ms": [
+        [
+          1.0276242256164552,
+          1.028031349182129,
+          1.0310036659240722,
+          1.0308878898620606,
+          1.0310774803161622,
+          1.0300703048706055,
+          1.031489086151123
+        ],
+        [
+          1.582881546020508,
+          1.5811209678649902,
+          1.581447696685791,
+          1.5809067726135253,
+          1.583897304534912,
+          1.5821282386779785,
+          1.5819087028503418
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "lm_head",
+      "m": 64,
+      "n": 130560,
+      "k": 2048,
+      "config": {
+        "bm": 64,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5001068115234375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.249725341796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5001068115234375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.249725341796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 1.036808681488037,
+      "candidate_ms": 1.1605340957641601,
+      "change_percent": 11.93329265902281,
+      "raw_ms": [
+        [
+          1.037241268157959,
+          1.039609432220459,
+          1.036808681488037,
+          1.0349346160888673,
+          1.03706693649292,
+          1.035433864593506,
+          1.0346186637878418
+        ],
+        [
+          1.159837532043457,
+          1.1596446990966798,
+          1.1616331100463868,
+          1.1605340957641601,
+          1.1619481086730956,
+          1.159090805053711,
+          1.160628318786621
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "lm_head",
+      "m": 64,
+      "n": 130560,
+      "k": 2048,
+      "config": {
+        "bm": 64,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5001068115234375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.249725341796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5001068115234375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.249725341796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 1.031141757965088,
+      "candidate_ms": 1.2294642448425293,
+      "change_percent": 19.23329021887561,
+      "raw_ms": [
+        [
+          1.0310165405273437,
+          1.032903289794922,
+          1.0323665618896485,
+          1.0305728912353516,
+          1.031141757965088,
+          1.0298742294311523,
+          1.033049964904785
+        ],
+        [
+          1.2294642448425293,
+          1.2316275596618653,
+          1.2261192321777343,
+          1.2302057266235351,
+          1.2246857643127442,
+          1.2298069953918458,
+          1.2270159721374512
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "lm_head",
+      "m": 64,
+      "n": 130560,
+      "k": 2048,
+      "config": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5001068115234375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.249725341796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5001068115234375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.249725341796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 1.030268669128418,
+      "candidate_ms": 1.4855271339416505,
+      "change_percent": 44.18832470159166,
+      "raw_ms": [
+        [
+          1.030909252166748,
+          1.0315488815307616,
+          1.0290172576904297,
+          1.030268669128418,
+          1.0289313316345214,
+          1.0293942451477052,
+          1.0331957817077637
+        ],
+        [
+          1.4841705322265626,
+          1.489992904663086,
+          1.486166763305664,
+          1.4846315383911133,
+          1.4846442222595215,
+          1.486245059967041,
+          1.4855271339416505
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "lm_head",
+      "m": 64,
+      "n": 130560,
+      "k": 2048,
+      "config": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5001068115234375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.249725341796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5001068115234375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.249725341796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 1.032503604888916,
+      "candidate_ms": 1.155569076538086,
+      "change_percent": 11.919132394933406,
+      "raw_ms": [
+        [
+          1.032503604888916,
+          1.0323342323303222,
+          1.0344075202941894,
+          1.0320858001708983,
+          1.03457670211792,
+          1.032747745513916,
+          1.0322742462158203
+        ],
+        [
+          1.155569076538086,
+          1.1566563606262208,
+          1.1534432411193847,
+          1.1556996345520019,
+          1.1535202980041503,
+          1.153093147277832,
+          1.157480525970459
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "qkv",
+      "m": 16,
+      "n": 2560,
+      "k": 2048,
+      "config": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 1,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.49700927734375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.2936553955078125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.49700927734375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.2936553955078125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.03902249932289124,
+      "candidate_ms": 0.05014269351959229,
+      "change_percent": 28.49687844104276,
+      "raw_ms": [
+        [
+          0.03903422951698303,
+          0.03881673216819763,
+          0.03892057836055755,
+          0.03916192352771759,
+          0.03913596272468567,
+          0.03902249932289124,
+          0.038954037427902224
+        ],
+        [
+          0.050137501955032346,
+          0.05008615255355835,
+          0.050104230642318726,
+          0.050226342678070066,
+          0.05019749999046326,
+          0.05014269351959229,
+          0.050143074989318845
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "qkv",
+      "m": 16,
+      "n": 2560,
+      "k": 2048,
+      "config": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 1,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.49700927734375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.2936553955078125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.49700927734375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.2936553955078125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.03895076811313629,
+      "candidate_ms": 0.03378442525863647,
+      "change_percent": -13.26377656916462,
+      "raw_ms": [
+        [
+          0.039165961742401126,
+          0.03911346197128296,
+          0.03894000053405762,
+          0.03895076811313629,
+          0.0388509601354599,
+          0.03900538384914398,
+          0.038897308707237246
+        ],
+        [
+          0.03380788266658783,
+          0.03374249935150146,
+          0.03387115299701691,
+          0.03376384675502777,
+          0.03378442525863647,
+          0.03379499912261963,
+          0.0337788462638855
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "qkv",
+      "m": 16,
+      "n": 2560,
+      "k": 2048,
+      "config": {
+        "bm": 32,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.49700927734375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.2936553955078125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.49700927734375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.2936553955078125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.03913288712501526,
+      "candidate_ms": 0.06238288879394531,
+      "change_percent": 59.41294746450676,
+      "raw_ms": [
+        [
+          0.039395195245742795,
+          0.0393009603023529,
+          0.039128652215003966,
+          0.03916172981262207,
+          0.03913288712501526,
+          0.03909634351730347,
+          0.038960385322570804
+        ],
+        [
+          0.06241922974586487,
+          0.06223192811012268,
+          0.06238288879394531,
+          0.0622124969959259,
+          0.06232288479804993,
+          0.06246423125267029,
+          0.06246115565299988
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "qkv",
+      "m": 16,
+      "n": 2560,
+      "k": 2048,
+      "config": {
+        "bm": 32,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.49700927734375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.2936553955078125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.49700927734375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.2936553955078125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.03890249729156494,
+      "candidate_ms": 0.04952134788036346,
+      "change_percent": 27.296064078387495,
+      "raw_ms": [
+        [
+          0.03900846242904663,
+          0.03883403837680817,
+          0.03915653824806213,
+          0.038679808378219604,
+          0.03890249729156494,
+          0.0385457694530487,
+          0.03900865316390991
+        ],
+        [
+          0.049595385789871216,
+          0.04942923188209534,
+          0.049523654580116275,
+          0.04952134788036346,
+          0.049489229917526245,
+          0.049540579319000244,
+          0.0493146151304245
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "qkv",
+      "m": 16,
+      "n": 2560,
+      "k": 2048,
+      "config": {
+        "bm": 64,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.49700927734375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.2936553955078125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.49700927734375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.2936553955078125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.03905788362026215,
+      "candidate_ms": 0.07256038188934326,
+      "change_percent": 85.77653258125062,
+      "raw_ms": [
+        [
+          0.03905807733535767,
+          0.03905788362026215,
+          0.03914903998374939,
+          0.039098653197288516,
+          0.038922885060310365,
+          0.038975384831428525,
+          0.038869231939315796
+        ],
+        [
+          0.07256038188934326,
+          0.07232999801635742,
+          0.07257192730903625,
+          0.07246826887130738,
+          0.07265135049819946,
+          0.07264269590377807,
+          0.07240288853645324
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "qkv",
+      "m": 16,
+      "n": 2560,
+      "k": 2048,
+      "config": {
+        "bm": 64,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.49700927734375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.2936553955078125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.49700927734375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.2936553955078125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.03876442313194275,
+      "candidate_ms": 0.06874692440032959,
+      "change_percent": 77.34540809838751,
+      "raw_ms": [
+        [
+          0.03859942257404327,
+          0.03902480602264404,
+          0.038603654503822325,
+          0.03876442313194275,
+          0.03912307620048523,
+          0.03851461410522461,
+          0.038964423537254336
+        ],
+        [
+          0.06880499720573426,
+          0.0687203824520111,
+          0.07165403962135315,
+          0.06876442432403565,
+          0.06874692440032959,
+          0.06865615248680115,
+          0.06870846152305603
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "qkv",
+      "m": 16,
+      "n": 2560,
+      "k": 2048,
+      "config": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.49700927734375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.2936553955078125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.49700927734375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.2936553955078125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.03872480690479278,
+      "candidate_ms": 0.07706999778747559,
+      "change_percent": 99.01970841831881,
+      "raw_ms": [
+        [
+          0.038740769028663635,
+          0.038654038310050966,
+          0.0389280766248703,
+          0.03835499882698059,
+          0.03865500092506409,
+          0.03872480690479278,
+          0.03905461430549621
+        ],
+        [
+          0.07706999778747559,
+          0.07703365683555603,
+          0.07717826962471008,
+          0.07695749998092652,
+          0.07714499831199646,
+          0.07699077129364014,
+          0.07714173197746277
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "qkv",
+      "m": 16,
+      "n": 2560,
+      "k": 2048,
+      "config": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.49700927734375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.2936553955078125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.49700927734375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.2936553955078125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.0389861524105072,
+      "candidate_ms": 0.11396557092666626,
+      "change_percent": 192.32320678034202,
+      "raw_ms": [
+        [
+          0.03889827132225036,
+          0.0389861524105072,
+          0.03874500095844269,
+          0.03900846242904663,
+          0.03901288509368896,
+          0.0387675017118454,
+          0.039070770144462585
+        ],
+        [
+          0.11384019851684571,
+          0.11487001180648804,
+          0.11389268636703491,
+          0.1147905707359314,
+          0.11396557092666626,
+          0.11494922637939453,
+          0.11344499588012695
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "o_proj",
+      "m": 16,
+      "n": 2048,
+      "k": 2048,
+      "config": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 1,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4981689453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24755859375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4981689453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24755859375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.02600884735584259,
+      "candidate_ms": 0.04491096138954163,
+      "change_percent": 72.67570828913684,
+      "raw_ms": [
+        [
+          0.02605730891227722,
+          0.02600884735584259,
+          0.026019614934921265,
+          0.026005575060844423,
+          0.026003462076187134,
+          0.0260240375995636,
+          0.02600884735584259
+        ],
+        [
+          0.04492192268371582,
+          0.04491096138954163,
+          0.0449088454246521,
+          0.04490249752998352,
+          0.04490903913974762,
+          0.044914424419403076,
+          0.04491326808929443
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "o_proj",
+      "m": 16,
+      "n": 2048,
+      "k": 2048,
+      "config": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 1,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4981689453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24755859375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4981689453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24755859375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.026019808650016785,
+      "candidate_ms": 0.030931922793388366,
+      "change_percent": 18.878363824433464,
+      "raw_ms": [
+        [
+          0.02603461444377899,
+          0.02601538598537445,
+          0.026019808650016785,
+          0.02602500021457672,
+          0.026010960340499878,
+          0.026001539826393128,
+          0.026021921634674074
+        ],
+        [
+          0.03095249831676483,
+          0.030925574898719787,
+          0.030931922793388366,
+          0.030928847193717957,
+          0.030918270349502563,
+          0.030941727757453918,
+          0.030947113037109376
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "o_proj",
+      "m": 16,
+      "n": 2048,
+      "k": 2048,
+      "config": {
+        "bm": 32,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4981689453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24755859375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4981689453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24755859375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.025997114181518555,
+      "candidate_ms": 0.0598223090171814,
+      "change_percent": 130.11134466497555,
+      "raw_ms": [
+        [
+          0.026035767793655396,
+          0.025997114181518555,
+          0.025985193252563477,
+          0.026011154055595398,
+          0.025990578532218932,
+          0.025990578532218932,
+          0.026017501950263977
+        ],
+        [
+          0.05984576940536499,
+          0.059857499599456784,
+          0.05990461707115173,
+          0.059771728515625,
+          0.0598223090171814,
+          0.05978365540504456,
+          0.05978673100471497
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "o_proj",
+      "m": 16,
+      "n": 2048,
+      "k": 2048,
+      "config": {
+        "bm": 32,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4981689453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24755859375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4981689453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24755859375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.02603461444377899,
+      "candidate_ms": 0.048346152901649474,
+      "change_percent": 85.699515566292,
+      "raw_ms": [
+        [
+          0.026051923632621765,
+          0.0260123074054718,
+          0.026025962829589844,
+          0.02603461444377899,
+          0.026025962829589844,
+          0.0260442316532135,
+          0.026035767793655396
+        ],
+        [
+          0.048346152901649474,
+          0.04833865165710449,
+          0.048346152901649474,
+          0.0484253853559494,
+          0.048320385813713077,
+          0.04840288758277893,
+          0.0484113484621048
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "o_proj",
+      "m": 16,
+      "n": 2048,
+      "k": 2048,
+      "config": {
+        "bm": 64,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4981689453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24755859375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4981689453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24755859375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.026013076305389404,
+      "candidate_ms": 0.07214692234992981,
+      "change_percent": 177.348674577879,
+      "raw_ms": [
+        [
+          0.026036924123764037,
+          0.026019614934921265,
+          0.026003462076187134,
+          0.0260305792093277,
+          0.026006731390953063,
+          0.026000383496284484,
+          0.026013076305389404
+        ],
+        [
+          0.07215846180915833,
+          0.07215327024459839,
+          0.07214692234992981,
+          0.07214577198028564,
+          0.07215307950973511,
+          0.07214577198028564,
+          0.07213711142539977
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "o_proj",
+      "m": 16,
+      "n": 2048,
+      "k": 2048,
+      "config": {
+        "bm": 64,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4981689453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24755859375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4981689453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24755859375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.025995001196861267,
+      "candidate_ms": 0.06622692346572875,
+      "change_percent": 154.76791850936803,
+      "raw_ms": [
+        [
+          0.025999230146408082,
+          0.025984230637550353,
+          0.0259736567735672,
+          0.025988653302192688,
+          0.026000189781188964,
+          0.025995001196861267,
+          0.026010000705718996
+        ],
+        [
+          0.06621654033660888,
+          0.06622288823127746,
+          0.0662142276763916,
+          0.06624653339385986,
+          0.06626577377319336,
+          0.06624864935874938,
+          0.06622692346572875
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "o_proj",
+      "m": 16,
+      "n": 2048,
+      "k": 2048,
+      "config": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4981689453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24755859375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4981689453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24755859375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.026021727919578554,
+      "candidate_ms": 0.06742403507232667,
+      "change_percent": 159.10667915944708,
+      "raw_ms": [
+        [
+          0.02609461545944214,
+          0.02600249946117401,
+          0.02608500123023987,
+          0.026017501950263977,
+          0.026013076305389404,
+          0.026036733388900758,
+          0.026021727919578554
+        ],
+        [
+          0.0674486517906189,
+          0.06744750142097473,
+          0.06742057800292969,
+          0.06741865277290345,
+          0.067434424161911,
+          0.06742403507232667,
+          0.06742403507232667
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "o_proj",
+      "m": 16,
+      "n": 2048,
+      "k": 2048,
+      "config": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4981689453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24755859375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4981689453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24755859375,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.0260123074054718,
+      "candidate_ms": 0.09997076988220215,
+      "change_percent": 284.3210382066024,
+      "raw_ms": [
+        [
+          0.026054999232292174,
+          0.026004424691200255,
+          0.0260123074054718,
+          0.026006731390953063,
+          0.026007881760597228,
+          0.026035767793655396,
+          0.026041921973228455
+        ],
+        [
+          0.09996211528778076,
+          0.10001057386398315,
+          0.09998461604118347,
+          0.09996846318244934,
+          0.09997076988220215,
+          0.09995576739311218,
+          0.10000941753387452
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "gate_up",
+      "m": 16,
+      "n": 12288,
+      "k": 2048,
+      "config": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 1,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.498809814453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.253814697265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.498809814453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.253814697265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.08145654201507568,
+      "candidate_ms": 0.11053614616394043,
+      "change_percent": 35.699531835617094,
+      "raw_ms": [
+        [
+          0.08228673338890076,
+          0.08144230842590332,
+          0.08145654201507568,
+          0.08170922994613647,
+          0.08146942257881165,
+          0.0813513457775116,
+          0.0813194215297699
+        ],
+        [
+          0.11011712551116944,
+          0.11014385223388672,
+          0.11095499992370605,
+          0.11053614616394043,
+          0.11087480783462525,
+          0.11086499691009521,
+          0.10959538221359252
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "gate_up",
+      "m": 16,
+      "n": 12288,
+      "k": 2048,
+      "config": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 1,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.498809814453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.253814697265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.498809814453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.253814697265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.08158077001571655,
+      "candidate_ms": 0.10060826539993287,
+      "change_percent": 23.323505503258502,
+      "raw_ms": [
+        [
+          0.08184865117073059,
+          0.08141346573829651,
+          0.08140384554862976,
+          0.0817082703113556,
+          0.08158077001571655,
+          0.08175654411315918,
+          0.08138903975486755
+        ],
+        [
+          0.10060826539993287,
+          0.1008407711982727,
+          0.1008642315864563,
+          0.10042403936386109,
+          0.10079903602600097,
+          0.10053095817565919,
+          0.10036922693252563
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "gate_up",
+      "m": 16,
+      "n": 12288,
+      "k": 2048,
+      "config": {
+        "bm": 32,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.498809814453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.253814697265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.498809814453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.253814697265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.08183134794235229,
+      "candidate_ms": 0.11071711778640747,
+      "change_percent": 35.2991494951352,
+      "raw_ms": [
+        [
+          0.08221384882926941,
+          0.08167500495910644,
+          0.08184115886688233,
+          0.08191500306129455,
+          0.08183134794235229,
+          0.08137500286102295,
+          0.08141154050827026
+        ],
+        [
+          0.11090693473815919,
+          0.11058748960494995,
+          0.11064749956130981,
+          0.11119616031646729,
+          0.11145192384719849,
+          0.11071711778640747,
+          0.11070442199707031
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "gate_up",
+      "m": 16,
+      "n": 12288,
+      "k": 2048,
+      "config": {
+        "bm": 32,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.498809814453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.253814697265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.498809814453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.253814697265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.08163538575172424,
+      "candidate_ms": 0.12952922582626342,
+      "change_percent": 58.66799015343367,
+      "raw_ms": [
+        [
+          0.08197692036628723,
+          0.08168134689331055,
+          0.08163538575172424,
+          0.08150461316108704,
+          0.08167596459388733,
+          0.08119500279426575,
+          0.0813848078250885
+        ],
+        [
+          0.12972441911697388,
+          0.12952922582626342,
+          0.12986153364181519,
+          0.12898192405700684,
+          0.12834423780441284,
+          0.1298667311668396,
+          0.12932769060134888
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "gate_up",
+      "m": 16,
+      "n": 12288,
+      "k": 2048,
+      "config": {
+        "bm": 64,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.498809814453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.253814697265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.498809814453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.253814697265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.08166096210479737,
+      "candidate_ms": 0.13827654123306274,
+      "change_percent": 69.33004175925494,
+      "raw_ms": [
+        [
+          0.08219576478004456,
+          0.08137615323066712,
+          0.08175846338272094,
+          0.08166096210479737,
+          0.08146172761917114,
+          0.08180038332939148,
+          0.08154865503311157
+        ],
+        [
+          0.1378134608268738,
+          0.13847768306732178,
+          0.13827654123306274,
+          0.13878865242004396,
+          0.13814038038253784,
+          0.13820576667785645,
+          0.1384350061416626
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "gate_up",
+      "m": 16,
+      "n": 12288,
+      "k": 2048,
+      "config": {
+        "bm": 64,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.498809814453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.253814697265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.498809814453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.253814697265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.08176922798156738,
+      "candidate_ms": 0.17722827196121216,
+      "change_percent": 116.74201449127462,
+      "raw_ms": [
+        [
+          0.08182807564735413,
+          0.08185288906097413,
+          0.08124423623085023,
+          0.08176922798156738,
+          0.08162038326263428,
+          0.0813911497592926,
+          0.08179172873497009
+        ],
+        [
+          0.17709096670150756,
+          0.17680615186691284,
+          0.17730635404586792,
+          0.1773730754852295,
+          0.17657018899917604,
+          0.17722827196121216,
+          0.1774511456489563
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "gate_up",
+      "m": 16,
+      "n": 12288,
+      "k": 2048,
+      "config": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.498809814453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.253814697265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.498809814453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.253814697265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.08154423236846924,
+      "candidate_ms": 0.10205135345458985,
+      "change_percent": 25.14846297584392,
+      "raw_ms": [
+        [
+          0.08200615644454956,
+          0.08141788244247436,
+          0.08157326579093933,
+          0.08145211935043335,
+          0.08167057633399963,
+          0.08154423236846924,
+          0.08147692084312438
+        ],
+        [
+          0.10207269191741944,
+          0.1010849952697754,
+          0.10180615186691284,
+          0.1022076964378357,
+          0.10205135345458985,
+          0.10210922956466675,
+          0.10163134336471558
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "gate_up",
+      "m": 16,
+      "n": 12288,
+      "k": 2048,
+      "config": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.498809814453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.253814697265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.498809814453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.253814697265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.0815336525440216,
+      "candidate_ms": 0.13547557592391968,
+      "change_percent": 66.15909099714843,
+      "raw_ms": [
+        [
+          0.08207788467407226,
+          0.08157750368118286,
+          0.08145442605018616,
+          0.0815336525440216,
+          0.0815111517906189,
+          0.08170922994613647,
+          0.08152499794960022
+        ],
+        [
+          0.13547557592391968,
+          0.13598673343658446,
+          0.13535038232803345,
+          0.13535788059234619,
+          0.1356342315673828,
+          0.1357317328453064,
+          0.1354598045349121
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "down",
+      "m": 16,
+      "n": 2048,
+      "k": 6144,
+      "config": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 1,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.955322265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4537811279296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.955322265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4537811279296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.09165307879447937,
+      "candidate_ms": 0.15522422790527343,
+      "change_percent": 69.36062590253455,
+      "raw_ms": [
+        [
+          0.09185788035392761,
+          0.09164134860038757,
+          0.09154307842254639,
+          0.09161673188209533,
+          0.09165307879447937,
+          0.09181076884269715,
+          0.09166057705879212
+        ],
+        [
+          0.1603232741355896,
+          0.16004999876022338,
+          0.1554246187210083,
+          0.15522422790527343,
+          0.15276864767074586,
+          0.15252981185913086,
+          0.1525671124458313
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "down",
+      "m": 16,
+      "n": 2048,
+      "k": 6144,
+      "config": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 1,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.955322265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4537811279296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.955322265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4537811279296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.09158037900924683,
+      "candidate_ms": 0.11365711688995361,
+      "change_percent": 24.106405891241955,
+      "raw_ms": [
+        [
+          0.09158037900924683,
+          0.09157711267471313,
+          0.09154942035675048,
+          0.0917088508605957,
+          0.09165961742401123,
+          0.09151615500450135,
+          0.09174307584762573
+        ],
+        [
+          0.11407384872436524,
+          0.11343865394592285,
+          0.11365385055541992,
+          0.11383384466171265,
+          0.11366345882415771,
+          0.11365711688995361,
+          0.11339999437332153
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "down",
+      "m": 16,
+      "n": 2048,
+      "k": 6144,
+      "config": {
+        "bm": 32,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.955322265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4537811279296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.955322265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4537811279296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.09156538248062134,
+      "candidate_ms": 0.1903101921081543,
+      "change_percent": 107.84076574837775,
+      "raw_ms": [
+        [
+          0.09168000221252441,
+          0.0917228877544403,
+          0.09156538248062134,
+          0.09132653474807739,
+          0.09153538346290588,
+          0.0917798101902008,
+          0.09152365326881409
+        ],
+        [
+          0.19068326950073242,
+          0.19055904150009156,
+          0.19001250267028807,
+          0.19031672477722167,
+          0.1903101921081543,
+          0.1899236559867859,
+          0.19003596305847167
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "down",
+      "m": 16,
+      "n": 2048,
+      "k": 6144,
+      "config": {
+        "bm": 32,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.955322265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4537811279296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.955322265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4537811279296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.09166057705879212,
+      "candidate_ms": 0.15366096496582032,
+      "change_percent": 67.64128035901462,
+      "raw_ms": [
+        [
+          0.09194346070289612,
+          0.0917238473892212,
+          0.09166057705879212,
+          0.09141307473182678,
+          0.09160499572753907,
+          0.09153422713279724,
+          0.09178730845451355
+        ],
+        [
+          0.153694224357605,
+          0.15339962244033814,
+          0.15313289165496827,
+          0.15384000539779663,
+          0.15366096496582032,
+          0.15402230024337768,
+          0.15308998823165892
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "down",
+      "m": 16,
+      "n": 2048,
+      "k": 6144,
+      "config": {
+        "bm": 64,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.955322265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4537811279296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.955322265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4537811279296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.09163615107536316,
+      "candidate_ms": 0.21454920768737792,
+      "change_percent": 134.13162291258712,
+      "raw_ms": [
+        [
+          0.09195981025695801,
+          0.09163615107536316,
+          0.091726154088974,
+          0.09188576936721801,
+          0.09134153723716736,
+          0.09161673188209533,
+          0.09131884574890137
+        ],
+        [
+          0.21454920768737792,
+          0.21479904651641846,
+          0.21454615592956544,
+          0.21468422412872315,
+          0.214292311668396,
+          0.21422672271728516,
+          0.2147625207901001
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "down",
+      "m": 16,
+      "n": 2048,
+      "k": 6144,
+      "config": {
+        "bm": 64,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.955322265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4537811279296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.955322265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4537811279296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.09157058000564575,
+      "candidate_ms": 0.19138191938400267,
+      "change_percent": 108.99935260015074,
+      "raw_ms": [
+        [
+          0.09144750237464905,
+          0.09163384437561035,
+          0.09142076969146729,
+          0.09174326658248902,
+          0.09157058000564575,
+          0.09162653684616089,
+          0.09155480861663819
+        ],
+        [
+          0.19135172367095948,
+          0.19138191938400267,
+          0.19135942459106445,
+          0.19136250019073486,
+          0.19148557186126708,
+          0.19143635034561157,
+          0.19138385057449342
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "down",
+      "m": 16,
+      "n": 2048,
+      "k": 6144,
+      "config": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.955322265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4537811279296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.955322265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4537811279296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.09176365733146667,
+      "candidate_ms": 0.2154919147491455,
+      "change_percent": 134.83361606954082,
+      "raw_ms": [
+        [
+          0.0918984591960907,
+          0.09186750054359435,
+          0.09146269559860229,
+          0.09165422916412354,
+          0.09176365733146667,
+          0.09177634716033936,
+          0.09168442487716674
+        ],
+        [
+          0.2154919147491455,
+          0.2153388500213623,
+          0.21787595748901367,
+          0.21688287258148192,
+          0.21520075798034669,
+          0.21507863998413085,
+          0.21684751510620118
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "down",
+      "m": 16,
+      "n": 2048,
+      "k": 6144,
+      "config": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.955322265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4537811279296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.955322265625,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.4537811279296875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.09163692593574524,
+      "candidate_ms": 0.3108128786087036,
+      "change_percent": 239.1786394347646,
+      "raw_ms": [
+        [
+          0.09169500470161437,
+          0.09167576432228089,
+          0.09157941937446594,
+          0.09150846004486084,
+          0.09151269197463989,
+          0.09163692593574524,
+          0.09174557328224182
+        ],
+        [
+          0.3108630657196045,
+          0.31064691543579104,
+          0.3108128786087036,
+          0.3107344150543213,
+          0.311128830909729,
+          0.31110634803771975,
+          0.3106298208236694
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "lm_head",
+      "m": 16,
+      "n": 130560,
+      "k": 2048,
+      "config": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 1,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5000762939453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24913787841796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5000762939453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24913787841796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.856138801574707,
+      "candidate_ms": 0.9469469070434571,
+      "change_percent": 10.606703644517168,
+      "raw_ms": [
+        [
+          0.8524713516235352,
+          0.8576056480407714,
+          0.85809326171875,
+          0.856138801574707,
+          0.8574686050415039,
+          0.8537667274475098,
+          0.853801155090332
+        ],
+        [
+          0.9468332290649414,
+          0.9481703758239746,
+          0.9486815452575683,
+          0.9469469070434571,
+          0.9449540138244629,
+          0.9467613220214843,
+          0.9493564605712891
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "lm_head",
+      "m": 16,
+      "n": 130560,
+      "k": 2048,
+      "config": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 1,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5000762939453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24913787841796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5000762939453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24913787841796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.8551094055175781,
+      "candidate_ms": 0.94607572555542,
+      "change_percent": 10.637974445244481,
+      "raw_ms": [
+        [
+          0.8548295974731446,
+          0.8562225341796875,
+          0.8553696632385254,
+          0.8542284965515137,
+          0.8544140815734863,
+          0.8551094055175781,
+          0.8559427261352539
+        ],
+        [
+          0.94607572555542,
+          0.94613037109375,
+          0.9450438499450684,
+          0.9447792053222657,
+          0.9467099189758301,
+          0.9450213432312011,
+          0.9468352317810058
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "lm_head",
+      "m": 16,
+      "n": 130560,
+      "k": 2048,
+      "config": {
+        "bm": 32,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5000762939453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24913787841796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5000762939453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24913787841796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.8545842170715332,
+      "candidate_ms": 0.9107324600219726,
+      "change_percent": 6.570241039887992,
+      "raw_ms": [
+        [
+          0.8560050010681153,
+          0.8549240112304688,
+          0.8542650222778321,
+          0.8548091888427735,
+          0.8545842170715332,
+          0.85380859375,
+          0.8535600662231445
+        ],
+        [
+          0.9097575187683106,
+          0.9104669570922852,
+          0.9110496520996094,
+          0.9108716964721679,
+          0.9108384132385254,
+          0.9101262092590332,
+          0.9107324600219726
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "lm_head",
+      "m": 16,
+      "n": 130560,
+      "k": 2048,
+      "config": {
+        "bm": 32,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5000762939453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24913787841796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5000762939453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24913787841796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.8563617706298828,
+      "candidate_ms": 0.9470507621765136,
+      "change_percent": 10.590032700773877,
+      "raw_ms": [
+        [
+          0.857088279724121,
+          0.8557875633239747,
+          0.8563617706298828,
+          0.8561872482299805,
+          0.8562836647033691,
+          0.8568771362304688,
+          0.8570978164672851
+        ],
+        [
+          0.9470507621765136,
+          0.9469780921936035,
+          0.9452154159545898,
+          0.9468587875366211,
+          0.9480942726135254,
+          0.9479024887084961,
+          0.9474353790283203
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "lm_head",
+      "m": 16,
+      "n": 130560,
+      "k": 2048,
+      "config": {
+        "bm": 64,
+        "bn": 64,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5000762939453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24913787841796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5000762939453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24913787841796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.8544459342956543,
+      "candidate_ms": 1.1581068992614747,
+      "change_percent": 35.53893263195609,
+      "raw_ms": [
+        [
+          0.8584447860717773,
+          0.8541568756103516,
+          0.8544459342956543,
+          0.8528058052062988,
+          0.8543100357055664,
+          0.8560190200805664,
+          0.8562129020690918
+        ],
+        [
+          1.1581068992614747,
+          1.1574426651000977,
+          1.1603849411010743,
+          1.15901460647583,
+          1.1577394485473633,
+          1.1582583427429198,
+          1.1573859214782716
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "lm_head",
+      "m": 16,
+      "n": 130560,
+      "k": 2048,
+      "config": {
+        "bm": 64,
+        "bn": 64,
+        "bk": 64,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5000762939453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24913787841796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5000762939453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24913787841796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.8522784233093261,
+      "candidate_ms": 1.368454360961914,
+      "change_percent": 60.564238579256724,
+      "raw_ms": [
+        [
+          0.8537538528442383,
+          0.8518359184265136,
+          0.8511569023132324,
+          0.8516613960266113,
+          0.8522883415222168,
+          0.8522784233093261,
+          0.8525612831115723
+        ],
+        [
+          1.371609592437744,
+          1.3672187805175782,
+          1.375454044342041,
+          1.3624488830566406,
+          1.3671158790588378,
+          1.3735715866088867,
+          1.368454360961914
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "lm_head",
+      "m": 16,
+      "n": 130560,
+      "k": 2048,
+      "config": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5000762939453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24913787841796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5000762939453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24913787841796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.8549099922180176,
+      "candidate_ms": 0.9138984680175781,
+      "change_percent": 6.899963310350143,
+      "raw_ms": [
+        [
+          0.8550278663635253,
+          0.8559729576110839,
+          0.8549099922180176,
+          0.8534668922424317,
+          0.8543109893798828,
+          0.8549198150634766,
+          0.8543055534362793
+        ],
+        [
+          0.916480827331543,
+          0.9137412071228027,
+          0.9138984680175781,
+          0.9158432960510254,
+          0.9133639335632324,
+          0.9130125045776367,
+          0.9165244102478027
+        ]
+      ],
+      "graph_numeric_passed": true
+    },
+    {
+      "name": "lm_head",
+      "m": 16,
+      "n": 130560,
+      "k": 2048,
+      "config": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "splits": 1,
+        "warps": 2,
+        "stages": 1
+      },
+      "baseline_vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5000762939453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24913787841796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_fp32": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.5000762939453125,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_cpu": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.24913787841796875,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "vs_native": {
+        "passed": true,
+        "finite": true,
+        "max_abs": 0.0,
+        "failed_elements": 0,
+        "atol": 0.02,
+        "rtol": 0.01
+      },
+      "baseline_ms": 0.8570828437805176,
+      "candidate_ms": 1.1139909744262695,
+      "change_percent": 29.97471393926783,
+      "raw_ms": [
+        [
+          0.851251220703125,
+          0.8546634674072265,
+          0.8550524711608887,
+          0.860028076171875,
+          0.8599499702453614,
+          0.8570828437805176,
+          0.8572275161743164
+        ],
+        [
+          1.1113436698913575,
+          1.1149255752563476,
+          1.1097352027893066,
+          1.1139909744262695,
+          1.1165891647338868,
+          1.1146980285644532,
+          1.1123272895812988
+        ]
+      ],
+      "graph_numeric_passed": true
+    }
+  ],
+  "source_sha256": "86a2244f3fb30a8294d53174bd3aa6080f947b5b80ce43b6212a35b533463d56",
+  "baseline_source": {
+    "path": "/usr/local/lib/python3.12/site-packages/flag_gems/runtime/backend/_iluvatar/ops/mm.py",
+    "sha256": "4c2e23da2a6b65b89cbb8170967f14c5327d143e21137387f3907ccb4fcde090"
+  },
+  "packages": {
+    "torch": "2.10.0+corex.4.5.0",
+    "flag-gems": "5.3.5.post1.dev0+g4df52d916.d20261011",
+    "vllm": "0.24.0+empty"
+  }
+}
