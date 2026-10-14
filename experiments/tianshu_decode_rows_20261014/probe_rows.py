@@ -116,7 +116,6 @@ def main():
                 k, v = cache.unbind(1)
                 if strided:
                     k, v = k[::2], v[::2]
-                page_versions=[(k,v,table),(k,v,table)]
                 selected=batch in (8,16,32,40,48,56,64)
                 plan=dict(TILE_SIZE=16 if selected else 32,num_warps=1 if selected else 2 if 8<=batch<=64 else 4,num_stages=1)
                 plans=[dict(plan),dict(plan,BLOCK_M=32,BLOCK_Q=4),dict(plan,BLOCK_M=32,BLOCK_Q=4,num_warps=2),dict(plan,BLOCK_M=64,BLOCK_Q=8,num_warps=2)]
@@ -147,7 +146,7 @@ def main():
                 graphs, outputs, buffers, tails = [], [], [], []
                 active = []
                 for plan_id, selected in enumerate(routers):
-                    k,v,table=page_versions[plan_id]
+                    # Every candidate uses these exact same K/V/table allocations.
                     native.kernel_unified_attention = selected
                     output = torch.full((queries + 3, 16, 128), 17., device='cuda', dtype=q.dtype)
                     partial = torch.full((queries, 16, 64, 128), 17., device='cuda', dtype=torch.float32)
