@@ -8,4 +8,4 @@
 
 screen完整通过后，`--stage math --screen-root SCREEN`按官方Level3/C8/105题评测；新Math严格>95%后，`--stage official --screen-root SCREEN --math-root MATH`原脚本N256四轮排首轮。每步均重新启动原始serve命令、验证源码/安装源/实际Worker/75预热/算子真实路径/零preempt、保存全部原始产物。不借旧Math或自选参数成绩。完整比赛资格还需最终16K与复现等要求，不用单一4K证明全部资格。
 
-2026-10-16已准备并CPU验证，尚无此profile GPU实测结果。
+2026-10-16已通过CPU及实际原命令N64运行，44源/75warm/真实2048和256seq均本地审计。N64重复seed=0使后三轮大量命中prefix cache，5510.08不代表正式N256，不采用为新最佳。详见results/20261016/screen64_32g；独立原命令Math105已启动。
