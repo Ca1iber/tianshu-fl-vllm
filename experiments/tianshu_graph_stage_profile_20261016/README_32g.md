@@ -6,4 +6,6 @@
 
 能力通过后才准备真实vLLM原始命令阶段诊断。计划在稳定C64纯decode窗口，用图外事件记录整model forward、logits、sample及全步骤的GPU流区间，并用主机跨度与IXsys整图事件交叉检查。此计时可能包含GPU流等待，不会当作单一kernel活动时间；保留FULL_DECODE_ONLY、默认2048/256、75预热与当前算子组合。尚未实现真实模型诊断hook，尚无新吞吐/Math/正式成绩。
 
-V1已运行并失败，原始源码/日志/trace保留：工具确实看到子进程20个Graph和20个图外kernel；但同一窗口的图外event区间含采集插桩等待，不能与ProfilerStop之后的10回放直接作缩放门槛比较，首轮91ms尤其失真。V2不放宽5..20或.5..1.5门槛，改为同一无采集状态下分别测1/10回放，在采集窗口预先固定5个Graph预热加20个测量（总25，全部要求计数正确），用无采集event中位数与后20个Graph的设备trace中位数校验单位。采集状态event原样保留并明确含插桩影响，不能作为无扰动算子耗时。所有测量在断言前保存。真实模型的event阶段计时与IXsys应分开两次运行。V2未运行。
+V1已运行并失败，原始源码/日志/trace保留：工具确实看到子进程20个Graph和20个图外kernel；但同一窗口的图外event区间含采集插桩等待，不能与ProfilerStop之后的10回放直接作缩放门槛比较，首轮91ms尤其失真。V2不放宽5..20或.5..1.5门槛，改为同一无采集状态下分别测1/10回放，在采集窗口预先固定5个Graph预热加20个测量（总25，全部要求计数正确），用无采集event中位数与后20个Graph的设备trace中位数校验单位。采集状态event原样保留并明确含插桩影响，不能作为无扰动算子耗时。所有测量在断言前保存。真实模型的event阶段计时与IXsys应分开两次运行。V2已运行：子进程25Graph/20图外kernel计数和输出正确、无采集1/10事件缩放约9.84倍；但时长校准失败，无采集Graph约0.119873ms，采集trace后20Graph中位约0.426340ms。完整capability不判通过，不放宽.5..1.5门槛。工具下时间不能代表原始稳态。
+
+真实模型无IXsys事件诊断已实现但未运行：run_model_events.py --output ROOT --stop-at-utc ISO。读取V2独立通过的无采集事件缩放前置证据，不把其失败的工具时长校准当通过；原始serve argv，实际39环境含4个显式诊断标志。ModelRunnerFL实际execute/forward/logits/sample路径，arm后先32个连续C64单token步，再测40个FULL Graph64步，每步所有请求computed>=4096。320个events边界前预初始化，窗口内无逐步同步，结束仅一次边界同步；记录GPU流区间、主机跨度和线程CPU时间。动态compute_logits方法仅包裹原调用并恢复，API seed777前后canary须一致。先N64/4K/512完整预热，再不同输入种子测同负载；不是正式benchmark，不引入算子或调度参数变化。
