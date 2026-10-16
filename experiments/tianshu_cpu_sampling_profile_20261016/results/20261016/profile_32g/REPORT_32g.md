@@ -12,7 +12,7 @@
 
 下一实验拟在原sample调用阶段捕获完整Sampler，不提前到模型forward，保留原BF16→FP32、TopP、softmax、指数采样和默认RNG。先独立验证变输入、变temperature/p、默认RNG状态与混合eager/Graph序列、旧输出生命周期和回退边界；只有实际通过后才做服务4K对照，目前没有实现或收益结论。
 
-原件 `service-results/20261016_tianshu/cpu_sampling_profile/20261016_cpu_sampling_profile_tianshu`，6994775bytes/27分片，SHA256 `2efdb3c1a0652991cdd618569c8d90723f586c225b054228614014baf129362b`。所有分片、整包、146份源快照、38基础路由字段和实际39环境、128响应/两canary、16帧/32函数profile、指针与processor信息均通过本机独立verifier。报告旁保留完整机器审计，不从侵入式profiling推算模型吞吐收益。
+原件 `service-results/20261016_tianshu/cpu_sampling_profile/20261016_cpu_sampling_profile_tianshu`，6994775bytes/27分片，SHA256 `2efdb3c1a0652991cdd618569c8d90723f586c225b054228614014baf129362b`。所有分片、整包、146份源快照、35基础环境加4诊断项共39实际环境、128响应/两canary、16帧/32函数profile、指针与processor信息均通过本机独立verifier。报告旁保留完整机器审计，不从侵入式profiling推算模型吞吐收益。
 
 ```bash
 python3 experiments/tianshu_cpu_sampling_profile_20261016/verify_downloaded.py \
