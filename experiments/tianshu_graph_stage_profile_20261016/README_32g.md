@@ -1,0 +1,7 @@
+# 天数：当前原始命令配置的Graph/框架阶段诊断
+
+上一轮RNG融合局部采样约-53%但整模型只+0.36794%，不采用。下一步先取得当前配置的时间分布，避免用旧NoGraph或单算子数据外推完整Graph。
+
+已有IXsys4.4能力只证明单进程20个Graph整体事件，不覆盖图内kernel；图内external=True事件曾读取旧时间戳。本次新增子进程能力检查：无CUDA上下文的父进程启动GPU子进程，子进程在ProfilerStart/Stop窗口中执行20次Graph（各50个Triton kernel）及20个独立图外kernel。严格检查GPU事件所属子进程、20个Graph和20个外部kernel、正时长、图外CUDA events与trace单位的对应，以及10回放对单回放的时间比例。未运行、未声称覆盖通过。
+
+能力通过后才准备真实vLLM原始命令阶段诊断。计划在稳定C64纯decode窗口，用图外事件记录整model forward、logits、sample及全步骤的GPU流区间，并用主机跨度与IXsys整图事件交叉检查。此计时可能包含GPU流等待，不会当作单一kernel活动时间；保留FULL_DECODE_ONLY、默认2048/256、75预热与当前算子组合。尚未实现真实模型诊断hook，尚无新吞吐/Math/正式成绩。
