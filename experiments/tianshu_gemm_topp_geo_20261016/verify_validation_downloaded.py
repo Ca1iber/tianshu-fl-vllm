@@ -15,6 +15,13 @@ def verify_sources(root,state):
         assert hashlib.sha256(snapshot.read_bytes()).hexdigest()==sha
         if Path(source).is_relative_to('/workspace/vllm-plugin-FL'):
             assert hashlib.sha256((repo/Path(source).relative_to('/workspace/vllm-plugin-FL')).read_bytes()).hexdigest()==sha
+    if state.get('resumed_same_candidate_predictions'):
+        assert len(state['supplemental_sources'])==10
+        for source,sha in state['supplemental_sources'].items():
+            snapshot=root/'orchestration_source_snapshot'/Path(source).relative_to('/')
+            assert hashlib.sha256(snapshot.read_bytes()).hexdigest()==sha
+            if Path(source).is_relative_to('/workspace/vllm-plugin-FL'):
+                assert hashlib.sha256((repo/Path(source).relative_to('/workspace/vllm-plugin-FL')).read_bytes()).hexdigest()==sha
 
 
 def verify_math(root):
@@ -22,7 +29,14 @@ def verify_math(root):
     assert state['fresh_math_for_original_command_profile'] and not state['reused_original_accuracy']
     verify_sources(root,state);profile=audit_runtime(root,state,official=False,online=False)
     assert profile['strictTopP32Kgeo'] and profile['M2048_three_projection_tiles'] and profile['original_sampler']
-    quality=audit_math(root,state,profile,write=False);assert quality==read(root/'accuracy_audit.json')
+    quality=audit_math(root,state,profile,write=False)
+    if state.get('resumed_same_candidate_predictions'):
+        from resume_math_support import audit_completed
+        resumed=audit_completed(root,state,online=False,write=False)
+        assert resumed==read(root/'resume_audit.json')
+        quality.update(resumed_same_candidate_predictions=True,cached_predictions=103,
+            new_prediction_indices=[83,101],resume_audit=resumed)
+    assert quality==read(root/'accuracy_audit.json')
     assert state['correct']==quality['correct'] and state['accuracy']==quality['accuracy']
     return state,quality
 
