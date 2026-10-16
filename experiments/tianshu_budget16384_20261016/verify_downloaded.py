@@ -89,6 +89,14 @@ def main():
         warmed = [json.loads(p.read_text()) for p in (folder / "bucket_trace_records").glob("warmup_completed_*.json")]
         assert any(r["enabled"] and len(r["points"]) == points and max(r["points"]) == budget for r in configured)
         assert any(r["complete"] and len(r["calls"]) == points and max(c["size"] for c in r["calls"]) == budget for r in warmed)
+        extensions = [json.loads(p.read_text()) for p in (folder / "extended_bucket_records").glob("extended_*.json")]
+        assert extensions
+        for record in extensions:
+            assert record["helper_sha256"] == sha(repo / "experiments/tianshu_budget16384_20261016/extend_buckets.py")
+            assert len(record["original_points"]) == 75 and len(record["extended_points"]) == 131
+            assert record["extended_points"][-1] == 16384
+            assert record["original_points"] == record["extended_points"][:75]
+            assert record["changed_constants"] == [[2048,16384]]
         producers = [json.loads(p.read_text()) for p in (folder / "decode_coherent_records").glob("producer_*.json")]
         reducers = [json.loads(p.read_text()) for p in (folder / "decode_coherent_records").glob("reducer_*.json")]
         assert producers and reducers
