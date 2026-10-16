@@ -1,0 +1,652 @@
+{
+  "complete": true,
+  "source_snapshots_verified": 64,
+  "producer_AST_unchanged": true,
+  "generated_reducer_reconstructed": true,
+  "all_raw_events_recomputed": 84,
+  "six_changed_input_Graph_phase_records_checked": true,
+  "full_GPU_tensor_values_not_serialized": true,
+  "no_native_writer_service_or_Math": true,
+  "INT8_storage_not_FP8": true,
+  "adopted": false,
+  "timings": [
+    {
+      "batch": 8,
+      "context": 33,
+      "name": "BF16",
+      "median_ms": 0.015969614684581756,
+      "raw_ms": [
+        0.015916922688484193,
+        0.0159965381026268,
+        0.016003845632076262,
+        0.015903076529502867,
+        0.015918269753456116,
+        0.01598346084356308,
+        0.015969614684581756
+      ],
+      "time_change_percent": 0.0,
+      "metadata": {
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 0,
+        "grid": [
+          12,
+          2,
+          16
+        ],
+        "n_regs": 88,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.bfloat16"
+      },
+      "key_strides": [
+        4096,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": false
+    },
+    {
+      "batch": 8,
+      "context": 33,
+      "name": "INT8_native_tensor",
+      "median_ms": 0.016699230670928954,
+      "raw_ms": [
+        0.016960577666759492,
+        0.016712115705013277,
+        0.016686345636844634,
+        0.016699230670928954,
+        0.016652114689350128,
+        0.016845960915088654,
+        0.0166823074221611
+      ],
+      "time_change_percent": 4.568776396662999,
+      "metadata": {
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 1,
+        "grid": [
+          12,
+          2,
+          16
+        ],
+        "n_regs": 158,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.int8"
+      },
+      "key_strides": [
+        4096,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": false
+    },
+    {
+      "batch": 8,
+      "context": 33,
+      "name": "INT8_folded_w1",
+      "median_ms": 0.01629442274570465,
+      "raw_ms": [
+        0.016225768625736235,
+        0.016300769150257112,
+        0.01632000058889389,
+        0.016314615309238435,
+        0.016279231011867522,
+        0.01629442274570465,
+        0.016134807467460634
+      ],
+      "time_change_percent": 2.033912949925387,
+      "metadata": {
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 0,
+        "grid": [
+          12,
+          2,
+          16
+        ],
+        "n_regs": 158,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.int8"
+      },
+      "key_strides": [
+        4096,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": true
+    },
+    {
+      "batch": 8,
+      "context": 33,
+      "name": "INT8_folded_w2",
+      "median_ms": 0.0174117311835289,
+      "raw_ms": [
+        0.017502884566783904,
+        0.017358076572418214,
+        0.0174117311835289,
+        0.017221154272556306,
+        0.017417307198047637,
+        0.01728326976299286,
+        0.017436346411705016
+      ],
+      "time_change_percent": 9.030377547803138,
+      "metadata": {
+        "tile": 32,
+        "warps": 2,
+        "quant_mode": 0,
+        "grid": [
+          12,
+          2,
+          16
+        ],
+        "n_regs": 155,
+        "n_spills": 0,
+        "compiled_warps": 2,
+        "key_dtype": "torch.int8"
+      },
+      "key_strides": [
+        4096,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": true
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "name": "BF16",
+      "median_ms": 0.8508246421813965,
+      "raw_ms": [
+        0.8506005287170411,
+        0.8508246421813965,
+        0.8515220642089844,
+        0.8517278671264649,
+        0.8495485305786132,
+        0.8510549545288086,
+        0.8484806060791016
+      ],
+      "time_change_percent": 0.0,
+      "metadata": {
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 85,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.bfloat16"
+      },
+      "key_strides": [
+        4096,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": false
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "name": "INT8_native_tensor",
+      "median_ms": 0.959980583190918,
+      "raw_ms": [
+        0.959980583190918,
+        0.9597599983215332,
+        0.9575979232788085,
+        0.9581280708312988,
+        0.9602594375610352,
+        0.9608732223510742,
+        0.9607038497924805
+      ],
+      "time_change_percent": 12.82942872101831,
+      "metadata": {
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 1,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 158,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.int8"
+      },
+      "key_strides": [
+        4096,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": false
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "name": "INT8_folded_w1",
+      "median_ms": 0.9050130844116211,
+      "raw_ms": [
+        0.9054621696472168,
+        0.9039363861083984,
+        0.9052586555480957,
+        0.9050130844116211,
+        0.9060965538024902,
+        0.9039674758911133,
+        0.9047346115112305
+      ],
+      "time_change_percent": 6.368931921305543,
+      "metadata": {
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 158,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.int8"
+      },
+      "key_strides": [
+        4096,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": true
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "name": "INT8_folded_w2",
+      "median_ms": 0.9076650619506836,
+      "raw_ms": [
+        0.9063739776611328,
+        0.9084877014160156,
+        0.9074957847595215,
+        0.9079178810119629,
+        0.9076650619506836,
+        0.9058865547180176,
+        0.908604621887207
+      ],
+      "time_change_percent": 6.680626882591945,
+      "metadata": {
+        "tile": 32,
+        "warps": 2,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 155,
+        "n_spills": 0,
+        "compiled_warps": 2,
+        "key_dtype": "torch.int8"
+      },
+      "key_strides": [
+        4096,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": true
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "name": "BF16",
+      "median_ms": 1.056703758239746,
+      "raw_ms": [
+        1.0557074546813965,
+        1.0573457717895507,
+        1.0567233085632324,
+        1.0572224617004395,
+        1.0566204071044922,
+        1.055997943878174,
+        1.056703758239746
+      ],
+      "time_change_percent": 0.0,
+      "metadata": {
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 85,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.bfloat16"
+      },
+      "key_strides": [
+        4096,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": false
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "name": "INT8_native_tensor",
+      "median_ms": 1.1951644897460938,
+      "raw_ms": [
+        1.198799991607666,
+        1.1951644897460938,
+        1.1975013732910156,
+        1.194862461090088,
+        1.19433536529541,
+        1.1963861465454102,
+        1.1917115211486817
+      ],
+      "time_change_percent": 13.10307930928487,
+      "metadata": {
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 1,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 158,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.int8"
+      },
+      "key_strides": [
+        4096,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": false
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "name": "INT8_folded_w1",
+      "median_ms": 1.1261754035949707,
+      "raw_ms": [
+        1.1241225242614745,
+        1.1276463508605956,
+        1.1275317192077636,
+        1.1261754035949707,
+        1.1275702476501466,
+        1.1256932258605956,
+        1.123958683013916
+      ],
+      "time_change_percent": 6.574372884880275,
+      "metadata": {
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 158,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.int8"
+      },
+      "key_strides": [
+        4096,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": true
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "name": "INT8_folded_w2",
+      "median_ms": 1.1240798950195312,
+      "raw_ms": [
+        1.1218971252441405,
+        1.1240798950195312,
+        1.1249517440795898,
+        1.122520637512207,
+        1.1223224639892577,
+        1.1251157760620116,
+        1.126287841796875
+      ],
+      "time_change_percent": 6.376066731514252,
+      "metadata": {
+        "tile": 32,
+        "warps": 2,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 155,
+        "n_spills": 0,
+        "compiled_warps": 2,
+        "key_dtype": "torch.int8"
+      },
+      "key_strides": [
+        4096,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": true
+    }
+  ],
+  "approximations": [
+    {
+      "batch": 8,
+      "context": 33,
+      "phase": 0,
+      "name": "BF16",
+      "max_abs": 0.004694700241088867,
+      "relative_RMS": 0.001927265664562583
+    },
+    {
+      "batch": 8,
+      "context": 33,
+      "phase": 0,
+      "name": "INT8_native_tensor",
+      "max_abs": 0.04613327980041504,
+      "relative_RMS": 0.02360433153808117
+    },
+    {
+      "batch": 8,
+      "context": 33,
+      "phase": 0,
+      "name": "INT8_folded_w1",
+      "max_abs": 0.04613327980041504,
+      "relative_RMS": 0.02360433153808117
+    },
+    {
+      "batch": 8,
+      "context": 33,
+      "phase": 0,
+      "name": "INT8_folded_w2",
+      "max_abs": 0.04613327980041504,
+      "relative_RMS": 0.023619700223207474
+    },
+    {
+      "batch": 8,
+      "context": 33,
+      "phase": 1,
+      "name": "BF16",
+      "max_abs": 0.00474858283996582,
+      "relative_RMS": 0.002090370748192072
+    },
+    {
+      "batch": 8,
+      "context": 33,
+      "phase": 1,
+      "name": "INT8_native_tensor",
+      "max_abs": 0.049760252237319946,
+      "relative_RMS": 0.025391120463609695
+    },
+    {
+      "batch": 8,
+      "context": 33,
+      "phase": 1,
+      "name": "INT8_folded_w1",
+      "max_abs": 0.049760252237319946,
+      "relative_RMS": 0.025391120463609695
+    },
+    {
+      "batch": 8,
+      "context": 33,
+      "phase": 1,
+      "name": "INT8_folded_w2",
+      "max_abs": 0.049760252237319946,
+      "relative_RMS": 0.02539045177400112
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "phase": 0,
+      "name": "BF16",
+      "max_abs": 0.00034409016370773315,
+      "relative_RMS": 0.0021810957696288824
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "phase": 0,
+      "name": "INT8_native_tensor",
+      "max_abs": 0.003715153783559799,
+      "relative_RMS": 0.026594221591949463
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "phase": 0,
+      "name": "INT8_folded_w1",
+      "max_abs": 0.003715153783559799,
+      "relative_RMS": 0.026594221591949463
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "phase": 0,
+      "name": "INT8_folded_w2",
+      "max_abs": 0.003715153783559799,
+      "relative_RMS": 0.02659747749567032
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "phase": 1,
+      "name": "BF16",
+      "max_abs": 0.0002704635262489319,
+      "relative_RMS": 0.0023006030824035406
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "phase": 1,
+      "name": "INT8_native_tensor",
+      "max_abs": 0.0022700615227222443,
+      "relative_RMS": 0.02600928768515587
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "phase": 1,
+      "name": "INT8_folded_w1",
+      "max_abs": 0.0022700615227222443,
+      "relative_RMS": 0.02600928768515587
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "phase": 1,
+      "name": "INT8_folded_w2",
+      "max_abs": 0.0025142021477222443,
+      "relative_RMS": 0.026007728651165962
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "phase": 0,
+      "name": "BF16",
+      "max_abs": 0.00034321099519729614,
+      "relative_RMS": 0.0021842157002538443
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "phase": 0,
+      "name": "INT8_native_tensor",
+      "max_abs": 0.0034534260630607605,
+      "relative_RMS": 0.02644686959683895
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "phase": 0,
+      "name": "INT8_folded_w1",
+      "max_abs": 0.0034534260630607605,
+      "relative_RMS": 0.02644686959683895
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "phase": 0,
+      "name": "INT8_folded_w2",
+      "max_abs": 0.0034534260630607605,
+      "relative_RMS": 0.026446139439940453
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "phase": 1,
+      "name": "BF16",
+      "max_abs": 0.00024463236331939697,
+      "relative_RMS": 0.0023016808554530144
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "phase": 1,
+      "name": "INT8_native_tensor",
+      "max_abs": 0.002159256488084793,
+      "relative_RMS": 0.025915097445249557
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "phase": 1,
+      "name": "INT8_folded_w1",
+      "max_abs": 0.002159256488084793,
+      "relative_RMS": 0.025915097445249557
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "phase": 1,
+      "name": "INT8_folded_w2",
+      "max_abs": 0.002159256488084793,
+      "relative_RMS": 0.025918560102581978
+    }
+  ]
+}

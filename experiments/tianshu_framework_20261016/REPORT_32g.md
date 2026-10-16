@@ -9,6 +9,7 @@
 |页表H2D / slot mapping|实际原方法、控制8192列/B64整行2 MiB，GPU 0.089 ms，合计0.091 ms|成本小，不引入复杂增量同步|
 |KV NHD/HND物理排列|16场景、32阶段；B64/4K约-0.0022%、5K-0.0638%耗时|基本持平，不进服务|
 |原生INT8逐token/head KV|attention-only B64/4K packed128慢7.06%，inline132慢20.18%|写入成本尚未计入，已无速度依据，不采用|
+|静态逐层INT8及scale外提|B64/4K原per-tensor语义慢12.83%，外提后仍慢6.37%|量化writer未计入，仍不采用|
 |INT8在load时反量化|attention-only B64/4K packed128慢21.32%至26.46%，inline132慢33.31%|不采用|
 
 所有已完成服务轮次已逐轮报告；raw包、源码快照、输入/usage/输出、GPU事件和检查记录均下载独立核验，并在各实验results/20261016下保存机器审计/归档SHA。组件未序列化完整GPU Tensor，仅有可复现源码、种子及标量/布尔检查，不声称本地重算了全部GPU数值。量化只对自身dequantized FP32参考检查，原BF16近似误差另记；没有复用当前Math作为量化质量结论。
