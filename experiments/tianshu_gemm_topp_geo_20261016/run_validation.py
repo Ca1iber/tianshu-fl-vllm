@@ -63,7 +63,7 @@ def main():
     try:
         stop_at = datetime.fromisoformat(args.stop_at_utc)
         remaining = int((stop_at - datetime.now(timezone.utc)).total_seconds())
-        assert remaining > (1800 if args.stage == "math" else 1500)
+        assert remaining > (900 if args.stage == "math" else 1500)
         signal.alarm(remaining)
         state["stop_at_utc"] = stop_at.isoformat()
         command, environment, profile, sources = prepare(root, args.screen_root.resolve())
