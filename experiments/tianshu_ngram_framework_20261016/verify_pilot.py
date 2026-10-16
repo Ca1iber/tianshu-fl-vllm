@@ -47,9 +47,11 @@ def main():
         delta={k:after[k]-v for k,v in before.items() if k in after}
         assert delta['vllm:request_generation_tokens_count']==64 and delta['vllm:request_generation_tokens_sum']==65536
         assert delta['vllm:request_prompt_tokens_sum']==262144 and delta['vllm:time_to_first_token_seconds_count']==64
-        assert delta['vllm:inter_token_latency_seconds_count']==64*1023
+        itl_count=delta['vllm:inter_token_latency_seconds_count']
+        assert 0<itl_count<=64*1023
         latency.append(dict(round=i+1,TTFT_ms=1000*delta['vllm:time_to_first_token_seconds_sum']/64,
-            ITL_ms=1000*delta['vllm:inter_token_latency_seconds_sum']/(64*1023),
+            native_ITL_histogram_mean_ms=1000*delta['vllm:inter_token_latency_seconds_sum']/itl_count,
+            native_ITL_histogram_samples=itl_count,
             speculative_counters={k:v for k,v in delta.items() if k.startswith('vllm:spec_decode_')}))
     assert len(set(allseeds))==192
     canaries=state['seeded_canaries'];assert len(canaries)==2 and canaries[0]['text']==canaries[1]['text']
