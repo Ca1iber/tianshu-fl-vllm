@@ -9,3 +9,5 @@
 screen完整通过后，`--stage math --screen-root SCREEN`按官方Level3/C8/105题评测；新Math严格>95%后，`--stage official --screen-root SCREEN --math-root MATH`原脚本N256四轮排首轮。每步均重新启动原始serve命令、验证源码/安装源/实际Worker/75预热/算子真实路径/零preempt、保存全部原始产物。不借旧Math或自选参数成绩。完整比赛资格还需最终16K与复现等要求，不用单一4K证明全部资格。
 
 2026-10-16已通过CPU及实际原命令N64运行，44源/75warm/真实2048和256seq均本地审计。N64重复seed=0使后三轮大量命中prefix cache，5510.08不代表正式N256，不采用为新最佳。详见results/20261016/screen64_32g；独立原命令Math105已启动。
+
+复现启动脚本：`bash experiments/tianshu_original_command_20261016/serve_tianshu_minicpm.sh`。保持官方原始serve参数，自动创建独立记录目录并重放35项算子配置。当前Math仍运行，尚无对应正式N256分数；启动脚本不是已获新成绩的声明。实际shell dry-run与已完成小测的原始API环境逐项核对见results/20261016/prepared_32g/launcher_cpu_audit.json。
