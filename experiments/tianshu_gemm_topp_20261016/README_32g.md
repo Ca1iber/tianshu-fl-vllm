@@ -9,3 +9,5 @@
 3+3短筛：每轮4K/1K/C64/N64、temperature1/top_p.95，逐轮使用不同输入seed、跨组配对；预排首轮，保留完整384响应。门槛>=2%且两计分轮不重叠才考虑独立确认/新Math/必要正式4K。C1 seed777 canary一致只验证回退，不代替B64质量。M2048与TopP路由记录每shape首次观测，可能含启动warmup，不冒充逐请求调用计数；端到端收益依据真实响应总时长。
 
 运行：`python3 experiments/tianshu_gemm_topp_20261016/run_service_pair.py --output NEW_ROOT --stop-at-utc ISO`。两组串行，原始源码冻结、原始命令和默认调度/actual38env/CV/75warm/三GEMM路由/严格TopP源/零preemption均作实际审计；截止17:58local。当前正式3992.97/Math103保持，未启新Math或正式。
+
+条件后续脚本已准备，尚未启动：run_confirm_pair.py --screen-root SCREEN --output NEWROOT --stop-at-utc ISO，实际screen>=2%且计分轮不交叠才允许独立5+5（预排前2轮）。run_validation.py --confirm-root CONFIRM --output NEWROOT --stage math|official --stop-at-utc ISO，confirm同样>=2%且3计分轮不交叠后重放实际候选38环境/54源，再冻结2个质量脚本，共56源；official另需--math-root NEWMATH且105完整新Math>95%。两项都由用户时段显式截止，不读取旧全局deadline。离线verifier分别支持3+3、5+5、Math和正式；历史105解析103仅CPU解析兼容性，不借用旧质量。
