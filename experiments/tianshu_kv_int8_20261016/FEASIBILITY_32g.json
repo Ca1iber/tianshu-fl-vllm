@@ -1,0 +1,53 @@
+{
+  "as_of_utc": "2026-10-16T12:08:00+00:00",
+  "GPUrun": false,
+  "adopted": false,
+  "sources": {
+    "/usr/local/lib/python3.12/site-packages/vllm/v1/attention/backends/triton_attn.py": "1219c4d1820b56e99ef6686de8a49c8c5aa57707794bcabf3322023799a03605",
+    "/usr/local/lib/python3.12/site-packages/vllm/v1/attention/ops/triton_unified_attention.py": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+    "/usr/local/lib/python3.12/site-packages/vllm/v1/attention/ops/triton_reshape_and_cache_flash.py": "f18224e51162e37c14a2e2b3045bca55baf0b207b1d203ad6ee7d8ed417139eb",
+    "/usr/local/lib/python3.12/site-packages/vllm/v1/kv_cache_interface.py": "7e3c220998267190a622e216b2b125306807cf8be3ec1e9a8e84fe6e7a293003",
+    "/usr/local/lib/python3.12/site-packages/vllm/utils/torch_utils.py": "59a33afbe2f5e42248db0d263688131cfee26e39f9c371d1f72b61c4db4d7803"
+  },
+  "verified_installed_source_facts": [
+    "CacheConfig and TritonAttentionBackend both include int8_per_token_head.",
+    "Actual KVQuantMode.INT8_PER_TOKEN_HEAD is2, is_per_token_head True; this is integer cache storage, not FP8 hardware arithmetic.",
+    "Backend native cache shape pads head128 to132 int8 elements; last4 bytes perhead hold FP32 scale.",
+    "Native _ensure_scale_caches assumes contiguous NHD padded132 layout; HND/strided INT8 must not be presumed supported.",
+    "Native per-token-head writer computes absmax/127 scale, round-half-away-from-zero/clamp then int8 stores. Query and weights remain BF16.",
+    "Unified attention converts integer K/V tiles to query dtype and applies per-token scales to QK scores and P before PV.",
+    "Current adopted hybrid supported() rejects non-BF16 K/V and non-NONE quant mode. Current .cv decode launch guard also requires KV_QUANT_MODE0/BF16. A naive int8 switch loses adopted routing/tile choices; it is not a clean scalar config comparison."
+  ],
+  "next_experiment": {
+    "stage": "small isolated decode ROI probe, not service",
+    "baseline": "current .cv/KV16-w1/S8 BF16",
+    "candidates": [
+      "native int8 padded132 per-head scales",
+      "integer data128 aligned with separate FP32 scales, only controlled fixture first"
+    ],
+    "cases": [
+      "B64 ctx4096",
+      "B64 ctx5120",
+      "B8 ctx33",
+      "ragged short/tail"
+    ],
+    "required_checks": [
+      "attention vs FP32 on independently dequantized integer data",
+      "separate error metrics vs original BF16 data, no false exact-equivalence claim",
+      "changed-Q/K/V/scales Graph replay and padding",
+      "true elapsed timing with all extra copies/scales accounted before any adoption"
+    ],
+    "later_requirements": [
+      "real native KV writer whole-storage/address/scale checks",
+      "full backend/hybrid loader compatibility preserving baseline attention routes",
+      "3+3 C64/N64 4K screen only if ROI clear",
+      "fresh complete Math105 >95% before official4K/adoption"
+    ]
+  },
+  "current_best": {
+    "total_tok_s": 4093.81,
+    "Math": "102/105",
+    "unchanged": true
+  },
+  "lease_GPU_stop_utc": "2026-10-16T15:58:00+00:00"
+}
