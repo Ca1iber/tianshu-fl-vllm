@@ -1,0 +1,37 @@
+{
+  "official_command": [
+    "vllm",
+    "serve",
+    "/workspace/MiniCPM5-2B",
+    "--port",
+    "9031",
+    "--compilation-config",
+    "{\"cudagraph_mode\": \"FULL_DECODE_ONLY\"}",
+    "--served-model-name",
+    "minicpm",
+    "--gpu-memory-utilization",
+    "0.85",
+    "--max-model-len",
+    "131072"
+  ],
+  "actual_hook_chain_executed_without_Torch": true,
+  "hook_paths": [
+    "experiments/tianshu_max_seqs_20261014/hooks/sitecustomize.py",
+    "experiments/tianshu_decode_cache_service_20261014/hooks/sitecustomize.py",
+    "experiments/tianshu_budget8192_buckets_20261014/hooks/sitecustomize.py",
+    "experiments/tianshu_sql_workflow_20261014/hooks/sitecustomize.py",
+    "experiments/tianshu_kv16_segments_20261014/hooks/sitecustomize.py",
+    "experiments/tianshu_decode_kv16_w2_20261014/hooks/sitecustomize.py",
+    "experiments/tianshu_decode_cache_service_20261014/hooks/decode_sitecustomize.py",
+    "experiments/tianshu_buckets75_recheck_20261012/joint_hooks/sitecustomize.py",
+    "experiments/tianshu_buckets75_recheck_20261012/hooks/sitecustomize.py",
+    "experiments/tianshu_decode_launch_20261012/hooks/sitecustomize.py",
+    "experiments/tianshu_native_prefill_20261012/hooks/sitecustomize.py",
+    "experiments/tianshu_fa2_tiles_20261012/hooks/sitecustomize.py"
+  ],
+  "native2048_ceiling_maps_checked": 2048,
+  "native_budget_and_maxseq_unchanged": true,
+  "actual75_capture_points_without_scheduler_mutation": true,
+  "three_stage_realCLI_checks_passed": true,
+  "new_GPU_results": false
+}
