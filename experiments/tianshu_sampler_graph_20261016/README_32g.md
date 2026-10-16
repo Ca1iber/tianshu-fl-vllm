@@ -6,4 +6,4 @@ CPU诊断已确认C64 logits为BF16、纯随机TopP与中立内置processor。�
 
 V1实际失败：warmup/capture恢复默认RNG状态通过，但首个变输入case的64个token与eager不同，即使最终RNG状态相同。失败原件保留，不接入服务。实际FlagGems指数采样在Python取得seed/offset后以标量传给kernel，需单独处理捕获时随机参数的生命周期。
 
-V2保留原指数采样在Graph外每次真实执行一次，仅将其生成的新noise交给Graph内原始softmax/divide/argmax；仍采用原随机算法、形状、dtype及offset，捕获前预热的RNG状态恢复。`probe_graph_v2.py --output NEW_REMOTE_ROOT` 保留全部原严格token/state/动态输入/生命周期断言，尚无V2 GPU能力或收益结论。能力失败保留失败原件，不放宽语义断言。
+V2保留原指数采样在Graph外每次真实执行一次，仅将其生成的新noise交给Graph内原始softmax/divide/argmax；仍采用原随机算法、形状、dtype及offset，捕获前预热的RNG状态恢复。实际9组576token与8步混合512token、RNG状态、动态输入及旧输出生命周期均通过，但完整staged调用3.491334→3.644673ms（+4.392009%耗时）。不接入服务，不跑新Math或正式benchmark，见[报告](results/20261016/micro_32g/REPORT_32g.md)。
