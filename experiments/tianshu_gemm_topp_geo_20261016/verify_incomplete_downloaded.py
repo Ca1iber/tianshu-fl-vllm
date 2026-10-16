@@ -5,11 +5,8 @@ import json
 from pathlib import Path
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--root', type=Path, required=True)
-    args = parser.parse_args()
-    root = args.root.resolve()
+def verify(root):
+    root = Path(root).resolve()
     read = lambda name: json.loads((root / name).read_text())
     digest = lambda path: hashlib.sha256(path.read_bytes()).hexdigest()
     meta, state = read('TERMINAL_SNAPSHOT.json'), read('result.json')
@@ -53,7 +50,15 @@ def main():
         GPU_idle_and_terminal_processes_verified=True,
         all_existing_answers_including_incorrect_kept=True, full_accuracy_not_claimed=True,
         archive_sha256=manifest['sha256'])
-    (root / 'local_terminal_snapshot_audit.json').write_text(json.dumps(result, indent=2) + '\n')
+    return result
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--root', type=Path, required=True)
+    args = parser.parse_args()
+    result = verify(args.root)
+    (args.root / 'local_terminal_snapshot_audit.json').write_text(json.dumps(result, indent=2) + '\n')
     print(json.dumps(result))
 
 
