@@ -1,0 +1,681 @@
+{
+  "complete": true,
+  "official_benchmark": false,
+  "adopted": false,
+  "all128_responses_and_two_canaries_verified": true,
+  "all16_FULL_C64_frames_and32_function_profiles_verified": true,
+  "all_source_snapshots_verified": true,
+  "raw_function_records_recomputed": 11008,
+  "profiled_host_medians": {
+    "execute_model": {
+      "wall_ms": 7.383967999999999,
+      "thread_cpu_ms": 7.320253
+    },
+    "sample_tokens": {
+      "wall_ms": 3.438765,
+      "thread_cpu_ms": 3.4394600000000004
+    }
+  },
+  "top_self_time_functions": {
+    "execute_model": [
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py",
+        "line": 1611,
+        "name": "run",
+        "total_self_ms": 6.781055,
+        "total_cumulative_ms": 19.057337,
+        "total_calls": 176
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/model_runner.py",
+        "line": 1773,
+        "name": "_prepare_input_ids",
+        "total_self_ms": 4.640567000000001,
+        "total_cumulative_ms": 13.554413,
+        "total_calls": 16
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/model_runner.py",
+        "line": 1951,
+        "name": "_prepare_inputs",
+        "total_self_ms": 4.142682,
+        "total_cumulative_ms": 85.138374,
+        "total_calls": 16
+      },
+      {
+        "file": "/usr/local/lib/python3.12/copy.py",
+        "line": 118,
+        "name": "deepcopy",
+        "total_self_ms": 3.3524370000000006,
+        "total_cumulative_ms": 7.9874220000000005,
+        "total_calls": 2448
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/flag_gems/utils/pointwise_dynamic.py",
+        "line": 1497,
+        "name": "prepare_args",
+        "total_self_ms": 2.946582,
+        "total_cumulative_ms": 9.100311000000001,
+        "total_calls": 128
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<method 'get' of 'dict' objects>",
+        "total_self_ms": 2.7669150000000005,
+        "total_cumulative_ms": 2.857697000000001,
+        "total_calls": 10144
+      },
+      {
+        "file": "/usr/local/lib/python3.12/logging/__init__.py",
+        "line": 298,
+        "name": "__init__",
+        "total_self_ms": 2.4867820000000003,
+        "total_cumulative_ms": 5.947783999999999,
+        "total_calls": 208
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/model_runner.py",
+        "line": 1187,
+        "name": "_update_states",
+        "total_self_ms": 2.26156,
+        "total_cumulative_ms": 7.349316000000001,
+        "total_calls": 16
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<built-in method builtins.isinstance>",
+        "total_self_ms": 1.9349239999999999,
+        "total_cumulative_ms": 2.069834,
+        "total_calls": 8240
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<method 'append' of 'list' objects>",
+        "total_self_ms": 1.7933020000000002,
+        "total_cumulative_ms": 1.7933020000000002,
+        "total_calls": 6272
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<built-in method builtins.id>",
+        "total_self_ms": 1.7877009999999998,
+        "total_cumulative_ms": 1.7877009999999998,
+        "total_calls": 3264
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/utils.py",
+        "line": 139,
+        "name": "copy_to_gpu",
+        "total_self_ms": 1.7100000000000002,
+        "total_cumulative_ms": 4.9400580000000005,
+        "total_calls": 96
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/triton/spec/iluvatar/triton/runtime/jit.py",
+        "line": 1119,
+        "name": "__call__",
+        "total_self_ms": 1.6589760000000002,
+        "total_cumulative_ms": 3.5653220000000005,
+        "total_calls": 496
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/flag_gems/ops/copy.py",
+        "line": 74,
+        "name": "copy_",
+        "total_self_ms": 1.566311,
+        "total_cumulative_ms": 17.033247000000003,
+        "total_calls": 160
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/triton/spec/iluvatar/triton/compiler/compiler.py",
+        "line": 545,
+        "name": "runner",
+        "total_self_ms": 1.4508330000000003,
+        "total_cumulative_ms": 5.916895000000001,
+        "total_calls": 176
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<built-in method builtins.len>",
+        "total_self_ms": 1.4000430000000001,
+        "total_cumulative_ms": 1.4000430000000001,
+        "total_calls": 8016
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/torch/_refs/__init__.py",
+        "line": 387,
+        "name": "_broadcast_shapes",
+        "total_self_ms": 1.221423,
+        "total_cumulative_ms": 2.7695790000000002,
+        "total_calls": 48
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/torch/_ops.py",
+        "line": 823,
+        "name": "redispatch",
+        "total_self_ms": 1.2091250000000002,
+        "total_cumulative_ms": 1.2091250000000002,
+        "total_calls": 112
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/triton/spec/iluvatar/triton/runtime/jit.py",
+        "line": 412,
+        "name": "<lambda>",
+        "total_self_ms": 1.1825579999999998,
+        "total_cumulative_ms": 22.956812,
+        "total_calls": 208
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py",
+        "line": 1581,
+        "name": "spec_arg",
+        "total_self_ms": 1.0827490000000002,
+        "total_cumulative_ms": 1.5312390000000002,
+        "total_calls": 1376
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/worker/gpu_input_batch.py",
+        "line": 484,
+        "name": "update_req_spec_token_ids",
+        "total_self_ms": 1.0786470000000001,
+        "total_cumulative_ms": 1.7248930000000005,
+        "total_calls": 1024
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/model_runner.py",
+        "line": 2279,
+        "name": "_build_attention_metadata",
+        "total_self_ms": 1.066627,
+        "total_cumulative_ms": 4.748501999999999,
+        "total_calls": 16
+      },
+      {
+        "file": "/usr/local/lib/python3.12/logging/__init__.py",
+        "line": 1611,
+        "name": "findCaller",
+        "total_self_ms": 1.03905,
+        "total_cumulative_ms": 3.054314,
+        "total_calls": 208
+      },
+      {
+        "file": "/usr/local/lib/python3.12/logging/__init__.py",
+        "line": 200,
+        "name": "_is_internal_frame",
+        "total_self_ms": 1.0127670000000002,
+        "total_cumulative_ms": 1.400211,
+        "total_calls": 624
+      },
+      {
+        "file": "/usr/local/lib/python3.12/copy.py",
+        "line": 217,
+        "name": "_deepcopy_dict",
+        "total_self_ms": 1.007986,
+        "total_cumulative_ms": 6.412704000000001,
+        "total_calls": 272
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<method 'item' of 'numpy.generic' objects>",
+        "total_self_ms": 0.9985520000000001,
+        "total_cumulative_ms": 0.9985520000000001,
+        "total_calls": 1040
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py",
+        "line": 1580,
+        "name": "key",
+        "total_self_ms": 0.9971390000000001,
+        "total_cumulative_ms": 2.651867,
+        "total_calls": 176
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<method 'disable' of '_lsprof.Profiler' objects>",
+        "total_self_ms": 0.9673160000000001,
+        "total_cumulative_ms": 0.9673160000000001,
+        "total_calls": 16
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<method 'copy_' of 'torch._C.TensorBase' objects>",
+        "total_self_ms": 0.9455499999999999,
+        "total_cumulative_ms": 8.712805,
+        "total_calls": 128
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/torch/cuda/graphs.py",
+        "line": 141,
+        "name": "replay",
+        "total_self_ms": 0.9407100000000002,
+        "total_cumulative_ms": 1.028641,
+        "total_calls": 16
+      }
+    ],
+    "sample_tokens": [
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/model_runner.py",
+        "line": 3682,
+        "name": "_bookkeeping_sync",
+        "total_self_ms": 6.205622999999999,
+        "total_cumulative_ms": 7.025055000000001,
+        "total_calls": 16
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py",
+        "line": 1611,
+        "name": "run",
+        "total_self_ms": 3.988289000000001,
+        "total_cumulative_ms": 11.256015999999999,
+        "total_calls": 112
+      },
+      {
+        "file": "/usr/local/lib/python3.12/logging/__init__.py",
+        "line": 298,
+        "name": "__init__",
+        "total_self_ms": 1.739162,
+        "total_cumulative_ms": 4.113984,
+        "total_calls": 160
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/flag_gems/utils/pointwise_dynamic.py",
+        "line": 1497,
+        "name": "prepare_args",
+        "total_self_ms": 1.5226110000000006,
+        "total_cumulative_ms": 3.9031650000000013,
+        "total_calls": 64
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/triton/spec/iluvatar/triton/compiler/compiler.py",
+        "line": 545,
+        "name": "runner",
+        "total_self_ms": 0.9552090000000002,
+        "total_cumulative_ms": 3.8086700000000007,
+        "total_calls": 112
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<method 'disable' of '_lsprof.Profiler' objects>",
+        "total_self_ms": 0.926309,
+        "total_cumulative_ms": 0.926309,
+        "total_calls": 16
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<method 'to' of 'torch._C.TensorBase' objects>",
+        "total_self_ms": 0.9217690000000002,
+        "total_cumulative_ms": 13.250116,
+        "total_calls": 64
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/triton/spec/iluvatar/triton/runtime/jit.py",
+        "line": 1119,
+        "name": "__call__",
+        "total_self_ms": 0.809671,
+        "total_cumulative_ms": 1.743964,
+        "total_calls": 224
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/torch/_ops.py",
+        "line": 823,
+        "name": "redispatch",
+        "total_self_ms": 0.7804070000000001,
+        "total_cumulative_ms": 1.07686,
+        "total_calls": 32
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<built-in method builtins.isinstance>",
+        "total_self_ms": 0.759692,
+        "total_cumulative_ms": 0.759692,
+        "total_calls": 3488
+      },
+      {
+        "file": "/usr/local/lib/python3.12/logging/__init__.py",
+        "line": 1611,
+        "name": "findCaller",
+        "total_self_ms": 0.7138810000000001,
+        "total_cumulative_ms": 2.0769550000000003,
+        "total_calls": 160
+      },
+      {
+        "file": "/usr/local/lib/python3.12/logging/__init__.py",
+        "line": 200,
+        "name": "_is_internal_frame",
+        "total_self_ms": 0.713019,
+        "total_cumulative_ms": 0.982869,
+        "total_calls": 480
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/triton/spec/iluvatar/triton/runtime/jit.py",
+        "line": 412,
+        "name": "<lambda>",
+        "total_self_ms": 0.709352,
+        "total_cumulative_ms": 13.337499000000001,
+        "total_calls": 128
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py",
+        "line": 1581,
+        "name": "spec_arg",
+        "total_self_ms": 0.6213430000000001,
+        "total_cumulative_ms": 0.8539810000000001,
+        "total_calls": 752
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/model_runner.py",
+        "line": 4518,
+        "name": "sample_tokens",
+        "total_self_ms": 0.617315,
+        "total_cumulative_ms": 52.438772,
+        "total_calls": 16
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<method 'append' of 'list' objects>",
+        "total_self_ms": 0.6025060000000002,
+        "total_cumulative_ms": 0.6025060000000002,
+        "total_calls": 2000
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py",
+        "line": 1580,
+        "name": "key",
+        "total_self_ms": 0.5874940000000001,
+        "total_cumulative_ms": 1.5011270000000003,
+        "total_calls": 112
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<built-in method builtins.len>",
+        "total_self_ms": 0.5560449999999999,
+        "total_cumulative_ms": 0.5560449999999999,
+        "total_calls": 2976
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/flag_gems/ops/to.py",
+        "line": 76,
+        "name": "to_copy",
+        "total_self_ms": 0.5323860000000001,
+        "total_cumulative_ms": 12.328346999999999,
+        "total_calls": 48
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/triton/backends/iluvatar/driver.py",
+        "line": 727,
+        "name": "launch",
+        "total_self_ms": 0.522866,
+        "total_cumulative_ms": 1.972823,
+        "total_calls": 128
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<built-in method torch.empty>",
+        "total_self_ms": 0.507817,
+        "total_cumulative_ms": 0.507817,
+        "total_calls": 32
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<built-in method builtins.hasattr>",
+        "total_self_ms": 0.5032660000000001,
+        "total_cumulative_ms": 0.5032660000000001,
+        "total_calls": 1968
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/flag_gems/utils/pointwise_dynamic.py",
+        "line": 1319,
+        "name": "_call_real_impl",
+        "total_self_ms": 0.44437200000000004,
+        "total_cumulative_ms": 15.515545000000003,
+        "total_calls": 64
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/flag_gems/utils/random_utils.py",
+        "line": 54,
+        "name": "philox_backend_seed_offset",
+        "total_self_ms": 0.44138099999999997,
+        "total_cumulative_ms": 0.9489580000000001,
+        "total_calls": 16
+      },
+      {
+        "file": "/root/.flaggems/code_cache/pointwise_dynamic_b4a54ae32c8993e62631a949e91676f9bbd122b86d87b33c5f846cc34eb83856__to_copy_func_kernel_rank_1_1d_tile__t1024.py",
+        "line": 18,
+        "name": "_to_copy_func_wrapper_rank_1",
+        "total_self_ms": 0.43975100000000006,
+        "total_cumulative_ms": 5.429619000000001,
+        "total_calls": 32
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/torch/cuda/_utils.py",
+        "line": 508,
+        "name": "_get_device_index",
+        "total_self_ms": 0.425177,
+        "total_cumulative_ms": 1.7265770000000003,
+        "total_calls": 160
+      },
+      {
+        "file": "/usr/local/lib/python3.12/logging/__init__.py",
+        "line": 1517,
+        "name": "debug",
+        "total_self_ms": 0.415192,
+        "total_cumulative_ms": 8.572267000000002,
+        "total_calls": 160
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/triton/spec/iluvatar/triton/language/core.py",
+        "line": 346,
+        "name": "_unwrap_if_constexpr",
+        "total_self_ms": 0.41264899999999993,
+        "total_cumulative_ms": 0.7061730000000002,
+        "total_calls": 384
+      },
+      {
+        "file": "/usr/local/lib/python3.12/logging/__init__.py",
+        "line": 1660,
+        "name": "_log",
+        "total_self_ms": 0.4125949999999999,
+        "total_cumulative_ms": 8.079596000000002,
+        "total_calls": 160
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/triton/spec/iluvatar/triton/runtime/jit.py",
+        "line": 737,
+        "name": "run",
+        "total_self_ms": 0.387539,
+        "total_cumulative_ms": 1.372131,
+        "total_calls": 16
+      }
+    ]
+  },
+  "recorded_tensor_pointer_variation": {
+    "logits": {
+      "unique_data_ptrs": [
+        137728890635264
+      ],
+      "all_frames_present": true
+    },
+    "hidden_states": {
+      "unique_data_ptrs": [
+        137722550878208
+      ],
+      "all_frames_present": true
+    },
+    "sample_hidden_states": {
+      "unique_data_ptrs": [
+        137722492213248
+      ],
+      "all_frames_present": true
+    },
+    "temperature": {
+      "unique_data_ptrs": [
+        137722490537984
+      ],
+      "all_frames_present": true
+    },
+    "top_p": {
+      "unique_data_ptrs": [
+        137722490539008
+      ],
+      "all_frames_present": true
+    },
+    "top_k": {
+      "unique_data_ptrs": [],
+      "all_frames_present": false
+    }
+  },
+  "all16_buffer_descriptions_and_sampling_flags_verified": true,
+  "first_frame_logits_processor_state": {
+    "argmax_invariant": [
+      {
+        "module": "vllm.v1.sample.logits_processor.builtin",
+        "name": "MinPLogitsProcessor",
+        "attributes": {
+          "min_p_count": {
+            "kind": "scalar",
+            "value": 0
+          },
+          "min_p_cpu_tensor": {
+            "kind": "tensor",
+            "metadata": {
+              "shape": [
+                256
+              ],
+              "stride": [
+                1
+              ],
+              "dtype": "torch.float32",
+              "device": "cpu",
+              "data_ptr": 139922568040448,
+              "storage_ptr": 139922568040448,
+              "storage_offset": 0,
+              "contiguous": true
+            }
+          },
+          "min_p_cpu": {
+            "kind": "numpy.ndarray"
+          },
+          "use_double_tensor": {
+            "kind": "scalar",
+            "value": true
+          },
+          "min_p_device": {
+            "kind": "tensor",
+            "metadata": {
+              "shape": [
+                256
+              ],
+              "stride": [
+                1
+              ],
+              "dtype": "torch.float32",
+              "device": "cuda:0",
+              "data_ptr": 137722490520576,
+              "storage_ptr": 137722490520576,
+              "storage_offset": 0,
+              "contiguous": true
+            }
+          },
+          "min_p": {
+            "kind": "tensor",
+            "metadata": {
+              "shape": [
+                0
+              ],
+              "stride": [
+                1
+              ],
+              "dtype": "torch.float32",
+              "device": "cuda:0",
+              "data_ptr": 0,
+              "storage_ptr": 137722490520576,
+              "storage_offset": 0,
+              "contiguous": true
+            }
+          }
+        }
+      }
+    ],
+    "non_argmax_invariant": [
+      {
+        "module": "vllm.v1.sample.logits_processor.builtin",
+        "name": "MinTokensLogitsProcessor",
+        "attributes": {
+          "device": {
+            "kind": "torch.device"
+          },
+          "min_toks": {
+            "kind": "dict",
+            "length": 0
+          },
+          "logits_slice": {
+            "kind": "tuple",
+            "length": 2
+          },
+          "neg_inf_tensor": {
+            "kind": "tensor",
+            "metadata": {
+              "shape": [],
+              "stride": [],
+              "dtype": "torch.float32",
+              "device": "cuda:0",
+              "data_ptr": 137722490520064,
+              "storage_ptr": 137722490520064,
+              "storage_offset": 0,
+              "contiguous": true
+            }
+          }
+        }
+      },
+      {
+        "module": "vllm.v1.sample.logits_processor.builtin",
+        "name": "LogitBiasLogitsProcessor",
+        "attributes": {
+          "device": {
+            "kind": "torch.device"
+          },
+          "biases": {
+            "kind": "dict",
+            "length": 0
+          },
+          "bias_tensor": {
+            "kind": "tensor",
+            "metadata": {
+              "shape": [
+                0
+              ],
+              "stride": [
+                1
+              ],
+              "dtype": "torch.float32",
+              "device": "cpu",
+              "data_ptr": 0,
+              "storage_ptr": 0,
+              "storage_offset": 0,
+              "contiguous": true
+            }
+          },
+          "logits_slice": {
+            "kind": "tuple",
+            "length": 2
+          }
+        }
+      }
+    ]
+  },
+  "interpretation": "Intrusive CPU host-wall profiler, cumulative call times overlap. Not unprofiled throughput or GPU kernel-active fractions."
+}

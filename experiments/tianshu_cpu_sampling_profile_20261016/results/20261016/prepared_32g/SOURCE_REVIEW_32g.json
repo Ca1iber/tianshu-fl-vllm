@@ -1,0 +1,36 @@
+{
+  "kind": "readonly_framework_source_review_not_performance",
+  "GPU_test_run": false,
+  "formal_sampling": {
+    "current_client": "vllm.benchmarks.lib.endpoint_request_func",
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "source": "actual CLI omits explicit values, model generation_config supplies them",
+    "large_batch_pure_topP_routing_recorded": true,
+    "source_hashes": {
+      "generation_config.json": "9ac4f32e5f32358697a9f438a3ea89ef80e6ba786c72c49e932f9f21c122fdb1",
+      "vllm_fl/dispatch/backends/vendor/iluvatar/iluvatar.py": "f146b713929cf7570d5f5f39206494bc3e1c33450b566da87f28ffb508524692",
+      "vllm/benchmarks/serve.py": "b09e85eed6f5f7a9075b40a19fc1dd8e94a1c449665c2c6510f349e0409e77b7",
+      "vllm/benchmarks/lib/endpoint_request_func.py": "5fd4b66d9ac6a88a278c2b7d65dcd17b8a9424279859ade14bddb69e342a312d",
+      "vllm/model_executor/layers/logits_processor.py": "d6dfec7287020d587f4a4d475ce113c383b2eb55afe5ae9b0e037df2e2d13310",
+      "vllm/v1/sample/sampler.py": "1a2f18ddc91c89f3744ab5a93624be056bf20b7a8b2e6e13d0236182718a2253",
+      "vllm/v1/sample/logits_processor/__init__.py": "46f02fa4e7f8dbe9fbc482e3612de9c004a8354442a689658341ef443224b017"
+    }
+  },
+  "readonly_MetaX": {
+    "plugin_head": "f376e13ec7a7a3f191d9409b475ec8f89aa4a3d4",
+    "ops_head": "b765ed2318606ebab4221eddf0e8348f9ead053b",
+    "latest_dates": "2026-10-14",
+    "worktrees_unchanged": true,
+    "latest_three_ops": [
+      "7987b78f4 empty-bin skip",
+      "92d1e86a9 exact two-bin rank",
+      "b765ed231 repeated-digit identity"
+    ],
+    "sort_relevance": "Current Tianshu batch>=8 uses native TritonTopP; FlagGems sort is only B<8. Prior98aaffe22 private-index32 micro is not an adopted formal optimization. Do not replace hot nativeTopP with fullsort based on M64 sort micro.",
+    "prefill_metadata": "MetaX5217a6d removes per-layer GPU tolist/tensor/cumsum. Current Iluvatar hybrid route_from_common already runs in metadata builder, reads query_start_loc_cpu, and shares at most one GPU subtraction per step; no repeated per-layer cumulative-length construction."
+  },
+  "current_worker_repo_matches_installed_snapshot": "b0144bcff96bef15b04eb1ad45385b01c47faea056bc56352a6486b7c497fa2e",
+  "next_evidence": "After formal4K, run independent nativeTopP CPU diagnostic16frames/C64. Measure execute/sample self time, Tensor dtypes/pointers, neutral logitsprocessor states before choosing Graph or launch fusion.",
+  "hypothesis_only": "Potential full Sampler graph at original sample stage: BF16 logits input can use a small staging copy without copying filtered F32 logits back; must first verify actual dtype, default RNG progression, processor guards and asynchronous output lifetime. Not implemented or measured."
+}
