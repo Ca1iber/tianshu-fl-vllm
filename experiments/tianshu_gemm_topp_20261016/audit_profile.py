@@ -94,4 +94,3 @@ def audit_runtime(root, state, official=False, online=True):
         CV_KV16_S8_verified=True, native_TopP_source="64c66699cd398c2eafe9eb91f0e189162f83a6f83a209651048e163d7d6fcee8", original_sampler=True, strictTopP16K=state["mode"]=="candidate", M2048_three_projection_tiles=state["mode"]=="candidate",
         stream_interval=1, actual_environment_replayed=True, zero_preemptions=True,
         B64_binding_scope="Official/service C64 validated separately; Math requests use C8.")
-
