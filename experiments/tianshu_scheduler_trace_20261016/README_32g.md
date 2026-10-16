@@ -1,0 +1,5 @@
+# 天数Scheduler/KV只读调用诊断
+
+当前最佳GEO+M2048原serve参数，采集两轮4K/1K C64 N64。完全调用原Scheduler.schedule及KV方法，不改变队列、预算、KV页长或缓存策略。每step记录原调度wall时间、排队/运行请求、剩余KV块、prefill/decode token拆分、allocate_slots空分配比例、SingleType cache早退比例。嵌套方法计时有重叠，包含observer开销，不能把它们相加或视为无插桩吞吐。
+
+14份实际安装框架源码SHA来自只读审查清单。每128步刷盘，最后flush marker+sentinel保证结束前记录落盘。尚未运行，待当前batch metadata对照完成后串行执行。
