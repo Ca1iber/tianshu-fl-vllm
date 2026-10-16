@@ -4,4 +4,4 @@
 
 一个小kernel准备当前位置、seq_lens、query_start_loc、accepted计数、req_indices、query_pos、scheduled计数、discard mask、上一轮采样的input_ids和logits_indices；positions及req_indices仍为int64。仅省去独立GPU操作与重复H2D，不改页长、缓存dtype、调度预算、maxseq或采样算法。不支持的batch继续原完整方法。
 
-当前仅准备源。必须先通过所有输出及padding尾部逐位相等、动态输入Graph、guard边界和完整准备成本微测，再进入真实服务验证；尚无性能或准确率结论。
+微测20组、6个guard、2次动态输入Graph通过，完整准备host中位数2.023→0.321 ms。slot mapping使用stub，尚无模型吞吐结论。结果见results/20261016/micro_32g；已准备真实服务3+3对照。
