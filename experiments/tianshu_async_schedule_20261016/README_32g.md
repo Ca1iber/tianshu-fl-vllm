@@ -5,3 +5,5 @@
 已读容器实际vllm源码：config/scheduler.py中async_scheduling为bool或None，False禁用；engine/arg_utils.py对bool使用BooleanOptionalAction，生成--no-async-scheduling。候选仅追加这一标志，仍为4K输入/1K输出/C64/N64、budget4096/83warm、CV/KV16/S8/原生TopP、max_num_seqs256，保留prefix cache。每组新启动3轮、预排除首轮，验证真实WorkerFL记录的异步布尔值，保存384响应并离线复算。
 
 当前没有GPU服务结果或新的Math，不采用。只有显著收益且复测稳定后才准备新Math与正式4K成绩；旧最佳4091.29/Math103of105不能当成本候选质量证明。
+
+实测已完成：禁用后稳态下降6.278470%，保留默认异步开启；完整报告见 `results/20261016/service_32g/REPORT_32g.md`。
