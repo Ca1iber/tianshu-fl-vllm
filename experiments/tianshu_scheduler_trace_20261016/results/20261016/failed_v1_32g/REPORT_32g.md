@@ -1,0 +1,7 @@
+# Scheduler/KV诊断V1首请求失败
+
+包装函数只接受self，漏转发实际Scheduler.schedule(self, throttle_prefills: bool=False)的第二个位置参数。EngineCore.step_with_batch_queue在首请求调用schedule(self._should_throttle_prefills())时TypeError。未完成canary或任何4K请求，不能作为调度性能结论。API和GPU已清空，失败结果原样保留。
+
+修复使用独立tianshu_scheduler_trace_v2_20261016目录，保留V1所有冻结运行源码。V2检查实际安装方法AST签名，并验证默认、位置True、关键字False三种调用的参数透传、单次原调用和返回对象identity；同时保留prompt/decode边界分类检查。尚未运行V2 GPU。
+
+失败原件/workspace/benchmark-results/20261016_scheduler_kv_trace_tianshu，归档下载复核另记。正式最佳4093.81/Math102不受影响。
