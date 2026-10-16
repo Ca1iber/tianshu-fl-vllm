@@ -1,6 +1,6 @@
 # 天数：融合 Philox 随机数生成与指数竞争采样
 
-已有固定噪声采样融合只得到约0.33%的服务收益；本次新假设是进一步去掉词表大小 FP32 噪声张量的写回/读取。保持 TopP、模型精度与所有调度默认值。第二版微测已通过并归档，原始命令3+3服务对照正在运行；尚无对应Math或正式成绩，不采用。
+已有固定噪声采样融合只得到约0.33%的服务收益；本次新假设是进一步去掉词表大小 FP32 噪声张量的写回/读取。保持 TopP、模型精度与所有调度默认值。第二版微测已通过并归档，原始命令3+3服务对照已完成：3938.07056→3952.56034（+0.367941%），暂不采用，完整raw与52源已本机复核；尚无对应Math或正式成绩，不采用。
 
 新核将 Philox4x32-10、正指数噪声和 argmax(logits-log(q)) 融合；全局随机序列与旧 Torch/FlagGems exponential_ 不同，不声称逐 token 等同。使用64位计数器并明确保留高位进位，按全部padding计数器范围推进全局状态，避免相邻调用复用counter。独立请求generator、FP64 gumbel、非目标shape或CUDA Graph捕获必须退回原采样路径；服务适配器位于hooks/sitecustomize.py，微测与API回退探针分别验证。
 
@@ -10,4 +10,4 @@ GPU微测必须串行；CPU/源码检查后先微测，数值或RNG契约失败�
 
 第一版真实探针已停于单NaN边界，12组整数参考全过、前15个有效/全mask数值检查全过，第16项NaN与生产不符，无性能结果，不采用。独立诊断发现模型词表宽度下生产FlagGems的split softmax只在NaN位置输出NaN、argmax忽略它；CPU普通softmax整行NaN，因此两者参考契约不同。小词表16还有另一种全NaN argmax行为，不是服务适配目标。第二版独立文件保留第一版源码，按实际模型宽度NaN契约屏蔽单NaN，+inf仍返回0；CPU参考明确按有限logits归一化，完整保留CPU与生产同噪声双参考相等的断言，没有放宽数值误差或撤掉失败断言。第二版已完成：12组整数精确、105项CPU/生产同噪声数值、3组状态推进及capture guard、2组各16384次分类频率全部通过。B64真实eager采样局部0.760865→0.358317ms；不能当模型吞吐提升。原始包SHA893ee26ddf09eb7a7e25c7c5f95f6cd9afe65a35d87a9a54afe7144aa9e888a2。
 
-原始命令服务3+3对照已启动（root为20261016_rng_sampler_service_tianshu）：run_service_pair.py --output ROOT --micro-root V2MICRO --stop-at-utc ISO。两边同37项显式配置，仅RNG开关0/1及记录目录重映射，44既有源加新kernel/实际随机库/服务控制器冻结；真实SDK2048/256/75预热不变。每轮输入种子更换、跨模式配对，保留384完整响应；两次独立API seed777 canary必须自身及跨模式相同，候选必须记录seeded fallback与B64融合命中。首次排除，后两轮均值用于筛选，非正式成绩；未达2%不直接跑新Math或正式4K。
+原始命令服务3+3对照已完成（root为20261016_rng_sampler_service_tianshu），报告results/20261016/service_32g。复现命令：run_service_pair.py --output ROOT --micro-root V2MICRO --stop-at-utc ISO。两边同37项显式配置，仅RNG开关0/1及记录目录重映射，44既有源加新kernel/实际随机库/服务控制器冻结；真实SDK2048/256/75预热不变。每轮输入种子更换、跨模式配对，保留384完整响应；两次独立API seed777 canary必须自身及跨模式相同，候选必须记录seeded fallback与B64融合命中。首次排除，后两轮均值用于筛选，非正式成绩；未达2%不直接跑新Math或正式4K。
