@@ -65,7 +65,8 @@ def main():
         profile.update(PYTHONPATH=str(BASE/'hooks'),TIANSHU_CPU_PROFILE_PROBE='1',TIANSHU_CPU_PROFILE_MODE='cProfile',
             TIANSHU_CPU_PROFILE_RECORD_DIR=str(root/'cpu_records'),TIANSHU_CPU_PROFILE_ARM_FILE=str(root/'profile_armed'))
         assert len(profile)==39;env.update(profile)
-        for path in (Path(__file__),BASE/'hooks/sitecustomize.py',BASE/'audit_profile.py'):
+        for path in (Path(__file__),BASE/'hooks/sitecustomize.py',BASE/'audit_profile.py',
+                Path('/usr/local/lib/python3.12/site-packages/vllm/v1/sample/metadata.py')):
             sources[str(path)]=digest(path)
         frozen_check(sources)
         for path,sha in sources.items():

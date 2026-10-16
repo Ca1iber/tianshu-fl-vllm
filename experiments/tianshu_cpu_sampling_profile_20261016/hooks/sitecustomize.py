@@ -27,6 +27,14 @@ def stats_rows(profiler):
     return sorted(rows,key=lambda r:(-r['cumulative_wall_seconds'],r['file'],r['line'],r['name']))
 
 
+def tensor_description(tensor):
+    if tensor is None:return None
+    return dict(shape=list(tensor.shape),stride=list(tensor.stride()),dtype=str(tensor.dtype),
+        device=str(tensor.device),data_ptr=int(tensor.data_ptr()),
+        storage_ptr=int(tensor.untyped_storage().data_ptr()),storage_offset=int(tensor.storage_offset()),
+        contiguous=bool(tensor.is_contiguous()))
+
+
 class Loader(importlib.abc.Loader):
     def __init__(self,original):self.original=original
     def create_module(self,spec):return self.original.create_module(spec)
@@ -103,6 +111,17 @@ class Loader(importlib.abc.Loader):
         def sample(owner,*args,**kwargs):
             s=state(owner);entry=s['active']
             if entry is None:return original_sample(owner,*args,**kwargs)
+            ephemeral=owner.execute_model_state
+            assert ephemeral is not None and len(ephemeral)==10
+            metadata=owner.input_batch.sampling_metadata
+            entry['buffers']={name:tensor_description(tensor) for name,tensor in (
+                ('logits',ephemeral[1]),('hidden_states',ephemeral[4]),('sample_hidden_states',ephemeral[5]),
+                ('temperature',metadata.temperature),('top_p',metadata.top_p),('top_k',metadata.top_k))}
+            entry['sampling_flags']=dict(all_greedy=metadata.all_greedy,all_random=metadata.all_random,
+                no_penalties=metadata.no_penalties,max_num_logprobs=metadata.max_num_logprobs,
+                generators=len(metadata.generators),bad_words_requests=len(metadata.bad_words_token_ids),
+                allowed_token_ids_mask=tensor_description(metadata.allowed_token_ids_mask),
+                has_thinking_budget_holder=metadata.thinking_budget_state_holder is not None)
             result=call(entry,'sample_tokens',original_sample,owner,*args,**kwargs)
             s['frames'].append(entry);s['active']=None
             if len(s['frames'])==16:finish(s)

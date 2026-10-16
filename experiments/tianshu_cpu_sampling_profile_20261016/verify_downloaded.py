@@ -37,6 +37,17 @@ def main():
     for index,frame in enumerate(record['frames']):
         assert frame['index']==index and frame['dispatch']==dict(mode='FULL',padded_tokens=64)
         context=frame['context'];assert context['requests']==64 and context['min_computed']>=4096 and context['min_prompt']==context['max_prompt']==4096
+        buffers=frame['buffers'];assert set(buffers)=={'logits','hidden_states','sample_hidden_states','temperature','top_p','top_k'}
+        assert buffers['logits']['shape']==[64,130560] and buffers['sample_hidden_states']['shape']==[64,2048]
+        for name,description in buffers.items():
+            if description is None:continue
+            assert description['data_ptr']>0 and description['storage_ptr']>0 and description['storage_offset']>=0
+            assert len(description['shape'])==len(description['stride']) and all(n>=0 for n in description['shape'])
+            assert description['device'].startswith('cuda')
+        flags=frame['sampling_flags']
+        assert flags['all_random'] and not flags['all_greedy'] and flags['no_penalties']
+        assert flags['max_num_logprobs'] is None and flags['generators']==flags['bad_words_requests']==0
+        assert flags['allowed_token_ids_mask'] is None
         for phase in phases:
             call=frame[phase];assert 0<=call['thread_cpu_ms']<=call['wall_ms']+.1 and call['wall_ms']>0 and call['thread_id']>0
             rows=call['rows'];assert len(rows)>10 and any(r['name']==phase for r in rows)
@@ -61,9 +72,12 @@ def main():
     medians={p:{k:statistics.median(f[p][k] for f in record['frames']) for k in ('wall_ms','thread_cpu_ms')} for p in phases}
     assert medians==read(root/'summary.json')['host_profiled_call_median']
     tops={p:[dict(file=k[0],line=k[1],name=k[2],total_self_ms=v[0],total_cumulative_ms=v[1],total_calls=v[2]) for k,v in sorted(hot[p].items(),key=lambda item:-item[1][0])[:30]] for p in phases}
+    pointers={name:dict(unique_data_ptrs=sorted({f['buffers'][name]['data_ptr'] for f in record['frames'] if f['buffers'][name] is not None}),
+        all_frames_present=all(f['buffers'][name] is not None for f in record['frames'])) for name in record['frames'][0]['buffers']}
     out=dict(complete=True,official_benchmark=False,adopted=False,all128_responses_and_two_canaries_verified=True,
         all16_FULL_C64_frames_and32_function_profiles_verified=True,all_source_snapshots_verified=True,
         raw_function_records_recomputed=count,profiled_host_medians=medians,top_self_time_functions=tops,
+        recorded_tensor_pointer_variation=pointers,all16_buffer_descriptions_and_sampling_flags_verified=True,
         interpretation='Intrusive CPU host-wall profiler, cumulative call times overlap. Not unprofiled throughput or GPU kernel-active fractions.')
     (root/'local_download_audit.json').write_text(json.dumps(out,indent=2)+'\n')
     print(json.dumps({k:v for k,v in out.items() if k!='top_self_time_functions'}))
