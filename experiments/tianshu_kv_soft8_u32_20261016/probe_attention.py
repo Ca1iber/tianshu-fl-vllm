@@ -77,9 +77,21 @@ def main():
                     kw.update(TILE_SIZE=self.tile,num_warps=self.warps,num_stages=1,KV_CACHE_MODIFIER='.cv')
                     kernel=(legacy_module if '_u16_' in self.name else soft_module).kernel_unified_attention if kw['key_cache_ptr'].dtype==torch.uint8 else cache_module.kernel_unified_attention
                     result=kernel[grid](**kw)
-                    self.metadata=dict(codec_intermediates_bits=16 if '_u16_' in self.name else 32 if kw['key_cache_ptr'].dtype==torch.uint8 else None,tile=self.tile,warps=self.warps,quant_mode=int(kw['KV_QUANT_MODE']),grid=list(grid),
-                        n_regs=getattr(result,'n_regs',None),n_spills=getattr(result,'n_spills',None),
-                        compiled_warps=result.metadata.num_warps,key_dtype=str(kw['key_cache_ptr'].dtype))
+                    if self.metadata is None:
+                        self.metadata=dict(codec_intermediates_bits=16 if '_u16_' in self.name else 32 if kw['key_cache_ptr'].dtype==torch.uint8 else None,tile=self.tile,warps=self.warps,quant_mode=int(kw['KV_QUANT_MODE']),grid=list(grid),
+                            n_regs=getattr(result,'n_regs',None),n_spills=getattr(result,'n_spills',None),
+                            compiled_warps=result.metadata.num_warps,key_dtype=str(kw['key_cache_ptr'].dtype))
+                        assembly={}
+                        folder=root/'compiled_assembly'/f'{case_id}_{self.name}'
+                        folder.mkdir(parents=True,exist_ok=False)
+                        for kind,payload in getattr(result,'asm',{}).items():
+                            if not isinstance(payload,(str,bytes)):continue
+                            raw=payload.encode() if isinstance(payload,str) else payload
+                            name=''.join(c if c.isalnum() or c=='_' else '_' for c in str(kind))
+                            path=folder/(name+('.txt' if isinstance(payload,str) else '.bin'))
+                            assert not path.exists();path.write_bytes(raw)
+                            assembly[str(kind)]=dict(path=str(path),bytes=len(raw),sha256=hashlib.sha256(raw).hexdigest())
+                        self.metadata['assembly']=assembly
                     return result
                 return launch
         class Reducer:
