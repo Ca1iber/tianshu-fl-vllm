@@ -44,3 +44,5 @@ N128补队列对照已经完成并下载核验768响应、70源、21恢复GPU输
 详细报告分别在tianshu_ngram_framework_20261016/results/20261016/stopped_pilot_32g、tianshu_ngram_fixed_index_20261016/results/20261016/{index_micro_32g,service_pilot_32g}、tianshu_verify_split_sweep_20261016/results/20261016/micro_32g。继续研究需针对投机prefill稀有M与混合Q1/Q2图重放，不能拿组件提速抵扣实际服务退步。
 
 小批次TopP组件另有机会：原生B≥8已走Triton，B1/2/4/7的sort路径复用GEO主体后，普通分布耗时分别减少约29/53/69/79%，16阶段/160计时组及62源下载核验。这里只测掩码、没有采样RNG或模型服务集成，未采用；详见tianshu_tiny_topp_20261016/results/20261016/micro_32g。
+
+投机runtime进一步核验：async_scheduling=False、async_spec_decode=False（非投机控制为async=True），故上述差值包含整条框架配置变化，不能孤立归因某kernel。冻结model_runner._is_uniform_decode要求maxQ=uniform_decode_query_len且总token=maxQ×req；本轮num_spec_tokens=1使目标Q=2，混合Q1/Q2乃至全Q1不满足uniform条件。源码证据支持继续测量图重放覆盖率，但没有完整运行时图/非图逐步计数，尚不能声称退步主要由缺图导致。

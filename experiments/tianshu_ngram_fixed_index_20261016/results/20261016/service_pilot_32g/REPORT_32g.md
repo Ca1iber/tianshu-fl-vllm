@@ -10,7 +10,7 @@
 
 后两轮跨度3.0755%。每轮64响应、4096输入/1024生成；192不同输入种子、usage、原始文本、计时及服务端计数重新核验。80份冻结源与40项环境均通过；无抢占，两次相同seed短生成canary一致。各轮成绩均已向用户报告。
 
-保持原始主启动参数，仅显式增加原生ngram1、lookup3..5；沿用已验证正FP32 rejection，非合成接受。实际模型隐藏态2048列及logits130560列走固定index kernel，L0 prefill与Q2 split路径均有实际运行记录。索引观测器计数为Python启动数，不冒称图重放计数。投机保护分支实际关闭75点prefill补齐与hybrid，此处明确保留记录。
+保持原始主启动参数，仅显式增加原生ngram1、lookup3..5；沿用已验证正FP32 rejection，非合成接受。实际模型隐藏态2048列及logits130560列走固定index kernel，L0 prefill与Q2 split路径均有实际运行记录。索引观测器计数为Python启动数，不冒称图重放计数。实际ModelRunner记录async_scheduling=False、async_spec_decode=False；近期非投机控制为async=True。因此这是整条投机配置与近期控制的比较，不能当作仅index或Q2 kernel的A/B。投机保护分支实际关闭75点prefill补齐与hybrid，此处明确保留记录。
 
 前两轮无任何新调优；第3轮4次均为mm_kernel M2039，N/K为2560/2048、2048/2048、12288/2048、2048/6144，日志总时长2.31秒；固定索引路径未出现generic gather调优。原先已中断的ngram首轮有310次index和24次GEMM调优，但不能把本次差异全部归因于index：本次也复用了先前形成的GEMM缓存，旧首轮并非稳态对照。
 
