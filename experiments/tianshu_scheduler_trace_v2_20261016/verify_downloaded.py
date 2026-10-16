@@ -56,6 +56,8 @@ def main():
     decode=[s for s in steps if s['decode_tokens'] and not s['prefill_tokens']]
     full=[s for s in decode if s['scheduled_reqs']==64]
     assert full and alloc['calls']>0 and single['calls']>0
+    waiting=[s for s in steps if s['before']['waiting']>0]
+    waiting_tokens=Counter(str(s['scheduled_tokens']) for s in waiting)
     def timing(values):
         return dict(steps=len(values),median_schedule_ms=statistics.median(s['wall_ns'] for s in values)/1e6,
             median_allocate_ms=statistics.median(s['calls'].get('allocate_slots',{}).get('wall_ns',0) for s in values)/1e6)
@@ -67,6 +69,7 @@ def main():
         single_cache_early_percent=100*single['already_full']/single['calls'],
         outside_schedule_counters=summary['outside_schedule'],pure_decode=timing(decode),B64_pure_decode=timing(full),
         min_free_KV_blocks=min(s['after']['free_blocks'] for s in steps),max_waiting=max(s['before']['waiting'] for s in steps),
+        waiting_steps=len(waiting),waiting_scheduled_token_histogram=dict(waiting_tokens),
         nested_timings_must_not_be_added=True,unprofiled_CPU_or_GPU_cost_not_measured=True)
     (root/'local_download_audit.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))
 
