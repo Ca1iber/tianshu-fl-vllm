@@ -6,7 +6,7 @@ CPU35个独立标量online-softmax与自然域分段合并参考通过。GPU21�
 
 C64/4K耗时+1.514513%，5K+1.456097%，peaked4K+1.566101%；没有可用主负载收益，不接服务、新Math或正式。False恒等副本逐位原实现相同；True多数不逐位，但既定atol.02/rtol.01独立参考门槛全过，未放宽。完整逐场景数值和原始事件见RAW_AUDIT_32g.json及原件。
 
-真实B64原版/恒等/候选寄存器分别85/85/88，均0spill。没有采集硬件性能计数，不由寄存器/代码差异推断底层瓶颈。正式4K3992.97 total tok/s、Math103/105与最佳启动器不变。GPU runner38612、child38614已终态。
+真实B64原版/恒等/候选寄存器分别85/85/86，均0spill。没有采集硬件性能计数，不由寄存器/代码差异推断底层瓶颈。正式4K3992.97 total tok/s、Math103/105与最佳启动器不变。GPU runner38612、child38614已终态。
 
 原始数据service-results/20261016_tianshu/log2_decode/20261016_log2_decode_tianshu，4071749bytes/16parts，SHA256 `d54968abe05fa6c128cecfc734ce8748fcf51389b61b33c35d7b81e2c330c2f6`，分片及整包已校验。实际本机复核通过：
 
