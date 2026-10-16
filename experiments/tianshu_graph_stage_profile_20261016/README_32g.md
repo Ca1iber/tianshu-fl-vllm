@@ -1,11 +1,9 @@
-# 天数：当前原始命令配置的Graph/框架阶段诊断
+# 天数：原始命令下的 Graph 与框架阶段诊断
 
-上一轮RNG融合局部采样约-53%但整模型只+0.36794%，不采用。下一步先取得当前配置的时间分布，避免用旧NoGraph或单算子数据外推完整Graph。
+本轮已完成、备份并通过本机离线核验。真实模型没有启用 IXsys，稳定 C64/FULL Graph 的 40 步中，模型前向约占流区间的 88.48%，词表投影 2.10%，采样 9.16%。总区间中位 54.179 ms，前向 47.932 ms、词表投影 1.138 ms、采样 5.034 ms。这是诊断，不能换算为正式吞吐或当作单个 kernel 的活动时间。当前正式 4K 成绩仍为 3992.97 total tok/s，Math 103/105。
 
-已有IXsys4.4能力只证明单进程20个Graph整体事件，不覆盖图内kernel；图内external=True事件曾读取旧时间戳。本次新增子进程能力检查：无CUDA上下文的父进程启动GPU子进程，子进程在ProfilerStart/Stop窗口中执行20次Graph（各50个Triton kernel）及20个独立图外kernel。严格检查GPU事件所属子进程、20个Graph和20个外部kernel、正时长、图外CUDA events与trace单位的对应，以及10回放对单回放的时间比例。未运行、未声称覆盖通过。
+IXsys 子进程覆盖计数已实测，但完整能力检查失败：V1 20 Graph/20 图外 kernel，V2 25 Graph/20 图外 kernel；两版均未看到图内 kernel。V2 无采集图外事件 10 回放/1 回放约 9.84 倍；无采集单图 0.119873 ms，而开启采集后的 trace 中位 0.426340 ms，原定 .5..1.5 校准门槛未通过。没有放宽门槛，也没有将失败结果标记通过。
 
-能力通过后才准备真实vLLM原始命令阶段诊断。计划在稳定C64纯decode窗口，用图外事件记录整model forward、logits、sample及全步骤的GPU流区间，并用主机跨度与IXsys整图事件交叉检查。此计时可能包含GPU流等待，不会当作单一kernel活动时间；保留FULL_DECODE_ONLY、默认2048/256、75预热与当前算子组合。尚未实现真实模型诊断hook，尚无新吞吐/Math/正式成绩。
+真实模型诊断保持官方原始 serve argv、默认 2048 tokens/256 sequences、75 预热点、CV/KV16/S8/nativeTopP/原采样器。hooks/sitecustomize.py 包裹实际 ModelRunnerFL 路径，arm 后先等 32 步连续 C64 decode，再采 40 步；事件都在 Graph 外，每步无同步，窗口两端各一次同步。前后 API seed777 canary 一致，128 条负载响应、50 份源码快照、实际 39 个环境项及零 preemption 已离线核验。
 
-V1已运行并失败，原始源码/日志/trace保留：工具确实看到子进程20个Graph和20个图外kernel；但同一窗口的图外event区间含采集插桩等待，不能与ProfilerStop之后的10回放直接作缩放门槛比较，首轮91ms尤其失真。V2不放宽5..20或.5..1.5门槛，改为同一无采集状态下分别测1/10回放，在采集窗口预先固定5个Graph预热加20个测量（总25，全部要求计数正确），用无采集event中位数与后20个Graph的设备trace中位数校验单位。采集状态event原样保留并明确含插桩影响，不能作为无扰动算子耗时。所有测量在断言前保存。真实模型的event阶段计时与IXsys应分开两次运行。V2已运行：子进程25Graph/20图外kernel计数和输出正确、无采集1/10事件缩放约9.84倍；但时长校准失败，无采集Graph约0.119873ms，采集trace后20Graph中位约0.426340ms。完整capability不判通过，不放宽.5..1.5门槛。工具下时间不能代表原始稳态。
-
-真实模型无IXsys事件诊断已实现但未运行：run_model_events.py --output ROOT --stop-at-utc ISO。读取V2独立通过的无采集事件缩放前置证据，不把其失败的工具时长校准当通过；原始serve argv，实际39环境含4个显式诊断标志。ModelRunnerFL实际execute/forward/logits/sample路径，arm后先32个连续C64单token步，再测40个FULL Graph64步，每步所有请求computed>=4096。320个events边界前预初始化，窗口内无逐步同步，结束仅一次边界同步；记录GPU流区间、主机跨度和线程CPU时间。动态compute_logits方法仅包裹原调用并恢复，API seed777前后canary须一致。先N64/4K/512完整预热，再不同输入种子测同负载；不是正式benchmark，不引入算子或调度参数变化。
+完整报告和重放命令见 [REPORT_32g.md](results/20261016/profile_32g/REPORT_32g.md)，机器记录为同目录的 CAPABILITY_AUDIT_32g.json、MODEL_STAGE_AUDIT_32g.json。未改最佳启动器，服务和 GPU 任务已退出，未排队下一轮实验。
