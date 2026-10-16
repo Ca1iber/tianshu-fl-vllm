@@ -1,0 +1,88 @@
+{
+  "complete": true,
+  "cpu_only": true,
+  "actual_nested_argv_and_launch_interception_checked": true,
+  "budgets4096_and16384": true,
+  "runs": [
+    {
+      "mode": "control",
+      "actual_wrapper_environment": {
+        "VLLM_PLUGINS": "fl",
+        "PYTHONPATH": "/home/czw_ubuntu_wsl/flagOS/tianshu-fl-vllm/experiments/tianshu_budget16384_20261016/hooks",
+        "TIANSHU_CACHE_SERVICE_MODE": "candidate",
+        "TIANSHU_MAX_SEQS_MODE": "control",
+        "TIANSHU_MAX_SEQS_RECORD_DIR": "/tmp/unused_budget16384_cli_control/max_seqs_records"
+      },
+      "actual_foundation_arguments": {
+        "output": "/tmp/unused_budget16384_cli_control",
+        "buckets": "1",
+        "gather": "1",
+        "hybrid": "1",
+        "adaptive": "1",
+        "max_batched_tokens": 4096,
+        "tile": "1",
+        "native_prefill": "1",
+        "single_probe_output": 0,
+        "output_tokens": 1024,
+        "input_tokens": 4096,
+        "watermark": 0.0,
+        "hist_count_bits": "off",
+        "decode_graph_max": 0,
+        "sort_buffer_mode": "original",
+        "address32": "0",
+        "prefill_stages": 1,
+        "request_timeout": 3600,
+        "concurrency": 64,
+        "requests": 64,
+        "rounds": 3,
+        "decode_launch": "1",
+        "stream_interval": 1,
+        "request_phase_marker": null,
+        "bucket_trace": "2"
+      }
+    },
+    {
+      "mode": "candidate",
+      "actual_wrapper_environment": {
+        "VLLM_PLUGINS": "fl",
+        "PYTHONPATH": "/home/czw_ubuntu_wsl/flagOS/tianshu-fl-vllm/experiments/tianshu_budget16384_20261016/hooks",
+        "TIANSHU_CACHE_SERVICE_MODE": "candidate",
+        "TIANSHU_MAX_SEQS_MODE": "control",
+        "TIANSHU_MAX_SEQS_RECORD_DIR": "/tmp/unused_budget16384_cli_candidate/max_seqs_records"
+      },
+      "actual_foundation_arguments": {
+        "output": "/tmp/unused_budget16384_cli_candidate",
+        "buckets": "1",
+        "gather": "1",
+        "hybrid": "1",
+        "adaptive": "1",
+        "max_batched_tokens": 16384,
+        "tile": "1",
+        "native_prefill": "1",
+        "single_probe_output": 0,
+        "output_tokens": 1024,
+        "input_tokens": 4096,
+        "watermark": 0.0,
+        "hist_count_bits": "off",
+        "decode_graph_max": 0,
+        "sort_buffer_mode": "original",
+        "address32": "0",
+        "prefill_stages": 1,
+        "request_timeout": 3600,
+        "concurrency": 64,
+        "requests": 64,
+        "rounds": 3,
+        "decode_launch": "1",
+        "stream_interval": 1,
+        "request_phase_marker": null,
+        "bucket_trace": "2"
+      }
+    }
+  ],
+  "sources": {
+    "/home/czw_ubuntu_wsl/flagOS/tianshu-fl-vllm/experiments/tianshu_budget16384_20261016/verify_cli_cpu.py": "10d5d59ee83d0f6170f9a0f0f76d2c8dabe0a4834832261b20db5b25ac81ff6d",
+    "/home/czw_ubuntu_wsl/flagOS/tianshu-fl-vllm/experiments/tianshu_budget16384_20261016/run_service_trial.py": "d96f54e319e36a9b6f5d9e5703123d66a82f954faa39db9e34dff1516be581bd",
+    "/home/czw_ubuntu_wsl/flagOS/tianshu-fl-vllm/experiments/tianshu_budget16384_20261016/budget_trial.py": "689ab0f970bcaa2e2107a672859bf7b4fea1536a0c229cac6159b33c1b825de4",
+    "/home/czw_ubuntu_wsl/flagOS/tianshu-fl-vllm/experiments/tianshu_budget16384_20261016/foundation_service_trial.py": "bf2397dc368933fc2b514ffe9f61534ef4631e5448eacf7775e65f8d71cdda9c"
+  }
+}
