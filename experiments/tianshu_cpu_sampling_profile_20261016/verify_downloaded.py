@@ -48,6 +48,11 @@ def main():
         assert flags['all_random'] and not flags['all_greedy'] and flags['no_penalties']
         assert flags['max_num_logprobs'] is None and flags['generators']==flags['bad_words_requests']==0
         assert flags['allowed_token_ids_mask'] is None
+        processors=frame['logits_processors'];assert set(processors)=={'argmax_invariant','non_argmax_invariant'}
+        for group in processors.values():
+            for processor in group:
+                assert processor['module'] and processor['name'] and isinstance(processor['attributes'],dict)
+                assert all(isinstance(name,str) and 'kind' in value for name,value in processor['attributes'].items())
         for phase in phases:
             call=frame[phase];assert 0<=call['thread_cpu_ms']<=call['wall_ms']+.1 and call['wall_ms']>0 and call['thread_id']>0
             rows=call['rows'];assert len(rows)>10 and any(r['name']==phase for r in rows)
@@ -78,6 +83,7 @@ def main():
         all16_FULL_C64_frames_and32_function_profiles_verified=True,all_source_snapshots_verified=True,
         raw_function_records_recomputed=count,profiled_host_medians=medians,top_self_time_functions=tops,
         recorded_tensor_pointer_variation=pointers,all16_buffer_descriptions_and_sampling_flags_verified=True,
+        first_frame_logits_processor_state=record['frames'][0]['logits_processors'],
         interpretation='Intrusive CPU host-wall profiler, cumulative call times overlap. Not unprofiled throughput or GPU kernel-active fractions.')
     (root/'local_download_audit.json').write_text(json.dumps(out,indent=2)+'\n')
     print(json.dumps({k:v for k,v in out.items() if k!='top_self_time_functions'}))

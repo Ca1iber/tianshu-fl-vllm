@@ -122,6 +122,16 @@ class Loader(importlib.abc.Loader):
                 generators=len(metadata.generators),bad_words_requests=len(metadata.bad_words_token_ids),
                 allowed_token_ids_mask=tensor_description(metadata.allowed_token_ids_mask),
                 has_thinking_budget_holder=metadata.thinking_budget_state_holder is not None)
+            def describe_processor(processor):
+                attributes={}
+                for name,value in getattr(processor,'__dict__',{}).items():
+                    if isinstance(value,torch.Tensor):attributes[name]=dict(kind='tensor',metadata=tensor_description(value))
+                    elif value is None or isinstance(value,(bool,int,float)):attributes[name]=dict(kind='scalar',value=value)
+                    elif isinstance(value,(dict,list,tuple,set)):attributes[name]=dict(kind=type(value).__name__,length=len(value))
+                    else:attributes[name]=dict(kind=type(value).__module__+'.'+type(value).__qualname__)
+                return dict(module=type(processor).__module__,name=type(processor).__qualname__,attributes=attributes)
+            entry['logits_processors']={name:[describe_processor(p) for p in getattr(metadata.logitsprocs,name)]
+                for name in ('argmax_invariant','non_argmax_invariant')}
             result=call(entry,'sample_tokens',original_sample,owner,*args,**kwargs)
             s['frames'].append(entry);s['active']=None
             if len(s['frames'])==16:finish(s)
