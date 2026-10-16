@@ -54,7 +54,7 @@ def main():
     def stop(signum, frame):
         signal.signal(signal.SIGTERM, signal.SIG_IGN)
         if server is not None and server.poll() is None:
-            os.killpg(server.pid, signal.SIGTERM)
+            os.killpg(server.pid, signal.SIGKILL)
         raise StopRequested(str(signum))
 
     for sig in (signal.SIGTERM, signal.SIGINT, signal.SIGALRM): signal.signal(sig, stop)
