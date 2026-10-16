@@ -4,7 +4,7 @@
 
 两组serve argv逐项等原始官方命令，default budget2048/maxseq256/asyncTrue/stream1，实际75预热点。只增加3个实验环境项（总38），差别仅TopP服务模式与M2048开关；目录按组映射。不设置或隐藏调度参数。
 
-真实CPU启动链控制/候选均检查唯一CV、Worker、TopP、SQL finder；候选只额外注册既有GEMM finder，不重复原基线。未导入torch。TopP完整旧数据重算4224语义行/420events，fixed16k严格1e-6通过；GEMM48case中40通过8失败原样保留，只选择三个明确通过配置，重算560events。新组合尚无服务/Math/正式结果。
+真实CPU启动链控制/候选均检查唯一CV、Worker、TopP、SQL finder；候选只额外注册既有GEMM finder，不重复原基线。未导入torch。TopP完整旧数据重算4224语义行/420events，fixed16k严格1e-6通过；GEMM48case中40通过8失败原样保留，只选择三个明确通过配置，重算560events。新组合3+3已完成：3939.129531→3986.067859 total tok/s，+1.19159%，TTFT -2.97650%，低于预设2%门槛，不接独立5+5、新Math或正式。详细结果见[REPORT_32g.md](results/20261016/screen3_32g/REPORT_32g.md)。
 
 3+3短筛：每轮4K/1K/C64/N64、temperature1/top_p.95，逐轮使用不同输入seed、跨组配对；预排首轮，保留完整384响应。门槛>=2%且两计分轮不重叠才考虑独立确认/新Math/必要正式4K。C1 seed777 canary一致只验证回退，不代替B64质量。M2048与TopP路由记录每shape首次观测，可能含启动warmup，不冒充逐请求调用计数；端到端收益依据真实响应总时长。
 
