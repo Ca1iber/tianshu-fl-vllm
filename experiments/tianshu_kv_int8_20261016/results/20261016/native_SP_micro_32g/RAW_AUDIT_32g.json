@@ -1,0 +1,461 @@
+{
+  "complete": true,
+  "all_source_snapshots_and_owned_current_sources_checked": 62,
+  "three_cases_and_six_changed_input_phase_records_checked": true,
+  "all_raw_events_recomputed": 84,
+  "quantized_FP32_reference_separate_from_BF16_approximation": true,
+  "full_GPU_tensor_values_not_serialized": true,
+  "timings": [
+    {
+      "batch": 8,
+      "context": 33,
+      "name": "BF16",
+      "median_ms": 0.015913845598697664,
+      "time_change_percent": 0.0,
+      "metadata": {
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 0,
+        "grid": [
+          12,
+          2,
+          16
+        ],
+        "n_regs": 88,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.bfloat16"
+      }
+    },
+    {
+      "batch": 8,
+      "context": 33,
+      "name": "INT8_packed128_w1",
+      "median_ms": 0.016986538469791413,
+      "time_change_percent": 6.740626358606461,
+      "metadata": {
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 2,
+        "grid": [
+          12,
+          2,
+          16
+        ],
+        "n_regs": 164,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.int8"
+      }
+    },
+    {
+      "batch": 8,
+      "context": 33,
+      "name": "INT8_inline132_w1",
+      "median_ms": 0.017287500202655792,
+      "time_change_percent": 8.631820608279273,
+      "metadata": {
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 2,
+        "grid": [
+          12,
+          2,
+          16
+        ],
+        "n_regs": 164,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.int8"
+      }
+    },
+    {
+      "batch": 8,
+      "context": 33,
+      "name": "INT8_packed128_w2",
+      "median_ms": 0.018505769968032836,
+      "time_change_percent": 16.287228333717696,
+      "metadata": {
+        "tile": 32,
+        "warps": 2,
+        "quant_mode": 2,
+        "grid": [
+          12,
+          2,
+          16
+        ],
+        "n_regs": 163,
+        "n_spills": 0,
+        "compiled_warps": 2,
+        "key_dtype": "torch.int8"
+      }
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "name": "BF16",
+      "median_ms": 0.8498291969299316,
+      "time_change_percent": 0.0,
+      "metadata": {
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 85,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.bfloat16"
+      }
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "name": "INT8_packed128_w1",
+      "median_ms": 0.9097972869873047,
+      "time_change_percent": 7.056487382877874,
+      "metadata": {
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 2,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 164,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.int8"
+      }
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "name": "INT8_inline132_w1",
+      "median_ms": 1.021284580230713,
+      "time_change_percent": 20.17527568129878,
+      "metadata": {
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 2,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 164,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.int8"
+      }
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "name": "INT8_packed128_w2",
+      "median_ms": 0.9514251708984375,
+      "time_change_percent": 11.954869794486767,
+      "metadata": {
+        "tile": 32,
+        "warps": 2,
+        "quant_mode": 2,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 164,
+        "n_spills": 0,
+        "compiled_warps": 2,
+        "key_dtype": "torch.int8"
+      }
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "name": "BF16",
+      "median_ms": 1.0576266288757323,
+      "time_change_percent": 0.0,
+      "metadata": {
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 85,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.bfloat16"
+      }
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "name": "INT8_packed128_w1",
+      "median_ms": 1.1313075065612792,
+      "time_change_percent": 6.966624673952326,
+      "metadata": {
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 2,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 164,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.int8"
+      }
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "name": "INT8_inline132_w1",
+      "median_ms": 1.2682181358337403,
+      "time_change_percent": 19.911706192748646,
+      "metadata": {
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 2,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 164,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.int8"
+      }
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "name": "INT8_packed128_w2",
+      "median_ms": 1.1764049530029297,
+      "time_change_percent": 11.230648026842882,
+      "metadata": {
+        "tile": 32,
+        "warps": 2,
+        "quant_mode": 2,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 164,
+        "n_spills": 0,
+        "compiled_warps": 2,
+        "key_dtype": "torch.int8"
+      }
+    }
+  ],
+  "approximation_metrics": [
+    {
+      "batch": 8,
+      "context": 33,
+      "phase": 0,
+      "name": "BF16",
+      "max_abs": 0.004694700241088867,
+      "relative_RMS": 0.001927265664562583
+    },
+    {
+      "batch": 8,
+      "context": 33,
+      "phase": 0,
+      "name": "INT8_packed128_w1",
+      "max_abs": 0.021002888679504395,
+      "relative_RMS": 0.009078209288418293
+    },
+    {
+      "batch": 8,
+      "context": 33,
+      "phase": 0,
+      "name": "INT8_inline132_w1",
+      "max_abs": 0.021002888679504395,
+      "relative_RMS": 0.009078209288418293
+    },
+    {
+      "batch": 8,
+      "context": 33,
+      "phase": 0,
+      "name": "INT8_packed128_w2",
+      "max_abs": 0.021002888679504395,
+      "relative_RMS": 0.009067081846296787
+    },
+    {
+      "batch": 8,
+      "context": 33,
+      "phase": 1,
+      "name": "BF16",
+      "max_abs": 0.00474858283996582,
+      "relative_RMS": 0.002090370748192072
+    },
+    {
+      "batch": 8,
+      "context": 33,
+      "phase": 1,
+      "name": "INT8_packed128_w1",
+      "max_abs": 0.011087775230407715,
+      "relative_RMS": 0.007621362339705229
+    },
+    {
+      "batch": 8,
+      "context": 33,
+      "phase": 1,
+      "name": "INT8_inline132_w1",
+      "max_abs": 0.011087775230407715,
+      "relative_RMS": 0.007621362339705229
+    },
+    {
+      "batch": 8,
+      "context": 33,
+      "phase": 1,
+      "name": "INT8_packed128_w2",
+      "max_abs": 0.011087775230407715,
+      "relative_RMS": 0.007621868513524532
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "phase": 0,
+      "name": "BF16",
+      "max_abs": 0.00034409016370773315,
+      "relative_RMS": 0.0021810957696288824
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "phase": 0,
+      "name": "INT8_packed128_w1",
+      "max_abs": 0.0017069298774003983,
+      "relative_RMS": 0.009586487896740437
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "phase": 0,
+      "name": "INT8_inline132_w1",
+      "max_abs": 0.0017069298774003983,
+      "relative_RMS": 0.009586487896740437
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "phase": 0,
+      "name": "INT8_packed128_w2",
+      "max_abs": 0.0016916710883378983,
+      "relative_RMS": 0.00959732849150896
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "phase": 1,
+      "name": "BF16",
+      "max_abs": 0.0002704635262489319,
+      "relative_RMS": 0.0023006030824035406
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "phase": 1,
+      "name": "INT8_packed128_w1",
+      "max_abs": 0.000626618042588234,
+      "relative_RMS": 0.007605506107211113
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "phase": 1,
+      "name": "INT8_inline132_w1",
+      "max_abs": 0.000626618042588234,
+      "relative_RMS": 0.007605506107211113
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "phase": 1,
+      "name": "INT8_packed128_w2",
+      "max_abs": 0.000626618042588234,
+      "relative_RMS": 0.0076134647242724895
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "phase": 0,
+      "name": "BF16",
+      "max_abs": 0.00034321099519729614,
+      "relative_RMS": 0.0021842157002538443
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "phase": 0,
+      "name": "INT8_packed128_w1",
+      "max_abs": 0.0013172626495361328,
+      "relative_RMS": 0.009533802978694439
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "phase": 0,
+      "name": "INT8_inline132_w1",
+      "max_abs": 0.0013172626495361328,
+      "relative_RMS": 0.009533802978694439
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "phase": 0,
+      "name": "INT8_packed128_w2",
+      "max_abs": 0.0013172626495361328,
+      "relative_RMS": 0.009532829746603966
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "phase": 1,
+      "name": "BF16",
+      "max_abs": 0.00024463236331939697,
+      "relative_RMS": 0.0023016808554530144
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "phase": 1,
+      "name": "INT8_packed128_w1",
+      "max_abs": 0.0005647838115692139,
+      "relative_RMS": 0.007565145380795002
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "phase": 1,
+      "name": "INT8_inline132_w1",
+      "max_abs": 0.0005647838115692139,
+      "relative_RMS": 0.007565145380795002
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "phase": 1,
+      "name": "INT8_packed128_w2",
+      "max_abs": 0.0005647838115692139,
+      "relative_RMS": 0.0075597986578941345
+    }
+  ],
+  "dequant_on_load_variant": false,
+  "native_KV_writer_and_quantization_costs_excluded": true,
+  "service_and_Math_not_run": true,
+  "official_benchmark": false,
+  "adopted": false
+}
