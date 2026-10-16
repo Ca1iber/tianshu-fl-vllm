@@ -1,0 +1,969 @@
+{
+  "complete": true,
+  "source_snapshots_verified": 68,
+  "generated_source_reconstructed": true,
+  "producer_and_reducer_AST_unchanged": true,
+  "same_format_wordwidth_outputs_bitwise_equal_all4_phases": true,
+  "all_compiled_assembly_artifacts_SHA_verified": {
+    "compiled_assembly/0_BF16/source.txt": "b6b87fe66f40bf78da4ef67989c2581c1257f0c5da71dd42fd86e65b18ee37b9",
+    "compiled_assembly/0_BF16/ttir.txt": "cce0d19329b577462e82007fd5904c380676a7c104fb2bce2359d89a22c85067",
+    "compiled_assembly/0_BF16/ttgir.txt": "3441c9af84a532126b3cafae04eb94c5b126aa300aa283636353414b73b10594",
+    "compiled_assembly/0_BF16/llir.txt": "a29249ad059712ab65bd68582abf67debd273b770dbcef70c0ab669435290dec",
+    "compiled_assembly/0_BF16/asm.txt": "6bb12480c301c1ef48652249daa6f0f16e5ca93046ab7daa21e4542ce8277226",
+    "compiled_assembly/0_BF16/cubin.bin": "4545694d082aebbd7f3fbd891c6405b2291cb78de64bdf93f096edebc4f44bde",
+    "compiled_assembly/0_Soft8_u16_t16_w1_s8/source.txt": "4ac5a99ae0a573daff0ea83e6e364daf3520dde436eabde26f1e9abe8a2aab15",
+    "compiled_assembly/0_Soft8_u16_t16_w1_s8/ttir.txt": "38d04074969e9dd7ae1a0a052815513b261a6fec10d35379c1cdc4d3d0d4de50",
+    "compiled_assembly/0_Soft8_u16_t16_w1_s8/ttgir.txt": "32f5a2c351143bfdfb49b6ee10b72de5357321fa3e368c1a6bc14c5e3ec8a62e",
+    "compiled_assembly/0_Soft8_u16_t16_w1_s8/llir.txt": "0b5bba72df43743c52b051d07696789c2bed8562069c9349b154ac4097f91696",
+    "compiled_assembly/0_Soft8_u16_t16_w1_s8/asm.txt": "eb83cf0c0dacf20b9207b87bc82189778dbd3a487dd19fb300b483174b71106b",
+    "compiled_assembly/0_Soft8_u16_t16_w1_s8/cubin.bin": "db08de548405c887aa990a00e20d065e400034d366e9957a560ca0d293ad47c3",
+    "compiled_assembly/0_Soft8_u32_t16_w1_s8/source.txt": "af70fa0ce6e0592d5202e60200d3f479d7a3d9d0c5fd2b20923981646f0af82e",
+    "compiled_assembly/0_Soft8_u32_t16_w1_s8/ttir.txt": "c6bb423e039a5fb96ccb3a3ad77d2d9b01cdedd04ba4e4d593bba646bd34bd43",
+    "compiled_assembly/0_Soft8_u32_t16_w1_s8/ttgir.txt": "667b83f84c2122a08e97a2d9153f93f4d8e6da4d1537a815efaf0fab6680a4f2",
+    "compiled_assembly/0_Soft8_u32_t16_w1_s8/llir.txt": "577a354ed297b2c9d4d7fb044bbf4b50882bb70489eeed3e3bc4fa71055593f2",
+    "compiled_assembly/0_Soft8_u32_t16_w1_s8/asm.txt": "2ebc26b8e3686e52a4371ebf0ab79003bc227d849bd82e401865dc2b647855ff",
+    "compiled_assembly/0_Soft8_u32_t16_w1_s8/cubin.bin": "9a18b5f5f672abb23a262a2339247f1e10b34a23923cca6f5ecd98b2e5f845dc",
+    "compiled_assembly/0_Soft8_u32_t16_w2_s8/source.txt": "af70fa0ce6e0592d5202e60200d3f479d7a3d9d0c5fd2b20923981646f0af82e",
+    "compiled_assembly/0_Soft8_u32_t16_w2_s8/ttir.txt": "c6bb423e039a5fb96ccb3a3ad77d2d9b01cdedd04ba4e4d593bba646bd34bd43",
+    "compiled_assembly/0_Soft8_u32_t16_w2_s8/ttgir.txt": "1bc9f5d06cc4f0411d24170b68e95f00c5a0c54ddc9327f84b6252e682a6763f",
+    "compiled_assembly/0_Soft8_u32_t16_w2_s8/llir.txt": "e1e6926b4bb916a0374ae1dcaa5d2484d18d1c52c65aaafd550c3396e6e10536",
+    "compiled_assembly/0_Soft8_u32_t16_w2_s8/asm.txt": "31a8e088069823fc6592bfa5eec440cda399bcbb47bd75b462e3504bae3b4697",
+    "compiled_assembly/0_Soft8_u32_t16_w2_s8/cubin.bin": "0a9904ff927d2d290fb2670d9b30dc5da143822e29917a5f605038c55ec17251",
+    "compiled_assembly/0_Soft8_u32_t32_w2_s8/source.txt": "011ba2a3f132e1eae476b19f7d8a002f7796563768e290965db3f88429e6fc5a",
+    "compiled_assembly/0_Soft8_u32_t32_w2_s8/ttir.txt": "25d52c56d1979dd5e529af9e3c4bcaa1697c693ce379f15a0d4999da6ee32329",
+    "compiled_assembly/0_Soft8_u32_t32_w2_s8/ttgir.txt": "733a701812f6a9dbaafc4110de69161060d00d92ff7e59e64298a77eb7b79c2d",
+    "compiled_assembly/0_Soft8_u32_t32_w2_s8/llir.txt": "e682aa3a56f759a2914f7452fc4687718e1dcf25f4a5745ad3ac91cb8fc221a7",
+    "compiled_assembly/0_Soft8_u32_t32_w2_s8/asm.txt": "516dd4a773e2cd40d3e244e2ccb760bf6659f93e2b3b70920f2bce654ef1e0a2",
+    "compiled_assembly/0_Soft8_u32_t32_w2_s8/cubin.bin": "9b02ea19894805170c5d9f3de1c81404d2eac6f5a39e0c62f72788a597357d15",
+    "compiled_assembly/1_BF16/source.txt": "b6b87fe66f40bf78da4ef67989c2581c1257f0c5da71dd42fd86e65b18ee37b9",
+    "compiled_assembly/1_BF16/ttir.txt": "cce0d19329b577462e82007fd5904c380676a7c104fb2bce2359d89a22c85067",
+    "compiled_assembly/1_BF16/ttgir.txt": "3441c9af84a532126b3cafae04eb94c5b126aa300aa283636353414b73b10594",
+    "compiled_assembly/1_BF16/llir.txt": "a29249ad059712ab65bd68582abf67debd273b770dbcef70c0ab669435290dec",
+    "compiled_assembly/1_BF16/asm.txt": "6bb12480c301c1ef48652249daa6f0f16e5ca93046ab7daa21e4542ce8277226",
+    "compiled_assembly/1_BF16/cubin.bin": "4545694d082aebbd7f3fbd891c6405b2291cb78de64bdf93f096edebc4f44bde",
+    "compiled_assembly/1_Soft8_u16_t16_w1_s8/source.txt": "4ac5a99ae0a573daff0ea83e6e364daf3520dde436eabde26f1e9abe8a2aab15",
+    "compiled_assembly/1_Soft8_u16_t16_w1_s8/ttir.txt": "38d04074969e9dd7ae1a0a052815513b261a6fec10d35379c1cdc4d3d0d4de50",
+    "compiled_assembly/1_Soft8_u16_t16_w1_s8/ttgir.txt": "32f5a2c351143bfdfb49b6ee10b72de5357321fa3e368c1a6bc14c5e3ec8a62e",
+    "compiled_assembly/1_Soft8_u16_t16_w1_s8/llir.txt": "0b5bba72df43743c52b051d07696789c2bed8562069c9349b154ac4097f91696",
+    "compiled_assembly/1_Soft8_u16_t16_w1_s8/asm.txt": "eb83cf0c0dacf20b9207b87bc82189778dbd3a487dd19fb300b483174b71106b",
+    "compiled_assembly/1_Soft8_u16_t16_w1_s8/cubin.bin": "db08de548405c887aa990a00e20d065e400034d366e9957a560ca0d293ad47c3",
+    "compiled_assembly/1_Soft8_u32_t16_w1_s8/source.txt": "af70fa0ce6e0592d5202e60200d3f479d7a3d9d0c5fd2b20923981646f0af82e",
+    "compiled_assembly/1_Soft8_u32_t16_w1_s8/ttir.txt": "c6bb423e039a5fb96ccb3a3ad77d2d9b01cdedd04ba4e4d593bba646bd34bd43",
+    "compiled_assembly/1_Soft8_u32_t16_w1_s8/ttgir.txt": "667b83f84c2122a08e97a2d9153f93f4d8e6da4d1537a815efaf0fab6680a4f2",
+    "compiled_assembly/1_Soft8_u32_t16_w1_s8/llir.txt": "577a354ed297b2c9d4d7fb044bbf4b50882bb70489eeed3e3bc4fa71055593f2",
+    "compiled_assembly/1_Soft8_u32_t16_w1_s8/asm.txt": "2ebc26b8e3686e52a4371ebf0ab79003bc227d849bd82e401865dc2b647855ff",
+    "compiled_assembly/1_Soft8_u32_t16_w1_s8/cubin.bin": "9a18b5f5f672abb23a262a2339247f1e10b34a23923cca6f5ecd98b2e5f845dc",
+    "compiled_assembly/1_Soft8_u32_t16_w2_s8/source.txt": "af70fa0ce6e0592d5202e60200d3f479d7a3d9d0c5fd2b20923981646f0af82e",
+    "compiled_assembly/1_Soft8_u32_t16_w2_s8/ttir.txt": "c6bb423e039a5fb96ccb3a3ad77d2d9b01cdedd04ba4e4d593bba646bd34bd43",
+    "compiled_assembly/1_Soft8_u32_t16_w2_s8/ttgir.txt": "1bc9f5d06cc4f0411d24170b68e95f00c5a0c54ddc9327f84b6252e682a6763f",
+    "compiled_assembly/1_Soft8_u32_t16_w2_s8/llir.txt": "e1e6926b4bb916a0374ae1dcaa5d2484d18d1c52c65aaafd550c3396e6e10536",
+    "compiled_assembly/1_Soft8_u32_t16_w2_s8/asm.txt": "31a8e088069823fc6592bfa5eec440cda399bcbb47bd75b462e3504bae3b4697",
+    "compiled_assembly/1_Soft8_u32_t16_w2_s8/cubin.bin": "0a9904ff927d2d290fb2670d9b30dc5da143822e29917a5f605038c55ec17251",
+    "compiled_assembly/1_Soft8_u32_t32_w2_s8/source.txt": "011ba2a3f132e1eae476b19f7d8a002f7796563768e290965db3f88429e6fc5a",
+    "compiled_assembly/1_Soft8_u32_t32_w2_s8/ttir.txt": "25d52c56d1979dd5e529af9e3c4bcaa1697c693ce379f15a0d4999da6ee32329",
+    "compiled_assembly/1_Soft8_u32_t32_w2_s8/ttgir.txt": "733a701812f6a9dbaafc4110de69161060d00d92ff7e59e64298a77eb7b79c2d",
+    "compiled_assembly/1_Soft8_u32_t32_w2_s8/llir.txt": "e682aa3a56f759a2914f7452fc4687718e1dcf25f4a5745ad3ac91cb8fc221a7",
+    "compiled_assembly/1_Soft8_u32_t32_w2_s8/asm.txt": "516dd4a773e2cd40d3e244e2ccb760bf6659f93e2b3b70920f2bce654ef1e0a2",
+    "compiled_assembly/1_Soft8_u32_t32_w2_s8/cubin.bin": "9b02ea19894805170c5d9f3de1c81404d2eac6f5a39e0c62f72788a597357d15"
+  },
+  "machine_text_sections": {
+    "4096/BF16": {
+      ".text": "03685e8545d29ef42c3194a1ceff445a8a9ba2bf11cce8bf3cced53546405086"
+    },
+    "4096/Soft8_u16_t16_w1_s8": {
+      ".text": "c9db595d9e5ad9ffbf1134f84737454e5667935f8ef21b83681a5a5f085351ca"
+    },
+    "4096/Soft8_u32_t16_w1_s8": {
+      ".text": "459f4f8d85cec712bdd8e0810e8e1f7cb23e3941ca5a966b6bd6455798830f0f"
+    },
+    "4096/Soft8_u32_t16_w2_s8": {
+      ".text": "20c728de3ee35cfe9c4d9063604a122adb3febb542b6a3af83014bb64f25265b"
+    },
+    "4096/Soft8_u32_t32_w2_s8": {
+      ".text": "10ee5470c08c6ae4b73c514723bcfda98eebdd76d855e439f7823beb1c9e03e3"
+    },
+    "5120/BF16": {
+      ".text": "03685e8545d29ef42c3194a1ceff445a8a9ba2bf11cce8bf3cced53546405086"
+    },
+    "5120/Soft8_u16_t16_w1_s8": {
+      ".text": "c9db595d9e5ad9ffbf1134f84737454e5667935f8ef21b83681a5a5f085351ca"
+    },
+    "5120/Soft8_u32_t16_w1_s8": {
+      ".text": "459f4f8d85cec712bdd8e0810e8e1f7cb23e3941ca5a966b6bd6455798830f0f"
+    },
+    "5120/Soft8_u32_t16_w2_s8": {
+      ".text": "20c728de3ee35cfe9c4d9063604a122adb3febb542b6a3af83014bb64f25265b"
+    },
+    "5120/Soft8_u32_t32_w2_s8": {
+      ".text": "10ee5470c08c6ae4b73c514723bcfda98eebdd76d855e439f7823beb1c9e03e3"
+    }
+  },
+  "u16_u32_machine_text_identical": {
+    "4096": false,
+    "5120": false
+  },
+  "all65280_CPU_encodings_checked": true,
+  "all256_actual_GPU_decodes_equal_independent_CPU": true,
+  "all70_event_groups_recomputed": true,
+  "four_changed_input_phase_records_checked": true,
+  "own_FP32_checks": 20,
+  "CPU_head_checks": 96,
+  "full_GPU_tensor_values_not_serialized": true,
+  "real_writer_allocator_model_Math_not_run": true,
+  "native_FP8_hardware_claimed": false,
+  "adopted": false,
+  "timings": [
+    {
+      "batch": 64,
+      "context": 4096,
+      "name": "BF16",
+      "median_ms": 0.8460878372192383,
+      "raw_ms": [
+        0.845764446258545,
+        0.8460878372192383,
+        0.8465561866760254,
+        0.8471282005310059,
+        0.8470799446105957,
+        0.8454759597778321,
+        0.8452360153198242
+      ],
+      "time_change_percent": 0.0,
+      "metadata": {
+        "codec_intermediates_bits": null,
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 85,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.bfloat16",
+        "assembly": {
+          "source": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_BF16/source.txt",
+            "bytes": 120024,
+            "sha256": "b6b87fe66f40bf78da4ef67989c2581c1257f0c5da71dd42fd86e65b18ee37b9"
+          },
+          "ttir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_BF16/ttir.txt",
+            "bytes": 58515,
+            "sha256": "cce0d19329b577462e82007fd5904c380676a7c104fb2bce2359d89a22c85067"
+          },
+          "ttgir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_BF16/ttgir.txt",
+            "bytes": 76375,
+            "sha256": "3441c9af84a532126b3cafae04eb94c5b126aa300aa283636353414b73b10594"
+          },
+          "llir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_BF16/llir.txt",
+            "bytes": 111853,
+            "sha256": "a29249ad059712ab65bd68582abf67debd273b770dbcef70c0ab669435290dec"
+          },
+          "asm": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_BF16/asm.txt",
+            "bytes": 115807,
+            "sha256": "6bb12480c301c1ef48652249daa6f0f16e5ca93046ab7daa21e4542ce8277226"
+          },
+          "cubin": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_BF16/cubin.bin",
+            "bytes": 19752,
+            "sha256": "4545694d082aebbd7f3fbd891c6405b2291cb78de64bdf93f096edebc4f44bde"
+          }
+        }
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": false,
+      "segments": 8
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "name": "Soft8_u16_t16_w1_s8",
+      "median_ms": 0.8380082130432129,
+      "raw_ms": [
+        0.8379708290100097,
+        0.8380082130432129,
+        0.837712574005127,
+        0.838376808166504,
+        0.8383017539978027,
+        0.8379922866821289,
+        0.8381144523620605
+      ],
+      "time_change_percent": -0.9549391706870525,
+      "metadata": {
+        "codec_intermediates_bits": 16,
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 244,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.uint8",
+        "assembly": {
+          "source": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_Soft8_u16_t16_w1_s8/source.txt",
+            "bytes": 122718,
+            "sha256": "4ac5a99ae0a573daff0ea83e6e364daf3520dde436eabde26f1e9abe8a2aab15"
+          },
+          "ttir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_Soft8_u16_t16_w1_s8/ttir.txt",
+            "bytes": 60332,
+            "sha256": "38d04074969e9dd7ae1a0a052815513b261a6fec10d35379c1cdc4d3d0d4de50"
+          },
+          "ttgir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_Soft8_u16_t16_w1_s8/ttgir.txt",
+            "bytes": 81175,
+            "sha256": "32f5a2c351143bfdfb49b6ee10b72de5357321fa3e368c1a6bc14c5e3ec8a62e"
+          },
+          "llir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_Soft8_u16_t16_w1_s8/llir.txt",
+            "bytes": 141907,
+            "sha256": "0b5bba72df43743c52b051d07696789c2bed8562069c9349b154ac4097f91696"
+          },
+          "asm": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_Soft8_u16_t16_w1_s8/asm.txt",
+            "bytes": 202947,
+            "sha256": "eb83cf0c0dacf20b9207b87bc82189778dbd3a487dd19fb300b483174b71106b"
+          },
+          "cubin": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_Soft8_u16_t16_w1_s8/cubin.bin",
+            "bytes": 31816,
+            "sha256": "db08de548405c887aa990a00e20d065e400034d366e9957a560ca0d293ad47c3"
+          }
+        }
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": false,
+      "segments": 8
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "name": "Soft8_u32_t16_w1_s8",
+      "median_ms": 0.8209790229797364,
+      "raw_ms": [
+        0.8205438613891601,
+        0.8209790229797364,
+        0.8211138725280762,
+        0.8206446647644043,
+        0.8211396217346192,
+        0.8203563690185547,
+        0.8214236259460449
+      ],
+      "time_change_percent": -2.967636826221831,
+      "metadata": {
+        "codec_intermediates_bits": 32,
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 246,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.uint8",
+        "assembly": {
+          "source": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_Soft8_u32_t16_w1_s8/source.txt",
+            "bytes": 124207,
+            "sha256": "af70fa0ce6e0592d5202e60200d3f479d7a3d9d0c5fd2b20923981646f0af82e"
+          },
+          "ttir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_Soft8_u32_t16_w1_s8/ttir.txt",
+            "bytes": 61340,
+            "sha256": "c6bb423e039a5fb96ccb3a3ad77d2d9b01cdedd04ba4e4d593bba646bd34bd43"
+          },
+          "ttgir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_Soft8_u32_t16_w1_s8/ttgir.txt",
+            "bytes": 82054,
+            "sha256": "667b83f84c2122a08e97a2d9153f93f4d8e6da4d1537a815efaf0fab6680a4f2"
+          },
+          "llir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_Soft8_u32_t16_w1_s8/llir.txt",
+            "bytes": 144493,
+            "sha256": "577a354ed297b2c9d4d7fb044bbf4b50882bb70489eeed3e3bc4fa71055593f2"
+          },
+          "asm": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_Soft8_u32_t16_w1_s8/asm.txt",
+            "bytes": 201941,
+            "sha256": "2ebc26b8e3686e52a4371ebf0ab79003bc227d849bd82e401865dc2b647855ff"
+          },
+          "cubin": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_Soft8_u32_t16_w1_s8/cubin.bin",
+            "bytes": 31112,
+            "sha256": "9a18b5f5f672abb23a262a2339247f1e10b34a23923cca6f5ecd98b2e5f845dc"
+          }
+        }
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": false,
+      "segments": 8
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "name": "Soft8_u32_t16_w2_s8",
+      "median_ms": 1.4169161796569825,
+      "raw_ms": [
+        1.4166501998901366,
+        1.4166396141052247,
+        1.4177196502685547,
+        1.4177796363830566,
+        1.41659574508667,
+        1.4169161796569825,
+        1.4173199653625488
+      ],
+      "time_change_percent": 67.46679450136466,
+      "metadata": {
+        "codec_intermediates_bits": 32,
+        "tile": 16,
+        "warps": 2,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 222,
+        "n_spills": 0,
+        "compiled_warps": 2,
+        "key_dtype": "torch.uint8",
+        "assembly": {
+          "source": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_Soft8_u32_t16_w2_s8/source.txt",
+            "bytes": 124207,
+            "sha256": "af70fa0ce6e0592d5202e60200d3f479d7a3d9d0c5fd2b20923981646f0af82e"
+          },
+          "ttir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_Soft8_u32_t16_w2_s8/ttir.txt",
+            "bytes": 61340,
+            "sha256": "c6bb423e039a5fb96ccb3a3ad77d2d9b01cdedd04ba4e4d593bba646bd34bd43"
+          },
+          "ttgir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_Soft8_u32_t16_w2_s8/ttgir.txt",
+            "bytes": 82054,
+            "sha256": "1bc9f5d06cc4f0411d24170b68e95f00c5a0c54ddc9327f84b6252e682a6763f"
+          },
+          "llir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_Soft8_u32_t16_w2_s8/llir.txt",
+            "bytes": 129359,
+            "sha256": "e1e6926b4bb916a0374ae1dcaa5d2484d18d1c52c65aaafd550c3396e6e10536"
+          },
+          "asm": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_Soft8_u32_t16_w2_s8/asm.txt",
+            "bytes": 182375,
+            "sha256": "31a8e088069823fc6592bfa5eec440cda399bcbb47bd75b462e3504bae3b4697"
+          },
+          "cubin": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_Soft8_u32_t16_w2_s8/cubin.bin",
+            "bytes": 28408,
+            "sha256": "0a9904ff927d2d290fb2670d9b30dc5da143822e29917a5f605038c55ec17251"
+          }
+        }
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": false,
+      "segments": 8
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "name": "Soft8_u32_t32_w2_s8",
+      "median_ms": 2.7666826248168945,
+      "raw_ms": [
+        2.764234161376953,
+        2.7666826248168945,
+        2.767300605773926,
+        2.767369270324707,
+        2.767278289794922,
+        2.7653924942016603,
+        2.766667366027832
+      ],
+      "time_change_percent": 226.99709215888322,
+      "metadata": {
+        "codec_intermediates_bits": 32,
+        "tile": 32,
+        "warps": 2,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 256,
+        "n_spills": 124,
+        "compiled_warps": 2,
+        "key_dtype": "torch.uint8",
+        "assembly": {
+          "source": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_Soft8_u32_t32_w2_s8/source.txt",
+            "bytes": 124207,
+            "sha256": "011ba2a3f132e1eae476b19f7d8a002f7796563768e290965db3f88429e6fc5a"
+          },
+          "ttir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_Soft8_u32_t32_w2_s8/ttir.txt",
+            "bytes": 61915,
+            "sha256": "25d52c56d1979dd5e529af9e3c4bcaa1697c693ce379f15a0d4999da6ee32329"
+          },
+          "ttgir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_Soft8_u32_t32_w2_s8/ttgir.txt",
+            "bytes": 85670,
+            "sha256": "733a701812f6a9dbaafc4110de69161060d00d92ff7e59e64298a77eb7b79c2d"
+          },
+          "llir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_Soft8_u32_t32_w2_s8/llir.txt",
+            "bytes": 192600,
+            "sha256": "e682aa3a56f759a2914f7452fc4687718e1dcf25f4a5745ad3ac91cb8fc221a7"
+          },
+          "asm": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_Soft8_u32_t32_w2_s8/asm.txt",
+            "bytes": 317485,
+            "sha256": "516dd4a773e2cd40d3e244e2ccb760bf6659f93e2b3b70920f2bce654ef1e0a2"
+          },
+          "cubin": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/0_Soft8_u32_t32_w2_s8/cubin.bin",
+            "bytes": 45368,
+            "sha256": "9b02ea19894805170c5d9f3de1c81404d2eac6f5a39e0c62f72788a597357d15"
+          }
+        }
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": false,
+      "segments": 8
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "name": "BF16",
+      "median_ms": 1.052184772491455,
+      "raw_ms": [
+        1.0525017738342286,
+        1.0546275138854981,
+        1.04933443069458,
+        1.0519596099853517,
+        1.0521344184875487,
+        1.0548428535461425,
+        1.052184772491455
+      ],
+      "time_change_percent": 0.0,
+      "metadata": {
+        "codec_intermediates_bits": null,
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 85,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.bfloat16",
+        "assembly": {
+          "source": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_BF16/source.txt",
+            "bytes": 120024,
+            "sha256": "b6b87fe66f40bf78da4ef67989c2581c1257f0c5da71dd42fd86e65b18ee37b9"
+          },
+          "ttir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_BF16/ttir.txt",
+            "bytes": 58515,
+            "sha256": "cce0d19329b577462e82007fd5904c380676a7c104fb2bce2359d89a22c85067"
+          },
+          "ttgir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_BF16/ttgir.txt",
+            "bytes": 76375,
+            "sha256": "3441c9af84a532126b3cafae04eb94c5b126aa300aa283636353414b73b10594"
+          },
+          "llir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_BF16/llir.txt",
+            "bytes": 111853,
+            "sha256": "a29249ad059712ab65bd68582abf67debd273b770dbcef70c0ab669435290dec"
+          },
+          "asm": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_BF16/asm.txt",
+            "bytes": 115807,
+            "sha256": "6bb12480c301c1ef48652249daa6f0f16e5ca93046ab7daa21e4542ce8277226"
+          },
+          "cubin": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_BF16/cubin.bin",
+            "bytes": 19752,
+            "sha256": "4545694d082aebbd7f3fbd891c6405b2291cb78de64bdf93f096edebc4f44bde"
+          }
+        }
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": false,
+      "segments": 8
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "name": "Soft8_u16_t16_w1_s8",
+      "median_ms": 1.0381478309631347,
+      "raw_ms": [
+        1.0381478309631347,
+        1.0377729415893555,
+        1.0390908241271972,
+        1.0379572868347169,
+        1.0386623382568358,
+        1.0384457588195801,
+        1.0379690170288085
+      ],
+      "time_change_percent": -1.334075715150529,
+      "metadata": {
+        "codec_intermediates_bits": 16,
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 244,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.uint8",
+        "assembly": {
+          "source": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_Soft8_u16_t16_w1_s8/source.txt",
+            "bytes": 122718,
+            "sha256": "4ac5a99ae0a573daff0ea83e6e364daf3520dde436eabde26f1e9abe8a2aab15"
+          },
+          "ttir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_Soft8_u16_t16_w1_s8/ttir.txt",
+            "bytes": 60332,
+            "sha256": "38d04074969e9dd7ae1a0a052815513b261a6fec10d35379c1cdc4d3d0d4de50"
+          },
+          "ttgir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_Soft8_u16_t16_w1_s8/ttgir.txt",
+            "bytes": 81175,
+            "sha256": "32f5a2c351143bfdfb49b6ee10b72de5357321fa3e368c1a6bc14c5e3ec8a62e"
+          },
+          "llir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_Soft8_u16_t16_w1_s8/llir.txt",
+            "bytes": 141907,
+            "sha256": "0b5bba72df43743c52b051d07696789c2bed8562069c9349b154ac4097f91696"
+          },
+          "asm": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_Soft8_u16_t16_w1_s8/asm.txt",
+            "bytes": 202947,
+            "sha256": "eb83cf0c0dacf20b9207b87bc82189778dbd3a487dd19fb300b483174b71106b"
+          },
+          "cubin": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_Soft8_u16_t16_w1_s8/cubin.bin",
+            "bytes": 31816,
+            "sha256": "db08de548405c887aa990a00e20d065e400034d366e9957a560ca0d293ad47c3"
+          }
+        }
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": false,
+      "segments": 8
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "name": "Soft8_u32_t16_w1_s8",
+      "median_ms": 1.0161942481994628,
+      "raw_ms": [
+        1.0160120964050292,
+        1.016581916809082,
+        1.0161942481994628,
+        1.0157999992370605,
+        1.0161749839782714,
+        1.0162477493286133,
+        1.016855239868164
+      ],
+      "time_change_percent": -3.4205517160993293,
+      "metadata": {
+        "codec_intermediates_bits": 32,
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 246,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.uint8",
+        "assembly": {
+          "source": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_Soft8_u32_t16_w1_s8/source.txt",
+            "bytes": 124207,
+            "sha256": "af70fa0ce6e0592d5202e60200d3f479d7a3d9d0c5fd2b20923981646f0af82e"
+          },
+          "ttir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_Soft8_u32_t16_w1_s8/ttir.txt",
+            "bytes": 61340,
+            "sha256": "c6bb423e039a5fb96ccb3a3ad77d2d9b01cdedd04ba4e4d593bba646bd34bd43"
+          },
+          "ttgir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_Soft8_u32_t16_w1_s8/ttgir.txt",
+            "bytes": 82054,
+            "sha256": "667b83f84c2122a08e97a2d9153f93f4d8e6da4d1537a815efaf0fab6680a4f2"
+          },
+          "llir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_Soft8_u32_t16_w1_s8/llir.txt",
+            "bytes": 144493,
+            "sha256": "577a354ed297b2c9d4d7fb044bbf4b50882bb70489eeed3e3bc4fa71055593f2"
+          },
+          "asm": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_Soft8_u32_t16_w1_s8/asm.txt",
+            "bytes": 201941,
+            "sha256": "2ebc26b8e3686e52a4371ebf0ab79003bc227d849bd82e401865dc2b647855ff"
+          },
+          "cubin": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_Soft8_u32_t16_w1_s8/cubin.bin",
+            "bytes": 31112,
+            "sha256": "9a18b5f5f672abb23a262a2339247f1e10b34a23923cca6f5ecd98b2e5f845dc"
+          }
+        }
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": false,
+      "segments": 8
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "name": "Soft8_u32_t16_w2_s8",
+      "median_ms": 1.7594667434692384,
+      "raw_ms": [
+        1.760416030883789,
+        1.7587125778198243,
+        1.7599876403808594,
+        1.7594667434692384,
+        1.759781837463379,
+        1.758768081665039,
+        1.7591497421264648
+      ],
+      "time_change_percent": 67.22031999218343,
+      "metadata": {
+        "codec_intermediates_bits": 32,
+        "tile": 16,
+        "warps": 2,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 222,
+        "n_spills": 0,
+        "compiled_warps": 2,
+        "key_dtype": "torch.uint8",
+        "assembly": {
+          "source": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_Soft8_u32_t16_w2_s8/source.txt",
+            "bytes": 124207,
+            "sha256": "af70fa0ce6e0592d5202e60200d3f479d7a3d9d0c5fd2b20923981646f0af82e"
+          },
+          "ttir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_Soft8_u32_t16_w2_s8/ttir.txt",
+            "bytes": 61340,
+            "sha256": "c6bb423e039a5fb96ccb3a3ad77d2d9b01cdedd04ba4e4d593bba646bd34bd43"
+          },
+          "ttgir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_Soft8_u32_t16_w2_s8/ttgir.txt",
+            "bytes": 82054,
+            "sha256": "1bc9f5d06cc4f0411d24170b68e95f00c5a0c54ddc9327f84b6252e682a6763f"
+          },
+          "llir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_Soft8_u32_t16_w2_s8/llir.txt",
+            "bytes": 129359,
+            "sha256": "e1e6926b4bb916a0374ae1dcaa5d2484d18d1c52c65aaafd550c3396e6e10536"
+          },
+          "asm": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_Soft8_u32_t16_w2_s8/asm.txt",
+            "bytes": 182375,
+            "sha256": "31a8e088069823fc6592bfa5eec440cda399bcbb47bd75b462e3504bae3b4697"
+          },
+          "cubin": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_Soft8_u32_t16_w2_s8/cubin.bin",
+            "bytes": 28408,
+            "sha256": "0a9904ff927d2d290fb2670d9b30dc5da143822e29917a5f605038c55ec17251"
+          }
+        }
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": false,
+      "segments": 8
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "name": "Soft8_u32_t32_w2_s8",
+      "median_ms": 3.431139373779297,
+      "raw_ms": [
+        3.429151153564453,
+        3.4315200805664063,
+        3.4318466186523438,
+        3.431139373779297,
+        3.4302371978759765,
+        3.4309906005859374,
+        3.431319808959961
+      ],
+      "time_change_percent": 226.09665749626325,
+      "metadata": {
+        "codec_intermediates_bits": 32,
+        "tile": 32,
+        "warps": 2,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 256,
+        "n_spills": 124,
+        "compiled_warps": 2,
+        "key_dtype": "torch.uint8",
+        "assembly": {
+          "source": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_Soft8_u32_t32_w2_s8/source.txt",
+            "bytes": 124207,
+            "sha256": "011ba2a3f132e1eae476b19f7d8a002f7796563768e290965db3f88429e6fc5a"
+          },
+          "ttir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_Soft8_u32_t32_w2_s8/ttir.txt",
+            "bytes": 61915,
+            "sha256": "25d52c56d1979dd5e529af9e3c4bcaa1697c693ce379f15a0d4999da6ee32329"
+          },
+          "ttgir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_Soft8_u32_t32_w2_s8/ttgir.txt",
+            "bytes": 85670,
+            "sha256": "733a701812f6a9dbaafc4110de69161060d00d92ff7e59e64298a77eb7b79c2d"
+          },
+          "llir": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_Soft8_u32_t32_w2_s8/llir.txt",
+            "bytes": 192600,
+            "sha256": "e682aa3a56f759a2914f7452fc4687718e1dcf25f4a5745ad3ac91cb8fc221a7"
+          },
+          "asm": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_Soft8_u32_t32_w2_s8/asm.txt",
+            "bytes": 317485,
+            "sha256": "516dd4a773e2cd40d3e244e2ccb760bf6659f93e2b3b70920f2bce654ef1e0a2"
+          },
+          "cubin": {
+            "path": "/workspace/benchmark-results/20261016_kv_soft8_u32_micro_tianshu/compiled_assembly/1_Soft8_u32_t32_w2_s8/cubin.bin",
+            "bytes": 45368,
+            "sha256": "9b02ea19894805170c5d9f3de1c81404d2eac6f5a39e0c62f72788a597357d15"
+          }
+        }
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": false,
+      "segments": 8
+    }
+  ],
+  "approximations": [
+    {
+      "context": 4096,
+      "phase": 0,
+      "name": "BF16",
+      "max_abs": 0.0003274977207183838,
+      "relative_RMS": 0.0021779192611575127
+    },
+    {
+      "context": 4096,
+      "phase": 0,
+      "name": "Soft8_u16_t16_w1_s8",
+      "max_abs": 0.007109634578227997,
+      "relative_RMS": 0.03875705227255821
+    },
+    {
+      "context": 4096,
+      "phase": 0,
+      "name": "Soft8_u32_t16_w1_s8",
+      "max_abs": 0.007109634578227997,
+      "relative_RMS": 0.03875705227255821
+    },
+    {
+      "context": 4096,
+      "phase": 0,
+      "name": "Soft8_u32_t16_w2_s8",
+      "max_abs": 0.007109634578227997,
+      "relative_RMS": 0.03875705227255821
+    },
+    {
+      "context": 4096,
+      "phase": 0,
+      "name": "Soft8_u32_t32_w2_s8",
+      "max_abs": 0.007109634578227997,
+      "relative_RMS": 0.038759514689445496
+    },
+    {
+      "context": 4096,
+      "phase": 1,
+      "name": "BF16",
+      "max_abs": 0.00025481730699539185,
+      "relative_RMS": 0.0023072154726833105
+    },
+    {
+      "context": 4096,
+      "phase": 1,
+      "name": "Soft8_u16_t16_w1_s8",
+      "max_abs": 0.002904104068875313,
+      "relative_RMS": 0.0299967210739851
+    },
+    {
+      "context": 4096,
+      "phase": 1,
+      "name": "Soft8_u32_t16_w1_s8",
+      "max_abs": 0.002904104068875313,
+      "relative_RMS": 0.0299967210739851
+    },
+    {
+      "context": 4096,
+      "phase": 1,
+      "name": "Soft8_u32_t16_w2_s8",
+      "max_abs": 0.002904104068875313,
+      "relative_RMS": 0.0299967210739851
+    },
+    {
+      "context": 4096,
+      "phase": 1,
+      "name": "Soft8_u32_t32_w2_s8",
+      "max_abs": 0.002904104068875313,
+      "relative_RMS": 0.029998820275068283
+    },
+    {
+      "context": 5120,
+      "phase": 0,
+      "name": "BF16",
+      "max_abs": 0.0003331303596496582,
+      "relative_RMS": 0.0021835484076291323
+    },
+    {
+      "context": 5120,
+      "phase": 0,
+      "name": "Soft8_u16_t16_w1_s8",
+      "max_abs": 0.005149245262145996,
+      "relative_RMS": 0.038606394082307816
+    },
+    {
+      "context": 5120,
+      "phase": 0,
+      "name": "Soft8_u32_t16_w1_s8",
+      "max_abs": 0.005149245262145996,
+      "relative_RMS": 0.038606394082307816
+    },
+    {
+      "context": 5120,
+      "phase": 0,
+      "name": "Soft8_u32_t16_w2_s8",
+      "max_abs": 0.005149245262145996,
+      "relative_RMS": 0.038606394082307816
+    },
+    {
+      "context": 5120,
+      "phase": 0,
+      "name": "Soft8_u32_t32_w2_s8",
+      "max_abs": 0.005149245262145996,
+      "relative_RMS": 0.038610126823186874
+    },
+    {
+      "context": 5120,
+      "phase": 1,
+      "name": "BF16",
+      "max_abs": 0.00020296871662139893,
+      "relative_RMS": 0.002301099942997098
+    },
+    {
+      "context": 5120,
+      "phase": 1,
+      "name": "Soft8_u16_t16_w1_s8",
+      "max_abs": 0.0022016754373908043,
+      "relative_RMS": 0.029659327119588852
+    },
+    {
+      "context": 5120,
+      "phase": 1,
+      "name": "Soft8_u32_t16_w1_s8",
+      "max_abs": 0.0022016754373908043,
+      "relative_RMS": 0.029659327119588852
+    },
+    {
+      "context": 5120,
+      "phase": 1,
+      "name": "Soft8_u32_t16_w2_s8",
+      "max_abs": 0.0022016754373908043,
+      "relative_RMS": 0.029659327119588852
+    },
+    {
+      "context": 5120,
+      "phase": 1,
+      "name": "Soft8_u32_t32_w2_s8",
+      "max_abs": 0.0021978607401251793,
+      "relative_RMS": 0.029660793021321297
+    }
+  ]
+}
