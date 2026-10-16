@@ -1,3 +1,3 @@
-# 天数：同序列两个KV head合并的Decode矩阵块
+# 天数双KV-head合并
 
-待GPU。BM16的16个query行分别映射到2组各8个query heads；每步逻辑16个KV token打包成两个head的32列。softmax前屏蔽跨head分数。序列轴沿用native解析，head轴2→1；BF16 dot/FP32 acc、L0/.cv、int64偏移、KV16/S8、原epilogue/reducer函数体保留。原实现与False恒等对照，True比较warp1/2/4，先筛4个核心场景，不作完整边界或模型成绩声明。
+4场景16候选数值均通过，4K最快仍慢11.03%，不采用、不扩测。未减少dense dot理论乘加数。见[报告](results/20261016/micro_32g/REPORT_32g.md)。
