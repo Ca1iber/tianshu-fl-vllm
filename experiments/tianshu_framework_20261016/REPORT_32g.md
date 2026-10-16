@@ -10,6 +10,9 @@
 |KV NHD/HND物理排列|16场景、32阶段；B64/4K约-0.0022%、5K-0.0638%耗时|基本持平，不进服务|
 |原生INT8逐token/head KV|attention-only B64/4K packed128慢7.06%，inline132慢20.18%|写入成本尚未计入，已无速度依据，不采用|
 |静态逐层INT8及scale外提|B64/4K原per-tensor语义慢12.83%，外提后仍慢6.37%|量化writer未计入，仍不采用|
+|有界prefill cadence2|N64+0.9507%；补队列N128+0.6473%，server ITL约+0.60%|收益小，未采用；正在独立测试强度16|
+|纯decode直接序列映射|当前配置B64满批4K/5K慢7.65%/8.04%，16阶段逐位等价|不搬用旧配置收益，不接服务|
+|软件8位浮点KV|tile16/w1的4K/5K省0.90%/1.38%组件时间，regs244/旧85；另配置有spill|写入未计、收益小，未采用；相同格式u32中间量另测|
 |INT8 warp/tile/分段资源筛选|页内交错K/V、8组均慢，最快4K+6.867%、5K+6.907%耗时|无writer成本仍慢，不采用|
 |INT8在load时反量化|attention-only B64/4K packed128慢21.32%至26.46%，inline132慢33.31%|不采用|
 
@@ -20,6 +23,8 @@ Scheduler诊断V1漏转发实际throttle_prefills参数，在首请求失败；�
 页表同步微测已完成：6场景、12次改变输入重放与126个计时记录下载核验，详见tianshu_block_table_cost_20261016/results/20261016/micro_32g。后续仍从KV与框架计算链寻找更大机会；继续只跑4K筛选，明确提升才做新Math>95和正式测试。预约仍到2026-10-17零点，GPU23:58硬停止。
 
 
-有界prefill cadence小规模配对完成：4038.109→4076.499 total tok/s（+0.9507%），TTFT约-6.08%，平均请求wall约+0.75%；有单cohort尾部对齐风险，未采用。候选为有界cadence+WorkerFL原MRV1恢复metadata兼容路径组合。21次实际GPU恢复token/position检查通过，吞吐前关闭同步，384响应/70源/40环境/16份metrics已下载审计。详见tianshu_prefill_cadence_v4_20261016/results/20261016/screen_32g。另建N128/C64预声明候选先行3+3检查持续补请求，保持原预算/75warm/全部最佳算子，不把当前约1%作正式收益。
+有界prefill cadence小规模配对完成：4038.109→4076.499 total tok/s（+0.9507%），TTFT约-6.08%，平均请求wall约+0.75%；有单cohort尾部对齐风险，未采用。候选为有界cadence+WorkerFL原MRV1恢复metadata兼容路径组合。21次实际GPU恢复token/position检查通过，吞吐前关闭同步，384响应/70源/40环境/16份metrics已下载审计。详见tianshu_prefill_cadence_v4_20261016/results/20261016/screen_32g。独立N128/C64候选先行3+3补请求已完成，保持原预算/75warm/全部最佳算子，增益缩小到0.6473%，不当正式收益。
 
 cadence V1 guard不匹配实际V2=True、V2 control自身greedy重复文本不同、V3控制三轮成功但额外1-token客户端收尾检查失败，均保留失败原件/冻结源并分别报告。V3范围限定审计不补造after_metrics；不把这些当候选性能负例或完整通过。
+
+N128补队列对照已经完成并下载核验768响应、70源、21恢复GPU输入和每轮128请求/131072生成token/130944 inter-token样本。稳态4071.713→4098.070（+.6473%），平均请求wall+.22%、server平均ITL+.60%，仍未采用。详见tianshu_prefill_cadence_holdout_20261016/results/20261016/service_32g。更强prefill cadence16只改调度让出上限，原环境/原服务C64N1283+3运行中；其CPU68步门槛已过，尚无候选成绩。所有正式及Math仍保持原最佳。

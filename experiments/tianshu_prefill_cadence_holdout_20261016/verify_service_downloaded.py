@@ -12,6 +12,14 @@ def read(path):
     return json.loads(path.read_text())
 
 
+def metric_values(path):
+    result={}
+    for line in path.read_text().splitlines():
+        m=re.match(r'^(vllm:[a-zA-Z0-9_]+)(?:\{[^}]*\})? ([0-9.eE+\-]+)$',line)
+        if m:result[m[1]]=result.get(m[1],0.)+float(m[2])
+    return result
+
+
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--root',type=Path,required=True)
@@ -19,7 +27,7 @@ def main():
     comparison=read(root/'comparison.json');assert comparison['complete']
     repo=Path(__file__).resolve().parents[2]
     import hashlib
-    modes={}
+    modes={};server_latency={}
     for mode in ('control','candidate'):
         run=root/mode;state=read(run/'result.json');assert state['phase']=='complete' and state['mode']==mode
         assert len(state['frozen_sources'])>=65
@@ -32,7 +40,7 @@ def main():
             if Path(source).is_relative_to('/workspace/vllm-plugin-FL'):
                 assert hashlib.sha256((repo/Path(source).relative_to('/workspace/vllm-plugin-FL')).read_bytes()).hexdigest()==sha
         rows=state['short_4k_rounds'];assert len(rows)==3
-        all_seeds=[]
+        all_seeds=[];server_rows=[]
         for i,row in enumerate(rows):
             responses=row['responses'];assert row['round']==i+1 and row['successful_requests']==len(responses)==128
             assert row['actual_queue_replenishment_verified']
@@ -56,6 +64,19 @@ def main():
             assert abs(row['total_tokens_per_second']-128*5120/row['duration_seconds'])<1e-9
             assert abs(row['output_tokens_per_second']-128*1024/row['duration_seconds'])<1e-9
             assert abs(row['mean_ttft_seconds']-statistics.mean(r['ttft_seconds'] for r in responses))<1e-12
+            before_metrics=metric_values(run/f'round{i+1}_before_metrics.txt')
+            after_metrics=metric_values(run/f'round{i+1}_after_metrics.txt')
+            delta={k:after_metrics[k]-v for k,v in before_metrics.items() if k in after_metrics}
+            assert delta['vllm:request_generation_tokens_count']==128
+            assert delta['vllm:request_generation_tokens_sum']==128*1024
+            assert delta['vllm:request_prompt_tokens_sum']==128*4096
+            assert delta['vllm:time_to_first_token_seconds_count']==128
+            assert delta['vllm:inter_token_latency_seconds_count']==128*1023
+            ttft=1000*delta['vllm:time_to_first_token_seconds_sum']/128
+            itl=1000*delta['vllm:inter_token_latency_seconds_sum']/(128*1023)
+            assert ttft>0 and itl>0
+            server_rows.append(dict(round=i+1,TTFT_ms=ttft,ITL_ms=itl,request_count=128,inter_token_count=128*1023))
+        server_latency[mode]=server_rows
         assert len(set(all_seeds))==384
         assert abs(state['mean_total_tok_s']-statistics.mean(r['total_tokens_per_second'] for r in rows[1:]))<1e-9
         canaries=state['seeded_canaries'];assert len(canaries)==2
@@ -91,7 +112,7 @@ def main():
         actual40_environment_one_cadence_switch_only_verified=True,actual_candidate_B64_strictTopP32Kgeo_and_three_M2048_configs_verified=True,
         all4_seeded_canaries_equal=True,all16_metrics_zero_preemptions=True,
         control_total_tok_s=before,candidate_total_tok_s=after,gain_percent=comparison['gain_percent'],
-        official_benchmark=False,fresh_Math_not_run=True,RNG_unchanged=True,actual_cadence_route_bounds_and_exclusion_verified=True)
+        official_benchmark=False,fresh_Math_not_run=True,RNG_unchanged=True,actual_cadence_route_bounds_and_exclusion_verified=True,all6_server_latency_token_and_request_counts_checked=True,server_latency_ms=server_latency)
     (root/'local_download_audit.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(report))
 

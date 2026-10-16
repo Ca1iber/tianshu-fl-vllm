@@ -1,0 +1,436 @@
+{
+  "complete": true,
+  "source_snapshots_verified": 65,
+  "generated_source_reconstructed": true,
+  "producer_and_reducer_AST_unchanged": true,
+  "all65280_CPU_encodings_checked": true,
+  "all256_actual_GPU_decodes_equal_independent_CPU": true,
+  "all56_event_groups_recomputed": true,
+  "four_changed_input_phase_records_checked": true,
+  "own_FP32_checks": 16,
+  "CPU_head_checks": 96,
+  "full_GPU_tensor_values_not_serialized": true,
+  "real_writer_allocator_model_Math_not_run": true,
+  "native_FP8_hardware_claimed": false,
+  "adopted": false,
+  "timings": [
+    {
+      "batch": 64,
+      "context": 4096,
+      "name": "BF16",
+      "median_ms": 0.8454383850097656,
+      "raw_ms": [
+        0.8457653999328614,
+        0.8454383850097656,
+        0.8462957382202149,
+        0.8444934844970703,
+        0.8468229293823242,
+        0.8425361633300781,
+        0.8441261291503906
+      ],
+      "time_change_percent": 0.0,
+      "metadata": {
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 85,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.bfloat16"
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": false,
+      "segments": 8
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "name": "Soft8_t16_w1_s8",
+      "median_ms": 0.8378669738769531,
+      "raw_ms": [
+        0.838012409210205,
+        0.8381282806396484,
+        0.8377737045288086,
+        0.8376429557800293,
+        0.8381946563720704,
+        0.8378669738769531,
+        0.8374725341796875
+      ],
+      "time_change_percent": -0.8955603704609572,
+      "metadata": {
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 244,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.uint8"
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": false,
+      "segments": 8
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "name": "Soft8_t16_w2_s8",
+      "median_ms": 1.4653800010681153,
+      "raw_ms": [
+        1.4653274536132812,
+        1.465782642364502,
+        1.4653800010681153,
+        1.4648881912231446,
+        1.4647650718688965,
+        1.465444278717041,
+        1.4664986610412598
+      ],
+      "time_change_percent": 73.32782933095577,
+      "metadata": {
+        "tile": 16,
+        "warps": 2,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 221,
+        "n_spills": 0,
+        "compiled_warps": 2,
+        "key_dtype": "torch.uint8"
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": false,
+      "segments": 8
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "name": "Soft8_t32_w2_s8",
+      "median_ms": 2.895335388183594,
+      "raw_ms": [
+        2.8960317611694335,
+        2.8936532974243163,
+        2.895335388183594,
+        2.8947673797607423,
+        2.8941181182861326,
+        2.8961658477783203,
+        2.896799850463867
+      ],
+      "time_change_percent": 242.46557046852678,
+      "metadata": {
+        "tile": 32,
+        "warps": 2,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 256,
+        "n_spills": 125,
+        "compiled_warps": 2,
+        "key_dtype": "torch.uint8"
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": false,
+      "segments": 8
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "name": "BF16",
+      "median_ms": 1.052645206451416,
+      "raw_ms": [
+        1.0523506164550782,
+        1.052645206451416,
+        1.0531072616577148,
+        1.0522820472717285,
+        1.0529817581176757,
+        1.0532559394836425,
+        1.0507617950439454
+      ],
+      "time_change_percent": 0.0,
+      "metadata": {
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 85,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.bfloat16"
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": false,
+      "segments": 8
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "name": "Soft8_t16_w1_s8",
+      "median_ms": 1.0380825042724608,
+      "raw_ms": [
+        1.0380825042724608,
+        1.0376786231994628,
+        1.038431739807129,
+        1.037486743927002,
+        1.038160514831543,
+        1.038626766204834,
+        1.037785816192627
+      ],
+      "time_change_percent": -1.3834387968238326,
+      "metadata": {
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 244,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.uint8"
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": false,
+      "segments": 8
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "name": "Soft8_t16_w2_s8",
+      "median_ms": 1.820335578918457,
+      "raw_ms": [
+        1.8206283569335937,
+        1.8207130432128906,
+        1.8182943344116211,
+        1.8203893661499024,
+        1.8199359893798828,
+        1.8202079772949218,
+        1.820335578918457
+      ],
+      "time_change_percent": 72.92964122783691,
+      "metadata": {
+        "tile": 16,
+        "warps": 2,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 221,
+        "n_spills": 0,
+        "compiled_warps": 2,
+        "key_dtype": "torch.uint8"
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": false,
+      "segments": 8
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "name": "Soft8_t32_w2_s8",
+      "median_ms": 3.598338317871094,
+      "raw_ms": [
+        3.598338317871094,
+        3.596465301513672,
+        3.598857879638672,
+        3.5961769104003904,
+        3.5995243072509764,
+        3.5984870910644533,
+        3.59814453125
+      ],
+      "time_change_percent": 241.83771472265497,
+      "metadata": {
+        "tile": 32,
+        "warps": 2,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 256,
+        "n_spills": 125,
+        "compiled_warps": 2,
+        "key_dtype": "torch.uint8"
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": false,
+      "segments": 8
+    }
+  ],
+  "approximations": [
+    {
+      "context": 4096,
+      "phase": 0,
+      "name": "BF16",
+      "max_abs": 0.0003274977207183838,
+      "relative_RMS": 0.0021779192611575127
+    },
+    {
+      "context": 4096,
+      "phase": 0,
+      "name": "Soft8_t16_w1_s8",
+      "max_abs": 0.007109634578227997,
+      "relative_RMS": 0.03875705227255821
+    },
+    {
+      "context": 4096,
+      "phase": 0,
+      "name": "Soft8_t16_w2_s8",
+      "max_abs": 0.007109634578227997,
+      "relative_RMS": 0.03875705227255821
+    },
+    {
+      "context": 4096,
+      "phase": 0,
+      "name": "Soft8_t32_w2_s8",
+      "max_abs": 0.007109634578227997,
+      "relative_RMS": 0.038759514689445496
+    },
+    {
+      "context": 4096,
+      "phase": 1,
+      "name": "BF16",
+      "max_abs": 0.00025481730699539185,
+      "relative_RMS": 0.0023072154726833105
+    },
+    {
+      "context": 4096,
+      "phase": 1,
+      "name": "Soft8_t16_w1_s8",
+      "max_abs": 0.002904104068875313,
+      "relative_RMS": 0.0299967210739851
+    },
+    {
+      "context": 4096,
+      "phase": 1,
+      "name": "Soft8_t16_w2_s8",
+      "max_abs": 0.002904104068875313,
+      "relative_RMS": 0.0299967210739851
+    },
+    {
+      "context": 4096,
+      "phase": 1,
+      "name": "Soft8_t32_w2_s8",
+      "max_abs": 0.002904104068875313,
+      "relative_RMS": 0.029998820275068283
+    },
+    {
+      "context": 5120,
+      "phase": 0,
+      "name": "BF16",
+      "max_abs": 0.0003331303596496582,
+      "relative_RMS": 0.0021835484076291323
+    },
+    {
+      "context": 5120,
+      "phase": 0,
+      "name": "Soft8_t16_w1_s8",
+      "max_abs": 0.005149245262145996,
+      "relative_RMS": 0.038606394082307816
+    },
+    {
+      "context": 5120,
+      "phase": 0,
+      "name": "Soft8_t16_w2_s8",
+      "max_abs": 0.005149245262145996,
+      "relative_RMS": 0.038606394082307816
+    },
+    {
+      "context": 5120,
+      "phase": 0,
+      "name": "Soft8_t32_w2_s8",
+      "max_abs": 0.005149245262145996,
+      "relative_RMS": 0.038610126823186874
+    },
+    {
+      "context": 5120,
+      "phase": 1,
+      "name": "BF16",
+      "max_abs": 0.00020296871662139893,
+      "relative_RMS": 0.002301099942997098
+    },
+    {
+      "context": 5120,
+      "phase": 1,
+      "name": "Soft8_t16_w1_s8",
+      "max_abs": 0.0022016754373908043,
+      "relative_RMS": 0.029659327119588852
+    },
+    {
+      "context": 5120,
+      "phase": 1,
+      "name": "Soft8_t16_w2_s8",
+      "max_abs": 0.0022016754373908043,
+      "relative_RMS": 0.029659327119588852
+    },
+    {
+      "context": 5120,
+      "phase": 1,
+      "name": "Soft8_t32_w2_s8",
+      "max_abs": 0.0021978607401251793,
+      "relative_RMS": 0.029660793021321297
+    }
+  ]
+}
