@@ -1,0 +1,46 @@
+{
+  "candidate_tok_s": 2670.589088609217,
+  "control_reference_tok_s": 4037.683144944722,
+  "gain_percent": -33.85837885885474,
+  "steady_spread_percent": 3.0754929315372985,
+  "rounds": [
+    {
+      "round": 1,
+      "total_tokens_per_second": 2508.845938381316,
+      "output_tokens_per_second": 501.76918767626324,
+      "mean_ttft_seconds": 21.364265914147836,
+      "duration_seconds": 130.6098533142358,
+      "tuning_records": []
+    },
+    {
+      "round": 2,
+      "total_tokens_per_second": 2711.6559779345084,
+      "output_tokens_per_second": 542.3311955869017,
+      "mean_ttft_seconds": 14.912879259951296,
+      "duration_seconds": 120.8412876361981,
+      "tuning_records": []
+    },
+    {
+      "round": 3,
+      "total_tokens_per_second": 2629.5221992839256,
+      "output_tokens_per_second": 525.9044398567851,
+      "mean_ttft_seconds": 14.90061824946315,
+      "duration_seconds": 124.61579525331035,
+      "tuning_records": [
+        "(EngineCore pid=112847) Triton autotuning for function mm_kernel finished after 0.62s; config key: (2039, 2560, 2048, 'torch.bfloat16', 'torch.bfloat16', 'torch.bfloat16'), benchmark key: (2039, 2560, 2048, 'torch.bfloat16', 'torch.bfloat16', 'torch.bfloat16', 'triton_do_bench', 5, 10), best config selected: BLOCK_M: 256, BLOCK_N: 128, BLOCK_K: 32, SPLIT_K: 1, num_warps: 8, num_ctas: 1, num_stages: 2, maxnreg: None;",
+        "(EngineCore pid=112847) Triton autotuning for function mm_kernel finished after 0.52s; config key: (2039, 2048, 2048, 'torch.bfloat16', 'torch.bfloat16', 'torch.bfloat16'), benchmark key: (2039, 2048, 2048, 'torch.bfloat16', 'torch.bfloat16', 'torch.bfloat16', 'triton_do_bench', 5, 10), best config selected: BLOCK_M: 256, BLOCK_N: 128, BLOCK_K: 32, SPLIT_K: 1, num_warps: 8, num_ctas: 1, num_stages: 2, maxnreg: None;",
+        "(EngineCore pid=112847) Triton autotuning for function mm_kernel finished after 0.63s; config key: (2039, 12288, 2048, 'torch.bfloat16', 'torch.bfloat16', 'torch.bfloat16'), benchmark key: (2039, 12288, 2048, 'torch.bfloat16', 'torch.bfloat16', 'torch.bfloat16', 'triton_do_bench', 5, 10), best config selected: BLOCK_M: 256, BLOCK_N: 256, BLOCK_K: 32, SPLIT_K: 1, num_warps: 16, num_ctas: 1, num_stages: 2, maxnreg: None;",
+        "(EngineCore pid=112847) Triton autotuning for function mm_kernel finished after 0.54s; config key: (2039, 2048, 6144, 'torch.bfloat16', 'torch.bfloat16', 'torch.bfloat16'), benchmark key: (2039, 2048, 6144, 'torch.bfloat16', 'torch.bfloat16', 'torch.bfloat16', 'triton_do_bench', 5, 10), best config selected: BLOCK_M: 256, BLOCK_N: 128, BLOCK_K: 32, SPLIT_K: 1, num_warps: 8, num_ctas: 1, num_stages: 2, maxnreg: None;"
+      ]
+    }
+  ],
+  "excluded_rounds": [
+    1
+  ],
+  "sources": 80,
+  "responses": 192,
+  "fresh_interleaved_AB": false,
+  "official_benchmark": false,
+  "fresh_Math": false,
+  "adopted": false
+}
