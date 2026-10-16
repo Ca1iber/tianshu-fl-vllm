@@ -9,3 +9,5 @@ CPU检查含真实Scheduler签名/eligibility/cache recovery源分支、WorkerFL
 随后同原serve命令与最佳CV/KV16/S8/GEO/M2048配置，新鲜4K/1K C64/N64 3+3，预排首轮，记录全部响应/TTFT/客户端decode均摊间隔和文本事件间隔。策略最多连续两步，不保证绝对毫秒延迟上限。仅明确收益才新Math105>95与正式benchmark。没有采用，最好4093.81/Math102 unchanged。
 
 无16K、安装源码/权重/原benchmark/最佳启动器或沐曦改动，23:58硬停；中止时强制关闭自有API组避免HTTP请求与graceful shutdown相互等待，正常结束仍先TERM后KILL。
+
+V2实际在control两组greedy并发探针门槛失败，4/8正文不同；未跑candidate或吞吐，不是策略负优化。69源/16响应已本地审计，详见results/20261016/control_greedy_gate_failed_32g。独立V3使用精确GPU恢复输入检查，V2运行源和failed状态保留。

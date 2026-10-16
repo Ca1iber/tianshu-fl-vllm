@@ -17,3 +17,6 @@
 Scheduler诊断V1漏转发实际throttle_prefills参数，在首请求失败；失败源及日志保留，独立V2修复并通过默认/位置/关键字转发测试后完成诊断。没有修改最佳启动器、模型、原benchmark、安装源码或沐曦仓库。
 
 页表同步微测已完成：6场景、12次改变输入重放与126个计时记录下载核验，详见tianshu_block_table_cost_20261016/results/20261016/micro_32g。后续仍从KV与框架计算链寻找更大机会；继续只跑4K筛选，明确提升才做新Math>95和正式测试。预约仍到2026-10-17零点，GPU23:58硬停止。
+
+
+有界prefill cadence进一步探索中。V1排除了实际True的V2配置flag，control首轮后主动中止；V2发现WorkerFL恢复请求需要MRV1 all_token_ids元数据，但control两次greedy并发4/8全文不同，尚无吞吐/候选。两轮失败源、状态与原件均保留并本地审计，不伪装为通过或性能负例。V3保持原启动参数，候选组合原MRV1恢复路径+最多连续两步decode让出给prefill；新增canary期间直接核验GPU token/positions等于调度历史，吞吐前关闭同步检查并保持journal SHA。新4K3+3运行中，未采用，最佳不变。

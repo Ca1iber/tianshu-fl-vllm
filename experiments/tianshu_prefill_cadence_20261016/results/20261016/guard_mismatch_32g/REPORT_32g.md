@@ -1,0 +1,7 @@
+# 有界prefill V1守卫未命中：中止，未做候选对照
+
+control只完成第一轮C64/N64，3852.077958 total tok/s、TTFT16381.151185ms、64/64成功，按预定规则不计分。运行记录supported=0、deferred=0。原守卫排除了use_v2_model_runner；独立真实EngineArgs预检显示配置flag为True，所以没有继续候选。该预检是新配置重建，不冒充旧运行owner观测。V2后来记录实际owner的同一flag为True，另保存。
+
+本轮主动发出停止，pair状态failed/KeyboardInterrupt、trial状态stopped保留原字节；第二轮未完成，无comparison。API graceful shutdown与未完成HTTP等待后，对已确认归属的API组补发KILL，GPU空闲。没有修改旧guard使它在原记录中通过，没有将该情况作为性能负优化。
+
+69份冻结源码和快照、首轮64条正文/用量/seed/TTFT和SSE间隔及聚合本机重新核验通过；失败status未重写。原包5775057 bytes、23分片SHA256 4dff01df58c48a6e958e7a2204cbba499089cb70c605861601a5d80f6ce503cc 全部verified，见service-results/20261016_tianshu/prefill_cadence_failed_v1。无新Math或正式成绩，最佳4093.81/Math102不变。
