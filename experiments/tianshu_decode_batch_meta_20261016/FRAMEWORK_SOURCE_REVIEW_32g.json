@@ -1,0 +1,34 @@
+{
+  "complete": true,
+  "review_only": true,
+  "files": {
+    "vllm/v1/core/sched/scheduler.py": "df78076164fe02a63876d7690cefac810f1ba4d8fb58afc15e786c1608064090",
+    "vllm/v1/core/sched/async_scheduler.py": "da6343d7e7c394a1738cf72905cbecc208003ffa461ccb441268333a3eb9f884",
+    "vllm/v1/core/sched/output.py": "f2816589726053556dc6eef90e09b901c51f1e08ba41c9b79106d9f4acb89f6d",
+    "vllm/v1/core/kv_cache_manager.py": "2e91e77f84dfd9d4bed79f50392be72559207f54e845a3d3402baf88dc529320",
+    "vllm/v1/core/block_pool.py": "3fc5dfe0ab7ccc6206f6eb7886b2aad15384f92708e6b9f7e5ec7838b7379abe",
+    "vllm/v1/core/kv_cache_coordinator.py": "9dd0a647f671b859e3743fbf5ec84cd892fd5754022eef58c5b8c989a4cda97b",
+    "vllm/v1/core/single_type_kv_cache_manager.py": "22e3677acf0e769461bdbf278df031d6e362c97aa1ba7b862c071b76d47d8914",
+    "vllm/v1/core/kv_cache_utils.py": "3ca561818019cef84c43c6d3839627145fd049f9479d40fc733ae142d6d71df3",
+    "vllm/v1/engine/core.py": "27b23827a86fd488f1f7cc9a2722fe76d284087ca7cfefef5a30c5e74f21bc71",
+    "vllm/v1/request.py": "06b1c6ad3cc0223c2036b4a2e317868fa4988391b4b024bc5e5f54672b7d2c80",
+    "vllm/v1/worker/gpu_input_batch.py": "de1ea4fc9d43fc6079dd375e407c2b6d93f5e1a11f49732d13654c41eaf30a65",
+    "vllm_fl/worker/scheduler_fl.py": "ebac7e38a6deb7093c110f8e30893f74aaafd70877ee424e86ca0cd59d3114d8",
+    "vllm/config/scheduler.py": "4102ccd3d73188200b25f47a0cba837853662647850f283012d8cc1f9e8c47c2",
+    "vllm/config/cache.py": "0c71c5c04d8e87e88377cb8b4c2966d956be2744afef72acdbd5458a9322d5a2"
+  },
+  "archive_sha256": "ce89b32e7267c2c9056339a44720ec9823cc1552fd9d9fbd571465314e846f88",
+  "user_requested_directions": [
+    "KV cache",
+    "batching",
+    "scheduler"
+  ],
+  "selected_candidate": "Fuse repeated pure Decode GPU metadata preparation; original KV allocation and scheduling retained",
+  "already_present": "SingleTypeKVCacheManager.cache_blocks returns immediately when no new complete block exists",
+  "prior_evidence": {
+    "prefix_cache_toggle": "no throughput benefit in earlier paired screen",
+    "async_scheduling_false": "negative6.28% in earlier4096-budget profile; do not extrapolate to every profile",
+    "formal4K": "0 preemptions, no claim of measured peak live KV usage"
+  },
+  "deferred": "Collect actual mixed prefill/decode step and occupancy distribution before changing scheduler policy"
+}

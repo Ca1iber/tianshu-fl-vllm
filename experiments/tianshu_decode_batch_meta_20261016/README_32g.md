@@ -1,0 +1,7 @@
+# 天数纯Decode组批元数据融合
+
+从用户指定的KV cache、batching、scheduler方向入手。当前正式无KV抢占，缓存提交已有“无新完整块”早退；新的候选优化ModelRunner的batch元数据准备。仅无投机、无多模态、async开启、纯1token Decode、前后请求位置一致且已经完成prompt时使用。KV分配、页表和slot mapping仍调用原实现，CPU bookkeeping保持。
+
+一个小kernel准备当前位置、seq_lens、query_start_loc、accepted计数、req_indices、query_pos、scheduled计数、discard mask、上一轮采样的input_ids和logits_indices；positions及req_indices仍为int64。仅省去独立GPU操作与重复H2D，不改页长、缓存dtype、调度预算、maxseq或采样算法。不支持的batch继续原完整方法。
+
+当前仅准备源。必须先通过所有输出及padding尾部逐位相等、动态输入Graph、guard边界和完整准备成本微测，再进入真实服务验证；尚无性能或准确率结论。
