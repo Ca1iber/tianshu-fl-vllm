@@ -1,0 +1,956 @@
+{
+  "complete": true,
+  "source_snapshots_verified": 64,
+  "all126_events_recomputed": true,
+  "four_changed_input_phases_checked": true,
+  "own_reference_checks": 36,
+  "all8_quantized_launch_variants_slower": true,
+  "producer_AST_unchanged": true,
+  "generated_reducer_reconstructed": true,
+  "zero_clipping_fixture_only": true,
+  "full_GPU_tensor_values_not_serialized": true,
+  "manual_page_interleaved_storage_not_full_allocator": true,
+  "no_native_writer_service_or_Math": true,
+  "INT8_storage_not_FP8": true,
+  "adopted": false,
+  "timings": [
+    {
+      "batch": 64,
+      "context": 4096,
+      "name": "BF16",
+      "median_ms": 0.8459324836730957,
+      "raw_ms": [
+        0.8459228515625,
+        0.8459324836730957,
+        0.8485917091369629,
+        0.8460694313049316,
+        0.8454042434692383,
+        0.8465422630310059,
+        0.8454878807067872
+      ],
+      "time_change_percent": 0.0,
+      "metadata": {
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 85,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.bfloat16"
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": false,
+      "segments": 8
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "name": "INT8_t16_w1_s8",
+      "median_ms": 0.904021167755127,
+      "raw_ms": [
+        0.9044163703918457,
+        0.9041826248168945,
+        0.9014100074768067,
+        0.9030396461486816,
+        0.9047613143920898,
+        0.904021167755127,
+        0.9028616905212402
+      ],
+      "time_change_percent": 6.8668227315029196,
+      "metadata": {
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 158,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.int8"
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": true,
+      "segments": 8
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "name": "INT8_t16_w2_s8",
+      "median_ms": 0.9457242965698243,
+      "raw_ms": [
+        0.9450555801391601,
+        0.9457242965698243,
+        0.9464496612548828,
+        0.9447653770446778,
+        0.9454649925231934,
+        0.946654224395752,
+        0.9483630180358886
+      ],
+      "time_change_percent": 11.796664015480985,
+      "metadata": {
+        "tile": 16,
+        "warps": 2,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 114,
+        "n_spills": 0,
+        "compiled_warps": 2,
+        "key_dtype": "torch.int8"
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": true,
+      "segments": 8
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "name": "INT8_t16_w4_s8",
+      "median_ms": 1.1852806091308594,
+      "raw_ms": [
+        1.1785188674926759,
+        1.1852806091308594,
+        1.1829890251159667,
+        1.1850740432739257,
+        1.1856086730957032,
+        1.186312484741211,
+        1.1887617111206055
+      ],
+      "time_change_percent": 40.11527302797162,
+      "metadata": {
+        "tile": 16,
+        "warps": 4,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 96,
+        "n_spills": 0,
+        "compiled_warps": 4,
+        "key_dtype": "torch.int8"
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": true,
+      "segments": 8
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "name": "INT8_t16_w8_s8",
+      "median_ms": 1.969672393798828,
+      "raw_ms": [
+        1.9644020080566407,
+        1.969672393798828,
+        1.970058059692383,
+        1.9659374237060547,
+        1.9704418182373047,
+        1.9661046981811523,
+        1.9712581634521484
+      ],
+      "time_change_percent": 132.8403781406263,
+      "metadata": {
+        "tile": 16,
+        "warps": 8,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 87,
+        "n_spills": 0,
+        "compiled_warps": 8,
+        "key_dtype": "torch.int8"
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": true,
+      "segments": 8
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "name": "INT8_t32_w4_s8",
+      "median_ms": 1.0516616821289062,
+      "raw_ms": [
+        1.05440673828125,
+        1.0516616821289062,
+        1.055403232574463,
+        1.0493441581726075,
+        1.0542472839355468,
+        1.0445463180541992,
+        1.0493334770202636
+      ],
+      "time_change_percent": 24.319813037858594,
+      "metadata": {
+        "tile": 32,
+        "warps": 4,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 108,
+        "n_spills": 0,
+        "compiled_warps": 4,
+        "key_dtype": "torch.int8"
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": true,
+      "segments": 8
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "name": "INT8_t16_w2_s16",
+      "median_ms": 0.9455731391906739,
+      "raw_ms": [
+        0.9442091941833496,
+        0.9447525024414063,
+        0.9473142623901367,
+        0.9466256141662598,
+        0.9455731391906739,
+        0.9440432548522949,
+        0.9479903221130371
+      ],
+      "time_change_percent": 11.778795286939658,
+      "metadata": {
+        "tile": 16,
+        "warps": 2,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          16
+        ],
+        "n_regs": 114,
+        "n_spills": 0,
+        "compiled_warps": 2,
+        "key_dtype": "torch.int8"
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": true,
+      "segments": 16
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "name": "INT8_t16_w4_s16",
+      "median_ms": 1.2057408332824706,
+      "raw_ms": [
+        1.205986213684082,
+        1.2063600540161132,
+        1.2050561904907227,
+        1.2057159423828125,
+        1.2057408332824706,
+        1.2054169654846192,
+        1.2069233894348144
+      ],
+      "time_change_percent": 42.53393226455413,
+      "metadata": {
+        "tile": 16,
+        "warps": 4,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          16
+        ],
+        "n_regs": 96,
+        "n_spills": 0,
+        "compiled_warps": 4,
+        "key_dtype": "torch.int8"
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": true,
+      "segments": 16
+    },
+    {
+      "batch": 64,
+      "context": 4096,
+      "name": "INT8_t16_w2_s4",
+      "median_ms": 0.9941184997558594,
+      "raw_ms": [
+        0.9961767196655273,
+        0.9941184997558594,
+        0.9931510925292969,
+        0.9975342750549316,
+        0.9866486549377441,
+        0.9945150375366211,
+        0.9925361633300781
+      ],
+      "time_change_percent": 17.51747556014518,
+      "metadata": {
+        "tile": 16,
+        "warps": 2,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          4
+        ],
+        "n_regs": 114,
+        "n_spills": 0,
+        "compiled_warps": 2,
+        "key_dtype": "torch.int8"
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": true,
+      "segments": 4
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "name": "BF16",
+      "median_ms": 1.0527213096618653,
+      "raw_ms": [
+        1.049494457244873,
+        1.0527600288391112,
+        1.0520944595336914,
+        1.0546455383300781,
+        1.053489589691162,
+        1.0527213096618653,
+        1.0520550727844238
+      ],
+      "time_change_percent": 0.0,
+      "metadata": {
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 85,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.bfloat16"
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": false,
+      "segments": 8
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "name": "INT8_t16_w1_s8",
+      "median_ms": 1.1254307746887207,
+      "raw_ms": [
+        1.1236650466918945,
+        1.1261913299560546,
+        1.1257821083068849,
+        1.1222484588623047,
+        1.1255818367004395,
+        1.1234615325927735,
+        1.1254307746887207
+      ],
+      "time_change_percent": 6.906810412169739,
+      "metadata": {
+        "tile": 16,
+        "warps": 1,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 158,
+        "n_spills": 0,
+        "compiled_warps": 1,
+        "key_dtype": "torch.int8"
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": true,
+      "segments": 8
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "name": "INT8_t16_w2_s8",
+      "median_ms": 1.1780410766601563,
+      "raw_ms": [
+        1.1807570457458496,
+        1.1777530670166017,
+        1.1792272567749023,
+        1.1764896392822266,
+        1.1791820526123047,
+        1.1766386032104492,
+        1.1780410766601563
+      ],
+      "time_change_percent": 11.904363087182478,
+      "metadata": {
+        "tile": 16,
+        "warps": 2,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 114,
+        "n_spills": 0,
+        "compiled_warps": 2,
+        "key_dtype": "torch.int8"
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": true,
+      "segments": 8
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "name": "INT8_t16_w4_s8",
+      "median_ms": 1.4818960189819337,
+      "raw_ms": [
+        1.4794757843017579,
+        1.4850974082946777,
+        1.4818960189819337,
+        1.4779809951782226,
+        1.4818982124328612,
+        1.4751931190490724,
+        1.4852259635925293
+      ],
+      "time_change_percent": 40.768122140314574,
+      "metadata": {
+        "tile": 16,
+        "warps": 4,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 96,
+        "n_spills": 0,
+        "compiled_warps": 4,
+        "key_dtype": "torch.int8"
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": true,
+      "segments": 8
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "name": "INT8_t16_w8_s8",
+      "median_ms": 2.453795623779297,
+      "raw_ms": [
+        2.452957534790039,
+        2.4593698501586916,
+        2.453795623779297,
+        2.461478614807129,
+        2.454574394226074,
+        2.453293037414551,
+        2.450660514831543
+      ],
+      "time_change_percent": 133.09071463248497,
+      "metadata": {
+        "tile": 16,
+        "warps": 8,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 87,
+        "n_spills": 0,
+        "compiled_warps": 8,
+        "key_dtype": "torch.int8"
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": true,
+      "segments": 8
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "name": "INT8_t32_w4_s8",
+      "median_ms": 1.3073666572570801,
+      "raw_ms": [
+        1.3020524978637695,
+        1.3045907974243165,
+        1.3074150085449219,
+        1.304720115661621,
+        1.3081242561340332,
+        1.3073666572570801,
+        1.3095051765441894
+      ],
+      "time_change_percent": 24.189246029132548,
+      "metadata": {
+        "tile": 32,
+        "warps": 4,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          8
+        ],
+        "n_regs": 108,
+        "n_spills": 0,
+        "compiled_warps": 4,
+        "key_dtype": "torch.int8"
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": true,
+      "segments": 8
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "name": "INT8_t16_w2_s16",
+      "median_ms": 1.1681765556335448,
+      "raw_ms": [
+        1.1707274436950683,
+        1.1685288429260254,
+        1.1678678512573242,
+        1.1681765556335448,
+        1.1689959526062013,
+        1.1672786712646483,
+        1.167574405670166
+      ],
+      "time_change_percent": 10.967313467679674,
+      "metadata": {
+        "tile": 16,
+        "warps": 2,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          16
+        ],
+        "n_regs": 114,
+        "n_spills": 0,
+        "compiled_warps": 2,
+        "key_dtype": "torch.int8"
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": true,
+      "segments": 16
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "name": "INT8_t16_w4_s16",
+      "median_ms": 1.4894807815551758,
+      "raw_ms": [
+        1.4894807815551758,
+        1.4884875297546387,
+        1.4860992431640625,
+        1.489441204071045,
+        1.4898815155029297,
+        1.4911789894104004,
+        1.4897208213806152
+      ],
+      "time_change_percent": 41.48861316710668,
+      "metadata": {
+        "tile": 16,
+        "warps": 4,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          16
+        ],
+        "n_regs": 96,
+        "n_spills": 0,
+        "compiled_warps": 4,
+        "key_dtype": "torch.int8"
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": true,
+      "segments": 16
+    },
+    {
+      "batch": 64,
+      "context": 5120,
+      "name": "INT8_t16_w2_s4",
+      "median_ms": 1.2442971229553224,
+      "raw_ms": [
+        1.2471665382385253,
+        1.2442971229553224,
+        1.240504264831543,
+        1.241531753540039,
+        1.2460028648376464,
+        1.249619960784912,
+        1.2391328811645508
+      ],
+      "time_change_percent": 18.198150976443262,
+      "metadata": {
+        "tile": 16,
+        "warps": 2,
+        "quant_mode": 0,
+        "grid": [
+          96,
+          2,
+          4
+        ],
+        "n_regs": 114,
+        "n_spills": 0,
+        "compiled_warps": 2,
+        "key_dtype": "torch.int8"
+      },
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "scale_folded": true,
+      "segments": 4
+    }
+  ],
+  "approximations": [
+    {
+      "context": 4096,
+      "phase": 0,
+      "name": "BF16",
+      "max_abs": 0.0003274977207183838,
+      "relative_RMS": 0.0021779192611575127
+    },
+    {
+      "context": 4096,
+      "phase": 0,
+      "name": "INT8_t16_w1_s8",
+      "max_abs": 0.008358560502529144,
+      "relative_RMS": 0.02667577750980854
+    },
+    {
+      "context": 4096,
+      "phase": 0,
+      "name": "INT8_t16_w2_s8",
+      "max_abs": 0.008358560502529144,
+      "relative_RMS": 0.02667577750980854
+    },
+    {
+      "context": 4096,
+      "phase": 0,
+      "name": "INT8_t16_w4_s8",
+      "max_abs": 0.008358560502529144,
+      "relative_RMS": 0.02667577750980854
+    },
+    {
+      "context": 4096,
+      "phase": 0,
+      "name": "INT8_t16_w8_s8",
+      "max_abs": 0.008358560502529144,
+      "relative_RMS": 0.02667577750980854
+    },
+    {
+      "context": 4096,
+      "phase": 0,
+      "name": "INT8_t32_w4_s8",
+      "max_abs": 0.008358560502529144,
+      "relative_RMS": 0.026673614978790283
+    },
+    {
+      "context": 4096,
+      "phase": 0,
+      "name": "INT8_t16_w2_s16",
+      "max_abs": 0.008358560502529144,
+      "relative_RMS": 0.02665497176349163
+    },
+    {
+      "context": 4096,
+      "phase": 0,
+      "name": "INT8_t16_w4_s16",
+      "max_abs": 0.008358560502529144,
+      "relative_RMS": 0.02665497176349163
+    },
+    {
+      "context": 4096,
+      "phase": 0,
+      "name": "INT8_t16_w2_s4",
+      "max_abs": 0.008358560502529144,
+      "relative_RMS": 0.026673609390854836
+    },
+    {
+      "context": 4096,
+      "phase": 1,
+      "name": "BF16",
+      "max_abs": 0.00025481730699539185,
+      "relative_RMS": 0.0023072154726833105
+    },
+    {
+      "context": 4096,
+      "phase": 1,
+      "name": "INT8_t16_w1_s8",
+      "max_abs": 0.002085748128592968,
+      "relative_RMS": 0.026056408882141113
+    },
+    {
+      "context": 4096,
+      "phase": 1,
+      "name": "INT8_t16_w2_s8",
+      "max_abs": 0.002085748128592968,
+      "relative_RMS": 0.026056408882141113
+    },
+    {
+      "context": 4096,
+      "phase": 1,
+      "name": "INT8_t16_w4_s8",
+      "max_abs": 0.002085748128592968,
+      "relative_RMS": 0.026056408882141113
+    },
+    {
+      "context": 4096,
+      "phase": 1,
+      "name": "INT8_t16_w8_s8",
+      "max_abs": 0.002085748128592968,
+      "relative_RMS": 0.026056408882141113
+    },
+    {
+      "context": 4096,
+      "phase": 1,
+      "name": "INT8_t32_w4_s8",
+      "max_abs": 0.0020998904947191477,
+      "relative_RMS": 0.026059292256832123
+    },
+    {
+      "context": 4096,
+      "phase": 1,
+      "name": "INT8_t16_w2_s16",
+      "max_abs": 0.002146783284842968,
+      "relative_RMS": 0.02606818452477455
+    },
+    {
+      "context": 4096,
+      "phase": 1,
+      "name": "INT8_t16_w4_s16",
+      "max_abs": 0.002146783284842968,
+      "relative_RMS": 0.02606818452477455
+    },
+    {
+      "context": 4096,
+      "phase": 1,
+      "name": "INT8_t16_w2_s4",
+      "max_abs": 0.0020998904947191477,
+      "relative_RMS": 0.026058532297611237
+    },
+    {
+      "context": 5120,
+      "phase": 0,
+      "name": "BF16",
+      "max_abs": 0.0003331303596496582,
+      "relative_RMS": 0.0021835484076291323
+    },
+    {
+      "context": 5120,
+      "phase": 0,
+      "name": "INT8_t16_w1_s8",
+      "max_abs": 0.0031931940466165543,
+      "relative_RMS": 0.026396794244647026
+    },
+    {
+      "context": 5120,
+      "phase": 0,
+      "name": "INT8_t16_w2_s8",
+      "max_abs": 0.0031931940466165543,
+      "relative_RMS": 0.026396794244647026
+    },
+    {
+      "context": 5120,
+      "phase": 0,
+      "name": "INT8_t16_w4_s8",
+      "max_abs": 0.0031931940466165543,
+      "relative_RMS": 0.026396794244647026
+    },
+    {
+      "context": 5120,
+      "phase": 0,
+      "name": "INT8_t16_w8_s8",
+      "max_abs": 0.0031931940466165543,
+      "relative_RMS": 0.026396794244647026
+    },
+    {
+      "context": 5120,
+      "phase": 0,
+      "name": "INT8_t32_w4_s8",
+      "max_abs": 0.0031931940466165543,
+      "relative_RMS": 0.026404600590467453
+    },
+    {
+      "context": 5120,
+      "phase": 0,
+      "name": "INT8_t16_w2_s16",
+      "max_abs": 0.0030790306627750397,
+      "relative_RMS": 0.026398081332445145
+    },
+    {
+      "context": 5120,
+      "phase": 0,
+      "name": "INT8_t16_w4_s16",
+      "max_abs": 0.0030790306627750397,
+      "relative_RMS": 0.026398081332445145
+    },
+    {
+      "context": 5120,
+      "phase": 0,
+      "name": "INT8_t16_w2_s4",
+      "max_abs": 0.0031931940466165543,
+      "relative_RMS": 0.02640175074338913
+    },
+    {
+      "context": 5120,
+      "phase": 1,
+      "name": "BF16",
+      "max_abs": 0.00020296871662139893,
+      "relative_RMS": 0.002301099942997098
+    },
+    {
+      "context": 5120,
+      "phase": 1,
+      "name": "INT8_t16_w1_s8",
+      "max_abs": 0.0018559512682259083,
+      "relative_RMS": 0.02581765688955784
+    },
+    {
+      "context": 5120,
+      "phase": 1,
+      "name": "INT8_t16_w2_s8",
+      "max_abs": 0.0018559512682259083,
+      "relative_RMS": 0.02581765688955784
+    },
+    {
+      "context": 5120,
+      "phase": 1,
+      "name": "INT8_t16_w4_s8",
+      "max_abs": 0.0018559512682259083,
+      "relative_RMS": 0.02581765688955784
+    },
+    {
+      "context": 5120,
+      "phase": 1,
+      "name": "INT8_t16_w8_s8",
+      "max_abs": 0.0018559512682259083,
+      "relative_RMS": 0.02581765688955784
+    },
+    {
+      "context": 5120,
+      "phase": 1,
+      "name": "INT8_t32_w4_s8",
+      "max_abs": 0.0018864688463509083,
+      "relative_RMS": 0.025816412642598152
+    },
+    {
+      "context": 5120,
+      "phase": 1,
+      "name": "INT8_t16_w2_s16",
+      "max_abs": 0.0018864688463509083,
+      "relative_RMS": 0.025816142559051514
+    },
+    {
+      "context": 5120,
+      "phase": 1,
+      "name": "INT8_t16_w4_s16",
+      "max_abs": 0.0018864688463509083,
+      "relative_RMS": 0.025816142559051514
+    },
+    {
+      "context": 5120,
+      "phase": 1,
+      "name": "INT8_t16_w2_s4",
+      "max_abs": 0.001890428364276886,
+      "relative_RMS": 0.025826582685112953
+    }
+  ]
+}

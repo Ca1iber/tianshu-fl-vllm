@@ -7,3 +7,5 @@ V4沿V3完全相同的policy和GPU恢复输入检查器字节，运行中server 
 为了先验证实际候选，本轮预先固定执行candidate三轮，再启动全新control三轮；均C64/N64 4K/1K、每组排首轮、seed列表相同。不能把旧V3 control当作此次正式配对来源。框架策略不变：WorkerFL TP/PP/DP/CP1，调用原schedule时选择原MRV1 token恢复元数据，finally还原配置flag，每三步最多连续让出两步decode给prefill；控制原flag/原调度。直接GPU token/position检查仅在canary arm开启，吞吐前关闭、每轮后保持journal SHA不变。greedy文本一致数量仅诊断，候选仍须实际恢复检查通过，清晰增益后需新Math105>95与原N256正式。
 
 不改旧冻结目录、权重/安装源/最佳启动器/原benchmark或沐曦；无16K，23:58 GPU硬停。最佳4093.81/Math102保持。
+
+实跑完成：后两轮4038.109→4076.499 tok/s，+0.9507%，实际21次GPU恢复输入检查通过；平均请求wall略增，须独立补队列验证。报告与原件SHA见results/20261016/screen_32g，未采用、无新Math/正式成绩。

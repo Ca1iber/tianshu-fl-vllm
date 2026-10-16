@@ -10,6 +10,7 @@
 |KV NHD/HND物理排列|16场景、32阶段；B64/4K约-0.0022%、5K-0.0638%耗时|基本持平，不进服务|
 |原生INT8逐token/head KV|attention-only B64/4K packed128慢7.06%，inline132慢20.18%|写入成本尚未计入，已无速度依据，不采用|
 |静态逐层INT8及scale外提|B64/4K原per-tensor语义慢12.83%，外提后仍慢6.37%|量化writer未计入，仍不采用|
+|INT8 warp/tile/分段资源筛选|页内交错K/V、8组均慢，最快4K+6.867%、5K+6.907%耗时|无writer成本仍慢，不采用|
 |INT8在load时反量化|attention-only B64/4K packed128慢21.32%至26.46%，inline132慢33.31%|不采用|
 
 所有已完成服务轮次已逐轮报告；raw包、源码快照、输入/usage/输出、GPU事件和检查记录均下载独立核验，并在各实验results/20261016下保存机器审计/归档SHA。组件未序列化完整GPU Tensor，仅有可复现源码、种子及标量/布尔检查，不声称本地重算了全部GPU数值。量化只对自身dequantized FP32参考检查，原BF16近似误差另记；没有复用当前Math作为量化质量结论。
@@ -19,4 +20,6 @@ Scheduler诊断V1漏转发实际throttle_prefills参数，在首请求失败；�
 页表同步微测已完成：6场景、12次改变输入重放与126个计时记录下载核验，详见tianshu_block_table_cost_20261016/results/20261016/micro_32g。后续仍从KV与框架计算链寻找更大机会；继续只跑4K筛选，明确提升才做新Math>95和正式测试。预约仍到2026-10-17零点，GPU23:58硬停止。
 
 
-有界prefill cadence进一步探索中。V1排除了实际True的V2配置flag，control首轮后主动中止；V2发现WorkerFL恢复请求需要MRV1 all_token_ids元数据，但control两次greedy并发4/8全文不同，尚无吞吐/候选。两轮失败源、状态与原件均保留并本地审计，不伪装为通过或性能负例。V3保持原启动参数，候选组合原MRV1恢复路径+最多连续两步decode让出给prefill；新增canary期间直接核验GPU token/positions等于调度历史，吞吐前关闭同步检查并保持journal SHA。新4K3+3运行中，未采用，最佳不变。
+有界prefill cadence小规模配对完成：4038.109→4076.499 total tok/s（+0.9507%），TTFT约-6.08%，平均请求wall约+0.75%；有单cohort尾部对齐风险，未采用。候选为有界cadence+WorkerFL原MRV1恢复metadata兼容路径组合。21次实际GPU恢复token/position检查通过，吞吐前关闭同步，384响应/70源/40环境/16份metrics已下载审计。详见tianshu_prefill_cadence_v4_20261016/results/20261016/screen_32g。另建N128/C64预声明候选先行3+3检查持续补请求，保持原预算/75warm/全部最佳算子，不把当前约1%作正式收益。
+
+cadence V1 guard不匹配实际V2=True、V2 control自身greedy重复文本不同、V3控制三轮成功但额外1-token客户端收尾检查失败，均保留失败原件/冻结源并分别报告。V3范围限定审计不补造after_metrics；不把这些当候选性能负例或完整通过。
