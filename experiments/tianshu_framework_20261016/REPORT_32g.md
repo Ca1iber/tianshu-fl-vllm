@@ -42,3 +42,5 @@ N128补队列对照已经完成并下载核验768响应、70源、21恢复GPU输
 第一版ngram服务首轮仅1148.494tok/s，发现310次index及24次GEMM调优后中断后续，64响应/73源已做范围限定审计，不填稳态分。固定index新GPU微测48 API、3次变化输入图重放、6实际Torch调用通过，随后完整候选N64三轮为2508.846（剔除）/2711.656/2629.522，稳态2670.589，比近期非投机4037.683慢33.858%。全部192响应/80源下载核验，无抢占；第3轮仍4次M2039 GEMM调优，index调优为0，投机路径75补齐保护实际关闭。未采用，无新Math/正式成绩。
 
 详细报告分别在tianshu_ngram_framework_20261016/results/20261016/stopped_pilot_32g、tianshu_ngram_fixed_index_20261016/results/20261016/{index_micro_32g,service_pilot_32g}、tianshu_verify_split_sweep_20261016/results/20261016/micro_32g。继续研究需针对投机prefill稀有M与混合Q1/Q2图重放，不能拿组件提速抵扣实际服务退步。
+
+小批次TopP组件另有机会：原生B≥8已走Triton，B1/2/4/7的sort路径复用GEO主体后，普通分布耗时分别减少约29/53/69/79%，16阶段/160计时组及62源下载核验。这里只测掩码、没有采样RNG或模型服务集成，未采用；详见tianshu_tiny_topp_20261016/results/20261016/micro_32g。
