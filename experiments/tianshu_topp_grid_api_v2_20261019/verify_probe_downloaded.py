@@ -28,12 +28,15 @@ def main():
             assert digest(repo / Path(name).relative_to('/workspace/vllm-plugin-FL')) == expected, name
     assert all(data['source_snapshots'][p] == h for p, h in data['profile_frozen_sources'].items())
     assert len(data['masks']) == 156 and len(data['events']) == 260
+    expected_cases=[(b,'normal') for b in (32,33,40,48,56,63,64)]+[
+        (64,'bf16_normal'),(64,'bf16_peaked'),(64,'ties'),(64,'equal'),(64,'masked'),(64,'one_finite')]
     identifiers = set()
     for row in data['masks']:
         key = row['case'], row['probability'], row['phase']
         assert key not in identifiers
         identifiers.add(key)
         assert row['case'] in range(13) and row['phase'] in (0, 1)
+        assert (row['batch'],row['distribution'])==expected_cases[row['case']]
         assert row['probability'] in (.0001, .1, .5, .95, .999, 1.0)
         assert row['cleared_outputs'] and row['changed_input'] == bool(row['phase'])
         c = row['checks']['candidate']
@@ -74,6 +77,9 @@ def main():
         assert all(row[k] for k in ('input_changed','same_graph_changed_input_exact',
             'older_other_batch_outputs_preserved','RNG_unchanged'))
         assert row['actual_buffer_rows']==64
+    assert [(r['batch'],r['topk'],r['topp']) for r in data['fallbacks']]==[
+        (8,False,True),(16,False,True),(24,False,True),(31,False,True),
+        (65,False,True),(64,False,False),(64,True,False),(64,True,True)]
     assert all(r['bitwise'] for r in data['fallbacks'])
     report = dict(complete=True, masks=156, RNG_cases=21, fallback_cases=8, cross_batch_lifecycle_cases=6, event_groups=260,
                   source_snapshots=len(data['source_snapshots']),

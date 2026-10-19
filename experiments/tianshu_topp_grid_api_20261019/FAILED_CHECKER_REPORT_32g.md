@@ -1,0 +1,7 @@
+# 真实API检查器V1：保留索引启动失败
+
+执行源码0a26620。32行全部12项与33行前8项掩码已完成，候选648条逐行严格CPU语义通过，40条event；接着在原assess中actual[finite]的FlagGems布尔索引调优报Triton CUDA invalid argument。原始trace明确进入flag_gems/ops/index.py；不能由此判定GEO候选数值失败，也不能宣称整个API门槛通过。
+
+RNG、跨批次生命周期、fallback、服务均未完成/未运行，没有GPU_GATE。完整失败包4644178字节、SHA256 8797aa6a4bcd40f5f4f782db38b11027112248dbbd0451837568e8c7875a2706，全部74源与20已完成项已本地范围限定复核，原始failure保留。原件service-results/20261019_tianshu/topp_grid_api_check_failed/20261019_topp_grid_api_micro_tianshu。
+
+独立V2只在调用原assess前把实际输出、对照与输入搬到CPU，原检查函数与1e-6容差不变。没有编辑已测路由/kernel/scratch或旧结果。新实际GPU验证待完成，不借用组件检查或现有Math分数。
