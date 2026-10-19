@@ -1,0 +1,7 @@
+# K-only 组件首轮：测试器作用域错误，零有效 GPU 成绩
+
+启动源ff26e765bf1e6c1b04ce411b7d172b8312308f3f。Producer.launch在2D分支给grid赋值，导致Python把grid视为局部变量；3D控制分支未赋值即读取，抛出UnboundLocalError。只调用到原布局控制的writer；候选尚未验证，没有完成数值案例或event，不能归因于卡或候选kernel。
+
+原失败归档4,772,797字节，19分片和整包SHA256 `73a6ab96ac9ce0a1ddf068614feaf7670b03a316fe2825d4c56fe38ab058aef8` 已本地核验，64份冻结源快照与10份生成源保持原样，进程退出后GPU空闲。
+
+独立probe_layout_v2.py使用launch_grid=grid并只修改新的局部变量；原文件不改。run_probe_v2.py与CPU_GATE_V2另存。新增CPU测试直接抽取实际Producer类，执行B64/B1的3D分支及2048 prefill的2D分支，核对实际grid/tile/warps，3项真实类启动检查通过；原16384地址双射也再次通过。kernel地址源、attention算术和数值门槛不变。后续V2需重新实际GPU验证，不能用CPU检查宣称GPU正确或性能提升。
