@@ -1,0 +1,9 @@
+# 首次组件启动：Python grid作用域错误，保留失败原件
+
+source61ee49f480d52d5da5ddfbe485a15c9307529354。65536个实际writer编码和256解码值均已通过，首个BF16场景warm launch时因launch内部后续分支给grid赋值，Python将闭包grid解释为未初始化局部变量，抛UnboundLocalError。完成数值场景0，性能事件0；不对任何布局给出速度结论。
+
+全部已冻结源/生成文件和GPU codec输出已下载本机独立核验；包SHA256 c1db30e5d66b98c285d665f7551faf4d5bee80a8181ce57677e33a4fc5149d26，5282256B/21parts。原probe/writer/layout/CPU_GATE保持。独立probe_v2.py改用launch_grid局部量，check_cpu_v2.py执行真实Producer AST的80个3D/2D与dtype/batch/ctx分支后再允许新GPU实验；不是跳过失败场景。
+
+```bash
+python3 experiments/tianshu_soft8_mixed_planes_20261019/verify_downloaded.py --root ../service-results/20261019_tianshu/soft8_mixed_planes_scope_failed/20261019_soft8_mixed_planes_component_tianshu/micro --scope-failure
+```
