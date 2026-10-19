@@ -1,0 +1,7 @@
+# 首次软件8位KV服务：真实分配通过，图捕获OOM
+
+启动源b2d3ecd283568a7c0c417604202b0f25074b84a3。真实42层UInt8 spec/page8192及KV view已分配，容量1020368 tokens。536887296-byte arena与131072-byte table确在内存profile内部预留。
+
+在35个FULL decode图捕获中完成2个后失败，Triton launch报CUDA out of memory。已记录B256/B248走2D、BM256/BQ32/T128/w16，256寄存器/908 spills。该配置与OOM同时出现；尚不能排除其他图内存因素，下一独立V2以大批次纯decode的小2D tile验证假设。
+
+没有API响应、Math或benchmark，不能称服务验证通过。134冻结源与生成codec已本地核验；实际安装的runner文件未单独纳入这次快照（仓库mirror有相同hash的绑定），V2同时绑定真实安装路径和仓库。失败原件不改。完整包SHA256 71a4239a706443dd13cd4273f259b4b680f58d730fe13a77f19da56ed79ff1d9，20分块及整包验证。
