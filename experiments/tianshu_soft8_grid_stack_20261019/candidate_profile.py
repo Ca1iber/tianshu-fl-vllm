@@ -14,6 +14,10 @@ digest, read, frozen_check = parent.digest, parent.read, parent.frozen_check
 
 def prepare(root, mode):
     assert mode in ('control', 'candidate')
+    cpu = read(BASE / 'COMPOSITION_CPU_GATE_32g.json')
+    assert cpu['complete'] and cpu['single_qualified_base_hook']
+    for name, sha in cpu['sources'].items():
+        assert digest(BASE / name) == sha, name
     prerequisite = read(BASE / 'PREREQUISITE_32g.json')
     for name in ('official', 'math'):
         path = Path(prerequisite[name + '_remote'])
