@@ -32,3 +32,22 @@ p=.95 的 CUDA Event 在同输入恢复后交替两种模式，各 5 组、每�
 下载后 verifier 重新推导全部标量门槛、事件中位数、RNG/回退记录与 73 份源码快照；完整 GPU logits 未序列化，因此离线核验不等于重新计算 GPU logits。GPU_GATE_32g.json 仅据真实完成原件生成。原 profile 冻结 69 份文件，服务另加入 gate；运行中不修改已测源码。
 
 下一步固定 4096/1024、C64/N64 各 3 轮控制后候选，第一轮排除，轮间输入种子变化、两组种子一致，保留原 serve 参数；逐轮核对调优与抢占。显著服务收益才投入新 Math 和正式 N256。硬截止 2026-10-19 23:58+08。
+
+## 原参数 4K 服务结果：不采用
+
+控制先行后候选，各 3 轮，4096/1024、C64/N64，首轮排除、轮间新输入。控制后两轮均值 4037.316028，候选 4040.037314 total tok/s，仅 +0.067403%；各组稳态 spread 分别 0.077753% 和 0.060158%，没有明确收益。该组件对小批次显著提速没有转化为 C64 服务吞吐。未投入新 Math/正式 N256，不采用、不更新当前最佳。
+
+| 模式 | 轮次 | total tok/s | client TTFT ms | 新调优数 |
+|---|---|---|---|---|
+| control | 1 | 3850.228091 | 16382.743 | 0 |
+| control | 2 | 4035.746457 | 12771.062 | 0 |
+| control | 3 | 4038.885599 | 12824.108 | 0 |
+| candidate | 1 | 4004.465859 | 13132.927 | 0 |
+| candidate | 2 | 4038.822106 | 12738.571 | 0 |
+| candidate | 3 | 4041.252523 | 12783.752 | 0 |
+
+384/384 负载响应与 4 个 seeded canary 保留，canary 跨组相同。6 轮均零新增在线调优、16 份指标零 preemption。两组实际 40 环境项仅 small-mask 候选开关不同，输出目录已作路径归一；原启动 argv、default2048/256、async=True、75 实际预热点、CV/KV16/S8、三种 M2048 GEMM 与 B64 严格 GEO32K 均核验。70 份冻结源两组相同，微测 73 份来源保持不变。小批次 Python 编译/调用记录包括 startup/canary，不能据此宣称 timed workload 的 GPU 重放覆盖比例。
+
+完整原件已下载，26 分片及整包 SHA256 通过：50531ad539f7ead9c3cf33df0904c44c93f11970bee5e9293155a345466950dd，6,614,730 字节。下载后 verify_service_downloaded.py 重新审计全部正文、usage、输入种子、计时、来源、环境、运行路径与指标通过。local service-results/20261019_tianshu/tiny_topp_api_service/20261019_tiny_topp_api_service_tianshu；remote /workspace/benchmark-results/20261019_tiny_topp_api_service_tianshu。源执行 Python 与 gate 来自 860ee198734f5674807fb77f114e47174ade790c；归档 HEAD cef8728 仅额外含隔离的下一项诊断准备，未改变本轮任何冻结源。
+
+本轮 formal best 仍 4093.81 total tok/s（历史独立 Math102/105），不可把小规模 4040.04 当成新正式成绩。下一步转入独立投机请求阶段 Graph 覆盖率诊断，尚未改动实际调度或 CUDA Graph 选择。

@@ -48,6 +48,12 @@ def main():
         tmp.replace(root/'state.json')
         print(json.dumps(dict(phase=state['phase'], mode=args.mode, rounds=len(state['short_4k_rounds']), error=state.get('error'))), flush=True)
 
+    def phase_marker(value):
+        destination=root/'coverage_phase.txt'
+        tmp=destination.with_suffix('.tmp')
+        tmp.write_text(value)
+        tmp.replace(destination)
+
     class StopRequested(BaseException):
         pass
 
@@ -163,13 +169,13 @@ def main():
         observed=dict(v.decode().split('=',1) for v in Path(f'/proc/{server.pid}/environ').read_bytes().split(b'\0') if b'=' in v)
         assert {k:observed.get(k) for k in profile}==profile
         (root/'observed_server_environment.json').write_text(json.dumps(dict(server_pid=server.pid,environment={k:observed[k] for k in profile},command=command),indent=2)+'\n')
-        marker=root/'coverage_phase.txt'; marker.write_text('seeded_canaries')
+        phase_marker('seeded_canaries')
         state['phase']='seeded_canaries';save()
         for _ in range(2):state['seeded_canaries'].append(request(128,16,2026101699,777))
         assert state['seeded_canaries'][0]['text']==state['seeded_canaries'][1]['text']
         metrics('before_metrics.txt')
         for index in range(2):
-            state['phase']=f'round_{index+1}';marker.write_text(state['phase']);save()
+            state['phase']=f'round_{index+1}';phase_marker(state['phase']);save()
             log=(root/'server.log').read_text(errors='replace');boundary=len(log)
             metrics(f'round{index+1}_before_metrics.txt');start=time.perf_counter()
             with ThreadPoolExecutor(max_workers=64) as pool:
@@ -180,7 +186,7 @@ def main():
             state['short_4k_rounds'].append(dict(round=index+1,duration_seconds=duration,total_tokens_per_second=64*4608/duration,
                 output_tokens_per_second=64*512/duration,mean_ttft_seconds=statistics.mean(r['ttft_seconds'] for r in responses),
                 successful_requests=64,responses=responses,tuning_records=tuning));save()
-            marker.write_text(f'flush_{index+1}')
+            phase_marker(f'flush_{index+1}')
             state['flush_canaries'].append(request(128,16,2026101699,777));save()
         metrics('after_metrics.txt');frozen_check(sources)
         state['phase']='finished_pending_audit'
