@@ -1,0 +1,30 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "all65536_BF16_float_and_integer_encoder_references_agree": true,
+  "all256_signed_decoder_codes_checked": true,
+  "sign_zero_infinity_and_NaN_policy_checked": true,
+  "renderer_roundtrip_preserves_all_other_attention_code": true,
+  "reader_proof": {
+    "original_source_sha256": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+    "generated_sha256": "dc0247443844f2fce3ab4d2b893107f03da0748950ccab654e978bd48c8dcc7b",
+    "only_uint8_decode_branch_changed": true,
+    "attention_accumulation_and_integer_offsets_unchanged": true,
+    "KV_numeric_format_changed": true,
+    "K_step": 0.25,
+    "K_signed_code_min": -127,
+    "K_signed_code_max": 127,
+    "nonfinite_policy": "NaN=0; infinity saturated; finite values nearest-even then symmetric saturation",
+    "V_BF16_unchanged": true,
+    "model_quality_not_proven": true
+  },
+  "sources": {
+    "codec.py": "d9007294102bbf404724199f29f9c4b1bd54a9231edd07d24b4135120fbd7239",
+    "linear_writer.py": "42d74e8dca8828095844257d5192e460b9bdfe58a297887adb60cf71faa350ee",
+    "check_cpu.py": "b865411526187b1a14793d642f1807e5a756b8e4ec155a5f2aa46a5fb95e7328"
+  },
+  "numeric_KV_format_changed": true,
+  "new_model_quality_not_proven": true,
+  "GPU_not_run": true,
+  "adopted": false
+}
