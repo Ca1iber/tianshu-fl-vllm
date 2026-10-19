@@ -1,0 +1,9 @@
+# 软件8位KV整条组件V1：编码穷举通过，页padding检查器中断
+
+启动源7b91791719c083a2d513e7eb7220333958d83a33。65536个实际GPU BF16 bit编码与旧格式逐字节相同，256实际解码/符号零匹配；42层真实FullAttentionSpec转换与BF16/uint8普通/packed四CPU重塑fixture通过。首个prefill32的两阶段实际metadata/writer/forward、完整物理存储/padding/scratch/RNG和量化后FP32/CPU参考通过。
+
+首个小场景事件BF160.020607ms、Soft8含writer0.144525ms，慢601.34%；不能把这个小prefill场景外推整服务。下一个prefill33/历史65场景，逻辑KV buffer按32对齐到96 tokens，但物理页只有5×16=80。测试器phase1未截去逻辑padding，reshape失败，尚未获得其余15个场景的完整结论。不是模型或kernel正确性失败，也不写成完整通过。
+
+完整包4,807,838字节，19分片/整包SHA256 `5046b9ceba593fa5fd13211d51196ecc4c1eede0243780679674d21eff441a81` 本地核验；74源快照与当前源核验，已完成表/相位范围单独复核，旧件保持failed。
+
+独立V2只把phase1的logical K/V截到每个fixture的物理页宽再reshape，reader/writer/route算法与原同源文件不改；CPU多5个逻辑32与物理16对齐边界fixture，新CPU_GATE_V2绑定新probe/wrapper。V2必须重新真实GPU验证，无新Math/正式，不采用。
