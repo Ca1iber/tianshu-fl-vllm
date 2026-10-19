@@ -1,0 +1,7 @@
+# 软件8位KV：prefill临时解码与BF16 attention
+
+独立组件试验，前置15配置扫描及来源SHA冻结。软件8位writer、format与直接byte decode保持上一版，prefill先将当前prefill请求所引用的页解码到密集BF16 scratch，再调用原BF16 dispatch。混合批次先处理byte decode，只给prefill子集建立临时页表；未重排批次整体走BF16原native路径。临时地址按逻辑序列/页唯一分配，共享物理prefix不会产生同地址写竞争。反量化在每次Graph replay中执行并计入总耗时。
+
+CPU门槛：65536位编码不变、65280有限值独立参考、256解码与符号零、42 spec转换/非法配置拒绝、实际原decode路由、67242个临时页边界地址检查。GPU计划复用16个实际builder/writer/forward场景，包含完整KV writer、临时解码有效单元bitwise/guard、输出FP32与CPU head参考、变Q/K/V/slots/长度的同Graph重放以及padding/scratch/RNG，7组×20回放。
+
+这是组件scratch实现：按当前最大序列长度及prefill序列数分配并复用，分配只允许预热阶段。尚未实现完整engine scratch预算/异步生命周期或真实allocator hook，不能直接宣称服务可用；更没有模型质量证明或正式benchmark成绩。完整服务接入需独立设计有界内存和fallback，不得偷偷使用BF16值绕过量化。
