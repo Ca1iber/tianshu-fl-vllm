@@ -42,7 +42,7 @@ assert d['phase'] == 'complete' and d['complete'] and d['modes'] == list(MODES)
 assert d['plans'] == {k:list(v) if v is not None else None for k,v in PLANS.items()}
 assert not d['adopted'] and not d['official_benchmark']
 cases = ((1, 33), (1, 4096), (8, 4096), (16, 4096), (24, 4096),
-    (32, 4096), (64, 4096), (64, 5120))
+    (32, 4096), (64, 4096), (64, 5120), (64, 33))
 assert [(c['batch'], c['context']) for c in d['cases']] == list(cases)
 cpu_elements = cpu_refs = gpu_refs = event_groups = 0
 timings = {}
@@ -98,13 +98,13 @@ for case_id, c in enumerate(d['cases']):
         event_groups += 7
     timings[f'{n}/{context}'] = dict(median_ms=c['median_ms'],
         time_change_vs_current_K8V16_percent={m: 100 * (v / c['median_ms']['current'] - 1) for m, v in c['median_ms'].items()})
-assert len(d['producer_records']) == 88 and gpu_refs == 176 and event_groups == 616
+assert len(d['producer_records']) == 99 and gpu_refs == 198 and event_groups == 693
 for r in d['producer_records'].values():
     plan = configuration(r['mode'], r['batch'], r['context'])
     assert r['IS_3D'] and r['key_dtype'] == 'torch.uint8' and r['value_dtype'] == 'torch.bfloat16'
     assert (r['tile'], r['warps'], r['segments'], r['stages']) == (plan['TILE_SIZE'], plan['num_warps'], plan['segments'], plan['num_stages'])
     assert r['n_regs'] is not None and r['n_spills'] is not None
-result = dict(complete=True, component_only=True, sources=len(sources), cases=8, plans=11,
+result = dict(complete=True, component_only=True, sources=len(sources), cases=9, plans=11,
     GPU_reference_records=gpu_refs, CPU_vectors_recomputed=cpu_refs, CPU_elements_recomputed=cpu_elements,
     event_groups=event_groups, timings=timings, adopted=False,
     full_engine_allocator_not_installed=True, prefill_not_tested=True, fresh_Math_not_run=True)

@@ -171,7 +171,7 @@ def main():
         data['all256_decoded_bits'] = [v & 65535 for v in decoded.cpu().view(torch.int16).tolist()]
         assert data['all256_decoded_bits'] == [(((v & 127) << 4) + 14848 if (v & 127) >= 8 else 0) | ((v & 128) << 8) for v in range(256)]
         cases = ((1, 33), (1, 4096), (8, 4096), (16, 4096), (24, 4096),
-            (32, 4096), (64, 4096), (64, 5120))
+            (32, 4096), (64, 4096), (64, 5120), (64, 33))
         with torch.inference_mode():
             for case_id, (n, context) in enumerate(cases):
                 torch.manual_seed(202610196000 + case_id)
@@ -313,7 +313,7 @@ def main():
                 print(json.dumps(dict(batch=n, context=context, median_ms=medians)), flush=True)
                 del fixtures, f, graph, expected, keys, values, scores, answer
                 torch.cuda.empty_cache()
-        assert len(data['cases']) == 8
+        assert len(data['cases']) == 9
         for path, sha in sources.items():
             assert hashlib.sha256(Path(path).read_bytes()).hexdigest() == sha
         data.update(phase='complete', complete=True, full_model_and_Math_not_run=True,
