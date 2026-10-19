@@ -68,8 +68,14 @@ def main():
         assert equal == row['identical_tokens']
         if row['identical_mask']:
             assert equal
+    assert len(data['lifecycle_cases'])==6
+    assert [row['batch'] for row in data['lifecycle_cases']]==[64,32,33,64,32,33]
+    for row in data['lifecycle_cases']:
+        assert all(row[k] for k in ('input_changed','same_graph_changed_input_exact',
+            'older_other_batch_outputs_preserved','RNG_unchanged'))
+        assert row['actual_buffer_rows']==64
     assert all(r['bitwise'] for r in data['fallbacks'])
-    report = dict(complete=True, masks=156, RNG_cases=21, fallback_cases=8, event_groups=260,
+    report = dict(complete=True, masks=156, RNG_cases=21, fallback_cases=8, cross_batch_lifecycle_cases=6, event_groups=260,
                   source_snapshots=len(data['source_snapshots']),
                   scope='Downloaded scalar checks, source and RNG hashes audited; full GPU logits not serialized',
                   model_or_quality_test=False, adopted=False,

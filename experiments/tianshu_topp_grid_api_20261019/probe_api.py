@@ -163,6 +163,34 @@ def main():
                         result['masks'].append(row)
                     save()
 
+            # Keep graphs for different B alive together while sharing one scratch.
+            result['phase']='cross_batch_graph_lifecycle';save()
+            life={}
+            for batch in (32,33,64):
+                torch.manual_seed(2026101950+batch)
+                values=torch.randn(batch,130560,device='cuda').to(torch.bfloat16).float()
+                p=torch.full((batch,),.95,device='cuda');working=values.clone()
+                candidate(working,None,p);graph=torch.cuda.CUDAGraph()
+                with torch.cuda.graph(graph):
+                    working.copy_(values)
+                    candidate(working,None,p)
+                life[batch]=(values,p,working,graph)
+            torch.cuda.synchronize();life_rng=torch.cuda.get_rng_state().clone()
+            result['lifecycle_cases']=[]
+            for step,batch in enumerate((64,32,33,64,32,33)):
+                values,p,working,graph=life[batch]
+                values.copy_(values.roll(17+step,dims=1))
+                other={b:entry[2].clone() for b,entry in life.items() if b!=batch}
+                expected=candidate(values.clone(),None,p)
+                working.fill_(123);graph.replay();torch.cuda.synchronize()
+                assert torch.equal(working,expected)
+                assert all(torch.equal(life[b][2],old) for b,old in other.items())
+                assert torch.equal(torch.cuda.get_rng_state(),life_rng)
+                result['lifecycle_cases'].append(dict(step=step,batch=batch,input_changed=True,
+                    same_graph_changed_input_exact=True,older_other_batch_outputs_preserved=True,
+                    RNG_unchanged=True,actual_buffer_rows=route.last_metadata['actual_candidate']['actual_buffer_rows']))
+            del life,other
+            save()
             result['phase'] = 'actual_sampler_RNG'
             save()
             forward = sampler.TopKTopPSampler.forward_native
@@ -212,7 +240,7 @@ def main():
                 result['fallbacks'].append(dict(batch=batch, topk=topk, topp=topp, bitwise=True))
         frozen_check(result['source_snapshots'])
         assert len(result['masks']) == 156 and len(result['RNG_cases']) == 21 and len(result['events']) == 260
-        assert len(result['fallbacks']) == 8
+        assert len(result['fallbacks']) == 8 and len(result['lifecycle_cases']) == 6
         assert sampler.apply_top_k_top_p is base_apply
         assert rejection_sampler.apply_top_k_top_p is base_apply
         result.update(phase='complete', complete=True, scope='Real API mask/RNG/graph gate; no model quality or service score')
