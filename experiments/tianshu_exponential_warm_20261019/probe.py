@@ -35,7 +35,7 @@ def main():
     for p in paths:
         sources[str(p)]=digest(p);dest=root/'source_snapshot'/p.relative_to('/');dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(p.read_bytes())
     data=dict(phase='preparing',complete=False,official_benchmark=False,adopted=False,source_snapshots=sources,
-        isolated_cold_tuning_database=str(database),isolated_cache=str(cache),shared_cache_not_modified=True,
+        isolated_cold_tuning_database=str(database),isolated_cache=str(cache),shared_FlagGems_tuning_DB_not_used=True,isolated_FlagGems_config_and_code_cache=True,
         existing_compiler_cache_not_cleared=True,producer_records=[],sampling_cases=[],warm_calls=[],
         no_model_or_new_Math_claim=True)
     def save():(root/'result.json').write_text(json.dumps(data,indent=2)+'\n')
@@ -64,7 +64,15 @@ def main():
         with torch.inference_mode(),flag_gems.use_gems():
             initial=state();print('COLD_WARM_BEGIN',flush=True)
             data['warm_calls'].append(warm_exponential(torch))
-            assert same(initial,state());print('COLD_WARM_END',flush=True)
+            assert same(initial,state())
+            lib=importlib.import_module('flag_gems.utils.libentry')
+            assert lib.LibCache._instance is not None
+            observed_url=lib.LibCache._instance.db_url
+            assert observed_url==os.environ['FLAGGEMS_DB_URL']=='sqlite:///'+str(database)
+            observed_cache=importlib.import_module('flag_gems.utils.code_cache').cache_dir_path()
+            assert observed_cache==cache
+            data.update(observed_libcache_db_url=observed_url,observed_FlagGems_cache_dir=str(observed_cache))
+            print('COLD_WARM_END',flush=True)
             data.update(phase='postwarm',cold_warm_rng_before=encoded(initial),cold_warm_rng_after=encoded(state()));save()
             phase[0]='postwarm';print('POSTWARM_BEGIN',flush=True)
             bank=torch.empty((64,130560),dtype=torch.float32,device='cuda')
