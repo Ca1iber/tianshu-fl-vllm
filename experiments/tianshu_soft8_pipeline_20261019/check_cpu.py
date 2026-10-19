@@ -1,9 +1,11 @@
 # SPDX-License-Identifier: Apache-2.0
-import ast,hashlib,json
+import argparse,ast,hashlib,json
 from dataclasses import dataclass
 from pathlib import Path
-from source import encode_bits,encode_unsigned,prior
+from source import encode_bits,encode_unsigned,prior,render_writer
 from layout_spec import convert_specs
+parser=argparse.ArgumentParser();parser.add_argument('--writer',type=Path,required=True);args=parser.parse_args()
+writer_text=render_writer(args.writer.read_bytes());ast.parse(writer_text)
 b=Path(__file__).resolve().parent
 for bits in range(65536):assert encode_unsigned(bits)==encode_bits(bits)
 legacy=prior.check_cpu();assert legacy['complete']
@@ -41,6 +43,6 @@ for is3d,n,q,grid,want,tile,warps in ((True,64,64,(96,2,8),(96,2,8),16,1),(True,
 assert launch_fixtures==3
 
 for p in b.glob('*.py'):ast.parse(p.read_text(),str(p))
-r=dict(complete=True,CPU_only=True,all65536_BF16_bit_encodings_equal_legacy=True,all65280_finite_independent_reference=legacy['all65280_finite_BF16_encodings_checked'],all256_decode_values_signed_zeros_checked=True,spec_fixture_layers=42,actual_Producer_launch_fixtures=launch_fixtures,unsupported_spec_fixtures_rejected=3,GPU_writer_reader_allocator_model_not_run=True,
+r=dict(complete=True,CPU_only=True,all65536_BF16_bit_encodings_equal_legacy=True,all65280_finite_independent_reference=legacy['all65280_finite_BF16_encodings_checked'],all256_decode_values_signed_zeros_checked=True,spec_fixture_layers=42,actual_Producer_launch_fixtures=launch_fixtures,unsupported_spec_fixtures_rejected=3,GPU_writer_reader_allocator_model_not_run=True,generated_writer_sha256=hashlib.sha256(writer_text.encode()).hexdigest(),
  sources={n:hashlib.sha256((b/n).read_bytes()).hexdigest() for n in ('source.py','layout_spec.py','check_cpu.py','routing.py','probe_pipeline.py','run_probe.py')})
 (b/'CPU_GATE_32g.json').write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(r))

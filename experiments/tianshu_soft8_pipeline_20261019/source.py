@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: Apache-2.0
 """Add a real encoded KV writer to the previously measured software8 reader."""
-import hashlib,importlib.util,sys
+import ast,hashlib,importlib.util,sys
 from pathlib import Path
 BASE=Path(__file__).resolve().parent
 LEGACY=BASE.parent/'tianshu_kv_soft8_20261016/codec.py'
@@ -33,11 +33,14 @@ def encode_unsigned(bits):
 
 def render_writer(raw):
     assert hashlib.sha256(raw).hexdigest()==WRITER_SHA
-    original=raw.decode();text=original
+    original=raw.decode();lines=original.splitlines(keepends=True)
+    node=next(n for n in ast.parse(original).body if isinstance(n,ast.FunctionDef) and n.name=='reshape_and_cache_kernel_flash')
+    text=''.join(lines[node.lineno-1:node.end_lineno])
     for name in ('key','value'):
         before=f'    else:\n        {name}_tile = {name}_load\n'
         after=f'    else:\n        {name}_tile = _soft8_encode_bf16({name}_load)\n'
         assert text.count(before)==1;text=text.replace(before,after)
+    text=''.join(lines[:node.lineno-1])+text+''.join(lines[node.end_lineno:])
     text=text.replace('@triton.jit\ndef reshape_and_cache_kernel_flash(',HELPER+'@triton.jit\ndef reshape_and_cache_kernel_flash(',1)+TEST
     restored=text.removesuffix(TEST).replace(HELPER,'')
     for name in ('key','value'):restored=restored.replace(f'{name}_tile = _soft8_encode_bf16({name}_load)',f'{name}_tile = {name}_load')
