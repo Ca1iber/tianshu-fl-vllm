@@ -1,9 +1,3 @@
-# 软件8位KV解码的binary32中间表示（仅CPU准备）
+# 软件8位KV的binary32解码：已测负收益
 
-当前软件8位KV在真实4K/N64服务筛选中约提升3.15%，正在独立做Math105质量验证。本目录仅准备后续独立组件试验，不修改该次验证的任何源文件。
-
-假设：当前uint32位运算→uint16→BF16 bitcast的lowering可能保留较高寄存器开销。替换为构造低16位为零的binary32位模式，再转BF16。256个码值（含正负零）逐位等价，编码/固定scale不变；CPU独立标量参考、65536编码不变、producer/reducer AST不变与可逆源变换均通过。性能和寄存器改善尚未测量，不能把假设当结果。
-
-计划在当前版本质量与正式4K完成后，独立比较BF16/当前byte decode/binary32 decode，实际writer、metadata/forward、变输入同Graph、量化后参考及输出bitwise诊断，包含B1..64与大批次2D、prefill staging与容量fallback。仍须计入全部writer/staging开销。先看组件，再决定服务和新的质量验证；本目录尚未执行GPU或部署。
-
-已准备三路21场景完整组件probe，441事件组，每个byte变体独立记录实际kernel源码/寄存器/spill。共享dense scratch的Graph诊断保留每个fixture自己的捕获参数，避免把另一路缓存当参考。编码GPU编译前先冻结来源/生成源，若首次编译失败也保留可审阅原件。CPU dispatch/地址/格式门槛已运行；已镜像准备代码，尚未GPU启动。
+21场景真实组件已完成、原件已备份并本地独立核验。65536编码/256码值等价，42个变数据Graph相位的byte输出全部逐位相同，但关键B64 decode慢约2.25%；即使寄存器245→230也没有提速。不进入服务/质量/正式，不采用。完整数据与核验命令见REPORT_32g.md。正在采用的另一版软件8位KV已有正式4K4259.87和freshMath102/105；本目录的binary32变体不包含在该成绩中。
