@@ -1,0 +1,13 @@
+# K8V16真实engine：42层缓存/35图与8请求通过
+
+来源5b679a70dc017fa4fb5292cfa16c44f4a066dc11，原官方serve argv与41项profile。实际已加载WorkerFL/ModelRunnerFL源绑定，42层FullAttentionSpec从16384到12288 bytes；carrier UInt8逻辑view8KiB/page，真实KV规划/分配为12KiB/page。V从每页4096-byte处取BF16共享存储view，42个data_ptr/raw storage/bounds/stride均检查，没有完整BF16 cache拷贝。
+
+实际KV容量680240 tokens；42层实际物理缓存合计21941821440bytes，不超过profile可用21942251724bytes，余量430284bytes小于42×一页。512MiB共享scratch和131072-byte页表在profile_run内、determine_available_memory预算中计入。35/35 FULL decode图捕获完成，API启动、两次固定种子C1输出一致、8/8个512in/128out请求成功；4份metrics零抢占、无新增tune。
+
+194份源/生成源、实际41环境、内存/真实42层views、原始8响应及canary、计时与每轮用量已下载本机并独立核验。短负载不是4K成绩，更不是Math质量证明；4K3+3筛选另root正在进行。source文件冻结不修改。
+
+原件service-results/20261019_tianshu/k8v16_engine_smoke/20261019_k8v16_engine_smoke_tianshu，SHA256 7e9fac79be45594677acfa4a34e5db5ea6569a6a2142b15b74f7290725b32c40，22parts/整包通过。
+
+```bash
+python3 experiments/tianshu_k8v16_pipeline_20261019/verify_service_downloaded.py --root ../service-results/20261019_tianshu/k8v16_engine_smoke/20261019_k8v16_engine_smoke_tianshu --smoke
+```
