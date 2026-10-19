@@ -27,13 +27,13 @@ def main():
         if Path(name).is_relative_to('/workspace/vllm-plugin-FL'):
             assert digest(repo / Path(name).relative_to('/workspace/vllm-plugin-FL')) == expected, name
     assert all(data['source_snapshots'][p] == h for p, h in data['profile_frozen_sources'].items())
-    assert len(data['masks']) == 96 and len(data['events']) == 160
+    assert len(data['masks']) == 156 and len(data['events']) == 260
     identifiers = set()
     for row in data['masks']:
         key = row['case'], row['probability'], row['phase']
         assert key not in identifiers
         identifiers.add(key)
-        assert row['case'] in range(8) and row['phase'] in (0, 1)
+        assert row['case'] in range(13) and row['phase'] in (0, 1)
         assert row['probability'] in (.0001, .1, .5, .95, .999, 1.0)
         assert row['cleared_outputs'] and row['changed_input'] == bool(row['phase'])
         c = row['checks']['candidate']
@@ -52,9 +52,9 @@ def main():
                 assert len(events) == 5 and {e['trial'] for e in events} == set(range(5))
                 assert all(e['ms'] > 0 for e in events)
                 assert statistics.median(e['ms'] for e in events) == row['medians_ms'][mode]
-    assert len(data['RNG_cases']) == 9 and len(data['fallbacks']) == 4
+    assert len(data['RNG_cases']) == 21 and len(data['fallbacks']) == 4
     assert {(r['batch'], r['seeded']) for r in data['RNG_cases']} == {
-        (b, s) for b in (1, 4, 7) for s in ('none', 'partial', 'all')}
+        (b, s) for b in range(1, 8) for s in ('none', 'partial', 'all')}
     for row in data['RNG_cases']:
         assert row['global_and_request_states_identical'] and row['sampled_from_retained_logits']
         states = row['global_after_sha256']
@@ -69,7 +69,7 @@ def main():
         if row['identical_mask']:
             assert equal
     assert all(r['bitwise'] for r in data['fallbacks'])
-    report = dict(complete=True, masks=96, RNG_cases=9, fallback_cases=4, event_groups=160,
+    report = dict(complete=True, masks=156, RNG_cases=21, fallback_cases=4, event_groups=260,
                   source_snapshots=len(data['source_snapshots']),
                   scope='Downloaded scalar checks, source and RNG hashes audited; full GPU logits not serialized',
                   model_or_quality_test=False, adopted=False,

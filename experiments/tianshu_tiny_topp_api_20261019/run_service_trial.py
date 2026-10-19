@@ -91,7 +91,7 @@ def main():
     save()
     try:
         prerequisite=read(BASE/'GPU_GATE_32g.json')
-        assert prerequisite['complete'] and prerequisite['masks']==96 and prerequisite['RNG_cases']==9
+        assert prerequisite['complete'] and prerequisite['masks']==156 and prerequisite['RNG_cases']==21
         prerequisite_raw=read(Path(prerequisite['remote_result']))
         assert prerequisite_raw['phase']=='complete'
         assert digest(Path(prerequisite['remote_result']))==prerequisite['remote_result_sha256']

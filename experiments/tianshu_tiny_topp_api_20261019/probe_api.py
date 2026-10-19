@@ -69,6 +69,8 @@ def main():
         assert sampler.apply_top_k_top_p._tianshu_tiny_candidate
         assert rejection_sampler.apply_top_k_top_p is sampler.apply_top_k_top_p
         candidate, original = sampler.apply_top_k_top_p, sampler._tianshu_tiny_original
+        assert Path(sampler.TopKTopPSampler.forward_native.__code__.co_filename).resolve() == Path(sampler.__file__).resolve()
+        assert Path(sampler.random_sample.__code__.co_filename).resolve() == Path(sampler.__file__).resolve()
         geo = sys.modules['_tianshu_topp_geometric_geo']
         fixture = Path(__file__).resolve().parents[1] / 'tianshu_topp_geometric_20261016/probe_precision.py'
         assert digest(fixture) == '3354e14c55aea477ba39497cf5f0378aadc83529f5d7956ceacb6197e9509d2c'
@@ -90,8 +92,9 @@ def main():
                       sampler_forward_unchanged=True)
         save()
         with torch.inference_mode(), flag_gems.use_gems():
-            distributions = [(1, 'normal'), (2, 'normal'), (4, 'normal'), (7, 'normal'),
-                             (1, 'peaked'), (2, 'bf16_peaked'), (4, 'ties'), (7, 'equal')]
+            distributions = [(batch, 'normal') for batch in range(1, 8)] + [
+                (1, 'peaked'), (2, 'bf16_peaked'), (4, 'ties'), (7, 'equal'),
+                (3, 'masked'), (5, 'one_finite')]
             for case, (batch, distribution) in enumerate(distributions):
                 torch.manual_seed(2026101900 + case)
                 values = torch.randn(batch, 130560, device='cuda')
@@ -103,6 +106,11 @@ def main():
                     values = values.round()
                 if distribution == 'equal':
                     values.zero_()
+                if distribution == 'masked':
+                    values[:, ::3] = -float('inf')
+                if distribution == 'one_finite':
+                    values.fill_(-float('inf'))
+                    values[:, 7] = 0
                 for probability in (.0001, .1, .5, .95, .999, 1.0):
                     p = torch.full((batch,), probability, device='cuda')
                     working = {name: values.clone() for name in ('original', 'candidate')}
@@ -151,7 +159,7 @@ def main():
             result['phase'] = 'actual_sampler_RNG'
             save()
             forward = sampler.TopKTopPSampler.forward_native
-            for batch in (1, 4, 7):
+            for batch in range(1, 8):
                 torch.manual_seed(2026101990 + batch)
                 logits = torch.randn(batch, 130560, device='cuda')
                 p = torch.full((batch,), .95, device='cuda')
@@ -195,7 +203,7 @@ def main():
                 assert torch.equal(a, b)
                 result['fallbacks'].append(dict(batch=batch, topk=topk, topp=topp, bitwise=True))
         frozen_check(result['source_snapshots'])
-        assert len(result['masks']) == 96 and len(result['RNG_cases']) == 9 and len(result['events']) == 160
+        assert len(result['masks']) == 156 and len(result['RNG_cases']) == 21 and len(result['events']) == 260
         result.update(phase='complete', complete=True, scope='Real API mask/RNG/graph gate; no model quality or service score')
     except BaseException as error:
         import traceback
