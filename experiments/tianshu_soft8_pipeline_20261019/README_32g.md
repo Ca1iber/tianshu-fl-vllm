@@ -1,0 +1,11 @@
+# 软件8位KV：补齐真实写入、metadata/forward和分配接口验证
+
+旧u32软件有限E4M3读路径组件约省3%时间，但未包含编码写入或真实allocator。此项不把旧局部结果当端到端收益。它改变KV数值，模型权重、Q与输出仍BF16；固定存储scale1/16、subnormal编码flush、最大幅度30，沿旧已验证格式；不是硬件FP8，不修改checkpoint或官方serve参数。
+
+新生成writer只在原BF16 K/V store前加入整数舍入编码，地址/slots/padding处理沿原shader。用uint32中间量，先判断rounded>=936再做减法，避免unsigned下溢导致小值变成最大值；CPU所有65536 BF16 bit编码与旧算法一致，65280有限输入另有独立frexp/round参考。GPU会穷举65536编码和256解码值/符号零。
+
+软件8位reader使用旧已测同源CV/L0算术与原reducer；新byte dispatcher从实际TritonAttentionImpl.do_kv_cache_update/forward与metadata builder进入，pure/mixed decode显式沿现用adaptive.choose_segments，保留B64S8与KV16/w1；prefill256/128，BF16控制沿原完整最优路由。对不支持的byte形状/功能明确拒绝，不把uint8误走原BF16解释。
+
+真实vLLM FullAttentionSpec和_reshape_attention_kv_cache的CPU初检已经通过BF16/uint8及普通/packed四fixture；页16384→8192字节。convert_specs为不可变42层spec转换，并拒绝其它几何/precision/padded spec。GPU实验还会重复这些实际接口检查。**尚未在实际模型engine中安装spec转换或证明scheduler/allocator完整生命周期**。
+
+成对16个场景：prefill、chunk、ragged、混合、decode及非连续页。两阶段改变Q/K/V、slots与可变长度，重放同一图；writer完整物理存储与padding/scratch尾部必须精确，软件8输出对自身量化后FP32/CPU参考检查，并单独记录相对BF16误差。计时包含实际编码writer+attention，各7组交错顺序×20 replay。旧3%收益是否在新增成本后保持是待测问题。无新质量/正式成绩，不能借102/105作为量化质量证据。
