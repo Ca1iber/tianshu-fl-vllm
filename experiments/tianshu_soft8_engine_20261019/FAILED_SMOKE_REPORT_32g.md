@@ -4,4 +4,4 @@
 
 在35个FULL decode图捕获中完成2个后失败，Triton launch报CUDA out of memory。已记录B256/B248走2D、BM256/BQ32/T128/w16，256寄存器/908 spills。该配置与OOM同时出现；尚不能排除其他图内存因素，下一独立V2以大批次纯decode的小2D tile验证假设。
 
-没有API响应、Math或benchmark，不能称服务验证通过。134冻结源与生成codec已本地核验；实际安装的runner文件未单独纳入这次快照（仓库mirror有相同hash的绑定），V2同时绑定真实安装路径和仓库。失败原件不改。完整包SHA256 71a4239a706443dd13cd4273f259b4b680f58d730fe13a77f19da56ed79ff1d9，20分块及整包验证。
+没有API响应、Math或benchmark，不能称服务验证通过。134冻结源与生成codec已本地核验；复核确认实际安装的runner文件已包含在前置冻结源清单中，且与仓库mirror同哈希；V2额外在hook安装时直接检查class来源路径与这两份绑定。失败原件不改。完整包SHA256 71a4239a706443dd13cd4273f259b4b680f58d730fe13a77f19da56ed79ff1d9，20分块及整包验证。
