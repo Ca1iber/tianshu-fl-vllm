@@ -122,9 +122,9 @@ def main():
     def error(actual, expected):
         actual, expected = actual.float(), expected.float()
         delta = (actual - expected).abs()
-        bad = delta > .02 + .01 * expected.abs()
+        bad = delta > .002 + .01 * expected.abs()
         return dict(passed=bool(torch.isfinite(actual).all() and torch.isfinite(expected).all() and not bad.any()),
-                    max_abs=delta.max().item(), failed_elements=bad.sum().item(), atol=.02, rtol=.01)
+                    max_abs=delta.max().item(), failed_elements=bad.sum().item(), atol=.002, rtol=.01)
     def reference(q, k, v, lengths):
         n, width = k.shape[:2]
         query = q.float().reshape(n, 2, 8, 128)

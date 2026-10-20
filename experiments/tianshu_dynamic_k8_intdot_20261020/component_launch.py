@@ -65,7 +65,7 @@ def source_proof():
         assert ast.dump(cls(original, name)) == ast.dump(cls(normalized, name))
     return dict(legacy_path=str(LEGACY), legacy_sha256=hashlib.sha256(LEGACY.read_bytes()).hexdigest(),
                 policy_path=str(POLICY), policy_sha256=hashlib.sha256(POLICY.read_bytes()).hexdigest(),
-                launch_AST_unchanged_except_V_dtype_guard=True, reducer_AST_unchanged=True)
+                normalized_launch_AST_unchanged=True, normalization_removes_only_V_dtype_guard_and_shared_metadata_observation=True, reducer_AST_unchanged=True)
 
 
 def attach(reader):
