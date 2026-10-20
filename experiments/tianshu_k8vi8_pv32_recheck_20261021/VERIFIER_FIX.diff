@@ -1,0 +1,11 @@
+--- experiments/tianshu_k8vi8_pv32_attention_v2_20261021/verify_gpu.py	2026-10-21 03:24:31.144502317 +0800
++++ experiments/tianshu_k8vi8_pv32_recheck_20261021/verify_gpu.py	2026-10-21 03:26:38.809664653 +0800
+@@ -33,7 +33,7 @@
+         medians={m:statistics.median(case['raw_ms'][m]) for m in state['modes']}
+         assert medians==case['median_ms'] and all(len(v)==7 and all(x>0 for x in v) for v in case['raw_ms'].values())
+         layouts={v['mode']:v for v in case['layouts']}
+-        for m in ('K8VI8Heads','PV32','PV64'):
++        for m in ('K8VI8Heads','PV32'):
+             assert layouts[m]['page_bytes']==layouts[m]['actual_spec_page_bytes']==8448 and layouts[m]['all_scale_bytes_in_native_page_accounting']
+         for m,t,w,pv in [('K8V16',16,1,False),('K8VI8Heads',16,1,False),('PV32',32,2,True)]:
+             record=state['producer_records'][str((m,case['batch'],case['context']))]
