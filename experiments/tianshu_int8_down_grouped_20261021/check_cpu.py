@@ -6,13 +6,14 @@ BASE=Path(__file__).resolve().parent
 PARENT=BASE.parent/'tianshu_int8_gateup_prefill_grouped_20261021'
 sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
 assert (BASE/'kernel.py').read_bytes()==(PARENT/'kernel.py').read_bytes()
-assert (BASE/'tiles.json').read_bytes()==(PARENT/'tiles.json').read_bytes()
+assert json.loads((BASE/'tiles.json').read_text())[:12]==json.loads((PARENT/'tiles.json').read_text())
 for p in BASE.glob('*.py'):ast.parse(p.read_text())
-plans=json.loads((BASE/'tiles.json').read_text());assert len(plans)==12
+plans=json.loads((BASE/'tiles.json').read_text());assert len(plans)==20
 sig=json.loads((BASE/'weight_signature.json').read_text());assert sig['shape']==[2048,6144]
 assert sig['keys']==['model.layers.0.mlp.down_proj.weight']
 assert sig['BF16_bits_sha256']=='1a6e6d547d5f0ffd08fd020690ccf75323ba4dd54181617e406a84f644cee501'
 assert 6144*127*127==99096576<2**31
+assert {(p["bm"],p["bn"],p["bk"],p["warps"],p["stages"],p["group_m"]) for p in plans[12:]}=={(bm,bn,64,4,2,g) for bm in (16,32) for bn in (128,256) for g in (1,8)}
 checks=0
 for c in plans:
   for m in (1,3,8,17,63,64,65,127,128,129,255,256,511,512,1024,2048,4095,4096):

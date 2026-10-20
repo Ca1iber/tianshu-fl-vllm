@@ -16,7 +16,7 @@ assert all((c["name"],c["N"],c["K"])==("down",2048,6144) for c in result["cases"
 rows=[];cpu_integer_elements=0;cpu_A_elements=0;checks=0;failures=[]
 for case in result['cases']:
     m,n,k=case['M'],case['N'],case['K'];valid=[c for c in case['configurations'] if c.get('compiled')]
-    assert len(case['configurations'])==12 and valid
+    assert len(case['configurations'])==20 and valid
     for configuration in case['configurations']:
         if not configuration.get('compiled'):failures.append(dict(case=case['name'],M=m,index=configuration['index'],error=configuration['compile_error']))
     for phase,path in enumerate(case['phase_files']):
@@ -74,7 +74,7 @@ print(json.dumps(gate))
 comparisons=[]
 for m in (8,64,128,129,256,512,1024,2048,4096):
     selected=[r for r in rows if r['M']==m]
-    for i in range(0,12,2):
+    for i in range(0,20,2):
         a=next((r for r in selected if r['index']==i),None);b=next((r for r in selected if r['index']==i+1),None)
         if a is None or b is None:continue
         assert a['configuration']['group_m']==1 and b['configuration']['group_m']==8
