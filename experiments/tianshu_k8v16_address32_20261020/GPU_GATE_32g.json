@@ -1,0 +1,3741 @@
+{
+  "complete": true,
+  "independently_rechecked": true,
+  "adopted": false,
+  "official_benchmark": false,
+  "full_GPU_reference_checks": 72,
+  "CPU_reference_vectors": 768,
+  "whole_cache_bytes_and_guards_verified": true,
+  "same_Graph_two_phases_verified": true,
+  "RNG_unchanged": true,
+  "bitwise_output_equality_to_control_asserted_in_frozen_probe": true,
+  "actual_32bit_kernel_execution_verified": true,
+  "wide_fallback_scope": "CPU selector execution only, GPU fixtures are within signed32 bounds",
+  "interpretation": "KV-only and all-address int32 give no useful high-batch gain; no new service or Math campaign",
+  "time_scope": "hot CUDA Graph: one KV update and one paged decode layer; 9 alternating trials x 20 replays",
+  "frozen_sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/probe.py": "b1b26fa186985e15dbd89448fe083dbdb1c578ee8e86ae517dedd6529778be8f",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/source.py": "a864b8d71fd2fb0841498b0f92e9f383802b1ffdda8cc5d310711482a039a642",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_v_int8_20261020/codec.py": "9ecb4a6671166965e79e74f94f265be2edd29b3d4d2f0b0c97e8f8a1caed4459",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/component_launch.py": "ebf86912b25e39c052f98698cfbcc385d48f9fd2750aeebe0ab6c7b7ac448a6e",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_long_segments_20261020/source.py": "61b3c48fbe1ac4882315379ddc23b48d84c9021ef7dad84c8fd8dac8408d1bc7",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/CPU_GATE_32g.json": "daa77740c9c95348a49b422e2f0fc58c5007dffbf09f657e0247ecb59bd41cb1",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/legacy_routing.py": "9dae2408de9f77e39350cfd70661e4e282ef0d69f798f968c1886d4172a6dc41",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/dispatch_policy.py": "842d69f6635152afa31d498e6e353e0e5f18bc2d86d89782d4e9db4e32f0157a",
+    "/workspace/benchmark-results/20261019_k8v16_budget_default_official4k_tianshu/decode_coherent_records/cache_generated/97987/generated_cache_policy.py": "8deb8967fdacf354f3b38e6a9687163493f6163764f3e8663dce916250cd1289",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_soft8_mixed_planes_20261019/writer.py": "27a74d3bdfee978780044eb69025c10a21d92a1b0a8cf567ee9fea1e0b8d12b5",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_kv_soft8_u32_20261016/codec_variant.py": "d0ad15741f183c63f225da72186752dbd90ba3a791ab365fa24ab3df4b3f58be",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_kv_soft8_20261016/codec.py": "0ccb887961dd0187abed4d77b9dfd2b3fa083e9e7e79c1650d0444e50838c14b",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/value_planes.py": "64f0a0ba89841feb8c091b861d60d687de5d4bdd73c9c7f66476e5cd6ff0d5f0",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_v_int8_20261020/GPU_CODECS_GATE_32g.json": "cb841d56bd6998ad673cb73dfd4a74b58efc9cb69d212f4b8a9828d5702ef4d2",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/guard.py": "050e0bcf9f194b8ef32e27d56376623c9cbb3bb3ea13aa8ad80269f7f870209d",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/GUARD_CPU_GATE_32g.json": "77da0ebca2775e918a47979e6db6344acc1efce8520201f33bd963ceff763074",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/check_guard_cpu.py": "522f8289e0b3d76945aa6eba10354f77e0d45983f2d34753c7e70f8c65272acb",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/check_cpu.py": "e4079310b9ddfc50c3e477187a9702dd1d0d3981fbbcebc6a4edbfe41ffe9c6c",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/qualified_S16_reader.py": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+    "/workspace/benchmark-results/20261020_k8v16_address32_decode_tianshu/control_S16_reader/generated_dynamic_segments.py": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+    "/workspace/benchmark-results/20261020_k8v16_address32_decode_tianshu/kv32_int32_reader/generated_kv32.py": "9eb870ea1a581430aa012c0d7e0742663a474665a429fb321a634c24fa455e81",
+    "/workspace/benchmark-results/20261020_k8v16_address32_decode_tianshu/all32_int32_reader/generated_all32.py": "150dec5a90f07970062d36ba3b0964b7225e0f42571e85db70b21da9680596c1"
+  },
+  "model_sources": {
+    "control": {
+      "base_codec": {
+        "original_sha256": "8deb8967fdacf354f3b38e6a9687163493f6163764f3e8663dce916250cd1289",
+        "generated_sha256": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+        "producer_and_reducer_AST_unchanged": true,
+        "only_cast_helper_uint8_branch_and_test_added": true,
+        "fixed_storage_scale": 0.0625,
+        "exponent_bits": 4,
+        "mantissa_bits": 3,
+        "exponent_bias": 7,
+        "subnormal_codes_flush_to_signed_zero": true,
+        "all_nonzero_exponents_finite": true,
+        "largest_magnitude": 30.0,
+        "not_native_FP8_hardware": true,
+        "base_soft8_generated_sha256": "41f0b8dde1053678fe9920b517b58da05c6947cff32a0da72d8dbf5f8fff68e8",
+        "integer_intermediates_bits": 32,
+        "same_format_and_quantizer": true,
+        "one_more_reversible_edit": true,
+        "generated_source": "/workspace/benchmark-results/20261020_k8v16_address32_decode_tianshu/control_base_reader/generated_soft8_u32.py"
+      },
+      "long": {
+        "parent_source": "/workspace/benchmark-results/20261020_k8v16_address32_decode_tianshu/control_base_reader/generated_soft8_u32.py",
+        "parent_sha256": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+        "generated_source": "/workspace/benchmark-results/20261020_k8v16_address32_decode_tianshu/control_S16_reader/generated_dynamic_segments.py",
+        "generated_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+        "exact_reversal_verified": true,
+        "only_two_tile_count_expressions_changed": true,
+        "KV_decode_and_function_ABI_unchanged": true,
+        "threshold_tokens": 8192,
+        "minimum_batch": 25
+      }
+    },
+    "kv32": {
+      "base_codec": {
+        "original_sha256": "8deb8967fdacf354f3b38e6a9687163493f6163764f3e8663dce916250cd1289",
+        "generated_sha256": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+        "producer_and_reducer_AST_unchanged": true,
+        "only_cast_helper_uint8_branch_and_test_added": true,
+        "fixed_storage_scale": 0.0625,
+        "exponent_bits": 4,
+        "mantissa_bits": 3,
+        "exponent_bias": 7,
+        "subnormal_codes_flush_to_signed_zero": true,
+        "all_nonzero_exponents_finite": true,
+        "largest_magnitude": 30.0,
+        "not_native_FP8_hardware": true,
+        "base_soft8_generated_sha256": "41f0b8dde1053678fe9920b517b58da05c6947cff32a0da72d8dbf5f8fff68e8",
+        "integer_intermediates_bits": 32,
+        "same_format_and_quantizer": true,
+        "one_more_reversible_edit": true,
+        "generated_source": "/workspace/benchmark-results/20261020_k8v16_address32_decode_tianshu/kv32_base_reader/generated_soft8_u32.py"
+      },
+      "long": {
+        "parent_source": "/workspace/benchmark-results/20261020_k8v16_address32_decode_tianshu/kv32_base_reader/generated_soft8_u32.py",
+        "parent_sha256": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+        "generated_source": "/workspace/benchmark-results/20261020_k8v16_address32_decode_tianshu/kv32_S16_reader/generated_dynamic_segments.py",
+        "generated_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+        "exact_reversal_verified": true,
+        "only_two_tile_count_expressions_changed": true,
+        "KV_decode_and_function_ABI_unchanged": true,
+        "threshold_tokens": 8192,
+        "minimum_batch": 25
+      },
+      "address32": {
+        "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+        "mode": "kv32",
+        "annotations_changed": 6,
+        "integer_casts_changed": 2,
+        "generated_sha256": "9eb870ea1a581430aa012c0d7e0742663a474665a429fb321a634c24fa455e81",
+        "only_integer_dtype_AST_changes": true,
+        "floating_point_body_and_physical_pointer_types_unchanged": true,
+        "requires_runtime_signed_element_offset_guard": true,
+        "generated_source": "/workspace/benchmark-results/20261020_k8v16_address32_decode_tianshu/kv32_int32_reader/generated_kv32.py"
+      }
+    },
+    "all32": {
+      "base_codec": {
+        "original_sha256": "8deb8967fdacf354f3b38e6a9687163493f6163764f3e8663dce916250cd1289",
+        "generated_sha256": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+        "producer_and_reducer_AST_unchanged": true,
+        "only_cast_helper_uint8_branch_and_test_added": true,
+        "fixed_storage_scale": 0.0625,
+        "exponent_bits": 4,
+        "mantissa_bits": 3,
+        "exponent_bias": 7,
+        "subnormal_codes_flush_to_signed_zero": true,
+        "all_nonzero_exponents_finite": true,
+        "largest_magnitude": 30.0,
+        "not_native_FP8_hardware": true,
+        "base_soft8_generated_sha256": "41f0b8dde1053678fe9920b517b58da05c6947cff32a0da72d8dbf5f8fff68e8",
+        "integer_intermediates_bits": 32,
+        "same_format_and_quantizer": true,
+        "one_more_reversible_edit": true,
+        "generated_source": "/workspace/benchmark-results/20261020_k8v16_address32_decode_tianshu/all32_base_reader/generated_soft8_u32.py"
+      },
+      "long": {
+        "parent_source": "/workspace/benchmark-results/20261020_k8v16_address32_decode_tianshu/all32_base_reader/generated_soft8_u32.py",
+        "parent_sha256": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+        "generated_source": "/workspace/benchmark-results/20261020_k8v16_address32_decode_tianshu/all32_S16_reader/generated_dynamic_segments.py",
+        "generated_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+        "exact_reversal_verified": true,
+        "only_two_tile_count_expressions_changed": true,
+        "KV_decode_and_function_ABI_unchanged": true,
+        "threshold_tokens": 8192,
+        "minimum_batch": 25
+      },
+      "address32": {
+        "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+        "mode": "all32",
+        "annotations_changed": 28,
+        "integer_casts_changed": 6,
+        "generated_sha256": "150dec5a90f07970062d36ba3b0964b7225e0f42571e85db70b21da9680596c1",
+        "only_integer_dtype_AST_changes": true,
+        "floating_point_body_and_physical_pointer_types_unchanged": true,
+        "requires_runtime_signed_element_offset_guard": true,
+        "generated_source": "/workspace/benchmark-results/20261020_k8v16_address32_decode_tianshu/all32_int32_reader/generated_all32.py"
+      }
+    }
+  },
+  "cases": [
+    {
+      "name": "decode1_4096",
+      "batch": 1,
+      "strided": false,
+      "labels": [
+        "control",
+        "kv32",
+        "all32"
+      ],
+      "median_ms": [
+        0.03594865202903748,
+        0.035673266649246214,
+        0.0357696145772934
+      ],
+      "candidate_speedup_percent": [
+        0.7719656921216789,
+        0.500529440587627
+      ],
+      "max_abs_vs_FP32": 0.00027254223823547363,
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 64,
+            "active_source_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 4460543
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 4460543
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 29116415
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 14954495
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 526591
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 29116415
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 14954495
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2049
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        },
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 133,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 32,
+            "active_source_sha256": "9eb870ea1a581430aa012c0d7e0742663a474665a429fb321a634c24fa455e81",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 4460543
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 4460543
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 29116415
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 14954495
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 526591
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 29116415
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 14954495
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2049
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        },
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 133,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 32,
+            "active_source_sha256": "150dec5a90f07970062d36ba3b0964b7225e0f42571e85db70b21da9680596c1",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 4460543
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 4460543
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 29116415
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 14954495
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 526591
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 29116415
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 14954495
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2049
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "decode1_5120",
+      "batch": 1,
+      "strided": false,
+      "labels": [
+        "control",
+        "kv32",
+        "all32"
+      ],
+      "median_ms": [
+        0.04015730917453766,
+        0.040057501196861266,
+        0.03989442586898804
+      ],
+      "candidate_speedup_percent": [
+        0.24916176669604884,
+        0.65894745900823
+      ],
+      "max_abs_vs_FP32": 0.0002883598208427429,
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 64,
+            "active_source_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 4460543
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 4460543
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 29902847
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 15347711
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 657727
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 29902847
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 15347711
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2049
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        },
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 133,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 32,
+            "active_source_sha256": "9eb870ea1a581430aa012c0d7e0742663a474665a429fb321a634c24fa455e81",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 4460543
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 4460543
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 29902847
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 15347711
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 657727
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 29902847
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 15347711
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2049
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        },
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 133,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 32,
+            "active_source_sha256": "150dec5a90f07970062d36ba3b0964b7225e0f42571e85db70b21da9680596c1",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 4460543
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 4460543
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 29902847
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 15347711
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 657727
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 29902847
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 15347711
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2049
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "decode8_4096",
+      "batch": 8,
+      "strided": false,
+      "labels": [
+        "control",
+        "kv32",
+        "all32"
+      ],
+      "median_ms": [
+        0.0883338451385498,
+        0.08883442282676697,
+        0.08887500166893006
+      ],
+      "candidate_speedup_percent": [
+        -0.5634951770816632,
+        -0.6088962252806751
+      ],
+      "max_abs_vs_FP32": 0.0003175213932991028,
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 64,
+            "active_source_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 4474879
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 4474879
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 51136511
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 25964543
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 528383
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2055
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 51136511
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 25964543
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2056
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 133,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 32,
+            "active_source_sha256": "9eb870ea1a581430aa012c0d7e0742663a474665a429fb321a634c24fa455e81",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 4474879
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 4474879
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 51136511
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 25964543
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 528383
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2055
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 51136511
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 25964543
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2056
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 133,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 32,
+            "active_source_sha256": "150dec5a90f07970062d36ba3b0964b7225e0f42571e85db70b21da9680596c1",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 4474879
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 4474879
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 51136511
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 25964543
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 528383
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2055
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 51136511
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 25964543
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2056
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "decode8_5120",
+      "batch": 8,
+      "strided": false,
+      "labels": [
+        "control",
+        "kv32",
+        "all32"
+      ],
+      "median_ms": [
+        0.10575634241104126,
+        0.10638980865478516,
+        0.10621289014816285
+      ],
+      "candidate_speedup_percent": [
+        -0.5954200423457623,
+        -0.42984211848930975
+      ],
+      "max_abs_vs_FP32": 0.00028171390295028687,
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 64,
+            "active_source_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 4474879
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 4474879
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 57427967
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 29110271
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 659967
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2055
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 57427967
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 29110271
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2056
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 133,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 32,
+            "active_source_sha256": "9eb870ea1a581430aa012c0d7e0742663a474665a429fb321a634c24fa455e81",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 4474879
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 4474879
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 57427967
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 29110271
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 659967
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2055
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 57427967
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 29110271
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2056
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 133,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 32,
+            "active_source_sha256": "150dec5a90f07970062d36ba3b0964b7225e0f42571e85db70b21da9680596c1",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 4474879
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 4474879
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 57427967
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 29110271
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 659967
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2055
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 57427967
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 29110271
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2056
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "decode32_4096",
+      "batch": 32,
+      "strided": false,
+      "labels": [
+        "control",
+        "kv32",
+        "all32"
+      ],
+      "median_ms": [
+        0.3015244245529175,
+        0.3014838457107544,
+        0.30447750091552733
+      ],
+      "candidate_speedup_percent": [
+        0.013459706959584317,
+        -0.969883276672423
+      ],
+      "max_abs_vs_FP32": 0.0004297792911529541,
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 32,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            48,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 64,
+            "active_source_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 4524031
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 4524031
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 126633983
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 63713279
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 534527
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2079
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 126633983
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 63713279
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2080
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        },
+        {
+          "IS_3D": true,
+          "sequences": 32,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            48,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 132,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 32,
+            "active_source_sha256": "9eb870ea1a581430aa012c0d7e0742663a474665a429fb321a634c24fa455e81",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 4524031
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 4524031
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 126633983
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 63713279
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 534527
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2079
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 126633983
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 63713279
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2080
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        },
+        {
+          "IS_3D": true,
+          "sequences": 32,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            48,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 133,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 32,
+            "active_source_sha256": "150dec5a90f07970062d36ba3b0964b7225e0f42571e85db70b21da9680596c1",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 4524031
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 4524031
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 126633983
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 63713279
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 534527
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2079
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 126633983
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 63713279
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2080
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "decode32_5120",
+      "batch": 32,
+      "strided": false,
+      "labels": [
+        "control",
+        "kv32",
+        "all32"
+      ],
+      "median_ms": [
+        0.37183403968811035,
+        0.37181577682495115,
+        0.3751265525817871
+      ],
+      "candidate_speedup_percent": [
+        0.004911804258322938,
+        -0.8777072353359783
+      ],
+      "max_abs_vs_FP32": 0.00030134618282318115,
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 32,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            48,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 64,
+            "active_source_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 4524031
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 4524031
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 151799807
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 76296191
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 667647
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2079
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 151799807
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 76296191
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2080
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        },
+        {
+          "IS_3D": true,
+          "sequences": 32,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            48,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 132,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 32,
+            "active_source_sha256": "9eb870ea1a581430aa012c0d7e0742663a474665a429fb321a634c24fa455e81",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 4524031
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 4524031
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 151799807
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 76296191
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 667647
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2079
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 151799807
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 76296191
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2080
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        },
+        {
+          "IS_3D": true,
+          "sequences": 32,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            48,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 133,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 32,
+            "active_source_sha256": "150dec5a90f07970062d36ba3b0964b7225e0f42571e85db70b21da9680596c1",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 4524031
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 4524031
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 151799807
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 76296191
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 667647
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2079
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 151799807
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 76296191
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2080
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "decode64_4096",
+      "batch": 64,
+      "strided": false,
+      "labels": [
+        "control",
+        "kv32",
+        "all32"
+      ],
+      "median_ms": [
+        0.5893640518188477,
+        0.5898696422576905,
+        0.5954753875732421
+      ],
+      "candidate_speedup_percent": [
+        -0.08571223243625248,
+        -1.0262952729751196
+      ],
+      "max_abs_vs_FP32": 0.0004491657018661499,
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 64,
+            "active_source_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 4589567
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 4589567
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 227297279
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 114044927
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 542719
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2111
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 227297279
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 114044927
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2112
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 132,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 32,
+            "active_source_sha256": "9eb870ea1a581430aa012c0d7e0742663a474665a429fb321a634c24fa455e81",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 4589567
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 4589567
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 227297279
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 114044927
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 542719
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2111
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 227297279
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 114044927
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2112
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 133,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 32,
+            "active_source_sha256": "150dec5a90f07970062d36ba3b0964b7225e0f42571e85db70b21da9680596c1",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 4589567
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 4589567
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 227297279
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 114044927
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 542719
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2111
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 227297279
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 114044927
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2112
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "decode64_5120",
+      "batch": 64,
+      "strided": false,
+      "labels": [
+        "control",
+        "kv32",
+        "all32"
+      ],
+      "median_ms": [
+        0.7287246227264405,
+        0.72954421043396,
+        0.7362975120544434
+      ],
+      "candidate_speedup_percent": [
+        -0.11234243186332149,
+        -1.0285094277818208
+      ],
+      "max_abs_vs_FP32": 0.0003370717167854309,
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 64,
+            "active_source_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 4589567
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 4589567
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 277628927
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 139210751
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 677887
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2111
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 277628927
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 139210751
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2112
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 132,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 32,
+            "active_source_sha256": "9eb870ea1a581430aa012c0d7e0742663a474665a429fb321a634c24fa455e81",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 4589567
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 4589567
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 277628927
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 139210751
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 677887
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2111
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 277628927
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 139210751
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2112
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 133,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 32,
+            "active_source_sha256": "150dec5a90f07970062d36ba3b0964b7225e0f42571e85db70b21da9680596c1",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 4589567
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 4589567
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 277628927
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 139210751
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 677887
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2111
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 277628927
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 139210751
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2112
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "decode8_ragged_strided",
+      "batch": 8,
+      "strided": true,
+      "labels": [
+        "control",
+        "kv32",
+        "all32"
+      ],
+      "median_ms": [
+        0.09969980716705322,
+        0.1007817268371582,
+        0.10030499696731568
+      ],
+      "candidate_speedup_percent": [
+        -1.0735276166215502,
+        -0.6033496022732177
+      ],
+      "max_abs_vs_FP32": 0.0026445388793945312,
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 64,
+            "active_source_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 5527039
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 5527039
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 114063359
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 57427967
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 666132
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2055
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 114063359
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 57427967
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2056
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 133,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 32,
+            "active_source_sha256": "9eb870ea1a581430aa012c0d7e0742663a474665a429fb321a634c24fa455e81",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 5527039
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 5527039
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 114063359
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 57427967
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 666132
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2055
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 114063359
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 57427967
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2056
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 133,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 32,
+            "active_source_sha256": "150dec5a90f07970062d36ba3b0964b7225e0f42571e85db70b21da9680596c1",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 5527039
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 5527039
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 114063359
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 57427967
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 666132
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2055
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 114063359
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 57427967
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2056
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "decode64_ragged_strided",
+      "batch": 64,
+      "strided": true,
+      "labels": [
+        "control",
+        "kv32",
+        "all32"
+      ],
+      "median_ms": [
+        0.5802182674407959,
+        0.5800286293029785,
+        0.585251760482788
+      ],
+      "candidate_speedup_percent": [
+        0.03269461682353647,
+        -0.8600560274846347
+      ],
+      "max_abs_vs_FP32": 0.00033289939165115356,
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 64,
+            "active_source_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 5670399
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 5670399
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 453801983
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 227297279
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 549052
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2111
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 453801983
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 227297279
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2112
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 132,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 32,
+            "active_source_sha256": "9eb870ea1a581430aa012c0d7e0742663a474665a429fb321a634c24fa455e81",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 5670399
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 5670399
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 453801983
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 227297279
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 549052
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2111
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 453801983
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 227297279
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2112
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 133,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 32,
+            "active_source_sha256": "150dec5a90f07970062d36ba3b0964b7225e0f42571e85db70b21da9680596c1",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 5670399
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 5670399
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 453801983
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 227297279
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 549052
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2111
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 453801983
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 227297279
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2112
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "decode40_16384",
+      "batch": 40,
+      "strided": false,
+      "labels": [
+        "control",
+        "kv32",
+        "all32"
+      ],
+      "median_ms": [
+        1.4268054008483886,
+        1.4474302291870118,
+        1.437862491607666
+      ],
+      "candidate_speedup_percent": [
+        -1.4249272899466647,
+        -0.7689950063941575
+      ],
+      "max_abs_vs_FP32": 0.00016422942280769348,
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 40,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            60,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 64,
+            "active_source_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 4540415
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 4540415
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 529287167
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 265039871
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 2140159
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2087
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 529287167
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 265039871
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2088
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        },
+        {
+          "IS_3D": true,
+          "sequences": 40,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            60,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 133,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 32,
+            "active_source_sha256": "9eb870ea1a581430aa012c0d7e0742663a474665a429fb321a634c24fa455e81",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 4540415
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 4540415
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 529287167
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 265039871
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 2140159
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2087
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 529287167
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 265039871
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2088
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        },
+        {
+          "IS_3D": true,
+          "sequences": 40,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            60,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 133,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 32,
+            "active_source_sha256": "150dec5a90f07970062d36ba3b0964b7225e0f42571e85db70b21da9680596c1",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 4540415
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 4540415
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 529287167
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 265039871
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 2140159
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2087
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 529287167
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 265039871
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2088
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "decode41_ragged_strided",
+      "batch": 41,
+      "strided": true,
+      "labels": [
+        "control",
+        "kv32",
+        "all32"
+      ],
+      "median_ms": [
+        1.0957863807678223,
+        1.111158275604248,
+        1.103111743927002
+      ],
+      "candidate_speedup_percent": [
+        -1.3834118121530792,
+        -0.6640635637783943
+      ],
+      "max_abs_vs_FP32": 0.00028830021619796753,
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 41,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            61,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 64,
+            "active_source_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 5611519
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 5611519
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 568055807
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 284424191
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 1079968
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2088
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 568055807
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 284424191
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2089
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        },
+        {
+          "IS_3D": true,
+          "sequences": 41,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            61,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 133,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 32,
+            "active_source_sha256": "9eb870ea1a581430aa012c0d7e0742663a474665a429fb321a634c24fa455e81",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 5611519
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 5611519
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 568055807
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 284424191
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 1079968
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2088
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 568055807
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 284424191
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2089
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        },
+        {
+          "IS_3D": true,
+          "sequences": 41,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            61,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 133,
+          "n_spills": 0,
+          "shared": 8192,
+          "address_selection": {
+            "signed_offset_guard_passed": true,
+            "address_bits": 32,
+            "active_source_sha256": "150dec5a90f07970062d36ba3b0964b7225e0f42571e85db70b21da9680596c1",
+            "integer_bounds": [
+              {
+                "argument": "output_ptr",
+                "signed_element_bound": 5611519
+              },
+              {
+                "argument": "segm_output_ptr",
+                "signed_element_bound": 293865471
+              },
+              {
+                "argument": "segm_max_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "segm_expsum_ptr",
+                "signed_element_bound": 2295807
+              },
+              {
+                "argument": "query_ptr",
+                "signed_element_bound": 5611519
+              },
+              {
+                "argument": "key_cache_ptr",
+                "signed_element_bound": 568055807
+              },
+              {
+                "argument": "value_cache_ptr",
+                "signed_element_bound": 284424191
+              },
+              {
+                "argument": "block_tables_ptr",
+                "signed_element_bound": 1079968
+              },
+              {
+                "argument": "seq_lens_ptr",
+                "signed_element_bound": 2088
+              },
+              {
+                "argument": "k_scale_cache_ptr",
+                "signed_element_bound": 568055807
+              },
+              {
+                "argument": "v_scale_cache_ptr",
+                "signed_element_bound": 284424191
+              },
+              {
+                "argument": "q_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "k_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "v_scale",
+                "signed_element_bound": 2048
+              },
+              {
+                "argument": "query_start_len_ptr",
+                "signed_element_bound": 2089
+              }
+            ],
+            "wide_fallback_used": false,
+            "original_arguments_forwarded": true,
+            "RNG_not_read_or_modified": true
+          }
+        }
+      ]
+    }
+  ],
+  "raw_result_path": "/workspace/benchmark-results/20261020_k8v16_address32_decode_tianshu/result.json",
+  "raw_result_sha256": "fd559f0de83b5ce2a675b0d2fe71c92399a52f6a8e8cc8277980ac89562d4641",
+  "analyzer_source_sha256": "691bc779fb43a8bd573ecb95e570fb26d8d1496747b8dfc48f8ab1baeb1ac3f7"
+}
