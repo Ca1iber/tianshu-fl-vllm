@@ -1,0 +1,129 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "actual_selector_executed": true,
+  "cases": [
+    {
+      "case": "selected",
+      "signed_offset_guard_passed": true,
+      "address_bits": 32,
+      "active_source_sha256": "narrow_sha",
+      "integer_bounds": [
+        {
+          "argument": "key_cache_ptr",
+          "signed_element_bound": 556369919
+        }
+      ],
+      "wide_fallback_used": false,
+      "original_arguments_forwarded": true,
+      "RNG_not_read_or_modified": true
+    },
+    {
+      "case": "wide_cache",
+      "signed_offset_guard_passed": false,
+      "address_bits": 64,
+      "active_source_sha256": "wide_sha",
+      "integer_bounds": [
+        {
+          "argument": "key_cache_ptr",
+          "signed_element_bound": 2147485695
+        }
+      ],
+      "wide_fallback_used": true,
+      "original_arguments_forwarded": true,
+      "RNG_not_read_or_modified": true
+    },
+    {
+      "case": "scalar_descale",
+      "signed_offset_guard_passed": true,
+      "address_bits": 32,
+      "active_source_sha256": "narrow_sha",
+      "integer_bounds": [
+        {
+          "argument": "key_cache_ptr",
+          "signed_element_bound": 556369919
+        },
+        {
+          "argument": "k_scale",
+          "signed_element_bound": 0
+        }
+      ],
+      "wide_fallback_used": false,
+      "original_arguments_forwarded": true,
+      "RNG_not_read_or_modified": true
+    },
+    {
+      "case": "2D",
+      "signed_offset_guard_passed": false,
+      "address_bits": 64,
+      "active_source_sha256": "wide_sha",
+      "integer_bounds": [],
+      "wide_fallback_used": true,
+      "original_arguments_forwarded": true,
+      "RNG_not_read_or_modified": true
+    },
+    {
+      "case": "batch65",
+      "signed_offset_guard_passed": false,
+      "address_bits": 64,
+      "active_source_sha256": "wide_sha",
+      "integer_bounds": [],
+      "wide_fallback_used": true,
+      "original_arguments_forwarded": true,
+      "RNG_not_read_or_modified": true
+    },
+    {
+      "case": "other_quant",
+      "signed_offset_guard_passed": false,
+      "address_bits": 64,
+      "active_source_sha256": "wide_sha",
+      "integer_bounds": [],
+      "wide_fallback_used": true,
+      "original_arguments_forwarded": true,
+      "RNG_not_read_or_modified": true
+    },
+    {
+      "case": "TD",
+      "signed_offset_guard_passed": false,
+      "address_bits": 64,
+      "active_source_sha256": "wide_sha",
+      "integer_bounds": [],
+      "wide_fallback_used": true,
+      "original_arguments_forwarded": true,
+      "RNG_not_read_or_modified": true
+    },
+    {
+      "case": "sinks",
+      "signed_offset_guard_passed": false,
+      "address_bits": 64,
+      "active_source_sha256": "wide_sha",
+      "integer_bounds": [],
+      "wide_fallback_used": true,
+      "original_arguments_forwarded": true,
+      "RNG_not_read_or_modified": true
+    },
+    {
+      "case": "wide_integer_stride",
+      "signed_offset_guard_passed": false,
+      "address_bits": 64,
+      "active_source_sha256": "wide_sha",
+      "integer_bounds": [
+        {
+          "argument": "key_cache_ptr",
+          "signed_element_bound": 556369919
+        }
+      ],
+      "wide_fallback_used": true,
+      "original_arguments_forwarded": true,
+      "RNG_not_read_or_modified": true
+    }
+  ],
+  "unsafe_inputs_use_original_wide_kernel": true,
+  "arguments_return_values_and_grid_forwarded": true,
+  "no_torch_or_GPU_imported": true,
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/check_guard_cpu.py": "522f8289e0b3d76945aa6eba10354f77e0d45983f2d34753c7e70f8c65272acb",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/guard.py": "050e0bcf9f194b8ef32e27d56376623c9cbb3bb3ea13aa8ad80269f7f870209d",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/source.py": "a864b8d71fd2fb0841498b0f92e9f383802b1ffdda8cc5d310711482a039a642"
+  }
+}

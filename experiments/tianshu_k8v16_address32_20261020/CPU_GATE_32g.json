@@ -1,0 +1,133 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "GPU_executed": false,
+  "adopted": false,
+  "provenance": {
+    "kv32": {
+      "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+      "mode": "kv32",
+      "annotations_changed": 6,
+      "integer_casts_changed": 2,
+      "generated_sha256": "9eb870ea1a581430aa012c0d7e0742663a474665a429fb321a634c24fa455e81",
+      "only_integer_dtype_AST_changes": true,
+      "floating_point_body_and_physical_pointer_types_unchanged": true,
+      "requires_runtime_signed_element_offset_guard": true
+    },
+    "all32": {
+      "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+      "mode": "all32",
+      "annotations_changed": 28,
+      "integer_casts_changed": 6,
+      "generated_sha256": "150dec5a90f07970062d36ba3b0964b7225e0f42571e85db70b21da9680596c1",
+      "only_integer_dtype_AST_changes": true,
+      "floating_point_body_and_physical_pointer_types_unchanged": true,
+      "requires_runtime_signed_element_offset_guard": true
+    }
+  },
+  "boundary_cases": [
+    {
+      "case": "actual_K",
+      "shape": [
+        43166,
+        16,
+        2,
+        128
+      ],
+      "strides": [
+        12288,
+        256,
+        128,
+        1
+      ],
+      "safe": true
+    },
+    {
+      "case": "actual_V",
+      "shape": [
+        43166,
+        16,
+        2,
+        128
+      ],
+      "strides": [
+        6144,
+        256,
+        128,
+        1
+      ],
+      "safe": true
+    },
+    {
+      "case": "Q_padded",
+      "shape": [
+        256,
+        16,
+        128
+      ],
+      "strides": [
+        2560,
+        128,
+        1
+      ],
+      "safe": true
+    },
+    {
+      "case": "huge_shape",
+      "shape": [
+        2147483648
+      ],
+      "strides": [
+        1
+      ],
+      "safe": false
+    },
+    {
+      "case": "masked_margin_crosses_signed_limit",
+      "shape": [
+        2147481601
+      ],
+      "strides": [
+        1
+      ],
+      "safe": false
+    },
+    {
+      "case": "last_safe_1d",
+      "shape": [
+        2147481600
+      ],
+      "strides": [
+        1
+      ],
+      "safe": true
+    },
+    {
+      "case": "wide_stride",
+      "shape": [
+        1
+      ],
+      "strides": [
+        2147483648
+      ],
+      "safe": false
+    },
+    {
+      "case": "negative_stride",
+      "shape": [
+        64
+      ],
+      "strides": [
+        -1
+      ],
+      "safe": false
+    }
+  ],
+  "independent_integer_offset_samples": 32000,
+  "no_model_or_GPU_performance_claim": true,
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/check_cpu.py": "e4079310b9ddfc50c3e477187a9702dd1d0d3981fbbcebc6a4edbfe41ffe9c6c",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/source.py": "a864b8d71fd2fb0841498b0f92e9f383802b1ffdda8cc5d310711482a039a642",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/qualified_S16_reader.py": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106"
+  }
+}
