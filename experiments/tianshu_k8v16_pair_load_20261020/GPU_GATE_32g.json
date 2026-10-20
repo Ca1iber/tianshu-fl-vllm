@@ -1,0 +1,845 @@
+{
+  "complete": true,
+  "independently_rechecked": true,
+  "component_only": true,
+  "adopted": false,
+  "full_GPU_FP32_output_checks": 96,
+  "independently_recomputed_CPU_reference_vectors": 256,
+  "CPU_reference_checks_recorded": 1024,
+  "full_output_elements_rechecked": 5947392,
+  "max_abs_vs_references": 0.0026445388793945312,
+  "all_candidate_output_tensors_bitwise_equal_to_current": true,
+  "actual_paired_source_and_qualified_launch_verified": true,
+  "full_cache_storage_and_scratch_guards_asserted_in_frozen_probe": true,
+  "Graph_replay_RNG_unchanged": true,
+  "changed_data_same_Graph_phases_verified": true,
+  "timing_groups": 432,
+  "replays_per_group": 20,
+  "model_or_quality_or_service_not_run": true,
+  "raw_root": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu",
+  "raw_result_sha256": "814f4c9bd7a211fbba67b15d0c73fcdb70eda1d5c000c3ceb4891cb5d7471230",
+  "frozen_sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pair_load_20261020/probe_gpu.py": "d2709936c0cf1986d457f77c4f038c3a650193e3257a2f8e9dd0c45d5e43fe7a",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pair_load_20261020/source.py": "6b46d13524efa3687274c8210d34f279e855fecd0c643a620ab62aadbd6c4470",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pair_load_20261020/launch.py": "dd5d1f5037157608b82ab7addbe33e8f758be897cb649a683ec4a22d7e08a5ed",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pair_load_20261020/CPU_GATE_32g.json": "5e6f55f5156e64bcff574fab9ceba92e4a7fd507971f105cdfb5af2311a1bb8a",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/qualified_S16_reader.py": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_soft8_mixed_planes_20261019/writer.py": "27a74d3bdfee978780044eb69025c10a21d92a1b0a8cf567ee9fea1e0b8d12b5",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/value_planes.py": "64f0a0ba89841feb8c091b861d60d687de5d4bdd73c9c7f66476e5cd6ff0d5f0",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/component_launch.py": "ebf86912b25e39c052f98698cfbcc385d48f9fd2750aeebe0ab6c7b7ac448a6e",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/legacy_routing.py": "9dae2408de9f77e39350cfd70661e4e282ef0d69f798f968c1886d4172a6dc41",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/dispatch_policy.py": "842d69f6635152afa31d498e6e353e0e5f18bc2d86d89782d4e9db4e32f0157a",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pair_load_20261020/verify_gpu.py": "534c07ea84df3140960768b6085025de43cc3dd493e6ac7bb4bcd4cbc631afc2",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pair_load_20261020/run_component.sh": "2c5191b6e97d4e8d95a8e2972ec61417573a7a857af5f816d1a76a23de4b7aa7",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pair_load_20261020/check_cpu.py": "e744b743d5ea4adc9066ce5adb20cd74c5d5cda65b032790483e1b48510efded",
+    "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/current_reader/generated_current.py": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+    "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/scalar16_reader/generated_scalar16.py": "96de84e67210da403ea03ba225f0efe755f83bc4ea86e3a18dc41b32b9b57a57",
+    "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/pair_rows_reader/generated_pair_rows.py": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+    "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/pair_columns_reader/generated_pair_columns.py": "07b1eae665ff58a7c8d5a9b13f44ecd3cffe06ad361ee280a7e573e9743c0747"
+  },
+  "model_sources": {
+    "current": {
+      "mode": "current",
+      "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+      "generated_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+      "exact_source_reversal": true,
+      "changed_parent_functions": [],
+      "cache_storage_and_V_load_unchanged": true,
+      "reducer_AST_unchanged": true,
+      "all_pointer_offsets_remain_int64": true,
+      "only_even_K_strides_and_2byte_alignment_supported": true,
+      "generated_source": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/current_reader/generated_current.py"
+    },
+    "scalar16": {
+      "mode": "scalar16",
+      "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+      "generated_sha256": "96de84e67210da403ea03ba225f0efe755f83bc4ea86e3a18dc41b32b9b57a57",
+      "exact_source_reversal": true,
+      "changed_parent_functions": [
+        "_cast_kv_tile"
+      ],
+      "cache_storage_and_V_load_unchanged": true,
+      "reducer_AST_unchanged": true,
+      "all_pointer_offsets_remain_int64": true,
+      "only_even_K_strides_and_2byte_alignment_supported": true,
+      "generated_source": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/scalar16_reader/generated_scalar16.py"
+    },
+    "pair_rows": {
+      "mode": "pair_rows",
+      "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+      "generated_sha256": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+      "exact_source_reversal": true,
+      "changed_parent_functions": [
+        "kernel_unified_attention"
+      ],
+      "cache_storage_and_V_load_unchanged": true,
+      "reducer_AST_unchanged": true,
+      "all_pointer_offsets_remain_int64": true,
+      "only_even_K_strides_and_2byte_alignment_supported": true,
+      "generated_source": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/pair_rows_reader/generated_pair_rows.py"
+    },
+    "pair_columns": {
+      "mode": "pair_columns",
+      "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+      "generated_sha256": "07b1eae665ff58a7c8d5a9b13f44ecd3cffe06ad361ee280a7e573e9743c0747",
+      "exact_source_reversal": true,
+      "changed_parent_functions": [
+        "kernel_unified_attention"
+      ],
+      "cache_storage_and_V_load_unchanged": true,
+      "reducer_AST_unchanged": true,
+      "all_pointer_offsets_remain_int64": true,
+      "only_even_K_strides_and_2byte_alignment_supported": true,
+      "generated_source": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/pair_columns_reader/generated_pair_columns.py"
+    }
+  },
+  "cases": [
+    {
+      "case": "decode1_4096",
+      "variant": "current",
+      "batch": 1,
+      "strided": false,
+      "median_ms": 0.03585422933101654,
+      "speedup_percent": 0,
+      "original_grid": "[1, 2, 64]",
+      "actual_grid": "[1, 2, 64]",
+      "n_regs": 143,
+      "n_spills": 0
+    },
+    {
+      "case": "decode1_4096",
+      "variant": "scalar16",
+      "batch": 1,
+      "strided": false,
+      "median_ms": 0.0360407680273056,
+      "speedup_percent": -0.5175769177497402,
+      "original_grid": "[1, 2, 64]",
+      "actual_grid": "[1, 2, 64]",
+      "n_regs": 143,
+      "n_spills": 0
+    },
+    {
+      "case": "decode1_4096",
+      "variant": "pair_rows",
+      "batch": 1,
+      "strided": false,
+      "median_ms": 0.03529076874256134,
+      "speedup_percent": 1.5966231638804063,
+      "original_grid": "[1, 2, 64]",
+      "actual_grid": "[1, 2, 64]",
+      "n_regs": 176,
+      "n_spills": 0
+    },
+    {
+      "case": "decode1_4096",
+      "variant": "pair_columns",
+      "batch": 1,
+      "strided": false,
+      "median_ms": 0.03524999916553497,
+      "speedup_percent": 1.714128169603879,
+      "original_grid": "[1, 2, 64]",
+      "actual_grid": "[1, 2, 64]",
+      "n_regs": 176,
+      "n_spills": 0
+    },
+    {
+      "case": "decode1_5120",
+      "variant": "current",
+      "batch": 1,
+      "strided": false,
+      "median_ms": 0.04018307626247406,
+      "speedup_percent": 0,
+      "original_grid": "[1, 2, 64]",
+      "actual_grid": "[1, 2, 64]",
+      "n_regs": 143,
+      "n_spills": 0
+    },
+    {
+      "case": "decode1_5120",
+      "variant": "scalar16",
+      "batch": 1,
+      "strided": false,
+      "median_ms": 0.04029750227928162,
+      "speedup_percent": -0.2839531244753779,
+      "original_grid": "[1, 2, 64]",
+      "actual_grid": "[1, 2, 64]",
+      "n_regs": 143,
+      "n_spills": 0
+    },
+    {
+      "case": "decode1_5120",
+      "variant": "pair_rows",
+      "batch": 1,
+      "strided": false,
+      "median_ms": 0.039431729912757875,
+      "speedup_percent": 1.9054359303498192,
+      "original_grid": "[1, 2, 64]",
+      "actual_grid": "[1, 2, 64]",
+      "n_regs": 176,
+      "n_spills": 0
+    },
+    {
+      "case": "decode1_5120",
+      "variant": "pair_columns",
+      "batch": 1,
+      "strided": false,
+      "median_ms": 0.03934711515903473,
+      "speedup_percent": 2.124580417294908,
+      "original_grid": "[1, 2, 64]",
+      "actual_grid": "[1, 2, 64]",
+      "n_regs": 176,
+      "n_spills": 0
+    },
+    {
+      "case": "decode8_4096",
+      "variant": "current",
+      "batch": 8,
+      "strided": false,
+      "median_ms": 0.08842596411705017,
+      "speedup_percent": 0,
+      "original_grid": "[12, 2, 16]",
+      "actual_grid": "[12, 2, 16]",
+      "n_regs": 143,
+      "n_spills": 0
+    },
+    {
+      "case": "decode8_4096",
+      "variant": "scalar16",
+      "batch": 8,
+      "strided": false,
+      "median_ms": 0.0884742259979248,
+      "speedup_percent": -0.05454908514911372,
+      "original_grid": "[12, 2, 16]",
+      "actual_grid": "[12, 2, 16]",
+      "n_regs": 143,
+      "n_spills": 0
+    },
+    {
+      "case": "decode8_4096",
+      "variant": "pair_rows",
+      "batch": 8,
+      "strided": false,
+      "median_ms": 0.08455827236175537,
+      "speedup_percent": 4.573995715934376,
+      "original_grid": "[12, 2, 16]",
+      "actual_grid": "[12, 2, 16]",
+      "n_regs": 176,
+      "n_spills": 0
+    },
+    {
+      "case": "decode8_4096",
+      "variant": "pair_columns",
+      "batch": 8,
+      "strided": false,
+      "median_ms": 0.08387576341629029,
+      "speedup_percent": 5.424929103984932,
+      "original_grid": "[12, 2, 16]",
+      "actual_grid": "[12, 2, 16]",
+      "n_regs": 176,
+      "n_spills": 0
+    },
+    {
+      "case": "decode8_5120",
+      "variant": "current",
+      "batch": 8,
+      "strided": false,
+      "median_ms": 0.10579500198364258,
+      "speedup_percent": 0,
+      "original_grid": "[12, 2, 16]",
+      "actual_grid": "[12, 2, 16]",
+      "n_regs": 143,
+      "n_spills": 0
+    },
+    {
+      "case": "decode8_5120",
+      "variant": "scalar16",
+      "batch": 8,
+      "strided": false,
+      "median_ms": 0.10604133605957031,
+      "speedup_percent": -0.2323000492839289,
+      "original_grid": "[12, 2, 16]",
+      "actual_grid": "[12, 2, 16]",
+      "n_regs": 143,
+      "n_spills": 0
+    },
+    {
+      "case": "decode8_5120",
+      "variant": "pair_rows",
+      "batch": 8,
+      "strided": false,
+      "median_ms": 0.10138269662857055,
+      "speedup_percent": 4.352128619380791,
+      "original_grid": "[12, 2, 16]",
+      "actual_grid": "[12, 2, 16]",
+      "n_regs": 176,
+      "n_spills": 0
+    },
+    {
+      "case": "decode8_5120",
+      "variant": "pair_columns",
+      "batch": 8,
+      "strided": false,
+      "median_ms": 0.10043134689331054,
+      "speedup_percent": 5.340618498355809,
+      "original_grid": "[12, 2, 16]",
+      "actual_grid": "[12, 2, 16]",
+      "n_regs": 176,
+      "n_spills": 0
+    },
+    {
+      "case": "decode32_4096",
+      "variant": "current",
+      "batch": 32,
+      "strided": false,
+      "median_ms": 0.3016961574554443,
+      "speedup_percent": 0,
+      "original_grid": "[48, 2, 4]",
+      "actual_grid": "[48, 2, 4]",
+      "n_regs": 142,
+      "n_spills": 0
+    },
+    {
+      "case": "decode32_4096",
+      "variant": "scalar16",
+      "batch": 32,
+      "strided": false,
+      "median_ms": 0.3026955842971802,
+      "speedup_percent": -0.33017556039227625,
+      "original_grid": "[48, 2, 4]",
+      "actual_grid": "[48, 2, 4]",
+      "n_regs": 142,
+      "n_spills": 0
+    },
+    {
+      "case": "decode32_4096",
+      "variant": "pair_rows",
+      "batch": 32,
+      "strided": false,
+      "median_ms": 0.2844290494918823,
+      "speedup_percent": 6.070796212415286,
+      "original_grid": "[48, 2, 4]",
+      "actual_grid": "[48, 2, 4]",
+      "n_regs": 176,
+      "n_spills": 0
+    },
+    {
+      "case": "decode32_4096",
+      "variant": "pair_columns",
+      "batch": 32,
+      "strided": false,
+      "median_ms": 0.2866146326065063,
+      "speedup_percent": 5.261952159170957,
+      "original_grid": "[48, 2, 4]",
+      "actual_grid": "[48, 2, 4]",
+      "n_regs": 176,
+      "n_spills": 0
+    },
+    {
+      "case": "decode32_5120",
+      "variant": "current",
+      "batch": 32,
+      "strided": false,
+      "median_ms": 0.3715124845504761,
+      "speedup_percent": 0,
+      "original_grid": "[48, 2, 4]",
+      "actual_grid": "[48, 2, 4]",
+      "n_regs": 142,
+      "n_spills": 0
+    },
+    {
+      "case": "decode32_5120",
+      "variant": "scalar16",
+      "batch": 32,
+      "strided": false,
+      "median_ms": 0.3726686477661133,
+      "speedup_percent": -0.31023892741383063,
+      "original_grid": "[48, 2, 4]",
+      "actual_grid": "[48, 2, 4]",
+      "n_regs": 142,
+      "n_spills": 0
+    },
+    {
+      "case": "decode32_5120",
+      "variant": "pair_rows",
+      "batch": 32,
+      "strided": false,
+      "median_ms": 0.3499971151351929,
+      "speedup_percent": 6.147299073300205,
+      "original_grid": "[48, 2, 4]",
+      "actual_grid": "[48, 2, 4]",
+      "n_regs": 176,
+      "n_spills": 0
+    },
+    {
+      "case": "decode32_5120",
+      "variant": "pair_columns",
+      "batch": 32,
+      "strided": false,
+      "median_ms": 0.35294673442840574,
+      "speedup_percent": 5.260213032467176,
+      "original_grid": "[48, 2, 4]",
+      "actual_grid": "[48, 2, 4]",
+      "n_regs": 176,
+      "n_spills": 0
+    },
+    {
+      "case": "decode64_4096",
+      "variant": "current",
+      "batch": 64,
+      "strided": false,
+      "median_ms": 0.5893712997436523,
+      "speedup_percent": 0,
+      "original_grid": "[96, 2, 4]",
+      "actual_grid": "[96, 2, 4]",
+      "n_regs": 142,
+      "n_spills": 0
+    },
+    {
+      "case": "decode64_4096",
+      "variant": "scalar16",
+      "batch": 64,
+      "strided": false,
+      "median_ms": 0.5912420749664307,
+      "speedup_percent": -0.3164144268461566,
+      "original_grid": "[96, 2, 4]",
+      "actual_grid": "[96, 2, 4]",
+      "n_regs": 142,
+      "n_spills": 0
+    },
+    {
+      "case": "decode64_4096",
+      "variant": "pair_rows",
+      "batch": 64,
+      "strided": false,
+      "median_ms": 0.5521177291870117,
+      "speedup_percent": 6.747396177894172,
+      "original_grid": "[96, 2, 4]",
+      "actual_grid": "[96, 2, 4]",
+      "n_regs": 176,
+      "n_spills": 0
+    },
+    {
+      "case": "decode64_4096",
+      "variant": "pair_columns",
+      "batch": 64,
+      "strided": false,
+      "median_ms": 0.5565280914306641,
+      "speedup_percent": 5.901446632919893,
+      "original_grid": "[96, 2, 4]",
+      "actual_grid": "[96, 2, 4]",
+      "n_regs": 176,
+      "n_spills": 0
+    },
+    {
+      "case": "decode64_5120",
+      "variant": "current",
+      "batch": 64,
+      "strided": false,
+      "median_ms": 0.7290546417236328,
+      "speedup_percent": 0,
+      "original_grid": "[96, 2, 4]",
+      "actual_grid": "[96, 2, 4]",
+      "n_regs": 142,
+      "n_spills": 0
+    },
+    {
+      "case": "decode64_5120",
+      "variant": "scalar16",
+      "batch": 64,
+      "strided": false,
+      "median_ms": 0.7311086654663086,
+      "speedup_percent": -0.28094643651442874,
+      "original_grid": "[96, 2, 4]",
+      "actual_grid": "[96, 2, 4]",
+      "n_regs": 142,
+      "n_spills": 0
+    },
+    {
+      "case": "decode64_5120",
+      "variant": "pair_rows",
+      "batch": 64,
+      "strided": false,
+      "median_ms": 0.6829145908355713,
+      "speedup_percent": 6.75634281464208,
+      "original_grid": "[96, 2, 4]",
+      "actual_grid": "[96, 2, 4]",
+      "n_regs": 176,
+      "n_spills": 0
+    },
+    {
+      "case": "decode64_5120",
+      "variant": "pair_columns",
+      "batch": 64,
+      "strided": false,
+      "median_ms": 0.6875044345855713,
+      "speedup_percent": 6.043627509560423,
+      "original_grid": "[96, 2, 4]",
+      "actual_grid": "[96, 2, 4]",
+      "n_regs": 176,
+      "n_spills": 0
+    },
+    {
+      "case": "decode8_ragged_strided",
+      "variant": "current",
+      "batch": 8,
+      "strided": true,
+      "median_ms": 0.09964942336082458,
+      "speedup_percent": 0,
+      "original_grid": "[12, 2, 16]",
+      "actual_grid": "[12, 2, 16]",
+      "n_regs": 143,
+      "n_spills": 0
+    },
+    {
+      "case": "decode8_ragged_strided",
+      "variant": "scalar16",
+      "batch": 8,
+      "strided": true,
+      "median_ms": 0.10026750564575196,
+      "speedup_percent": -0.616433291071472,
+      "original_grid": "[12, 2, 16]",
+      "actual_grid": "[12, 2, 16]",
+      "n_regs": 143,
+      "n_spills": 0
+    },
+    {
+      "case": "decode8_ragged_strided",
+      "variant": "pair_rows",
+      "batch": 8,
+      "strided": true,
+      "median_ms": 0.09586499929428101,
+      "speedup_percent": 3.947659828303296,
+      "original_grid": "[12, 2, 16]",
+      "actual_grid": "[12, 2, 16]",
+      "n_regs": 176,
+      "n_spills": 0
+    },
+    {
+      "case": "decode8_ragged_strided",
+      "variant": "pair_columns",
+      "batch": 8,
+      "strided": true,
+      "median_ms": 0.09506999850273132,
+      "speedup_percent": 4.816898001698933,
+      "original_grid": "[12, 2, 16]",
+      "actual_grid": "[12, 2, 16]",
+      "n_regs": 176,
+      "n_spills": 0
+    },
+    {
+      "case": "decode64_ragged_strided",
+      "variant": "current",
+      "batch": 64,
+      "strided": true,
+      "median_ms": 0.5800340175628662,
+      "speedup_percent": 0,
+      "original_grid": "[96, 2, 4]",
+      "actual_grid": "[96, 2, 4]",
+      "n_regs": 142,
+      "n_spills": 0
+    },
+    {
+      "case": "decode64_ragged_strided",
+      "variant": "scalar16",
+      "batch": 64,
+      "strided": true,
+      "median_ms": 0.5814032554626465,
+      "speedup_percent": -0.23550571602677373,
+      "original_grid": "[96, 2, 4]",
+      "actual_grid": "[96, 2, 4]",
+      "n_regs": 142,
+      "n_spills": 0
+    },
+    {
+      "case": "decode64_ragged_strided",
+      "variant": "pair_rows",
+      "batch": 64,
+      "strided": true,
+      "median_ms": 0.5414775371551513,
+      "speedup_percent": 7.120605706062211,
+      "original_grid": "[96, 2, 4]",
+      "actual_grid": "[96, 2, 4]",
+      "n_regs": 176,
+      "n_spills": 0
+    },
+    {
+      "case": "decode64_ragged_strided",
+      "variant": "pair_columns",
+      "batch": 64,
+      "strided": true,
+      "median_ms": 0.5448750019073486,
+      "speedup_percent": 6.452675481980741,
+      "original_grid": "[96, 2, 4]",
+      "actual_grid": "[96, 2, 4]",
+      "n_regs": 176,
+      "n_spills": 0
+    },
+    {
+      "case": "decode40_16384",
+      "variant": "current",
+      "batch": 40,
+      "strided": false,
+      "median_ms": 1.4267271041870118,
+      "speedup_percent": 0,
+      "original_grid": "[60, 2, 16]",
+      "actual_grid": "[60, 2, 16]",
+      "n_regs": 143,
+      "n_spills": 0
+    },
+    {
+      "case": "decode40_16384",
+      "variant": "scalar16",
+      "batch": 40,
+      "strided": false,
+      "median_ms": 1.4311317443847655,
+      "speedup_percent": -0.30777321620011344,
+      "original_grid": "[60, 2, 16]",
+      "actual_grid": "[60, 2, 16]",
+      "n_regs": 143,
+      "n_spills": 0
+    },
+    {
+      "case": "decode40_16384",
+      "variant": "pair_rows",
+      "batch": 40,
+      "strided": false,
+      "median_ms": 1.3495896339416504,
+      "speedup_percent": 5.715624090863192,
+      "original_grid": "[60, 2, 16]",
+      "actual_grid": "[60, 2, 16]",
+      "n_regs": 176,
+      "n_spills": 0
+    },
+    {
+      "case": "decode40_16384",
+      "variant": "pair_columns",
+      "batch": 40,
+      "strided": false,
+      "median_ms": 1.3390379905700684,
+      "speedup_percent": 6.548665103938656,
+      "original_grid": "[60, 2, 16]",
+      "actual_grid": "[60, 2, 16]",
+      "n_regs": 176,
+      "n_spills": 0
+    },
+    {
+      "case": "decode41_ragged_strided",
+      "variant": "current",
+      "batch": 41,
+      "strided": true,
+      "median_ms": 1.0967700004577636,
+      "speedup_percent": 0,
+      "original_grid": "[61, 2, 16]",
+      "actual_grid": "[61, 2, 16]",
+      "n_regs": 143,
+      "n_spills": 0
+    },
+    {
+      "case": "decode41_ragged_strided",
+      "variant": "scalar16",
+      "batch": 41,
+      "strided": true,
+      "median_ms": 1.0995878219604491,
+      "speedup_percent": -0.2562616142530283,
+      "original_grid": "[61, 2, 16]",
+      "actual_grid": "[61, 2, 16]",
+      "n_regs": 143,
+      "n_spills": 0
+    },
+    {
+      "case": "decode41_ragged_strided",
+      "variant": "pair_rows",
+      "batch": 41,
+      "strided": true,
+      "median_ms": 1.034031581878662,
+      "speedup_percent": 6.067359999306432,
+      "original_grid": "[61, 2, 16]",
+      "actual_grid": "[61, 2, 16]",
+      "n_regs": 176,
+      "n_spills": 0
+    },
+    {
+      "case": "decode41_ragged_strided",
+      "variant": "pair_columns",
+      "batch": 41,
+      "strided": true,
+      "median_ms": 1.0271336555480957,
+      "speedup_percent": 6.779677068658496,
+      "original_grid": "[61, 2, 16]",
+      "actual_grid": "[61, 2, 16]",
+      "n_regs": 176,
+      "n_spills": 0
+    }
+  ],
+  "payloads_retained_in_container_only": [
+    {
+      "case": "decode1_4096",
+      "phase": 0,
+      "path": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/decode1_4096_phase0_outputs.pt",
+      "bytes": 4228485,
+      "sha256": "3496348aae541f4af540f4d874f6c6baf59d1727b1b257626a11afe5bd1411f0"
+    },
+    {
+      "case": "decode1_4096",
+      "phase": 1,
+      "path": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/decode1_4096_phase1_outputs.pt",
+      "bytes": 4221317,
+      "sha256": "4b7844f866c3e0baad6ce43c5208d335273d02e01600e053fbbff4806b58f14d"
+    },
+    {
+      "case": "decode1_5120",
+      "phase": 0,
+      "path": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/decode1_5120_phase0_outputs.pt",
+      "bytes": 5277317,
+      "sha256": "f65c862a8fbe76820b037340cec6d5659e6c74b8e2de9546d863eabc5365a60a"
+    },
+    {
+      "case": "decode1_5120",
+      "phase": 1,
+      "path": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/decode1_5120_phase1_outputs.pt",
+      "bytes": 5270149,
+      "sha256": "de7fc4dd7ca9e45dcd493be2d55a8105ebeba585c75461a848bc1a4121cce871"
+    },
+    {
+      "case": "decode8_4096",
+      "phase": 0,
+      "path": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/decode8_4096_phase0_outputs.pt",
+      "bytes": 12826057,
+      "sha256": "2e0e2213cf8dabf416795369ef3db64314ac34690fc423bc30800fbef8af4fc4"
+    },
+    {
+      "case": "decode8_4096",
+      "phase": 1,
+      "path": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/decode8_4096_phase1_outputs.pt",
+      "bytes": 12804553,
+      "sha256": "f44d652b7ac1bae1e6540d8ee248e8f69ec07e7b945e6ba8b1cbf3ff05c88337"
+    },
+    {
+      "case": "decode8_5120",
+      "phase": 0,
+      "path": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/decode8_5120_phase0_outputs.pt",
+      "bytes": 15973833,
+      "sha256": "6df4c9e78156ae0e04d28a8e731cfd8cba80db06cbb8d7ae21f0fac0476549ee"
+    },
+    {
+      "case": "decode8_5120",
+      "phase": 1,
+      "path": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/decode8_5120_phase1_outputs.pt",
+      "bytes": 15952329,
+      "sha256": "a8dfacc977e6dcc66d4b1276e23929e3a5db35a30e3377868f84ef7071fa88b2"
+    },
+    {
+      "case": "decode32_4096",
+      "phase": 0,
+      "path": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/decode32_4096_phase0_outputs.pt",
+      "bytes": 13538909,
+      "sha256": "43f360f2704868072010215c57d710316123bbd744563a533c2f24f62c865e26"
+    },
+    {
+      "case": "decode32_4096",
+      "phase": 1,
+      "path": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/decode32_4096_phase1_outputs.pt",
+      "bytes": 13517405,
+      "sha256": "ce61144cf4b1e3ece4c658fbdef078c4b92b46ece81ae2a76e421ee67e337f0a"
+    },
+    {
+      "case": "decode32_5120",
+      "phase": 0,
+      "path": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/decode32_5120_phase0_outputs.pt",
+      "bytes": 16692829,
+      "sha256": "b2f2a0df0dadae755be9668a9b4ae1f9deeb89c023b4b7a967e38309752c81a0"
+    },
+    {
+      "case": "decode32_5120",
+      "phase": 1,
+      "path": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/decode32_5120_phase1_outputs.pt",
+      "bytes": 16671325,
+      "sha256": "47abbbd306f7fc334957529db9a10b57350a238590819e63b7a4e10cdab0673d"
+    },
+    {
+      "case": "decode64_4096",
+      "phase": 0,
+      "path": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/decode64_4096_phase0_outputs.pt",
+      "bytes": 14489309,
+      "sha256": "e64f4fb98e2d2fb650e41eebafc431bc8242a4ff59efbff615be91bed28f3308"
+    },
+    {
+      "case": "decode64_4096",
+      "phase": 1,
+      "path": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/decode64_4096_phase1_outputs.pt",
+      "bytes": 14467805,
+      "sha256": "919b8c936ddac1ee0ca5e1e6039679787901fa680112b6a3da9d481c82bc83af"
+    },
+    {
+      "case": "decode64_5120",
+      "phase": 0,
+      "path": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/decode64_5120_phase0_outputs.pt",
+      "bytes": 17651421,
+      "sha256": "1fcb88d3de470dfe8baee296a47b7b761a8a9c697b0c64c8c9760abaa1c5aece"
+    },
+    {
+      "case": "decode64_5120",
+      "phase": 1,
+      "path": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/decode64_5120_phase1_outputs.pt",
+      "bytes": 17629917,
+      "sha256": "61d6fb87c40140d79a0c8a49968042b0a5db97f4189e76fc04748ec734ceeb22"
+    },
+    {
+      "case": "decode8_ragged_strided",
+      "phase": 0,
+      "path": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/decode8_ragged_strided_phase0_outputs.pt",
+      "bytes": 7619217,
+      "sha256": "d741a60024d7f8603d65b97cfc96f950df53b36ae67b823a7bd5549e442c1fb8"
+    },
+    {
+      "case": "decode8_ragged_strided",
+      "phase": 1,
+      "path": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/decode8_ragged_strided_phase1_outputs.pt",
+      "bytes": 7597713,
+      "sha256": "0501f6635457062b1a07102533b5caf1453112c8d02d7ba522af5e8fd5e67be6"
+    },
+    {
+      "case": "decode64_ragged_strided",
+      "phase": 0,
+      "path": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/decode64_ragged_strided_phase0_outputs.pt",
+      "bytes": 13952933,
+      "sha256": "591471eb29d18769a4ee9f26730e18ebc53ed4fd2f2cf43b97c74d52c58c762f"
+    },
+    {
+      "case": "decode64_ragged_strided",
+      "phase": 1,
+      "path": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/decode64_ragged_strided_phase1_outputs.pt",
+      "bytes": 13931429,
+      "sha256": "710c760cdc90a75a8e3aebb2f8e568b462989a3a697d277464543a9d638f00d9"
+    },
+    {
+      "case": "decode40_16384",
+      "phase": 0,
+      "path": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/decode40_16384_phase0_outputs.pt",
+      "bytes": 51648113,
+      "sha256": "0406c6114c966e1f45159e589e0f3b5b03cbce2ccda702b02f565e6fc6a88850"
+    },
+    {
+      "case": "decode40_16384",
+      "phase": 1,
+      "path": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/decode40_16384_phase1_outputs.pt",
+      "bytes": 51626609,
+      "sha256": "a0b39da6f1745bea733267cde6fc2f99d32c72404d87370a19d35b76c9ae77c1"
+    },
+    {
+      "case": "decode41_ragged_strided",
+      "phase": 0,
+      "path": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/decode41_ragged_strided_phase0_outputs.pt",
+      "bytes": 26434597,
+      "sha256": "efe8ed8aa88fb70abe4ad67fc7fb00ca95fef3869423436c158844ca3e9c663c"
+    },
+    {
+      "case": "decode41_ragged_strided",
+      "phase": 1,
+      "path": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/decode41_ragged_strided_phase1_outputs.pt",
+      "bytes": 26413093,
+      "sha256": "ebc1c1663512571b51fd1bb855ea5dff43eced0db898358484f8eb812e21a2f7"
+    }
+  ],
+  "verifier_source_sha256": "534c07ea84df3140960768b6085025de43cc3dd493e6ac7bb4bcd4cbc631afc2"
+}
