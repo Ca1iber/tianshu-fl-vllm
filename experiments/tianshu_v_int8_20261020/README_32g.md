@@ -4,7 +4,7 @@
 
 正式最佳仍是 K8V16/default4096：4K 5101.45 total tok/s、1020.29 output tok/s、Mean TTFT 4164.20ms；同源码 Math Level3 102/105。最佳标签为 tianshu-original-command-4k-k8v16-budget4096-20261019，提交 5ea64d33e594fc9510f5a3062bbf84811161ba5f。以上均是旧版本已验收结果，不能作为本候选的验证结果。
 
-2026-10-20 用户已确认容器运行且网页 IDE 可用，但指定 SSH 网关仍返回 Permission denied(publickey)。本轮尚无 GPU 测试、CPU 检查执行、服务成绩、Math 或 profile 数据。已将准备代码保存到独立分支 exp/tianshu-v-int8-20261020，不修改当前最佳代码、标签及沐曦仓库，不建立本地项目副本。
+2026-10-20 用户已确认容器运行且网页 IDE 可用，但指定 SSH 网关仍返回 Permission denied(publickey)。本轮尚无 GPU 测试、服务成绩、Math 或 profile 数据。GitHub CPU 检查已通过，见下方记录。已将准备代码保存到独立分支 exp/tianshu-v-int8-20261020，不修改当前最佳代码、标签及沐曦仓库，不建立本地项目副本。
 
 ## 本轮假设
 
@@ -41,3 +41,11 @@ python3 experiments/tianshu_v_int8_20261020/check_cpu.py \
 ## 保存与运行边界
 
 代码、报告和关键结果保存天数 GitHub；原始实验数据留 /workspace/benchmark-results；不上传完整原始历史和编译缓存，不修改历史测量源码。预约为北京时间 2026-10-20 06:00 至 2026-10-21 00:00，GPU 硬停止时间为 23:58。
+
+## 已执行的 GitHub CPU 检查
+
+检查运行：https://github.com/Ca1iber/tianshu-fl-vllm/actions/runs/39352140421 ，成功结束。执行提交 a10b55f2c896e9f2b5652ddcce489612891ca9d7；机器为 GitHub Ubuntu 24.04 CPU 运行器，不是 BI-V150 容器。原始 JSON 摘自该作业日志，保存在 CPU_GATE_GITHUB_32g.json；文件名表示目标卡，不能当作该卡 GPU 验证。
+
+三档缩放全部通过：共 196608 个 BF16 位模式检查、768 个解码码点和 2349 个舍入边界；包含 NaN/Inf 明确定义的编码。独立 Fraction 参考、所有码点往返、生成 Python AST、K helper / attention / reducer 保护及可逆源码变换均通过。冻结 reader SHA256 为 8deb8967fdacf354f3b38e6a9687163493f6163764f3e8663dce916250cd1289，输入发布归档 SHA256 为 67f6faa0afe2658573ab7273dc665d8460523d2bb76f751aefc47273501e8207。
+
+这不证明 GPU encoder 与标量规范一致，不证明 Triton 能编译，不包含物理页布局、attention 数值、Graph 重放、饱和率、吞吐或 Math 结论。adoption_allowed 仍为 false；正式最佳 5101.45 total tok/s 不变。下一步必须等 SSH 接入恢复，在天数卡执行 GPU 检查与接入门槛。
