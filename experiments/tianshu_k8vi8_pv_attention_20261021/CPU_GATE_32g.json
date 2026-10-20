@@ -1,0 +1,80 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "no_GPU_started": true,
+  "adopted": false,
+  "Math_not_run": true,
+  "full_attention_not_yet_compiled": true,
+  "primitive_GPU_verification_checked": true,
+  "real_native_page_layout": true,
+  "writer_timed": true,
+  "three_changed_input_phases": true,
+  "configurations": {
+    "K8V16": {
+      "tile": 16,
+      "warps": 1,
+      "integer_PV": false
+    },
+    "K8VI8Heads": {
+      "tile": 16,
+      "warps": 1,
+      "integer_PV": false
+    },
+    "PV32": {
+      "tile": 32,
+      "warps": 2,
+      "integer_PV": true
+    },
+    "PV64": {
+      "tile": 64,
+      "warps": 2,
+      "integer_PV": true
+    }
+  },
+  "source_proof": {
+    "parent": {
+      "parent_source_sha256": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+      "generated_sha256": "2ff3daafd25dfc68ebe938ea1c02cf7d1420859884d12efc9c775aedb8425795",
+      "only_two_mode_conditions_extended": true,
+      "paired_K_load_enabled_for_both_modes": true,
+      "producer_arithmetic_and_native_P_scaling_unchanged": true,
+      "reducer_and_API_AST_unchanged": true,
+      "K_fixed_software8_V_per_token_head_INT8": true,
+      "K_per_token_head_scales_stored_as_exact_one": true
+    },
+    "generated_sha256": "a3ed80f1783656c5552ff6a832b0a41460614f027b08a4608bb26bcd3732fac1",
+    "all_edits_reversed_to_exact_parent": true,
+    "native_QK_and_softmax_code_unchanged": true,
+    "public_API_and_reducer_AST_unchanged": true,
+    "default_flag_preserves_native_V8_path": true,
+    "new_path_requires_3D_INT8_V_without_sliding_window": true,
+    "writer_and_cache_layout_not_modified": true,
+    "new_value_and_probability_approximation_requires_fresh_Math": true
+  },
+  "sources": {
+    "/workspace/benchmark-results/20261020_lm_precision_math_tianshu/pair_load_records/generated_reader/generated_pair_rows.py": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_heads_v2_20261021/CPU_GATE_32g.json": "030e6449f058c9897e7a0e247e6c24bcad4e0b01d58cc8e4b84d466535e20598",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_heads_v2_20261021/GPU_GATE_32g.json": "bdaad93fe8b373a584391d7329acd06a05ba646eac65df23dadede6c547b4b25",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_heads_v2_20261021/layout.py": "d1b0a926e7883b1de41448465b1b06163db66668600991760f4fe2afdfa799a2",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_heads_v2_20261021/reference_quantize.py": "032b9bfa9abd451a60b0bd809185994b0f94dadfe7c894baadbb85b265fd2633",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_heads_v2_20261021/source.py": "589dc4a5f9d5c4bca2cd0fc05814e45d9d5e6b74291e83e9bd202ee04d6c65c0",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_heads_v2_20261021/writer.py": "49565b1105a0eaa3b68364499d857cf481227af2612f7bdf52c32eb3020802f2",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_pv_attention_20261021/check_cpu.py": "e4c46a518f997faa2927cea237226edefce4c07d30727e9a08a3f8e418117eae",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_pv_attention_20261021/layout.py": "b44669871afbc658a077796e95c9d2b5ce3d1d1a2094ae17c5d70ef3d7ff12c4",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_pv_attention_20261021/probe_gpu.py": "ed81c9a1f78e58f37d177b0e7d656ea2d2b2264d661681120cf04334ad95af1b",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_pv_attention_20261021/reference_quantize.py": "032b9bfa9abd451a60b0bd809185994b0f94dadfe7c894baadbb85b265fd2633",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_pv_attention_20261021/run_component.sh": "1a4f44049777d142af6da7343e758e67e63507d38278228d06f7850be8f0b48a",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_pv_attention_20261021/source.py": "aeea59aabfdf88129d8142997e2fba376339376e064a4e4e7348d9d059be91a8",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_pv_attention_20261021/verify_gpu.py": "7fee978712a24edc371ed0e403f3e1a969fc535c4426b8c4c541c1f95c6e76c0",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_pv_attention_20261021/writer.py": "49565b1105a0eaa3b68364499d857cf481227af2612f7bdf52c32eb3020802f2",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_pv_int8_20261021/CPU_GATE_32g.json": "61b3635288ccdbcf18c62e733433bdbf2c35ae25e2297ab48fdc4e9b8e5df5b3",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_pv_int8_20261021/PRIMITIVE_CASES_32g.json": "3d3bddb941be21b3bb806fa8237aa3ab64b0b85b0b41183dd5c08b0f688e7637",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_pv_int8_20261021/PRIMITIVE_GPU_GATE_32g.json": "7622f7b32a770dcc14c7cde639e1e0405ea7af3ca847a4ccc29af7c852c807d2",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_pv_int8_20261021/check_cpu.py": "574d03157139c69003cd4bb897151f01b81ff4f68df6835798263aae48b88d7f",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_pv_int8_20261021/kernel_pv.py": "5ab90568743e73c3943b7e3b406a8a5a0c62d5c0965c48b23908a1615a44a214",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_pv_int8_20261021/probe_primitive_gpu.py": "49fb60225cc5857e7e122d6c6de9a0bcac1a4551159b127bd8449ea226ec0361",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_pv_int8_20261021/run_primitive_after_validation.sh": "4e6e52356f0f8bfcbe4acd5c79c8cc9b949f041768de84404fb63e1018328cf0",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_pv_int8_20261021/source.py": "80bb1937a18258dfe7a7579f81bd91c7500e39fea1a5de730b39cc5823a4a161",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_pv_int8_20261021/verify_primitive.py": "a32ac36280d2d51bb65b17fb78da00eec95eb87b2ab098672db15e01a417f716"
+  }
+}
