@@ -61,10 +61,12 @@ def main():
     models = []
     import source as scalar_source
     for label in ('control', 'scalar_page'):
-        loader = prior.load_codec if label == 'control' else scalar_source.load
-        reader, proof = loader(args.reader_source, root / f'{label}_reader')
-        if label == 'control':
-            assert proof['generated_sha256'] == scalar_source.QUALIFIED_SHA
+        control, proof = prior.load_codec(args.reader_source, root / f'{label}_base_reader')
+        assert proof['generated_sha256'] == scalar_source.QUALIFIED_SHA
+        reader = control
+        if label == 'scalar_page':
+            reader, scalar_proof = scalar_source.load(Path(control.__file__), root / f'{label}_reader')
+            proof = dict(base_codec=proof, scalar=scalar_proof)
         models.append(dict(label=label, denominator=None, page_bytes=12288, reader=reader, writer=control_writer, proof=proof))
     for model in models:
         model['invoke'], model['producer'] = component_launch.attach(model['reader'])
