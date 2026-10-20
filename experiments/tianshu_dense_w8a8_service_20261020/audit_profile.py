@@ -9,8 +9,9 @@ def read(p):return json.loads(Path(p).read_text())
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 
 def audit_runtime(root,state,official=False):
-    assert len(state['profile_environment'])==56 and state['profile_environment']['TIANSHU_PAIR_LOAD_MODE']=='candidate'
+    assert len(state['profile_environment'])==57 and state['profile_environment']['TIANSHU_PAIR_LOAD_MODE']=='candidate'
     assert state['profile_environment']['TIANSHU_DENSE_INT8_MODE']==state['mode']
+    assert state['profile_environment']['VLLM_DISABLE_COMPILE_CACHE']=='1'
     observed=read(root/'observed_server_environment.json')
     assert observed['environment']==state['profile_environment'] and observed['command']==state['server_command']
     # The inherited attention/memory policy remains candidate in BOTH arms;
@@ -18,7 +19,7 @@ def audit_runtime(root,state,official=False):
     # actual 56 environment keys, without changing or filtering observations.
     result=parent.audit_runtime(root,dict(state,mode='candidate'),official=official)
     files=list((root/'dense_int8_records').glob('bindings_*.json'));assert len(files)==1
-    row=read(files[0]);assert row['installed'] and row['mode']==state['mode'] and row['load_complete']
+    row=read(files[0]);assert row['installed'] and row['mode']==state['mode'] and row['load_complete'] and row['compile_cache_disabled']
     for key in ('policy','kernel'):
         assert sha(row[key+'_source'])==state['frozen_sources'][row[key+'_source']]==row[key+'_sha256']
     for path,digest in row['native_method_sources'].items():assert sha(path)==state['frozen_sources'][path]==digest

@@ -3,7 +3,7 @@ set -euo pipefail
 cd /workspace/vllm-plugin-FL
 grep -q '^class ModelRunnerFL(' /usr/local/lib/python3.12/site-packages/vllm_fl/worker/model_runner.py
 base=experiments/tianshu_dense_w8a8_service_20261020
-root=/workspace/benchmark-results/20261020_dense_w8a8_service4k_v2_tianshu
+root=/workspace/benchmark-results/20261020_dense_w8a8_service4k_v3_tianshu
 remaining=$(( $(date -u -d '2026-10-20 15:58:00 UTC' +%s) - $(date -u +%s) ))
 test "$remaining" -gt 2400
 test ! -e "$root"

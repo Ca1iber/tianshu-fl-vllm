@@ -121,6 +121,10 @@ def main():
         with ThreadPoolExecutor(max_workers=8) as pool:
             state['int8_smoke_wave']=list(pool.map(lambda i: request(128,16,202610206000+i,777),range(8)))
         save()
+        if args.mode=='candidate':
+            binding=read(next((root/'dense_int8_records').glob('bindings_*.json')))
+            for batch in (8,64):
+                assert len({r['bank_id'] for r in binding['launches'].values() if r['role']=='gateup' and r['M']==batch and r['actually_inside_capture']})==42, ('early_missing_GateUp',batch)
         metrics('before_metrics.txt')
         for index in range(nrounds):
             state['phase']=f'round_{index+1}';save()

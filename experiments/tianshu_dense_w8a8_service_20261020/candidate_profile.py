@@ -14,11 +14,12 @@ def prepare(root,mode):
     command,environment,profile,sources=parent.prepare(root,'candidate')
     assert len(profile)==54 and len(sources)==282
     profile.update(PYTHONPATH=str(BASE/'hooks'),TIANSHU_DENSE_INT8_MODE=mode,TIANSHU_DENSE_INT8_RECORD_DIR=str(root/'dense_int8_records'))
-    assert len(profile)==56;environment.update(profile)
+    profile['VLLM_DISABLE_COMPILE_CACHE']='1'
+    assert len(profile)==57;environment.update(profile)
     native=Path('/usr/local/lib/python3.12/site-packages/vllm')
     paths=[*BASE.rglob('*.py'),component/'kernel.py',component/'GPU_GATE_32g.json',component/'MODEL_INTEGRATION_PLAN_32g.json',
         *[Path(p) for p in gate['frozen_sources']],native/'model_executor/layers/linear.py',native/'model_executor/layers/vocab_parallel_embedding.py',
-        native/'model_executor/model_loader/base_loader.py',native/'model_executor/model_loader/default_loader.py',native/'model_executor/model_loader/utils.py',native/'utils/mem_utils.py']
+        native/'model_executor/model_loader/base_loader.py',native/'model_executor/model_loader/default_loader.py',native/'model_executor/model_loader/utils.py',native/'utils/mem_utils.py',native/'envs.py',native/'compilation/backends.py',native/'compilation/compiler_interface.py',native/'compilation/decorators.py']
     for path in paths:sources[str(path)]=digest(path)
     frozen_check(sources)
     for name,sha in sources.items():

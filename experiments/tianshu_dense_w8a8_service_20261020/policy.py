@@ -18,6 +18,7 @@ def digest(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 def install(worker,mode,directory):
     assert mode in ('control','candidate')
+    assert os.environ.get('VLLM_DISABLE_COMPILE_CACHE')=='1'
     assert worker.vllm_config.speculative_config is None
     import torch
     from vllm.model_executor.layers.linear import UnquantizedLinearMethod
@@ -33,7 +34,7 @@ def install(worker,mode,directory):
     banks={};dummy=None;active_runner=None
     originals={kind:(cls.process_weights_after_loading,cls.apply) for kind,cls in (('linear',UnquantizedLinearMethod),('embedding',UnquantizedEmbeddingMethod))}
     native_paths={str(Path(inspect.getsourcefile(fn)).resolve()):digest(inspect.getsourcefile(fn)) for pair in originals.values() for fn in pair}
-    record=dict(installed=True,mode=mode,policy_source=str(Path(__file__).resolve()),policy_sha256=digest(__file__),
+    record=dict(installed=True,mode=mode,compile_cache_disabled=True,policy_source=str(Path(__file__).resolve()),policy_sha256=digest(__file__),
         kernel_source=str(COMPONENT/'kernel.py'),kernel_sha256=KERNEL_SHA,native_method_sources=native_paths,
         supported_M=[8,64],supported_roles=['gateup','lm_head'],configs={f'{role}:{m}':cfg for (role,m),cfg in CONFIGS.items()},
         banks=[],visited=[],launches={},load_complete=False,packed_payload_bytes=0,original_BF16_weights_retained=True,
@@ -66,7 +67,7 @@ def install(worker,mode,directory):
         prefix=getattr(layer,'prefix',None) or ('lm_head' if role=='lm_head' else '')
         if role=='gateup':assert re.fullmatch(r'model\.layers\.\d+\.mlp\.gate_up_proj',prefix),prefix
         proof=profiler_evidence();version=int(weight._version)
-        record['visited'].append(dict(role=role,prefix=prefix,shape=list(weight.shape),inside_profiler=proof,original_weight_version=version))
+        record['visited'].append(dict(role=role,prefix=prefix,method_class=type(method).__module__+'.'+type(method).__name__,shape=list(weight.shape),inside_profiler=proof,original_weight_version=version))
         if mode=='control':save();return
         assert not hasattr(layer,'_tianshu_dense_w8_bank')
         start=time.perf_counter();cpu=weight.detach().cpu().contiguous();assert bool(torch.isfinite(cpu).all())
@@ -80,7 +81,7 @@ def install(worker,mode,directory):
         layer.register_buffer('_tianshu_dense_w8_scale',s,persistent=False);layer._tianshu_dense_w8_bank=bank_id
         banks[bank_id]=dict(layer=layer,method=method,kind=kind,role=role,prefix=prefix)
         assert int(weight._version)==version
-        row=dict(bank_id=bank_id,role=role,prefix=prefix,shape=[n,k],inside_profiler=proof,original_weight_unchanged=True,
+        row=dict(bank_id=bank_id,role=role,prefix=prefix,method_class=type(method).__module__+'.'+type(method).__name__,shape=[n,k],inside_profiler=proof,original_weight_unchanged=True,
             original_BF16_sha256=hashlib.sha256(memoryview(cpu.view(torch.uint8).numpy())).hexdigest(),
             packed_sha256=hashlib.sha256(memoryview(packed.view(torch.uint8).numpy())).hexdigest(),
             scales_sha256=hashlib.sha256(memoryview(scales.view(torch.uint8).numpy())).hexdigest(),

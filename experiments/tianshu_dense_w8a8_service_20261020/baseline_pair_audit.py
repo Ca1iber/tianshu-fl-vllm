@@ -17,7 +17,7 @@ def read(path):
 
 
 def audit_runtime(root, state, official=False):
-    assert len(state['profile_environment']) == 56
+    assert len(state['profile_environment']) == 57
     result = parent.audit_runtime(root, dict(state, mode='candidate', arena_mode='candidate', seq_limit=64), official=official)
     assert result['actual_FL_Graph_capture_and_replay_verified']
     rows = [read(p) for p in (root / 'small_arena_records').glob('capacity_*.json')]

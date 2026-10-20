@@ -16,7 +16,7 @@ for mode,state in runs.items():
     assert len(state['screen_rounds'])==3 and len(state['int8_smoke_wave'])==8 and len(state['seeded_canaries'])==2
     assert state['seeded_canaries'][0]['text']==state['seeded_canaries'][1]['text']
     audits[mode]=audit_runtime(root/mode,state,official=True);assert audits[mode]==state['profile_audit']
-    assert len(state['profile_environment'])==56 and state['profile_environment']['TIANSHU_PAIR_LOAD_MODE']=='candidate'
+    assert len(state['profile_environment'])==57 and state['profile_environment']['TIANSHU_PAIR_LOAD_MODE']=='candidate'
     for response in state['int8_smoke_wave']:
         assert response['usage']==dict(prompt_tokens=128,completion_tokens=16,total_tokens=144) and response['text']
     for index,row in enumerate(state['screen_rounds']):
@@ -36,7 +36,7 @@ gate=dict(complete=True,independently_rechecked=True,component_and_service_only=
     input_tokens=4096,output_tokens=1024,concurrency=64,requests_per_round=64,rounds_per_arm=3,excluded_rounds=[1],
     total_screen_requests_successful=384,C8_smoke_requests=16,C1_canary_requests=4,failed_requests=0,
     control_total_tok_s=means['control'],candidate_total_tok_s=means['candidate'],gain_percent=gain,
-    spread_percent={m:runs[m]['spread_percent'] for m in runs},frozen_source_count=len(control['frozen_sources']),profile_environment_count=56,
+    spread_percent={m:runs[m]['spread_percent'] for m in runs},frozen_source_count=len(control['frozen_sources']),profile_environment_count=57,
     same_sources_and_original_argv=True,only_profile_mode_differs=True,paired_K_always_candidate=True,
     KV_blocks={m:audits[m]['actual_KV_blocks'] for m in runs},extra_weight_bytes={m:audits[m]['extra_packed_weight_bytes'] for m in runs},
     candidate_C8_actual_branch_and_C64_capture_replay_verified=True,LM_head_actual_outside_model_Graph_calls_verified=True,
