@@ -1,0 +1,772 @@
+{
+  "complete": true,
+  "intrusive_diagnostic_only": true,
+  "official_benchmark": false,
+  "raw_root": "/workspace/benchmark-results/20261021_cpu_profile_qualified_tianshu",
+  "source_count": 466,
+  "actual_environment_count": 66,
+  "model_runtime_sources_before_additional_observed_stack_sources": 364,
+  "summary": {
+    "complete": true,
+    "official_benchmark": false,
+    "frame_count": 16,
+    "GPU_events_used": false,
+    "host_profiled_call_median": {
+      "execute_model": {
+        "wall_ms": 7.301394,
+        "thread_cpu_ms": 7.302886
+      },
+      "sample_tokens": {
+        "wall_ms": 3.480208,
+        "thread_cpu_ms": 3.4808085
+      },
+      "scheduler_schedule": {
+        "wall_ms": 3.1940925,
+        "thread_cpu_ms": 3.195238
+      }
+    },
+    "seeded_canary_before_after_equal": true,
+    "scope": "Intrusive cProfile host diagnostic. Per-function cumulative wall times overlap and may include waits; not GPU kernel time or benchmark score."
+  },
+  "runtime_audit": {
+    "complete": true,
+    "intrusive_diagnostic_only": true,
+    "entire_actual_environment_count": 66,
+    "all_frozen_sources_unchanged": true,
+    "actual_C64_INT8_all_42_GateUp_and_LM_verified": true,
+    "actual_C8_LM_BF16_verified": true,
+    "all_43_packed_banks_match_qualified": true,
+    "actual_FULL_decode_profile_frames": 16,
+    "seeded_canary_preserved": true,
+    "no_GPU_kernel_time_or_benchmark_claim": true
+  },
+  "actual_bound_schedule_module": "vllm.v1.core.sched.scheduler",
+  "actual_bound_schedule_name": "Scheduler.schedule",
+  "execute_top_local": [
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py",
+      "line": 1611,
+      "name": "run",
+      "mean_local_ms": 0.3266700625,
+      "mean_cumulative_ms": 0.9355728125000002,
+      "total_calls": 144
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/torch/_library/custom_ops.py",
+      "line": 346,
+      "name": "backend_impl",
+      "mean_local_ms": 0.2963418750000001,
+      "mean_cumulative_ms": 0.30340425,
+      "total_calls": 16
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/model_runner.py",
+      "line": 1773,
+      "name": "_prepare_input_ids",
+      "mean_local_ms": 0.286447875,
+      "mean_cumulative_ms": 0.8527291875000002,
+      "total_calls": 16
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/model_runner.py",
+      "line": 1951,
+      "name": "_prepare_inputs",
+      "mean_local_ms": 0.2552640625,
+      "mean_cumulative_ms": 5.121427187500001,
+      "total_calls": 16
+    },
+    {
+      "file": "/usr/local/lib/python3.12/copy.py",
+      "line": 118,
+      "name": "deepcopy",
+      "mean_local_ms": 0.20743981250000004,
+      "mean_cumulative_ms": 0.49613031250000006,
+      "total_calls": 2448
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/flag_gems/utils/pointwise_dynamic.py",
+      "line": 1497,
+      "name": "prepare_args",
+      "mean_local_ms": 0.18390575000000006,
+      "mean_cumulative_ms": 0.569821875,
+      "total_calls": 128
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "name": "<method 'get' of 'dict' objects>",
+      "mean_local_ms": 0.18072743750000003,
+      "mean_cumulative_ms": 0.18809387500000002,
+      "total_calls": 10272
+    },
+    {
+      "file": "/usr/local/lib/python3.12/logging/__init__.py",
+      "line": 298,
+      "name": "__init__",
+      "mean_local_ms": 0.15655875,
+      "mean_cumulative_ms": 0.373819375,
+      "total_calls": 208
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/model_runner.py",
+      "line": 1187,
+      "name": "_update_states",
+      "mean_local_ms": 0.141069125,
+      "mean_cumulative_ms": 0.45305687499999997,
+      "total_calls": 16
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "name": "<built-in method builtins.id>",
+      "mean_local_ms": 0.1183239375,
+      "mean_cumulative_ms": 0.1183239375,
+      "total_calls": 3328
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "name": "<built-in method builtins.isinstance>",
+      "mean_local_ms": 0.1168615625,
+      "mean_cumulative_ms": 0.12524618750000005,
+      "total_calls": 7856
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/triton/spec/iluvatar/triton/runtime/jit.py",
+      "line": 1119,
+      "name": "__call__",
+      "mean_local_ms": 0.098790125,
+      "mean_cumulative_ms": 0.21069387500000003,
+      "total_calls": 464
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/flag_gems/ops/copy.py",
+      "line": 74,
+      "name": "copy_",
+      "mean_local_ms": 0.096544,
+      "mean_cumulative_ms": 1.0697254374999998,
+      "total_calls": 160
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "name": "<method 'append' of 'list' objects>",
+      "mean_local_ms": 0.09542043750000002,
+      "mean_cumulative_ms": 0.09542043750000002,
+      "total_calls": 5328
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/triton/spec/iluvatar/triton/runtime/jit.py",
+      "line": 737,
+      "name": "run",
+      "mean_local_ms": 0.08794387500000002,
+      "mean_cumulative_ms": 0.31612206249999997,
+      "total_calls": 64
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/torch/_ops.py",
+      "line": 823,
+      "name": "redispatch",
+      "mean_local_ms": 0.086811,
+      "mean_cumulative_ms": 0.086811,
+      "total_calls": 112
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "name": "<built-in method builtins.len>",
+      "mean_local_ms": 0.080253,
+      "mean_cumulative_ms": 0.080253,
+      "total_calls": 7488
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/triton/spec/iluvatar/triton/compiler/compiler.py",
+      "line": 545,
+      "name": "runner",
+      "mean_local_ms": 0.074727625,
+      "mean_cumulative_ms": 0.31285793750000007,
+      "total_calls": 144
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/torch/_refs/__init__.py",
+      "line": 387,
+      "name": "_broadcast_shapes",
+      "mean_local_ms": 0.07359918750000001,
+      "mean_cumulative_ms": 0.16916656250000003,
+      "total_calls": 48
+    },
+    {
+      "file": "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_graph_segments_v3_20261019/trace.py",
+      "line": 97,
+      "name": "forward",
+      "mean_local_ms": 0.0729718125,
+      "mean_cumulative_ms": 6.4512963125,
+      "total_calls": 16
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/triton/spec/iluvatar/triton/runtime/jit.py",
+      "line": 412,
+      "name": "<lambda>",
+      "mean_local_ms": 0.0712741875,
+      "mean_cumulative_ms": 1.3229690625000001,
+      "total_calls": 208
+    },
+    {
+      "file": "/usr/local/lib/python3.12/logging/__init__.py",
+      "line": 1611,
+      "name": "findCaller",
+      "mean_local_ms": 0.06909362500000002,
+      "mean_cumulative_ms": 0.1925438125,
+      "total_calls": 208
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/worker/gpu_input_batch.py",
+      "line": 484,
+      "name": "update_req_spec_token_ids",
+      "mean_local_ms": 0.06811118750000002,
+      "mean_cumulative_ms": 0.10987931249999999,
+      "total_calls": 1024
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/model_runner.py",
+      "line": 2279,
+      "name": "_build_attention_metadata",
+      "mean_local_ms": 0.06801193750000001,
+      "mean_cumulative_ms": 0.29728556250000004,
+      "total_calls": 16
+    },
+    {
+      "file": "/usr/local/lib/python3.12/logging/__init__.py",
+      "line": 200,
+      "name": "_is_internal_frame",
+      "mean_local_ms": 0.06339331250000002,
+      "mean_cumulative_ms": 0.08649812500000001,
+      "total_calls": 624
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "name": "<built-in method torch.empty>",
+      "mean_local_ms": 0.06336925,
+      "mean_cumulative_ms": 0.06336925,
+      "total_calls": 80
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "name": "<method 'item' of 'numpy.generic' objects>",
+      "mean_local_ms": 0.0627924375,
+      "mean_cumulative_ms": 0.0627924375,
+      "total_calls": 1040
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "name": "<method 'copy_' of 'torch._C.TensorBase' objects>",
+      "mean_local_ms": 0.061529750000000015,
+      "mean_cumulative_ms": 0.5455060625,
+      "total_calls": 128
+    },
+    {
+      "file": "/usr/local/lib/python3.12/copy.py",
+      "line": 217,
+      "name": "_deepcopy_dict",
+      "mean_local_ms": 0.061505125,
+      "mean_cumulative_ms": 0.396612375,
+      "total_calls": 272
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "name": "<method 'disable' of '_lsprof.Profiler' objects>",
+      "mean_local_ms": 0.05992568750000001,
+      "mean_cumulative_ms": 0.05992568750000001,
+      "total_calls": 16
+    }
+  ],
+  "sample_top_local": [
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/model_runner.py",
+      "line": 3682,
+      "name": "_bookkeeping_sync",
+      "mean_local_ms": 0.3892253750000001,
+      "mean_cumulative_ms": 0.4423335,
+      "total_calls": 16
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py",
+      "line": 1611,
+      "name": "run",
+      "mean_local_ms": 0.252309125,
+      "mean_cumulative_ms": 0.7127093125,
+      "total_calls": 112
+    },
+    {
+      "file": "/usr/local/lib/python3.12/logging/__init__.py",
+      "line": 298,
+      "name": "__init__",
+      "mean_local_ms": 0.1107129375,
+      "mean_cumulative_ms": 0.26000493750000003,
+      "total_calls": 160
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/flag_gems/utils/pointwise_dynamic.py",
+      "line": 1497,
+      "name": "prepare_args",
+      "mean_local_ms": 0.096051,
+      "mean_cumulative_ms": 0.24684075,
+      "total_calls": 64
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "name": "<method 'to' of 'torch._C.TensorBase' objects>",
+      "mean_local_ms": 0.06030550000000001,
+      "mean_cumulative_ms": 0.8502046875,
+      "total_calls": 64
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/triton/spec/iluvatar/triton/compiler/compiler.py",
+      "line": 545,
+      "name": "runner",
+      "mean_local_ms": 0.0585484375,
+      "mean_cumulative_ms": 0.24475812499999997,
+      "total_calls": 112
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "name": "<method 'disable' of '_lsprof.Profiler' objects>",
+      "mean_local_ms": 0.0584445,
+      "mean_cumulative_ms": 0.0584445,
+      "total_calls": 16
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/torch/_ops.py",
+      "line": 823,
+      "name": "redispatch",
+      "mean_local_ms": 0.05172000000000001,
+      "mean_cumulative_ms": 0.07047075,
+      "total_calls": 32
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/triton/spec/iluvatar/triton/runtime/jit.py",
+      "line": 1119,
+      "name": "__call__",
+      "mean_local_ms": 0.050846562500000005,
+      "mean_cumulative_ms": 0.10999893749999998,
+      "total_calls": 224
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "name": "<built-in method builtins.isinstance>",
+      "mean_local_ms": 0.047149375,
+      "mean_cumulative_ms": 0.047149375,
+      "total_calls": 3488
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/triton/spec/iluvatar/triton/runtime/jit.py",
+      "line": 412,
+      "name": "<lambda>",
+      "mean_local_ms": 0.046669,
+      "mean_cumulative_ms": 0.8475140625000002,
+      "total_calls": 128
+    },
+    {
+      "file": "/usr/local/lib/python3.12/logging/__init__.py",
+      "line": 200,
+      "name": "_is_internal_frame",
+      "mean_local_ms": 0.04569875,
+      "mean_cumulative_ms": 0.0629225625,
+      "total_calls": 480
+    },
+    {
+      "file": "/usr/local/lib/python3.12/logging/__init__.py",
+      "line": 1611,
+      "name": "findCaller",
+      "mean_local_ms": 0.04531693750000001,
+      "mean_cumulative_ms": 0.13185681250000003,
+      "total_calls": 160
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/model_runner.py",
+      "line": 4518,
+      "name": "sample_tokens",
+      "mean_local_ms": 0.03938,
+      "mean_cumulative_ms": 3.3308995625000004,
+      "total_calls": 16
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py",
+      "line": 1581,
+      "name": "spec_arg",
+      "mean_local_ms": 0.03794037499999999,
+      "mean_cumulative_ms": 0.052347875,
+      "total_calls": 752
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "name": "<method 'append' of 'list' objects>",
+      "mean_local_ms": 0.037149249999999995,
+      "mean_cumulative_ms": 0.037149249999999995,
+      "total_calls": 2000
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py",
+      "line": 1580,
+      "name": "key",
+      "mean_local_ms": 0.036832062500000005,
+      "mean_cumulative_ms": 0.09277850000000001,
+      "total_calls": 112
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/flag_gems/ops/to.py",
+      "line": 76,
+      "name": "to_copy",
+      "mean_local_ms": 0.03420375,
+      "mean_cumulative_ms": 0.7898991875000001,
+      "total_calls": 48
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "name": "<built-in method builtins.len>",
+      "mean_local_ms": 0.033585812500000006,
+      "mean_cumulative_ms": 0.033585812500000006,
+      "total_calls": 2976
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "name": "<built-in method torch.empty>",
+      "mean_local_ms": 0.033049249999999995,
+      "mean_cumulative_ms": 0.033049249999999995,
+      "total_calls": 32
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/triton/backends/iluvatar/driver.py",
+      "line": 727,
+      "name": "launch",
+      "mean_local_ms": 0.032190625,
+      "mean_cumulative_ms": 0.129339625,
+      "total_calls": 128
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "name": "<built-in method builtins.hasattr>",
+      "mean_local_ms": 0.030902375000000003,
+      "mean_cumulative_ms": 0.030902375000000003,
+      "total_calls": 1968
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/flag_gems/utils/random_utils.py",
+      "line": 54,
+      "name": "philox_backend_seed_offset",
+      "mean_local_ms": 0.028719562500000004,
+      "mean_cumulative_ms": 0.06109368750000001,
+      "total_calls": 16
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/flag_gems/utils/pointwise_dynamic.py",
+      "line": 1319,
+      "name": "_call_real_impl",
+      "mean_local_ms": 0.0280476875,
+      "mean_cumulative_ms": 0.9832093124999999,
+      "total_calls": 64
+    },
+    {
+      "file": "/root/.flaggems/code_cache/pointwise_dynamic_b4a54ae32c8993e62631a949e91676f9bbd122b86d87b33c5f846cc34eb83856__to_copy_func_kernel_rank_1_1d_tile__t1024.py",
+      "line": 18,
+      "name": "_to_copy_func_wrapper_rank_1",
+      "mean_local_ms": 0.027451625000000004,
+      "mean_cumulative_ms": 0.34633050000000004,
+      "total_calls": 32
+    },
+    {
+      "file": "/usr/local/lib/python3.12/logging/__init__.py",
+      "line": 1517,
+      "name": "debug",
+      "mean_local_ms": 0.026725312500000004,
+      "mean_cumulative_ms": 0.5430710624999999,
+      "total_calls": 160
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/torch/cuda/_utils.py",
+      "line": 508,
+      "name": "_get_device_index",
+      "mean_local_ms": 0.026613125,
+      "mean_cumulative_ms": 0.1076535625,
+      "total_calls": 160
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/triton/spec/iluvatar/triton/language/core.py",
+      "line": 346,
+      "name": "_unwrap_if_constexpr",
+      "mean_local_ms": 0.026076500000000006,
+      "mean_cumulative_ms": 0.044689125,
+      "total_calls": 384
+    },
+    {
+      "file": "/usr/local/lib/python3.12/logging/__init__.py",
+      "line": 1660,
+      "name": "_log",
+      "mean_local_ms": 0.0255459375,
+      "mean_cumulative_ms": 0.5114562500000001,
+      "total_calls": 160
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/triton/spec/iluvatar/triton/runtime/jit.py",
+      "line": 737,
+      "name": "run",
+      "mean_local_ms": 0.024010249999999997,
+      "mean_cumulative_ms": 0.08813575,
+      "total_calls": 16
+    }
+  ],
+  "scheduler_top_local": [
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/core/sched/scheduler.py",
+      "line": 388,
+      "name": "schedule",
+      "mean_local_ms": 0.40755637499999997,
+      "mean_cumulative_ms": 3.0720764375000003,
+      "total_calls": 16
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/core/kv_cache_manager.py",
+      "line": 244,
+      "name": "allocate_slots",
+      "mean_local_ms": 0.328709125,
+      "mean_cumulative_ms": 1.4990255,
+      "total_calls": 1024
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "name": "<built-in method builtins.len>",
+      "mean_local_ms": 0.14135593749999997,
+      "mean_cumulative_ms": 0.14541012500000006,
+      "total_calls": 13584
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/core/sched/scheduler.py",
+      "line": 1221,
+      "name": "_make_cached_request_data",
+      "mean_local_ms": 0.13010112499999998,
+      "mean_cumulative_ms": 0.3545236875,
+      "total_calls": 16
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "name": "<built-in method builtins.min>",
+      "mean_local_ms": 0.12581175000000003,
+      "mean_cumulative_ms": 0.12581175000000003,
+      "total_calls": 5120
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/core/single_type_kv_cache_manager.py",
+      "line": 101,
+      "name": "get_num_blocks_to_allocate",
+      "mean_local_ms": 0.1114820625,
+      "mean_cumulative_ms": 0.19857943750000004,
+      "total_calls": 1024
+    },
+    {
+      "file": "/workspace/vllm-plugin-FL/experiments/tianshu_future_kv_reservation_20261020/policy.py",
+      "line": 119,
+      "name": "allocate",
+      "mean_local_ms": 0.1078973125,
+      "mean_cumulative_ms": 1.6827876874999999,
+      "total_calls": 1024
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/core/kv_cache_coordinator.py",
+      "line": 233,
+      "name": "allocate_new_blocks",
+      "mean_local_ms": 0.1075650625,
+      "mean_cumulative_ms": 0.38703768750000006,
+      "total_calls": 1024
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/core/kv_cache_coordinator.py",
+      "line": 130,
+      "name": "get_num_blocks_to_allocate",
+      "mean_local_ms": 0.08663900000000001,
+      "mean_cumulative_ms": 0.3684416875,
+      "total_calls": 1024
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "name": "<method 'append' of 'list' objects>",
+      "mean_local_ms": 0.0847918125,
+      "mean_cumulative_ms": 0.0847918125,
+      "total_calls": 5184
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/core/sched/scheduler.py",
+      "line": 1130,
+      "name": "_update_after_schedule",
+      "mean_local_ms": 0.08062887500000002,
+      "mean_cumulative_ms": 0.13428881250000002,
+      "total_calls": 16
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "name": "<method 'get' of 'dict' objects>",
+      "mean_local_ms": 0.0767299375,
+      "mean_cumulative_ms": 0.0767299375,
+      "total_calls": 4224
+    },
+    {
+      "file": "/workspace/vllm-plugin-FL/experiments/tianshu_future_kv_reservation_20261020/policy.py",
+      "line": 52,
+      "name": "allocate",
+      "mean_local_ms": 0.07608600000000001,
+      "mean_cumulative_ms": 1.7588736875000002,
+      "total_calls": 1024
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/core/sched/async_scheduler.py",
+      "line": 19,
+      "name": "_update_after_schedule",
+      "mean_local_ms": 0.0760479375,
+      "mean_cumulative_ms": 0.24385362500000005,
+      "total_calls": 16
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/core/single_type_kv_cache_manager.py",
+      "line": 278,
+      "name": "allocate_new_blocks",
+      "mean_local_ms": 0.0682483125,
+      "mean_cumulative_ms": 0.140512875,
+      "total_calls": 1024
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "name": "<built-in method builtins.isinstance>",
+      "mean_local_ms": 0.0681756875,
+      "mean_cumulative_ms": 0.1586906875,
+      "total_calls": 2048
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/core/kv_cache_coordinator.py",
+      "line": 257,
+      "name": "<genexpr>",
+      "mean_local_ms": 0.06349231250000001,
+      "mean_cumulative_ms": 0.27947262500000003,
+      "total_calls": 2048
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/core/kv_cache_manager.py",
+      "line": 69,
+      "name": "get_block_ids",
+      "mean_local_ms": 0.054599875,
+      "mean_cumulative_ms": 0.131270875,
+      "total_calls": 1024
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/utils.py",
+      "line": 734,
+      "name": "record_function_or_nullcontext",
+      "mean_local_ms": 0.0528439375,
+      "mean_cumulative_ms": 0.06484937500000001,
+      "total_calls": 1072
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "name": "<method 'disable' of '_lsprof.Profiler' objects>",
+      "mean_local_ms": 0.05147325,
+      "mean_cumulative_ms": 0.05147325,
+      "total_calls": 16
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/core/single_type_kv_cache_manager.py",
+      "line": 318,
+      "name": "cache_blocks",
+      "mean_local_ms": 0.051154687500000004,
+      "mean_cumulative_ms": 0.12156700000000001,
+      "total_calls": 1024
+    },
+    {
+      "file": "/workspace/vllm-plugin-FL/experiments/tianshu_future_kv_reservation_20261020/policy.py",
+      "line": 79,
+      "name": "proposal",
+      "mean_local_ms": 0.047227625,
+      "mean_cumulative_ms": 0.07586487500000001,
+      "total_calls": 1024
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "name": "<built-in method _abc._abc_instancecheck>",
+      "mean_local_ms": 0.047094750000000005,
+      "mean_cumulative_ms": 0.047094750000000005,
+      "total_calls": 2048
+    },
+    {
+      "file": "<frozen abc>",
+      "line": 117,
+      "name": "__instancecheck__",
+      "mean_local_ms": 0.04342025,
+      "mean_cumulative_ms": 0.090515,
+      "total_calls": 2048
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/core/kv_cache_coordinator.py",
+      "line": 268,
+      "name": "cache_blocks",
+      "mean_local_ms": 0.0431754375,
+      "mean_cumulative_ms": 0.16474243749999998,
+      "total_calls": 1024
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/request.py",
+      "line": 246,
+      "name": "num_tokens",
+      "mean_local_ms": 0.0414900625,
+      "mean_cumulative_ms": 0.06205856250000001,
+      "total_calls": 2048
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/request.py",
+      "line": 250,
+      "name": "num_tokens_with_spec",
+      "mean_local_ms": 0.03950543750000001,
+      "mean_cumulative_ms": 0.0596408125,
+      "total_calls": 1024
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/core/kv_cache_coordinator.py",
+      "line": 331,
+      "name": "remove_skipped_blocks",
+      "mean_local_ms": 0.03838550000000001,
+      "mean_cumulative_ms": 0.07789362500000001,
+      "total_calls": 1024
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "name": "<built-in method builtins.all>",
+      "mean_local_ms": 0.035570250000000005,
+      "mean_cumulative_ms": 0.0720495,
+      "total_calls": 1024
+    },
+    {
+      "file": "/usr/local/lib/python3.12/site-packages/vllm/utils/math_utils.py",
+      "line": 10,
+      "name": "cdiv",
+      "mean_local_ms": 0.035464625000000013,
+      "mean_cumulative_ms": 0.035464625000000013,
+      "total_calls": 2048
+    }
+  ],
+  "caveat": "Host cProfile only, its instrumentation inflates calls. Cumulative rows overlap. Separate processes/windows; not GPU kernel time or benchmark score."
+}
