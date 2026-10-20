@@ -18,13 +18,10 @@ def audit_runtime(root,state,official=False):
         expected=reference[row['prefix']]
         assert all(row[key]==expected[key] for key in ('shape','original_BF16_sha256','packed_sha256','scales_sha256','packed_bytes'))
     bindings=next((root/'dense_int8_records').glob('bindings_*.json'));worker_pid=int(bindings.stem.split('_')[-1])
-    sql=read(root/f'cold_start_records/sql/reflection_{worker_pid}.json')
-    assert sql['installed'] and sql['mode']=='gpu4' and sql['original_sha256']==state['frozen_sources'][sql['original_source']]
-    assert not sql['preimported_module'] and sql['target_reflection']==True and sql['total_calls']>0
-    assert state['frozen_sources'][sql['hook_source']]==sql['hook_sha256'] and sql['original_class_other_methods_unchanged']
-    result.update(cold_start_mode='gpu4',full_61_environment_verified=True,packing_CPU_threads=during,CPU_threads_restored=True,
-        all_43_banks_same_as_qualified_Math=True,loader_seconds=dense['load_model_seconds'],weight_packing_seconds=sum(row['packing_seconds'] for row in dense['banks']),
-        actual_worker_SQL_record=sql,actual_worker_SQL_calls_verified=True,model_quality_not_newly_evaluated=True)
+    sql=read(root/f"sql_reflection_records/route_{worker_pid}.json")
+    assert sql["reflection_scope"]=="one_requested_table" and sql["configuration_values_modified"] is False and sql["table_exists"]
+    assert sql["helper_sha256"]==state["frozen_sources"][str(BASE.parent/"tianshu_sql_workflow_20261014/reflect_one.py")]
+    result.update(cold_start_mode="gpu4",full_61_environment_verified=True,packing_CPU_threads=during,CPU_threads_restored=True,all_43_banks_same_as_qualified_Math=True,loader_seconds=dense["load_model_seconds"],weight_packing_seconds=sum(r["packing_seconds"] for r in dense["banks"]),already_adopted_reflect_one_actually_executed=True)
     routes=list((root/"prefill_linear_records").glob("route_*.json"));assert len(routes)==1
     route=read(routes[0]);assert route["installed"] and route["mode"]==state["mode"] and route["stage"]=="ready"
     assert route["activation_count"]==1 and route["activation_after_qualified_warmup"] and len(route["warmup_GateUp_M2048_prefixes"])==42

@@ -3,9 +3,6 @@ import functools,importlib.abc,importlib.util,os,runpy,sys
 from pathlib import Path
 BASE=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(BASE))
-sys.path.insert(0,str(BASE.parent/'tianshu_cold_start_service_20261020'))
-import sql_hook
-sql_hook.install()
 runpy.run_path(str(BASE.parent/'tianshu_k8v16_pair_service_20261020/hooks/sitecustomize.py'))
 spec=importlib.util.spec_from_file_location('_tianshu_prefill_linear_service_policy',BASE/'policy.py')
 policy=importlib.util.module_from_spec(spec);sys.modules[spec.name]=policy;spec.loader.exec_module(policy)
