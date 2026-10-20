@@ -7,3 +7,5 @@
 check_cpu.py执行安装版KVCacheManager.allocate_slots的原始AST，协调器为CPU测试替身，覆盖全序列/每步分配的水位等号边界、WAITING/PREEMPTED/RUNNING、空运行队列和其它在途reserved_blocks，共8个边界。它不是完整scheduler仿真，不预测吞吐。另验证现有长分段hook仅运行一次、234份冻结源两组相同、48项环境中只有水位模式不同、原始serve argv相同。既有配置边界CPU检查也核验哈希。
 
 服务hook先安装原有长分段链，再只增加水位配置边界，避免重复安装budget策略。额外KVCacheManager.__init__诊断只记录一次真正传入的watermark及block数；不包装allocate_slots或改变原生分配算法。审计同时要求实际manager水位、原始配置、真实FL Graph捕获/重放及完整请求指标。所有代码和结果在天数容器及天数GitHub；未改沐曦仓库。
+
+run_after_official.sh已排队：必须等现有原始双负载全部结束、shell完整校验通过、完整Math>95%、两负载通过原基线性能门槛、冻结入口哈希一致后才启动16K N64的3+3水位对照。正式阶段失败、停止或租期不足一小时则拒绝启动。所有GPU任务串行；队列自身只做CPU检查和等待。GPU尚未执行，不能据排队状态宣称收益。
