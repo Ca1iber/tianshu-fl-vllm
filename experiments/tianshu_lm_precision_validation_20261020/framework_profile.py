@@ -3,12 +3,12 @@
 import importlib.util,json,statistics,sys
 from pathlib import Path
 BASE=Path(__file__).resolve().parent
-sys.path.insert(0,str(BASE.parent/'tianshu_original_command_20262016'))
+sys.path.insert(0,str(BASE.parent/'tianshu_original_command_20261016'))
 from validation_profile import BENCH_SHA,audit_math as original_math,csv_rows,normalized_environment,official_command
 
 def load(name,path):
     spec=importlib.util.spec_from_file_location(name,path);module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module);return module
-parent=load('_prefill_final_service_profile',BASE.parent/'tianshu_lm_precision_service_20262020/candidate_profile.py')
+parent=load('_prefill_final_service_profile',BASE.parent/'tianshu_lm_precision_service_20261020/candidate_profile.py')
 digest,read,frozen_check=parent.digest,parent.read,parent.frozen_check
 runtime=load('_prefill_final_runtime',BASE/'audit_profile.py');audit_runtime=runtime.audit_runtime
 
@@ -27,7 +27,7 @@ def prepare(root,screen_root):
     expected={key:value.replace(candidate['output_root']+'/',str(root)+'/') for key,value in candidate['profile_environment'].items()}
     assert profile==expected and profile['TIANSHU_PREFILL_LINEAR_MODE']=='candidate' and profile['TIANSHU_COLD_START_MODE']=='gpu4'
     assert profile["TIANSHU_LM_PRECISION_MODE"]=="candidate"
-    paths=[*BASE.glob('*.py'),*BASE.glob('*.sh'),BASE/'batch_policy.json',BASE.parent/'tianshu_original_command_20262016/validation_profile.py',gate_path]
+    paths=[*BASE.glob('*.py'),*BASE.glob('*.sh'),BASE/'batch_policy.json',BASE.parent/'tianshu_original_command_20261016/validation_profile.py',gate_path]
     outer={str(path):digest(path) for path in paths};(root/'controller_sources.json').write_text(json.dumps(outer,indent=2)+'\n')
     for name,sha in outer.items():
         target=root/'controller_source_snapshot'/Path(name).relative_to('/');target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(Path(name).read_bytes());assert digest(target)==sha
