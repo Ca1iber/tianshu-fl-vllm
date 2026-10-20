@@ -1,0 +1,9 @@
+# V1启动失败，未产生benchmark成绩
+
+父151549与APIServer151559已终态failed，完整GPU清理通过；0个计时benchmark请求、0个seed canary，不能当作KV快捷路径性能或数值失败。
+
+根因在本服务policy.py的来源记录：旧FutureKV模块通过importlib动态装载但没有注册到sys.modules，inspect.getsourcefile(type(controller))误判类为built-in并抛TypeError。真实guard/委托安装已完成，随后在记录来源时终止，尚未开始请求。
+
+所有375份冻结来源和原始日志、状态、source_snapshot保留。未修改本V1 py/sh，没有复用输出路径。另建tianshu_kv_empty_allocate_service_v2_20261021，policy全文件仅单处更改：定位原bound emit方法而非动态class。新CPU验证重现旧异常并核对bound method路径、完整文件单处可逆替换、同375来源/62环境及原13项serve参数，再独立重新启动。
+
+SHA及0请求证据见STARTUP_FAILURE；原件`/workspace/benchmark-results/20261021_kv_empty_allocate_service_control_tianshu`。最后生效状态请以新的V2 runner与当前STATE为准，旧STATE_0512描述的启动状态已过时。
