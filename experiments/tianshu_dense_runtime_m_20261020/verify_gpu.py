@@ -19,10 +19,11 @@ def main():
             assert all(phase[k] for k in ('full_INT32_exact','full_BF16_variants_bitwise_equal','full_quantized_output_passed','all_A_quantization_exact','CPU_selected_INT64_exact','guards_passed','RNG_unchanged','inputs_unchanged'))
             assert phase['actual_max_sum_abs_integer_products']<2**24
         key=str((case['role'],sorted(case['configuration'].items())))
-        row=groups.setdefault(key,dict(static=set(),dynamic=set(),M=set()))
+        row=groups.setdefault(key,dict(static=set(),dynamic=set(),static_binary=set(),dynamic_binary=set(),M=set()))
         row['M'].add(case['M'])
         for name in ('static','dynamic'):
             row[name].add(case['compiled'][name]['gemm']['cache_hash'])
+            row[name+"_binary"].add(case["compiled"][name]["gemm"]["binary_sha256"])
             quant[name].setdefault(case['strided'],set()).add(case['compiled'][name]['quantize']['cache_hash'])
         for path in case['phase_files']:
             data=torch.load(root/path,map_location='cpu',weights_only=True);a=data['a'].float();s=a.abs().amax(1).clamp_min(1.e-8)/127.
@@ -38,9 +39,9 @@ def main():
         old=statistics.median(r['static_ms'] for r in timings);new=statistics.median(r['dynamic_ms'] for r in timings)
         summary.append(dict(role=case['role'],M=case['M'],strided=case['strided'],configuration=case['configuration'],static_ms=old,dynamic_ms=new,speedup_percent=100*(old/new-1)))
     assert checks==78
-    for row in groups.values():assert len(row['dynamic'])==1 and len(row['static'])==len(row['M'])
+    for row in groups.values():assert len(row["dynamic"])==len(row["dynamic_binary"])==1 and len(row['static'])==len(row['M'])
     assert all(len(values)==1 for values in quant['dynamic'].values())
-    compact=[dict(group=key,static_binaries=len(row['static']),dynamic_binaries=len(row['dynamic']),M=sorted(row['M'])) for key,row in groups.items()]
+    compact=[dict(group=key,static_binaries=len(row['static']),dynamic_binaries=len(row["dynamic"]),dynamic_device_binary_SHA_count=len(row["dynamic_binary"]),M=sorted(row['M'])) for key,row in groups.items()]
     gate=dict(complete=True,independently_CPU_rechecked=True,model_executed=False,adopted=False,official_benchmark=False,
         full_device_variant_INT32_and_BF16_bitwise_checks=78,CPU_selected_INT64_checks=checks,all_A_and_selected_W_quantization_recomputed=True,
         one_GEMM_binary_per_role_configuration_across_all_M_proven=True,one_quantize_binary_per_stride_across_all_M_proven=True,
