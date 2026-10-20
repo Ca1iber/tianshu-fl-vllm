@@ -23,7 +23,7 @@
 
 两臂warmup实际完成83/99点，最大M分别4096/8192。实际scheduler/worker配置与新外层记录一致；内层默认记录是外层修改前4096。V2独立long policy的真实worker源/哈希、实际预算/seq核验，runtime源00d748923ea041f7054d517374eb20e4064cf3ff6277353dee4ba8b6cafe71ff，归一化预算表达式后其整模块AST与原版一致。真实hook仅精确路由一次并恢复runpy，原合格源码不改。
 
-实际KV blocks **40731→40150**，均0 preemption，所有future reservation在结束时释放。更大预算增加运行内存需求后可用KV容量减少，本轮缓存仍足以承载负载；不能写作两臂容量相同，也不据此推算16K成绩。
+实际KV blocks **40731→40150**，均0 preemption，所有future reservation在结束时释放。观察到候选可用KV容量减少，本轮缓存仍足以承载负载；不能写作两臂容量相同，也不据此推算16K成绩。
 
 ## 首轮四条调优的范围
 
