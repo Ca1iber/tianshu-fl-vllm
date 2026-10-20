@@ -10,6 +10,7 @@ def main():
     parent_gate=json.loads((source.PARENT/'CPU_GATE_32g.json').read_text())
     primitive=json.loads((source.PARENT/'PRIMITIVE_GPU_GATE_32g.json').read_text())
     assert parent_gate['complete'] and primitive['complete']
+    for path,digest in primitive['frozen_sources'].items():assert sha(path)==digest
     for path,digest in parent_gate['sources'].items():assert sha(path)==digest
     rendered,proof=source.render(source.SOURCE.read_bytes());ast.parse(rendered)
     probe=(BASE/'probe_gpu.py').read_text();ast.parse(probe)
