@@ -1,31 +1,36 @@
 # 天数 BI-V150 当前推荐版本与已测成绩
 
-2026-10-21：当前推荐4K **5482.79 total tok/s**，新Math **101/105（96.1905%）**。官方每轮N256/C64、4轮排首轮；1024/1024成功，零抢占。16K仍是前版独立成绩，配置不同。
+2026-10-21：当前推荐正式4K **5586.28 total tok/s、1117.25 output tok/s、平均TTFT3780.63ms**，全新Math **102/105（97.142857%）**。N256/C64、4轮排首轮；1024/1024成功、零错误/抢占、服务就绪后无新增autotune记录。后三轮吞吐极差/均值0.13927%。
 
-|输入/输出，C64|请求/轮|total tok/s|output tok/s|平均TTFT ms|配置|
+|输入/输出，C64|请求/轮|total tok/s|output tok/s|平均TTFT ms|配置范围|
 |---|---:|---:|---:|---:|---|
-|4096/1024|256|5482.79|1096.56|4015.23|GateUp W8A8、LM小批次BF16/64整数、BF16预填充linear、新4K|
-|16384/1024|128|3885.91|228.58|106814.09|前版Future-KV，非本版16K成绩|
+|4096/1024|256|5586.28|1117.25|3780.63|当前prefill GateUp INT8版本，新完整4K|
+|16384/1024|128|3885.91|228.58|106814.09|旧FutureKV版本，不是当前配置的16K|
 
-4K比上一版5375.50提升1.9959%，比公开2028.01提升170.3532%；TTFT改善约4.20%，后三轮极差/均值0.20665%。本版没有完整16K成绩。
+4K比原默认5482.79吞吐+1.88754%、TTFT-5.84275%；比此前最高吞吐备选5509.23高1.39856%；比公开2028.01高175.45624%（2.75456倍）。历史比较不冒充同次AB；采用前独立N64配对小测+1.75127%，新Math和原N256正式均已通过。本配置没有新完整16K，不能把旧16K拼成同一profile双长度资格。
 
 ```bash
 cd /workspace/vllm-plugin-FL
-bash experiments/tianshu_lm_precision_release_20261021/serve_tianshu_minicpm.sh
+bash experiments/tianshu_prefill_int8_release_20261021/restore_generated_sources.sh
+bash experiments/tianshu_prefill_int8_release_20261021/serve_tianshu_minicpm.sh
 ```
 
-如容器重建缺少生成代码，先运行同目录restore_generated_sources.sh。启动使用Bash/jq直接exec原13项参数，核验359运行来源、10控制文件与62环境，VLLM_DISABLE_COMPILE_CACHE=1。原BF16权重保留，额外43 bank共1326938112bytes已计入真实profiling，KV40731blocks。生成源包26份.py+1关键JSON约1MB，权重和raw不上传。
+启动前确认GPU空闲。纯Bash/jq核验407运行来源、12主控制来源、62环境、原13参数后exec；VLLM_DISABLE_COMPILE_CACHE=1。26份生成源约1MB仅补缺、SHA冲突不覆盖，不含权重或编译缓存。两个额外结果CPU复核器各记SHA，不算入12主控制文件。标签 **tianshu-original-command-4k-prefill-int8-20261021**。
 
-证据：[完整4K](experiments/tianshu_lm_precision_official_results_20261021/REPORT_32g.md)、[独立复核](experiments/tianshu_lm_precision_official_results_20261021/OFFICIAL_GATE_32g.json)、[新Math](experiments/tianshu_lm_precision_quality_20261021/REPORT_32g.md)、[启动说明](experiments/tianshu_lm_precision_release_20261021/README.md)。标签tianshu-original-command-4k-lm-bf16-prefill-20261021。
+新GateUp在24个已预热对齐大M使用A8W8，含混合批次整矩阵；纯decode M8/M64为NN，LM8仍BF16、LM64原NT整数，其余尺寸及QKV/O/Down保留原路。原BF16权重保留，43 packed banks共1326938112bytes计入真实DeviceMemoryProfiler，新增prefill不增加payload。Math实际KV40731、正式40723，容量小差异已报告，均零抢占、FutureKV全部释放。24M预热RNG不变；实际请求新INT8尺寸和42层执行均验证。
 
-前版W8A8 5375.50、TTFT4191.14、Math100/105，入口experiments/tianshu_dense_w8a8_release_20261020/serve_tianshu_minicpm.sh，标签tianshu-original-command-4k-k8v16-w8a8-20261020。
+证据：[正式4K报告](experiments/tianshu_prefill_int8_official_results_20261021/REPORT_32g.md)、[独立复核](experiments/tianshu_prefill_int8_official_results_20261021/OFFICIAL_GATE_32g.json)、[原始四轮CSV](experiments/tianshu_prefill_int8_official_results_20261021/OFFICIAL_RAW_32g.csv)、[新Math](experiments/tianshu_prefill_int8_quality_results_20261021/REPORT_32g.md)、[复现启动](experiments/tianshu_prefill_int8_release_20261021/README.md)。完整回答/raw仅容器，GitHub保留代码、报告、评分/用量/哈希和关键CSV/JSON。
 
-前版成对K5235.52、Math103/105，入口experiments/tianshu_pair_release_20261020/serve_tianshu_minicpm.sh，标签tianshu-original-command-4k-k8v16-pairk-20261020。
+## 已保留历史版本
 
-前版同一profile完整4K5103.41、16K3885.91、Math103/105，入口experiments/tianshu_future_kv_release_20261020/serve_tianshu_minicpm.sh，标签tianshu-original-command-4k16k-k8v16-futurekv-20261020。
+|版本|正式4K total tok/s|TTFT ms|Math|标签/说明|
+|---|---:|---:|---:|---|
+|当前prefill INT8|5586.28|3780.63|102/105|tianshu-original-command-4k-prefill-int8-20261021|
+|前默认BF16 prefill linear|5482.79|4015.23|101/105|tianshu-original-command-4k-lm-bf16-prefill-20261021|
+|前8192预算备选|5509.23|4740.15|102/105|已被当前吞吐/TTFT同时超过|
+|更早W8A8|5375.50|4191.14|100/105|tianshu-original-command-4k-k8v16-w8a8-20261020|
+|更早成对K|5235.52|4161.08|103/105|tianshu-original-command-4k-k8v16-pairk-20261020|
 
-后续批次补齐和K8+V整数量化组件不在5482.79配置内；候选需要独立正确性、实际执行路径及服务性能验证。
+更早同一FutureKV profile曾完成4K5103.41、16K3885.91、Math103/105，标签tianshu-original-command-4k16k-k8v16-futurekv-20261020，保留双长度旧证据。
 
-2026-10-21新增完整4K备选：预算8192，**5509.23 total / 1101.85 output tok/s，TTFT4740.15ms，Math102/105**。吞吐比推荐版高0.4822%，TTFT高18.0543%，后三轮吞吐极差/均值0.3302%。1024/1024成功、零抢占；这是当前已测更高吞吐记录，但保留5482.79/TTFT4015.23为默认推荐。此决定与正确率无关，两版均>95%。见[8192完整4K报告](experiments/tianshu_dense_budget_official_results_20261021/REPORT_32g.md)和[复核结果](experiments/tianshu_dense_budget_official_results_20261021/OFFICIAL_GATE_32g.json)。6144中间预算已完成4K小测，计分均值比对照低0.1008%，未采用；整数PV组件不在这两版成绩内。
-
-2026-10-21后续N64小测没有替换上述正式版本：index配置缓存 -0.2386%、DEBUG阈值 -0.0748%、KV空分配 +0.1209%、GateUp NN布局 +0.1423%，均未建立稳定端到端收益。[NN模型报告](experiments/tianshu_int8_nn_gateup_service_20261021/REPORT_SCREEN_32g.md)含完整逐轮、物理KV容量和实际执行审计。大M prefill INT8组件初步通过且局部更快，正在继续分块顺序实验，尚无模型/新Math/正式成绩，不能写入最佳成绩。
+后续 index缓存-0.2386%、DEBUG阈值-0.0748%、KV空分配+0.1209%、NN单项+0.1423%都未建立稳定模型收益；当前新prefill包含NN以共享所需物理权重，不把整体收益归给NN单项。新Down真实权重和KV fixed-K/pair-V组件仍独立探索，尚不属于本5586.28配置或正确率。

@@ -9,3 +9,5 @@
 正式4K使用同一407来源/12主控制/62环境/argv，逐一核验，自动进行原脚本N256×4轮排首轮。它尚未完成时不报告新正式分数；C64路径由正式运行的实际执行审计确认，C8 Math不冒称C64准确率测量。结果目录的verify_quality.py是额外CPU归档器，复用冻结runtime audit但独立复算全部105条raw评分/用量/index，并记录自身SHA。
 
 原件 `/workspace/benchmark-results/20261021_prefill_int8_math_tianshu`。启动包 `../tianshu_prefill_int8_release_20261021` 通过CPU干运行，含26份生成依赖的原字节，不含权重或缓存。小测5425.62→5520.64（+1.75%）仍是N64配对数据，正式结果另存 `../tianshu_prefill_int8_official_results_20261021`。
+
+07:02后同一profile正式4K已完成且独立复核采用：5586.28 total/1117.25 output、TTFT3780.63ms，见 ../tianshu_prefill_int8_official_results_20261021/REPORT_32g.md。本质量archive保留当时official starting_server的观测，不改写原始阶段记录。
