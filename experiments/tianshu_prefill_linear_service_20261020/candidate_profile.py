@@ -14,7 +14,7 @@ def prepare(root,mode):
     assert len(profile)==61;environment.update(profile)
     gate=read(BASE.parent/'tianshu_gateup_bf16_dispatch_20261020/CONTIGUOUS_COPY_GATE_32g.json')
     assert gate['complete'] and not gate['failures']
-    for path in [*BASE.rglob('*.py'),*[Path(p) for p in gate['frozen_sources']],BASE.parent/'tianshu_gateup_bf16_dispatch_20261020/CONTIGUOUS_COPY_GATE_32g.json']:
+    for path in [*Path("/usr/local/lib/python3.12/site-packages/vllm/tracing").glob("*.py"),*BASE.rglob('*.py'),*[Path(p) for p in gate['frozen_sources']],BASE.parent/'tianshu_gateup_bf16_dispatch_20261020/CONTIGUOUS_COPY_GATE_32g.json']:
         sources[str(path)]=digest(path)
     frozen_check(sources)
     for name,sha in sources.items():

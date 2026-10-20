@@ -15,14 +15,14 @@ runtime=load('_prefill_final_runtime',BASE/'audit_profile.py');audit_runtime=run
 def prepare(root,screen_root):
     gate_path=screen_root/'SCREEN_GATE_32g.json';gate=read(gate_path)
     assert gate['complete'] and gate['independently_rechecked'] and gate['quality_worth_running']
-    assert gate['all_42_GateUp_actual_ready_calls_verified'] and gate['environment_count']==61 and gate['runtime_source_count']==345
+    assert gate['all_42_GateUp_actual_ready_calls_verified'] and gate['environment_count']==61 and gate['runtime_source_count']==348
     assert gate['requests_per_round']==64 and gate['excluded_rounds']==[1] and gate['postfirst_no_runtime_autotuning']
     candidate=read(Path(gate['raw_roots']['candidate'])/'result.json');control=read(Path(gate['raw_roots']['control'])/'result.json')
     assert candidate['phase']==control['phase']=='complete'
     assert candidate['frozen_sources']==control['frozen_sources']==gate['frozen_sources']
     frozen_check(gate['frozen_sources'])
     command,environment,profile,sources=parent.prepare(root,'candidate')
-    assert sources==gate['frozen_sources'] and len(sources)==345 and len(profile)==61
+    assert sources==gate['frozen_sources'] and len(sources)==348 and len(profile)==61
     assert command==candidate['server_command']==control['server_command']==official_command()
     expected={key:value.replace(candidate['output_root']+'/',str(root)+'/') for key,value in candidate['profile_environment'].items()}
     assert profile==expected and profile['TIANSHU_PREFILL_LINEAR_MODE']=='candidate' and profile['TIANSHU_COLD_START_MODE']=='gpu4'
@@ -30,7 +30,7 @@ def prepare(root,screen_root):
     outer={str(path):digest(path) for path in paths};(root/'controller_sources.json').write_text(json.dumps(outer,indent=2)+'\n')
     for name,sha in outer.items():
         target=root/'controller_source_snapshot'/Path(name).relative_to('/');target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(Path(name).read_bytes());assert digest(target)==sha
-    (root/'final_profile_decision.json').write_text(json.dumps(dict(final_profile_kind='selective_W8A8_plus_large_GateUp_BF16_linear',runtime_source_count=345,environment_count=61,
+    (root/'final_profile_decision.json').write_text(json.dumps(dict(final_profile_kind='selective_W8A8_plus_large_GateUp_BF16_linear',runtime_source_count=348,environment_count=61,
         independent_screen_gain_percent=gate['gain_percent'],all_42_new_prefill_paths_actually_executed=True,fresh_Math_required=True,
         no_previous_Math_reused=True,only_official4K_requested=True,full_16K_not_scheduled=True),indent=2)+'\n')
     return command,environment,profile,sources
@@ -38,7 +38,7 @@ def prepare(root,screen_root):
 def audit_math(root,state,profile,write=True):
     result=original_math(root,state,profile,write=False)
     assert profile['actual_new_prefill_path_all_42_GateUp_verified'] and profile['verified_dense_batch']==8
-    result.update(final_profile_kind='selective_W8A8_plus_large_GateUp_BF16_linear',controller_sources=state['controller_sources'],runtime_source_count=345,environment_count=61,
+    result.update(final_profile_kind='selective_W8A8_plus_large_GateUp_BF16_linear',controller_sources=state['controller_sources'],runtime_source_count=348,environment_count=61,
         fresh_Math_for_final_runtime_profile=True,previous_accuracy_not_reused=True,actual_C8_dense_integer_path_verified=True,actual_new_prefill_path_all_42_GateUp_verified=True)
     if write:(root/'accuracy_audit.json').write_text(json.dumps(result,indent=2)+'\n')
     return result
@@ -60,7 +60,7 @@ def audit_benchmark(root,state,profile,quality,write=True):
     assert digest(root/'source_snapshot/workspace/vllm-plugin-FL/benchmarks/benchmark_throughput_serve.py')==state['official_script_sha256']==BENCH_SHA
     total=float(summary[0]['Total tok/s']);ttft=float(summary[0]['Mean TTFT (ms)']);values=[float(row['Total tok/s']) for row in rows[1:]]
     result=dict(complete=True,official_benchmark=True,original_serve_command_verified=True,adopted=False,final_profile_kind='selective_W8A8_plus_large_GateUp_BF16_linear',
-        runtime_source_count=345,environment_count=61,total_tok_s=total,output_tok_s=float(summary[0]['Output tok/s']),ttft_ms=ttft,
+        runtime_source_count=348,environment_count=61,total_tok_s=total,output_tok_s=float(summary[0]['Output tok/s']),ttft_ms=ttft,
         requests_successful=1024,requests_per_run=256,raw_runs=rows,excluded_runs=[1],profile=profile,controller_sources=state['controller_sources'],
         postfirst_spread_percent=100*(max(values)-min(values))/statistics.mean(values),fresh_math_for_original_command_profile=True,
         math_correct=quality['correct'],math_total=105,math_accuracy=quality['accuracy'],previous_formal_4K_total_tok_s=5375.50,vs_previous_percent=100*(total/5375.50-1),

@@ -15,7 +15,7 @@ def main():
     assert states['control']['frozen_sources']==states['candidate']['frozen_sources']
     sources=states['candidate']['frozen_sources']
     for path,digest in sources.items():assert sha(path)==digest
-    assert len(sources)==345
+    assert len(sources)==348
     rows=[]
     for mode,s in states.items():
         root=paths[mode]

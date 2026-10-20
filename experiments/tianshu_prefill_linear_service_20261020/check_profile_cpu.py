@@ -7,7 +7,7 @@ from candidate_profile import BASE,prepare
 def main():
     profiles=[]
     for mode in ('control','candidate'):
-        root=Path(f'/workspace/benchmark-results/20261020_prefill_linear_v2_CPU_gate_{mode}_tianshu');assert not root.exists();root.mkdir()
+        root=Path(f'/workspace/benchmark-results/20261020_prefill_linear_v3_CPU_gate_{mode}_tianshu');assert not root.exists();root.mkdir()
         command,env,profile,sources=prepare(root,mode)
         assert len(profile)==61 and profile['TIANSHU_COLD_START_MODE']=='gpu4' and profile['TIANSHU_DENSE_INT8_MODE']=='candidate'
         assert profile['TIANSHU_PREFILL_LINEAR_MODE']==mode and profile['PYTHONPATH']==str(BASE/'hooks')
