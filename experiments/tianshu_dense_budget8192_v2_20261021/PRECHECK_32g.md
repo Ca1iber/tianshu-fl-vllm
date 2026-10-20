@@ -1,0 +1,7 @@
+# 当前整数模型预算8192预检
+
+CPU组合预检通过：执行已安装EngineArgs真实默认设置AST与旧budget4096、seq64两个真实wrapper，再组合新的外层预算wrapper。13个保护分支通过；显式2048/4096/8192预算保留，其他vendor/model/geometry/FP16/parallel/performance/chunked/seq条件不扩大适用范围。原生异常身份和继承的预算回滚通过。两个完整配置与直接显式4096/8192+seq64的所有owner属性一致。
+
+首版测试误将原生throughput默认序列数写作256；真实AST对throughput同时将token和seq默认值翻倍，实测seq512。修正测试预期为512后通过，没有更改该模式实现或guard。最初失败日志留在容器CPU_INITIAL_FAILURE.log，第二次CPU guard输出独立目录保留。
+
+运行时源码371项，其中原合格版本359项全部按原哈希保留；真实环境64项，两臂仅新预算模式与独立输出根目录不同。完整serve argv仍13项。权重、算子、LM精度、prefill路线、KV与async没有新增优化变更；8192所需99点预热必须由实际worker记录证明，不能只靠配置声称完成。新增脚本语法与全部源码哈希检查通过。尚未启动本实验GPU，没有Math或正式分数。
