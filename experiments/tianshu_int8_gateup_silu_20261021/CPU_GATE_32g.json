@@ -1,0 +1,35 @@
+{
+  "complete": true,
+  "no_GPU_started": true,
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_int8_gateup_silu_20261021/kernel.py": "f65175f120eb9c4d8544c95aa91ec6954b4f2888dcb7b17df89577566cf9175e",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_int8_gateup_silu_20261021/check_cpu.py": "00ea1134206b0f36d92232ba237bdf2893120ba2a22cf2e11fdeb5962bbb1117",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_int8_gateup_silu_20261021/probe_gpu.py": "0ccadcaf54642a76e2872f3212a06bc350f17f4498613713b4fa6c8a6a49ea8b",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_int8_gateup_silu_20261021/verify_gpu.py": "fb82bcb1db59709bfc5e3b6bc52a9853cdb2013e8048046f4126c6fba8848164",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_int8_gateup_silu_20261021/run_component.sh": "3d15f3a41c675a84a3fa40c63388cced5f682ba71d15db06cc7b90cb20c176d1",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_w8a8_20261020/kernel.py": "b9b692cf561a35ef9c38d05d1edf7aa804436728923efa4800f914ff6b656152",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_tile_padding_20261021/kernel_padded.py": "82d667647fb2e05ea5f309abbf4abccd8666f58db594cb5918c5ebf944695714",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_tile_padding_20261021/GPU_GATE_32g.json": "88afc0ec164f213b19195824b9177985c491d3e9c97a4b93fe865eb841caddc8",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_w8a8_quality_20261020/PACKED_WEIGHT_SIGNATURE_32g.json": "9112cd1eadccb4a07d336bbfbfd9e4bbeb577916d2201434bf7178146f5611d7",
+    "/usr/local/lib/python3.12/site-packages/flag_gems/fused/silu_and_mul.py": "c1cfa995a6357e9da72e7b8bd06bfa501dc4b06cbb144b9dd5c420849abf7c37",
+    "/usr/local/lib/python3.12/site-packages/flag_gems/modules/activation.py": "921357641a348b9b3e302c8d3bbfb96f00fa27cd9f4b662bd866db2da943952f",
+    "/usr/local/lib/python3.12/site-packages/flag_gems/utils/pointwise_dynamic.py": "6a4f88e227ed566de05729c0ab3ac89457e0cbdcdbea31b12319908f4ee33290",
+    "/usr/local/lib/python3.12/site-packages/vllm_fl/dispatch/backends/flaggems/impl/activation.py": "16a44da4f847e7e169a859f1090f3302a53e6d9aafade0e5cdeff0a8cc891dda",
+    "/usr/local/lib/python3.12/site-packages/vllm/model_executor/models/llama.py": "1e1003454985bf86d3868a7755bcf5324676881548b3895809edf0b76698d384"
+  },
+  "actual_native_scalar_AST": "FunctionDef(name='silu_and_mul_kernel', args=arguments(posonlyargs=[], args=[arg(arg='x'), arg(arg='y')], kwonlyargs=[], kw_defaults=[], defaults=[]), body=[Assign(targets=[Name(id='x_fp32', ctx=Store())], value=Call(func=Attribute(value=Name(id='x', ctx=Load()), attr='to', ctx=Load()), args=[Attribute(value=Name(id='tl', ctx=Load()), attr='float32', ctx=Load())], keywords=[])), Assign(targets=[Name(id='x_silu', ctx=Store())], value=Call(func=Attribute(value=Name(id='tl', ctx=Load()), attr='fdiv', ctx=Load()), args=[Name(id='x_fp32', ctx=Load()), BinOp(left=Constant(value=1.0), op=Add(), right=Call(func=Attribute(value=Name(id='tl', ctx=Load()), attr='exp', ctx=Load()), args=[UnaryOp(op=USub(), operand=Name(id='x_fp32', ctx=Load()))], keywords=[]))], keywords=[])), Return(value=BinOp(left=Name(id='x_silu', ctx=Load()), op=Mult(), right=Name(id='y', ctx=Load())))], decorator_list=[Call(func=Name(id='pointwise_dynamic', ctx=Load()), args=[], keywords=[keyword(arg='promotion_methods', value=List(elts=[Tuple(elts=[Constant(value=0), Constant(value=1), Constant(value='DEFAULT')], ctx=Load())], ctx=Load()))]), Attribute(value=Name(id='triton', ctx=Load()), attr='jit', ctx=Load())], type_params=[])",
+  "two_INT32_accumulators": true,
+  "original_BF16_projection_rounds_preserved": true,
+  "actual_native_scalar_called": true,
+  "declared_shape": {
+    "K": 2048,
+    "intermediate": 6144,
+    "padded_M": [
+      32,
+      64
+    ]
+  },
+  "maximum_possible_abs_INT32_sum": 33032192,
+  "global_INT32_overflow_bound_passed": true,
+  "actual_GPU_correctness_not_yet_tested": true
+}
