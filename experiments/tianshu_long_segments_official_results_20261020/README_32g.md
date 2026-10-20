@@ -5,3 +5,5 @@
 archive_official.py为离线归档入口：必须两个正式负载和完整105题Math都结束，重新核验源码及两套快照、真实服务环境、原始benchmark哈希、1536个成功请求、八轮CSV和预设后三轮均值、原生FL Graph真实绑定。它不启动模型、不改变运行配置、不挑选成绩。脚本同时保留原始CSV的SHA与GitHub规范LF副本的SHA、全局抢占计数及服务就绪后的调优日志；不声称现场完全无调优。
 
 当前原件目录`/workspace/benchmark-results/20261020_long_segments_official4k16k_tianshu`；待完成后输出关键JSON/CSV与结果报告，原始服务日志和编译缓存仍留容器。
+
+4K四轮已完成：4970.96（排除）、5099.92、5102.41、5096.61 total tok/s；1024/1024成功。预设后三轮均值 **5099.65 total tok/s、1019.93 output tok/s、4198.32ms TTFT**，吞吐波动0.11373%；相对旧5101.45变化-0.0354%，基本持平。FOUR_K_COMPLETE_SNAPSHOT_32g.json保存4K完整负载的阶段快照；16K首轮已开始，完整双负载归档与正式采用状态仍待全部结束。
