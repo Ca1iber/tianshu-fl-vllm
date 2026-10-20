@@ -29,3 +29,5 @@
 KV水位实验见[service](../tianshu_headroom_service_20261020/README_32g.md)，打包读取见[packed-load](../tianshu_packed_loads_20261020/README_32g.md)。两者均不包含在当前发布配置，逐级数值/服务/新Math/正式结果通过后才考虑采用。
 
 [沐曦最新提交只读检查](../tianshu_metax_reference_20261020/README_32g.md)未发现新的稳态可直接移植实现。沐曦仓库不修改。代码开发与评测均在天数容器；GitHub保存代码、报告、关键CSV/JSON，原件、张量、编译缓存留容器。当前最佳所需22个历史生成路径按3份不同内容归档，见[恢复入口](../tianshu_k8v16_restore_inputs_20261020/README_32g.md)；当前225源已核验，新克隆完整环境启动尚未验证。
+
+14:25更新：[KV水位](../tianshu_headroom_results_20261020/REPORT_32g.md)六轮完整独立核验完成，抢占6→0，16K N64吞吐+0.02269%，不采用；[K/V合并读取](../tianshu_packed_loads_20261020/README_32g.md)12场景全部数值/同图检查通过，K32负收益、V32仅约+0.4%，未接服务。下一候选是缩小固定512MiB prefill暂存区，先验证容量边界及超容量原路径回退。

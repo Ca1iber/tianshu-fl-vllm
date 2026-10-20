@@ -1,0 +1,1566 @@
+{
+  "complete": true,
+  "independently_rechecked": true,
+  "adopted": false,
+  "official_benchmark": false,
+  "full_GPU_reference_checks": 96,
+  "CPU_reference_vectors": 1024,
+  "whole_cache_bytes_and_guards_verified": true,
+  "same_Graph_two_phases_verified": true,
+  "RNG_unchanged": true,
+  "bitwise_output_equality_to_control_asserted_in_frozen_probe": true,
+  "interpretation": "K32 loses substantially at high batch; V32 below 0.5 percent is not sufficient to run a new service/Math campaign",
+  "time_scope": "hot CUDA Graph: one KV update and one paged decode layer; 9 alternating trials x 20 replays",
+  "frozen_sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_packed_loads_20261020/probe.py": "7a6ff9e3dadc9ea87fbd7809b50c087717e29a01478d9d2ff8ce749f3bed4689",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_packed_loads_20261020/source.py": "5fba78ed1b52e14708c8c92b978bc47b044455f04b7bf0f334d8e4dc066c9c45",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_v_int8_20261020/codec.py": "9ecb4a6671166965e79e74f94f265be2edd29b3d4d2f0b0c97e8f8a1caed4459",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_packed_loads_20261020/component_launch.py": "2aad6838901cbbad0fd6b531789c83c8a9e0caeeaad55396e23c425bd1ffd54b",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_long_segments_20261020/source.py": "61b3c48fbe1ac4882315379ddc23b48d84c9021ef7dad84c8fd8dac8408d1bc7",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_packed_loads_20261020/CPU_GATE_32g.json": "1e8aceec9ce34e5e91cbec19c56be38028fff6be806a18c85955522bbd6c95af",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/legacy_routing.py": "9dae2408de9f77e39350cfd70661e4e282ef0d69f798f968c1886d4172a6dc41",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/dispatch_policy.py": "842d69f6635152afa31d498e6e353e0e5f18bc2d86d89782d4e9db4e32f0157a",
+    "/workspace/benchmark-results/20261019_k8v16_budget_default_official4k_tianshu/decode_coherent_records/cache_generated/97987/generated_cache_policy.py": "8deb8967fdacf354f3b38e6a9687163493f6163764f3e8663dce916250cd1289",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_soft8_mixed_planes_20261019/writer.py": "27a74d3bdfee978780044eb69025c10a21d92a1b0a8cf567ee9fea1e0b8d12b5",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_kv_soft8_u32_20261016/codec_variant.py": "d0ad15741f183c63f225da72186752dbd90ba3a791ab365fa24ab3df4b3f58be",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_kv_soft8_20261016/codec.py": "0ccb887961dd0187abed4d77b9dfd2b3fa083e9e7e79c1650d0444e50838c14b",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/value_planes.py": "64f0a0ba89841feb8c091b861d60d687de5d4bdd73c9c7f66476e5cd6ff0d5f0",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_v_int8_20261020/GPU_CODECS_GATE_32g.json": "cb841d56bd6998ad673cb73dfd4a74b58efc9cb69d212f4b8a9828d5702ef4d2",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_packed_loads_20261020/check_cpu.py": "2218eae888c62483c40dd6d1862b910d20feeaef0174cc33e3c98f2ce48cfa61",
+    "/workspace/benchmark-results/20261019_soft8_pipeline_micro_v2_tianshu/micro/codec_generated/reader/generated_soft8_u32.py": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+    "/workspace/benchmark-results/20261020_packed_load_decode_tianshu/control_S16_reader/generated_dynamic_segments.py": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+    "/workspace/benchmark-results/20261020_packed_load_decode_tianshu/k32_packed_reader/generated_packed_k32.py": "62281b034014ed3830916327a5c19132382c6cc861c89c398d39a4105991acf7",
+    "/workspace/benchmark-results/20261020_packed_load_decode_tianshu/v32_packed_reader/generated_packed_v32.py": "266fcf6cbcd93f47020890369cf52643d91c9f8f5395ab44abc6eb29a21ee632",
+    "/workspace/benchmark-results/20261020_packed_load_decode_tianshu/kv32_packed_reader/generated_packed_kv32.py": "42ebbed60535d4f6b3d493d22a411d0f0135f69b33da07edd226057cf6bb4bc7"
+  },
+  "model_sources": {
+    "control": {
+      "base_codec": {
+        "original_sha256": "8deb8967fdacf354f3b38e6a9687163493f6163764f3e8663dce916250cd1289",
+        "generated_sha256": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+        "producer_and_reducer_AST_unchanged": true,
+        "only_cast_helper_uint8_branch_and_test_added": true,
+        "fixed_storage_scale": 0.0625,
+        "exponent_bits": 4,
+        "mantissa_bits": 3,
+        "exponent_bias": 7,
+        "subnormal_codes_flush_to_signed_zero": true,
+        "all_nonzero_exponents_finite": true,
+        "largest_magnitude": 30.0,
+        "not_native_FP8_hardware": true,
+        "base_soft8_generated_sha256": "41f0b8dde1053678fe9920b517b58da05c6947cff32a0da72d8dbf5f8fff68e8",
+        "integer_intermediates_bits": 32,
+        "same_format_and_quantizer": true,
+        "one_more_reversible_edit": true,
+        "generated_source": "/workspace/benchmark-results/20261020_packed_load_decode_tianshu/control_base_reader/generated_soft8_u32.py"
+      },
+      "long": {
+        "parent_source": "/workspace/benchmark-results/20261020_packed_load_decode_tianshu/control_base_reader/generated_soft8_u32.py",
+        "parent_sha256": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+        "generated_source": "/workspace/benchmark-results/20261020_packed_load_decode_tianshu/control_S16_reader/generated_dynamic_segments.py",
+        "generated_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+        "exact_reversal_verified": true,
+        "only_two_tile_count_expressions_changed": true,
+        "KV_decode_and_function_ABI_unchanged": true,
+        "threshold_tokens": 8192,
+        "minimum_batch": 25
+      }
+    },
+    "k32": {
+      "base_codec": {
+        "original_sha256": "8deb8967fdacf354f3b38e6a9687163493f6163764f3e8663dce916250cd1289",
+        "generated_sha256": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+        "producer_and_reducer_AST_unchanged": true,
+        "only_cast_helper_uint8_branch_and_test_added": true,
+        "fixed_storage_scale": 0.0625,
+        "exponent_bits": 4,
+        "mantissa_bits": 3,
+        "exponent_bias": 7,
+        "subnormal_codes_flush_to_signed_zero": true,
+        "all_nonzero_exponents_finite": true,
+        "largest_magnitude": 30.0,
+        "not_native_FP8_hardware": true,
+        "base_soft8_generated_sha256": "41f0b8dde1053678fe9920b517b58da05c6947cff32a0da72d8dbf5f8fff68e8",
+        "integer_intermediates_bits": 32,
+        "same_format_and_quantizer": true,
+        "one_more_reversible_edit": true,
+        "generated_source": "/workspace/benchmark-results/20261020_packed_load_decode_tianshu/k32_base_reader/generated_soft8_u32.py"
+      },
+      "long": {
+        "parent_source": "/workspace/benchmark-results/20261020_packed_load_decode_tianshu/k32_base_reader/generated_soft8_u32.py",
+        "parent_sha256": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+        "generated_source": "/workspace/benchmark-results/20261020_packed_load_decode_tianshu/k32_S16_reader/generated_dynamic_segments.py",
+        "generated_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+        "exact_reversal_verified": true,
+        "only_two_tile_count_expressions_changed": true,
+        "KV_decode_and_function_ABI_unchanged": true,
+        "threshold_tokens": 8192,
+        "minimum_batch": 25
+      },
+      "packed": {
+        "parent_source": "/workspace/benchmark-results/20261020_packed_load_decode_tianshu/k32_S16_reader/generated_dynamic_segments.py",
+        "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+        "generated_source": "/workspace/benchmark-results/20261020_packed_load_decode_tianshu/k32_packed_reader/generated_packed_k32.py",
+        "generated_sha256": "62281b034014ed3830916327a5c19132382c6cc861c89c398d39a4105991acf7",
+        "mode": "k32",
+        "exact_reversal_verified": true,
+        "only_K_or_V_load_changed": true,
+        "existing_S16_logic_and_function_ABI_unchanged": true,
+        "requires_aligned_cache_strides_and_pointer": true,
+        "offsets_remain_int64": true,
+        "storage_bytes_and_KV_values_not_requantized": true
+      }
+    },
+    "v32": {
+      "base_codec": {
+        "original_sha256": "8deb8967fdacf354f3b38e6a9687163493f6163764f3e8663dce916250cd1289",
+        "generated_sha256": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+        "producer_and_reducer_AST_unchanged": true,
+        "only_cast_helper_uint8_branch_and_test_added": true,
+        "fixed_storage_scale": 0.0625,
+        "exponent_bits": 4,
+        "mantissa_bits": 3,
+        "exponent_bias": 7,
+        "subnormal_codes_flush_to_signed_zero": true,
+        "all_nonzero_exponents_finite": true,
+        "largest_magnitude": 30.0,
+        "not_native_FP8_hardware": true,
+        "base_soft8_generated_sha256": "41f0b8dde1053678fe9920b517b58da05c6947cff32a0da72d8dbf5f8fff68e8",
+        "integer_intermediates_bits": 32,
+        "same_format_and_quantizer": true,
+        "one_more_reversible_edit": true,
+        "generated_source": "/workspace/benchmark-results/20261020_packed_load_decode_tianshu/v32_base_reader/generated_soft8_u32.py"
+      },
+      "long": {
+        "parent_source": "/workspace/benchmark-results/20261020_packed_load_decode_tianshu/v32_base_reader/generated_soft8_u32.py",
+        "parent_sha256": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+        "generated_source": "/workspace/benchmark-results/20261020_packed_load_decode_tianshu/v32_S16_reader/generated_dynamic_segments.py",
+        "generated_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+        "exact_reversal_verified": true,
+        "only_two_tile_count_expressions_changed": true,
+        "KV_decode_and_function_ABI_unchanged": true,
+        "threshold_tokens": 8192,
+        "minimum_batch": 25
+      },
+      "packed": {
+        "parent_source": "/workspace/benchmark-results/20261020_packed_load_decode_tianshu/v32_S16_reader/generated_dynamic_segments.py",
+        "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+        "generated_source": "/workspace/benchmark-results/20261020_packed_load_decode_tianshu/v32_packed_reader/generated_packed_v32.py",
+        "generated_sha256": "266fcf6cbcd93f47020890369cf52643d91c9f8f5395ab44abc6eb29a21ee632",
+        "mode": "v32",
+        "exact_reversal_verified": true,
+        "only_K_or_V_load_changed": true,
+        "existing_S16_logic_and_function_ABI_unchanged": true,
+        "requires_aligned_cache_strides_and_pointer": true,
+        "offsets_remain_int64": true,
+        "storage_bytes_and_KV_values_not_requantized": true
+      }
+    },
+    "kv32": {
+      "base_codec": {
+        "original_sha256": "8deb8967fdacf354f3b38e6a9687163493f6163764f3e8663dce916250cd1289",
+        "generated_sha256": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+        "producer_and_reducer_AST_unchanged": true,
+        "only_cast_helper_uint8_branch_and_test_added": true,
+        "fixed_storage_scale": 0.0625,
+        "exponent_bits": 4,
+        "mantissa_bits": 3,
+        "exponent_bias": 7,
+        "subnormal_codes_flush_to_signed_zero": true,
+        "all_nonzero_exponents_finite": true,
+        "largest_magnitude": 30.0,
+        "not_native_FP8_hardware": true,
+        "base_soft8_generated_sha256": "41f0b8dde1053678fe9920b517b58da05c6947cff32a0da72d8dbf5f8fff68e8",
+        "integer_intermediates_bits": 32,
+        "same_format_and_quantizer": true,
+        "one_more_reversible_edit": true,
+        "generated_source": "/workspace/benchmark-results/20261020_packed_load_decode_tianshu/kv32_base_reader/generated_soft8_u32.py"
+      },
+      "long": {
+        "parent_source": "/workspace/benchmark-results/20261020_packed_load_decode_tianshu/kv32_base_reader/generated_soft8_u32.py",
+        "parent_sha256": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+        "generated_source": "/workspace/benchmark-results/20261020_packed_load_decode_tianshu/kv32_S16_reader/generated_dynamic_segments.py",
+        "generated_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+        "exact_reversal_verified": true,
+        "only_two_tile_count_expressions_changed": true,
+        "KV_decode_and_function_ABI_unchanged": true,
+        "threshold_tokens": 8192,
+        "minimum_batch": 25
+      },
+      "packed": {
+        "parent_source": "/workspace/benchmark-results/20261020_packed_load_decode_tianshu/kv32_S16_reader/generated_dynamic_segments.py",
+        "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+        "generated_source": "/workspace/benchmark-results/20261020_packed_load_decode_tianshu/kv32_packed_reader/generated_packed_kv32.py",
+        "generated_sha256": "42ebbed60535d4f6b3d493d22a411d0f0135f69b33da07edd226057cf6bb4bc7",
+        "mode": "kv32",
+        "exact_reversal_verified": true,
+        "only_K_or_V_load_changed": true,
+        "existing_S16_logic_and_function_ABI_unchanged": true,
+        "requires_aligned_cache_strides_and_pointer": true,
+        "offsets_remain_int64": true,
+        "storage_bytes_and_KV_values_not_requantized": true
+      }
+    }
+  },
+  "cases": [
+    {
+      "name": "decode1_4096",
+      "batch": 1,
+      "strided": false,
+      "labels": [
+        "control",
+        "k32",
+        "v32",
+        "kv32"
+      ],
+      "median_ms": [
+        0.03592172861099243,
+        0.035224232077598575,
+        0.036011728644371035,
+        0.03541827201843262
+      ],
+      "candidate_speedup_percent": [
+        1.9801610773438005,
+        -0.2499186702959677,
+        1.4214600652956877
+      ],
+      "max_abs_vs_FP32": 0.00027254223823547363,
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 119,
+          "n_spills": 0,
+          "shared": 12288
+        },
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 119,
+          "n_spills": 0,
+          "shared": 12288
+        }
+      ]
+    },
+    {
+      "name": "decode1_5120",
+      "batch": 1,
+      "strided": false,
+      "labels": [
+        "control",
+        "k32",
+        "v32",
+        "kv32"
+      ],
+      "median_ms": [
+        0.040175384283065795,
+        0.039599040150642396,
+        0.04025788307189941,
+        0.03963865339756012
+      ],
+      "candidate_speedup_percent": [
+        1.4554497539103872,
+        -0.20492579971549407,
+        1.354059332244395
+      ],
+      "max_abs_vs_FP32": 0.0002883598208427429,
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 119,
+          "n_spills": 0,
+          "shared": 12288
+        },
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 119,
+          "n_spills": 0,
+          "shared": 12288
+        }
+      ]
+    },
+    {
+      "name": "decode8_4096",
+      "batch": 8,
+      "strided": false,
+      "labels": [
+        "control",
+        "k32",
+        "v32",
+        "kv32"
+      ],
+      "median_ms": [
+        0.08837692141532898,
+        0.14586095809936522,
+        0.08835750222206115,
+        0.14556000232696534
+      ],
+      "candidate_speedup_percent": [
+        -39.41015980772337,
+        0.02197797898249032,
+        -39.284885955956774
+      ],
+      "max_abs_vs_FP32": 0.0003175213932991028,
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 119,
+          "n_spills": 0,
+          "shared": 12288
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 119,
+          "n_spills": 0,
+          "shared": 12288
+        }
+      ]
+    },
+    {
+      "name": "decode8_5120",
+      "batch": 8,
+      "strided": false,
+      "labels": [
+        "control",
+        "k32",
+        "v32",
+        "kv32"
+      ],
+      "median_ms": [
+        0.10574903488159179,
+        0.17685866355895996,
+        0.10572307109832764,
+        0.1764705777168274
+      ],
+      "candidate_speedup_percent": [
+        -40.20703721628096,
+        0.024558294603460595,
+        -40.075543328655364
+      ],
+      "max_abs_vs_FP32": 0.00028171390295028687,
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 119,
+          "n_spills": 0,
+          "shared": 12288
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 119,
+          "n_spills": 0,
+          "shared": 12288
+        }
+      ]
+    },
+    {
+      "name": "decode32_4096",
+      "batch": 32,
+      "strided": false,
+      "labels": [
+        "control",
+        "k32",
+        "v32",
+        "kv32"
+      ],
+      "median_ms": [
+        0.3015707492828369,
+        0.5271032810211181,
+        0.3006224870681763,
+        0.5242617130279541
+      ],
+      "candidate_speedup_percent": [
+        -42.78716142714456,
+        0.315432895226353,
+        -42.47706025659041
+      ],
+      "max_abs_vs_FP32": 0.0004297792911529541,
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 32,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            48,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 32,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            48,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 119,
+          "n_spills": 0,
+          "shared": 12288
+        },
+        {
+          "IS_3D": true,
+          "sequences": 32,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            48,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 32,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            48,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 119,
+          "n_spills": 0,
+          "shared": 12288
+        }
+      ]
+    },
+    {
+      "name": "decode32_5120",
+      "batch": 32,
+      "strided": false,
+      "labels": [
+        "control",
+        "k32",
+        "v32",
+        "kv32"
+      ],
+      "median_ms": [
+        0.37161095142364503,
+        0.648681354522705,
+        0.370310378074646,
+        0.6491057872772217
+      ],
+      "candidate_speedup_percent": [
+        -42.712866828572,
+        0.3512116932183007,
+        -42.75032533873612
+      ],
+      "max_abs_vs_FP32": 0.00030134618282318115,
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 32,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            48,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 32,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            48,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 119,
+          "n_spills": 0,
+          "shared": 12288
+        },
+        {
+          "IS_3D": true,
+          "sequences": 32,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            48,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 32,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            48,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 119,
+          "n_spills": 0,
+          "shared": 12288
+        }
+      ]
+    },
+    {
+      "name": "decode64_4096",
+      "batch": 64,
+      "strided": false,
+      "labels": [
+        "control",
+        "k32",
+        "v32",
+        "kv32"
+      ],
+      "median_ms": [
+        0.5895696163177491,
+        1.0042940139770509,
+        0.5872211456298828,
+        1.0026588439941406
+      ],
+      "candidate_speedup_percent": [
+        -41.29511795225922,
+        0.3999295163915173,
+        -41.19938004344832
+      ],
+      "max_abs_vs_FP32": 0.0004491657018661499,
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 119,
+          "n_spills": 0,
+          "shared": 12288
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 119,
+          "n_spills": 0,
+          "shared": 12288
+        }
+      ]
+    },
+    {
+      "name": "decode64_5120",
+      "batch": 64,
+      "strided": false,
+      "labels": [
+        "control",
+        "k32",
+        "v32",
+        "kv32"
+      ],
+      "median_ms": [
+        0.7293224811553956,
+        1.246436882019043,
+        0.726486349105835,
+        1.2439230918884276
+      ],
+      "candidate_speedup_percent": [
+        -41.487411703190205,
+        0.3903902740982401,
+        -41.36916615574724
+      ],
+      "max_abs_vs_FP32": 0.0003370717167854309,
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 119,
+          "n_spills": 0,
+          "shared": 12288
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 119,
+          "n_spills": 0,
+          "shared": 12288
+        }
+      ]
+    },
+    {
+      "name": "decode8_ragged_strided",
+      "batch": 8,
+      "strided": true,
+      "labels": [
+        "control",
+        "k32",
+        "v32",
+        "kv32"
+      ],
+      "median_ms": [
+        0.09988288879394532,
+        0.15678749084472657,
+        0.10003288984298705,
+        0.1575459599494934
+      ],
+      "candidate_speedup_percent": [
+        -36.29409574972811,
+        -0.14995173015313057,
+        -36.600793301227085
+      ],
+      "max_abs_vs_FP32": 0.0026445388793945312,
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 119,
+          "n_spills": 0,
+          "shared": 12288
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 119,
+          "n_spills": 0,
+          "shared": 12288
+        }
+      ]
+    },
+    {
+      "name": "decode64_ragged_strided",
+      "batch": 64,
+      "strided": true,
+      "labels": [
+        "control",
+        "k32",
+        "v32",
+        "kv32"
+      ],
+      "median_ms": [
+        0.5800907611846924,
+        0.9221034049987793,
+        0.578060531616211,
+        0.9193391799926758
+      ],
+      "candidate_speedup_percent": [
+        -37.090487027812216,
+        0.3512140091635585,
+        -36.90133371784352
+      ],
+      "max_abs_vs_FP32": 0.00033289939165115356,
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 119,
+          "n_spills": 0,
+          "shared": 12288
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 119,
+          "n_spills": 0,
+          "shared": 12288
+        }
+      ]
+    },
+    {
+      "name": "decode40_16384",
+      "batch": 40,
+      "strided": false,
+      "labels": [
+        "control",
+        "k32",
+        "v32",
+        "kv32"
+      ],
+      "median_ms": [
+        1.4271942138671876,
+        2.168362617492676,
+        1.4244171142578126,
+        2.1721319198608398
+      ],
+      "candidate_speedup_percent": [
+        -34.1810174020855,
+        0.1949639316726426,
+        -34.295233138573714
+      ],
+      "max_abs_vs_FP32": 0.00016422942280769348,
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 40,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            60,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 40,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            60,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 119,
+          "n_spills": 0,
+          "shared": 12288
+        },
+        {
+          "IS_3D": true,
+          "sequences": 40,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            60,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 40,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            60,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 119,
+          "n_spills": 0,
+          "shared": 12288
+        }
+      ]
+    },
+    {
+      "name": "decode41_ragged_strided",
+      "batch": 41,
+      "strided": true,
+      "labels": [
+        "control",
+        "k32",
+        "v32",
+        "kv32"
+      ],
+      "median_ms": [
+        1.0971234321594239,
+        1.4395380973815919,
+        1.0947396278381347,
+        1.4408625602722167
+      ],
+      "candidate_speedup_percent": [
+        -23.7864260657633,
+        0.2177508021698804,
+        -23.85648274793478
+      ],
+      "max_abs_vs_FP32": 0.00028830021619796753,
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 41,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            61,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 41,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            61,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 119,
+          "n_spills": 0,
+          "shared": 12288
+        },
+        {
+          "IS_3D": true,
+          "sequences": 41,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            61,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 41,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            61,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 119,
+          "n_spills": 0,
+          "shared": 12288
+        }
+      ]
+    }
+  ],
+  "raw_result_path": "/workspace/benchmark-results/20261020_packed_load_decode_tianshu/result.json",
+  "raw_result_sha256": "85c9120c72331221a0eee48ba091e802dcaee2dcd0c0fa17e062df8ff3bf4685",
+  "analyzer_source_sha256": "e82bd6931fd9a0927047d6f3843d56d3b7d43cecf8b00667258cd451239a2068"
+}
