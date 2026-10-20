@@ -1,0 +1,58 @@
+{
+  "complete": true,
+  "independently_rechecked": true,
+  "official_benchmark": false,
+  "adopted": false,
+  "new_model_Math_required": true,
+  "model_Math_not_run": true,
+  "runtime_source_count": 407,
+  "environment_count": 62,
+  "timed_successful_requests": 384,
+  "gain_percent": 1.7512734347294057,
+  "TTFT_change_percent": -4.841813099155634,
+  "summaries": {
+    "control": {
+      "total_tok_s": 5425.622761507617,
+      "mean_TTFT_ms": 10896.638382513629,
+      "spread_percent": 0.1484102700008693,
+      "postfirst_autotuning_records": 0,
+      "actual_KV_blocks": 40649,
+      "prefill_INT8_launches": 0,
+      "prefill_INT8_shapes": [],
+      "prefill_fallback_launches": 5628,
+      "warm_shapes": 24,
+      "packed_weight_payload_bytes": 1326938112
+    },
+    "candidate": {
+      "total_tok_s": 5520.640251598532,
+      "mean_TTFT_ms": 10369.043517941464,
+      "spread_percent": 0.1401538751751065,
+      "postfirst_autotuning_records": 0,
+      "actual_KV_blocks": 40731,
+      "prefill_INT8_launches": 5586,
+      "prefill_INT8_shapes": [
+        128,
+        2048,
+        4096
+      ],
+      "prefill_fallback_launches": 42,
+      "warm_shapes": 24,
+      "packed_weight_payload_bytes": 1326938112
+    }
+  },
+  "same_NN_decode_and_packed_weight_layout_in_both_arms": true,
+  "only_candidate_prefill_precision_changed": true,
+  "untimed_canaries_unique_cache_salt_for_full_recompute": true,
+  "seed_reproducible_within_each_arm": true,
+  "cross_arm_text_equality_not_required_for_changed_prefill_precision": true,
+  "timed_requests_no_seed_or_cache_salt": true,
+  "raw_roots": {
+    "control": "/workspace/benchmark-results/20261021_prefill_int8_service_control_tianshu",
+    "candidate": "/workspace/benchmark-results/20261021_prefill_int8_service_candidate_tianshu"
+  },
+  "raw_result_sha256": {
+    "control": "ddec987eac23e73dd0df1bd80d064d923f5b8ed92fe461aee3a58abf68207e62",
+    "candidate": "30d9c964d9b03807cd1e8147bd246cef734a1b06e5f3c6f7c46ee70032d109b0"
+  },
+  "verifier_sha256": "1213c2b04d1184e927afebd7bdbcf6e31be01a10e069c8120b655ced8c5613c2"
+}
