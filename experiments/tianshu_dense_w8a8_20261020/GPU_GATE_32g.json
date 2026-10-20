@@ -1,0 +1,476 @@
+{
+  "complete": true,
+  "independently_CPU_rechecked": true,
+  "cases": 16,
+  "compiled_cases": 113,
+  "compile_failures": [
+    {
+      "case": "qkv",
+      "M": 1,
+      "index": 7,
+      "error": "OutOfResources(147456, 131072, 'shared memory')"
+    },
+    {
+      "case": "qkv",
+      "M": 8,
+      "index": 7,
+      "error": "OutOfResources(147456, 131072, 'shared memory')"
+    },
+    {
+      "case": "qkv",
+      "M": 64,
+      "index": 7,
+      "error": "OutOfResources(167936, 131072, 'shared memory')"
+    },
+    {
+      "case": "o",
+      "M": 1,
+      "index": 7,
+      "error": "OutOfResources(147456, 131072, 'shared memory')"
+    },
+    {
+      "case": "o",
+      "M": 8,
+      "index": 7,
+      "error": "OutOfResources(147456, 131072, 'shared memory')"
+    },
+    {
+      "case": "o",
+      "M": 64,
+      "index": 7,
+      "error": "OutOfResources(167936, 131072, 'shared memory')"
+    },
+    {
+      "case": "gateup",
+      "M": 1,
+      "index": 7,
+      "error": "OutOfResources(147456, 131072, 'shared memory')"
+    },
+    {
+      "case": "gateup",
+      "M": 8,
+      "index": 7,
+      "error": "OutOfResources(147456, 131072, 'shared memory')"
+    },
+    {
+      "case": "gateup",
+      "M": 64,
+      "index": 7,
+      "error": "OutOfResources(167936, 131072, 'shared memory')"
+    },
+    {
+      "case": "down",
+      "M": 1,
+      "index": 7,
+      "error": "OutOfResources(147456, 131072, 'shared memory')"
+    },
+    {
+      "case": "down",
+      "M": 8,
+      "index": 7,
+      "error": "OutOfResources(147456, 131072, 'shared memory')"
+    },
+    {
+      "case": "down",
+      "M": 64,
+      "index": 7,
+      "error": "OutOfResources(167936, 131072, 'shared memory')"
+    },
+    {
+      "case": "lm_head",
+      "M": 1,
+      "index": 7,
+      "error": "OutOfResources(147456, 131072, 'shared memory')"
+    },
+    {
+      "case": "lm_head",
+      "M": 8,
+      "index": 7,
+      "error": "OutOfResources(147456, 131072, 'shared memory')"
+    },
+    {
+      "case": "lm_head",
+      "M": 64,
+      "index": 7,
+      "error": "OutOfResources(167936, 131072, 'shared memory')"
+    }
+  ],
+  "CPU_selected_integer_checks": 339,
+  "CPU_selected_integer_elements": 63264,
+  "full_A_quantized_elements": 3152793,
+  "timing_groups": 791,
+  "dynamic_activation_quantization_included": true,
+  "static_weight_packing_excluded": true,
+  "numerical_reference_is_quantized_weights_and_activations": true,
+  "offline_scope_is_selected_outputs_and_full_A_not_full_GPU_outputs": true,
+  "model_accuracy_not_evaluated": true,
+  "service_not_executed": true,
+  "adopted": false,
+  "best_by_case": [
+    {
+      "case": "qkv",
+      "M": 1,
+      "N": 2560,
+      "K": 2048,
+      "index": 4,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "native_ms": 0.03548576831817627,
+      "candidate_ms": 0.06600634455680847,
+      "throughput_gain_percent": -46.23885240662678,
+      "metadata": {
+        "n_regs": 115,
+        "n_spills": 0,
+        "shared": 20480
+      }
+    },
+    {
+      "case": "qkv",
+      "M": 8,
+      "N": 2560,
+      "K": 2048,
+      "index": 4,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "native_ms": 0.04370461404323578,
+      "candidate_ms": 0.06608153581619262,
+      "throughput_gain_percent": -33.862593380394166,
+      "metadata": {
+        "n_regs": 115,
+        "n_spills": 0,
+        "shared": 20480
+      }
+    },
+    {
+      "case": "qkv",
+      "M": 64,
+      "N": 2560,
+      "K": 2048,
+      "index": 4,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "native_ms": 0.03282865285873413,
+      "candidate_ms": 0.029646539688110353,
+      "throughput_gain_percent": 10.733506183522511,
+      "metadata": {
+        "n_regs": 79,
+        "n_spills": 0,
+        "shared": 20480
+      }
+    },
+    {
+      "case": "o",
+      "M": 1,
+      "N": 2048,
+      "K": 2048,
+      "index": 4,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "native_ms": 0.03058403730392456,
+      "candidate_ms": 0.04947423040866852,
+      "throughput_gain_percent": -38.18188367703068,
+      "metadata": {
+        "n_regs": 115,
+        "n_spills": 0,
+        "shared": 20480
+      }
+    },
+    {
+      "case": "o",
+      "M": 8,
+      "N": 2048,
+      "K": 2048,
+      "index": 4,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "native_ms": 0.03787923157215119,
+      "candidate_ms": 0.0508969247341156,
+      "throughput_gain_percent": -25.576580962344085,
+      "metadata": {
+        "n_regs": 115,
+        "n_spills": 0,
+        "shared": 20480
+      }
+    },
+    {
+      "case": "o",
+      "M": 64,
+      "N": 2048,
+      "K": 2048,
+      "index": 4,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "native_ms": 0.02298307716846466,
+      "candidate_ms": 0.028302693367004396,
+      "throughput_gain_percent": -18.795441584161754,
+      "metadata": {
+        "n_regs": 79,
+        "n_spills": 0,
+        "shared": 20480
+      }
+    },
+    {
+      "case": "gateup",
+      "M": 1,
+      "N": 12288,
+      "K": 2048,
+      "index": 4,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "native_ms": 0.08416807651519775,
+      "candidate_ms": 0.0916296124458313,
+      "throughput_gain_percent": -8.14314906662361,
+      "metadata": {
+        "n_regs": 115,
+        "n_spills": 0,
+        "shared": 20480
+      }
+    },
+    {
+      "case": "gateup",
+      "M": 8,
+      "N": 12288,
+      "K": 2048,
+      "index": 4,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "native_ms": 0.09350038170814515,
+      "candidate_ms": 0.09262827038764954,
+      "throughput_gain_percent": 0.9415174404594051,
+      "metadata": {
+        "n_regs": 115,
+        "n_spills": 0,
+        "shared": 20480
+      }
+    },
+    {
+      "case": "gateup",
+      "M": 64,
+      "N": 12288,
+      "K": 2048,
+      "index": 6,
+      "configuration": {
+        "bm": 64,
+        "bn": 256,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "native_ms": 0.09622711539268494,
+      "candidate_ms": 0.06870423555374146,
+      "throughput_gain_percent": 40.05994625675542,
+      "metadata": {
+        "n_regs": 132,
+        "n_spills": 0,
+        "shared": 40960
+      }
+    },
+    {
+      "case": "down",
+      "M": 1,
+      "N": 2048,
+      "K": 6144,
+      "index": 4,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "native_ms": 0.07507923245429993,
+      "candidate_ms": 0.13120826482772827,
+      "throughput_gain_percent": -42.77857987614099,
+      "metadata": {
+        "n_regs": 129,
+        "n_spills": 0,
+        "shared": 20480
+      }
+    },
+    {
+      "case": "down",
+      "M": 8,
+      "N": 2048,
+      "K": 6144,
+      "index": 4,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "native_ms": 0.0928757667541504,
+      "candidate_ms": 0.13569749593734742,
+      "throughput_gain_percent": -31.556757099606425,
+      "metadata": {
+        "n_regs": 129,
+        "n_spills": 0,
+        "shared": 20480
+      }
+    },
+    {
+      "case": "down",
+      "M": 64,
+      "N": 2048,
+      "K": 6144,
+      "index": 4,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "native_ms": 0.05867365598678589,
+      "candidate_ms": 0.06692769527435302,
+      "throughput_gain_percent": -12.332770841326312,
+      "metadata": {
+        "n_regs": 79,
+        "n_spills": 0,
+        "shared": 20480
+      }
+    },
+    {
+      "case": "lm_head",
+      "M": 1,
+      "N": 130560,
+      "K": 2048,
+      "index": 4,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "native_ms": 0.7889505863189697,
+      "candidate_ms": 0.8607171058654786,
+      "throughput_gain_percent": -8.337991548842904,
+      "metadata": {
+        "n_regs": 115,
+        "n_spills": 0,
+        "shared": 20480
+      }
+    },
+    {
+      "case": "lm_head",
+      "M": 8,
+      "N": 130560,
+      "K": 2048,
+      "index": 4,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "native_ms": 0.8174580574035645,
+      "candidate_ms": 0.8666305541992188,
+      "throughput_gain_percent": -5.673986055233248,
+      "metadata": {
+        "n_regs": 115,
+        "n_spills": 0,
+        "shared": 20480
+      }
+    },
+    {
+      "case": "lm_head",
+      "M": 64,
+      "N": 130560,
+      "K": 2048,
+      "index": 3,
+      "configuration": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "native_ms": 1.0293536186218262,
+      "candidate_ms": 0.6131798267364502,
+      "throughput_gain_percent": 67.87140961573918,
+      "metadata": {
+        "n_regs": 93,
+        "n_spills": 0,
+        "shared": 24576
+      }
+    },
+    {
+      "case": "tail",
+      "M": 17,
+      "N": 130,
+      "K": 259,
+      "index": 5,
+      "configuration": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 64,
+        "warps": 4,
+        "stages": 2
+      },
+      "native_ms": 0.011997884511947632,
+      "candidate_ms": 0.034971538186073306,
+      "throughput_gain_percent": -65.69243123333493,
+      "metadata": {
+        "n_regs": 91,
+        "n_spills": 0,
+        "shared": 12288
+      }
+    }
+  ],
+  "frozen_sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_w8a8_20261020/kernel.py": "b9b692cf561a35ef9c38d05d1edf7aa804436728923efa4800f914ff6b656152",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_w8a8_20261020/check_cpu.py": "96cc7e64cc85fdff51057678439ff78177e99db125bafdc722bdc59a81065548",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_w8a8_20261020/CPU_GATE_32g.json": "7941df73577720c7da673b8363615ba8224e96c95474f3e8cb8a13c673d58084",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_w8a8_20261020/probe_gpu.py": "0aeede9dd78b3435a3a1968528da752f6240e8a194440c5b9d3291b982678c0f",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_w8a8_20261020/verify_gpu.py": "460e66abc4a7b941d4bb6d5745c358e2e375a77423b0eb96dc9b79cf7204faab",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_w8a8_20261020/run_component.sh": "8e2736c8649b3c11e5343b09d8089ece71c9c7ebc9c97654f93e39930a2f1dce",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_w8a8_20261020/run_after_segments.sh": "6f949319e31d3eb0525ff216168046b4fe8238a1bc11aeef627309e22179c844",
+    "/usr/local/lib/python3.12/site-packages/flag_gems/runtime/backend/_iluvatar/ops/mm.py": "4c2e23da2a6b65b89cbb8170967f14c5327d143e21137387f3907ccb4fcde090",
+    "/workspace/MiniCPM5-2B/config.json": "59613157e5357d62bcb121e04cb90f2170b43d789b142380c12c3d4277d95180"
+  },
+  "raw_root": "/workspace/benchmark-results/20261020_dense_w8a8_GPU_tianshu",
+  "verifier_sha256": "460e66abc4a7b941d4bb6d5745c358e2e375a77423b0eb96dc9b79cf7204faab"
+}

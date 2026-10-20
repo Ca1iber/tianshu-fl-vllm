@@ -1,0 +1,113 @@
+{
+  "component_gate_complete": true,
+  "model_integration_not_implemented": true,
+  "service_not_run": true,
+  "fresh_model_Math_required": true,
+  "adopted": false,
+  "roles": [
+    "gateup",
+    "lm_head"
+  ],
+  "gateup_layers": 42,
+  "lm_heads": 1,
+  "selected_M": [
+    8,
+    64
+  ],
+  "other_M_use_existing_BF16": true,
+  "other_projections_use_existing_BF16": true,
+  "extra_weight_bytes_if_BF16_retained": 1326938112,
+  "packing_hook_requirement": "Run inside model-loader weight postprocessing before FL DeviceMemoryProfiler finishes; verify 42 GateUp and 1 ParallelLMHead banks; preserve original BF16 parameters and checkpoint",
+  "quality_binding_requirement": "MATH batch8 must actually use the candidate, with C8 Graph capture/replay evidence; a candidate restricted to C64 cannot reuse an unchanged C8 quality result",
+  "embedding_requirement": "Only ParallelLMHead, not token embeddings despite equal weight shapes",
+  "selected_configurations": [
+    {
+      "case": "gateup",
+      "M": 8,
+      "N": 12288,
+      "K": 2048,
+      "index": 4,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "native_ms": 0.09350038170814515,
+      "candidate_ms": 0.09262827038764954,
+      "throughput_gain_percent": 0.9415174404594051,
+      "metadata": {
+        "n_regs": 115,
+        "n_spills": 0,
+        "shared": 20480
+      }
+    },
+    {
+      "case": "gateup",
+      "M": 64,
+      "N": 12288,
+      "K": 2048,
+      "index": 6,
+      "configuration": {
+        "bm": 64,
+        "bn": 256,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "native_ms": 0.09622711539268494,
+      "candidate_ms": 0.06870423555374146,
+      "throughput_gain_percent": 40.05994625675542,
+      "metadata": {
+        "n_regs": 132,
+        "n_spills": 0,
+        "shared": 40960
+      }
+    },
+    {
+      "case": "lm_head",
+      "M": 8,
+      "N": 130560,
+      "K": 2048,
+      "index": 4,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "native_ms": 0.8174580574035645,
+      "candidate_ms": 0.8666305541992188,
+      "throughput_gain_percent": -5.673986055233248,
+      "metadata": {
+        "n_regs": 115,
+        "n_spills": 0,
+        "shared": 20480
+      }
+    },
+    {
+      "case": "lm_head",
+      "M": 64,
+      "N": 130560,
+      "K": 2048,
+      "index": 3,
+      "configuration": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "native_ms": 1.0293536186218262,
+      "candidate_ms": 0.6131798267364502,
+      "throughput_gain_percent": 67.87140961573918,
+      "metadata": {
+        "n_regs": 93,
+        "n_spills": 0,
+        "shared": 24576
+      }
+    }
+  ]
+}
