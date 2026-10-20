@@ -106,6 +106,8 @@ def install(worker,mode,directory):
         key=str((bank["prefix"],m,capturing))
         row=record["BF16_lm_launches"].setdefault(key,dict(prefix=bank["prefix"],M=m,N=bank["layer"].weight.shape[0],actually_inside_capture=capturing,implementation="original_embedding_method_BF16",calls=0))
         output=originals[bank["kind"]][1](bank["method"],bank["layer"],x,None)
+        assert x.dtype==bank["layer"].weight.dtype==output.dtype==torch.bfloat16
+        row.update(input_dtype=str(x.dtype),weight_dtype=str(bank["layer"].weight.dtype),output_dtype=str(output.dtype))
         row["calls"]+=1
         if not capturing and row["calls"]&(row["calls"]-1)==0:save()
         return output
