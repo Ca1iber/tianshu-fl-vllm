@@ -28,7 +28,7 @@ def prepare(root,screen_root):
     assert sources==confirm['frozen_sources'] and command==candidate['server_command']==control['server_command']
     expected={key:value.replace(candidate['output_root']+'/',str(root)+'/') for key,value in candidate['profile_environment'].items()}
     assert profile==expected and len(profile)==46 and profile['TIANSHU_LONG_SEGMENT_MODE']=='candidate'
-    for path in (Path(__file__),BASE/'run_validation.py',BASE/'audit_profile.py',BASE/'batch_policy.json'):
+    for path in (Path(__file__),BASE/'run_validation.py',BASE/'audit_profile.py',BASE/'batch_policy.json',BASE/'run_math_and_official.sh'):
         sources[str(path)]=digest(path)
     frozen_check(sources)
     for path,h in sources.items():

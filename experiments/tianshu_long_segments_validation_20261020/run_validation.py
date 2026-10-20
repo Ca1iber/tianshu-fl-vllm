@@ -193,6 +193,8 @@ def main():
             state.update(phase="audit_failed", error=repr(error))
         save()
         (root / "result.json").write_text(json.dumps(state, indent=2) + "\n")
+    if state["phase"] == "complete" and args.stage == "math" and not state["accuracy_passed"]:
+        return 2
     return 0 if state["phase"] == "complete" else 1
 
 
