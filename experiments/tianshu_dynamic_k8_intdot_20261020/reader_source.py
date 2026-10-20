@@ -28,7 +28,7 @@ PATCHES=(
   '''        if USE_DYNAMIC_K:
             scale_addresses = (key_cache_ptr + physical_block_idx * stride_k_cache_0
                 + 12288 + (seq_offset % BLOCK_SIZE) * 8 + kv_head_idx * 4).to(tl.pointer_type(tl.float32))
-            token_k_scale = tl.load(scale_addresses, mask=tile_mask, other=1.)
+            token_k_scale = tl.load(scale_addresses, mask=tile_mask, other=1., cache_modifier=KV_CACHE_MODIFIER if IS_3D else "")
             signed_keys = K_load.to(tl.int8, bitcast=True)
             if USE_INT8_QK:
                 K = signed_keys
