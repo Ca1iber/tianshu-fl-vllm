@@ -1,0 +1,141 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "Triton_not_executed": true,
+  "not_a_service_or_quality_result": true,
+  "cases": [
+    {
+      "n": 1,
+      "input_row_stride": 2560,
+      "max_position": 131071,
+      "valid_slots": 0,
+      "full_storage_bytes": 12544,
+      "all_storage_and_guard_bytes_match": true,
+      "native_RoPE_BF16_intermediate_match": true
+    },
+    {
+      "n": 1,
+      "input_row_stride": 2688,
+      "max_position": 131071,
+      "valid_slots": 0,
+      "full_storage_bytes": 12544,
+      "all_storage_and_guard_bytes_match": true,
+      "native_RoPE_BF16_intermediate_match": true
+    },
+    {
+      "n": 8,
+      "input_row_stride": 2560,
+      "max_position": 131071,
+      "valid_slots": 6,
+      "full_storage_bytes": 110848,
+      "all_storage_and_guard_bytes_match": true,
+      "native_RoPE_BF16_intermediate_match": true
+    },
+    {
+      "n": 8,
+      "input_row_stride": 2688,
+      "max_position": 131071,
+      "valid_slots": 6,
+      "full_storage_bytes": 110848,
+      "all_storage_and_guard_bytes_match": true,
+      "native_RoPE_BF16_intermediate_match": true
+    },
+    {
+      "n": 32,
+      "input_row_stride": 2560,
+      "max_position": 131071,
+      "valid_slots": 25,
+      "full_storage_bytes": 418048,
+      "all_storage_and_guard_bytes_match": true,
+      "native_RoPE_BF16_intermediate_match": true
+    },
+    {
+      "n": 32,
+      "input_row_stride": 2688,
+      "max_position": 131071,
+      "valid_slots": 25,
+      "full_storage_bytes": 418048,
+      "all_storage_and_guard_bytes_match": true,
+      "native_RoPE_BF16_intermediate_match": true
+    },
+    {
+      "n": 40,
+      "input_row_stride": 2560,
+      "max_position": 131071,
+      "valid_slots": 32,
+      "full_storage_bytes": 528640,
+      "all_storage_and_guard_bytes_match": true,
+      "native_RoPE_BF16_intermediate_match": true
+    },
+    {
+      "n": 40,
+      "input_row_stride": 2688,
+      "max_position": 131071,
+      "valid_slots": 32,
+      "full_storage_bytes": 528640,
+      "all_storage_and_guard_bytes_match": true,
+      "native_RoPE_BF16_intermediate_match": true
+    },
+    {
+      "n": 41,
+      "input_row_stride": 2560,
+      "max_position": 131071,
+      "valid_slots": 32,
+      "full_storage_bytes": 528640,
+      "all_storage_and_guard_bytes_match": true,
+      "native_RoPE_BF16_intermediate_match": true
+    },
+    {
+      "n": 41,
+      "input_row_stride": 2688,
+      "max_position": 131071,
+      "valid_slots": 32,
+      "full_storage_bytes": 528640,
+      "all_storage_and_guard_bytes_match": true,
+      "native_RoPE_BF16_intermediate_match": true
+    },
+    {
+      "n": 63,
+      "input_row_stride": 2560,
+      "max_position": 131071,
+      "valid_slots": 50,
+      "full_storage_bytes": 823552,
+      "all_storage_and_guard_bytes_match": true,
+      "native_RoPE_BF16_intermediate_match": true
+    },
+    {
+      "n": 63,
+      "input_row_stride": 2688,
+      "max_position": 131071,
+      "valid_slots": 50,
+      "full_storage_bytes": 823552,
+      "all_storage_and_guard_bytes_match": true,
+      "native_RoPE_BF16_intermediate_match": true
+    },
+    {
+      "n": 64,
+      "input_row_stride": 2560,
+      "max_position": 131071,
+      "valid_slots": 51,
+      "full_storage_bytes": 835840,
+      "all_storage_and_guard_bytes_match": true,
+      "native_RoPE_BF16_intermediate_match": true
+    },
+    {
+      "n": 64,
+      "input_row_stride": 2688,
+      "max_position": 131071,
+      "valid_slots": 51,
+      "full_storage_bytes": 835840,
+      "all_storage_and_guard_bytes_match": true,
+      "native_RoPE_BF16_intermediate_match": true
+    }
+  ],
+  "count": 14,
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_rope_kv_fusion_20261020/kernel.py": "58d2eea8da14911135be242a2e8dc46eb8de1dddf5cb4ea42204add2b82de1a3",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_rope_kv_fusion_20261020/check_cpu.py": "72c416cc0c8dd8ca5baa7dd3947ce826d04046a411bf09b6c91cd1d79ddd7e37"
+  },
+  "reference": "actual RotaryEmbedding.forward_static, selected when current custom_ops none",
+  "native_forward_source": "/usr/local/lib/python3.12/site-packages/vllm/model_executor/layers/rotary_embedding/base.py"
+}
