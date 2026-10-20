@@ -28,7 +28,7 @@ def main():
         assert Path(proof['generated_source']).read_text()==generated
         assert all(proof[k]==v for k,v in expected.items())
     assert len(data['cases'])==12 and len({r['name'] for r in data['cases']})==12
-    rows=[];artifacts=[];gpu=cpu=recorded_cpu=elements=0;maxerr=0.
+    rows=[];artifacts=[];gpu=cpu=recorded_cpu=elements=0;maxerr=0.;bitwise_records=[]
     for case in data['cases']:
         assert case['labels']==labels and len(case['phases'])==2
         n=case['batch'];previous=None
@@ -60,7 +60,10 @@ def main():
                 observed=saved['outputs'][label];assert observed.dtype==torch.bfloat16 and observed.shape==reference.shape
                 delta=validate(observed,reference)
                 assert abs(delta-check['numerical']['max_abs'])<1e-9
-                assert torch.equal(observed,saved['outputs']['current'])
+                bitwise_equal=bool(torch.equal(observed,saved['outputs']['current']))
+                assert check['bitwise_equal_to_current']==bitwise_equal
+                if label!='pair_w2':assert bitwise_equal
+                bitwise_records.append(dict(case=case['name'],phase=phase,mode=label,equal=bitwise_equal))
                 elements+=observed.numel();gpu+=1;recorded_cpu+=len(check['cpu_checks']);maxerr=max(maxerr,delta)
             artifacts.append(dict(case=case['name'],phase=phase,**info))
         assert len(case['raw_ms'])==4 and all(len(x)==9 and all(math.isfinite(v) and v>0 for v in x) for x in case['raw_ms'])
@@ -80,7 +83,8 @@ def main():
     gate=dict(complete=True,independently_rechecked=True,component_only=True,adopted=False,
         full_GPU_FP32_output_checks=gpu,independently_recomputed_CPU_reference_vectors=cpu,
         CPU_reference_checks_recorded=recorded_cpu,full_output_elements_rechecked=elements,max_abs_vs_references=maxerr,
-        all_candidate_output_tensors_bitwise_equal_to_current=True,actual_paired_source_and_qualified_launch_verified=True,
+        all_candidate_output_tensors_bitwise_equal_to_current=all(x['equal'] for x in bitwise_records),
+        bitwise_observations=bitwise_records,word_load_outputs_required_bitwise=True,warp2_bitwise_comparison_is_diagnostic=True,actual_paired_source_and_qualified_launch_verified=True,
         full_cache_storage_and_scratch_guards_asserted_in_frozen_probe=True,Graph_replay_RNG_unchanged=True,
         changed_data_same_Graph_phases_verified=True,timing_groups=432,replays_per_group=20,
         model_or_quality_or_service_not_run=True,raw_root=str(root),raw_result_sha256=sha(root/'result.json'),

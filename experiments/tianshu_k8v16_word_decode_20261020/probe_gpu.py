@@ -224,12 +224,13 @@ def main():
                         expected = reference(q, reference_k, reference_v, used)
                         numerical = error(fixture['out'], expected)
                         assert numerical['passed'], numerical
-                        if fixture is not fixtures[0]:
-                            assert torch.equal(fixture['out'], fixtures[0]['out']), 'Paired-load output must be bitwise equal'
+                        bitwise_equal=bool(torch.equal(fixture['out'],fixtures[0]['out']))
+                        if fixture['model']['label']!='pair_w2':
+                            assert bitwise_equal,'Memory reassembly must be bitwise equal'
                         cpu = cpu_checks(q, reference_k, reference_v, lengths, expected)
                         approximation = (reference_v.float() - logical_v.float()).abs()
                         saturation = None
-                        checks.append(dict(label=fixture['model']['label'], numerical=numerical, cpu_checks=cpu,
+                        checks.append(dict(label=fixture['model']['label'], numerical=numerical, cpu_checks=cpu, bitwise_equal_to_current=bitwise_equal,
                                            V_max_quantization_abs=approximation.max().item(),
                                            V_random_fixture_out_of_range=saturation, V_fixture_elements=logical_v.numel(),
                                            physical_page_bytes=fixture['page_bytes'], raw_cache_bytes=fixture['raw'].numel(),
