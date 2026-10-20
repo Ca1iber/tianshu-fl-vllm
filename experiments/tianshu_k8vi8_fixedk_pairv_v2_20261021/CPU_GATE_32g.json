@@ -1,0 +1,369 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "runtime_stride_host_guard_valid_and_invalid_tests_passed": true,
+  "only_one_bad_static_assert_removed_from_failed_source": true,
+  "no_GPU_initialized": true,
+  "CPU_CUDA_VISIBLE_DEVICES": "-1",
+  "all_65536_V_word_signed_pair_decodings_exact": true,
+  "unchanged_actual_writer_produces_K_scales_exact_one": true,
+  "explicit_FP32_RNE_reference_verified": true,
+  "reader_proof": {
+    "parent": {
+      "parent_source_sha256": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+      "generated_sha256": "2ff3daafd25dfc68ebe938ea1c02cf7d1420859884d12efc9c775aedb8425795",
+      "only_two_mode_conditions_extended": true,
+      "paired_K_load_enabled_for_both_modes": true,
+      "producer_arithmetic_and_native_P_scaling_unchanged": true,
+      "reducer_and_API_AST_unchanged": true,
+      "K_fixed_software8_V_per_token_head_INT8": true,
+      "K_per_token_head_scales_stored_as_exact_one": true
+    },
+    "three_exact_reversible_changes": true,
+    "generated_sha256": "5cc0aa2846c5ed01e465ac734efd6ba6dc9a6f7dc4f9c84eb324e11280c6899f",
+    "original_V8_reader_AST_API_reducer_and_cast_unchanged": true,
+    "fixed_K_scale_requires_actual_writer_all_one_proof": true,
+    "paired_V8_requires_even_aligned_strides_and_D128": true,
+    "softmax_and_P_scaling_arithmetic_unchanged": true
+  },
+  "native_layout_checks": [
+    {
+      "mode": "K8V16",
+      "page_bytes": 12288,
+      "key_bytes": 1,
+      "value_bytes": 2,
+      "value_offset": 4096,
+      "key_scale_offset": null,
+      "value_scale_offset": null,
+      "physical_pages": 10,
+      "num_blocks": 10,
+      "actual_spec_page_bytes": 12288,
+      "actual_raw_bytes": 122880,
+      "actual_native_view_stride_bytes": 12288,
+      "all_planes_alias_actual_raw": true,
+      "key_dtype": "torch.uint8",
+      "value_dtype": "torch.bfloat16",
+      "key_strides": [
+        12288,
+        256,
+        128,
+        1
+      ],
+      "value_strides": [
+        6144,
+        256,
+        128,
+        1
+      ],
+      "key_scale_strides": null,
+      "value_scale_strides": null,
+      "full_engine_allocator_not_installed": true,
+      "all_scale_bytes_in_native_page_accounting": true
+    },
+    {
+      "mode": "K8V16",
+      "page_bytes": 12288,
+      "key_bytes": 1,
+      "value_bytes": 2,
+      "value_offset": 4096,
+      "key_scale_offset": null,
+      "value_scale_offset": null,
+      "physical_pages": 10,
+      "num_blocks": 5,
+      "actual_spec_page_bytes": 12288,
+      "actual_raw_bytes": 122880,
+      "actual_native_view_stride_bytes": 24576,
+      "all_planes_alias_actual_raw": true,
+      "key_dtype": "torch.uint8",
+      "value_dtype": "torch.bfloat16",
+      "key_strides": [
+        24576,
+        256,
+        128,
+        1
+      ],
+      "value_strides": [
+        12288,
+        256,
+        128,
+        1
+      ],
+      "key_scale_strides": null,
+      "value_scale_strides": null,
+      "full_engine_allocator_not_installed": true,
+      "all_scale_bytes_in_native_page_accounting": true
+    },
+    {
+      "mode": "K8VI8Heads",
+      "page_bytes": 8448,
+      "key_bytes": 1,
+      "value_bytes": 1,
+      "value_offset": 4096,
+      "key_scale_offset": 8192,
+      "value_scale_offset": 8320,
+      "physical_pages": 10,
+      "num_blocks": 10,
+      "actual_spec_page_bytes": 8448,
+      "actual_raw_bytes": 84480,
+      "actual_native_view_stride_bytes": 8448,
+      "all_planes_alias_actual_raw": true,
+      "key_dtype": "torch.uint8",
+      "value_dtype": "torch.int8",
+      "key_strides": [
+        8448,
+        256,
+        128,
+        1
+      ],
+      "value_strides": [
+        8448,
+        256,
+        128,
+        1
+      ],
+      "key_scale_strides": [
+        2112,
+        2,
+        1
+      ],
+      "value_scale_strides": [
+        2112,
+        2,
+        1
+      ],
+      "full_engine_allocator_not_installed": true,
+      "all_scale_bytes_in_native_page_accounting": true
+    },
+    {
+      "mode": "K8VI8Heads",
+      "page_bytes": 8448,
+      "key_bytes": 1,
+      "value_bytes": 1,
+      "value_offset": 4096,
+      "key_scale_offset": 8192,
+      "value_scale_offset": 8320,
+      "physical_pages": 10,
+      "num_blocks": 5,
+      "actual_spec_page_bytes": 8448,
+      "actual_raw_bytes": 84480,
+      "actual_native_view_stride_bytes": 16896,
+      "all_planes_alias_actual_raw": true,
+      "key_dtype": "torch.uint8",
+      "value_dtype": "torch.int8",
+      "key_strides": [
+        16896,
+        256,
+        128,
+        1
+      ],
+      "value_strides": [
+        16896,
+        256,
+        128,
+        1
+      ],
+      "key_scale_strides": [
+        4224,
+        2,
+        1
+      ],
+      "value_scale_strides": [
+        4224,
+        2,
+        1
+      ],
+      "full_engine_allocator_not_installed": true,
+      "all_scale_bytes_in_native_page_accounting": true
+    },
+    {
+      "mode": "K8VI8NoKScale",
+      "page_bytes": 8448,
+      "key_bytes": 1,
+      "value_bytes": 1,
+      "value_offset": 4096,
+      "key_scale_offset": 8192,
+      "value_scale_offset": 8320,
+      "physical_pages": 10,
+      "num_blocks": 10,
+      "actual_spec_page_bytes": 8448,
+      "actual_raw_bytes": 84480,
+      "actual_native_view_stride_bytes": 8448,
+      "all_planes_alias_actual_raw": true,
+      "key_dtype": "torch.uint8",
+      "value_dtype": "torch.int8",
+      "key_strides": [
+        8448,
+        256,
+        128,
+        1
+      ],
+      "value_strides": [
+        8448,
+        256,
+        128,
+        1
+      ],
+      "key_scale_strides": [
+        2112,
+        2,
+        1
+      ],
+      "value_scale_strides": [
+        2112,
+        2,
+        1
+      ],
+      "full_engine_allocator_not_installed": true,
+      "all_scale_bytes_in_native_page_accounting": true
+    },
+    {
+      "mode": "K8VI8NoKScale",
+      "page_bytes": 8448,
+      "key_bytes": 1,
+      "value_bytes": 1,
+      "value_offset": 4096,
+      "key_scale_offset": 8192,
+      "value_scale_offset": 8320,
+      "physical_pages": 10,
+      "num_blocks": 5,
+      "actual_spec_page_bytes": 8448,
+      "actual_raw_bytes": 84480,
+      "actual_native_view_stride_bytes": 16896,
+      "all_planes_alias_actual_raw": true,
+      "key_dtype": "torch.uint8",
+      "value_dtype": "torch.int8",
+      "key_strides": [
+        16896,
+        256,
+        128,
+        1
+      ],
+      "value_strides": [
+        16896,
+        256,
+        128,
+        1
+      ],
+      "key_scale_strides": [
+        4224,
+        2,
+        1
+      ],
+      "value_scale_strides": [
+        4224,
+        2,
+        1
+      ],
+      "full_engine_allocator_not_installed": true,
+      "all_scale_bytes_in_native_page_accounting": true
+    },
+    {
+      "mode": "K8VI8PairV",
+      "page_bytes": 8448,
+      "key_bytes": 1,
+      "value_bytes": 1,
+      "value_offset": 4096,
+      "key_scale_offset": 8192,
+      "value_scale_offset": 8320,
+      "physical_pages": 10,
+      "num_blocks": 10,
+      "actual_spec_page_bytes": 8448,
+      "actual_raw_bytes": 84480,
+      "actual_native_view_stride_bytes": 8448,
+      "all_planes_alias_actual_raw": true,
+      "key_dtype": "torch.uint8",
+      "value_dtype": "torch.int8",
+      "key_strides": [
+        8448,
+        256,
+        128,
+        1
+      ],
+      "value_strides": [
+        8448,
+        256,
+        128,
+        1
+      ],
+      "key_scale_strides": [
+        2112,
+        2,
+        1
+      ],
+      "value_scale_strides": [
+        2112,
+        2,
+        1
+      ],
+      "full_engine_allocator_not_installed": true,
+      "all_scale_bytes_in_native_page_accounting": true
+    },
+    {
+      "mode": "K8VI8PairV",
+      "page_bytes": 8448,
+      "key_bytes": 1,
+      "value_bytes": 1,
+      "value_offset": 4096,
+      "key_scale_offset": 8192,
+      "value_scale_offset": 8320,
+      "physical_pages": 10,
+      "num_blocks": 5,
+      "actual_spec_page_bytes": 8448,
+      "actual_raw_bytes": 84480,
+      "actual_native_view_stride_bytes": 16896,
+      "all_planes_alias_actual_raw": true,
+      "key_dtype": "torch.uint8",
+      "value_dtype": "torch.int8",
+      "key_strides": [
+        16896,
+        256,
+        128,
+        1
+      ],
+      "value_strides": [
+        16896,
+        256,
+        128,
+        1
+      ],
+      "key_scale_strides": [
+        4224,
+        2,
+        1
+      ],
+      "value_scale_strides": [
+        4224,
+        2,
+        1
+      ],
+      "full_engine_allocator_not_installed": true,
+      "all_scale_bytes_in_native_page_accounting": true
+    }
+  ],
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_fixedk_pairv_v2_20261021/check_cpu.py": "0b48cba77c3fab625a11b37d265acf1c77d31cd188893cfe0150716acc45d182",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_fixedk_pairv_v2_20261021/layout.py": "c3479fa2a99973d88010c4e33d71ad7abeb40981c6252aa47f48eb1eeec97064",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_fixedk_pairv_v2_20261021/probe_gpu.py": "07979e40f10bb9cb25ce981e98f02a26c8bfff655bf52fce28b12c9c3778d68a",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_fixedk_pairv_v2_20261021/reference_quantize.py": "032b9bfa9abd451a60b0bd809185994b0f94dadfe7c894baadbb85b265fd2633",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_fixedk_pairv_v2_20261021/source.py": "d44454784ad6c5f6f5339421d8133090a33a976256ff627b011b67ce4bf0fef3",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_fixedk_pairv_v2_20261021/verify_gpu.py": "41d8769723c56d32c5a80e197294c9cb565b6180e91add83853d54ae4196918c",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_fixedk_pairv_v2_20261021/writer.py": "49565b1105a0eaa3b68364499d857cf481227af2612f7bdf52c32eb3020802f2",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_fixedk_pairv_v2_20261021/guards.py": "2be69bf9c0ba8612c64f93f807e5a5afeaa49b407a0a7d05535cfa2ad78508f6",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_fixedk_pairv_v2_20261021/run_component.sh": "9f9f6b0a0a513bfabe4130e3b85f9183041989415dd8cbffc5f184ad7094bdd3",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_fixedk_pairv_v2_20261021/run_and_audit.sh": "c76082e84a0f1b57fd9da44a37e9169f322f28c41f548eba36f5aee271f69ece",
+    "/workspace/benchmark-results/20261020_lm_precision_math_tianshu/pair_load_records/generated_reader/generated_pair_rows.py": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_heads_v2_20261021/source.py": "589dc4a5f9d5c4bca2cd0fc05814e45d9d5e6b74291e83e9bd202ee04d6c65c0",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_soft8_mixed_planes_20261019/writer.py": "27a74d3bdfee978780044eb69025c10a21d92a1b0a8cf567ee9fea1e0b8d12b5",
+    "/usr/local/lib/python3.12/site-packages/vllm/v1/kv_cache_interface.py": "7e3c220998267190a622e216b2b125306807cf8be3ec1e9a8e84fe6e7a293003",
+    "/usr/local/lib/python3.12/site-packages/vllm/v1/worker/gpu/attn_utils.py": "a351178df66fb5364cbe663ba7f25346c6317927fcc29a8c00f8972a23440ace",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_writer_diagnostic_20261021/REFERENCE_RNE_GATE_32g.json": "488e633e9dff8300d05c5d816e6865fdd482274083bb1828bae05546c1687106",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_writer_diagnostic_20261021/verify_reference_rne.py": "a1159c042353dcad7f0205954d66f8ab8632352748d473c3fddc2ab0c05e7574",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_w8a8_20261020/kernel.py": "b9b692cf561a35ef9c38d05d1edf7aa804436728923efa4800f914ff6b656152"
+  },
+  "actual_GPU_writer_reader_not_yet_verified": true,
+  "full_engine_not_installed": true,
+  "Math_not_run": true,
+  "physical_K8V16_page_bytes": 12288,
+  "physical_new_page_bytes": 8448,
+  "physical_reduction_fraction": 0.3125
+}
