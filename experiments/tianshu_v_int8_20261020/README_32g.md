@@ -78,3 +78,7 @@ python3 experiments/tianshu_v_int8_20261020/probe_codecs_gpu.py \
 ## 09:29 更新
 
 SSH 已恢复，原域名新连接也成功。三档 V 缩放的真实 GPU 编解码与 writer Graph gate 全部通过，详见 [CODECS_REPORT_32g.md](CODECS_REPORT_32g.md) 和 GPU_CODECS_GATE_32g.json。CPU_GATE_CONTAINER_32g.json 是同一容器对既有 CPU 检查的实际运行记录。完整 attention、布局接入、服务吞吐与 Math 尚未验证，最佳版本不变。
+
+## decode 组件结论
+
+已完成同进程 K8V16 对照：8 个场景数值/Graph 全通过，但三档线性 INT8 V 都更慢；batch64 的 4K/5K 耗时约增加32%。不晋级服务或 Math，详见 [DECODE_REPORT_32g.md](DECODE_REPORT_32g.md)。下一步只调查能否避免实际汇编中的 signed-conversion 链，不修改本轮已测源码。
