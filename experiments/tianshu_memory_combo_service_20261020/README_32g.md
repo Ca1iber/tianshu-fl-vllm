@@ -1,0 +1,11 @@
+# 框架内存组合：arena128MiB + 原生缺省seq64，CPU准备通过
+
+当前正式S16发布使用arena512MiB、max_num_seqs256。本候选同时改为arena128MiB和原生缺省max_num_seqs64，目标是减少scratch、请求元数据及Graph相关预留，将实际profile释放的空间交给原生KV分配。不能把两项参数的组合结果归因为其中一项，也不能先按释放字节预测吞吐。
+
+两组都保留当前K8V16/S16、4096 token预算、83预热点、严格TopP32K、M2048策略、原始serve argv和原生KV水位0。显式用户seq/预算不覆盖；缺省seq在当前预算选择器调用原生默认后设置，CPU已用真实安装版AST覆盖11种边界。arena实际GPU22次逐位检查/2次超容量分支证据沿用已完成组件，调用、解压和fallback代码不变。
+
+独立组合CPU核验251份相同源、50项环境仅两种模式键不同、相同原始serve命令；用已完成512MiB控制组数据复核原生S16审计。CPU检查不启动GPU，未声称当前组合性能或质量。新增scheduler initializer诊断只在原始初始化后读取真实max_num_running_reqs、config max_num_seqs、4096预算、async、水位与KV块数；调度和分配方法不改。服务审计必须同时验证API默认记录、worker配置、真实scheduler上限、实际arena预留、真实Graph捕获重放、原始源码哈希和全部请求。
+
+run_after_address.sh只在前一地址组件进程结束且真实GPU空闲后调用run_screens.sh；若前一独立组件失败，也必须等它实际退出并释放GPU后才继续本独立候选。4K N64各3轮排首轮，回退不超过1%才继续针对KV容量压力的16K N64对照。全部GPU串行，硬停止仍2026-10-20 23:58北京时间。测试入口和来源在启动前冻结，原件留容器，GitHub保存代码/报告/关键结果。
+
+当前无GPU/服务成绩、未采用、未跑新Math或完整正式benchmark。当前正式成绩仍4K5099.65 / 16K3723.12、Math102/105。若有稳定收益，必须对最终同一组合配置做全新Math严格>95%及原始完整验证。
