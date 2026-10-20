@@ -41,7 +41,7 @@ def main():
             assert record['KV_QUANT_MODE']==(0 if m=='K8V16' else 2)
         rows.append(dict(batch=case['batch'],context=case['context'],strided=case['strided'],segments=case['segments'],median_ms=medians,
             PV32_vs_K8V16_time_change_fraction=medians['PV32']/medians['K8V16']-1,
-            PV32_vs_native_V8_time_change_fraction=medians['PV32']/medians['K8VI8Heads']-1,
+            PV32_vs_native_V8_time_change_fraction=medians['PV32']/medians['K8VI8Heads']-1))
     gate=dict(complete=True,component_only=True,adopted=False,full_engine_not_installed=True,Math_not_run=True,
         includes_different_tile_and_warp_configurations=True,checked_cases=5,checked_phase_paths=checks,
         CPU_FP64_reference_vectors_rechecked=cpu_vectors,actual_writer_V_values_requantized_on_CPU=writer_values,

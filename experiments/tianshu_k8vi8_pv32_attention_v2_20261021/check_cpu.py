@@ -14,6 +14,7 @@ def main():
     for path,digest in parent_gate['sources'].items():assert sha(path)==digest
     rendered,proof=source.render(source.SOURCE.read_bytes());ast.parse(rendered)
     probe=(BASE/'probe_gpu.py').read_text();ast.parse(probe)
+    for path in BASE.glob('*.py'):ast.parse(path.read_text())
     assert "cases=((1,33),(8,257),(40,4096),(64,4096),(64,5120))" in probe
     assert "kw['PV_INT8']=self.mode.startswith('PV')" in probe
     assert "TILE_SIZE=int(self.mode[2:])" in probe and "num_warps=2 if self.mode.startswith('PV') else 1" in probe
