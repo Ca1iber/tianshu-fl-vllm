@@ -35,3 +35,5 @@ KV水位实验见[service](../tianshu_headroom_service_20261020/README_32g.md)�
 14:36更新：[小暂存区](../tianshu_small_arena_20261020/README_32g.md)CPU20边界、GPU22次完整staging/2次超容量分支检查已通过，释放384MiB+96KiB；1475715072活动元素逐位核验，fallback attention仍原样继承，未在本probe单独执行。236源/48环境服务对照正在串行4K→16K，未采用、无新Math。另准备[原生max_num_seqs缺省入口](../tianshu_seq_limit_default_20261020/README_32g.md)，11项真实AST CPU检查通过，旧64-seq微收益证据保留，今天尚未GPU复测。
 
 14:48更新：小暂存区4K六轮对照已独立核验，5031.29974→5030.59406 total tok/s（-0.01403%），384/384成功、0抢占、无fallback；实际KV容量增加12480 tokens。16K仍在跑控制组。另为当前K8V16/S16准备[KV-only/all int32地址候选](../tianshu_k8v16_address32_20261020/README_32g.md)，CPU8个范围边界、32000地址样本与9个真实选择器/64位回退用例通过；GPU组件只排队，不与当前服务并跑。当前正式发布仍4K5099.65、16K3723.12及Math102/105。
+
+15:08更新：[框架内存组合](../tianshu_memory_combo_service_20261020/README_32g.md)已完成251源/50环境CPU组合，候选为arena128MiB+原生缺省seq64，GPU排在地址组件之后，运行时要求API/worker/真实scheduler一致。小暂存区单独16K仍在候选第三轮，第二轮3775.07，未作采用。另准备[严格TopP预筛选](../tianshu_topp_preselection_20261020/README_32g.md)，父源码与当前正式TopP一致，600个CPU支持集条件通过；GPU12场景三组harness准备完毕，但未启动或排队，未声称收益。
