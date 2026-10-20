@@ -1,0 +1,163 @@
+{
+  "prewarm": {
+    "complete": true,
+    "calls": [
+      {
+        "seed_group": "default",
+        "seed_state_word": 8697613783792613,
+        "offset": 0,
+        "N": 8355840,
+        "dns_classes": [
+          "i32",
+          "i64",
+          "i32"
+        ],
+        "entry_present_before": true,
+        "preexisting_entry_preserved": true,
+        "elapsed_s": 0.0003822469152510166,
+        "selected_config": {
+          "num_warps": 4,
+          "num_stages": 3,
+          "num_ctas": 1,
+          "BLOCK": 256
+        }
+      },
+      {
+        "seed_group": "default",
+        "seed_state_word": 8697613783792613,
+        "offset": 2147483648,
+        "N": 8355840,
+        "dns_classes": [
+          "i32",
+          "i64",
+          "i64"
+        ],
+        "entry_present_before": false,
+        "preexisting_entry_preserved": true,
+        "elapsed_s": 0.45292242988944054,
+        "selected_config": {
+          "num_warps": 4,
+          "num_stages": 3,
+          "num_ctas": 1,
+          "BLOCK": 256
+        }
+      },
+      {
+        "seed_group": "other",
+        "seed_state_word": 0,
+        "offset": 0,
+        "N": 8355840,
+        "dns_classes": [
+          "i32",
+          "i32",
+          "i32"
+        ],
+        "entry_present_before": false,
+        "preexisting_entry_preserved": true,
+        "elapsed_s": 0.0022651832550764084,
+        "selected_config": {
+          "num_warps": 4,
+          "num_stages": 3,
+          "num_ctas": 1,
+          "BLOCK": 256
+        }
+      },
+      {
+        "seed_group": "other",
+        "seed_state_word": 0,
+        "offset": 2147483648,
+        "N": 8355840,
+        "dns_classes": [
+          "i32",
+          "i32",
+          "i64"
+        ],
+        "entry_present_before": false,
+        "preexisting_entry_preserved": true,
+        "elapsed_s": 0.002160437870770693,
+        "selected_config": {
+          "num_warps": 4,
+          "num_stages": 3,
+          "num_ctas": 1,
+          "BLOCK": 256
+        }
+      }
+    ],
+    "representative_batch": 64,
+    "vocab": 130560,
+    "dispatch_classes": 4,
+    "actual_entry_presence_checked": true,
+    "all_preexisting_dispatch_entries_preserved": true,
+    "N_value_not_in_native_dispatch_key": true,
+    "CPU_RNG_unchanged": true,
+    "default_GPU_RNG_unchanged": true,
+    "CPU_RNG_sha256": "ab0f3737ed18987c6e577da8804a0b6d23aec6a112e3072151db7e1f583e8b00",
+    "GPU_RNG_sha256": "7bde83a243d8ab3493c53afadd8f967e28076198727bc4817f338743a03d8948",
+    "elapsed_s": 0.4579470958560705,
+    "allocation_bytes": 33423360
+  },
+  "memory_configurations": [
+    {
+      "key": "(4830720, 'torch.float32')",
+      "configuration": {
+        "BLOCK": 256,
+        "num_warps": 4,
+        "num_ctas": 1,
+        "num_stages": 3
+      }
+    },
+    {
+      "key": "(8355840, 'torch.float32')",
+      "configuration": {
+        "BLOCK": 256,
+        "num_warps": 4,
+        "num_ctas": 1,
+        "num_stages": 3
+      }
+    }
+  ],
+  "benchmark_pools": [
+    {
+      "key": "(4830720, 'torch.float32', 'triton_do_bench', 25, 100)",
+      "measured": 4,
+      "misses": 4,
+      "hits": 0,
+      "writes": 4
+    },
+    {
+      "key": "(8355840, 'torch.float32', 'triton_do_bench', 25, 100)",
+      "measured": 4,
+      "misses": 4,
+      "hits": 0,
+      "writes": 4
+    }
+  ],
+  "original_configs_before": {
+    "37": {
+      "BLOCK": 256,
+      "num_warps": 4,
+      "num_ctas": 1,
+      "num_stages": 3
+    },
+    "64": {
+      "BLOCK": 512,
+      "num_warps": 8,
+      "num_ctas": 1,
+      "num_stages": 3
+    }
+  },
+  "original_configs_after": {
+    "37": {
+      "BLOCK": 256,
+      "num_warps": 4,
+      "num_ctas": 1,
+      "num_stages": 3
+    },
+    "64": {
+      "BLOCK": 512,
+      "num_warps": 8,
+      "num_ctas": 1,
+      "num_stages": 3
+    }
+  }
+}
