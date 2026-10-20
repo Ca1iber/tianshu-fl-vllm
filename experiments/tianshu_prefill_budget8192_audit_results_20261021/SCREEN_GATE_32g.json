@@ -1,0 +1,66 @@
+{
+  "complete": true,
+  "original_GPU_result_phase_retained": "audit_failed",
+  "metadata_only_recovery": true,
+  "recovered_runtime_auditor_sha256": "aad957d21ec7d729bf92be3868e39aab4edfdaf506ea82ea675c03330d88b767",
+  "independently_rechecked": true,
+  "official_benchmark": false,
+  "adopted": false,
+  "new_model_Math_required": true,
+  "model_Math_not_run": true,
+  "runtime_source_count": 445,
+  "environment_count": 64,
+  "timed_successful_requests": 384,
+  "gain_percent": 1.3764840010364265,
+  "TTFT_change_percent": -1.1066234541231013,
+  "summaries": {
+    "control": {
+      "total_tok_s": 5505.204364455789,
+      "mean_TTFT_ms": 10390.35784186126,
+      "spread_percent": 0.23412209834325634,
+      "postfirst_autotuning_records": 0,
+      "actual_KV_blocks": 40723,
+      "prefill_INT8_launches": 5586,
+      "prefill_INT8_shapes": [
+        128,
+        2048,
+        4096
+      ],
+      "prefill_fallback_launches": 42,
+      "warm_shapes": 24,
+      "packed_weight_payload_bytes": 1326938112
+    },
+    "candidate": {
+      "total_tok_s": 5580.9826217568825,
+      "mean_TTFT_ms": 10275.375705015904,
+      "spread_percent": 0.1605090692398959,
+      "postfirst_autotuning_records": 0,
+      "actual_KV_blocks": 40219,
+      "prefill_INT8_launches": 3024,
+      "prefill_INT8_shapes": [
+        128,
+        4096,
+        5120,
+        8192
+      ],
+      "prefill_fallback_launches": 42,
+      "warm_shapes": 40,
+      "packed_weight_payload_bytes": 1326938112
+    }
+  },
+  "same_NN_decode_and_packed_weight_layout_in_both_arms": true,
+  "only_candidate_scheduling_budget_changed": true,
+  "untimed_canaries_unique_cache_salt_for_full_recompute": true,
+  "seed_reproducible_within_each_arm": true,
+  "cross_arm_text_equality_not_required_for_changed_batch_composition": true,
+  "timed_requests_no_seed_or_cache_salt": true,
+  "raw_roots": {
+    "control": "/workspace/benchmark-results/20261021_prefill_budget8192_service_control_tianshu",
+    "candidate": "/workspace/benchmark-results/20261021_prefill_budget8192_service_candidate_tianshu"
+  },
+  "raw_result_sha256": {
+    "control": "6aa53bcebf9c26625dd4b8ee8049ea24e9080276794f3b39c0f377416ed5e4f2",
+    "candidate": "a7b3a8354e6514a896947b296895131603f14cba40bcee7242335e5f83b6ea48"
+  },
+  "verifier_sha256": "f187caa1ee6531b07ca7a6825149c2971a1ad1570d598f85a6ba7a11eb65de9d"
+}
