@@ -38,7 +38,7 @@ def install(worker,mode,directory):
         kernel_source=str(COMPONENT/'kernel.py'),kernel_sha256=KERNEL_SHA,native_method_sources=native_paths,
         supported_M=[8,64],supported_roles=['gateup','lm_head'],configs={f'{role}:{m}':cfg for (role,m),cfg in CONFIGS.items()},
         banks=[],visited=[],launches={},load_complete=False,packed_payload_bytes=0,original_BF16_weights_retained=True,
-        checkpoint_never_modified=True,embedding_not_packed=True,packing_inside_actual_active_DeviceMemoryProfiler=True,
+        checkpoint_never_modified=True,embedding_not_packed=True,GateUp_unsupported_M_uses_qualified_BF16_mm=True,packing_inside_actual_active_DeviceMemoryProfiler=True,
         numerical_approximation_changes_model=True,RNG_not_read_or_modified=True,Python_launch_counts_are_not_Graph_replays=True)
     def save():
         path=directory/f'bindings_{os.getpid()}.json';tmp=path.with_suffix('.tmp');tmp.write_text(json.dumps(record,indent=2)+'\n');tmp.replace(path)
@@ -90,7 +90,11 @@ def install(worker,mode,directory):
     @torch.library.custom_op('tianshu_dense_w8a8::linear',mutates_args=(),device_types='cuda')
     def int8_linear(x:torch.Tensor,weight:torch.Tensor,packed:torch.Tensor,scales:torch.Tensor,bank_id:int)->torch.Tensor:
         bank=banks[bank_id];m,k=x.shape;role=bank['role'];cfg=config_for(role,m)
-        if cfg is None:return originals[bank['kind']][1](bank['method'],bank['layer'],x,None)
+        if cfg is None:
+            if role=='gateup':
+                from flag_gems import mm
+                return mm(x,weight.T)
+            return originals[bank['kind']][1](bank['method'],bank['layer'],x,None)
         assert x.dtype==torch.bfloat16 and x.stride(-1)==1 and weight.shape[1]==k
         q=torch.empty((m,k),device=x.device,dtype=torch.int8);ascale=torch.empty(m,device=x.device,dtype=torch.float32)
         out=torch.empty((m,weight.shape[0]),device=x.device,dtype=torch.bfloat16)

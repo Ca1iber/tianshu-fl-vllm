@@ -2,8 +2,8 @@
 set -euo pipefail
 cd /workspace/vllm-plugin-FL
 base=experiments/tianshu_dense_w8a8_validation_20261020
-screen=/workspace/benchmark-results/20261020_dense_w8a8_service4k_v3_tianshu
-pid=$(cat /workspace/benchmark-results/20261020_dense_w8a8_service4k_v3_launcher.pid)
+screen=/workspace/benchmark-results/20261020_dense_w8a8_service4k_v4_tianshu
+pid=$(cat /workspace/benchmark-results/20261020_dense_w8a8_service4k_v4_launcher.pid)
 cutoff=$(date -u -d '2026-10-20 15:58:00 UTC' +%s)
 printf 'Waiting for exact W8A8 screen launcher PID %s\n' "$pid"
 while kill -0 "$pid" 2>/dev/null;do

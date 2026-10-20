@@ -5,7 +5,7 @@ base=experiments/tianshu_dense_w8a8_validation_20261020
 root=/workspace/benchmark-results/20261020_dense_w8a8_validation_pipeline_tianshu
 math=/workspace/benchmark-results/20261020_dense_w8a8_math_tianshu
 official=/workspace/benchmark-results/20261020_dense_w8a8_official4k_tianshu
-screen=/workspace/benchmark-results/20261020_dense_w8a8_service4k_v3_tianshu
+screen=/workspace/benchmark-results/20261020_dense_w8a8_service4k_v4_tianshu
 remaining=$(( $(date -u -d '2026-10-20 15:58:00 UTC' +%s) - $(date -u +%s) ))
 test "$remaining" -gt 6000
 test ! -e "$root";test ! -e "$math";test ! -e "$official"

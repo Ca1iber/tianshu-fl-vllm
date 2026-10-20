@@ -4,7 +4,7 @@ from pathlib import Path
 import policy
 from candidate_profile import prepare
 BASE=Path(__file__).resolve().parent
-root=Path('/workspace/benchmark-results/20261020_dense_w8a8_service_PROFILE_CPU_v3_tianshu');assert not root.exists();root.mkdir()
+root=Path('/workspace/benchmark-results/20261020_dense_w8a8_service_PROFILE_CPU_v4_tianshu');assert not root.exists();root.mkdir()
 assert policy.role_for('linear',12288,2048)=='gateup' and policy.role_for('lm_head',130560,2048)=='lm_head'
 assert policy.role_for('embedding',130560,2048) is None
 for n,k in ((2560,2048),(2048,2048),(2048,6144),(12288,2049),(130560,2049)):

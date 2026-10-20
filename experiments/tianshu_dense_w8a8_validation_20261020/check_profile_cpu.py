@@ -5,7 +5,7 @@ from pathlib import Path
 from framework_profile import prepare
 BASE=Path(__file__).resolve().parent
 root=Path('/workspace/benchmark-results/20261020_dense_w8a8_validation_PROFILE_CPU_tianshu');assert not root.exists();root.mkdir()
-screen=Path('/workspace/benchmark-results/20261020_dense_w8a8_service4k_v3_tianshu')
+screen=Path('/workspace/benchmark-results/20261020_dense_w8a8_service4k_v4_tianshu')
 command,environment,profile,sources=prepare(root,screen)
 assert len(command)==13 and len(profile)==57 and len(sources)==311
 assert profile['VLLM_DISABLE_COMPILE_CACHE']=='1' and profile['TIANSHU_DENSE_INT8_MODE']=='candidate'
