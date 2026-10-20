@@ -1,0 +1,13 @@
+# 选择性 W8A8 整模型4K对照
+
+当前完成CPU准备，尚无服务成绩或新Math结果。复用正式成对K配置，只增加42个GateUp和1个ParallelLMHead的动态A8/静态W8计算；M8/M64使用已经组件验证的tile，其他M及其他投影继续原BF16。Math batch8必须真实走新分支，不能以未使用新计算的质量结果证明候选。
+
+BF16权重保留用于Prefill，新增INT8及scale有效载荷1326938112bytes。量化位于模型loader的权重后处理，逐层检查调用栈中真实FL DeviceMemoryProfiler仍处于initial_memory与final_memory之间，并核对参数字节/模型计量。模型checkpoint和原始BF16参数不变。ParallelLMHead按类区分，不把形状相同的token embedding打包。
+
+Torch custom-op提供fake输出形状，实际CUDA实现内部调用已验证的整数GEMM；保留原分支回退。记录C8/C64真实model Graph捕获和回放关联、LM head在model Graph外的实际调用与权重哈希，区分Python发射次数和Graph回放次数。
+
+对照仅改变TIANSHU_DENSE_INT8_MODE，307份来源、56项实际进程环境与原13项serve argv固定。服务候选先运行以尽早发现接入问题，随后control。每组2个C1确定性诊断、8个C8短诊断、三轮4096/1024 C64 N64请求，排首轮；完整回答仅留容器。动态权重占用会真实减少候选KV容量，比较表会保留两组block数。
+
+基线审计由原成对K审计派生，仅扩展环境数量54→56；attention/Future-KV始终candidate，新增mode仅控制整数dense分支。全量实际56项环境与/proc记录逐项一致，不过滤观测来伪装旧环境。
+
+原始目录：/workspace/benchmark-results/20261020_dense_w8a8_service4k_tianshu。正确率必须之后独立跑完整105题，本轮小规模吞吐不得当作正式N256成绩。当前5235.52正式最佳不包含本实验。
