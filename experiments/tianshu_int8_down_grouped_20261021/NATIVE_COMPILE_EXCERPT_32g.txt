@@ -1,0 +1,75 @@
+fae57112b1a9438ee27e925bcdac900911ead444d58ad15f46569402cb330a7f  /workspace/benchmark-results/20261021_down_native_compile_evidence_tianshu/generated_model.py
+    def call(self, args):
+        arg0_1, arg1_1, arg2_1, arg3_1, arg4_1, arg5_1, arg6_1, arg7_1, arg8_1, arg9_1 = args
+        args.clear()
+        s72 = arg1_1
+        with torch.cuda._DeviceGuard(0):
+            torch.cuda.set_device(0)
+            buf0 = empty_strided_cuda((s72, 2048), (2048, 1), torch.bfloat16)
+            # Topologically Sorted Source Nodes: [view, linear], Original ATen: [aten.view, aten.linear]
+            extern_kernels.mm(reinterpret_tensor(arg0_1, (s72, 2048), (2048, 1), 0), reinterpret_tensor(arg2_1, (2048, 2048), (1, 2048), 0), out=buf0)
+            del arg0_1
+            del arg2_1
+            buf2 = empty_strided_cuda((s72, 2048), (2048, 1), torch.bfloat16)
+            # Topologically Sorted Source Nodes: [fused_add_rms_norm_maybe_inplace, linear_default], Original ATen: [vllm_ir.fused_add_rms_norm, tianshu_prefill_int8.linear]
+            stream0 = get_raw_stream(0)
+            triton_red_fused_fused_add_rms_norm_linear_0.run(buf0, arg4_1, arg3_1, buf2, s72, 2048, stream=stream0)
+            del arg3_1
+            # Topologically Sorted Source Nodes: [fused_add_rms_norm_maybe_inplace, linear_default], Original ATen: [vllm_ir.fused_add_rms_norm, tianshu_prefill_int8.linear]
+            buf3 = torch.ops.tianshu_prefill_int8.linear.default(buf2, arg5_1, arg6_1, arg7_1, 41)
+            del arg5_1
+            del arg6_1
+            del arg7_1
+            del buf2
+            buf4 = buf3
+            del buf3
+            buf5 = empty_strided_cuda((s72, 6144), (6144, 1), torch.bfloat16)
+            # Topologically Sorted Source Nodes: [getitem_2, silu, getitem_3, mul], Original ATen: [aten.slice, aten.silu, aten.mul]
+            triton_poi_fused_mul_silu_slice_1_xnumel = 6144*s72
+            stream0 = get_raw_stream(0)
+            triton_poi_fused_mul_silu_slice_1.run(buf4, buf5, triton_poi_fused_mul_silu_slice_1_xnumel, stream=stream0)
+            del buf4
+            buf6 = empty_strided_cuda((s72, 2048), (2048, 1), torch.bfloat16)
+            # Topologically Sorted Source Nodes: [getitem_2, silu, getitem_3, mul, linear_1], Original ATen: [aten.slice, aten.silu, aten.mul, aten.linear]
+            extern_kernels.mm(buf5, reinterpret_tensor(arg8_1, (6144, 2048), (1, 6144), 0), out=buf6)
+            del arg8_1
+            del buf5
+            buf8 = buf6; del buf6  # reuse
+            # Topologically Sorted Source Nodes: [fused_add_rms_norm_maybe_inplace, fused_add_rms_norm_maybe_inplace_1], Original ATen: [vllm_ir.fused_add_rms_norm]
+            stream0 = get_raw_stream(0)
+            triton_red_fused_fused_add_rms_norm_2.run(buf8, buf0, arg4_1, arg9_1, s72, 2048, stream=stream0)
+            del arg4_1
+    ("mish", mish),
+    ("mish_", mish_),
+    ("mish_backward", mish_backward),
+    ("mkldnn_rnn_layer", mkldnn_rnn_layer),
+    ("mm", mm),
+    ("mm.out", mm_out),
+    ("mode", mode),
+    ("mse_loss", mse_loss),
+    ("mse_loss_backward", mse_loss_backward),
+def mm(a, b):
+    logger.debug("GEMS_ILUVATAR MM")
+    device = a.device
+    if a.stride(0) > 1 and a.stride(1) > 1:
+        a = a.contiguous()
+    if b.stride(0) > 1 and b.stride(1) > 1:
+        b = b.contiguous()
+    assert a.shape[1] == b.shape[0], "incompatible dimensions"
+    M, K = a.shape
+    _, N = b.shape
+    c_dtype = get_higher_dtype(a.dtype, b.dtype)
+    c = torch.empty((M, N), device=device, dtype=c_dtype)
+    return _launch_mm(a, b, c, M, N, K)
+
+
+def mm_out(a, b, *, out):
+    logger.debug("GEMS_ILUVATAR MM_OUT")
+    if a.stride(0) > 1 and a.stride(1) > 1:
+        a = a.contiguous()
+    if b.stride(0) > 1 and b.stride(1) > 1:
+        b = b.contiguous()
+    assert a.shape[1] == b.shape[0], "incompatible dimensions"
+    M, K = a.shape
+    _, N = b.shape
+    return _launch_mm(a, b, out, M, N, K)

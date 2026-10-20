@@ -7,3 +7,5 @@
 3组改变输入/权重符号/缩放的Graph重放、边界保护、RNG不变、真实权重哈希、7轮交替计时。M129不预设正收益。纯算子探索不代表模型吞吐或正确率；只有本组件有收益才设计单独模型版本。当前先完成已有Math→正式4K，不并行占GPU。
 
 GPU启动前补齐M8/M64的小BM16/32、BN128/256、BK64/w4/s2，各group1/8共8配置（总20），避免只拿大矩阵BM64/128代替小M完整探索。旧物理NN组件28项只测GateUp/LM，没有测Down；本轮不重复旧角色数据。原12配置保持前缀字节语义不变。9M×20共180组合，3相位最多540组完整检查；仍不根据单层tile选择直接宣布模型收益。
+
+进一步读当前Inductor生成图确认：Down是 `extern_kernels.mm(buf5, W_6144x2048_stride1_6144, out=buf6)`；FlagGems注册mm和mm.out，两者均调用同一_launch_mm，连续BF16输入/输出和NT W stride一致。本组件baseline.qualified_mm在M2048直接保留现有已启用tile，其余M direct flag_gems.mm调用同一原内核。实际生成文件完整副本仅容器 /workspace/benchmark-results/20261021_down_native_compile_evidence_tianshu，关键摘录和整文件SHA在NATIVE_COMPILE_EXCERPT_32g.txt，不导入/执行生成文件的附带benchmark harness。
