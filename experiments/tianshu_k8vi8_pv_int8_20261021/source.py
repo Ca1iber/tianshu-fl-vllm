@@ -12,9 +12,10 @@ def render(raw):
     original,parent_proof=parent.render(raw)
     edits=[('from vllm.triton_utils import tl, triton\n','from vllm.triton_utils import tl, triton\nfrom _tianshu_k8vi8_pv_integer import quantized_pv\n'),
         ('    KV_QUANT_MODE: tl.constexpr = 0,\n','    KV_QUANT_MODE: tl.constexpr = 0,\n    PV_INT8: tl.constexpr = False,\n'),
-        ('    USE_PER_TOKEN_HEAD_SCALES: tl.constexpr = KV_QUANT_MODE >= 2\n','    USE_PER_TOKEN_HEAD_SCALES: tl.constexpr = KV_QUANT_MODE >= 2\n    tl.static_assert(not PV_INT8 or (IS_3D and KV_QUANT_MODE == 2 and not SLIDING_WINDOW and value_cache_ptr.dtype.element_ty == tl.int8))\n'),
+        ('    USE_PER_TOKEN_HEAD_SCALES: tl.constexpr = KV_QUANT_MODE >= 2\n','    USE_PER_TOKEN_HEAD_SCALES: tl.constexpr = KV_QUANT_MODE >= 2\n    tl.static_assert(not PV_INT8 or (IS_3D and KV_QUANT_MODE == 2 and not SLIDING_WINDOW and not USE_TD and value_cache_ptr.dtype.element_ty == tl.int8))\n'),
         ('        V = _cast_kv_tile(V_load, Q, v_scale, KV_QUANT_MODE)\n','        if PV_INT8:\n            V = V_load\n        else:\n            V = _cast_kv_tile(V_load, Q, v_scale, KV_QUANT_MODE)\n'),
         ('        if USE_PER_TOKEN_HEAD_SCALES:\n            # Per-token-head quant: apply v_scale to P instead of V.\n','        if PV_INT8:\n            acc += quantized_pv(P, V, v_token_head_scales)\n        elif USE_PER_TOKEN_HEAD_SCALES:\n            # Per-token-head quant: apply v_scale to P instead of V.\n')]
+    edits.append(('        physical_block_idx = tl.load(\n            block_tables_ptr + block_table_offset + seq_offset // BLOCK_SIZE\n        ).to(tl.int64)', '        if PV_INT8:\n            physical_block_idx = tl.load(\n                block_tables_ptr + block_table_offset + seq_offset // BLOCK_SIZE,\n                mask=tile_mask, other=0,\n            ).to(tl.int64)\n        else:\n            physical_block_idx = tl.load(\n                block_tables_ptr + block_table_offset + seq_offset // BLOCK_SIZE\n            ).to(tl.int64)'))
     text=original
     for before,after in edits:assert text.count(before)==1,(before,text.count(before));text=text.replace(before,after)
     restored=text

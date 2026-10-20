@@ -14,6 +14,20 @@ def main():
     assert old_cpu['complete'] and old_gpu['complete']
     for path,digest in old_cpu['sources'].items():assert sha(path)==digest
     text,proof=source.render(source.SOURCE.read_bytes());ast.parse(text)
+    tail_cases=tail_masked=0
+    for context in (1,17,31,33,127,257,4096,5120):
+      width=(context+15)//16
+      for tile in (32,64):
+       for segments in (4,16,64):
+        tiles=(context+tile-1)//tile;per=(tiles+segments-1)//segments
+        for segment in range(segments):
+         for j in range(segment*per,min((segment+1)*per,tiles)):
+          for lane in range(tile):
+           position=j*tile+lane
+           if position<context:assert position//16<width
+           elif position//16>=width:tail_masked+=1
+        tail_cases+=1
+    assert tail_cases==48 and tail_masked>0
     cases=[];checked_quant=checked_integer=0
     for index,(tokens,factor) in enumerate(((32,1.),(64,1.),(128,1.),(32,0.),(64,1.e-12),(128,.25))):
         generator=torch.Generator(device='cpu').manual_seed(202610210900+index);m,d=16,128
@@ -39,10 +53,10 @@ def main():
         cases.append(dict(T=tokens,M=m,D=d,factor=factor,exact_RNE_and_INT64=True,max_abs_error=float((ideal-approx).abs().max()),analytical_error_bound_passed=True))
     assert torch.equal(torch.get_rng_state(),rng_before)
     for path in BASE.glob('*.py'):ast.parse(path.read_text())
-    paths=[*BASE.glob('*.py'),source.PARENT/'source.py',source.PARENT/'writer.py',source.PARENT/'layout.py',source.PARENT/'reference_quantize.py',source.PARENT/'CPU_GATE_32g.json',source.PARENT/'GPU_GATE_32g.json',source.SOURCE]
+    paths=[*BASE.glob('*.py'),*BASE.glob('*.sh'),source.PARENT/'source.py',source.PARENT/'writer.py',source.PARENT/'layout.py',source.PARENT/'reference_quantize.py',source.PARENT/'CPU_GATE_32g.json',source.PARENT/'GPU_GATE_32g.json',source.SOURCE]
     result=dict(complete=True,CPU_only=True,no_GPU_started=True,GPU_not_compiled_or_timed=True,adopted=False,new_Math_not_run=True,
         source_proof=proof,primitive_cases=cases,independent_RNE_elements=checked_quant,independent_INT64_outputs=checked_integer,
-        CPU_global_RNG_unchanged=True,integer_maximum_tile_bound=128*127*127,
+        CPU_global_RNG_unchanged=True,candidate_masked_block_table_tail_cases=tail_cases,unmasked_tail_indices_prevented=tail_masked,integer_maximum_tile_bound=128*127*127,
         scope='CPU oracle and source transformation only; no claim of GPU correctness, speed or model quality',
         sources={str(p):sha(p) for p in paths})
     (BASE/'CPU_GATE_32g.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps({k:v for k,v in result.items() if k not in ('source_proof','sources','primitive_cases')}))
