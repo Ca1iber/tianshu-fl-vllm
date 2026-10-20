@@ -1,0 +1,68 @@
+{
+  "complete": false,
+  "phase": "failed",
+  "error": "AssertionError((0, 0, 'K8VI8Heads', 'writer physical bytes'))",
+  "scope": "Real native page layout, writer+paired-K decode; not end-to-end throughput",
+  "cases_completed": 0,
+  "codec_proof": {
+    "parent_source_sha256": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+    "generated_sha256": "2ff3daafd25dfc68ebe938ea1c02cf7d1420859884d12efc9c775aedb8425795",
+    "only_two_mode_conditions_extended": true,
+    "paired_K_load_enabled_for_both_modes": true,
+    "producer_arithmetic_and_native_P_scaling_unchanged": true,
+    "reducer_and_API_AST_unchanged": true,
+    "K_fixed_software8_V_per_token_head_INT8": true,
+    "K_per_token_head_scales_stored_as_exact_one": true,
+    "generated_source": "/workspace/benchmark-results/20261021_k8vi8_heads_GPU_tianshu/reader_generated/generated_reader.py"
+  },
+  "producer_records": {
+    "('Soft8OwnWriter', 1, 33)": {
+      "mode": "Soft8OwnWriter",
+      "batch": 1,
+      "context": 33,
+      "key_dtype": "torch.uint8",
+      "value_dtype": "torch.uint8",
+      "KV_QUANT_MODE": 0,
+      "IS_3D": true,
+      "segments": 4,
+      "tile": 16,
+      "warps": 1,
+      "n_regs": 238,
+      "n_spills": 0,
+      "binary_sha256": "92f0ed23cce9305ed3738dafc4238b821167e88abf2394bfc0b3a65f09cf28b5"
+    },
+    "('K8V16', 1, 33)": {
+      "mode": "K8V16",
+      "batch": 1,
+      "context": 33,
+      "key_dtype": "torch.uint8",
+      "value_dtype": "torch.bfloat16",
+      "KV_QUANT_MODE": 0,
+      "IS_3D": true,
+      "segments": 4,
+      "tile": 16,
+      "warps": 1,
+      "n_regs": 176,
+      "n_spills": 0,
+      "binary_sha256": "b3a4153af2a7ed83df3406f4ebf39640c7c12d592346c92ccea9ff3633c5030b"
+    },
+    "('K8VI8Heads', 1, 33)": {
+      "mode": "K8VI8Heads",
+      "batch": 1,
+      "context": 33,
+      "key_dtype": "torch.uint8",
+      "value_dtype": "torch.int8",
+      "KV_QUANT_MODE": 2,
+      "IS_3D": true,
+      "segments": 4,
+      "tile": 16,
+      "warps": 1,
+      "n_regs": 189,
+      "n_spills": 0,
+      "binary_sha256": "0dc11043ccb03857e8e3bd14a10349bbc8e3e30567914158f3bfc6f30e69e56c"
+    }
+  },
+  "full_engine_allocator_not_installed": true,
+  "prefill_not_tested": true,
+  "Math_not_run": true
+}

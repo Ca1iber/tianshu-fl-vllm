@@ -1,0 +1,254 @@
+{
+  "complete": true,
+  "explicit_FP32_RNE_reference_verified": true,
+  "reader_proof": {
+    "parent_source_sha256": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+    "generated_sha256": "2ff3daafd25dfc68ebe938ea1c02cf7d1420859884d12efc9c775aedb8425795",
+    "only_two_mode_conditions_extended": true,
+    "paired_K_load_enabled_for_both_modes": true,
+    "producer_arithmetic_and_native_P_scaling_unchanged": true,
+    "reducer_and_API_AST_unchanged": true,
+    "K_fixed_software8_V_per_token_head_INT8": true,
+    "K_per_token_head_scales_stored_as_exact_one": true
+  },
+  "native_layout_checks": [
+    {
+      "mode": "Soft8OwnWriter",
+      "page_bytes": 8192,
+      "key_bytes": 1,
+      "value_bytes": 1,
+      "value_offset": 4096,
+      "key_scale_offset": null,
+      "value_scale_offset": null,
+      "physical_pages": 10,
+      "num_blocks": 10,
+      "actual_spec_page_bytes": 8192,
+      "actual_raw_bytes": 81920,
+      "actual_native_view_stride_bytes": 8192,
+      "all_planes_alias_actual_raw": true,
+      "key_dtype": "torch.uint8",
+      "value_dtype": "torch.uint8",
+      "key_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "value_strides": [
+        8192,
+        256,
+        128,
+        1
+      ],
+      "key_scale_strides": null,
+      "value_scale_strides": null,
+      "full_engine_allocator_not_installed": true,
+      "all_scale_bytes_in_native_page_accounting": true
+    },
+    {
+      "mode": "Soft8OwnWriter",
+      "page_bytes": 8192,
+      "key_bytes": 1,
+      "value_bytes": 1,
+      "value_offset": 4096,
+      "key_scale_offset": null,
+      "value_scale_offset": null,
+      "physical_pages": 10,
+      "num_blocks": 5,
+      "actual_spec_page_bytes": 8192,
+      "actual_raw_bytes": 81920,
+      "actual_native_view_stride_bytes": 16384,
+      "all_planes_alias_actual_raw": true,
+      "key_dtype": "torch.uint8",
+      "value_dtype": "torch.uint8",
+      "key_strides": [
+        16384,
+        256,
+        128,
+        1
+      ],
+      "value_strides": [
+        16384,
+        256,
+        128,
+        1
+      ],
+      "key_scale_strides": null,
+      "value_scale_strides": null,
+      "full_engine_allocator_not_installed": true,
+      "all_scale_bytes_in_native_page_accounting": true
+    },
+    {
+      "mode": "K8V16",
+      "page_bytes": 12288,
+      "key_bytes": 1,
+      "value_bytes": 2,
+      "value_offset": 4096,
+      "key_scale_offset": null,
+      "value_scale_offset": null,
+      "physical_pages": 10,
+      "num_blocks": 10,
+      "actual_spec_page_bytes": 12288,
+      "actual_raw_bytes": 122880,
+      "actual_native_view_stride_bytes": 12288,
+      "all_planes_alias_actual_raw": true,
+      "key_dtype": "torch.uint8",
+      "value_dtype": "torch.bfloat16",
+      "key_strides": [
+        12288,
+        256,
+        128,
+        1
+      ],
+      "value_strides": [
+        6144,
+        256,
+        128,
+        1
+      ],
+      "key_scale_strides": null,
+      "value_scale_strides": null,
+      "full_engine_allocator_not_installed": true,
+      "all_scale_bytes_in_native_page_accounting": true
+    },
+    {
+      "mode": "K8V16",
+      "page_bytes": 12288,
+      "key_bytes": 1,
+      "value_bytes": 2,
+      "value_offset": 4096,
+      "key_scale_offset": null,
+      "value_scale_offset": null,
+      "physical_pages": 10,
+      "num_blocks": 5,
+      "actual_spec_page_bytes": 12288,
+      "actual_raw_bytes": 122880,
+      "actual_native_view_stride_bytes": 24576,
+      "all_planes_alias_actual_raw": true,
+      "key_dtype": "torch.uint8",
+      "value_dtype": "torch.bfloat16",
+      "key_strides": [
+        24576,
+        256,
+        128,
+        1
+      ],
+      "value_strides": [
+        12288,
+        256,
+        128,
+        1
+      ],
+      "key_scale_strides": null,
+      "value_scale_strides": null,
+      "full_engine_allocator_not_installed": true,
+      "all_scale_bytes_in_native_page_accounting": true
+    },
+    {
+      "mode": "K8VI8Heads",
+      "page_bytes": 8448,
+      "key_bytes": 1,
+      "value_bytes": 1,
+      "value_offset": 4096,
+      "key_scale_offset": 8192,
+      "value_scale_offset": 8320,
+      "physical_pages": 10,
+      "num_blocks": 10,
+      "actual_spec_page_bytes": 8448,
+      "actual_raw_bytes": 84480,
+      "actual_native_view_stride_bytes": 8448,
+      "all_planes_alias_actual_raw": true,
+      "key_dtype": "torch.uint8",
+      "value_dtype": "torch.int8",
+      "key_strides": [
+        8448,
+        256,
+        128,
+        1
+      ],
+      "value_strides": [
+        8448,
+        256,
+        128,
+        1
+      ],
+      "key_scale_strides": [
+        2112,
+        2,
+        1
+      ],
+      "value_scale_strides": [
+        2112,
+        2,
+        1
+      ],
+      "full_engine_allocator_not_installed": true,
+      "all_scale_bytes_in_native_page_accounting": true
+    },
+    {
+      "mode": "K8VI8Heads",
+      "page_bytes": 8448,
+      "key_bytes": 1,
+      "value_bytes": 1,
+      "value_offset": 4096,
+      "key_scale_offset": 8192,
+      "value_scale_offset": 8320,
+      "physical_pages": 10,
+      "num_blocks": 5,
+      "actual_spec_page_bytes": 8448,
+      "actual_raw_bytes": 84480,
+      "actual_native_view_stride_bytes": 16896,
+      "all_planes_alias_actual_raw": true,
+      "key_dtype": "torch.uint8",
+      "value_dtype": "torch.int8",
+      "key_strides": [
+        16896,
+        256,
+        128,
+        1
+      ],
+      "value_strides": [
+        16896,
+        256,
+        128,
+        1
+      ],
+      "key_scale_strides": [
+        4224,
+        2,
+        1
+      ],
+      "value_scale_strides": [
+        4224,
+        2,
+        1
+      ],
+      "full_engine_allocator_not_installed": true,
+      "all_scale_bytes_in_native_page_accounting": true
+    }
+  ],
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_heads_v2_20261021/source.py": "589dc4a5f9d5c4bca2cd0fc05814e45d9d5e6b74291e83e9bd202ee04d6c65c0",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_heads_v2_20261021/writer.py": "49565b1105a0eaa3b68364499d857cf481227af2612f7bdf52c32eb3020802f2",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_heads_v2_20261021/layout.py": "d1b0a926e7883b1de41448465b1b06163db66668600991760f4fe2afdfa799a2",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_heads_v2_20261021/check_cpu.py": "e2de92d0bc53e1d958cd1f4e883ae8cb15a9e2a65f1ccf9e901fc06f1563c7e3",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_heads_v2_20261021/probe_gpu.py": "4fe04b89eb1c1191d58d5f50913e773d7519198b041c4ac07b0b95832ccf425c",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_heads_v2_20261021/verify_gpu.py": "8faf277f3fe2a086fe23115cc57c9eb45dfe64099e22b0be033f45039a7805a2",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_heads_v2_20261021/reference_quantize.py": "032b9bfa9abd451a60b0bd809185994b0f94dadfe7c894baadbb85b265fd2633",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_heads_v2_20261021/run_component.sh": "d4748871a277bbde7ebf9ac0b7392418f3a3fe875d846db94e593cf3bbb8a5fc",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_heads_v2_20261021/run_after_padding.sh": "4c530219a0bf93f53ca9c887d4cdfc9d7295b74070954f9af9c07883e6486e23",
+    "/workspace/benchmark-results/20261020_lm_precision_math_tianshu/pair_load_records/generated_reader/generated_pair_rows.py": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_soft8_mixed_planes_20261019/writer.py": "27a74d3bdfee978780044eb69025c10a21d92a1b0a8cf567ee9fea1e0b8d12b5",
+    "/usr/local/lib/python3.12/site-packages/vllm/v1/kv_cache_interface.py": "7e3c220998267190a622e216b2b125306807cf8be3ec1e9a8e84fe6e7a293003",
+    "/usr/local/lib/python3.12/site-packages/vllm/v1/worker/gpu/attn_utils.py": "a351178df66fb5364cbe663ba7f25346c6317927fcc29a8c00f8972a23440ace",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_writer_diagnostic_20261021/REFERENCE_RNE_GATE_32g.json": "488e633e9dff8300d05c5d816e6865fdd482274083bb1828bae05546c1687106",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_writer_diagnostic_20261021/verify_reference_rne.py": "a1159c042353dcad7f0205954d66f8ab8632352748d473c3fddc2ab0c05e7574",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_w8a8_20261020/kernel.py": "b9b692cf561a35ef9c38d05d1edf7aa804436728923efa4800f914ff6b656152"
+  },
+  "actual_GPU_writer_reader_not_yet_verified": true,
+  "full_engine_not_installed": true,
+  "Math_not_run": true,
+  "physical_K8V16_page_bytes": 12288,
+  "physical_new_page_bytes": 8448,
+  "physical_reduction_fraction": 0.3125
+}

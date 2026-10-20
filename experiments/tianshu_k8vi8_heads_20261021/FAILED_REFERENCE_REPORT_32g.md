@@ -1,0 +1,5 @@
+# 首个KV组件未通过，失败原样保留
+
+case0/phase0/K8VI8Heads在完整物理存储检查处失败，完整组件场景通过数为0，不采用、不报告性能。独立诊断已确认小fixture实际writer全部物理字节与CPU/struct精确一致，GPU普通除法参考的部分scale有1ULP差异。详见 ../tianshu_k8vi8_writer_diagnostic_20261021/REPORT_32g.md。
+
+原probe、writer、layout、source、CPU_GATE和原始失败结果均未修改。V2在单独目录修正fixture参考，writer/reader/layout与V1逐字节相同；新参考已在8704 head/1114112元素通过CPU对照。V2依旧必须重新通过完整组件和CPU实际writer校验，不能继承本次未完成检查。

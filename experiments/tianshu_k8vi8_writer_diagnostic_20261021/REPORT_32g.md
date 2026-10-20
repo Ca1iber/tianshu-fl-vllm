@@ -1,0 +1,7 @@
+# 新V整数格式首轮失败：参考scale精度诊断
+
+原组件在case0/phase0的完整物理字节检查失败，记录和源文件保留，没有修改或当作通过。独立小fixture逐真实slot检查writer，全部物理字节与CPU FP32参考精确一致：INT8 V、K编码、K scale、V scale都正确。GPU参考有5个scale差异，各1ULP；0行scale为CPU/独立struct/显式RNE的7.874016022535457e-11，而GPU普通除法参考为7.874015328646067e-11。
+
+进一步8704个head涵盖全部65280个有限BF16码值及8192随机head/极值、zero/ties，CPU FP32与CPU FP64后转FP32的scale都与独立Python/struct舍入完全一致。GPU普通FP32参考有2474个scale差异；本次尝试的GPU FP64参考8704个scale均不同，抽取样本返回0，因此不能使用该GPU FP64路径作正确性参考，也不据此泛化所有GPU FP64功能。
+
+后续参考改用明确tl.div_rn与RNE量化，并继续由CPU独立检查真实writer输出。新参考需先通过完整有限BF16/极值校验。GPU参考生成只在fixture/refill与验证阶段，不能混进被测writer路径或藏掉计时开销。原writer算法不变，新的独立组件目录重新冻源再运行。

@@ -1,0 +1,521 @@
+{
+  "complete": true,
+  "independently_CPU_rechecked": true,
+  "official_benchmark": false,
+  "model_executed": false,
+  "adopted": false,
+  "full_device_INT32_and_BF16_valid_row_bitwise_checks": 78,
+  "CPU_selected_INT64_checks": 78,
+  "all_A_and_selected_W_quantization_recomputed": true,
+  "padded_rows_written_zero_inside_timed_quantizer": true,
+  "one_padded_GEMM_binary_per_role_target": true,
+  "one_padded_quantize_binary_per_stride": true,
+  "actual_equals_target_keeps_original_quantizer": true,
+  "alignment_contract_bytes": 256,
+  "padding_reuse": [
+    {
+      "group": "('gateup', 32, [('bk', 128), ('bm', 32), ('bn', 128), ('stages', 1), ('warps', 2)])",
+      "M": [
+        1,
+        3,
+        7,
+        8,
+        17,
+        32
+      ],
+      "compiled_GEMM_binaries": 1
+    },
+    {
+      "group": "('gateup', 64, [('bk', 128), ('bm', 64), ('bn', 256), ('stages', 1), ('warps', 4)])",
+      "M": [
+        37,
+        40,
+        48,
+        56,
+        63,
+        64
+      ],
+      "compiled_GEMM_binaries": 1
+    },
+    {
+      "group": "('lm_head', 32, [('bk', 128), ('bm', 32), ('bn', 128), ('stages', 1), ('warps', 2)])",
+      "M": [
+        1,
+        3,
+        7,
+        8,
+        17,
+        32
+      ],
+      "compiled_GEMM_binaries": 1
+    },
+    {
+      "group": "('lm_head', 64, [('bk', 128), ('bm', 64), ('bn', 128), ('stages', 1), ('warps', 4)])",
+      "M": [
+        37,
+        40,
+        48,
+        56,
+        63,
+        64
+      ],
+      "compiled_GEMM_binaries": 1
+    }
+  ],
+  "quantize_reuse": [
+    {
+      "strided": false,
+      "M": [
+        1,
+        3,
+        7,
+        8,
+        17,
+        37,
+        40,
+        48,
+        56,
+        63
+      ],
+      "compiled_binaries": 1
+    },
+    {
+      "strided": true,
+      "M": [
+        37
+      ],
+      "compiled_binaries": 1
+    }
+  ],
+  "frozen_sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_tile_padding_20261021/probe_gpu.py": "18659bdbc66fc662e9ac9313f911721524fc3e24c92a83a30f5d4d7dc492c24c",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_tile_padding_20261021/kernel_padded.py": "82d667647fb2e05ea5f309abbf4abccd8666f58db594cb5918c5ebf944695714",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_tile_padding_20261021/check_cpu.py": "0604fa873b5a9eac9874397778d047e47c2251f41830084463924ebea9598a16",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_tile_padding_20261021/verify_gpu.py": "c6a75663f6cab0f5cec1690177de13fa909add756d2df881c4116186bd88dfe7",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_tile_padding_20261021/run_component.sh": "a456c3cd9e0899c15d1ef462a45c2a979b68811457347f83cd169af861839135",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_tile_padding_20261021/run_after_quality.sh": "eea647100d66a2319746ac7997c270cf8fb7946e77da0c941bf72f6740886137",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_w8a8_20261020/kernel.py": "b9b692cf561a35ef9c38d05d1edf7aa804436728923efa4800f914ff6b656152",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_w8a8_20261020/CPU_GATE_32g.json": "7941df73577720c7da673b8363615ba8224e96c95474f3e8cb8a13c673d58084",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_tile_padding_20261021/CPU_GATE_32g.json": "9409e393930edfe275dddb030452e94ee571cb614cff0eb6cf34ab9fa40d4c55"
+  },
+  "raw_root": "/workspace/benchmark-results/20261021_dense_tile_padding_GPU_tianshu",
+  "summary": [
+    {
+      "role": "gateup",
+      "M": 1,
+      "padded_M": 32,
+      "strided": false,
+      "same_configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "direct_ms": 0.09157384634017944,
+      "padded_ms": 0.059693658351898195,
+      "speedup_percent": 53.40632299723591
+    },
+    {
+      "role": "gateup",
+      "M": 3,
+      "padded_M": 32,
+      "strided": false,
+      "same_configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "direct_ms": 0.0921321153640747,
+      "padded_ms": 0.06010057926177979,
+      "speedup_percent": 53.2965513739482
+    },
+    {
+      "role": "gateup",
+      "M": 7,
+      "padded_M": 32,
+      "strided": false,
+      "same_configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "direct_ms": 0.09249942302703858,
+      "padded_ms": 0.06008250117301941,
+      "speedup_percent": 53.954015264225184
+    },
+    {
+      "role": "gateup",
+      "M": 8,
+      "padded_M": 32,
+      "strided": false,
+      "same_configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "direct_ms": 0.09276326894760131,
+      "padded_ms": 0.05992826819419861,
+      "speedup_percent": 54.79050495335576
+    },
+    {
+      "role": "gateup",
+      "M": 17,
+      "padded_M": 32,
+      "strided": false,
+      "same_configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "direct_ms": 0.0941132664680481,
+      "padded_ms": 0.06026037931442261,
+      "speedup_percent": 56.17768679647723
+    },
+    {
+      "role": "gateup",
+      "M": 32,
+      "padded_M": 32,
+      "strided": false,
+      "same_configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "direct_ms": 0.060015004873275754,
+      "padded_ms": 0.0602719247341156,
+      "speedup_percent": -0.42626788836298557
+    },
+    {
+      "role": "gateup",
+      "M": 37,
+      "padded_M": 64,
+      "strided": false,
+      "same_configuration": {
+        "bm": 64,
+        "bn": 256,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "direct_ms": 0.13289039134979247,
+      "padded_ms": 0.06769384741783142,
+      "speedup_percent": 96.31088558099512
+    },
+    {
+      "role": "gateup",
+      "M": 40,
+      "padded_M": 64,
+      "strided": false,
+      "same_configuration": {
+        "bm": 64,
+        "bn": 256,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "direct_ms": 0.13282827138900757,
+      "padded_ms": 0.06748711466789245,
+      "speedup_percent": 96.82019603692098
+    },
+    {
+      "role": "gateup",
+      "M": 48,
+      "padded_M": 64,
+      "strided": false,
+      "same_configuration": {
+        "bm": 64,
+        "bn": 256,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "direct_ms": 0.13321499824523925,
+      "padded_ms": 0.06845576763153076,
+      "speedup_percent": 94.60010873339525
+    },
+    {
+      "role": "gateup",
+      "M": 56,
+      "padded_M": 64,
+      "strided": false,
+      "same_configuration": {
+        "bm": 64,
+        "bn": 256,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "direct_ms": 0.13459500074386596,
+      "padded_ms": 0.06819211840629577,
+      "speedup_percent": 97.37618347905675
+    },
+    {
+      "role": "gateup",
+      "M": 63,
+      "padded_M": 64,
+      "strided": false,
+      "same_configuration": {
+        "bm": 64,
+        "bn": 256,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "direct_ms": 0.13421672582626343,
+      "padded_ms": 0.06816115975379944,
+      "speedup_percent": 96.91085995464144
+    },
+    {
+      "role": "gateup",
+      "M": 64,
+      "padded_M": 64,
+      "strided": false,
+      "same_configuration": {
+        "bm": 64,
+        "bn": 256,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "direct_ms": 0.06752769351005554,
+      "padded_ms": 0.06773576736450196,
+      "speedup_percent": -0.3071846124171329
+    },
+    {
+      "role": "gateup",
+      "M": 37,
+      "padded_M": 64,
+      "strided": true,
+      "same_configuration": {
+        "bm": 64,
+        "bn": 256,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "direct_ms": 0.1326417326927185,
+      "padded_ms": 0.06818134784698486,
+      "speedup_percent": 94.54254995134161
+    },
+    {
+      "role": "lm_head",
+      "M": 1,
+      "padded_M": 32,
+      "strided": false,
+      "same_configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "direct_ms": 0.8644533157348633,
+      "padded_ms": 0.564148998260498,
+      "speedup_percent": 53.23138362388771
+    },
+    {
+      "role": "lm_head",
+      "M": 3,
+      "padded_M": 32,
+      "strided": false,
+      "same_configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "direct_ms": 0.8666163444519043,
+      "padded_ms": 0.5561205863952636,
+      "speedup_percent": 55.83245174742646
+    },
+    {
+      "role": "lm_head",
+      "M": 7,
+      "padded_M": 32,
+      "strided": false,
+      "same_configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "direct_ms": 0.8728776931762695,
+      "padded_ms": 0.555476713180542,
+      "speedup_percent": 57.140285535708
+    },
+    {
+      "role": "lm_head",
+      "M": 8,
+      "padded_M": 32,
+      "strided": false,
+      "same_configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "direct_ms": 0.8685794830322265,
+      "padded_ms": 0.546701717376709,
+      "speedup_percent": 58.87630410235663
+    },
+    {
+      "role": "lm_head",
+      "M": 17,
+      "padded_M": 32,
+      "strided": false,
+      "same_configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "direct_ms": 0.8832514762878418,
+      "padded_ms": 0.5606990337371827,
+      "speedup_percent": 57.526841164818144
+    },
+    {
+      "role": "lm_head",
+      "M": 32,
+      "padded_M": 32,
+      "strided": false,
+      "same_configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "direct_ms": 0.5580955505371094,
+      "padded_ms": 0.5551542282104492,
+      "speedup_percent": 0.5298207556018397
+    },
+    {
+      "role": "lm_head",
+      "M": 37,
+      "padded_M": 64,
+      "strided": false,
+      "same_configuration": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "direct_ms": 1.8815742492675782,
+      "padded_ms": 0.6088905811309815,
+      "speedup_percent": 209.0168098466321
+    },
+    {
+      "role": "lm_head",
+      "M": 40,
+      "padded_M": 64,
+      "strided": false,
+      "same_configuration": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "direct_ms": 1.8898500442504882,
+      "padded_ms": 0.6109734535217285,
+      "speedup_percent": 209.31786534376457
+    },
+    {
+      "role": "lm_head",
+      "M": 48,
+      "padded_M": 64,
+      "strided": false,
+      "same_configuration": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "direct_ms": 1.8933223724365233,
+      "padded_ms": 0.6081063270568847,
+      "speedup_percent": 211.34725757579798
+    },
+    {
+      "role": "lm_head",
+      "M": 56,
+      "padded_M": 64,
+      "strided": false,
+      "same_configuration": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "direct_ms": 1.9059310913085938,
+      "padded_ms": 0.6108697891235352,
+      "speedup_percent": 212.0028400885873
+    },
+    {
+      "role": "lm_head",
+      "M": 63,
+      "padded_M": 64,
+      "strided": false,
+      "same_configuration": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "direct_ms": 1.9099885940551757,
+      "padded_ms": 0.6112092494964599,
+      "speedup_percent": 212.49340477564846
+    },
+    {
+      "role": "lm_head",
+      "M": 64,
+      "padded_M": 64,
+      "strided": false,
+      "same_configuration": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "direct_ms": 0.618846321105957,
+      "padded_ms": 0.6159867286682129,
+      "speedup_percent": 0.46422955311500314
+    },
+    {
+      "role": "lm_head",
+      "M": 37,
+      "padded_M": 64,
+      "strided": true,
+      "same_configuration": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "direct_ms": 1.8804759979248047,
+      "padded_ms": 0.6102974891662598,
+      "speedup_percent": 208.12448540362868
+    }
+  ],
+  "scope": "Same target tile, direct actual-M INT8 vs padded INT8; all A quantization/padded writes included. No BF16/service/Math throughput assertion. CPU checks selected outputs, device checks full valid matrices."
+}
