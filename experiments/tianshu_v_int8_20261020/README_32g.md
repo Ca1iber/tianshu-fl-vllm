@@ -49,3 +49,20 @@ python3 experiments/tianshu_v_int8_20261020/check_cpu.py \
 三档缩放全部通过：共 196608 个 BF16 位模式检查、768 个解码码点和 2349 个舍入边界；包含 NaN/Inf 明确定义的编码。独立 Fraction 参考、所有码点往返、生成 Python AST、K helper / attention / reducer 保护及可逆源码变换均通过。冻结 reader SHA256 为 8deb8967fdacf354f3b38e6a9687163493f6163764f3e8663dce916250cd1289，输入发布归档 SHA256 为 67f6faa0afe2658573ab7273dc665d8460523d2bb76f751aefc47273501e8207。
 
 这不证明 GPU encoder 与标量规范一致，不证明 Triton 能编译，不包含物理页布局、attention 数值、Graph 重放、饱和率、吞吐或 Math 结论。adoption_allowed 仍为 false；正式最佳 5101.45 total tok/s 不变。下一步必须等 SSH 接入恢复，在天数卡执行 GPU 检查与接入门槛。
+
+## GPU 编解码/写入 gate：程序已准备，尚未运行
+
+probe_codecs_gpu.py 只用于真实卡上的编解码与 KV writer 验证，不安装服务 hook，不运行 attention forward。它核对已通过 CPU 检查的源码摘要；逐档编译并检查全部 BF16 K/V 编码、K/V 全部码点、FP32 ties/saturation 边界、尾部 guard，以及真实 UINT8 页、带偏移/填充/跨页 stride 的完整原始 storage。writer Graph 的三个阶段改变 K、V 和 slot，保存全部存储及原始输入，检查负 slot 与空洞保护。该 Graph 检查不覆盖 Q、block table 或 attention。
+
+预定在容器空闲时运行：
+
+```bash
+cd /workspace/vllm-plugin-FL
+export VLLM_PLUGINS=fl
+python3 experiments/tianshu_v_int8_20261020/probe_codecs_gpu.py \
+  --output /workspace/benchmark-results/20261020_v_int8_codecs_tianshu/micro \
+  --reader-source /workspace/benchmark-results/20261019_k8v16_budget_default_official4k_tianshu/decode_coherent_records/cache_generated/97987/generated_cache_policy.py \
+  --stop-at-utc 2026-10-20T15:58:00+00:00
+```
+
+程序只允许 /workspace/benchmark-results 下的新输出目录，确认空闲 BI-V150，设置最多 30 分钟且不越过指定截止时间的进程闹钟。未执行时没有 GPU 正确性结论。即便本 gate 通过，也仍须实现/验证 8192 字节 spec 接入、dense prefill/capacity fallback、attention 数值与 Graph、组件性能、服务及 Math 门槛。

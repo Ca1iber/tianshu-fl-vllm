@@ -48,7 +48,8 @@ jobs:
           python3 --version
           python3 -m py_compile \
             experiments/tianshu_v_int8_20261020/codec.py \
-            experiments/tianshu_v_int8_20261020/check_cpu.py
+            experiments/tianshu_v_int8_20261020/check_cpu.py \
+            experiments/tianshu_v_int8_20261020/probe_codecs_gpu.py
           python3 experiments/tianshu_v_int8_20261020/check_cpu.py \
             --reader-source "$RUNNER_TEMP/frozen_reader.py" \
             > "$RUNNER_TEMP/CPU_GATE_GITHUB_32g.json"
