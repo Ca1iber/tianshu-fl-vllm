@@ -5,3 +5,7 @@
 sitecustomize先完整加载既有memory-combo hooks，再在Scheduler.__init__完成后安装实例准入包装。内层scheduler记录描述安装新包装前的原生初始化状态；外层future_kv_records明确记录包装已安装，不能将内层“原生分配方法未改”误解为外层没有包装。native allocator文件SHA、实际pool大小、记录计数、最终计划释放和真实Graph均需核验。
 
 run_service_trial.py沿用原始单组筛选入口；每轮64请求，3轮、排除首轮，各轮输入不同且组间配对。结果分析器及直接shell控制器位于tianshu_future_kv_results_20261020。当前4K对照运行中，不是正式benchmark；PROFILE_CPU_GATE仅证明组装与来源/环境关系，不证明GPU性能或模型质量。
+
+## 16:17版本边界
+
+旧260来源4K已完成，5031.56较5048.51下降0.336%，384/384成功、零准入拦截、计划释放通过。随后只修复非法零token调用的异常直通，并重新验证CPU。新PROFILE_CPU_V2_GATE_32g.json为261来源/52环境、唯一模式开关，后续16K定向筛选使用此版本。旧PROFILE_CPU_GATE及旧4K原件不改写；不能把两个来源版本当成同源正式验证。

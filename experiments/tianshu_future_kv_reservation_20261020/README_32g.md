@@ -9,3 +9,7 @@ CPU验证24项场景、512组独立整数容量计算通过，覆盖部分预填
 对应服务实验在tianshu_future_kv_service_20261020，双方都固定小暂存区128MiB、原生max_num_seqs64以隔离未来预留的影响。它们是实验对照背景，不因本候选而自动成为正式版本。260份来源、52项归一化环境相同，仅TIANSHU_FUTURE_KV_MODE不同，保留原官方serve命令。首先进行4K N64对照验证真实服务及生命周期；需要后续GPU证据、新Math严格>95%及同配置正式评测，才能采用。
 
 当前CPU原件`/workspace/benchmark-results/20261020_future_kv_reservation_CPU_v2_tianshu`；首版CPU原件亦保留。GPU控制/候选的运行记录和最终审计另存，未借用旧Math。
+
+## 零token回退修复后的版本
+
+24+512 CPU检查在`20261020_future_kv_reservation_CPU_v3_tianshu`再次通过，另以原生KVCacheManager.allocate_slots函数体直接验证零token非法调用的ValueError相同。新增一条非正num_new_tokens直通条件；旧失败原件和修复副本原件保留。CPU_GATE增加原生回归证据哈希与回归检查源码。新服务来源261项；旧260来源4K数据保持原样。该边界验证不等于执行完整正常分配流程或GPU质量评测。

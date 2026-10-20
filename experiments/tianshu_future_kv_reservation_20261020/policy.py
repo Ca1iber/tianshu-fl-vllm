@@ -89,6 +89,7 @@ class Reservation:
         request = b['request']
         status = getattr(getattr(request, 'status', None), 'name', None)
         if (not b['full_sequence_must_fit'] or status not in ('WAITING', 'PREEMPTED')
+            or b['num_new_tokens'] <= 0
             or b['num_lookahead_tokens'] or b['num_external_computed_tokens']
             or b['delay_cache_blocks'] or b['num_encoder_tokens'] or b['reserved_blocks'] < 0
             or request.sampling_params is None
