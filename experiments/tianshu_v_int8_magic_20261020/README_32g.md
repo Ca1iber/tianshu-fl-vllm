@@ -13,3 +13,7 @@ check_cpu.py、probe_codecs_gpu.py、component_launch.py、probe_decode.py 复�
 容器 CPU 检查通过全部 BF16 位模式、舍入边界及三档各256个 magic 解码码点等价检查。GPU gate 的有效输出为 /workspace/benchmark-results/20261020_v_int8_magic_codecs_tianshu/micro_v2：三档 V 编码/解码、K 位模式、FP32 边界、完整跨页 storage 和18次 writer Graph 重放均通过。CPU 证据来自天数容器而非新 GitHub CI。首次预检查失败及修正范围见 PRECHECK_NOTE_32g.md；未放松数值断言，原失败日志保留。
 
 GPU 编解码通过仍不代表 attention kernel 已验证，更没有吞吐/Math结论。下一轮运行同进程 K8V16 对照的8场景 decode gate，原始事件和源码冻结写入独立输出目录。
+
+## decode 已完成，不采用
+
+8场景数值、变数据Graph及保护检查通过，但batch64的4K/5K耗时增加46.00%/47.28%；寄存器降低到155仍未改善性能。没有服务/Math或新正式分数，参见[DECODE_REPORT_32g.md](DECODE_REPORT_32g.md)。

@@ -1,0 +1,3436 @@
+{
+  "complete": true,
+  "phase": "complete",
+  "runner_pid": 5198,
+  "started_utc": "2026-10-20T01:43:10.331494+00:00",
+  "frozen_sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_v_int8_magic_20261020/probe_decode.py": "967832c08c67149f0105dbc9cc1dc31096649d855c97d68a2cdab1231ec6bf62",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_v_int8_magic_20261020/codec.py": "38daf665e42c94510d5a325b9d4e1a7329a95e7ff00345e39059ab17d51b9c4d",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_v_int8_magic_20261020/component_launch.py": "839dbd258b5adc6b13f50b3d45700e28b2c8b892a6ac3d79942b04fed712a73a",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/legacy_routing.py": "9dae2408de9f77e39350cfd70661e4e282ef0d69f798f968c1886d4172a6dc41",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/dispatch_policy.py": "842d69f6635152afa31d498e6e353e0e5f18bc2d86d89782d4e9db4e32f0157a",
+    "/workspace/benchmark-results/20261019_k8v16_budget_default_official4k_tianshu/decode_coherent_records/cache_generated/97987/generated_cache_policy.py": "8deb8967fdacf354f3b38e6a9687163493f6163764f3e8663dce916250cd1289",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_soft8_mixed_planes_20261019/writer.py": "27a74d3bdfee978780044eb69025c10a21d92a1b0a8cf567ee9fea1e0b8d12b5",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_kv_soft8_u32_20261016/codec_variant.py": "d0ad15741f183c63f225da72186752dbd90ba3a791ab365fa24ab3df4b3f58be",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_kv_soft8_20261016/codec.py": "0ccb887961dd0187abed4d77b9dfd2b3fa083e9e7e79c1650d0444e50838c14b",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_v_int8_20261020/codec.py": "9ecb4a6671166965e79e74f94f265be2edd29b3d4d2f0b0c97e8f8a1caed4459",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/value_planes.py": "64f0a0ba89841feb8c091b861d60d687de5d4bdd73c9c7f66476e5cd6ff0d5f0",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_v_int8_magic_20261020/GPU_CODECS_GATE_32g.json": "f23a0843bcad028b08474c70fff57515a420f6092e448c7513febebc7bc61d42",
+    "/workspace/benchmark-results/20261020_v_int8_magic_decode_tianshu/micro/control_reader/generated_soft8_u32.py": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+    "/workspace/benchmark-results/20261020_v_int8_magic_decode_tianshu/micro/d32/magic_v_reader.py": "e1f390fd65782142ae85e2528f539d51752aeef8d8a2e5a7545fbf8a2fd6d5cd",
+    "/workspace/benchmark-results/20261020_v_int8_magic_decode_tianshu/micro/d16/magic_v_reader.py": "f5b3df1edbb8960a6fab86a318705af85dffdb9df007499a109c07bb561231ad",
+    "/workspace/benchmark-results/20261020_v_int8_magic_decode_tianshu/micro/d8/magic_v_reader.py": "00c6657555159699eb3fe613ef9f024545dbbf49c762ac976dd826062d9e569a",
+    "/workspace/benchmark-results/20261020_v_int8_magic_decode_tianshu/micro/d32/magic_v_writer.py": "73f0de3a0d3c9d08a5b83a75e675347ae71fb820d866c100071551b793022a63",
+    "/workspace/benchmark-results/20261020_v_int8_magic_decode_tianshu/micro/d16/magic_v_writer.py": "ca3697084df5fd7ff241fe81047deafec8a466fc8a1c9823fff4e4279a2175d5",
+    "/workspace/benchmark-results/20261020_v_int8_magic_decode_tianshu/micro/d8/magic_v_writer.py": "4528009e67290440c2e76894bd86d475a65e21ca540f8d756a2cada70b46aac8"
+  },
+  "launch_source_proof": {
+    "legacy_path": "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/legacy_routing.py",
+    "legacy_sha256": "9dae2408de9f77e39350cfd70661e4e282ef0d69f798f968c1886d4172a6dc41",
+    "policy_path": "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/dispatch_policy.py",
+    "policy_sha256": "842d69f6635152afa31d498e6e353e0e5f18bc2d86d89782d4e9db4e32f0157a",
+    "launch_AST_unchanged_except_V_dtype_guard": true,
+    "reducer_AST_unchanged": true
+  },
+  "model_sources": {
+    "K8V16": {
+      "original_sha256": "8deb8967fdacf354f3b38e6a9687163493f6163764f3e8663dce916250cd1289",
+      "generated_sha256": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+      "producer_and_reducer_AST_unchanged": true,
+      "only_cast_helper_uint8_branch_and_test_added": true,
+      "fixed_storage_scale": 0.0625,
+      "exponent_bits": 4,
+      "mantissa_bits": 3,
+      "exponent_bias": 7,
+      "subnormal_codes_flush_to_signed_zero": true,
+      "all_nonzero_exponents_finite": true,
+      "largest_magnitude": 30.0,
+      "not_native_FP8_hardware": true,
+      "base_soft8_generated_sha256": "41f0b8dde1053678fe9920b517b58da05c6947cff32a0da72d8dbf5f8fff68e8",
+      "integer_intermediates_bits": 32,
+      "same_format_and_quantizer": true,
+      "one_more_reversible_edit": true,
+      "generated_source": "/workspace/benchmark-results/20261020_v_int8_magic_decode_tianshu/micro/control_reader/generated_soft8_u32.py"
+    },
+    "K8V8_d32": {
+      "reader": {
+        "parent": {
+          "original_sha256": "8deb8967fdacf354f3b38e6a9687163493f6163764f3e8663dce916250cd1289",
+          "generated_sha256": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+          "producer_and_reducer_AST_unchanged": true,
+          "only_cast_helper_uint8_branch_and_test_added": true,
+          "fixed_storage_scale": 0.0625,
+          "exponent_bits": 4,
+          "mantissa_bits": 3,
+          "exponent_bias": 7,
+          "subnormal_codes_flush_to_signed_zero": true,
+          "all_nonzero_exponents_finite": true,
+          "largest_magnitude": 30.0,
+          "not_native_FP8_hardware": true,
+          "base_soft8_generated_sha256": "41f0b8dde1053678fe9920b517b58da05c6947cff32a0da72d8dbf5f8fff68e8",
+          "integer_intermediates_bits": 32,
+          "same_format_and_quantizer": true,
+          "one_more_reversible_edit": true
+        },
+        "K_cast_AST_unchanged": true,
+        "attention_AST_unchanged_except_V_cast": true,
+        "reducer_AST_unchanged": true,
+        "V_storage": "uint8 two-complement signed INT8",
+        "V_scale": 0.03125,
+        "generated_sha256": "e1f390fd65782142ae85e2528f539d51752aeef8d8a2e5a7545fbf8a2fd6d5cd",
+        "previous_linear_reader_sha256": "3acfe6f4170b31fefbe6b8ed4326353fe2614af8ae50a3e5f47af0b16dedc188",
+        "all256_magic_codepoints_equal_signed_INT8": true,
+        "changed_only_V_decode_helper": true,
+        "byte_format_writer_scale_K_and_attention_arithmetic_unchanged": true,
+        "decode_method": "uint32 xor/or, FP32 bitcast and exact affine FMA",
+        "exactness": "2^23 + (code xor 128) is exact FP32; power-of-two scale and subtraction are exact for all 256 codes"
+      },
+      "writer": {
+        "original_sha256": "27a74d3bdfee978780044eb69025c10a21d92a1b0a8cf567ee9fea1e0b8d12b5",
+        "only_V_byte_encoder_replaced": true,
+        "K_encoder_unchanged": true,
+        "slot_addressing_and_negative_slot_handling_unchanged": true,
+        "V_scale": 0.03125,
+        "rounding": "nearest ties to even",
+        "NaN_code": 0,
+        "negative_infinity_code": 128,
+        "positive_infinity_code": 127,
+        "generated_sha256": "73f0de3a0d3c9d08a5b83a75e675347ae71fb820d866c100071551b793022a63"
+      },
+      "engine_hooks_installed": false,
+      "GPU_numerical_status": "not established by source generation",
+      "adoption_allowed": false
+    },
+    "K8V8_d16": {
+      "reader": {
+        "parent": {
+          "original_sha256": "8deb8967fdacf354f3b38e6a9687163493f6163764f3e8663dce916250cd1289",
+          "generated_sha256": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+          "producer_and_reducer_AST_unchanged": true,
+          "only_cast_helper_uint8_branch_and_test_added": true,
+          "fixed_storage_scale": 0.0625,
+          "exponent_bits": 4,
+          "mantissa_bits": 3,
+          "exponent_bias": 7,
+          "subnormal_codes_flush_to_signed_zero": true,
+          "all_nonzero_exponents_finite": true,
+          "largest_magnitude": 30.0,
+          "not_native_FP8_hardware": true,
+          "base_soft8_generated_sha256": "41f0b8dde1053678fe9920b517b58da05c6947cff32a0da72d8dbf5f8fff68e8",
+          "integer_intermediates_bits": 32,
+          "same_format_and_quantizer": true,
+          "one_more_reversible_edit": true
+        },
+        "K_cast_AST_unchanged": true,
+        "attention_AST_unchanged_except_V_cast": true,
+        "reducer_AST_unchanged": true,
+        "V_storage": "uint8 two-complement signed INT8",
+        "V_scale": 0.0625,
+        "generated_sha256": "f5b3df1edbb8960a6fab86a318705af85dffdb9df007499a109c07bb561231ad",
+        "previous_linear_reader_sha256": "58e53f1a6a1c2dce54be562c49d1f4774f3c11d487d6096d62751a66c4ad8a59",
+        "all256_magic_codepoints_equal_signed_INT8": true,
+        "changed_only_V_decode_helper": true,
+        "byte_format_writer_scale_K_and_attention_arithmetic_unchanged": true,
+        "decode_method": "uint32 xor/or, FP32 bitcast and exact affine FMA",
+        "exactness": "2^23 + (code xor 128) is exact FP32; power-of-two scale and subtraction are exact for all 256 codes"
+      },
+      "writer": {
+        "original_sha256": "27a74d3bdfee978780044eb69025c10a21d92a1b0a8cf567ee9fea1e0b8d12b5",
+        "only_V_byte_encoder_replaced": true,
+        "K_encoder_unchanged": true,
+        "slot_addressing_and_negative_slot_handling_unchanged": true,
+        "V_scale": 0.0625,
+        "rounding": "nearest ties to even",
+        "NaN_code": 0,
+        "negative_infinity_code": 128,
+        "positive_infinity_code": 127,
+        "generated_sha256": "ca3697084df5fd7ff241fe81047deafec8a466fc8a1c9823fff4e4279a2175d5"
+      },
+      "engine_hooks_installed": false,
+      "GPU_numerical_status": "not established by source generation",
+      "adoption_allowed": false
+    },
+    "K8V8_d8": {
+      "reader": {
+        "parent": {
+          "original_sha256": "8deb8967fdacf354f3b38e6a9687163493f6163764f3e8663dce916250cd1289",
+          "generated_sha256": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+          "producer_and_reducer_AST_unchanged": true,
+          "only_cast_helper_uint8_branch_and_test_added": true,
+          "fixed_storage_scale": 0.0625,
+          "exponent_bits": 4,
+          "mantissa_bits": 3,
+          "exponent_bias": 7,
+          "subnormal_codes_flush_to_signed_zero": true,
+          "all_nonzero_exponents_finite": true,
+          "largest_magnitude": 30.0,
+          "not_native_FP8_hardware": true,
+          "base_soft8_generated_sha256": "41f0b8dde1053678fe9920b517b58da05c6947cff32a0da72d8dbf5f8fff68e8",
+          "integer_intermediates_bits": 32,
+          "same_format_and_quantizer": true,
+          "one_more_reversible_edit": true
+        },
+        "K_cast_AST_unchanged": true,
+        "attention_AST_unchanged_except_V_cast": true,
+        "reducer_AST_unchanged": true,
+        "V_storage": "uint8 two-complement signed INT8",
+        "V_scale": 0.125,
+        "generated_sha256": "00c6657555159699eb3fe613ef9f024545dbbf49c762ac976dd826062d9e569a",
+        "previous_linear_reader_sha256": "2545f5d5eba7abc8d2e04f0bacd06513d59ff00b6f23032831b4dbf8347dfd3a",
+        "all256_magic_codepoints_equal_signed_INT8": true,
+        "changed_only_V_decode_helper": true,
+        "byte_format_writer_scale_K_and_attention_arithmetic_unchanged": true,
+        "decode_method": "uint32 xor/or, FP32 bitcast and exact affine FMA",
+        "exactness": "2^23 + (code xor 128) is exact FP32; power-of-two scale and subtraction are exact for all 256 codes"
+      },
+      "writer": {
+        "original_sha256": "27a74d3bdfee978780044eb69025c10a21d92a1b0a8cf567ee9fea1e0b8d12b5",
+        "only_V_byte_encoder_replaced": true,
+        "K_encoder_unchanged": true,
+        "slot_addressing_and_negative_slot_handling_unchanged": true,
+        "V_scale": 0.125,
+        "rounding": "nearest ties to even",
+        "NaN_code": 0,
+        "negative_infinity_code": 128,
+        "positive_infinity_code": 127,
+        "generated_sha256": "4528009e67290440c2e76894bd86d475a65e21ca540f8d756a2cada70b46aac8"
+      },
+      "engine_hooks_installed": false,
+      "GPU_numerical_status": "not established by source generation",
+      "adoption_allowed": false
+    }
+  },
+  "control": "qualified K8V16 reader and launch policy, 12288-byte physical pages",
+  "candidate": "same K, uint8 linear V, 8192-byte physical pages",
+  "engine_allocator_connected": false,
+  "prefill_executed": false,
+  "model_executed": false,
+  "service_executed": false,
+  "official_benchmark": false,
+  "adoption_allowed": false,
+  "torch_version": "2.10.0",
+  "GPU": "Iluvatar BI-V150",
+  "time_scope": "hot CUDA Graph: one KV update and one paged decode layer; 9 alternating trials x 20 replays",
+  "numerical_passed": true,
+  "same_Graph_Q_K_V_table_lengths_verified": true,
+  "ended_utc": "2026-10-20T01:43:31.982920+00:00",
+  "remote_result": "/workspace/benchmark-results/20261020_v_int8_magic_decode_tianshu/micro/result.json",
+  "remote_result_sha256": "9d7cf81835516313846687e60a2cfd8b62f286b5ffa85dd8e715886747ea865c",
+  "cases": [
+    {
+      "name": "decode1_4096",
+      "seed": 2026102000,
+      "strided": false,
+      "batch": 1,
+      "labels": [
+        "K8V16",
+        "K8V8_d32",
+        "K8V8_d16",
+        "K8V8_d8"
+      ],
+      "raw_ms": [
+        [
+          0.03624230623245239,
+          0.0360384613275528,
+          0.036028847098350525,
+          0.03611884713172912,
+          0.03595942258834839,
+          0.03608461618423462,
+          0.035955962538719174,
+          0.03592076897621155,
+          0.03602807819843292
+        ],
+        [
+          0.04309942126274109,
+          0.04240288734436035,
+          0.04250884652137756,
+          0.04249076843261719,
+          0.04242750108242035,
+          0.04243923127651215,
+          0.0425346165895462,
+          0.04248115420341492,
+          0.04250904023647308
+        ],
+        [
+          0.0426480770111084,
+          0.04258384704589844,
+          0.04269961416721344,
+          0.04260750114917755,
+          0.04262576997280121,
+          0.04250461459159851,
+          0.042585963010787965,
+          0.04260750114917755,
+          0.042596733570098876
+        ],
+        [
+          0.04269557595252991,
+          0.042442497611045835,
+          0.0427061527967453,
+          0.042392116785049436,
+          0.04277461469173431,
+          0.042358845472335815,
+          0.042771154642105104,
+          0.04249172806739807,
+          0.04265249967575073
+        ]
+      ],
+      "median_ms": [
+        0.036028847098350525,
+        0.04249076843261719,
+        0.04260750114917755,
+        0.04265249967575073
+      ],
+      "candidate_speedup_percent": [
+        -15.207824128937853,
+        -15.440131135111201,
+        -15.529342073158626
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.uint8",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 156,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.uint8",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 156,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.uint8",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 156,
+          "n_spills": 0
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference",
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            4096
+          ],
+          "checks": [
+            {
+              "label": "K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00027254223823547363,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 1048576,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 3170304,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 4,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 8.195638656616211e-08
+            },
+            {
+              "label": "K8V8_d32",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00027024000883102417,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.875,
+              "V_random_fixture_out_of_range": 74,
+              "V_fixture_elements": 1048576,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 2113536,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 4,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 2.0116567611694336e-07
+            },
+            {
+              "label": "K8V8_d16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00024646520614624023,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.03125,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 1048576,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 2113536,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 4,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.7881393432617188e-07
+            },
+            {
+              "label": "K8V8_d8",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0002613961696624756,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0625,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 1048576,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 2113536,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 4,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.30385160446167e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            4089
+          ],
+          "checks": [
+            {
+              "label": "K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00017552822828292847,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 1048576,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 3170304,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 4,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 7.450580596923828e-08
+            },
+            {
+              "label": "K8V8_d32",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0001562759280204773,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.90625,
+              "V_random_fixture_out_of_range": 74,
+              "V_fixture_elements": 1048576,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 2113536,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 4,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.2665987014770508e-07
+            },
+            {
+              "label": "K8V8_d16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0001632794737815857,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.03125,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 1048576,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 2113536,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 4,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 8.381903171539307e-08
+            },
+            {
+              "label": "K8V8_d8",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0001821964979171753,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0625,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 1048576,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 2113536,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 4,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 9.872019290924072e-08
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "time_increase_percent": [
+        17.935409691648175,
+        18.259407615427726,
+        18.384303442514117
+      ]
+    },
+    {
+      "name": "decode1_5120",
+      "seed": 2026102001,
+      "strided": false,
+      "batch": 1,
+      "labels": [
+        "K8V16",
+        "K8V8_d32",
+        "K8V8_d16",
+        "K8V8_d8"
+      ],
+      "raw_ms": [
+        [
+          0.04050115346908569,
+          0.04031788408756256,
+          0.040265193581581114,
+          0.04037249982357025,
+          0.040152692794799806,
+          0.04029980897903442,
+          0.04015403687953949,
+          0.04033923149108887,
+          0.04029230773448944
+        ],
+        [
+          0.048353654146194455,
+          0.048247501254081726,
+          0.04827423095703125,
+          0.04821653962135315,
+          0.04833326637744904,
+          0.04821750223636627,
+          0.048315000534057614,
+          0.04832249879837036,
+          0.04827750027179718
+        ],
+        [
+          0.04845865368843079,
+          0.04830942153930664,
+          0.0482784628868103,
+          0.048253846168518064,
+          0.048205769062042235,
+          0.048223847150802614,
+          0.04823904037475586,
+          0.04823884665966034,
+          0.04826153814792633
+        ],
+        [
+          0.04856884479522705,
+          0.04811038374900818,
+          0.0483805775642395,
+          0.048201346397399904,
+          0.04839634597301483,
+          0.04821096062660217,
+          0.048508846759796144,
+          0.048099616169929506,
+          0.04840057790279388
+        ]
+      ],
+      "median_ms": [
+        0.04029980897903442,
+        0.04827750027179718,
+        0.048253846168518064,
+        0.0483805775642395
+      ],
+      "candidate_speedup_percent": [
+        -16.52465692682763,
+        -16.483737196213475,
+        -16.702505410307424
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.uint8",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 156,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.uint8",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 156,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.uint8",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 156,
+          "n_spills": 0
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference",
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            5120
+          ],
+          "checks": [
+            {
+              "label": "K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0002883598208427429,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 1310720,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 3956736,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 4,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.5273690223693848e-07
+            },
+            {
+              "label": "K8V8_d32",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0001955181360244751,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 1.21875,
+              "V_random_fixture_out_of_range": 79,
+              "V_fixture_elements": 1310720,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 2637824,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 4,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 2.60770320892334e-07
+            },
+            {
+              "label": "K8V8_d16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0001902952790260315,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.03125,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 1310720,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 2637824,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 4,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.2293457984924316e-07
+            },
+            {
+              "label": "K8V8_d8",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00017820671200752258,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0625,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 1310720,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 2637824,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 4,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.4528632164001465e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            5113
+          ],
+          "checks": [
+            {
+              "label": "K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0001471787691116333,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 1310720,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 3956736,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 4,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 8.568167686462402e-08
+            },
+            {
+              "label": "K8V8_d32",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0001446940004825592,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 1.1875,
+              "V_random_fixture_out_of_range": 90,
+              "V_fixture_elements": 1310720,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 2637824,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 4,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 8.568167686462402e-08
+            },
+            {
+              "label": "K8V8_d16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00013930723071098328,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.03125,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 1310720,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 2637824,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 4,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.2665987014770508e-07
+            },
+            {
+              "label": "K8V8_d8",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00014688819646835327,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0625,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 1310720,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 2637824,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 4,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 8.568167686462402e-08
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "time_increase_percent": [
+        19.795853863508572,
+        19.73715853993663,
+        20.05162999509258
+      ]
+    },
+    {
+      "name": "decode8_4096",
+      "seed": 2026102002,
+      "strided": false,
+      "batch": 8,
+      "labels": [
+        "K8V16",
+        "K8V8_d32",
+        "K8V8_d16",
+        "K8V8_d8"
+      ],
+      "raw_ms": [
+        [
+          0.08888365626335144,
+          0.08870557546615601,
+          0.08876557350158691,
+          0.0887024998664856,
+          0.08881922960281372,
+          0.08883962035179138,
+          0.08870038390159607,
+          0.08881173133850098,
+          0.088870769739151
+        ],
+        [
+          0.12541942596435546,
+          0.12543096542358398,
+          0.1257419228553772,
+          0.12542250156402587,
+          0.12562615871429444,
+          0.1251738429069519,
+          0.12543115615844727,
+          0.1253786563873291,
+          0.1251224994659424
+        ],
+        [
+          0.12509461641311645,
+          0.12559192180633544,
+          0.12565500736236573,
+          0.12522212266921998,
+          0.12542153596878053,
+          0.12562615871429444,
+          0.12612115144729613,
+          0.1254525065422058,
+          0.1256786584854126
+        ],
+        [
+          0.1251651883125305,
+          0.12510749101638793,
+          0.1252596139907837,
+          0.1257599949836731,
+          0.125607693195343,
+          0.12571077346801757,
+          0.12545038461685182,
+          0.12553499937057494,
+          0.1254161477088928
+        ]
+      ],
+      "median_ms": [
+        0.08881173133850098,
+        0.12542250156402587,
+        0.12559192180633544,
+        0.12545038461685182
+      ],
+      "candidate_speedup_percent": [
+        -29.1899537714417,
+        -29.285474685664926,
+        -29.20569226650992
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.uint8",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 156,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.uint8",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 156,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.uint8",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 156,
+          "n_spills": 0
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference",
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096
+          ],
+          "checks": [
+            {
+              "label": "K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0003175213932991028,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 8388608,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 25190400,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 2.0116567611694336e-07
+            },
+            {
+              "label": "K8V8_d32",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0003034919500350952,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 1.5625,
+              "V_random_fixture_out_of_range": 546,
+              "V_fixture_elements": 8388608,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 16793600,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.7881393432617188e-07
+            },
+            {
+              "label": "K8V8_d16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0003049299120903015,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.03125,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 8388608,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 16793600,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 2.1606683731079102e-07
+            },
+            {
+              "label": "K8V8_d8",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00028792768716812134,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0625,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 8388608,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 16793600,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 2.0116567611694336e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089
+          ],
+          "checks": [
+            {
+              "label": "K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00028280168771743774,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 8388608,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 25190400,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.4156103134155273e-07
+            },
+            {
+              "label": "K8V8_d32",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00021100789308547974,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 1.53125,
+              "V_random_fixture_out_of_range": 543,
+              "V_fixture_elements": 8388608,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 16793600,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.3224780559539795e-07
+            },
+            {
+              "label": "K8V8_d16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00018890202045440674,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.03125,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 8388608,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 16793600,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.1175870895385742e-07
+            },
+            {
+              "label": "K8V8_d8",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00019646808505058289,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0625,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 8388608,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 16793600,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.2293457984924316e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "time_increase_percent": [
+        41.222898905083795,
+        41.41366226455918,
+        41.254294591673535
+      ]
+    },
+    {
+      "name": "decode8_5120",
+      "seed": 2026102003,
+      "strided": false,
+      "batch": 8,
+      "labels": [
+        "K8V16",
+        "K8V8_d32",
+        "K8V8_d16",
+        "K8V8_d8"
+      ],
+      "raw_ms": [
+        [
+          0.10643672943115234,
+          0.1064861536026001,
+          0.1062803864479065,
+          0.10628999471664428,
+          0.10634769201278686,
+          0.10644961595535278,
+          0.10623441934585572,
+          0.10619250535964966,
+          0.10625462532043457
+        ],
+        [
+          0.15266134738922119,
+          0.15252538919448852,
+          0.15244730710983276,
+          0.15295616388320923,
+          0.15280922651290893,
+          0.15277172327041627,
+          0.15298826694488527,
+          0.15325711965560912,
+          0.15252212285995484
+        ],
+        [
+          0.15212788581848144,
+          0.1523271083831787,
+          0.15264211893081664,
+          0.15278249979019165,
+          0.15260249376296997,
+          0.15312116146087645,
+          0.15311460494995116,
+          0.1523388385772705,
+          0.15338019132614136
+        ],
+        [
+          0.15207210779190064,
+          0.1519863486289978,
+          0.15247173309326173,
+          0.15251039266586303,
+          0.15229614973068237,
+          0.15271826982498168,
+          0.15231422185897828,
+          0.15218461751937867,
+          0.15260154008865356
+        ]
+      ],
+      "median_ms": [
+        0.10628999471664428,
+        0.15277172327041627,
+        0.15264211893081664,
+        0.15231422185897828
+      ],
+      "candidate_speedup_percent": [
+        -30.425609896077553,
+        -30.36653614274114,
+        -30.216631500731427
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.uint8",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 156,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.uint8",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 156,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.uint8",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 156,
+          "n_spills": 0
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference",
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120
+          ],
+          "checks": [
+            {
+              "label": "K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00028171390295028687,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 10485760,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 31481856,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 3.3527612686157227e-07
+            },
+            {
+              "label": "K8V8_d32",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0003227144479751587,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 1.46875,
+              "V_random_fixture_out_of_range": 677,
+              "V_fixture_elements": 10485760,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 20987904,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.4901161193847656e-07
+            },
+            {
+              "label": "K8V8_d16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00030591338872909546,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.03125,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 10485760,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 20987904,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.601874828338623e-07
+            },
+            {
+              "label": "K8V8_d8",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00029142946004867554,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0625,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 10485760,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 20987904,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.4901161193847656e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113
+          ],
+          "checks": [
+            {
+              "label": "K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0001771785318851471,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 10485760,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 31481856,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.043081283569336e-07
+            },
+            {
+              "label": "K8V8_d32",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0001840144395828247,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 1.5,
+              "V_random_fixture_out_of_range": 671,
+              "V_fixture_elements": 10485760,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 20987904,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.2293457984924316e-07
+            },
+            {
+              "label": "K8V8_d16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00018035992980003357,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.03125,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 10485760,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 20987904,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.4156103134155273e-07
+            },
+            {
+              "label": "K8V8_d8",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00016779825091362,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0625,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 10485760,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 20987904,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.4901161193847656e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "time_increase_percent": [
+        43.73104794829128,
+        43.60911329212242,
+        43.300620406491475
+      ]
+    },
+    {
+      "name": "decode64_4096",
+      "seed": 2026102004,
+      "strided": false,
+      "batch": 64,
+      "labels": [
+        "K8V16",
+        "K8V8_d32",
+        "K8V8_d16",
+        "K8V8_d8"
+      ],
+      "raw_ms": [
+        [
+          0.5893511295318603,
+          0.588935375213623,
+          0.5893019199371338,
+          0.589595365524292,
+          0.589348840713501,
+          0.5894219398498535,
+          0.58941650390625,
+          0.5895630836486816,
+          0.5891388416290283
+        ],
+        [
+          0.8598042488098144,
+          0.860352897644043,
+          0.8624261856079102,
+          0.8631171226501465,
+          0.8595867156982422,
+          0.8604620933532715,
+          0.8609196662902832,
+          0.8612025260925293,
+          0.8589591026306153
+        ],
+        [
+          0.8595544815063476,
+          0.8584970474243164,
+          0.8629251480102539,
+          0.8602853775024414,
+          0.8635425567626953,
+          0.8587383270263672,
+          0.8629405975341797,
+          0.8638897895812988,
+          0.8650982856750489
+        ],
+        [
+          0.8628225326538086,
+          0.8594025611877442,
+          0.8574119567871094,
+          0.8587101936340332,
+          0.8590200424194336,
+          0.8609367370605469,
+          0.8605682373046875,
+          0.8593788146972656,
+          0.8626006126403809
+        ]
+      ],
+      "median_ms": [
+        0.5893511295318603,
+        0.8604620933532715,
+        0.8629251480102539,
+        0.8594025611877442
+      ],
+      "candidate_speedup_percent": [
+        -31.507601080353908,
+        -31.703099522502587,
+        -31.423158814264774
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.uint8",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 155,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.uint8",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 155,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.uint8",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 155,
+          "n_spills": 0
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference",
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096
+          ],
+          "checks": [
+            {
+              "label": "K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00038311630487442017,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 67108864,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 201351168,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.7136335372924805e-07
+            },
+            {
+              "label": "K8V8_d32",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0003914684057235718,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 1.6875,
+              "V_random_fixture_out_of_range": 4264,
+              "V_fixture_elements": 67108864,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 134234112,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 2.3096799850463867e-07
+            },
+            {
+              "label": "K8V8_d16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00045470893383026123,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.03125,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 67108864,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 134234112,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.7881393432617188e-07
+            },
+            {
+              "label": "K8V8_d8",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00038945674896240234,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0625,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 67108864,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 134234112,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.6391277313232422e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089
+          ],
+          "checks": [
+            {
+              "label": "K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00029746443033218384,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 67108864,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 201351168,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.2665987014770508e-07
+            },
+            {
+              "label": "K8V8_d32",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0002780631184577942,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 1.71875,
+              "V_random_fixture_out_of_range": 4238,
+              "V_fixture_elements": 67108864,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 134234112,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.043081283569336e-07
+            },
+            {
+              "label": "K8V8_d16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00024283677339553833,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.03125,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 67108864,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 134234112,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 9.685754776000977e-08
+            },
+            {
+              "label": "K8V8_d8",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0002524182200431824,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0625,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 67108864,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 134234112,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.1920928955078125e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "time_increase_percent": [
+        46.00160248047085,
+        46.419528998901185,
+        45.821823039584906
+      ]
+    },
+    {
+      "name": "decode64_5120",
+      "seed": 2026102005,
+      "strided": false,
+      "batch": 64,
+      "labels": [
+        "K8V16",
+        "K8V8_d32",
+        "K8V8_d16",
+        "K8V8_d8"
+      ],
+      "raw_ms": [
+        [
+          0.7284986495971679,
+          0.7289034843444824,
+          0.7291970729827881,
+          0.7289774894714356,
+          0.7286742210388184,
+          0.7292732715606689,
+          0.7291176795959473,
+          0.7288038253784179,
+          0.7284644603729248
+        ],
+        [
+          1.0750176429748535,
+          1.0710460662841796,
+          1.071730613708496,
+          1.0735265731811523,
+          1.0726455688476562,
+          1.0736367225646972,
+          1.0729619979858398,
+          1.0741800308227538,
+          1.074449062347412
+        ],
+        [
+          1.0721013069152832,
+          1.0698665618896483,
+          1.0715826988220214,
+          1.0722546577453613,
+          1.0687028884887695,
+          1.073690414428711,
+          1.07435884475708,
+          1.0729520797729493,
+          1.0719319343566895
+        ],
+        [
+          1.0720810890197754,
+          1.0710599899291993,
+          1.066051197052002,
+          1.0720210075378418,
+          1.0696992874145508,
+          1.0698944091796876,
+          1.07302827835083,
+          1.0726509094238281,
+          1.0713513374328614
+        ]
+      ],
+      "median_ms": [
+        0.7289034843444824,
+        1.0735265731811523,
+        1.0721013069152832,
+        1.0713513374328614
+      ],
+      "candidate_speedup_percent": [
+        -32.10196165107098,
+        -32.011697062311306,
+        -31.96410375600425
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.uint8",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 155,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.uint8",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 155,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.uint8",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 155,
+          "n_spills": 0
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference",
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120
+          ],
+          "checks": [
+            {
+              "label": "K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0003195255994796753,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 83886080,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 251682816,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.4156103134155273e-07
+            },
+            {
+              "label": "K8V8_d32",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0002929568290710449,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 1.75,
+              "V_random_fixture_out_of_range": 5457,
+              "V_fixture_elements": 83886080,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 167788544,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.5087425708770752e-07
+            },
+            {
+              "label": "K8V8_d16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0003133118152618408,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.03125,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 83886080,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 167788544,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 2.123415470123291e-07
+            },
+            {
+              "label": "K8V8_d8",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0003146156668663025,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0625,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 83886080,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 167788544,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.9744038581848145e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113
+          ],
+          "checks": [
+            {
+              "label": "K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0002737864851951599,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 83886080,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 251682816,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.210719347000122e-07
+            },
+            {
+              "label": "K8V8_d32",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00021967291831970215,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 1.78125,
+              "V_random_fixture_out_of_range": 5446,
+              "V_fixture_elements": 83886080,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 167788544,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.3783574104309082e-07
+            },
+            {
+              "label": "K8V8_d16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00022355467081069946,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.03125,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 83886080,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 167788544,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.1548399925231934e-07
+            },
+            {
+              "label": "K8V8_d8",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00020356103777885437,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0625,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 83886080,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 167788544,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.4528632164001465e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "time_increase_percent": [
+        47.279659960275325,
+        47.08412429657207,
+        46.98123420226881
+      ]
+    },
+    {
+      "name": "decode8_ragged_strided",
+      "seed": 2026102006,
+      "strided": true,
+      "batch": 8,
+      "labels": [
+        "K8V16",
+        "K8V8_d32",
+        "K8V8_d16",
+        "K8V8_d8"
+      ],
+      "raw_ms": [
+        [
+          0.10038750171661377,
+          0.10056442022323608,
+          0.10042922496795655,
+          0.10046788454055786,
+          0.10050846338272094,
+          0.10041635036468506,
+          0.10022345781326295,
+          0.10041422843933105,
+          0.10021711587905884
+        ],
+        [
+          0.1321811556816101,
+          0.13202134370803834,
+          0.13180826902389525,
+          0.13190057277679443,
+          0.13176635503768921,
+          0.1321694254875183,
+          0.1320042371749878,
+          0.13178672790527343,
+          0.13262789249420165
+        ],
+        [
+          0.13155750036239625,
+          0.1317642331123352,
+          0.13206095695495607,
+          0.13196038007736205,
+          0.13167001008987428,
+          0.13201500177383424,
+          0.13201384544372557,
+          0.131813645362854,
+          0.13202788829803466
+        ],
+        [
+          0.13149750232696533,
+          0.13175039291381835,
+          0.13155750036239625,
+          0.1317728877067566,
+          0.13166249990463258,
+          0.13189595937728882,
+          0.1316903829574585,
+          0.13204076290130615,
+          0.1317471146583557
+        ]
+      ],
+      "median_ms": [
+        0.10041635036468506,
+        0.1320042371749878,
+        0.13196038007736205,
+        0.1317471146583557
+      ],
+      "candidate_speedup_percent": [
+        -23.929449149748972,
+        -23.90416706452667,
+        -23.780987063676516
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.uint8",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 156,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.uint8",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 156,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.uint8",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 156,
+          "n_spills": 0
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference",
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            33,
+            65,
+            127,
+            512,
+            2048,
+            4096,
+            5000,
+            5120
+          ],
+          "checks": [
+            {
+              "label": "K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0026299357414245605,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 10485760,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 62963712,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.7881393432617188e-07
+            },
+            {
+              "label": "K8V8_d32",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.002765953540802002,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 1.59375,
+              "V_random_fixture_out_of_range": 655,
+              "V_fixture_elements": 10485760,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 41975808,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 2.086162567138672e-07
+            },
+            {
+              "label": "K8V8_d16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0026819705963134766,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.03125,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 10485760,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 41975808,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.4901161193847656e-07
+            },
+            {
+              "label": "K8V8_d8",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0027693510055541992,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0625,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 10485760,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 41975808,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 2.086162567138672e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            26,
+            58,
+            120,
+            505,
+            2041,
+            4089,
+            4993,
+            5113
+          ],
+          "checks": [
+            {
+              "label": "K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00215756893157959,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 10485760,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 62963712,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.0058283805847168e-07
+            },
+            {
+              "label": "K8V8_d32",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0027860403060913086,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 1.625,
+              "V_random_fixture_out_of_range": 670,
+              "V_fixture_elements": 10485760,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 41975808,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.1920928955078125e-07
+            },
+            {
+              "label": "K8V8_d16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0024642348289489746,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.03125,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 10485760,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 41975808,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.4901161193847656e-07
+            },
+            {
+              "label": "K8V8_d8",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.002648591995239258,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0625,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 10485760,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 41975808,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.7881393432617188e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "time_increase_percent": [
+        31.456915826540268,
+        31.413240571000234,
+        31.20085940176651
+      ]
+    },
+    {
+      "name": "decode64_ragged_strided",
+      "seed": 2026102007,
+      "strided": true,
+      "batch": 64,
+      "labels": [
+        "K8V16",
+        "K8V8_d32",
+        "K8V8_d16",
+        "K8V8_d8"
+      ],
+      "raw_ms": [
+        [
+          0.5800969123840332,
+          0.5794692516326905,
+          0.5789570808410645,
+          0.5795057773590088,
+          0.5809361934661865,
+          0.5793515205383301,
+          0.5790450096130371,
+          0.5802450180053711,
+          0.5801219463348388
+        ],
+        [
+          0.8149059295654297,
+          0.8197445869445801,
+          0.818111801147461,
+          0.8186573028564453,
+          0.8163429260253906,
+          0.8156967163085938,
+          0.8164584159851074,
+          0.8160300254821777,
+          0.8151161193847656
+        ],
+        [
+          0.8179863929748535,
+          0.8159250259399414,
+          0.8174357414245605,
+          0.8181150436401368,
+          0.8158607482910156,
+          0.8178267478942871,
+          0.816016960144043,
+          0.8159076690673828,
+          0.8151760101318359
+        ],
+        [
+          0.8192356109619141,
+          0.8179853439331055,
+          0.8175119400024414,
+          0.8165315628051758,
+          0.8180153846740723,
+          0.817020034790039,
+          0.8151930809020996,
+          0.8148930549621582,
+          0.8178954124450684
+        ]
+      ],
+      "median_ms": [
+        0.5795057773590088,
+        0.8163429260253906,
+        0.816016960144043,
+        0.8175119400024414
+      ],
+      "candidate_speedup_percent": [
+        -29.011968024209413,
+        -28.983611167013656,
+        -29.113478470139764
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.uint8",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 155,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.uint8",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 155,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.uint8",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 155,
+          "n_spills": 0
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference",
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            4096,
+            3965,
+            3834,
+            3703,
+            3572,
+            3441,
+            3310,
+            4096,
+            3965,
+            3834,
+            3703,
+            3572,
+            3441,
+            3310,
+            4096,
+            3965,
+            3834,
+            3703,
+            3572,
+            3441,
+            3310,
+            4096,
+            3965,
+            3834,
+            3703,
+            3572,
+            3441,
+            3310,
+            4096,
+            3965,
+            3834,
+            3703,
+            3572,
+            3441,
+            3310,
+            4096,
+            3965,
+            3834,
+            3703,
+            3572,
+            3441,
+            3310,
+            4096,
+            3965,
+            3834,
+            3703,
+            3572,
+            3441,
+            3310,
+            4096,
+            3965,
+            3834,
+            3703,
+            3572,
+            3441,
+            3310,
+            4096,
+            3965,
+            3834,
+            3703,
+            3572,
+            3441,
+            3310,
+            4096
+          ],
+          "checks": [
+            {
+              "label": "K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0003392249345779419,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 67108864,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 402702336,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 2.0116567611694336e-07
+            },
+            {
+              "label": "K8V8_d32",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0004940032958984375,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 2.09375,
+              "V_random_fixture_out_of_range": 4369,
+              "V_fixture_elements": 67108864,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 268468224,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.7881393432617188e-07
+            },
+            {
+              "label": "K8V8_d16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0003749281167984009,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.03125,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 67108864,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 268468224,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.601874828338623e-07
+            },
+            {
+              "label": "K8V8_d8",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0003564879298210144,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0625,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 67108864,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 268468224,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.564621925354004e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            4089,
+            3958,
+            3827,
+            3696,
+            3565,
+            3434,
+            3303,
+            4089,
+            3958,
+            3827,
+            3696,
+            3565,
+            3434,
+            3303,
+            4089,
+            3958,
+            3827,
+            3696,
+            3565,
+            3434,
+            3303,
+            4089,
+            3958,
+            3827,
+            3696,
+            3565,
+            3434,
+            3303,
+            4089,
+            3958,
+            3827,
+            3696,
+            3565,
+            3434,
+            3303,
+            4089,
+            3958,
+            3827,
+            3696,
+            3565,
+            3434,
+            3303,
+            4089,
+            3958,
+            3827,
+            3696,
+            3565,
+            3434,
+            3303,
+            4089,
+            3958,
+            3827,
+            3696,
+            3565,
+            3434,
+            3303,
+            4089,
+            3958,
+            3827,
+            3696,
+            3565,
+            3434,
+            3303,
+            4089
+          ],
+          "checks": [
+            {
+              "label": "K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0003436356782913208,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 67108864,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 402702336,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.1920928955078125e-07
+            },
+            {
+              "label": "K8V8_d32",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0003070458769798279,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 2.125,
+              "V_random_fixture_out_of_range": 4390,
+              "V_fixture_elements": 67108864,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 268468224,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.1920928955078125e-07
+            },
+            {
+              "label": "K8V8_d16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00028077512979507446,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.03125,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 67108864,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 268468224,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.2293457984924316e-07
+            },
+            {
+              "label": "K8V8_d8",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0003092736005783081,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0625,
+              "V_random_fixture_out_of_range": 0,
+              "V_fixture_elements": 67108864,
+              "physical_page_bytes": 8192,
+              "raw_cache_bytes": 268468224,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_selected_reference_checks": 12,
+              "CPU_selected_reference_all_passed": true,
+              "CPU_selected_reference_max_abs": 1.30385160446167e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "time_increase_percent": [
+        40.8688157943349,
+        40.81256685013401,
+        41.07054182067038
+      ]
+    }
+  ],
+  "GPU_full_reference_checks": 64,
+  "CPU_selected_reference_checks": 640,
+  "promotion": "reject magic decoder; no service or Math"
+}
