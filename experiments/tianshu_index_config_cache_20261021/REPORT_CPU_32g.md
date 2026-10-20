@@ -1,0 +1,11 @@
+# index_adjacent备用配置内存缓存：CPU等价与局部耗时
+
+当前合格模型的真实cProfile每帧看到index._index_candidate_configs调用配置加载器，重新构造17个Config。实际TunedConfigLoader.load_all只装vendor YAML键，index_adjacent由fallback取得、没有存入loaded_triton_config，因此get_tuned_config每次重新deepcopy默认字典。不是Triton最佳配置autotune缓存缺失，两种缓存不能混淆。
+
+cache.py只将原生构造的原列表存入现有loaded_triton_config['index_adjacent']。实际原生函数验证16个场景，含int32/int64索引、单/双邻接索引、后缀1/2048、M1..16384；原生候选选择、Config字段及完整生成内核文本与缓存前完全相同。其它既有cache项保留同一对象，配置没有变更；最后恢复原cache状态。
+
+7轮交替顺序，每轮200次CPU runtime.get_tuned_config。构造路径中位108.407070微秒/次，缓存0.197360微秒/次。没有GPU Tensor或GPU内核执行，不包括模型、索引GPU计算或请求开销，不作为完整吞吐收益。
+
+首次CPU夹具错误用str(IndentedBuffer)比较对象repr，没有比较真实文本；原件保留CPU_FIRST_FAILED_SOURCE及SHA，随后改为原生getvalue读取完整生成文本。第二次夹具在交替fresh/cached轮边界重复del已删除的键；原件保留CPU_SECOND_FAILED_SOURCE及SHA，随后改为幂等移除并逐轮断言键是否存在与标签一致。最终CPU_v3通过上述完整检查。失败不是GPU结果，没有撤掉源码/配置等价断言。
+
+原始三份CPU日志留容器`/workspace/benchmark-results/20261021_index_config_cache_CPU{,_v2,_v3}.log`；关键CPU_GATE包含实际配置签名、七轮数据、16份生成文本SHA和所有实际源码SHA。新服务对照另见tianshu_index_config_cache_service_20261021，不借CPU微测宣称模型收益。

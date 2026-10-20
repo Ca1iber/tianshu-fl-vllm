@@ -1,0 +1,62 @@
+# SPDX-License-Identifier: Apache-2.0
+"""Actual native config selection/source generation, no GPU tensors or kernels."""
+import hashlib,importlib,json,statistics,time
+from pathlib import Path
+import torch
+import flag_gems
+from flag_gems import runtime
+from flag_gems.utils.code_utils import IndentedBuffer
+from cache import OP,prime,signature
+BASE=Path(__file__).resolve().parent
+
+def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+def main():
+    index=importlib.import_module('flag_gems.ops.index');loader=runtime.config_loader
+    cache=loader.loaded_triton_config;initial=dict(cache);old=cache.get(OP);present=OP in cache
+    assert not present,'Fresh process unexpectedly already caches fallback op'
+    configs=loader.get_tuned_config(OP);expected=signature(configs);assert configs and OP not in cache
+    cases=[]
+    def code(inp,start,indices):
+        selected=index._index_candidate_configs(inp,start,len(indices),indices)
+        assert selected
+        buf=IndentedBuffer();index.generate_index_linearized_kernel(tuple(inp.shape),start,len(indices),selected,'_index_linearized_jit_function',buf)
+        return str(buf),signature(selected)
+    for m in (1,8,33,64,128,565,4096,4352,16384):
+        cases.append((torch.empty(64,dtype=torch.int32),0,[torch.arange(m,dtype=torch.int64)%64]))
+    for m in (1,8,37,64):
+        cases.append((torch.empty((8192,2048),dtype=torch.bfloat16),0,[torch.arange(m,dtype=torch.int32)]))
+    for m in (8,64,565):
+        cases.append((torch.empty((64,128),dtype=torch.int32),0,[torch.arange(m,dtype=torch.int32)%64,torch.arange(m,dtype=torch.int64)%128]))
+    before=[code(*case) for case in cases];rows=[]
+    try:
+        proof=prime(loader);assert proof['signature']==expected
+        after=[code(*case) for case in cases];assert before==after
+        assert signature(cache[OP])==expected
+        assert cache.keys()==initial.keys()|{OP} and all(cache[k] is v for k,v in initial.items())
+        stored=cache[OP]
+        for trial in range(7):
+            times={}
+            for enabled in ((False,True) if trial%2==0 else (True,False)):
+                if enabled:cache[OP]=stored
+                else:del cache[OP]
+                start=time.perf_counter_ns()
+                for _ in range(200):result=runtime.get_tuned_config(OP)
+                times['cached' if enabled else 'fresh']=(time.perf_counter_ns()-start)/200/1000
+                assert signature(result)==expected
+            rows.append(times)
+        cache[OP]=stored
+        assert signature(stored)==expected
+        sources=[Path(__file__),BASE/'cache.py',Path(index.__file__),Path(runtime.__file__),Path(importlib.import_module('flag_gems.runtime.configs_loader').__file__)]
+        gate=dict(complete=True,CPU_only=True,no_GPU_tensors_or_kernels=True,actual_installed_FlagGems_functions_executed=True,
+            native_configurations=len(configs),actual_selection_and_generated_source_cases=len(cases),all_selected_configs_and_generated_sources_identical=True,
+            preexisting_cache_entries_same_objects=True,configuration_objects_not_mutated=True,cache_was_initially_missing=True,
+            full_config_signature=expected,proof=proof,timing_scope='CPU runtime.get_tuned_config only, 7 alternating x200 calls; not model or GPU performance',
+            timings_us=rows,fresh_median_us=statistics.median(r['fresh'] for r in rows),cached_median_us=statistics.median(r['cached'] for r in rows),
+            generated_source_sha256=[hashlib.sha256(r[0].encode()).hexdigest() for r in after],sources={str(p.resolve()):sha(p) for p in sources})
+        (BASE/'CPU_GATE_32g.json').write_text(json.dumps(gate,indent=2)+'\n')
+        print(json.dumps({k:v for k,v in gate.items() if k not in ('full_config_signature','proof','generated_source_sha256','sources')}))
+    finally:
+        if present:cache[OP]=old
+        else:cache.pop(OP,None)
+        assert cache.keys()==initial.keys() and all(cache[k] is v for k,v in initial.items())
+if __name__=='__main__':main()
