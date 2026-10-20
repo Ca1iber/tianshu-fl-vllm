@@ -1,6 +1,6 @@
-# 天数 BI-V150 当前正式成绩
+# 天数 BI-V150 当前推荐版本与已测成绩
 
-2026-10-21：新4K最好 **5482.79 total tok/s**，新Math **101/105（96.1905%）**。官方每轮N256/C64、4轮排首轮；1024/1024成功，零抢占。16K仍是前版独立成绩，配置不同。
+2026-10-21：当前推荐4K **5482.79 total tok/s**，新Math **101/105（96.1905%）**。官方每轮N256/C64、4轮排首轮；1024/1024成功，零抢占。16K仍是前版独立成绩，配置不同。
 
 |输入/输出，C64|请求/轮|total tok/s|output tok/s|平均TTFT ms|配置|
 |---|---:|---:|---:|---:|---|
@@ -25,3 +25,5 @@ bash experiments/tianshu_lm_precision_release_20261021/serve_tianshu_minicpm.sh
 前版同一profile完整4K5103.41、16K3885.91、Math103/105，入口experiments/tianshu_future_kv_release_20261020/serve_tianshu_minicpm.sh，标签tianshu-original-command-4k16k-k8v16-futurekv-20261020。
 
 后续批次补齐和K8+V整数量化组件不在5482.79配置内；候选需要独立正确性、实际执行路径及服务性能验证。
+
+2026-10-21新增完整4K备选：预算8192，**5509.23 total / 1101.85 output tok/s，TTFT4740.15ms，Math102/105**。吞吐比推荐版高0.4822%，TTFT高18.0543%，后三轮吞吐极差/均值0.3302%。1024/1024成功、零抢占；这是当前已测更高吞吐记录，但保留5482.79/TTFT4015.23为默认推荐。此决定与正确率无关，两版均>95%。见[8192完整4K报告](experiments/tianshu_dense_budget_official_results_20261021/REPORT_32g.md)和[复核结果](experiments/tianshu_dense_budget_official_results_20261021/OFFICIAL_GATE_32g.json)。6144中间预算尚仅通过CPU检查，整数PV组件不在这两版成绩内。

@@ -14,4 +14,4 @@ GPU评测正常完成。原后处理审计将实际native_source_sha256字段误
 
 运行时374源/64环境，原serve argv13项、8192预算/seq64/async与99点warm实际核验，独立long policy worker源/哈希与真实预算正确。C8实际42层GateUp整数路径和LM BF16、实际prefill linear路线均验证；43份原BF16/packed/scale权重签名与小4K筛选及此前合格版本相同，额外INT8 payload1326938112B真实计入加载profile，原BF16权重保留。
 
-C64 LM整数路径由独立小4K/后续正式测试覆盖，本次C8 Math不声称验证C64生成质量。新8192正式N256/C64四轮4K已恢复启动，原9控制源保持，补充2个Python审计源及快照明确区分。尚未给出新的正式分数、采用标记或16K结论。
+C64 LM整数路径已在同配置正式4K中独立核验。该测试1024/1024成功，后三轮总吞吐5509.23、输出1101.85 tok/s，TTFT4740.15ms；同一374源码/64实际环境及原命令均通过独立复核。9个原控制源与2个补充Python审计源分别记录。本候选因TTFT取舍保留为备选；正确率已达标，未做完整16K。详见[正式4K报告](../tianshu_dense_budget_official_results_20261021/REPORT_32g.md)。
