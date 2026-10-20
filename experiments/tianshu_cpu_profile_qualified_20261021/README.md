@@ -1,0 +1,9 @@
+# 当前合格版本的CPU框架热点诊断
+
+在4352预算对照终态且GPU空闲后串行运行。使用5482.79推荐版本的359份父来源、62项模型环境；仅增加4项诊断环境与一个cProfile钩子。原始13项serve参数、预算4096、64seq、async、LM8BF16/64INT8、GateUp8/64INT8、BF16 prefill与KV方案不变。不是4352候选，也不加入新采样预热。
+
+复用10月16日诊断过程，在一轮4K/256输出C64预热后，第二轮等待32个纯decode，再采16帧execute_model与sample_tokens调用栈、线程CPU与host wall。记录日志处理器、缓冲地址与真实运行来源。cProfile有侵入性，父子累计时间重叠，C函数时间可能含等待；不能当GPU内核活跃时间、正式吞吐或可叠加算子耗时。
+
+本轮目的为重新定位当前INT8/K8V16版本的CPU开销，避免沿用旧3992版本的热点推测；没有新模型质量或新正式成绩。原始profile JSON只留容器，GitHub保存代码、摘要和报告。独立核对整个66项实际环境、来源快照、128条计时响应usage、seed canary和43份权重签名，不把额外诊断字段从实际记录删掉冒充旧模型审计通过。
+
+诊断还在原Scheduler.__init__与既有FutureKV包装器完成后，包住实际bound schedule，记录同样16个纯C64 decode调度调用。Finder逐层调用已有import finder，保留FutureKV安装链；真实bound方法模块/名称写入原件。额外8请求短smoke确认真实C8 LM BF16；128个C64诊断响应另外单列。scheduler/worker来自不同进程的窗口，不声称逐帧一一对应，也不把其累计时间相加为端到端延迟。
