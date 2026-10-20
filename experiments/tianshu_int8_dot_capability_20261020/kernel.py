@@ -2,7 +2,7 @@
 """Capability only: rowwise Q quantization and exact INT8 QK matrix product."""
 import triton
 import triton.language as tl
-from triton.language.extra.cuda import libdevice
+from triton.language.extra.corex import libdevice
 
 @triton.jit
 def qk(Q,K,Scale,Q8,QS,Integer,Scaled,N:tl.constexpr):

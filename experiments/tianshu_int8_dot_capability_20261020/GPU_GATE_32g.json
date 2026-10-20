@@ -1,0 +1,87 @@
+{
+  "complete": true,
+  "component_only": true,
+  "adopted": false,
+  "official_benchmark": false,
+  "model_executed": false,
+  "no_latency_or_throughput_claim": true,
+  "cases": [
+    {
+      "width": 16,
+      "phases": [
+        {
+          "phase": 0,
+          "Q8_exact": true,
+          "Q_scale_exact": true,
+          "INT32_product_exact": true,
+          "float_max_abs": 0.0,
+          "RNG_unchanged": true
+        },
+        {
+          "phase": 1,
+          "Q8_exact": true,
+          "Q_scale_exact": true,
+          "INT32_product_exact": true,
+          "float_max_abs": 0.0,
+          "RNG_unchanged": true
+        }
+      ],
+      "compiled_metadata": {
+        "n_regs": 69,
+        "n_spills": 0,
+        "shared": 4096,
+        "num_warps": 4
+      }
+    },
+    {
+      "width": 32,
+      "phases": [
+        {
+          "phase": 0,
+          "Q8_exact": true,
+          "Q_scale_exact": true,
+          "INT32_product_exact": true,
+          "float_max_abs": 0.0,
+          "RNG_unchanged": true
+        },
+        {
+          "phase": 1,
+          "Q8_exact": true,
+          "Q_scale_exact": true,
+          "INT32_product_exact": true,
+          "float_max_abs": 0.0,
+          "RNG_unchanged": true
+        }
+      ],
+      "compiled_metadata": {
+        "n_regs": 91,
+        "n_spills": 0,
+        "shared": 6144,
+        "num_warps": 4
+      }
+    }
+  ],
+  "frozen_sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_int8_dot_capability_20261020/probe.py": "8532ff0c956d26c01b753ca83a11a63dda8b0304e00d4e683a7b1141cee21b9b",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_int8_dot_capability_20261020/kernel.py": "8cb3a443f74070340f55ef365a0d3e943e5b515390ee53752e897a4190e3e036"
+  },
+  "device": {
+    "name": "Iluvatar BI-V150",
+    "total_memory": 34359738368,
+    "multi_processor_count": 16,
+    "major": 7,
+    "minor": 1,
+    "torch_version": "2.10.0"
+  },
+  "triton_device_properties": {
+    "max_shared_mem": 131072,
+    "max_num_regs": 262144,
+    "multiprocessor_count": 16,
+    "warpSize": 64,
+    "sm_clock_rate": 1500000,
+    "mem_clock_rate": 1600000,
+    "mem_bus_width": 2048
+  },
+  "successful_shapes": 2,
+  "ended_utc": "2026-10-20T03:25:41.931569+00:00"
+}
