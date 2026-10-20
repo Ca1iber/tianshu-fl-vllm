@@ -1,0 +1,214 @@
+{
+  "complete": true,
+  "independently_CPU_rechecked": true,
+  "official_benchmark": false,
+  "model_executed": false,
+  "adopted": false,
+  "cases": 12,
+  "compiled_configurations": 48,
+  "full_GPU_integer_and_quantized_checks": 144,
+  "CPU_selected_integer_checks": 144,
+  "all_A_quantization_CPU_rechecked": true,
+  "selected_W_quantization_independently_recomputed": true,
+  "actual_weights_match_qualified_Math": true,
+  "all_timed_dynamic_A_quantization_included": true,
+  "LM_baseline_explicit_flag_gems_linear": true,
+  "static_W_packing_excluded": true,
+  "model_quality_not_evaluated": true,
+  "frozen_sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_dynamic_batches_20261020/kernel.py": "b9b692cf561a35ef9c38d05d1edf7aa804436728923efa4800f914ff6b656152",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_dynamic_batches_20261020/check_cpu.py": "ccfe2fbdcabfd0054198c8b1b65e8936b18d4ebffafa39e100ae99a90c54fae3",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_dynamic_batches_20261020/CPU_GATE_32g.json": "a3bc69c53412aed9b4896b8dcc5ad8e8d12da2cca1bd2067cff203fdad6c64b2",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_dynamic_batches_20261020/probe_gpu.py": "3fdda882766ec7cd9cca5737ccf03123392d653a568621332ee5d75a6679301f",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_dynamic_batches_20261020/verify_gpu.py": "1628967c44d94df9a2c5123388d9c45c6ffb8567811953a5bbf93e817a515902",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_dynamic_batches_20261020/run_component.sh": "65d36ed9058c48b7cb3046ff9abc10d3131e09ad7b99c4f18fe8fd8a8f61243d",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_dynamic_batches_20261020/run_after_validation.sh": "d9bbc87f3b0d31d198f61b945217db57b75b5090f1d5ca6a583015640fe57b42",
+    "/usr/local/lib/python3.12/site-packages/flag_gems/runtime/backend/_iluvatar/ops/mm.py": "4c2e23da2a6b65b89cbb8170967f14c5327d143e21137387f3907ccb4fcde090",
+    "/usr/local/lib/python3.12/site-packages/flag_gems/runtime/backend/_iluvatar/ops/linear.py": "d431a4fa144ed67dc3deab46dd5beace3612858075f85c39e602447ba3bf768a",
+    "/workspace/MiniCPM5-2B/config.json": "59613157e5357d62bcb121e04cb90f2170b43d789b142380c12c3d4277d95180"
+  },
+  "raw_root": "/workspace/benchmark-results/20261020_dense_dynamic_batches_GPU_tianshu",
+  "best_by_role_M": [
+    {
+      "role": "gateup",
+      "M": 32,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "index": 0,
+      "native_ms": 0.09249095916748047,
+      "candidate_ms": 0.05985864996910095,
+      "speedup_percent": 54.515611720652444
+    },
+    {
+      "role": "gateup",
+      "M": 37,
+      "configuration": {
+        "bm": 64,
+        "bn": 256,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "index": 3,
+      "native_ms": 0.09418711662292481,
+      "candidate_ms": 0.13271480798721313,
+      "speedup_percent": -29.030438990651596
+    },
+    {
+      "role": "gateup",
+      "M": 40,
+      "configuration": {
+        "bm": 64,
+        "bn": 256,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "index": 3,
+      "native_ms": 0.09431250095367431,
+      "candidate_ms": 0.1332848072052002,
+      "speedup_percent": -29.239871421748475
+    },
+    {
+      "role": "gateup",
+      "M": 48,
+      "configuration": {
+        "bm": 64,
+        "bn": 256,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "index": 3,
+      "native_ms": 0.09529615640640259,
+      "candidate_ms": 0.13319153785705568,
+      "speedup_percent": -28.45179360517882
+    },
+    {
+      "role": "gateup",
+      "M": 56,
+      "configuration": {
+        "bm": 64,
+        "bn": 256,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "index": 3,
+      "native_ms": 0.0954761564731598,
+      "candidate_ms": 0.13416749238967896,
+      "speedup_percent": -28.838085312158334
+    },
+    {
+      "role": "gateup",
+      "M": 63,
+      "configuration": {
+        "bm": 64,
+        "bn": 256,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "index": 3,
+      "native_ms": 0.09582865238189697,
+      "candidate_ms": 0.13449423313140868,
+      "speedup_percent": -28.748876326714456
+    },
+    {
+      "role": "lm_head",
+      "M": 32,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "index": 0,
+      "native_ms": 0.9373823165893554,
+      "candidate_ms": 0.5494638442993164,
+      "speedup_percent": 70.59945368829825
+    },
+    {
+      "role": "lm_head",
+      "M": 37,
+      "configuration": {
+        "bm": 64,
+        "bn": 256,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "index": 3,
+      "native_ms": 1.0485267639160156,
+      "candidate_ms": 1.325302505493164,
+      "speedup_percent": -20.88396727765607
+    },
+    {
+      "role": "lm_head",
+      "M": 40,
+      "configuration": {
+        "bm": 64,
+        "bn": 256,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "index": 3,
+      "native_ms": 1.0557000160217285,
+      "candidate_ms": 1.3325538635253906,
+      "speedup_percent": -20.776184369104634
+    },
+    {
+      "role": "lm_head",
+      "M": 48,
+      "configuration": {
+        "bm": 64,
+        "bn": 256,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "index": 3,
+      "native_ms": 1.076987075805664,
+      "candidate_ms": 1.3311824798583984,
+      "speedup_percent": -19.09545895464112
+    },
+    {
+      "role": "lm_head",
+      "M": 56,
+      "configuration": {
+        "bm": 64,
+        "bn": 256,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "index": 3,
+      "native_ms": 1.1222700119018554,
+      "candidate_ms": 1.338036346435547,
+      "speedup_percent": -16.125595923345493
+    },
+    {
+      "role": "lm_head",
+      "M": 63,
+      "configuration": {
+        "bm": 64,
+        "bn": 256,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "index": 3,
+      "native_ms": 1.1423528671264649,
+      "candidate_ms": 1.3315811157226562,
+      "speedup_percent": -14.210793947276446
+    }
+  ],
+  "offline_CPU_scope": "All A values and selected W rows/output coordinates; full device matrices were asserted during GPU execution, not archived in full."
+}
