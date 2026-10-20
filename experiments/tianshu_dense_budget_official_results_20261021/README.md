@@ -1,0 +1,5 @@
+# Budget8192 original N256/C64 4K independent archive
+
+Use verify_official.py after all four original benchmark runs, runtime/quality audits and runner complete. It rechecks fresh105 Math>95%,374 runtime sources,9 separate controller sources,64 observed environment keys, original13 serve argv, actualC8/C64 precision/capture paths,43 weight signatures,8192/seq64 and99warm, actual isolated long hook binding, all1024 requests, CSV/stdout agreement and Decimal summary arithmetic.
+
+The prior qualified reference is5482.79 from lm_precision_official_results_20261021. The archiver always leaves adopted=False and only records whether the candidate qualifies for best-version review; publishing a new best/release/tag requires reviewing actual completed quality/performance evidence. It does not impose a new1% gain over each prior best; public performance gates and fresh quality remain required, and within-noise gains need care. No actual formal result is claimed by preparing this script. Full16K is not scheduled or inferred from the old3885.91 profile.
