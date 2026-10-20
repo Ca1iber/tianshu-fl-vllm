@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 import hashlib
 import importlib
 import json
+import math
 from pathlib import Path
 import signal
 import statistics
@@ -67,7 +68,7 @@ def main():
 
     def save():
         temp = root / "result.tmp"
-        temp.write_text(json.dumps(data, indent=2) + "\n")
+        temp.write_text(json.dumps(data, indent=2, allow_nan=False) + "\n")
         temp.replace(root / "result.json")
 
     def oracle(logits, k, p):
@@ -96,13 +97,14 @@ def main():
         finite = torch.isfinite(actual)
         retained_unchanged = bool(torch.equal(actual[finite], source_logits[finite]))
         exact = bool(torch.equal(actual, expected))
+        def vector(tensor):return [v if math.isfinite(v) else None for v in tensor.tolist()]
         return dict(exact_adopted_baseline=exact, CPU_strict_semantics=strict,
             relative_gate=retained_unchanged and (strict if require_strict else (exact or strict)),
             strict_required=require_strict,retained_values_unchanged=retained_unchanged,
             stable_CPU_mask_difference=int((mask != stable).sum()),
             adopted_mask_difference=int((torch.isfinite(actual) != torch.isfinite(expected)).sum()),
-            kept_mass=mass.tolist(), smallest_kept_probability=smallest.tolist(),
-            minimum_kept_logit=minimum_kept.tolist(), maximum_removed_logit=maximum_removed.tolist(),
+            kept_mass=vector(mass), smallest_kept_probability=vector(smallest),
+            minimum_kept_logit=vector(minimum_kept), maximum_removed_logit=vector(maximum_removed),
             nonempty=nonempty.tolist(), CPU_p=p_cpu.tolist())
 
     cases = [(8, "normal", False), (32, "normal", False), (64, "normal", False),
@@ -124,7 +126,7 @@ def main():
                 native._topk_topp_kernel = Router(kernel, PLANS[0], corrected_kernel=fixedkernel)
                 expected = native.apply_top_k_top_p_triton(logits.clone(), k, p)
                 reference = oracle(logits, k, p)
-                row = dict(batch=batch, distribution=distribution, topk=topk, variants=[])
+                row = dict(batch=batch, distribution=distribution, topk=topk, variants=[], input_p_before=p.cpu().tolist())
                 graphs = []
                 for plan in PLANS:
                     router = Router(kernel, plan, root / "kernel_artifacts", corrected_kernel=fixedkernel)
@@ -155,6 +157,7 @@ def main():
                 saved = logits.clone()
                 logits.copy_(logits.flip((1,)))
                 if distribution=='varied_p':p.copy_(p.flip((0,)))
+                row.update(input_p_after=p.cpu().tolist(),P_changed_in_place=distribution=='varied_p')
                 native._topk_topp_kernel = Router(kernel, PLANS[0], corrected_kernel=fixedkernel)
                 changed_expected = native.apply_top_k_top_p_triton(logits.clone(), k, p)
                 changed_reference = oracle(logits, k, p)
@@ -194,6 +197,7 @@ def main():
                     for v in case["variants"]) for case in data["cases"])]
         assert "geo" in valid
         assert all(hashlib.sha256(Path(name).read_bytes()).hexdigest()==h for name,h in frozen.items())
+        data.update(all_plans_pass_all_cases=len(valid)==len(PLANS))
         data.update(complete=True, numerical_checks_passed=True, relative_passing_plans=valid,
                     independent_math_not_run=True, candidate_service_not_run=True)
     finally:
