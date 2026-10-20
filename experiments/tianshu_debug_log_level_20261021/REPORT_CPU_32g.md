@@ -1,0 +1,9 @@
+# FlagGems重复DEBUG记录构造：CPU原生调用位置验证
+
+当前合格版本的实际cProfile每步观察到13条FlagGems DEBUG调用。实际Worker.init_device rank0启用record=True、once=True；原LogOncePerLocationFilter只在记录构造后过滤重复文件/行，不能省掉LogRecord创建、findCaller和格式准备。
+
+组件从已安装add/alias/copy/fill/index/sub/to七份源码，提取真实logger.debug表达式AST，按观测每步2/1/3/4/1/1/1次执行，并执行已安装LogOncePerLocationFilter的原AST。没有导入Torch或GPU库。原DEBUG阈值两轮产生26条DEBUG记录、实际只写7条；INFO阈值产生0条DEBUG。全部INFO/WARNING/ERROR/CRITICAL的记录和文本保留，FileHandler/filter对象和传播设置完全保持。
+
+7轮正反交替、每轮200组13调用，计时关闭RecordFactory计数插桩。中位control119.722735us、candidate7.222035us；包括本CPU fixture执行13条实际表达式的Python开销，不是模型性能或GPU计时。
+
+原始日志与fixture文件保存在容器`/workspace/benchmark-results/20261021_debug_log_level_CPU_tianshu`，关键数据、原AST来源SHA和全部记录计数在CPU_GATE。服务候选另见tianshu_debug_log_service_20261021：只在原capture完成后调整父logger阈值，启动日志照常完成，稳态INFO+保留；未集成index配置缓存或其它新模型改动。最终是否保留只依据服务A/B。
