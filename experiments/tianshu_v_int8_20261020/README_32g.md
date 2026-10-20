@@ -66,3 +66,11 @@ python3 experiments/tianshu_v_int8_20261020/probe_codecs_gpu.py \
 ```
 
 程序只允许 /workspace/benchmark-results 下的新输出目录，确认空闲 BI-V150，设置最多 30 分钟且不越过指定截止时间的进程闹钟。未执行时没有 GPU 正确性结论。即便本 gate 通过，也仍须实现/验证 8192 字节 spec 接入、dense prefill/capacity fallback、attention 数值与 Graph、组件性能、服务及 Math 门槛。
+
+## 后续检查与接入阻塞
+
+新增 GPU 检查程序的 Python 语法及原 CPU 数值检查已在提交 7a1f21637512c1d4abc1b75ffe85903a741ee631 通过，运行 https://github.com/Ca1iber/tianshu-fl-vllm/actions/runs/39352795896 ，作业 118400654165 的所有步骤 success。此运行只 py_compile 三个脚本并执行 check_cpu.py，没有导入或执行 GPU 检查程序；不能把它当作 Triton/GPU 通过。
+
+截至北京时间 2026-10-20 09:20，指定连接连续多轮在 Go SSH 网关的公钥询问阶段失败。显式选择本地 id_ed25519 后，实际公钥指纹 SHA256:IeJn0Xi8fTRgzVQZFCl2SpJHMKUFrIif1ys9sEh9B9M 与用户提供的平台公钥一致；服务器指纹仍是已知 SHA256:DZ7AQ1tcXbaYcLkuPByw0qs+GhV5WKHyr9ghLqPil9A。日志未出现 Server accepts key，最终 Permission denied(publickey)。这只证明该次网关认证未通过，不证明容器 sshd 的具体状态，也不能据此替换 proxy-authorized-keys。
+
+用户确认网页 IDE 正常，正在等待 hostname、pgrep -a sshd 和两个 authorized_keys 文件指纹的当前输出。没有开启新的 GPU 进程。当前无进行中的 CI 作业；独立准备工作完成，下一步须先恢复 SSH，再在真实卡执行已准备 gate，根据 GPU 结果决定是否继续布局和服务接入。当前最佳分支仍是 82b547743e125a506f881d58e1a1a0bb6e7f1e7c，最佳标签与成绩不变。
