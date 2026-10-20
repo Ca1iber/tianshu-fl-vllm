@@ -1,0 +1,65 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "GPU_not_executed": true,
+  "exhaustive_pair_decode_values": 131072,
+  "independent_strided_K_byte_loads": 4608,
+  "provenance": {
+    "current": {
+      "mode": "current",
+      "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+      "generated_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+      "exact_source_reversal": true,
+      "changed_parent_functions": [],
+      "cache_storage_and_V_load_unchanged": true,
+      "reducer_AST_unchanged": true,
+      "all_pointer_offsets_remain_int64": true,
+      "only_even_K_strides_and_2byte_alignment_supported": true
+    },
+    "scalar16": {
+      "mode": "scalar16",
+      "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+      "generated_sha256": "96de84e67210da403ea03ba225f0efe755f83bc4ea86e3a18dc41b32b9b57a57",
+      "exact_source_reversal": true,
+      "changed_parent_functions": [
+        "_cast_kv_tile"
+      ],
+      "cache_storage_and_V_load_unchanged": true,
+      "reducer_AST_unchanged": true,
+      "all_pointer_offsets_remain_int64": true,
+      "only_even_K_strides_and_2byte_alignment_supported": true
+    },
+    "pair_rows": {
+      "mode": "pair_rows",
+      "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+      "generated_sha256": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+      "exact_source_reversal": true,
+      "changed_parent_functions": [
+        "kernel_unified_attention"
+      ],
+      "cache_storage_and_V_load_unchanged": true,
+      "reducer_AST_unchanged": true,
+      "all_pointer_offsets_remain_int64": true,
+      "only_even_K_strides_and_2byte_alignment_supported": true
+    },
+    "pair_columns": {
+      "mode": "pair_columns",
+      "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+      "generated_sha256": "07b1eae665ff58a7c8d5a9b13f44ecd3cffe06ad361ee280a7e573e9743c0747",
+      "exact_source_reversal": true,
+      "changed_parent_functions": [
+        "kernel_unified_attention"
+      ],
+      "cache_storage_and_V_load_unchanged": true,
+      "reducer_AST_unchanged": true,
+      "all_pointer_offsets_remain_int64": true,
+      "only_even_K_strides_and_2byte_alignment_supported": true
+    }
+  },
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pair_load_20261020/check_cpu.py": "e744b743d5ea4adc9066ce5adb20cd74c5d5cda65b032790483e1b48510efded",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pair_load_20261020/source.py": "6b46d13524efa3687274c8210d34f279e855fecd0c643a620ab62aadbd6c4470",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pair_load_20261020/launch.py": "dd5d1f5037157608b82ab7addbe33e8f758be897cb649a683ec4a22d7e08a5ed",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/qualified_S16_reader.py": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106"
+  }
+}
