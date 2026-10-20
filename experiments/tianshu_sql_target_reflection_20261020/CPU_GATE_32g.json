@@ -1,0 +1,59 @@
+{
+  "complete": true,
+  "independently_SQLite_rechecked": true,
+  "sources": {
+    "/workspace/FlagGems/src/flag_gems/utils/models/sql.py": "6dc19cb581d70154f14b95ed9112d682c6b5919b6cf3f8dea01a78a75ec0efd7",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_sql_target_reflection_20261020/native_sql.py": "6dc19cb581d70154f14b95ed9112d682c6b5919b6cf3f8dea01a78a75ec0efd7",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_sql_target_reflection_20261020/candidate_sql.py": "42c9f5b0314635ca4f339247426e183b0b4cee6fa9d06a82f7e78ac8f2c73396",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_sql_target_reflection_20261020/verify_cpu.py": "243a55226d8f3b9984aa033a07acb59d9bf9755a51b435e90bee6bf296fc5432",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_sql_target_reflection_20261020/run_after_gpu.sh": "96d72e897c49a0400cc20987c91d80833cb2191e687fc08b46152911c6053a78",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_sql_target_reflection_20261020/README.md": "975800289894bfac5ac9e1b8d0fadb38cb837b05f41a1730362de35c563da9d6",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_sql_target_reflection_20261020/probe_cpu.py": "c1369dd3955aeacf0268306f66980d9fd3ca8d2fe1f5e7741bb2961fb044d92c"
+  },
+  "upstream_commit": "8eb57f17d5a3a93f7399af440d8dc319b0916c00",
+  "only_reflection_method_AST_changed": true,
+  "synthetic_regressions": {
+    "composite_primary_key": true,
+    "BIGINT_over_32bit": true,
+    "boolean_and_NULL": true,
+    "hyphenated_table_name": true,
+    "unrelated_tables_not_reflected": true,
+    "missing_table_no_PRAGMA": true,
+    "empty_database": true,
+    "unmapped_no_primary_key": true
+  },
+  "actual_database_tables": 1158,
+  "actual_database_rows": 43784,
+  "all_config_values_schema_and_primary_keys_identical": true,
+  "source_database": "/root/.flaggems/config_cache/TunedConfig_iluvatar_triton_3_6.db",
+  "snapshot_sha256": "c0b59fd0233d03ba6ed2af7e4286a420856c0c486c3cbea4d3678a25a093ace6",
+  "candidate_repeated_timings": [
+    {
+      "table": "_index_jit_function_4e3707d56ec36365ece0401adfc4f538ed65a566c0aed02780933c2280de4168_benchmark_v2-5215ee9cc956e852c4668e50daf73835",
+      "candidate_reflection_median_ms": 12.044415343552828
+    },
+    {
+      "table": "_index_linearized_jit_function_815e98530ff987490329bdef967357215b832f907ee26253f35136e53f4d6645_benchmark_v2-be4075f355600487930f16fe2a2e2b52",
+      "candidate_reflection_median_ms": 12.083017267286777
+    },
+    {
+      "table": "mul_generic_nd_kernel_c1c7936b6d482c4185b89eb66d708a06-1d9f7dd892860b8746823f50af637361",
+      "candidate_reflection_median_ms": 11.129091959446669
+    }
+  ],
+  "native_metadata_reflected_once_for_full_parity": true,
+  "single_instrumented_first_target_pair": {
+    "target": "_index_jit_function_4e3707d56ec36365ece0401adfc4f538ed65a566c0aed02780933c2280de4168_benchmark_v2-5215ee9cc956e852c4668e50daf73835",
+    "native_single_instrumented_ms": 4570.828996133059,
+    "candidate_single_instrumented_ms": 12.484997045248747,
+    "native_SQL_statements": 11582,
+    "candidate_SQL_statements": 13,
+    "single_sample_only": true
+  },
+  "timing_groups": 21,
+  "no_GPU_or_service_started": true,
+  "live_FlagGems_source_not_modified": true,
+  "live_database_never_written": true,
+  "steady_state_GPU_throughput_not_measured": true,
+  "adopted": false
+}

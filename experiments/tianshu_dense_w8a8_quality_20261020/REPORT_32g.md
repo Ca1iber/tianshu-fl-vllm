@@ -7,3 +7,5 @@
 运行冻结311份来源、9个控制器、57项环境，VLLM_DISABLE_COMPILE_CACHE=1，原13项serve argv。正式4K服务的实际进程环境和同来源配置已独立核对，正在benchmarking；本报告尚不宣称正式4K成绩或adopted。此前正式5235.52 tok/s与其103/105质量记录继续保留，不能将不同profile结果混为同版。
 
 原始目录：/workspace/benchmark-results/20261020_dense_w8a8_math_tianshu。正式目录：/workspace/benchmark-results/20261020_dense_w8a8_official4k_tianshu。该新profile没有完整16K结果。
+
+正式4K后续已完成并独立核验：5375.50 total tok/s、TTFT4191.14ms、1024/1024成功，全部43组权重与本质量阶段一致。上文“正在benchmarking”是首次归档时状态，最终采用与正式证据见tianshu_dense_w8a8_official_results_20261020/OFFICIAL_GATE_32g.json。新profile完整16K仍未测试。

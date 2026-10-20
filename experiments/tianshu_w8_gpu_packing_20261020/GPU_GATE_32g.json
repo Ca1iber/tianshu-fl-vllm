@@ -1,0 +1,32 @@
+{
+  "complete": true,
+  "independently_CPU_rehashed_all_real_banks": true,
+  "real_banks": 43,
+  "full_GPU_CPU_exact_comparisons": 129,
+  "synthetic_changed_input_cases": 9,
+  "CPU_recomputed_quantized_and_scale_elements": 1325853237,
+  "all_43_payloads_match_fresh_Math_signature": true,
+  "CPU_threads": 4,
+  "sum_of_bank_median_loader_style_ms": {
+    "native": 12490.945243276656,
+    "candidate": 8489.353870972991
+  },
+  "candidate_latency_reduction_percent": 32.03593718784054,
+  "timing_scope": "Same 4 CPU threads in both arms: BF16 D2H, finite check, packing, GPU payload allocation/transfer, and three full payload SHA hashes; candidate also copies GPU q/scales to CPU for the same proof. First candidate compile is included.",
+  "timing_not_actual_model_startup": true,
+  "model_executed": false,
+  "adopted": false,
+  "official_benchmark": false,
+  "checkpoint_never_modified": true,
+  "frozen_sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_w8_gpu_packing_20261020/packing.py": "d0ceedae9f55e7ad700bf330a6c52567ffe63897d970125e63600301758338c3",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_w8_gpu_packing_20261020/probe_gpu.py": "8b2b5b0ecad8d522f1fb812a64da588d80e91f3c3d55cdab30d8a8b78359d63e",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_w8_gpu_packing_20261020/verify_cpu.py": "ff4fcd068e91b60d384fc8b0ab5133f85ad5bf2e677cb565671b13d64d90f19d",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_w8_gpu_packing_20261020/run_after_sql.sh": "55d1e7b223dbc96bf9694d6b0b6343eb7e67b0ed84bdfd474f11796d58fa2883",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_w8_gpu_packing_20261020/README.md": "91ef72c25dd9b1068e4b2098ada9184e738179cfdffef67e3cf1140fe82600ee",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_w8a8_20261020/kernel.py": "b9b692cf561a35ef9c38d05d1edf7aa804436728923efa4800f914ff6b656152",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_w8a8_quality_20261020/PACKED_WEIGHT_SIGNATURE_32g.json": "9112cd1eadccb4a07d336bbfbfd9e4bbeb577916d2201434bf7178146f5611d7",
+    "/workspace/MiniCPM5-2B/config.json": "59613157e5357d62bcb121e04cb90f2170b43d789b142380c12c3d4277d95180"
+  },
+  "raw_root": "/workspace/benchmark-results/20261020_w8_gpu_packing_GPU_tianshu"
+}
