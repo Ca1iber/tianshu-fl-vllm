@@ -1,0 +1,48 @@
+{
+  "complete": true,
+  "independently_rechecked": true,
+  "official_benchmark": false,
+  "adopted": false,
+  "model_Math_not_run": true,
+  "runtime_source_count": 375,
+  "environment_count": 62,
+  "timed_successful_requests": 384,
+  "gain_percent": 0.12086914106548274,
+  "TTFT_change_percent": -0.13736682992823157,
+  "summaries": {
+    "control": {
+      "total_tok_s": 5416.751659255453,
+      "mean_TTFT_ms": 10899.462798020977,
+      "spread_percent": 0.10302849868151932,
+      "postfirst_autotuning_records": 0,
+      "actual_KV_blocks": 40731,
+      "allocator_calls": 196957,
+      "eligible_empty_calls": 184268,
+      "actual_shortcuts": 0
+    },
+    "candidate": {
+      "total_tok_s": 5423.298840459645,
+      "mean_TTFT_ms": 10884.490551496128,
+      "spread_percent": 0.17591107439312975,
+      "postfirst_autotuning_records": 0,
+      "actual_KV_blocks": 40731,
+      "allocator_calls": 196957,
+      "eligible_empty_calls": 184268,
+      "actual_shortcuts": 184268
+    }
+  },
+  "both_arms_same_model_precision_and_budget": true,
+  "seeded_canaries_identical_across_arms": true,
+  "only_no_work_native_allocate_delegate_shortcut": true,
+  "CPU_native_state_and_API_equivalence_proofs_passed": true,
+  "index_configuration_cache_not_primed": true,
+  "raw_roots": {
+    "control": "/workspace/benchmark-results/20261021_kv_empty_allocate_service_v2_control_tianshu",
+    "candidate": "/workspace/benchmark-results/20261021_kv_empty_allocate_service_v2_candidate_tianshu"
+  },
+  "raw_result_sha256": {
+    "control": "9ba97068230b63088d4cc3356fc3b622f197f5fce5d213cfc959c2150ad5b058",
+    "candidate": "05087436d68e7d19f34bd25ca605a3b769ff886e650cfa6b3bef5f9b398a0b36"
+  },
+  "verifier_sha256": "02f3e0525ca049affd3aedd12efb6c712e77a4a037278591bc0a17138ae6efc8"
+}
