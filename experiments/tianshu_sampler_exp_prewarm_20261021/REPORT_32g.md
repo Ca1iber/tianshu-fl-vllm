@@ -1,0 +1,13 @@
+# 图外采样全批次预热：私有生成器与RNG保持验证通过
+
+6144小4K第三轮曾出现原生fused_exponential_kernel_f32_unroll8的N4830720（B37×vocab130560）现场调参1.29s。已从实际vLLM random_sample路径确认FP32指数噪声调用；该算子按真实batch工作，模型GEMM预热点没有自动覆盖全部采样批次。
+
+新warmup函数只调用原FlagGems exponential_，使用独立CUDA Generator复制初始默认生成器状态；对B1..64各预热offset0、2^31、2^32，共192次，覆盖正常、uint32边界与更大offset类型。原生随机数函数和算法、seed/offset计算及采样公式均未修改。warmup前后默认CPU/GPU RNG逐字保持。scratch最大33423360B（31.875MiB），函数结束释放临时张量。
+
+GPU实际B37的4830720个FP32输出在相同已选调参配置、相同初始RNG状态下与预热前逐字一致，37个采样选择相同；独立CPU重新读取完整原始tensor并校验。随后逆序重测B64..1，全部有限且正，日志没有新增autotune记录。
+
+当前已存在缓存条件下192次预热耗时0.41601165s。本实验没有清空已有配置，因此该数值不能当成冷启动成本、冷缓存收益或整模型加速。输出一致性限定为本次相同已选B37配置和状态，不能外推所有seed、所有调参配置的Philox输出映射均相同。真实服务仍需验证路由、时点与稳定性，尚未采用，也没有新Math。
+
+实际原生operator源SHA2222bab5ecb28e66a7d9499c5611ca9dac73181cc094e0853fe3cdc5d0869728；random_utils SHA cc421b446f25628e7132a3d62fdd4e154f3e9b64c787a75f39a26196335968ce。完整来源及快照SHA在GPU_GATE，逐次预热与复测时间在WARMUP_ROUNDS。
+
+原始根目录：`/workspace/benchmark-results/20261021_sampler_exp_prewarm_GPU_tianshu`。38MB左右的B37原始tensor与随机数状态只留容器，GitHub保留代码、报告及关键JSON。
