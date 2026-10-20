@@ -1,0 +1,69 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "GPU_format_or_attention_executed": false,
+  "model_or_service_executed": false,
+  "adopted": false,
+  "finite_BF16_bit_patterns": 65280,
+  "total_encoding_scalar_checks": 196352,
+  "records": [
+    {
+      "name": "all_finite_grouped",
+      "rows": 510,
+      "elements": 65280,
+      "codes_exact": true,
+      "FP32_scales_exact": true,
+      "BF16_decode_bits_exact": true,
+      "inputs_unchanged": true,
+      "relative_L2": 0.0036255927478936038,
+      "encoded_sha256": "5226a3dba5f0c7be075b5328ad60938eecba9964cdd25596d8630076a1cf38fd"
+    },
+    {
+      "name": "all_finite_permuted20261020",
+      "rows": 510,
+      "elements": 65280,
+      "codes_exact": true,
+      "FP32_scales_exact": true,
+      "BF16_decode_bits_exact": true,
+      "inputs_unchanged": true,
+      "relative_L2": 0.004536917836205956,
+      "encoded_sha256": "76857b8200bf9d526848b61553ee90e5c7aedce4fdfe9a69d59fdd101bd1eae6"
+    },
+    {
+      "name": "all_finite_permuted17",
+      "rows": 510,
+      "elements": 65280,
+      "codes_exact": true,
+      "FP32_scales_exact": true,
+      "BF16_decode_bits_exact": true,
+      "inputs_unchanged": true,
+      "relative_L2": 0.004463193034307922,
+      "encoded_sha256": "29e40c80a28d7aec85750bab945feddc1099b707ff4c1658979b7233a954ed84"
+    },
+    {
+      "name": "ties_zero_extremes",
+      "rows": 4,
+      "elements": 512,
+      "codes_exact": true,
+      "FP32_scales_exact": true,
+      "BF16_decode_bits_exact": true,
+      "inputs_unchanged": true,
+      "relative_L2": 2.607686358315037e-40,
+      "encoded_sha256": "7a09545ebba9b9c53115662cad6676c0b08d367999c0b22cb2be10946c5594a0"
+    }
+  ],
+  "scales_per_token_head": "FP32 max(max_abs,1e-8)/127 with FP32 round-nearest",
+  "codes": "signed nearest-even int8, [-127,127], unsigned carrier;128 reserved",
+  "decode": "FP32 signed code*scale then BF16 nearest-even",
+  "nonfinite_inputs_outside_contract": true,
+  "zero_codes_decode_to_positive_zero": true,
+  "physical_page_bytes": 12416,
+  "layout_all_bytes_disjoint_and_exactly_covered": true,
+  "same_BF16_V_plane_as_current_K8V16": true,
+  "new_scale_metadata_bytes_per_page": 128,
+  "does_not_prove_model_accuracy_or_performance": true,
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dynamic_k8_intdot_20261020/check_cpu.py": "bb5cf2d91159e8f239a5de45f3abf76499ca43342dbb12e05bd91da017af57c7",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dynamic_k8_intdot_20261020/codec.py": "4966eb1f588379861879cc3e05a4e7bc2ff48872cac6327e50e92a273c74e13e"
+  }
+}
