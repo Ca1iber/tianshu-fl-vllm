@@ -1,0 +1,9 @@
+# All-bank static W8 GPU packing component
+
+Current actual W8A8 service spends 133.4133 seconds packing 43 banks during model load (42 GateUp, one LM head); this motivates a startup experiment, not a claimed component speedup. Reuse the unchanged, previously validated row quantization kernel b9b692cf561a35ef9c38d05d1edf7aa804436728923efa4800f914ff6b656152. Bound launch rows to8192; no huge grid-x assumption for the 130560-row output head.
+
+Every actual checkpoint bank is loaded and independently CPU-packed. For three alternating-order trials per bank, the candidate's full GPU q/scale values must equal the CPU reference bit-for-bit and all three payload SHA hashes must match the exact actual banks from the new fresh MATH-500. Verify unchanged input bits, guards and CPU/GPU RNG. Synthetic cases include zero rows, RNE ties, sign/scale changes, strided input rows, K259/K33 tails and an8193-row chunk tail. These changed-input synthetic values are archived; the independent CPU verifier recomputes all43 full payload hashes plus all synthetic values. No model/checkpoint is modified.
+
+Both timing arms use4 CPU threads and include BF16 D2H, finite checking, packing/allocation/transfer and identical full payload SHA proofs. The GPU arm also copies packed q/scales to CPU for proof. First compile is included. These are controlled component load-style timings, not the real worker's133-second thread configuration and not full startup or inference throughput claims. No CUDA Graph is used for this one-time loading operation.
+
+Wait for the exact SQL CPU queue PID83248, which itself follows the full4K pipeline and GateUp component. Check GPU idle before starting. Uses the newly authorized stop at2026-10-21 23:58 UTC+8, before the10-22 midnight reservation end. Raw data stays in the Tianshu container; Git receives code/reports/key JSON only. Runtime integration remains pending.
