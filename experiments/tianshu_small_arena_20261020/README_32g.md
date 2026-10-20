@@ -1,0 +1,9 @@
+# 缩小prefill暂存区：CPU和GPU边界通过，等待服务收益
+
+当前已验证K8V16/S16服务预留32768个dense pages（约512MiB）用于prefill解压，预留被实际memory profiling计入。候选容量8192页（约128MiB），释放384MiB scratch及96KiB表；仍能暂存单个131072-token上下文。超过聚合容量时原生__call__返回None，原routing使用已有byte attention回退，模型可接受的最大长度不改变。
+
+policy.py只替换构造时的容量和reserve分配尺寸；实际__call__、gather_decode、verify_last及routing回退原样继承，不改变任何K/V值、物理cache格式、attention算术、sampling/RNG或KV准入水位。CPU执行原始AST覆盖20个容量边界并核验未分配前的超限返回、mock分配字节和重复reserve同指针契约。
+
+真实GPU六场景包括单个131K、双64K、8×16K、32×4K、刚超容量、跨页stride，两组两个同Graph相位改变K/V/页表/长度。22次完整staging检查共1475715072个活动元素与缓存逐位一致、控制候选逐位一致，未使用行/页与guard、原始cache、RNG和复用指针通过；2次候选超容量返回None且arena未触碰。后者是staging分支检查，本probe未执行完整attention回退；其数值路径原样继承且前一已验证组件已覆盖强制fallback。
+
+GPU_GATE_32g.json由verify_gpu.py独立核验源与快照、实际分配字节及全部22/2检查后生成。当前没有模型吞吐或新Math成绩，未采用。[服务对照](../tianshu_small_arena_service_20261020/README_32g.md)将单独核验真实engine memory profiling和实际KV容量，不把释放字节直接当吞吐收益。原件在容器20261020_small_arena_CPU_tianshu和20261020_small_arena_GPU_tianshu；GitHub保存代码、关键JSON和报告。

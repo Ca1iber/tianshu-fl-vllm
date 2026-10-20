@@ -1,0 +1,407 @@
+{
+  "complete": true,
+  "phase": "complete",
+  "runner_pid": 30401,
+  "frozen_sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_small_arena_20261020/policy.py": "047fdbeaf22182f461c5cca95cc1e551cb955107554cf7a057b1fa80b395ee4a",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_small_arena_20261020/check_cpu.py": "9a037b966311b49c56ac0065a9a2700ae0f09f1aed179ae6686743d96099e4c6",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/bounded_prefill.py": "c5a3dd7d8190d4bd5c61510e21482a568f161ddd8ca9e1a519f0be0a31ff2555",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/dense_prefill.py": "fbe479c10e27d3c730f422bdd8b23348a17e0236cf5dea04c0f3d1201e1c29f4",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/routing.py": "0ba9c9fb0e5c11396c6ef96076a9448f717b6c4512a966ade07dd0d970e9687d",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_small_arena_20261020/CPU_GATE_32g.json": "f128bb7e63eaf889ea637babaf99fdf30af44c121cff5c4763bd45293059a345",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_small_arena_20261020/probe.py": "4e9d86071960a7339a4188cfbf312ea20020bd238fdc804ad74aa88e219ee142"
+  },
+  "cases": [
+    {
+      "name": "max_context",
+      "sequences": 1,
+      "max_length": 131072,
+      "pages": 8192,
+      "strided": false,
+      "checks": [
+        {
+          "mode": "control",
+          "phase": 0,
+          "fallback": false,
+          "active_cells_bitwise": true,
+          "checked_elements": 67108864,
+          "scratch_guard_preserved": true,
+          "distinct_dense_page_ids": true,
+          "unused_pages_and_rows_guarded": true,
+          "reused_pointers": true
+        },
+        {
+          "mode": "candidate",
+          "phase": 0,
+          "fallback": false,
+          "active_cells_bitwise": true,
+          "checked_elements": 67108864,
+          "scratch_guard_preserved": true,
+          "distinct_dense_page_ids": true,
+          "unused_pages_and_rows_guarded": true,
+          "reused_pointers": true
+        },
+        {
+          "mode": "control",
+          "phase": 1,
+          "fallback": false,
+          "active_cells_bitwise": true,
+          "checked_elements": 67105280,
+          "scratch_guard_preserved": true,
+          "distinct_dense_page_ids": true,
+          "unused_pages_and_rows_guarded": true,
+          "reused_pointers": true
+        },
+        {
+          "mode": "candidate",
+          "phase": 1,
+          "fallback": false,
+          "active_cells_bitwise": true,
+          "checked_elements": 67105280,
+          "scratch_guard_preserved": true,
+          "distinct_dense_page_ids": true,
+          "unused_pages_and_rows_guarded": true,
+          "reused_pointers": true
+        }
+      ],
+      "same_Graph_two_phases": true,
+      "raw_cache_unchanged": true,
+      "RNG_unchanged": true
+    },
+    {
+      "name": "two_contexts",
+      "sequences": 2,
+      "max_length": 65536,
+      "pages": 8192,
+      "strided": false,
+      "checks": [
+        {
+          "mode": "control",
+          "phase": 0,
+          "fallback": false,
+          "active_cells_bitwise": true,
+          "checked_elements": 67108352,
+          "scratch_guard_preserved": true,
+          "distinct_dense_page_ids": true,
+          "unused_pages_and_rows_guarded": true,
+          "reused_pointers": true
+        },
+        {
+          "mode": "candidate",
+          "phase": 0,
+          "fallback": false,
+          "active_cells_bitwise": true,
+          "checked_elements": 67108352,
+          "scratch_guard_preserved": true,
+          "distinct_dense_page_ids": true,
+          "unused_pages_and_rows_guarded": true,
+          "reused_pointers": true
+        },
+        {
+          "mode": "control",
+          "phase": 1,
+          "fallback": false,
+          "active_cells_bitwise": true,
+          "checked_elements": 67101184,
+          "scratch_guard_preserved": true,
+          "distinct_dense_page_ids": true,
+          "unused_pages_and_rows_guarded": true,
+          "reused_pointers": true
+        },
+        {
+          "mode": "candidate",
+          "phase": 1,
+          "fallback": false,
+          "active_cells_bitwise": true,
+          "checked_elements": 67101184,
+          "scratch_guard_preserved": true,
+          "distinct_dense_page_ids": true,
+          "unused_pages_and_rows_guarded": true,
+          "reused_pointers": true
+        }
+      ],
+      "same_Graph_two_phases": true,
+      "raw_cache_unchanged": true,
+      "RNG_unchanged": true
+    },
+    {
+      "name": "eight_contexts",
+      "sequences": 8,
+      "max_length": 16384,
+      "pages": 8192,
+      "strided": false,
+      "checks": [
+        {
+          "mode": "control",
+          "phase": 0,
+          "fallback": false,
+          "active_cells_bitwise": true,
+          "checked_elements": 67098112,
+          "scratch_guard_preserved": true,
+          "distinct_dense_page_ids": true,
+          "unused_pages_and_rows_guarded": true,
+          "reused_pointers": true
+        },
+        {
+          "mode": "candidate",
+          "phase": 0,
+          "fallback": false,
+          "active_cells_bitwise": true,
+          "checked_elements": 67098112,
+          "scratch_guard_preserved": true,
+          "distinct_dense_page_ids": true,
+          "unused_pages_and_rows_guarded": true,
+          "reused_pointers": true
+        },
+        {
+          "mode": "control",
+          "phase": 1,
+          "fallback": false,
+          "active_cells_bitwise": true,
+          "checked_elements": 67069440,
+          "scratch_guard_preserved": true,
+          "distinct_dense_page_ids": true,
+          "unused_pages_and_rows_guarded": true,
+          "reused_pointers": true
+        },
+        {
+          "mode": "candidate",
+          "phase": 1,
+          "fallback": false,
+          "active_cells_bitwise": true,
+          "checked_elements": 67069440,
+          "scratch_guard_preserved": true,
+          "distinct_dense_page_ids": true,
+          "unused_pages_and_rows_guarded": true,
+          "reused_pointers": true
+        }
+      ],
+      "same_Graph_two_phases": true,
+      "raw_cache_unchanged": true,
+      "RNG_unchanged": true
+    },
+    {
+      "name": "many_prefills",
+      "sequences": 32,
+      "max_length": 4096,
+      "pages": 8192,
+      "strided": false,
+      "checks": [
+        {
+          "mode": "control",
+          "phase": 0,
+          "fallback": false,
+          "active_cells_bitwise": true,
+          "checked_elements": 67062784,
+          "scratch_guard_preserved": true,
+          "distinct_dense_page_ids": true,
+          "unused_pages_and_rows_guarded": true,
+          "reused_pointers": true
+        },
+        {
+          "mode": "candidate",
+          "phase": 0,
+          "fallback": false,
+          "active_cells_bitwise": true,
+          "checked_elements": 67062784,
+          "scratch_guard_preserved": true,
+          "distinct_dense_page_ids": true,
+          "unused_pages_and_rows_guarded": true,
+          "reused_pointers": true
+        },
+        {
+          "mode": "control",
+          "phase": 1,
+          "fallback": false,
+          "active_cells_bitwise": true,
+          "checked_elements": 66948096,
+          "scratch_guard_preserved": true,
+          "distinct_dense_page_ids": true,
+          "unused_pages_and_rows_guarded": true,
+          "reused_pointers": true
+        },
+        {
+          "mode": "candidate",
+          "phase": 1,
+          "fallback": false,
+          "active_cells_bitwise": true,
+          "checked_elements": 66948096,
+          "scratch_guard_preserved": true,
+          "distinct_dense_page_ids": true,
+          "unused_pages_and_rows_guarded": true,
+          "reused_pointers": true
+        }
+      ],
+      "same_Graph_two_phases": true,
+      "raw_cache_unchanged": true,
+      "RNG_unchanged": true
+    },
+    {
+      "name": "over_boundary",
+      "sequences": 8,
+      "max_length": 16385,
+      "pages": 8200,
+      "strided": false,
+      "checks": [
+        {
+          "mode": "control",
+          "phase": 0,
+          "fallback": false,
+          "active_cells_bitwise": true,
+          "checked_elements": 67102208,
+          "scratch_guard_preserved": true,
+          "distinct_dense_page_ids": true,
+          "unused_pages_and_rows_guarded": true,
+          "reused_pointers": true
+        },
+        {
+          "mode": "candidate",
+          "phase": 0,
+          "fallback": true,
+          "arena_unchanged": true
+        },
+        {
+          "mode": "control",
+          "phase": 1,
+          "fallback": false,
+          "active_cells_bitwise": true,
+          "checked_elements": 67073536,
+          "scratch_guard_preserved": true,
+          "distinct_dense_page_ids": true,
+          "unused_pages_and_rows_guarded": true,
+          "reused_pointers": true
+        },
+        {
+          "mode": "candidate",
+          "phase": 1,
+          "fallback": true,
+          "arena_unchanged": true
+        }
+      ],
+      "same_Graph_two_phases": true,
+      "raw_cache_unchanged": true,
+      "RNG_unchanged": true
+    },
+    {
+      "name": "strided_pages",
+      "sequences": 8,
+      "max_length": 16384,
+      "pages": 8192,
+      "strided": true,
+      "checks": [
+        {
+          "mode": "control",
+          "phase": 0,
+          "fallback": false,
+          "active_cells_bitwise": true,
+          "checked_elements": 67098112,
+          "scratch_guard_preserved": true,
+          "distinct_dense_page_ids": true,
+          "unused_pages_and_rows_guarded": true,
+          "reused_pointers": true
+        },
+        {
+          "mode": "candidate",
+          "phase": 0,
+          "fallback": false,
+          "active_cells_bitwise": true,
+          "checked_elements": 67098112,
+          "scratch_guard_preserved": true,
+          "distinct_dense_page_ids": true,
+          "unused_pages_and_rows_guarded": true,
+          "reused_pointers": true
+        },
+        {
+          "mode": "control",
+          "phase": 1,
+          "fallback": false,
+          "active_cells_bitwise": true,
+          "checked_elements": 67069440,
+          "scratch_guard_preserved": true,
+          "distinct_dense_page_ids": true,
+          "unused_pages_and_rows_guarded": true,
+          "reused_pointers": true
+        },
+        {
+          "mode": "candidate",
+          "phase": 1,
+          "fallback": false,
+          "active_cells_bitwise": true,
+          "checked_elements": 67069440,
+          "scratch_guard_preserved": true,
+          "distinct_dense_page_ids": true,
+          "unused_pages_and_rows_guarded": true,
+          "reused_pointers": true
+        }
+      ],
+      "same_Graph_two_phases": true,
+      "raw_cache_unchanged": true,
+      "RNG_unchanged": true
+    }
+  ],
+  "mode_reservations": {
+    "control": {
+      "capacity_pages": 32768,
+      "scratch_bytes": 536887296,
+      "table_bytes": 131072,
+      "allocated_before": 0,
+      "allocated_after": 537018368,
+      "single_reusable_arena": true,
+      "arena_ptr": 138242181562368,
+      "table_ptr": 138242720530432,
+      "proof": {
+        "mode": "control",
+        "capacity_pages": 32768,
+        "scratch_bytes": 536887296,
+        "table_bytes": 131072,
+        "native_source": "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/bounded_prefill.py",
+        "native_sha256": "c5a3dd7d8190d4bd5c61510e21482a568f161ddd8ca9e1a519f0be0a31ff2555",
+        "original_call_inherited": true,
+        "original_gather_decode_unchanged": true,
+        "original_over_capacity_fallback_unchanged": true,
+        "RNG_not_read_or_modified": true,
+        "policy_sha256": "047fdbeaf22182f461c5cca95cc1e551cb955107554cf7a057b1fa80b395ee4a"
+      }
+    },
+    "candidate": {
+      "capacity_pages": 8192,
+      "scratch_bytes": 134234112,
+      "table_bytes": 32768,
+      "allocated_before": 537018368,
+      "allocated_after": 671285248,
+      "single_reusable_arena": true,
+      "arena_ptr": 138242787639296,
+      "table_ptr": 138242720661504,
+      "proof": {
+        "mode": "candidate",
+        "capacity_pages": 8192,
+        "scratch_bytes": 134234112,
+        "table_bytes": 32768,
+        "native_source": "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/bounded_prefill.py",
+        "native_sha256": "c5a3dd7d8190d4bd5c61510e21482a568f161ddd8ca9e1a519f0be0a31ff2555",
+        "original_call_inherited": true,
+        "original_gather_decode_unchanged": true,
+        "original_over_capacity_fallback_unchanged": true,
+        "RNG_not_read_or_modified": true,
+        "policy_sha256": "047fdbeaf22182f461c5cca95cc1e551cb955107554cf7a057b1fa80b395ee4a"
+      }
+    }
+  },
+  "official_benchmark": false,
+  "service_executed": false,
+  "model_executed": false,
+  "adopted": false,
+  "scope": "Capacity-only staging helper, native byte fallback identity preserved by inheritance, no full attention/model performance claim",
+  "all_staged_values_bitwise": true,
+  "all_guards_and_native_fallback_verified": true,
+  "scratch_saved_bytes": 402653184,
+  "table_saved_bytes": 98304,
+  "independently_rechecked": true,
+  "staging_GPU_checks": 22,
+  "fallback_branch_checks": 2,
+  "active_cells_bitwise_verified": 1475715072,
+  "raw_result_path": "/workspace/benchmark-results/20261020_small_arena_GPU_tianshu/result.json",
+  "raw_result_sha256": "5519e2e9ae9d9119b416a1d2cdcdc2ad690107d5d8684d99072005d42eec38b7",
+  "analyzer_source_sha256": "a56452d990b69d84f19e551b7cb82f49b6ead3a1212e2dfc2334c50676c7a8af",
+  "fallback_scope": "Original staging returns None without arena access; full attention fallback is inherited unchanged and covered by prior qualified component, not executed by this probe"
+}
