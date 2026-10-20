@@ -1,0 +1,2548 @@
+{
+  "complete": true,
+  "phase": "complete",
+  "runner_pid": 15284,
+  "started_utc": "2026-10-20T03:08:50.293370+00:00",
+  "frozen_sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_scalar_page_20261020/probe.py": "f26bcbfd182e48f9a3a9df97cf5598416f08c423521138028e87a687bff4acf8",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_scalar_page_20261020/source.py": "7b5452b024c9541b906c323f40959129ee09580e16508f1bd2632931805243db",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_v_int8_20261020/codec.py": "9ecb4a6671166965e79e74f94f265be2edd29b3d4d2f0b0c97e8f8a1caed4459",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_scalar_page_20261020/component_launch.py": "839dbd258b5adc6b13f50b3d45700e28b2c8b892a6ac3d79942b04fed712a73a",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/legacy_routing.py": "9dae2408de9f77e39350cfd70661e4e282ef0d69f798f968c1886d4172a6dc41",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/dispatch_policy.py": "842d69f6635152afa31d498e6e353e0e5f18bc2d86d89782d4e9db4e32f0157a",
+    "/workspace/benchmark-results/20261019_k8v16_budget_default_official4k_tianshu/decode_coherent_records/cache_generated/97987/generated_cache_policy.py": "8deb8967fdacf354f3b38e6a9687163493f6163764f3e8663dce916250cd1289",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_soft8_mixed_planes_20261019/writer.py": "27a74d3bdfee978780044eb69025c10a21d92a1b0a8cf567ee9fea1e0b8d12b5",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_kv_soft8_u32_20261016/codec_variant.py": "d0ad15741f183c63f225da72186752dbd90ba3a791ab365fa24ab3df4b3f58be",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_kv_soft8_20261016/codec.py": "0ccb887961dd0187abed4d77b9dfd2b3fa083e9e7e79c1650d0444e50838c14b",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/value_planes.py": "64f0a0ba89841feb8c091b861d60d687de5d4bdd73c9c7f66476e5cd6ff0d5f0",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_v_int8_20261020/GPU_CODECS_GATE_32g.json": "cb841d56bd6998ad673cb73dfd4a74b58efc9cb69d212f4b8a9828d5702ef4d2",
+    "/workspace/benchmark-results/20261020_k8v16_scalar_page_v2_tianshu/control_base_reader/generated_soft8_u32.py": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+    "/workspace/benchmark-results/20261020_k8v16_scalar_page_v2_tianshu/scalar_page_reader/generated_scalar_page.py": "037c58c755d0febc5ec566f11e5604dd8ff2462cba0c3d1addf1726d70843cd5"
+  },
+  "launch_source_proof": {
+    "legacy_path": "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/legacy_routing.py",
+    "legacy_sha256": "9dae2408de9f77e39350cfd70661e4e282ef0d69f798f968c1886d4172a6dc41",
+    "policy_path": "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/dispatch_policy.py",
+    "policy_sha256": "842d69f6635152afa31d498e6e353e0e5f18bc2d86d89782d4e9db4e32f0157a",
+    "launch_AST_unchanged_except_V_dtype_guard": true,
+    "reducer_AST_unchanged": true
+  },
+  "cases": [
+    {
+      "name": "decode1_4096",
+      "seed": 2026102000,
+      "strided": false,
+      "batch": 1,
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            4096
+          ],
+          "checks": [
+            {
+              "label": "control",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00027254223823547363,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 1048576,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 3170304,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 4,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 8.195638656616211e-08
+            },
+            {
+              "label": "scalar_page",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00027254223823547363,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 1048576,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 3170304,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 4,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 8.195638656616211e-08
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            4089
+          ],
+          "checks": [
+            {
+              "label": "control",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00017552822828292847,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 1048576,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 3170304,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 4,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 7.450580596923828e-08
+            },
+            {
+              "label": "scalar_page",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00017552822828292847,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 1048576,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 3170304,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 4,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 7.450580596923828e-08
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "labels": [
+        "control",
+        "scalar_page"
+      ],
+      "raw_ms": [
+        [
+          0.036170384287834166,
+          0.03599365651607513,
+          0.036078271269798276,
+          0.03603115379810333,
+          0.03591000139713287,
+          0.0359250009059906,
+          0.03596884608268738,
+          0.03599692285060883,
+          0.035976538062095643
+        ],
+        [
+          0.03617692291736603,
+          0.03585211634635925,
+          0.036090001463890076,
+          0.03589499890804291,
+          0.03608903884887695,
+          0.036032116413116454,
+          0.03612538576126099,
+          0.03587134778499603,
+          0.03604384660720825
+        ]
+      ],
+      "median_ms": [
+        0.03599365651607513,
+        0.03604384660720825
+      ],
+      "candidate_speedup_percent": [
+        -0.13924732196336498
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference"
+    },
+    {
+      "name": "decode1_5120",
+      "seed": 2026102001,
+      "strided": false,
+      "batch": 1,
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            5120
+          ],
+          "checks": [
+            {
+              "label": "control",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0002883598208427429,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 1310720,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 3956736,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 4,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 1.5273690223693848e-07
+            },
+            {
+              "label": "scalar_page",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0002883598208427429,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 1310720,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 3956736,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 4,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 1.5273690223693848e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            5113
+          ],
+          "checks": [
+            {
+              "label": "control",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0001471787691116333,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 1310720,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 3956736,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 4,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 8.568167686462402e-08
+            },
+            {
+              "label": "scalar_page",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0001471787691116333,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 1310720,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 3956736,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 4,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 8.568167686462402e-08
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "labels": [
+        "control",
+        "scalar_page"
+      ],
+      "raw_ms": [
+        [
+          0.04076673090457916,
+          0.04066403806209564,
+          0.04072499871253967,
+          0.04073249697685242,
+          0.040638270974159243,
+          0.04067884683609009,
+          0.04028249979019165,
+          0.040763461589813234,
+          0.04023423194885254
+        ],
+        [
+          0.04099384546279907,
+          0.04084192216396332,
+          0.04078499972820282,
+          0.04077000021934509,
+          0.04099384546279907,
+          0.040376922488212584,
+          0.04055480659008026,
+          0.04070249795913696,
+          0.040537691116333006
+        ]
+      ],
+      "median_ms": [
+        0.04067884683609009,
+        0.04077000021934509
+      ],
+      "candidate_speedup_percent": [
+        -0.2235795505631355
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference"
+    },
+    {
+      "name": "decode8_4096",
+      "seed": 2026102002,
+      "strided": false,
+      "batch": 8,
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096
+          ],
+          "checks": [
+            {
+              "label": "control",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0003175213932991028,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 8388608,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 25190400,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 2.0116567611694336e-07
+            },
+            {
+              "label": "scalar_page",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0003175213932991028,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 8388608,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 25190400,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 2.0116567611694336e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089
+          ],
+          "checks": [
+            {
+              "label": "control",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00028280168771743774,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 8388608,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 25190400,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 1.4156103134155273e-07
+            },
+            {
+              "label": "scalar_page",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00028280168771743774,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 8388608,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 25190400,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 1.4156103134155273e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "labels": [
+        "control",
+        "scalar_page"
+      ],
+      "raw_ms": [
+        [
+          0.08878615498542786,
+          0.08888038396835327,
+          0.08882037997245788,
+          0.08890596032142639,
+          0.08874865174293518,
+          0.08858365416526795,
+          0.088971346616745,
+          0.0891707718372345,
+          0.08895000219345092
+        ],
+        [
+          0.08872827291488647,
+          0.08847000002861023,
+          0.08867461681365967,
+          0.08854596018791198,
+          0.08872076869010925,
+          0.08853442668914795,
+          0.08881615400314331,
+          0.08862326741218567,
+          0.08883000016212464
+        ]
+      ],
+      "median_ms": [
+        0.08888038396835327,
+        0.08867461681365967
+      ],
+      "candidate_speedup_percent": [
+        0.23204741343962887
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference"
+    },
+    {
+      "name": "decode8_5120",
+      "seed": 2026102003,
+      "strided": false,
+      "batch": 8,
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120
+          ],
+          "checks": [
+            {
+              "label": "control",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00028171390295028687,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 10485760,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 31481856,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 3.3527612686157227e-07
+            },
+            {
+              "label": "scalar_page",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00028171390295028687,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 10485760,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 31481856,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 3.3527612686157227e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113
+          ],
+          "checks": [
+            {
+              "label": "control",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0001771785318851471,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 10485760,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 31481856,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 1.043081283569336e-07
+            },
+            {
+              "label": "scalar_page",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0001771785318851471,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 10485760,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 31481856,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 1.043081283569336e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "labels": [
+        "control",
+        "scalar_page"
+      ],
+      "raw_ms": [
+        [
+          0.106646728515625,
+          0.10650423765182496,
+          0.10629096031188964,
+          0.10608980655670167,
+          0.10616365671157837,
+          0.10627173185348511,
+          0.10640577077865601,
+          0.10622693300247192,
+          0.1062921166419983
+        ],
+        [
+          0.10647749900817871,
+          0.1062888503074646,
+          0.1062686562538147,
+          0.10629750490188598,
+          0.10621922016143799,
+          0.10633922815322876,
+          0.10642192363739014,
+          0.10645827054977416,
+          0.10634789466857911
+        ]
+      ],
+      "median_ms": [
+        0.10629096031188964,
+        0.10633922815322876
+      ],
+      "candidate_speedup_percent": [
+        -0.045390437919634596
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference"
+    },
+    {
+      "name": "decode32_4096",
+      "seed": 2026102004,
+      "strided": false,
+      "batch": 32,
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096
+          ],
+          "checks": [
+            {
+              "label": "control",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0004297792911529541,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 33554432,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 100687872,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 1.8998980522155762e-07
+            },
+            {
+              "label": "scalar_page",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0004297792911529541,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 33554432,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 100687872,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 1.8998980522155762e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089
+          ],
+          "checks": [
+            {
+              "label": "control",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00026492029428482056,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 33554432,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 100687872,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 1.2665987014770508e-07
+            },
+            {
+              "label": "scalar_page",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00026492029428482056,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 33554432,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 100687872,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 1.2665987014770508e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "labels": [
+        "control",
+        "scalar_page"
+      ],
+      "raw_ms": [
+        [
+          0.3016317367553711,
+          0.3014721155166626,
+          0.3018352031707764,
+          0.30172731876373293,
+          0.30185019969940186,
+          0.3018815517425537,
+          0.3013328790664673,
+          0.30195519924163816,
+          0.3016373157501221
+        ],
+        [
+          0.30151827335357667,
+          0.30164346694946287,
+          0.3017561674118042,
+          0.3016007661819458,
+          0.3014613389968872,
+          0.3014540195465088,
+          0.3015815496444702,
+          0.3013488531112671,
+          0.30136923789978026
+        ]
+      ],
+      "median_ms": [
+        0.30172731876373293,
+        0.30151827335357667
+      ],
+      "candidate_speedup_percent": [
+        0.06933092572838362
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 32,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            48,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 32,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            48,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference"
+    },
+    {
+      "name": "decode32_5120",
+      "seed": 2026102005,
+      "strided": false,
+      "batch": 32,
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120
+          ],
+          "checks": [
+            {
+              "label": "control",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00030134618282318115,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 41943040,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 125853696,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 2.4959444999694824e-07
+            },
+            {
+              "label": "scalar_page",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00030134618282318115,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 41943040,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 125853696,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 2.4959444999694824e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113
+          ],
+          "checks": [
+            {
+              "label": "control",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00019436702132225037,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 41943040,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 125853696,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 1.2665987014770508e-07
+            },
+            {
+              "label": "scalar_page",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00019436702132225037,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 41943040,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 125853696,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 1.2665987014770508e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "labels": [
+        "control",
+        "scalar_page"
+      ],
+      "raw_ms": [
+        [
+          0.3719463348388672,
+          0.3713421106338501,
+          0.3712028741836548,
+          0.371763277053833,
+          0.3717665433883667,
+          0.37160558700561525,
+          0.37269327640533445,
+          0.37178788185119627,
+          0.37165615558624265
+        ],
+        [
+          0.3723450183868408,
+          0.3714138507843018,
+          0.37114500999450684,
+          0.3717525005340576,
+          0.371622896194458,
+          0.3717525005340576,
+          0.37123172283172606,
+          0.37127461433410647,
+          0.3715232849121094
+        ]
+      ],
+      "median_ms": [
+        0.371763277053833,
+        0.3715232849121094
+      ],
+      "candidate_speedup_percent": [
+        0.06459679688188835
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 32,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            48,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 32,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            48,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference"
+    },
+    {
+      "name": "decode64_4096",
+      "seed": 2026102006,
+      "strided": false,
+      "batch": 64,
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096
+          ],
+          "checks": [
+            {
+              "label": "control",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0004491657018661499,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 67108864,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 201351168,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 2.1606683731079102e-07
+            },
+            {
+              "label": "scalar_page",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0004491657018661499,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 67108864,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 201351168,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 2.1606683731079102e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089
+          ],
+          "checks": [
+            {
+              "label": "control",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00022727996110916138,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 67108864,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 201351168,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 1.1548399925231934e-07
+            },
+            {
+              "label": "scalar_page",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00022727996110916138,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 67108864,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 201351168,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 1.1548399925231934e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "labels": [
+        "control",
+        "scalar_page"
+      ],
+      "raw_ms": [
+        [
+          0.5896659851074219,
+          0.5897271156311035,
+          0.5892695903778076,
+          0.5891420841217041,
+          0.5896361351013184,
+          0.5890565395355225,
+          0.5895663261413574,
+          0.5897207736968995,
+          0.5894280910491944
+        ],
+        [
+          0.5895429134368897,
+          0.5893317222595215,
+          0.5892494201660157,
+          0.5895128726959229,
+          0.5897432804107666,
+          0.5894903659820556,
+          0.5893147945404053,
+          0.589184045791626,
+          0.589954423904419
+        ]
+      ],
+      "median_ms": [
+        0.5895663261413574,
+        0.5894903659820556
+      ],
+      "candidate_speedup_percent": [
+        0.012885733794010257
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference"
+    },
+    {
+      "name": "decode64_5120",
+      "seed": 2026102007,
+      "strided": false,
+      "batch": 64,
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120
+          ],
+          "checks": [
+            {
+              "label": "control",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0003370717167854309,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 83886080,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 251682816,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 2.644956111907959e-07
+            },
+            {
+              "label": "scalar_page",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0003370717167854309,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 83886080,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 251682816,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 2.644956111907959e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113
+          ],
+          "checks": [
+            {
+              "label": "control",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00023227930068969727,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 83886080,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 251682816,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 1.2293457984924316e-07
+            },
+            {
+              "label": "scalar_page",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00023227930068969727,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 83886080,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 251682816,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 1.2293457984924316e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "labels": [
+        "control",
+        "scalar_page"
+      ],
+      "raw_ms": [
+        [
+          0.730242919921875,
+          0.7284706115722657,
+          0.7288661479949952,
+          0.7283518791198731,
+          0.7291830539703369,
+          0.7289421081542968,
+          0.7290236473083496,
+          0.7290502071380616,
+          0.7291263580322266
+        ],
+        [
+          0.7292625427246093,
+          0.7289880752563477,
+          0.7291403770446777,
+          0.7294071197509766,
+          0.7285263061523437,
+          0.7287416934967041,
+          0.7293290138244629,
+          0.7289977073669434,
+          0.729164981842041
+        ]
+      ],
+      "median_ms": [
+        0.7290236473083496,
+        0.7291403770446777
+      ],
+      "candidate_speedup_percent": [
+        -0.016009226755653305
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference"
+    },
+    {
+      "name": "decode8_ragged_strided",
+      "seed": 2026102008,
+      "strided": true,
+      "batch": 8,
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            33,
+            65,
+            127,
+            512,
+            2048,
+            4096,
+            5000,
+            5120
+          ],
+          "checks": [
+            {
+              "label": "control",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0022358298301696777,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 10485760,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 62963712,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 1.862645149230957e-07
+            },
+            {
+              "label": "scalar_page",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0022358298301696777,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 10485760,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 62963712,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 1.862645149230957e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            26,
+            58,
+            120,
+            505,
+            2041,
+            4089,
+            4993,
+            5113
+          ],
+          "checks": [
+            {
+              "label": "control",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0026445388793945312,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 10485760,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 62963712,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 1.7881393432617188e-07
+            },
+            {
+              "label": "scalar_page",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0026445388793945312,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 10485760,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 62963712,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 1.7881393432617188e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "labels": [
+        "control",
+        "scalar_page"
+      ],
+      "raw_ms": [
+        [
+          0.10042499303817749,
+          0.10044653415679931,
+          0.10047557353973388,
+          0.10037808418273926,
+          0.10039288997650146,
+          0.10030076503753663,
+          0.10029095411300659,
+          0.10047115087509155,
+          0.10052038431167602
+        ],
+        [
+          0.10055673122406006,
+          0.1003755807876587,
+          0.1003584623336792,
+          0.10013058185577392,
+          0.10029114484786987,
+          0.10044307708740234,
+          0.10046885013580323,
+          0.10014981031417847,
+          0.10019884109497071
+        ]
+      ],
+      "median_ms": [
+        0.10042499303817749,
+        0.1003584623336792
+      ],
+      "candidate_speedup_percent": [
+        0.06629306881673624
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference"
+    },
+    {
+      "name": "decode64_ragged_strided",
+      "seed": 2026102009,
+      "strided": true,
+      "batch": 64,
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            4096,
+            3965,
+            3834,
+            3703,
+            3572,
+            3441,
+            3310,
+            4096,
+            3965,
+            3834,
+            3703,
+            3572,
+            3441,
+            3310,
+            4096,
+            3965,
+            3834,
+            3703,
+            3572,
+            3441,
+            3310,
+            4096,
+            3965,
+            3834,
+            3703,
+            3572,
+            3441,
+            3310,
+            4096,
+            3965,
+            3834,
+            3703,
+            3572,
+            3441,
+            3310,
+            4096,
+            3965,
+            3834,
+            3703,
+            3572,
+            3441,
+            3310,
+            4096,
+            3965,
+            3834,
+            3703,
+            3572,
+            3441,
+            3310,
+            4096,
+            3965,
+            3834,
+            3703,
+            3572,
+            3441,
+            3310,
+            4096,
+            3965,
+            3834,
+            3703,
+            3572,
+            3441,
+            3310,
+            4096
+          ],
+          "checks": [
+            {
+              "label": "control",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00033289939165115356,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 67108864,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 402702336,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 2.3096799850463867e-07
+            },
+            {
+              "label": "scalar_page",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00033289939165115356,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 67108864,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 402702336,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 2.3096799850463867e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            4089,
+            3958,
+            3827,
+            3696,
+            3565,
+            3434,
+            3303,
+            4089,
+            3958,
+            3827,
+            3696,
+            3565,
+            3434,
+            3303,
+            4089,
+            3958,
+            3827,
+            3696,
+            3565,
+            3434,
+            3303,
+            4089,
+            3958,
+            3827,
+            3696,
+            3565,
+            3434,
+            3303,
+            4089,
+            3958,
+            3827,
+            3696,
+            3565,
+            3434,
+            3303,
+            4089,
+            3958,
+            3827,
+            3696,
+            3565,
+            3434,
+            3303,
+            4089,
+            3958,
+            3827,
+            3696,
+            3565,
+            3434,
+            3303,
+            4089,
+            3958,
+            3827,
+            3696,
+            3565,
+            3434,
+            3303,
+            4089,
+            3958,
+            3827,
+            3696,
+            3565,
+            3434,
+            3303,
+            4089
+          ],
+          "checks": [
+            {
+              "label": "control",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00028402358293533325,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 67108864,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 402702336,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 1.4156103134155273e-07
+            },
+            {
+              "label": "scalar_page",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00028402358293533325,
+                "failed_elements": 0,
+                "atol": 0.02,
+                "rtol": 0.01
+              },
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 67108864,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 402702336,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true,
+              "CPU_count": 12,
+              "CPU_all_passed": true,
+              "CPU_max_abs": 1.4156103134155273e-07
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "labels": [
+        "control",
+        "scalar_page"
+      ],
+      "raw_ms": [
+        [
+          0.5791938304901123,
+          0.5806274890899659,
+          0.5804538726806641,
+          0.5803745746612549,
+          0.5805856227874756,
+          0.5807775020599365,
+          0.5798142433166504,
+          0.5797800064086914,
+          0.5801013469696045
+        ],
+        [
+          0.5800469398498536,
+          0.5802836894989014,
+          0.580015754699707,
+          0.5804325103759765,
+          0.5803842544555664,
+          0.579875373840332,
+          0.5799932479858398,
+          0.5802632808685303,
+          0.5796717166900635
+        ]
+      ],
+      "median_ms": [
+        0.5803745746612549,
+        0.5800469398498536
+      ],
+      "candidate_speedup_percent": [
+        0.0564841892771728
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference"
+    }
+  ],
+  "model_sources": {
+    "control": {
+      "original_sha256": "8deb8967fdacf354f3b38e6a9687163493f6163764f3e8663dce916250cd1289",
+      "generated_sha256": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+      "producer_and_reducer_AST_unchanged": true,
+      "only_cast_helper_uint8_branch_and_test_added": true,
+      "fixed_storage_scale": 0.0625,
+      "exponent_bits": 4,
+      "mantissa_bits": 3,
+      "exponent_bias": 7,
+      "subnormal_codes_flush_to_signed_zero": true,
+      "all_nonzero_exponents_finite": true,
+      "largest_magnitude": 30.0,
+      "not_native_FP8_hardware": true,
+      "base_soft8_generated_sha256": "41f0b8dde1053678fe9920b517b58da05c6947cff32a0da72d8dbf5f8fff68e8",
+      "integer_intermediates_bits": 32,
+      "same_format_and_quantizer": true,
+      "one_more_reversible_edit": true,
+      "generated_source": "/workspace/benchmark-results/20261020_k8v16_scalar_page_v2_tianshu/control_base_reader/generated_soft8_u32.py"
+    },
+    "scalar_page": {
+      "base_codec": {
+        "original_sha256": "8deb8967fdacf354f3b38e6a9687163493f6163764f3e8663dce916250cd1289",
+        "generated_sha256": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+        "producer_and_reducer_AST_unchanged": true,
+        "only_cast_helper_uint8_branch_and_test_added": true,
+        "fixed_storage_scale": 0.0625,
+        "exponent_bits": 4,
+        "mantissa_bits": 3,
+        "exponent_bias": 7,
+        "subnormal_codes_flush_to_signed_zero": true,
+        "all_nonzero_exponents_finite": true,
+        "largest_magnitude": 30.0,
+        "not_native_FP8_hardware": true,
+        "base_soft8_generated_sha256": "41f0b8dde1053678fe9920b517b58da05c6947cff32a0da72d8dbf5f8fff68e8",
+        "integer_intermediates_bits": 32,
+        "same_format_and_quantizer": true,
+        "one_more_reversible_edit": true,
+        "generated_source": "/workspace/benchmark-results/20261020_k8v16_scalar_page_v2_tianshu/scalar_page_base_reader/generated_soft8_u32.py"
+      },
+      "scalar": {
+        "parent_source": "/workspace/benchmark-results/20261020_k8v16_scalar_page_v2_tianshu/scalar_page_base_reader/generated_soft8_u32.py",
+        "parent_sha256": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+        "generated_source": "/workspace/benchmark-results/20261020_k8v16_scalar_page_v2_tianshu/scalar_page_reader/generated_scalar_page.py",
+        "generated_sha256": "037c58c755d0febc5ec566f11e5604dd8ff2462cba0c3d1addf1726d70843cd5",
+        "exact_reversal_verified": true,
+        "only_block_table_load_changed": true,
+        "physical_indices_and_offsets_remain_int64": true
+      }
+    }
+  },
+  "control": "qualified K8V16 reader and launch policy, 12288-byte physical pages",
+  "candidate": "same K8V16 12288-byte physical pages; only 3D T16 page-index load becomes scalar",
+  "engine_allocator_connected": false,
+  "prefill_executed": false,
+  "model_executed": false,
+  "service_executed": false,
+  "official_benchmark": false,
+  "adoption_allowed": false,
+  "torch_version": "2.10.0",
+  "GPU": "Iluvatar BI-V150",
+  "time_scope": "hot CUDA Graph: one KV update and one paged decode layer; 9 alternating trials x 20 replays",
+  "numerical_passed": true,
+  "same_Graph_Q_K_V_table_lengths_verified": true,
+  "ended_utc": "2026-10-20T03:08:59.282657+00:00",
+  "component_only": true,
+  "adopted": false,
+  "full_GPU_FP32_checks": 40,
+  "CPU_selected_vector_checks": 416,
+  "independent_record_audit": true,
+  "original_result_sha256": "8fe11166c51103e192d44f8e0c8ce5b5b863b365fbab059cb50e8075877f0339",
+  "analyzer_source_sha256": "5043f06b627174f3d1f651c160d78fddb0daf040465539ee1667304f204e2ca7"
+}
