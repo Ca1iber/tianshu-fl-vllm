@@ -1,0 +1,107 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "GPU_executed": false,
+  "adopted": false,
+  "native_admission_AST_executed": true,
+  "coordinator_is_CPU_test_double": true,
+  "not_a_full_scheduler_simulation": true,
+  "no_throughput_prediction": true,
+  "both_arms_use_identical_long_segment_candidate": true,
+  "parent_hook_installed_once": true,
+  "only_runtime_configuration_difference": "native watermark 0 versus 1/16",
+  "guard_cases": [
+    {
+      "name": "waiting_exact_full_gate",
+      "status": "WAITING",
+      "has_scheduled_requests": true,
+      "full_sequence_must_fit": true,
+      "free_blocks": 3673,
+      "reserved_blocks": 0,
+      "admitted": true
+    },
+    {
+      "name": "waiting_below_full_gate",
+      "status": "WAITING",
+      "has_scheduled_requests": true,
+      "full_sequence_must_fit": true,
+      "free_blocks": 3672,
+      "reserved_blocks": 0,
+      "admitted": false
+    },
+    {
+      "name": "preempted_below_full_gate",
+      "status": "PREEMPTED",
+      "has_scheduled_requests": true,
+      "full_sequence_must_fit": true,
+      "free_blocks": 3672,
+      "reserved_blocks": 0,
+      "admitted": false
+    },
+    {
+      "name": "running_not_gated_by_watermark",
+      "status": "RUNNING",
+      "has_scheduled_requests": true,
+      "full_sequence_must_fit": true,
+      "free_blocks": 1024,
+      "reserved_blocks": 0,
+      "admitted": true
+    },
+    {
+      "name": "first_waiting_can_progress_without_watermark",
+      "status": "WAITING",
+      "has_scheduled_requests": false,
+      "full_sequence_must_fit": true,
+      "free_blocks": 1024,
+      "reserved_blocks": 0,
+      "admitted": true
+    },
+    {
+      "name": "per_step_exact_watermark_gate",
+      "status": "WAITING",
+      "has_scheduled_requests": true,
+      "full_sequence_must_fit": false,
+      "free_blocks": 2905,
+      "reserved_blocks": 0,
+      "admitted": true
+    },
+    {
+      "name": "per_step_below_watermark_gate",
+      "status": "WAITING",
+      "has_scheduled_requests": true,
+      "full_sequence_must_fit": false,
+      "free_blocks": 2904,
+      "reserved_blocks": 0,
+      "admitted": false
+    },
+    {
+      "name": "other_inflight_reserved_blocks_kept",
+      "status": "WAITING",
+      "has_scheduled_requests": true,
+      "full_sequence_must_fit": true,
+      "free_blocks": 3673,
+      "reserved_blocks": 900,
+      "admitted": false
+    }
+  ],
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_headroom_service_20261020/run_service_trial.py": "40cd27295ca302d7c9bd1184a2a7f9bf7a2be6d9196d06429f522940bf5d03c8",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_headroom_service_20261020/run_service_pair.py": "f4dc002e0ad36910785a62f0f7a2ccbc5818f7bb430ed9046fd2ae3a6c0aaacd",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_headroom_service_20261020/base_runtime_audit.py": "ba3f705971890a6ca199bf771793dbd22d395a00990d6eed0743ea3492410f13",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_headroom_service_20261020/long_runtime_audit.py": "3f97280d8344a0852876ee5e8c93b92198926676d234e33fc5369d89b8f08d2d",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_headroom_service_20261020/candidate_profile.py": "9b39c0bdb90b3e8f89f1dcabf102fc0420301ca062e6228b0f067c54f53510c5",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_headroom_service_20261020/audit_profile.py": "9164058a054fe9f99ce143dc8d2767b4fd502ef54089aca340bc46e95bfcb193",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_headroom_service_20261020/check_cpu.py": "02b3f08a1a52caac8b01169bc4d490f6944dbb671db43dd56a155534f0ed000a",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_headroom_service_20261020/hooks/sitecustomize.py": "b213b22c7fbe0c3923413d98d33934f395ea9a997e87ca015af4e310ae708119",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_headroom_service_20261020/batch_policy.json": "ebf9ca570d35075109cf23c5297603c95aebc60ac8ed506ceff76c94fbf8005f",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_kv_headroom_20261020/CPU_GATE_32g.json": "32d84a361d7bbe761a24b679818317a6616720cba7bcfe086ecc01c15e5b0df1",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_kv_headroom_20261020/policy.py": "d10695e1b492b906c12930681accbb97e54e274456c159a70f5cda41a8e68619",
+    "/usr/local/lib/python3.12/site-packages/vllm/v1/core/kv_cache_manager.py": "2e91e77f84dfd9d4bed79f50392be72559207f54e845a3d3402baf88dc529320",
+    "/usr/local/lib/python3.12/site-packages/vllm/v1/core/sched/scheduler.py": "df78076164fe02a63876d7690cefac810f1ba4d8fb58afc15e786c1608064090"
+  },
+  "profile_source_count": 234,
+  "profile_environment_count": 48,
+  "both_original_serve_argv_identical": true,
+  "both_frozen_source_sets_identical": true,
+  "normalized_environment_diff_exactly_watermark_mode": true
+}
