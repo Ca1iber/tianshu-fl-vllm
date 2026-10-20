@@ -1,0 +1,610 @@
+{
+  "complete": true,
+  "phase": "complete",
+  "runner_pid": 2563,
+  "started_utc": "2026-10-20T01:28:58.174621+00:00",
+  "stop_at_utc": "2026-10-20T15:58:00+00:00",
+  "frozen_sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_v_int8_20261020/probe_codecs_gpu.py": "fdaf501668957c7bda0de200d76d5dcfa21505e829446f738df107997ebf7441",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_v_int8_20261020/codec.py": "9ecb4a6671166965e79e74f94f265be2edd29b3d4d2f0b0c97e8f8a1caed4459",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_soft8_mixed_planes_20261019/writer.py": "27a74d3bdfee978780044eb69025c10a21d92a1b0a8cf567ee9fea1e0b8d12b5",
+    "/workspace/benchmark-results/20261019_k8v16_budget_default_official4k_tianshu/decode_coherent_records/cache_generated/97987/generated_cache_policy.py": "8deb8967fdacf354f3b38e6a9687163493f6163764f3e8663dce916250cd1289",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_kv_soft8_u32_20261016/codec_variant.py": "d0ad15741f183c63f225da72186752dbd90ba3a791ab365fa24ab3df4b3f58be",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_kv_soft8_20261016/codec.py": "0ccb887961dd0187abed4d77b9dfd2b3fa083e9e7e79c1650d0444e50838c14b",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_v_int8_20261020/CPU_GATE_GITHUB_32g.json": "4778bd18a3a72a53bb23a78c61522d6186b4ffc712b4bb2961b957d5a14d7ce6"
+  },
+  "cases": [
+    {
+      "denominator": 32,
+      "source_proof": {
+        "reader": {
+          "parent": {
+            "original_sha256": "8deb8967fdacf354f3b38e6a9687163493f6163764f3e8663dce916250cd1289",
+            "generated_sha256": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+            "producer_and_reducer_AST_unchanged": true,
+            "only_cast_helper_uint8_branch_and_test_added": true,
+            "fixed_storage_scale": 0.0625,
+            "exponent_bits": 4,
+            "mantissa_bits": 3,
+            "exponent_bias": 7,
+            "subnormal_codes_flush_to_signed_zero": true,
+            "all_nonzero_exponents_finite": true,
+            "largest_magnitude": 30.0,
+            "not_native_FP8_hardware": true,
+            "base_soft8_generated_sha256": "41f0b8dde1053678fe9920b517b58da05c6947cff32a0da72d8dbf5f8fff68e8",
+            "integer_intermediates_bits": 32,
+            "same_format_and_quantizer": true,
+            "one_more_reversible_edit": true
+          },
+          "K_cast_AST_unchanged": true,
+          "attention_AST_unchanged_except_V_cast": true,
+          "reducer_AST_unchanged": true,
+          "V_storage": "uint8 two-complement signed INT8",
+          "V_scale": 0.03125,
+          "generated_sha256": "3acfe6f4170b31fefbe6b8ed4326353fe2614af8ae50a3e5f47af0b16dedc188"
+        },
+        "writer": {
+          "original_sha256": "27a74d3bdfee978780044eb69025c10a21d92a1b0a8cf567ee9fea1e0b8d12b5",
+          "only_V_byte_encoder_replaced": true,
+          "K_encoder_unchanged": true,
+          "slot_addressing_and_negative_slot_handling_unchanged": true,
+          "V_scale": 0.03125,
+          "rounding": "nearest ties to even",
+          "NaN_code": 0,
+          "negative_infinity_code": 128,
+          "positive_infinity_code": 127,
+          "generated_sha256": "73f0de3a0d3c9d08a5b83a75e675347ae71fb820d866c100071551b793022a63"
+        },
+        "engine_hooks_installed": false,
+        "GPU_numerical_status": "not established by source generation",
+        "adoption_allowed": false
+      },
+      "writer_fixtures": [
+        {
+          "packed": false,
+          "raw_bytes": 41216,
+          "page_stride_bytes": 8192,
+          "cache_strides": [
+            16384,
+            4096,
+            256,
+            128,
+            1
+          ],
+          "raw_offset": 0,
+          "input_stride": [
+            512,
+            128,
+            1
+          ],
+          "physical_page_target_bytes": 8192,
+          "phases": [
+            {
+              "phase": 0,
+              "slots": [
+                0,
+                15,
+                16,
+                31,
+                47,
+                -1
+              ],
+              "complete_storage_matches": true,
+              "negative_slot_and_all_guards_preserved": true,
+              "actual_raw_sha256": "5ce584f115748c3fce5146ff95b16ed7545b193f9701a0256111d8897b39b38d",
+              "raw_fixture": "writer_d32_packed0_phase0.pt"
+            },
+            {
+              "phase": 1,
+              "slots": [
+                46,
+                -1,
+                1,
+                30,
+                17,
+                0
+              ],
+              "complete_storage_matches": true,
+              "negative_slot_and_all_guards_preserved": true,
+              "actual_raw_sha256": "dbda9d00620cf14f6dc3b3f0892701dd196ec9ac54403021b62009f994614fa2",
+              "raw_fixture": "writer_d32_packed0_phase1.pt"
+            },
+            {
+              "phase": 2,
+              "slots": [
+                -1,
+                32,
+                2,
+                18,
+                45,
+                14
+              ],
+              "complete_storage_matches": true,
+              "negative_slot_and_all_guards_preserved": true,
+              "actual_raw_sha256": "2b177304a9f1d0d58ac86dbc8cb385897caa9b9fb1c9f55d6c84842397aefbdb",
+              "raw_fixture": "writer_d32_packed0_phase2.pt"
+            }
+          ]
+        },
+        {
+          "packed": true,
+          "raw_bytes": 42496,
+          "page_stride_bytes": 8448,
+          "cache_strides": [
+            16896,
+            4096,
+            256,
+            128,
+            1
+          ],
+          "raw_offset": 128,
+          "input_stride": [
+            512,
+            128,
+            1
+          ],
+          "physical_page_target_bytes": 8192,
+          "phases": [
+            {
+              "phase": 0,
+              "slots": [
+                0,
+                15,
+                16,
+                31,
+                47,
+                -1
+              ],
+              "complete_storage_matches": true,
+              "negative_slot_and_all_guards_preserved": true,
+              "actual_raw_sha256": "90922fc37022d80adfde7f16553e24aced3e0286e1328211660cd69d44662f20",
+              "raw_fixture": "writer_d32_packed1_phase0.pt"
+            },
+            {
+              "phase": 1,
+              "slots": [
+                46,
+                -1,
+                1,
+                30,
+                17,
+                0
+              ],
+              "complete_storage_matches": true,
+              "negative_slot_and_all_guards_preserved": true,
+              "actual_raw_sha256": "fb61b5d3701a7bae31f2f5760359e2ea22dc4beeb4531a6d05df670f42e9f2b7",
+              "raw_fixture": "writer_d32_packed1_phase1.pt"
+            },
+            {
+              "phase": 2,
+              "slots": [
+                -1,
+                32,
+                2,
+                18,
+                45,
+                14
+              ],
+              "complete_storage_matches": true,
+              "negative_slot_and_all_guards_preserved": true,
+              "actual_raw_sha256": "ec5a1bc83ed0017570fa1ba6880a54a8381c3e31954970e3b7f4eb11f5412efb",
+              "raw_fixture": "writer_d32_packed1_phase2.pt"
+            }
+          ]
+        }
+      ],
+      "all65536_GPU_V_encodings_sha256": "ddd3fe0c5b9ecefabc8b828a585d2adc00b869c02f12ff1b0568fd3b45cc9917",
+      "V_encoder_metadata": {
+        "num_warps": 1,
+        "num_stages": 1,
+        "n_regs": 15,
+        "n_spills": 0
+      },
+      "all65536_GPU_K_encodings_sha256": "034e37bdac13c9fc44a9e1d5e983b01136e21255fec10038eab51fb5456d16df",
+      "V_codepoints": 256,
+      "K_codepoints_and_signed_zero_bits": 256,
+      "FP32_rounding_boundaries": 783,
+      "encoder_tail_guard": true,
+      "complete": true
+    },
+    {
+      "denominator": 16,
+      "source_proof": {
+        "reader": {
+          "parent": {
+            "original_sha256": "8deb8967fdacf354f3b38e6a9687163493f6163764f3e8663dce916250cd1289",
+            "generated_sha256": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+            "producer_and_reducer_AST_unchanged": true,
+            "only_cast_helper_uint8_branch_and_test_added": true,
+            "fixed_storage_scale": 0.0625,
+            "exponent_bits": 4,
+            "mantissa_bits": 3,
+            "exponent_bias": 7,
+            "subnormal_codes_flush_to_signed_zero": true,
+            "all_nonzero_exponents_finite": true,
+            "largest_magnitude": 30.0,
+            "not_native_FP8_hardware": true,
+            "base_soft8_generated_sha256": "41f0b8dde1053678fe9920b517b58da05c6947cff32a0da72d8dbf5f8fff68e8",
+            "integer_intermediates_bits": 32,
+            "same_format_and_quantizer": true,
+            "one_more_reversible_edit": true
+          },
+          "K_cast_AST_unchanged": true,
+          "attention_AST_unchanged_except_V_cast": true,
+          "reducer_AST_unchanged": true,
+          "V_storage": "uint8 two-complement signed INT8",
+          "V_scale": 0.0625,
+          "generated_sha256": "58e53f1a6a1c2dce54be562c49d1f4774f3c11d487d6096d62751a66c4ad8a59"
+        },
+        "writer": {
+          "original_sha256": "27a74d3bdfee978780044eb69025c10a21d92a1b0a8cf567ee9fea1e0b8d12b5",
+          "only_V_byte_encoder_replaced": true,
+          "K_encoder_unchanged": true,
+          "slot_addressing_and_negative_slot_handling_unchanged": true,
+          "V_scale": 0.0625,
+          "rounding": "nearest ties to even",
+          "NaN_code": 0,
+          "negative_infinity_code": 128,
+          "positive_infinity_code": 127,
+          "generated_sha256": "ca3697084df5fd7ff241fe81047deafec8a466fc8a1c9823fff4e4279a2175d5"
+        },
+        "engine_hooks_installed": false,
+        "GPU_numerical_status": "not established by source generation",
+        "adoption_allowed": false
+      },
+      "writer_fixtures": [
+        {
+          "packed": false,
+          "raw_bytes": 41216,
+          "page_stride_bytes": 8192,
+          "cache_strides": [
+            16384,
+            4096,
+            256,
+            128,
+            1
+          ],
+          "raw_offset": 0,
+          "input_stride": [
+            512,
+            128,
+            1
+          ],
+          "physical_page_target_bytes": 8192,
+          "phases": [
+            {
+              "phase": 0,
+              "slots": [
+                0,
+                15,
+                16,
+                31,
+                47,
+                -1
+              ],
+              "complete_storage_matches": true,
+              "negative_slot_and_all_guards_preserved": true,
+              "actual_raw_sha256": "85836fdb0f887d297846ddd5957023bfe7920b8b59e05bf1ec0d3de3d72c1815",
+              "raw_fixture": "writer_d16_packed0_phase0.pt"
+            },
+            {
+              "phase": 1,
+              "slots": [
+                46,
+                -1,
+                1,
+                30,
+                17,
+                0
+              ],
+              "complete_storage_matches": true,
+              "negative_slot_and_all_guards_preserved": true,
+              "actual_raw_sha256": "f920fdd2e082e735f34449c6350ae3caff742832eb29fe0ad578d5ecc2df58ee",
+              "raw_fixture": "writer_d16_packed0_phase1.pt"
+            },
+            {
+              "phase": 2,
+              "slots": [
+                -1,
+                32,
+                2,
+                18,
+                45,
+                14
+              ],
+              "complete_storage_matches": true,
+              "negative_slot_and_all_guards_preserved": true,
+              "actual_raw_sha256": "b502ade9ef749d69e7570d1f18600697e9c5a136d92347e671643988d23c8e43",
+              "raw_fixture": "writer_d16_packed0_phase2.pt"
+            }
+          ]
+        },
+        {
+          "packed": true,
+          "raw_bytes": 42496,
+          "page_stride_bytes": 8448,
+          "cache_strides": [
+            16896,
+            4096,
+            256,
+            128,
+            1
+          ],
+          "raw_offset": 128,
+          "input_stride": [
+            512,
+            128,
+            1
+          ],
+          "physical_page_target_bytes": 8192,
+          "phases": [
+            {
+              "phase": 0,
+              "slots": [
+                0,
+                15,
+                16,
+                31,
+                47,
+                -1
+              ],
+              "complete_storage_matches": true,
+              "negative_slot_and_all_guards_preserved": true,
+              "actual_raw_sha256": "7e46d9b8704c644f7d2e614053ba8f3dee2733415bc6f8cf928d908e6d9cefc6",
+              "raw_fixture": "writer_d16_packed1_phase0.pt"
+            },
+            {
+              "phase": 1,
+              "slots": [
+                46,
+                -1,
+                1,
+                30,
+                17,
+                0
+              ],
+              "complete_storage_matches": true,
+              "negative_slot_and_all_guards_preserved": true,
+              "actual_raw_sha256": "265c61ac9b3fec7da506b4c9d1be9022a6fd61520d52af95606a304a570d7607",
+              "raw_fixture": "writer_d16_packed1_phase1.pt"
+            },
+            {
+              "phase": 2,
+              "slots": [
+                -1,
+                32,
+                2,
+                18,
+                45,
+                14
+              ],
+              "complete_storage_matches": true,
+              "negative_slot_and_all_guards_preserved": true,
+              "actual_raw_sha256": "426ed2d9ca4585a038a6c65afa41d01f579ace19e4d9eff7d03ce0d8d868e2e8",
+              "raw_fixture": "writer_d16_packed1_phase2.pt"
+            }
+          ]
+        }
+      ],
+      "all65536_GPU_V_encodings_sha256": "52c03d23ceb05edf04ea441554941fd72d3db7425d9a2a3387bf4893ef7defdc",
+      "V_encoder_metadata": {
+        "num_warps": 1,
+        "num_stages": 1,
+        "n_regs": 15,
+        "n_spills": 0
+      },
+      "all65536_GPU_K_encodings_sha256": "034e37bdac13c9fc44a9e1d5e983b01136e21255fec10038eab51fb5456d16df",
+      "V_codepoints": 256,
+      "K_codepoints_and_signed_zero_bits": 256,
+      "FP32_rounding_boundaries": 783,
+      "encoder_tail_guard": true,
+      "complete": true
+    },
+    {
+      "denominator": 8,
+      "source_proof": {
+        "reader": {
+          "parent": {
+            "original_sha256": "8deb8967fdacf354f3b38e6a9687163493f6163764f3e8663dce916250cd1289",
+            "generated_sha256": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+            "producer_and_reducer_AST_unchanged": true,
+            "only_cast_helper_uint8_branch_and_test_added": true,
+            "fixed_storage_scale": 0.0625,
+            "exponent_bits": 4,
+            "mantissa_bits": 3,
+            "exponent_bias": 7,
+            "subnormal_codes_flush_to_signed_zero": true,
+            "all_nonzero_exponents_finite": true,
+            "largest_magnitude": 30.0,
+            "not_native_FP8_hardware": true,
+            "base_soft8_generated_sha256": "41f0b8dde1053678fe9920b517b58da05c6947cff32a0da72d8dbf5f8fff68e8",
+            "integer_intermediates_bits": 32,
+            "same_format_and_quantizer": true,
+            "one_more_reversible_edit": true
+          },
+          "K_cast_AST_unchanged": true,
+          "attention_AST_unchanged_except_V_cast": true,
+          "reducer_AST_unchanged": true,
+          "V_storage": "uint8 two-complement signed INT8",
+          "V_scale": 0.125,
+          "generated_sha256": "2545f5d5eba7abc8d2e04f0bacd06513d59ff00b6f23032831b4dbf8347dfd3a"
+        },
+        "writer": {
+          "original_sha256": "27a74d3bdfee978780044eb69025c10a21d92a1b0a8cf567ee9fea1e0b8d12b5",
+          "only_V_byte_encoder_replaced": true,
+          "K_encoder_unchanged": true,
+          "slot_addressing_and_negative_slot_handling_unchanged": true,
+          "V_scale": 0.125,
+          "rounding": "nearest ties to even",
+          "NaN_code": 0,
+          "negative_infinity_code": 128,
+          "positive_infinity_code": 127,
+          "generated_sha256": "4528009e67290440c2e76894bd86d475a65e21ca540f8d756a2cada70b46aac8"
+        },
+        "engine_hooks_installed": false,
+        "GPU_numerical_status": "not established by source generation",
+        "adoption_allowed": false
+      },
+      "writer_fixtures": [
+        {
+          "packed": false,
+          "raw_bytes": 41216,
+          "page_stride_bytes": 8192,
+          "cache_strides": [
+            16384,
+            4096,
+            256,
+            128,
+            1
+          ],
+          "raw_offset": 0,
+          "input_stride": [
+            512,
+            128,
+            1
+          ],
+          "physical_page_target_bytes": 8192,
+          "phases": [
+            {
+              "phase": 0,
+              "slots": [
+                0,
+                15,
+                16,
+                31,
+                47,
+                -1
+              ],
+              "complete_storage_matches": true,
+              "negative_slot_and_all_guards_preserved": true,
+              "actual_raw_sha256": "84be688d3a09cf21bd13ebd343401277f7d943242fde447a0abc47cdeb74476c",
+              "raw_fixture": "writer_d8_packed0_phase0.pt"
+            },
+            {
+              "phase": 1,
+              "slots": [
+                46,
+                -1,
+                1,
+                30,
+                17,
+                0
+              ],
+              "complete_storage_matches": true,
+              "negative_slot_and_all_guards_preserved": true,
+              "actual_raw_sha256": "a2c1235cea85c8ed5f3fcae9ed28d8da54b22e3fd59af41d724870cc3f4d7669",
+              "raw_fixture": "writer_d8_packed0_phase1.pt"
+            },
+            {
+              "phase": 2,
+              "slots": [
+                -1,
+                32,
+                2,
+                18,
+                45,
+                14
+              ],
+              "complete_storage_matches": true,
+              "negative_slot_and_all_guards_preserved": true,
+              "actual_raw_sha256": "f278ab8ba17b5856799c3307010e59ebd2bd5f4bc82a25da03f360a934b175cf",
+              "raw_fixture": "writer_d8_packed0_phase2.pt"
+            }
+          ]
+        },
+        {
+          "packed": true,
+          "raw_bytes": 42496,
+          "page_stride_bytes": 8448,
+          "cache_strides": [
+            16896,
+            4096,
+            256,
+            128,
+            1
+          ],
+          "raw_offset": 128,
+          "input_stride": [
+            512,
+            128,
+            1
+          ],
+          "physical_page_target_bytes": 8192,
+          "phases": [
+            {
+              "phase": 0,
+              "slots": [
+                0,
+                15,
+                16,
+                31,
+                47,
+                -1
+              ],
+              "complete_storage_matches": true,
+              "negative_slot_and_all_guards_preserved": true,
+              "actual_raw_sha256": "cad3ab0741ec3b740190ee78b1bf27e50a4d8cfbe1e768b49a395ccb25add19f",
+              "raw_fixture": "writer_d8_packed1_phase0.pt"
+            },
+            {
+              "phase": 1,
+              "slots": [
+                46,
+                -1,
+                1,
+                30,
+                17,
+                0
+              ],
+              "complete_storage_matches": true,
+              "negative_slot_and_all_guards_preserved": true,
+              "actual_raw_sha256": "07dd54e2b64d7f0f82a2752f161db1d08f988bcd00c044801e6100b17e71292b",
+              "raw_fixture": "writer_d8_packed1_phase1.pt"
+            },
+            {
+              "phase": 2,
+              "slots": [
+                -1,
+                32,
+                2,
+                18,
+                45,
+                14
+              ],
+              "complete_storage_matches": true,
+              "negative_slot_and_all_guards_preserved": true,
+              "actual_raw_sha256": "4b39fc14c8d995173f9213b3c5721ed4499573afe15fb5779b98fac7055b8445",
+              "raw_fixture": "writer_d8_packed1_phase2.pt"
+            }
+          ]
+        }
+      ],
+      "all65536_GPU_V_encodings_sha256": "fdada3b413724f568ffac47080c8efdd0c7e96d64850d6f4e499603cabbfb35a",
+      "V_encoder_metadata": {
+        "num_warps": 1,
+        "num_stages": 1,
+        "n_regs": 15,
+        "n_spills": 0
+      },
+      "all65536_GPU_K_encodings_sha256": "034e37bdac13c9fc44a9e1d5e983b01136e21255fec10038eab51fb5456d16df",
+      "V_codepoints": 256,
+      "K_codepoints_and_signed_zero_bits": 256,
+      "FP32_rounding_boundaries": 783,
+      "encoder_tail_guard": true,
+      "complete": true
+    }
+  ],
+  "CPU_gate_runner": "GitHub Ubuntu 24.04",
+  "actual_GPU": "Iluvatar BI-V150",
+  "torch_version": "2.10.0",
+  "attention_forward_executed": false,
+  "physical_page_spec_connected": false,
+  "service_executed": false,
+  "official_benchmark": false,
+  "adoption_allowed": false,
+  "Graph_scope": "KV writer only; Q/block-table/attention Graph not tested",
+  "ended_utc": "2026-10-20T01:29:01.908822+00:00",
+  "GPU_codecs_match_CPU_contract": true,
+  "GPU_K_bits_preserved": true,
+  "GPU_writer_Graph_changed_inputs_passed": true
+}

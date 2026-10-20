@@ -4,7 +4,7 @@
 
 正式最佳仍是 K8V16/default4096：4K 5101.45 total tok/s、1020.29 output tok/s、Mean TTFT 4164.20ms；同源码 Math Level3 102/105。最佳标签为 tianshu-original-command-4k-k8v16-budget4096-20261019，提交 5ea64d33e594fc9510f5a3062bbf84811161ba5f。以上均是旧版本已验收结果，不能作为本候选的验证结果。
 
-2026-10-20 用户已确认容器运行且网页 IDE 可用，但指定 SSH 网关仍返回 Permission denied(publickey)。本轮尚无 GPU 测试、服务成绩、Math 或 profile 数据。GitHub CPU 检查已通过，见下方记录。已将准备代码保存到独立分支 exp/tianshu-v-int8-20261020，不修改当前最佳代码、标签及沐曦仓库，不建立本地项目副本。
+2026-10-20 初次准备时，用户已确认容器运行且网页 IDE 可用，但指定 SSH 网关仍返回 Permission denied(publickey)。初次准备时尚无 GPU 测试。09:29 GPU 编解码与 writer 检查已通过，见 CODECS_REPORT_32g.md；服务、Math 与 profile 尚未运行。已将准备代码保存到独立分支 exp/tianshu-v-int8-20261020，不修改当前最佳代码、标签及沐曦仓库，不建立本地项目副本。
 
 ## 本轮假设
 
@@ -50,7 +50,7 @@ python3 experiments/tianshu_v_int8_20261020/check_cpu.py \
 
 这不证明 GPU encoder 与标量规范一致，不证明 Triton 能编译，不包含物理页布局、attention 数值、Graph 重放、饱和率、吞吐或 Math 结论。adoption_allowed 仍为 false；正式最佳 5101.45 total tok/s 不变。下一步必须等 SSH 接入恢复，在天数卡执行 GPU 检查与接入门槛。
 
-## GPU 编解码/写入 gate：程序已准备，尚未运行
+## GPU 编解码/写入 gate：已在 BI-V150 通过
 
 probe_codecs_gpu.py 只用于真实卡上的编解码与 KV writer 验证，不安装服务 hook，不运行 attention forward。它核对已通过 CPU 检查的源码摘要；逐档编译并检查全部 BF16 K/V 编码、K/V 全部码点、FP32 ties/saturation 边界、尾部 guard，以及真实 UINT8 页、带偏移/填充/跨页 stride 的完整原始 storage。writer Graph 的三个阶段改变 K、V 和 slot，保存全部存储及原始输入，检查负 slot 与空洞保护。该 Graph 检查不覆盖 Q、block table 或 attention。
 
@@ -74,3 +74,7 @@ python3 experiments/tianshu_v_int8_20261020/probe_codecs_gpu.py \
 截至北京时间 2026-10-20 09:20，指定连接连续多轮在 Go SSH 网关的公钥询问阶段失败。显式选择本地 id_ed25519 后，实际公钥指纹 SHA256:IeJn0Xi8fTRgzVQZFCl2SpJHMKUFrIif1ys9sEh9B9M 与用户提供的平台公钥一致；服务器指纹仍是已知 SHA256:DZ7AQ1tcXbaYcLkuPByw0qs+GhV5WKHyr9ghLqPil9A。日志未出现 Server accepts key，最终 Permission denied(publickey)。这只证明该次网关认证未通过，不证明容器 sshd 的具体状态，也不能据此替换 proxy-authorized-keys。
 
 用户确认网页 IDE 正常，正在等待 hostname、pgrep -a sshd 和两个 authorized_keys 文件指纹的当前输出。没有开启新的 GPU 进程。当前无进行中的 CI 作业；独立准备工作完成，下一步须先恢复 SSH，再在真实卡执行已准备 gate，根据 GPU 结果决定是否继续布局和服务接入。当前最佳分支仍是 82b547743e125a506f881d58e1a1a0bb6e7f1e7c，最佳标签与成绩不变。
+
+## 09:29 更新
+
+SSH 已恢复，原域名新连接也成功。三档 V 缩放的真实 GPU 编解码与 writer Graph gate 全部通过，详见 [CODECS_REPORT_32g.md](CODECS_REPORT_32g.md) 和 GPU_CODECS_GATE_32g.json。CPU_GATE_CONTAINER_32g.json 是同一容器对既有 CPU 检查的实际运行记录。完整 attention、布局接入、服务吞吐与 Math 尚未验证，最佳版本不变。
