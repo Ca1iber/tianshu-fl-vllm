@@ -1,0 +1,11 @@
+# 按请求未来输出量预留KV容量：实验候选
+
+原生full_sequence_must_fit检查request.num_tokens，包含已给定prompt和已经生成的token，不包含尚未生成的max_tokens。本候选仅在新WAITING/PREEMPTED请求准入时，计算min(prompt长度+max_tokens,max_model_len)的未来容量，同时扣除已准入请求尚未实际分配的虚拟容量。预测仍调用已安装原生coordinator/块预测器，计入前缀共享与可驱逐缓存块；后续生成把虚拟容量变为实际分配，正常free或deferred-free pop清除对应虚拟计划。
+
+仅用于本次MiniCPM5-2B、单FullAttention组、block16、非投机、非多模态encoder、无KV/EC connector、TP/PP/DCP/PCP均1、watermark0的受限实验。修改的是实例allocate_slots/free/pop的薄包装；实际分配大小、数据、token、RNG及原生异常/返回值沿用。running请求直通，不强制降低并发到固定值。无法支持的调用仍直通。
+
+CPU验证24项场景、512组独立整数容量计算通过，覆盖部分预填充、继续生成时不重复预留、free/pop、前缀可驱逐性、native reserved_blocks、投机等调用回退与异常身份。测试使用已安装SingleTypeKVCacheManager块预测函数AST；没有执行完整原生KVCacheManager或GPU，因此不把CPU通过描述为框架正确性已验证。
+
+对应服务实验在tianshu_future_kv_service_20261020，双方都固定小暂存区128MiB、原生max_num_seqs64以隔离未来预留的影响。它们是实验对照背景，不因本候选而自动成为正式版本。260份来源、52项归一化环境相同，仅TIANSHU_FUTURE_KV_MODE不同，保留原官方serve命令。首先进行4K N64对照验证真实服务及生命周期；需要后续GPU证据、新Math严格>95%及同配置正式评测，才能采用。
+
+当前CPU原件`/workspace/benchmark-results/20261020_future_kv_reservation_CPU_v2_tianshu`；首版CPU原件亦保留。GPU控制/候选的运行记录和最终审计另存，未借用旧Math。

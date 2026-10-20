@@ -1,0 +1,121 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "GPU_and_service_not_run": true,
+  "adopted": false,
+  "native_block_predictor_AST_used": true,
+  "native_manager_body_not_executed": true,
+  "request_data_and_RNG_not_accessed": true,
+  "random_accounting_cases": 512,
+  "cases": [
+    {
+      "case": "partial_prefill_future_admission_lifetime",
+      "mode": "control",
+      "passed": true,
+      "rejections": 0
+    },
+    {
+      "case": "partial_prefill_future_admission_lifetime",
+      "mode": "candidate",
+      "passed": true,
+      "rejections": 1
+    },
+    {
+      "case": "setup_fallback_connector",
+      "passed": true
+    },
+    {
+      "case": "setup_fallback_ec_connector",
+      "passed": true
+    },
+    {
+      "case": "setup_fallback_use_eagle",
+      "passed": true
+    },
+    {
+      "case": "setup_fallback_is_encoder_decoder",
+      "passed": true
+    },
+    {
+      "case": "setup_fallback_num_lookahead_tokens",
+      "passed": true
+    },
+    {
+      "case": "setup_fallback_scheduler_reserve_full_isl",
+      "passed": true
+    },
+    {
+      "case": "setup_fallback_max_model_len",
+      "passed": true
+    },
+    {
+      "case": "setup_fallback_dcp_world_size",
+      "passed": true
+    },
+    {
+      "case": "setup_fallback_pcp_world_size",
+      "passed": true
+    },
+    {
+      "case": "setup_fallback_tensor_parallel_size",
+      "passed": true
+    },
+    {
+      "case": "setup_fallback_pipeline_parallel_size",
+      "passed": true
+    },
+    {
+      "case": "request_passthrough_running",
+      "passed": true
+    },
+    {
+      "case": "request_passthrough_pooling",
+      "passed": true
+    },
+    {
+      "case": "request_passthrough_zero_output",
+      "passed": true
+    },
+    {
+      "case": "request_passthrough_zero_prompt",
+      "passed": true
+    },
+    {
+      "case": "request_passthrough_invalid_plan",
+      "passed": true
+    },
+    {
+      "case": "call_passthrough_num_lookahead_tokens",
+      "passed": true
+    },
+    {
+      "case": "call_passthrough_num_external_computed_tokens",
+      "passed": true
+    },
+    {
+      "case": "call_passthrough_delay_cache_blocks",
+      "passed": true
+    },
+    {
+      "case": "call_passthrough_num_encoder_tokens",
+      "passed": true
+    },
+    {
+      "case": "native_exception_identity",
+      "passed": true
+    },
+    {
+      "case": "independent_future_prefix_and_reserved_accounting",
+      "count": 512,
+      "passed": true
+    }
+  ],
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_future_kv_reservation_20261020/policy.py": "19a0919caf5d85e17f893d0098082eb731f8de4ddc6630d7d2bab1a57cd8dc76",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_future_kv_reservation_20261020/check_cpu.py": "31f238526742c4460b2bd2fa0014e549e7b37d05e6d5174ea469be86641eb3cf",
+    "/usr/local/lib/python3.12/site-packages/vllm/v1/core/kv_cache_manager.py": "2e91e77f84dfd9d4bed79f50392be72559207f54e845a3d3402baf88dc529320",
+    "/usr/local/lib/python3.12/site-packages/vllm/v1/core/kv_cache_coordinator.py": "9dd0a647f671b859e3743fbf5ec84cd892fd5754022eef58c5b8c989a4cda97b",
+    "/usr/local/lib/python3.12/site-packages/vllm/v1/core/single_type_kv_cache_manager.py": "22e3677acf0e769461bdbf278df031d6e362c97aa1ba7b862c071b76d47d8914",
+    "/usr/local/lib/python3.12/site-packages/vllm/v1/core/sched/scheduler.py": "df78076164fe02a63876d7690cefac810f1ba4d8fb58afc15e786c1608064090"
+  }
+}

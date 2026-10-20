@@ -1,0 +1,7 @@
+# 未来输出KV预留服务对照
+
+同260份冻结来源、52项归一化环境、原始serve命令，唯一方案差异为TIANSHU_FUTURE_KV_MODE。两组背景均为K8/V BF16、S16长上下文、4096默认预算、83预热点、max_num_seqs64和128MiB预填充暂存区。
+
+sitecustomize先完整加载既有memory-combo hooks，再在Scheduler.__init__完成后安装实例准入包装。内层scheduler记录描述安装新包装前的原生初始化状态；外层future_kv_records明确记录包装已安装，不能将内层“原生分配方法未改”误解为外层没有包装。native allocator文件SHA、实际pool大小、记录计数、最终计划释放和真实Graph均需核验。
+
+run_service_trial.py沿用原始单组筛选入口；每轮64请求，3轮、排除首轮，各轮输入不同且组间配对。结果分析器及直接shell控制器位于tianshu_future_kv_results_20261020。当前4K对照运行中，不是正式benchmark；PROFILE_CPU_GATE仅证明组装与来源/环境关系，不证明GPU性能或模型质量。
