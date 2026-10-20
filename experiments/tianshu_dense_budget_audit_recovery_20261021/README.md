@@ -1,0 +1,9 @@
+# Recover auxiliary audit only; original completed Math retained
+
+The fresh budget8192 EvalScope run completed105/105 without API errors and scored102/105. Original result/state remain immutable with audit_failed: the outer metadata check used native_sha256, while the actual record correctly exposes native_source_sha256. No model/kernel/config or generation failure occurred.
+
+corrected_audit.py has exactly two reversible edits from the frozen auditor: resolve dependencies in the original immutable pipeline directory, and read the actual native_source_sha256 field. recover.py proves exact reverse equality, rechecks all374 runtime and9 original controller sources, then reruns the complete runtime/105-question audit on preserved data. It writes separate rechecked_result/rechecked_accuracy_audit/postprocessing_recovery files; original failed records are not overwritten. New supplemental source hashes distinguish this recovery from the original GPU controller.
+
+The resumed official driver is the original frozen run_validation.py. Its read adapter supplies the separately rechecked Math result, its runtime audit uses the corrected metadata reader, and its model preparation/benchmark launch remain original. The formal root stores the two supplemental controller sources and their snapshots in addition to the original9 primary sources. All374 inference sources,64 environment keys,43 weight signatures,original13 serve argv and original benchmark are unchanged. There is no repeated Math generation.
+
+This launcher performs only the original N256/C64 four-run4K after the retained fresh quality passes. Original failed conditional runner remains preserved; the recovery runner has its own phase/complete marker. GPU idle is required before launch. No16K or best-version adoption is done here.
