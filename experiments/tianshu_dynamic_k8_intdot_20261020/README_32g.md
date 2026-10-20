@@ -9,3 +9,7 @@
 Reader准备阶段仅修改统一attention kernel：3D时Q逐行量化、K按页尾FP32尺度读取并执行INT32 QK，随后按两侧尺度恢复分数；2D保留Q BF16并将新K按尺度恢复BF16。参数ABI及其余helper/reducer AST不变，修改可精确逆变换；页表读取增加有效token mask、尺度读取沿用decode的.cv。2048项CPU整数缩放代数与2,064,512最坏累加界验证通过。Reader尚未GPU编译，2D/prefill也没有GPU覆盖。
 
 准备11个纯decode场景（B1/8/32/64的4K/5K、两组ragged/stride、B40/16K），与现有软件E4M3 K8V16分开按各自数值格式构造参考。新格式参考的有效Q/K由CPU独立编码及FP32尺度构造；FP32 attention与CPU向量参考，完整K/V/尺度/输出/scratch/RNG及同Graph变数据，计时包括writer。误差门槛atol0.002+rtol0.01，未以旧格式输出逐位相同为前提。只新增shared memory观测字段，归一化后的Producer计算AST与当前launch相同。必须先通过排队中的GPU格式检查及单warp INT8 dot入口，再运行此probe_decode.py；未接真实引擎或Math。
+
+GPU编解码已完成：连续与跨页stride两种布局，各三次同图数据变化；合计391680个编码值和3060个FP32尺度与独立CPU契约一致，整个物理缓存字节及解码输出/保护区逐位正确，输入及RNG保持，负slot忽略。见GPU_CODECS_GATE_32g.json。分页整数QK decode正在独立组件验证，未接模型、未执行prefill，也不代表新质量通过。
+
+完整分页decode组件也已结束：11场景（B1/8/32/64的4K/5K，两个ragged/stride，B40/16K），两种内核各两相位共44次完整GPU参考，CPU选定向量、全部缓存字节、segment/输出保护区、RNG检查通过。热Graph计时包含一次KV写入和一层decode，AB/BA交替9次，每次20 replay，不含CPU初始化/参考。候选全部较慢：4K B64为0.777738ms，对照0.589482ms（耗时+31.93%，等价吞吐-24.21%）；16K B40为2.846638ms，对照2.184262ms（等价吞吐-23.27%）。其余场景也负收益，见DECODE_ROUNDS_32g.csv。因此不推进模型接入或Math，不采用。这里的数值参考使用新格式有效Q/K，不等同于原始模型质量通过。verify_decode.py只复核已记录证据、源哈希和统计，不宣称重新执行GPU计算。

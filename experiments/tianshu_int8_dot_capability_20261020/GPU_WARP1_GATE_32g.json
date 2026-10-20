@@ -1,0 +1,112 @@
+{
+  "complete": true,
+  "component_only": true,
+  "adopted": false,
+  "official_benchmark": false,
+  "model_executed": false,
+  "no_latency_or_throughput_claim": true,
+  "cases": [
+    {
+      "width": 16,
+      "phases": [
+        {
+          "phase": 0,
+          "Q8_exact": true,
+          "Q_scale_exact": true,
+          "INT32_product_exact": true,
+          "float_max_abs": 0.0,
+          "RNG_unchanged": true
+        },
+        {
+          "phase": 1,
+          "Q8_exact": true,
+          "Q_scale_exact": true,
+          "INT32_product_exact": true,
+          "float_max_abs": 0.0,
+          "RNG_unchanged": true
+        }
+      ],
+      "compiled_metadata": {
+        "n_regs": 101,
+        "n_spills": 0,
+        "shared": 4096,
+        "num_warps": 1
+      }
+    },
+    {
+      "width": 32,
+      "phases": [
+        {
+          "phase": 0,
+          "Q8_exact": true,
+          "Q_scale_exact": true,
+          "INT32_product_exact": true,
+          "float_max_abs": 0.0,
+          "RNG_unchanged": true
+        },
+        {
+          "phase": 1,
+          "Q8_exact": true,
+          "Q_scale_exact": true,
+          "INT32_product_exact": true,
+          "float_max_abs": 0.0,
+          "RNG_unchanged": true
+        }
+      ],
+      "compiled_metadata": {
+        "n_regs": 122,
+        "n_spills": 0,
+        "shared": 6144,
+        "num_warps": 1
+      }
+    }
+  ],
+  "frozen_sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_int8_dot_capability_20261020/probe_warp1.py": "aa865766c1373d68cb016f2d53ac84fdc3804e076170a339c370cf7f0065f364",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_int8_dot_capability_20261020/kernel.py": "8cb3a443f74070340f55ef365a0d3e943e5b515390ee53752e897a4190e3e036"
+  },
+  "device": {
+    "name": "Iluvatar BI-V150",
+    "total_memory": 34359738368,
+    "multi_processor_count": 16,
+    "major": 7,
+    "minor": 1,
+    "torch_version": "2.10.0"
+  },
+  "torch_device_properties": {
+    "L2_cache_size": 16777216,
+    "async_engine_count": 1,
+    "clock_rate": 1500000,
+    "gcnArchName": "Iluvatar BI-V150",
+    "is_integrated": 0,
+    "is_multi_gpu_board": 1,
+    "major": 7,
+    "max_threads_per_block": 4096,
+    "max_threads_per_multi_processor": 8192,
+    "memory_bus_width": 2048,
+    "memory_clock_rate": 1600000,
+    "minor": 1,
+    "multi_processor_count": 16,
+    "name": "Iluvatar BI-V150",
+    "pci_bus_id": 22,
+    "pci_device_id": 0,
+    "pci_domain_id": 0,
+    "regs_per_multiprocessor": 262144,
+    "shared_memory_per_block": 131072,
+    "shared_memory_per_block_optin": 131072,
+    "shared_memory_per_multiprocessor": 131072,
+    "total_memory": 34359738368,
+    "warp_size": 64
+  },
+  "triton_device_properties": {
+    "max_shared_mem": 131072,
+    "max_num_regs": 262144,
+    "multiprocessor_count": 16,
+    "warpSize": 64,
+    "sm_clock_rate": 1500000,
+    "mem_clock_rate": 1600000,
+    "mem_bus_width": 2048
+  },
+  "successful_shapes": 2,
+  "ended_utc": "2026-10-20T04:06:47.289296+00:00"
+}

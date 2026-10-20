@@ -1,0 +1,6090 @@
+{
+  "complete": true,
+  "phase": "complete",
+  "runner_pid": 20965,
+  "started_utc": "2026-10-20T04:07:26.559549+00:00",
+  "frozen_sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dynamic_k8_intdot_20261020/codec.py": "4966eb1f588379861879cc3e05a4e7bc2ff48872cac6327e50e92a273c74e13e",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dynamic_k8_intdot_20261020/reader_source.py": "64ceeaf18639312f02dd0353a6217c19d115348076a839a6dce7a1189eff2e5f",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dynamic_k8_intdot_20261020/writer.py": "19c814694bd1c09a46ad97c95ce07f43c4f812628cca381a232e5d14c33a6314",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dynamic_k8_intdot_20261020/CPU_READER_GATE_32g.json": "9eaab9b4f59799527b720cd62321a6007d2971b8321184651f8677469931c83e",
+    "/workspace/benchmark-results/20261020_dynamic_k8_gpu_codecs_tianshu/result.json": "682c4e97c701fdf0fb50cc7d72c3cc7c6d8dd7752de73706387a7312053b4d9d",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_int8_dot_capability_20261020/GPU_WARP1_GATE_32g.json": "d2e1916298c8de81b3a77951f2267a8fafa9a3632f0c235354452f93a91e93b3",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dynamic_k8_intdot_20261020/probe_decode.py": "67bfe52ad56af9d7689d32efb87b57a6e9f96b38fedbcdfca0aa2228f7e9e7a1",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_v_int8_20261020/codec.py": "9ecb4a6671166965e79e74f94f265be2edd29b3d4d2f0b0c97e8f8a1caed4459",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dynamic_k8_intdot_20261020/component_launch.py": "af77c79b0faee818655cfc8273aa030755b007fac73f332e684ae0822f3be6db",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/legacy_routing.py": "9dae2408de9f77e39350cfd70661e4e282ef0d69f798f968c1886d4172a6dc41",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/dispatch_policy.py": "842d69f6635152afa31d498e6e353e0e5f18bc2d86d89782d4e9db4e32f0157a",
+    "/workspace/benchmark-results/20261019_k8v16_budget_default_official4k_tianshu/decode_coherent_records/cache_generated/97987/generated_cache_policy.py": "8deb8967fdacf354f3b38e6a9687163493f6163764f3e8663dce916250cd1289",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_soft8_mixed_planes_20261019/writer.py": "27a74d3bdfee978780044eb69025c10a21d92a1b0a8cf567ee9fea1e0b8d12b5",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_kv_soft8_u32_20261016/codec_variant.py": "d0ad15741f183c63f225da72186752dbd90ba3a791ab365fa24ab3df4b3f58be",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_kv_soft8_20261016/codec.py": "0ccb887961dd0187abed4d77b9dfd2b3fa083e9e7e79c1650d0444e50838c14b",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/value_planes.py": "64f0a0ba89841feb8c091b861d60d687de5d4bdd73c9c7f66476e5cd6ff0d5f0",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_v_int8_20261020/GPU_CODECS_GATE_32g.json": "cb841d56bd6998ad673cb73dfd4a74b58efc9cb69d212f4b8a9828d5702ef4d2",
+    "/workspace/benchmark-results/20261020_dynamic_k8_intdot_decode_tianshu/control_base_False/generated_soft8_u32.py": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+    "/workspace/benchmark-results/20261020_dynamic_k8_intdot_decode_tianshu/dynamic_reader/generated_dynamic_k8_intdot_reader.py": "b1e1e560f99d3710572d98eac6dfcef0d8b4d6f990caf3f20f8504c7ead20dfa"
+  },
+  "launch_source_proof": {
+    "legacy_path": "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/legacy_routing.py",
+    "legacy_sha256": "9dae2408de9f77e39350cfd70661e4e282ef0d69f798f968c1886d4172a6dc41",
+    "policy_path": "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/dispatch_policy.py",
+    "policy_sha256": "842d69f6635152afa31d498e6e353e0e5f18bc2d86d89782d4e9db4e32f0157a",
+    "normalized_launch_AST_unchanged": true,
+    "normalization_removes_only_V_dtype_guard_and_shared_metadata_observation": true,
+    "reducer_AST_unchanged": true
+  },
+  "cases": [
+    {
+      "name": "decode1_4096",
+      "seed": 2026102000,
+      "strided": false,
+      "batch": 1,
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            4096
+          ],
+          "checks": [
+            {
+              "label": "qualified_K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00027254223823547363,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 8.195638656616211e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.195638656616211e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.078051567077637e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.82310962677002e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 1048576,
+              "effective_Q_K_from_independent_CPU_codec": false,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 3170304,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            },
+            {
+              "label": "dynamic_K8_INT8_QK",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0002591237425804138,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 2.086162567138672e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.7508864402770996e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1175870895385742e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 2.0116567611694336e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 1048576,
+              "effective_Q_K_from_independent_CPU_codec": true,
+              "physical_page_bytes": 12416,
+              "raw_cache_bytes": 3203328,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            4089
+          ],
+          "checks": [
+            {
+              "label": "qualified_K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00015465915203094482,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 7.450580596923828e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 5.21540641784668e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.332993507385254e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.82310962677002e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 1048576,
+              "effective_Q_K_from_independent_CPU_codec": false,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 3170304,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            },
+            {
+              "label": "dynamic_K8_INT8_QK",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00015234202146530151,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 8.195638656616211e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 5.960464477539063e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.332993507385254e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.940696716308594e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 1048576,
+              "effective_Q_K_from_independent_CPU_codec": true,
+              "physical_page_bytes": 12416,
+              "raw_cache_bytes": 3203328,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "labels": [
+        "qualified_K8V16",
+        "dynamic_K8_INT8_QK"
+      ],
+      "raw_ms": [
+        [
+          0.0361251950263977,
+          0.03610615432262421,
+          0.035991346836090087,
+          0.035888460278511045,
+          0.0359121173620224,
+          0.035919615626335145,
+          0.03595923185348511,
+          0.035958075523376466,
+          0.03596038520336151
+        ],
+        [
+          0.04924384653568268,
+          0.04924269318580628,
+          0.049177500605583194,
+          0.04917519390583038,
+          0.04917653799057007,
+          0.04921384751796722,
+          0.049156153202056886,
+          0.049162498116493224,
+          0.049156153202056886
+        ]
+      ],
+      "median_ms": [
+        0.03595923185348511,
+        0.04917653799057007
+      ],
+      "candidate_speedup_percent": [
+        -26.87726033015879
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 132,
+          "n_spills": 0,
+          "shared": 6144
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference"
+    },
+    {
+      "name": "decode1_5120",
+      "seed": 2026102001,
+      "strided": false,
+      "batch": 1,
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            5120
+          ],
+          "checks": [
+            {
+              "label": "qualified_K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0002883598208427429,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 1.5273690223693848e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.195638656616211e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.0803341865539551e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.341104507446289e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 1310720,
+              "effective_Q_K_from_independent_CPU_codec": false,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 3956736,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            },
+            {
+              "label": "dynamic_K8_INT8_QK",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00023604929447174072,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 1.1175870895385742e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.2665987014770508e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.9371509552001953e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.4901161193847656e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 1310720,
+              "effective_Q_K_from_independent_CPU_codec": true,
+              "physical_page_bytes": 12416,
+              "raw_cache_bytes": 3997952,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            5113
+          ],
+          "checks": [
+            {
+              "label": "qualified_K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00014247000217437744,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 8.195638656616211e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.568167686462402e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.078051567077637e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.332993507385254e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 1310720,
+              "effective_Q_K_from_independent_CPU_codec": false,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 3956736,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            },
+            {
+              "label": "dynamic_K8_INT8_QK",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00015495344996452332,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 7.82310962677002e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.568167686462402e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.568167686462402e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.891787052154541e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 1310720,
+              "effective_Q_K_from_independent_CPU_codec": true,
+              "physical_page_bytes": 12416,
+              "raw_cache_bytes": 3997952,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "labels": [
+        "qualified_K8V16",
+        "dynamic_K8_INT8_QK"
+      ],
+      "raw_ms": [
+        [
+          0.040639230608940126,
+          0.040396153926849365,
+          0.040194615721702576,
+          0.04023115336894989,
+          0.04030826985836029,
+          0.040377882122993466,
+          0.04030500054359436,
+          0.04030596315860748,
+          0.04036403596401215
+        ],
+        [
+          0.05483788251876831,
+          0.054776734113693236,
+          0.054781156778335574,
+          0.0547584593296051,
+          0.05473057627677917,
+          0.0547188401222229,
+          0.05478653311729431,
+          0.05477769374847412,
+          0.054773461818695066
+        ]
+      ],
+      "median_ms": [
+        0.04030826985836029,
+        0.054776734113693236
+      ],
+      "candidate_speedup_percent": [
+        -26.413521159006226
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 1,
+          "segments": 64,
+          "tile": 16,
+          "grid": [
+            1,
+            2,
+            64
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 132,
+          "n_spills": 0,
+          "shared": 6144
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference"
+    },
+    {
+      "name": "decode8_4096",
+      "seed": 2026102002,
+      "strided": false,
+      "batch": 8,
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096
+          ],
+          "checks": [
+            {
+              "label": "qualified_K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0003175213932991028,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 1.6391277313232422e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.2665987014770508e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1455267667770386e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.2293457984924316e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.9371509552001953e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 2.0116567611694336e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.6763806343078613e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.3783574104309082e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.30385160446167e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.2665987014770508e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.685754776000977e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1734664440155029e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 8388608,
+              "effective_Q_K_from_independent_CPU_codec": false,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 25190400,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            },
+            {
+              "label": "dynamic_K8_INT8_QK",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00029684603214263916,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 1.1548399925231934e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.341104507446289e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1175870895385742e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.043081283569336e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.3783574104309082e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1548399925231934e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.2665987014770508e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.4156103134155273e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.4901161193847656e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.0570511221885681e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.2293457984924316e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.564621925354004e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 8388608,
+              "effective_Q_K_from_independent_CPU_codec": true,
+              "physical_page_bytes": 12416,
+              "raw_cache_bytes": 25452800,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089
+          ],
+          "checks": [
+            {
+              "label": "qualified_K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00017150118947029114,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 7.636845111846924e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 5.960464477539063e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.82310962677002e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.078051567077637e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.568167686462402e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.891787052154541e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.332993507385254e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.940696716308594e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.2293457984924316e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.729977369308472e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.2479722499847412e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.043081283569336e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 8388608,
+              "effective_Q_K_from_independent_CPU_codec": false,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 25190400,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            },
+            {
+              "label": "dynamic_K8_INT8_QK",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00019124895334243774,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 1.1548399925231934e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.0058283805847168e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.313225746154785e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.872019290924072e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.940696716308594e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.426125764846802e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.332993507385254e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.705522537231445e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.009374141693115e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.450580596923828e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.568167686462402e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1175870895385742e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 8388608,
+              "effective_Q_K_from_independent_CPU_codec": true,
+              "physical_page_bytes": 12416,
+              "raw_cache_bytes": 25452800,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "labels": [
+        "qualified_K8V16",
+        "dynamic_K8_INT8_QK"
+      ],
+      "raw_ms": [
+        [
+          0.0888053834438324,
+          0.08871942162513732,
+          0.08873249888420105,
+          0.08876672983169556,
+          0.08870788216590882,
+          0.08855461478233337,
+          0.08899077177047729,
+          0.08870134949684143,
+          0.08874115943908692
+        ],
+        [
+          0.12443461418151855,
+          0.12412383556365966,
+          0.12418826818466186,
+          0.12419884204864502,
+          0.12438538074493408,
+          0.12429423332214355,
+          0.12424595355987549,
+          0.12431250810623169,
+          0.12424057722091675
+        ]
+      ],
+      "median_ms": [
+        0.08873249888420105,
+        0.12424595355987549
+      ],
+      "candidate_speedup_percent": [
+        -28.58318815071922
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 132,
+          "n_spills": 0,
+          "shared": 6144
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference"
+    },
+    {
+      "name": "decode8_5120",
+      "seed": 2026102003,
+      "strided": false,
+      "batch": 8,
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120
+          ],
+          "checks": [
+            {
+              "label": "qualified_K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00028171390295028687,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 1.601874828338623e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 3.3527612686157227e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.0058283805847168e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.2665987014770508e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.3783574104309082e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.601874828338623e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.0058283805847168e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1548399925231934e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.2665987014770508e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.862645149230957e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.0803341865539551e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1175870895385742e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 10485760,
+              "effective_Q_K_from_independent_CPU_codec": false,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 31481856,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            },
+            {
+              "label": "dynamic_K8_INT8_QK",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0003280937671661377,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 1.341104507446289e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 2.4586915969848633e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.313225746154785e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.078051567077637e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.685754776000977e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.30385160446167e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.2665987014770508e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1920928955078125e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.043081283569336e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1362135410308838e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.313225746154785e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.7136335372924805e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 10485760,
+              "effective_Q_K_from_independent_CPU_codec": true,
+              "physical_page_bytes": 12416,
+              "raw_cache_bytes": 31809792,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113
+          ],
+          "checks": [
+            {
+              "label": "qualified_K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0001591816544532776,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 9.313225746154785e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 5.122274160385132e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.146728992462158e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.705522537231445e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.450580596923828e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.568167686462402e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.450580596923828e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.705522537231445e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 5.21540641784668e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.078051567077637e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.568167686462402e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.845220923423767e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 10485760,
+              "effective_Q_K_from_independent_CPU_codec": false,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 31481856,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            },
+            {
+              "label": "dynamic_K8_INT8_QK",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0001716315746307373,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 1.043081283569336e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 5.029141902923584e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.82310962677002e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.146728992462158e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.332993507385254e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.146728992462158e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.078051567077637e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.195638656616211e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 5.029141902923584e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1548399925231934e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.450580596923828e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.450580596923828e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 10485760,
+              "effective_Q_K_from_independent_CPU_codec": true,
+              "physical_page_bytes": 12416,
+              "raw_cache_bytes": 31809792,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "labels": [
+        "qualified_K8V16",
+        "dynamic_K8_INT8_QK"
+      ],
+      "raw_ms": [
+        [
+          0.10642499923706054,
+          0.10643883943557739,
+          0.10626981258392335,
+          0.10623846054077149,
+          0.10641326904296874,
+          0.10624614953994752,
+          0.10590211153030396,
+          0.10638519525527954,
+          0.10632865428924561
+        ],
+        [
+          0.14722403287887573,
+          0.1469723105430603,
+          0.1471157670021057,
+          0.14679230451583863,
+          0.14696673154830933,
+          0.14688327312469482,
+          0.147102689743042,
+          0.1471359610557556,
+          0.14688749313354493
+        ]
+      ],
+      "median_ms": [
+        0.10632865428924561,
+        0.1469723105430603
+      ],
+      "candidate_speedup_percent": [
+        -27.653954750821462
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 132,
+          "n_spills": 0,
+          "shared": 6144
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference"
+    },
+    {
+      "name": "decode32_4096",
+      "seed": 2026102004,
+      "strided": false,
+      "batch": 32,
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096
+          ],
+          "checks": [
+            {
+              "label": "qualified_K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0004297792911529541,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 1.8998980522155762e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.7881393432617188e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1175870895385742e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1920928955078125e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.043081283569336e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1175870895385742e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.2665987014770508e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.862645149230957e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.568167686462402e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.2665987014770508e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1548399925231934e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.82310962677002e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 33554432,
+              "effective_Q_K_from_independent_CPU_codec": false,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 100687872,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            },
+            {
+              "label": "dynamic_K8_INT8_QK",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00044833123683929443,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 9.685754776000977e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 2.682209014892578e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.601874828338623e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.210719347000122e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1175870895385742e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.499490261077881e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.940696716308594e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.0244548320770264e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1734664440155029e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.3783574104309082e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.195638656616211e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.078051567077637e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 33554432,
+              "effective_Q_K_from_independent_CPU_codec": true,
+              "physical_page_bytes": 12416,
+              "raw_cache_bytes": 101736704,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089
+          ],
+          "checks": [
+            {
+              "label": "qualified_K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00020729005336761475,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 9.313225746154785e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.3783574104309082e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.82310962677002e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.825392246246338e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.940696716308594e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.313225746154785e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.0058283805847168e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.078051567077637e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.891787052154541e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.705522537231445e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.381903171539307e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 4.936009645462036e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 33554432,
+              "effective_Q_K_from_independent_CPU_codec": false,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 100687872,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            },
+            {
+              "label": "dynamic_K8_INT8_QK",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.000276908278465271,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 5.774199962615967e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.51925802230835e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.568167686462402e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.940696716308594e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.568167686462402e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.2293457984924316e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1175870895385742e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.332993507385254e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.043081283569336e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.754432201385498e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.332993507385254e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 5.4016709327697754e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 33554432,
+              "effective_Q_K_from_independent_CPU_codec": true,
+              "physical_page_bytes": 12416,
+              "raw_cache_bytes": 101736704,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "labels": [
+        "qualified_K8V16",
+        "dynamic_K8_INT8_QK"
+      ],
+      "raw_ms": [
+        [
+          0.3024407625198364,
+          0.30243422985076907,
+          0.30187597274780276,
+          0.30164575576782227,
+          0.3019136428833008,
+          0.30168192386627196,
+          0.30216963291168214,
+          0.3020378828048706,
+          0.3016669273376465
+        ],
+        [
+          0.3982092380523682,
+          0.3987342357635498,
+          0.398547887802124,
+          0.39836671352386477,
+          0.3984665393829346,
+          0.3984642267227173,
+          0.39817807674407957,
+          0.3984923124313354,
+          0.39903864860534666
+        ]
+      ],
+      "median_ms": [
+        0.3019136428833008,
+        0.3984665393829346
+      ],
+      "candidate_speedup_percent": [
+        -24.231117786993018
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 32,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            48,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 32,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            48,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 131,
+          "n_spills": 0,
+          "shared": 6144
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference"
+    },
+    {
+      "name": "decode32_5120",
+      "seed": 2026102005,
+      "strided": false,
+      "batch": 32,
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120
+          ],
+          "checks": [
+            {
+              "label": "qualified_K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00030134618282318115,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 1.1175870895385742e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.4156103134155273e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 2.4959444999694824e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.3783574104309082e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.313225746154785e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.043081283569336e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.5273690223693848e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.3783574104309082e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.3783574104309082e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.30385160446167e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.3783574104309082e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.82310962677002e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 41943040,
+              "effective_Q_K_from_independent_CPU_codec": false,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 125853696,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            },
+            {
+              "label": "dynamic_K8_INT8_QK",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0002926141023635864,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 1.043081283569336e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1920928955078125e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.043081283569336e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.4156103134155273e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1548399925231934e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 2.3096799850463867e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.30385160446167e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.313225746154785e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.685754776000977e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.754432201385498e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.0803341865539551e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.009374141693115e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 41943040,
+              "effective_Q_K_from_independent_CPU_codec": true,
+              "physical_page_bytes": 12416,
+              "raw_cache_bytes": 127164672,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113
+          ],
+          "checks": [
+            {
+              "label": "qualified_K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00019307062029838562,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 1.0058283805847168e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.940696716308594e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.0058283805847168e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.940696716308594e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.2293457984924316e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.636845111846924e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.195638656616211e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.705522537231445e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.450580596923828e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.450580596923828e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.332993507385254e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.568167686462402e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 41943040,
+              "effective_Q_K_from_independent_CPU_codec": false,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 125853696,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            },
+            {
+              "label": "dynamic_K8_INT8_QK",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.000184670090675354,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 8.195638656616211e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.891787052154541e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.313225746154785e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 5.21540641784668e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.891787052154541e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.009374141693115e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.332993507385254e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.891787052154541e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.891787052154541e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.450580596923828e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.102506399154663e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.940696716308594e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 41943040,
+              "effective_Q_K_from_independent_CPU_codec": true,
+              "physical_page_bytes": 12416,
+              "raw_cache_bytes": 127164672,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "labels": [
+        "qualified_K8V16",
+        "dynamic_K8_INT8_QK"
+      ],
+      "raw_ms": [
+        [
+          0.3719367265701294,
+          0.3718242168426514,
+          0.3716261386871338,
+          0.3716711521148682,
+          0.3717909574508667,
+          0.3717996120452881,
+          0.37153286933898927,
+          0.37189497947692873,
+          0.37142577171325686
+        ],
+        [
+          0.48904080390930177,
+          0.4898442268371582,
+          0.48879327774047854,
+          0.4885725021362305,
+          0.4883303642272949,
+          0.4888199806213379,
+          0.488860559463501,
+          0.48912558555603025,
+          0.48858866691589353
+        ]
+      ],
+      "median_ms": [
+        0.3717909574508667,
+        0.4888199806213379
+      ],
+      "candidate_speedup_percent": [
+        -23.941129211149647
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 32,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            48,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 32,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            48,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 131,
+          "n_spills": 0,
+          "shared": 6144
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference"
+    },
+    {
+      "name": "decode64_4096",
+      "seed": 2026102006,
+      "strided": false,
+      "batch": 64,
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096
+          ],
+          "checks": [
+            {
+              "label": "qualified_K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0004491657018661499,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 1.0803341865539551e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 2.1606683731079102e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.7881393432617188e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1548399925231934e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 2.0116567611694336e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.2293457984924316e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.009374141693115e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.009374141693115e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1548399925231934e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.685754776000977e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.7136335372924805e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.2293457984924316e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 67108864,
+              "effective_Q_K_from_independent_CPU_codec": false,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 201351168,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            },
+            {
+              "label": "dynamic_K8_INT8_QK",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.000504419207572937,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 9.685754776000977e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.078051567077637e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.043081283569336e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1920928955078125e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.862645149230957e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.0803341865539551e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.043081283569336e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.2293457984924316e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.862645149230957e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.264316082000732e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.2293457984924316e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.685754776000977e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 67108864,
+              "effective_Q_K_from_independent_CPU_codec": true,
+              "physical_page_bytes": 12416,
+              "raw_cache_bytes": 203448576,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089,
+            4089
+          ],
+          "checks": [
+            {
+              "label": "qualified_K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00022865831851959229,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 7.82310962677002e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.341104507446289e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 5.587935447692871e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.82310962677002e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.146728992462158e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.195638656616211e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 5.587935447692871e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1548399925231934e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.313225746154785e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 5.4016709327697754e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 5.587935447692871e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.450580596923828e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 67108864,
+              "effective_Q_K_from_independent_CPU_codec": false,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 201351168,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            },
+            {
+              "label": "dynamic_K8_INT8_QK",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00024750083684921265,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 9.313225746154785e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.601874828338623e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.568167686462402e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.195638656616211e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.2293457984924316e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1920928955078125e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.940696716308594e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.82310962677002e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.381903171539307e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.568167686462402e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.705522537231445e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.264316082000732e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 67108864,
+              "effective_Q_K_from_independent_CPU_codec": true,
+              "physical_page_bytes": 12416,
+              "raw_cache_bytes": 203448576,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "labels": [
+        "qualified_K8V16",
+        "dynamic_K8_INT8_QK"
+      ],
+      "raw_ms": [
+        [
+          0.5898590564727784,
+          0.5897517204284668,
+          0.5896564960479737,
+          0.5894819259643554,
+          0.5893865585327148,
+          0.5890671253204346,
+          0.5895365238189697,
+          0.5891624927520752,
+          0.5893169403076172
+        ],
+        [
+          0.7780488491058349,
+          0.7774446487426758,
+          0.7772976875305175,
+          0.7777971267700196,
+          0.777738094329834,
+          0.7784528732299805,
+          0.7778976917266845,
+          0.7775603771209717,
+          0.7774469375610351
+        ]
+      ],
+      "median_ms": [
+        0.5894819259643554,
+        0.777738094329834
+      ],
+      "candidate_speedup_percent": [
+        -24.205599511966337
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 131,
+          "n_spills": 0,
+          "shared": 6144
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference"
+    },
+    {
+      "name": "decode64_5120",
+      "seed": 2026102007,
+      "strided": false,
+      "batch": 64,
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120,
+            5120
+          ],
+          "checks": [
+            {
+              "label": "qualified_K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0003370717167854309,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 2.644956111907959e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.0058283805847168e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.825392246246338e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.2386590242385864e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1548399925231934e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.2665987014770508e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.313225746154785e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.4156103134155273e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.2293457984924316e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.043081283569336e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.043081283569336e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.3783574104309082e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 83886080,
+              "effective_Q_K_from_independent_CPU_codec": false,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 251682816,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            },
+            {
+              "label": "dynamic_K8_INT8_QK",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0003028586506843567,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 1.341104507446289e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.7881393432617188e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.0803341865539551e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1734664440155029e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.568167686462402e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.2293457984924316e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.2665987014770508e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.862645149230957e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.685754776000977e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.568167686462402e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.4156103134155273e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.862645149230957e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 83886080,
+              "effective_Q_K_from_independent_CPU_codec": true,
+              "physical_page_bytes": 12416,
+              "raw_cache_bytes": 254304512,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113,
+            5113
+          ],
+          "checks": [
+            {
+              "label": "qualified_K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00024090707302093506,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 6.05359673500061e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.450580596923828e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 5.4016709327697754e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.940696716308594e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.705522537231445e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.313225746154785e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.450580596923828e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.078051567077637e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.705522537231445e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.3783574104309082e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.146728992462158e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.450580596923828e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 83886080,
+              "effective_Q_K_from_independent_CPU_codec": false,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 251682816,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            },
+            {
+              "label": "dynamic_K8_INT8_QK",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00021902471780776978,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 5.21540641784668e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.078051567077637e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 5.3085386753082275e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 5.587935447692871e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 4.842877388000488e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 5.587935447692871e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.940696716308594e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.82310962677002e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.009374141693115e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.0989606380462646e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.82310962677002e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 5.4016709327697754e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 83886080,
+              "effective_Q_K_from_independent_CPU_codec": true,
+              "physical_page_bytes": 12416,
+              "raw_cache_bytes": 254304512,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "labels": [
+        "qualified_K8V16",
+        "dynamic_K8_INT8_QK"
+      ],
+      "raw_ms": [
+        [
+          0.7284578800201416,
+          0.7291659832000732,
+          0.729245376586914,
+          0.7287213325500488,
+          0.7288628578186035,
+          0.7289690494537353,
+          0.7287503719329834,
+          0.7298046112060547,
+          0.7290536403656006
+        ],
+        [
+          0.9578378677368165,
+          0.9579655647277832,
+          0.9584239959716797,
+          0.957758617401123,
+          0.9578840255737304,
+          0.9580991744995118,
+          0.9581709861755371,
+          0.9576215744018555,
+          0.9578507423400879
+        ]
+      ],
+      "median_ms": [
+        0.7289690494537353,
+        0.9578840255737304
+      ],
+      "candidate_speedup_percent": [
+        -23.897984516746185
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 131,
+          "n_spills": 0,
+          "shared": 6144
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference"
+    },
+    {
+      "name": "decode8_ragged_strided",
+      "seed": 2026102008,
+      "strided": true,
+      "batch": 8,
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            33,
+            65,
+            127,
+            512,
+            2048,
+            4096,
+            5000,
+            5120
+          ],
+          "checks": [
+            {
+              "label": "qualified_K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0022358298301696777,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 1.4901161193847656e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1920928955078125e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.7881393432617188e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1920928955078125e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.568167686462402e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.0058283805847168e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.0058283805847168e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.341104507446289e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.862645149230957e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.685754776000977e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.685754776000977e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.4528632164001465e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 10485760,
+              "effective_Q_K_from_independent_CPU_codec": false,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 62963712,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            },
+            {
+              "label": "dynamic_K8_INT8_QK",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0024486184120178223,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 2.0116567611694336e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 2.384185791015625e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 4.023313522338867e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.7881393432617188e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1175870895385742e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.4156103134155273e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1175870895385742e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1920928955078125e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.0058283805847168e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 2.086162567138672e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1175870895385742e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.341104507446289e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 10485760,
+              "effective_Q_K_from_independent_CPU_codec": true,
+              "physical_page_bytes": 12416,
+              "raw_cache_bytes": 63619584,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            26,
+            58,
+            120,
+            505,
+            2041,
+            4089,
+            4993,
+            5113
+          ],
+          "checks": [
+            {
+              "label": "qualified_K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00255584716796875,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 1.1920928955078125e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.450580596923828e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.940696716308594e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 5.960464477539063e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.940696716308594e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.332993507385254e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.940696716308594e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.685754776000977e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 5.587935447692871e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.636845111846924e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.568167686462402e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.264316082000732e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 10485760,
+              "effective_Q_K_from_independent_CPU_codec": false,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 62963712,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            },
+            {
+              "label": "dynamic_K8_INT8_QK",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0018955469131469727,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 1.7881393432617188e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.195638656616211e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1920928955078125e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1920928955078125e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.195638656616211e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 4.842877388000488e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.450580596923828e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.450580596923828e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.568167686462402e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.636845111846924e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.51925802230835e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.313225746154785e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 10485760,
+              "effective_Q_K_from_independent_CPU_codec": true,
+              "physical_page_bytes": 12416,
+              "raw_cache_bytes": 63619584,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "labels": [
+        "qualified_K8V16",
+        "dynamic_K8_INT8_QK"
+      ],
+      "raw_ms": [
+        [
+          0.10058250427246093,
+          0.10047634840011596,
+          0.10032538175582886,
+          0.10007365942001342,
+          0.10037788152694702,
+          0.10027500391006469,
+          0.10015172958374023,
+          0.10034904479980469,
+          0.10011115074157714
+        ],
+        [
+          0.13679672479629518,
+          0.13671749830245972,
+          0.13670365810394286,
+          0.13658480644226073,
+          0.13687268495559693,
+          0.1365213394165039,
+          0.13662846088409425,
+          0.1365257740020752,
+          0.1365351915359497
+        ]
+      ],
+      "median_ms": [
+        0.10032538175582886,
+        0.13662846088409425
+      ],
+      "candidate_speedup_percent": [
+        -26.570656577228302
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 143,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 8,
+          "segments": 16,
+          "tile": 16,
+          "grid": [
+            12,
+            2,
+            16
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 132,
+          "n_spills": 0,
+          "shared": 6144
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference"
+    },
+    {
+      "name": "decode64_ragged_strided",
+      "seed": 2026102009,
+      "strided": true,
+      "batch": 64,
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            4096,
+            3965,
+            3834,
+            3703,
+            3572,
+            3441,
+            3310,
+            4096,
+            3965,
+            3834,
+            3703,
+            3572,
+            3441,
+            3310,
+            4096,
+            3965,
+            3834,
+            3703,
+            3572,
+            3441,
+            3310,
+            4096,
+            3965,
+            3834,
+            3703,
+            3572,
+            3441,
+            3310,
+            4096,
+            3965,
+            3834,
+            3703,
+            3572,
+            3441,
+            3310,
+            4096,
+            3965,
+            3834,
+            3703,
+            3572,
+            3441,
+            3310,
+            4096,
+            3965,
+            3834,
+            3703,
+            3572,
+            3441,
+            3310,
+            4096,
+            3965,
+            3834,
+            3703,
+            3572,
+            3441,
+            3310,
+            4096,
+            3965,
+            3834,
+            3703,
+            3572,
+            3441,
+            3310,
+            4096
+          ],
+          "checks": [
+            {
+              "label": "qualified_K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00033289939165115356,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 1.2852251529693604e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1920928955078125e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.2665987014770508e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1548399925231934e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.341104507446289e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1175870895385742e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.341104507446289e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1175870895385742e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1175870895385742e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.940696716308594e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 2.3096799850463867e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.82310962677002e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 67108864,
+              "effective_Q_K_from_independent_CPU_codec": false,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 402702336,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            },
+            {
+              "label": "dynamic_K8_INT8_QK",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0004845559597015381,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 1.0058283805847168e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.0803341865539551e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.341104507446289e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.564621925354004e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.564621925354004e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.2293457984924316e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.0058283805847168e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.0803341865539551e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.685754776000977e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 2.4586915969848633e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.6391277313232422e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.4901161193847656e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 67108864,
+              "effective_Q_K_from_independent_CPU_codec": true,
+              "physical_page_bytes": 12416,
+              "raw_cache_bytes": 406897152,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            4089,
+            3958,
+            3827,
+            3696,
+            3565,
+            3434,
+            3303,
+            4089,
+            3958,
+            3827,
+            3696,
+            3565,
+            3434,
+            3303,
+            4089,
+            3958,
+            3827,
+            3696,
+            3565,
+            3434,
+            3303,
+            4089,
+            3958,
+            3827,
+            3696,
+            3565,
+            3434,
+            3303,
+            4089,
+            3958,
+            3827,
+            3696,
+            3565,
+            3434,
+            3303,
+            4089,
+            3958,
+            3827,
+            3696,
+            3565,
+            3434,
+            3303,
+            4089,
+            3958,
+            3827,
+            3696,
+            3565,
+            3434,
+            3303,
+            4089,
+            3958,
+            3827,
+            3696,
+            3565,
+            3434,
+            3303,
+            4089,
+            3958,
+            3827,
+            3696,
+            3565,
+            3434,
+            3303,
+            4089
+          ],
+          "checks": [
+            {
+              "label": "qualified_K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0002532750368118286,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 6.51925802230835e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.940696716308594e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.4528632164001465e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1920928955078125e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 5.960464477539063e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.043081283569336e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.043081283569336e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.568167686462402e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.043081283569336e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.195638656616211e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.332993507385254e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.078051567077637e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 67108864,
+              "effective_Q_K_from_independent_CPU_codec": false,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 402702336,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            },
+            {
+              "label": "dynamic_K8_INT8_QK",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0002876967191696167,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 8.568167686462402e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.568167686462402e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.078051567077637e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1175870895385742e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 5.122274160385132e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.0058283805847168e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1548399925231934e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.195638656616211e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.636845111846924e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.450580596923828e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.332993507385254e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.0058283805847168e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 67108864,
+              "effective_Q_K_from_independent_CPU_codec": true,
+              "physical_page_bytes": 12416,
+              "raw_cache_bytes": 406897152,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "labels": [
+        "qualified_K8V16",
+        "dynamic_K8_INT8_QK"
+      ],
+      "raw_ms": [
+        [
+          0.5805159568786621,
+          0.579923439025879,
+          0.5797199726104736,
+          0.5797415256500245,
+          0.5798798084259034,
+          0.5796880722045898,
+          0.5795454025268555,
+          0.5804573059082031,
+          0.5796890735626221
+        ],
+        [
+          0.7546800136566162,
+          0.7557621002197266,
+          0.7553690433502197,
+          0.7551084995269776,
+          0.7538463592529296,
+          0.7562174797058105,
+          0.7548933029174805,
+          0.7558361530303955,
+          0.7561113834381104
+        ]
+      ],
+      "median_ms": [
+        0.5797415256500245,
+        0.7553690433502197
+      ],
+      "candidate_speedup_percent": [
+        -23.250558021447432
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 64,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            96,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 131,
+          "n_spills": 0,
+          "shared": 6144
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference"
+    },
+    {
+      "name": "decode40_16384",
+      "seed": 2026102010,
+      "strided": false,
+      "batch": 40,
+      "phases": [
+        {
+          "phase": 0,
+          "lengths": [
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384,
+            16384
+          ],
+          "checks": [
+            {
+              "label": "qualified_K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00017825886607170105,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 1.1734664440155029e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.4156103134155273e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.82310962677002e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.210719347000122e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1734664440155029e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 2.123415470123291e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1734664440155029e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.434236764907837e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.0244548320770264e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.313225746154785e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1734664440155029e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.381903171539307e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 167772160,
+              "effective_Q_K_from_independent_CPU_codec": false,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 503341056,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            },
+            {
+              "label": "dynamic_K8_INT8_QK",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.0001796148717403412,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 1.2479722499847412e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1920928955078125e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.12696123123169e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.4528632164001465e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.4901161193847656e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.3597309589385986e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1548399925231934e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.3224780559539795e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.1734664440155029e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.12696123123169e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.940696716308594e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.0803341865539551e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 167772160,
+              "effective_Q_K_from_independent_CPU_codec": true,
+              "physical_page_bytes": 12416,
+              "raw_cache_bytes": 508584192,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": false
+        },
+        {
+          "phase": 1,
+          "lengths": [
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377,
+            16377
+          ],
+          "checks": [
+            {
+              "label": "qualified_K8V16",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00012542679905891418,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 6.332993507385254e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.009374141693115e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 5.960464477539063e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.729977369308472e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.332993507385254e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.705522537231445e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.12696123123169e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.381903171539307e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.729977369308472e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 4.563480615615845e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 4.516914486885071e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.891787052154541e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 167772160,
+              "effective_Q_K_from_independent_CPU_codec": false,
+              "physical_page_bytes": 12288,
+              "raw_cache_bytes": 503341056,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            },
+            {
+              "label": "dynamic_K8_INT8_QK",
+              "numerical": {
+                "passed": true,
+                "max_abs": 0.00014311447739601135,
+                "failed_elements": 0,
+                "atol": 0.002,
+                "rtol": 0.01
+              },
+              "cpu_checks": [
+                {
+                  "passed": true,
+                  "max_abs": 7.078051567077637e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 8.009374141693115e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 5.029141902923584e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 5.960464477539063e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.82310962677002e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 4.6566128730773926e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 5.960464477539063e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 1.0058283805847168e-07,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 7.264316082000732e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.12696123123169e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 9.499490261077881e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                },
+                {
+                  "passed": true,
+                  "max_abs": 6.984919309616089e-08,
+                  "failed_elements": 0,
+                  "atol": 0.002,
+                  "rtol": 0.01
+                }
+              ],
+              "V_max_quantization_abs": 0.0,
+              "V_random_fixture_out_of_range": null,
+              "V_fixture_elements": 167772160,
+              "effective_Q_K_from_independent_CPU_codec": true,
+              "physical_page_bytes": 12416,
+              "raw_cache_bytes": 508584192,
+              "all_storage_bitwise_exact": true,
+              "output_and_segment_guards": true,
+              "RNG_unchanged": true
+            }
+          ],
+          "Q_K_V_table_lengths_slots_changed_in_place": true
+        }
+      ],
+      "labels": [
+        "qualified_K8V16",
+        "dynamic_K8_INT8_QK"
+      ],
+      "raw_ms": [
+        [
+          2.1906408309936523,
+          2.1840032577514648,
+          2.1848817825317384,
+          2.184633255004883,
+          2.184261512756348,
+          2.1853004455566407,
+          2.1824499130249024,
+          2.1841758728027343,
+          2.17999267578125
+        ],
+        [
+          2.8442840576171875,
+          2.846342086791992,
+          2.8474008560180666,
+          2.8451419830322267,
+          2.8482494354248047,
+          2.84835205078125,
+          2.847878646850586,
+          2.8423927307128904,
+          2.846637725830078
+        ]
+      ],
+      "median_ms": [
+        2.184261512756348,
+        2.846637725830078
+      ],
+      "candidate_speedup_percent": [
+        -23.268721799876435
+      ],
+      "actual_launch": [
+        {
+          "IS_3D": true,
+          "sequences": 40,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            60,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 142,
+          "n_spills": 0,
+          "shared": 8192
+        },
+        {
+          "IS_3D": true,
+          "sequences": 40,
+          "segments": 4,
+          "tile": 16,
+          "grid": [
+            60,
+            2,
+            4
+          ],
+          "warps": 1,
+          "stages": 1,
+          "key_dtype": "torch.uint8",
+          "query_dtype": "torch.bfloat16",
+          "value_dtype": "torch.bfloat16",
+          "BLOCK_M": 16,
+          "BLOCK_Q": 2,
+          "pure_decode": true,
+          "n_regs": 131,
+          "n_spills": 0,
+          "shared": 6144
+        }
+      ],
+      "reference_scope": "CPU selected sequences/heads plus full GPU FP32 grouped-GQA reference"
+    }
+  ],
+  "model_sources": {
+    "qualified_K8V16": {
+      "original_sha256": "8deb8967fdacf354f3b38e6a9687163493f6163764f3e8663dce916250cd1289",
+      "generated_sha256": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+      "producer_and_reducer_AST_unchanged": true,
+      "only_cast_helper_uint8_branch_and_test_added": true,
+      "fixed_storage_scale": 0.0625,
+      "exponent_bits": 4,
+      "mantissa_bits": 3,
+      "exponent_bias": 7,
+      "subnormal_codes_flush_to_signed_zero": true,
+      "all_nonzero_exponents_finite": true,
+      "largest_magnitude": 30.0,
+      "not_native_FP8_hardware": true,
+      "base_soft8_generated_sha256": "41f0b8dde1053678fe9920b517b58da05c6947cff32a0da72d8dbf5f8fff68e8",
+      "integer_intermediates_bits": 32,
+      "same_format_and_quantizer": true,
+      "one_more_reversible_edit": true,
+      "generated_source": "/workspace/benchmark-results/20261020_dynamic_k8_intdot_decode_tianshu/control_base_False/generated_soft8_u32.py"
+    },
+    "dynamic_K8_INT8_QK": {
+      "base_codec": {
+        "original_sha256": "8deb8967fdacf354f3b38e6a9687163493f6163764f3e8663dce916250cd1289",
+        "generated_sha256": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+        "producer_and_reducer_AST_unchanged": true,
+        "only_cast_helper_uint8_branch_and_test_added": true,
+        "fixed_storage_scale": 0.0625,
+        "exponent_bits": 4,
+        "mantissa_bits": 3,
+        "exponent_bias": 7,
+        "subnormal_codes_flush_to_signed_zero": true,
+        "all_nonzero_exponents_finite": true,
+        "largest_magnitude": 30.0,
+        "not_native_FP8_hardware": true,
+        "base_soft8_generated_sha256": "41f0b8dde1053678fe9920b517b58da05c6947cff32a0da72d8dbf5f8fff68e8",
+        "integer_intermediates_bits": 32,
+        "same_format_and_quantizer": true,
+        "one_more_reversible_edit": true,
+        "generated_source": "/workspace/benchmark-results/20261020_dynamic_k8_intdot_decode_tianshu/control_base_True/generated_soft8_u32.py"
+      },
+      "dynamic": {
+        "parent_source": "/workspace/benchmark-results/20261020_dynamic_k8_intdot_decode_tianshu/control_base_True/generated_soft8_u32.py",
+        "parent_sha256": "dc69f525d8c7686a8977f50e901af39820ce92486894890631c53fc01dc46700",
+        "generated_source": "/workspace/benchmark-results/20261020_dynamic_k8_intdot_decode_tianshu/dynamic_reader/generated_dynamic_k8_intdot_reader.py",
+        "generated_sha256": "b1e1e560f99d3710572d98eac6dfcef0d8b4d6f990caf3f20f8504c7ead20dfa",
+        "argument_ABI_unchanged": true,
+        "exact_reversal_verified": true,
+        "helper_and_reducer_AST_unchanged": true,
+        "physical_page_bytes": 12416,
+        "K_scales_offset_bytes": 12288,
+        "query_quantization_3D_only": true,
+        "table_loads_masked": true,
+        "model_or_quality_not_verified": true
+      }
+    }
+  },
+  "control": "qualified K8V16 reader and launch policy, 12288-byte physical pages",
+  "candidate": "per-token/head FP32 K scales, signed K8 and row-quantized Q with INT32 QK; BF16 V unchanged",
+  "engine_allocator_connected": false,
+  "prefill_executed": false,
+  "model_executed": false,
+  "service_executed": false,
+  "official_benchmark": false,
+  "adoption_allowed": false,
+  "torch_version": "2.10.0",
+  "GPU": "Iluvatar BI-V150",
+  "time_scope": "hot CUDA Graph: one KV update and one paged decode layer; 9 alternating trials x 20 replays",
+  "numerical_passed": true,
+  "same_Graph_Q_K_V_table_lengths_verified": true,
+  "ended_utc": "2026-10-20T04:07:45.460310+00:00"
+}

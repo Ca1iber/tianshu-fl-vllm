@@ -7,3 +7,5 @@
 实际v2已通过两种尺寸、两相位：Q量化、Q尺度、INT32乘积均与独立CPU逐位一致，浮点缩放在容差内，RNG不变。初次仅因错误引用CUDA命名空间导入失败，旧代码/日志留原始目录；核对安装源码后改为Corex的libdevice，没有删除失败原件。没有计时，因此仍不宣称性能收益。
 
 真实驱动查询记录：BI-V150 32GiB、16个multiprocessor、warpSize64、max_num_regs262144、max_shared_mem131072，频率等原始值见GPU_GATE_32g.json。major/minor是此后端上报值，不按NVIDIA架构名称解释。下一阶段若探索每token/head K尺度和完整INT8 QK attention，需要全新的格式、数值/Graph、服务和Math验证；当前正式4K5101.45/16K3213.11保持。
+
+单warp独立入口也已通过两种尺寸、两相位，逐位Q量化/尺度/整数积与CPU一致。16/32列分别101/122寄存器、0 spills，编译元数据num_warps=1；见GPU_WARP1_GATE_32g.json。此处仍没有计时，也未覆盖完整attention。
