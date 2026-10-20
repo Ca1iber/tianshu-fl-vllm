@@ -26,4 +26,6 @@ bash experiments/tianshu_lm_precision_release_20261021/serve_tianshu_minicpm.sh
 
 后续批次补齐和K8+V整数量化组件不在5482.79配置内；候选需要独立正确性、实际执行路径及服务性能验证。
 
-2026-10-21新增完整4K备选：预算8192，**5509.23 total / 1101.85 output tok/s，TTFT4740.15ms，Math102/105**。吞吐比推荐版高0.4822%，TTFT高18.0543%，后三轮吞吐极差/均值0.3302%。1024/1024成功、零抢占；这是当前已测更高吞吐记录，但保留5482.79/TTFT4015.23为默认推荐。此决定与正确率无关，两版均>95%。见[8192完整4K报告](experiments/tianshu_dense_budget_official_results_20261021/REPORT_32g.md)和[复核结果](experiments/tianshu_dense_budget_official_results_20261021/OFFICIAL_GATE_32g.json)。6144中间预算尚仅通过CPU检查，整数PV组件不在这两版成绩内。
+2026-10-21新增完整4K备选：预算8192，**5509.23 total / 1101.85 output tok/s，TTFT4740.15ms，Math102/105**。吞吐比推荐版高0.4822%，TTFT高18.0543%，后三轮吞吐极差/均值0.3302%。1024/1024成功、零抢占；这是当前已测更高吞吐记录，但保留5482.79/TTFT4015.23为默认推荐。此决定与正确率无关，两版均>95%。见[8192完整4K报告](experiments/tianshu_dense_budget_official_results_20261021/REPORT_32g.md)和[复核结果](experiments/tianshu_dense_budget_official_results_20261021/OFFICIAL_GATE_32g.json)。6144中间预算已完成4K小测，计分均值比对照低0.1008%，未采用；整数PV组件不在这两版成绩内。
+
+2026-10-21后续N64小测没有替换上述正式版本：index配置缓存 -0.2386%、DEBUG阈值 -0.0748%、KV空分配 +0.1209%、GateUp NN布局 +0.1423%，均未建立稳定端到端收益。[NN模型报告](experiments/tianshu_int8_nn_gateup_service_20261021/REPORT_SCREEN_32g.md)含完整逐轮、物理KV容量和实际执行审计。大M prefill INT8组件初步通过且局部更快，正在继续分块顺序实验，尚无模型/新Math/正式成绩，不能写入最佳成绩。
