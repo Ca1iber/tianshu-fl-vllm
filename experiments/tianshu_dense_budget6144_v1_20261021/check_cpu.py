@@ -13,6 +13,11 @@ def load(name,path):
 def main():
     from check_long_guard import check_guard
     guard_proof=check_guard()
+    native_base=(BASE.parent/'tianshu_dense_budget8192_v2_20261021/base_runtime_audit.py').read_text()
+    before='else 8192\n    warm_points=83 if budget==4096 else 99'
+    after='else 6144\n    warm_points=83 if budget==4096 else 91'
+    assert native_base.count(before)==1
+    assert (BASE/'base_runtime_audit.py').read_text()==native_base.replace(before,after)
     source=Path('/usr/local/lib/python3.12/site-packages/vllm/engine/arg_utils.py')
     assert hashlib.sha256(source.read_bytes()).hexdigest()==parent.ARG_UTILS_SHA
     tree=ast.parse(source.read_text());cls=next(n for n in tree.body if isinstance(n,ast.ClassDef) and n.name=='EngineArgs')
@@ -24,7 +29,7 @@ def main():
     exec(compile(ast.fix_missing_locations(ast.Module(body=[future,method],type_ignores=[])),str(source),'exec'),namespace)
     native=namespace[method.name]
     seq=load('_latest_budget_CPU_actual_seq_guard',BASE.parent/'tianshu_seq_limit_default_20261020/policy.py')
-    root=Path('/workspace/benchmark-results/20261021_dense_budget6144_v1_CPU_guard_v2_tianshu');assert not root.exists();root.mkdir()
+    root=Path('/workspace/benchmark-results/20261021_dense_budget6144_v1_CPU_guard_v3_tianshu');assert not root.exists();root.mkdir()
     def make(name,mode='candidate',vendor='iluvatar',budget=None,seqs=None,performance='balanced',chunked=True,wrappers=True):
         class Args:
             _set_default_max_num_seqs_and_batched_tokens_args=native
@@ -42,7 +47,7 @@ def main():
     checks=[]
     for name,kwargs,change,expected,expected_seqs,applied in (
         ('control',dict(mode='control'),None,4096,64,True),('candidate',{},None,6144,64,True),
-        ('explicit2048',dict(budget=2048),None,2048,64,False),('explicit4096',dict(budget=4096),None,4096,64,False),('explicit8192',dict(budget=8192),None,8192,64,False),
+        ('explicit6144',dict(budget=6144),None,6144,64,False),('explicit2048',dict(budget=2048),None,2048,64,False),('explicit4096',dict(budget=4096),None,4096,64,False),('explicit8192',dict(budget=8192),None,8192,64,False),
         ('other_vendor',dict(vendor='metax'),None,2048,256,False),('other_model',{},lambda m,p:setattr(m,'model','/other'),2048,256,False),
         ('other_geometry',{},lambda m,p:setattr(m.hf_config,'hidden_size',4096),2048,256,False),('FP16',{},lambda m,p:setattr(m,'dtype','torch.float16'),2048,256,False),
         ('parallel2',{},lambda m,p:setattr(p,'tensor_parallel_size',2),2048,256,False),('throughput',dict(performance='throughput'),None,4096,512,False),
@@ -71,7 +76,7 @@ def main():
         finally:logger.debug=previous
     profiles=[]
     for mode in ('control','candidate'):
-        target=Path(f'/workspace/benchmark-results/20261021_dense_budget6144_v1_CPU_profile_{mode}_tianshu');assert not target.exists();target.mkdir()
+        target=Path(f'/workspace/benchmark-results/20261021_dense_budget6144_v1_CPU_profile_v2_{mode}_tianshu');assert not target.exists();target.mkdir()
         command,env,profile,sources=prepare(target,mode)
         assert len(profile)==64 and len(command)==13 and profile['TIANSHU_DENSE_BUDGET_MODE']==mode
         assert all(profile[k]=='candidate' for k in ('TIANSHU_DENSE_INT8_MODE','TIANSHU_LM_PRECISION_MODE','TIANSHU_PREFILL_LINEAR_MODE','TIANSHU_SEQ_LIMIT_MODE'))

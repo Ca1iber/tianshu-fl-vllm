@@ -15,7 +15,7 @@ def audit_runtime(root, state, official=False, online=True):
     assert state["actual_budget"]==budget
     expected_seqs = state.get("seq_limit",256)
     arena_pages = 8192 if state.get("arena_mode", state["mode"]) == "candidate" else 32768
-    expected_page = 12288 if is_k8v16 else 6144
+    expected_page = 12288 if is_k8v16 else 8192
     original_root = Path(state["output_root"])
 
     def artifact(path):
@@ -66,7 +66,7 @@ def audit_runtime(root, state, official=False, online=True):
         assert r["compiled_metadata"]["num_warps"] == 16
         active=True
         assert r['precision_service_mode']=='candidate' and r['corrected_source_active']==active
-        assert r['actual_BLOCK_SIZE']==(32768 if active else 6144)
+        assert r['actual_BLOCK_SIZE']==(32768 if active else 8192)
         assert r['actual_BLOCK_SIZE_TRUNC']==(16384 if active else 4096)
         assert r['sampling_parameters_and_RNG_unchanged'] and r['grid_unchanged']
         if active:
