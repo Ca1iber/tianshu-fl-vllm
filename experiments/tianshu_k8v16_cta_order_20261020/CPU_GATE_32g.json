@@ -1,0 +1,5431 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "GPU_not_executed": true,
+  "service_or_quality_not_run": true,
+  "geometry_cases": 260,
+  "actual_native_Producer_cases": 56,
+  "all_2D_fallbacks_preserved": true,
+  "all_CTA_coordinate_sets_equal": true,
+  "launch_source_proof": {
+    "legacy_path": "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/legacy_routing.py",
+    "legacy_sha256": "9dae2408de9f77e39350cfd70661e4e282ef0d69f798f968c1886d4172a6dc41",
+    "policy_path": "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/dispatch_policy.py",
+    "policy_sha256": "842d69f6635152afa31d498e6e353e0e5f18bc2d86d89782d4e9db4e32f0157a",
+    "normalized_launch_AST_unchanged": true,
+    "normalization_removes_only_V_dtype_guard_and_shared_metadata_observation": true,
+    "reducer_AST_unchanged": true
+  },
+  "provenance": {
+    "current": {
+      "mode": "current",
+      "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+      "grid_axis_order": [
+        0,
+        1,
+        2
+      ],
+      "inverse_program_id_axes": [
+        0,
+        1,
+        2
+      ],
+      "generated_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+      "exact_source_reversal": true,
+      "AST_only_three_program_ID_assignments_changed": true,
+      "ABI_and_floating_point_body_unchanged": true,
+      "prefill_2D_IDs_preserved": true,
+      "CTA_count_preserved": true
+    },
+    "heads_first": {
+      "mode": "heads_first",
+      "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+      "grid_axis_order": [
+        1,
+        0,
+        2
+      ],
+      "inverse_program_id_axes": [
+        1,
+        0,
+        2
+      ],
+      "generated_sha256": "56b7a7b73b3984d14741a7980eeae51591ba28d4420b51b83703f15c77bf330d",
+      "exact_source_reversal": true,
+      "AST_only_three_program_ID_assignments_changed": true,
+      "ABI_and_floating_point_body_unchanged": true,
+      "prefill_2D_IDs_preserved": true,
+      "CTA_count_preserved": true
+    },
+    "segments_first": {
+      "mode": "segments_first",
+      "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+      "grid_axis_order": [
+        2,
+        0,
+        1
+      ],
+      "inverse_program_id_axes": [
+        1,
+        2,
+        0
+      ],
+      "generated_sha256": "82b35b49995c4bab404761052ca9c9dcae353123216f1fbaf060e30696b93844",
+      "exact_source_reversal": true,
+      "AST_only_three_program_ID_assignments_changed": true,
+      "ABI_and_floating_point_body_unchanged": true,
+      "prefill_2D_IDs_preserved": true,
+      "CTA_count_preserved": true
+    },
+    "heads_segments_first": {
+      "mode": "heads_segments_first",
+      "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+      "grid_axis_order": [
+        1,
+        2,
+        0
+      ],
+      "inverse_program_id_axes": [
+        2,
+        0,
+        1
+      ],
+      "generated_sha256": "061023ac8262d002fdef89e0bd88a9e457e31860ce732083a6d2e68ab1a82876",
+      "exact_source_reversal": true,
+      "AST_only_three_program_ID_assignments_changed": true,
+      "ABI_and_floating_point_body_unchanged": true,
+      "prefill_2D_IDs_preserved": true,
+      "CTA_count_preserved": true
+    }
+  },
+  "geometry": [
+    {
+      "n": 1,
+      "segments": 4,
+      "mode": "current",
+      "old": [
+        1,
+        2,
+        4
+      ],
+      "new": [
+        1,
+        2,
+        4
+      ],
+      "CTAs": 8,
+      "bijection": true
+    },
+    {
+      "n": 1,
+      "segments": 4,
+      "mode": "heads_first",
+      "old": [
+        1,
+        2,
+        4
+      ],
+      "new": [
+        2,
+        1,
+        4
+      ],
+      "CTAs": 8,
+      "bijection": true
+    },
+    {
+      "n": 1,
+      "segments": 4,
+      "mode": "segments_first",
+      "old": [
+        1,
+        2,
+        4
+      ],
+      "new": [
+        4,
+        1,
+        2
+      ],
+      "CTAs": 8,
+      "bijection": true
+    },
+    {
+      "n": 1,
+      "segments": 4,
+      "mode": "heads_segments_first",
+      "old": [
+        1,
+        2,
+        4
+      ],
+      "new": [
+        2,
+        4,
+        1
+      ],
+      "CTAs": 8,
+      "bijection": true
+    },
+    {
+      "n": 1,
+      "segments": 8,
+      "mode": "current",
+      "old": [
+        1,
+        2,
+        8
+      ],
+      "new": [
+        1,
+        2,
+        8
+      ],
+      "CTAs": 16,
+      "bijection": true
+    },
+    {
+      "n": 1,
+      "segments": 8,
+      "mode": "heads_first",
+      "old": [
+        1,
+        2,
+        8
+      ],
+      "new": [
+        2,
+        1,
+        8
+      ],
+      "CTAs": 16,
+      "bijection": true
+    },
+    {
+      "n": 1,
+      "segments": 8,
+      "mode": "segments_first",
+      "old": [
+        1,
+        2,
+        8
+      ],
+      "new": [
+        8,
+        1,
+        2
+      ],
+      "CTAs": 16,
+      "bijection": true
+    },
+    {
+      "n": 1,
+      "segments": 8,
+      "mode": "heads_segments_first",
+      "old": [
+        1,
+        2,
+        8
+      ],
+      "new": [
+        2,
+        8,
+        1
+      ],
+      "CTAs": 16,
+      "bijection": true
+    },
+    {
+      "n": 1,
+      "segments": 16,
+      "mode": "current",
+      "old": [
+        1,
+        2,
+        16
+      ],
+      "new": [
+        1,
+        2,
+        16
+      ],
+      "CTAs": 32,
+      "bijection": true
+    },
+    {
+      "n": 1,
+      "segments": 16,
+      "mode": "heads_first",
+      "old": [
+        1,
+        2,
+        16
+      ],
+      "new": [
+        2,
+        1,
+        16
+      ],
+      "CTAs": 32,
+      "bijection": true
+    },
+    {
+      "n": 1,
+      "segments": 16,
+      "mode": "segments_first",
+      "old": [
+        1,
+        2,
+        16
+      ],
+      "new": [
+        16,
+        1,
+        2
+      ],
+      "CTAs": 32,
+      "bijection": true
+    },
+    {
+      "n": 1,
+      "segments": 16,
+      "mode": "heads_segments_first",
+      "old": [
+        1,
+        2,
+        16
+      ],
+      "new": [
+        2,
+        16,
+        1
+      ],
+      "CTAs": 32,
+      "bijection": true
+    },
+    {
+      "n": 1,
+      "segments": 32,
+      "mode": "current",
+      "old": [
+        1,
+        2,
+        32
+      ],
+      "new": [
+        1,
+        2,
+        32
+      ],
+      "CTAs": 64,
+      "bijection": true
+    },
+    {
+      "n": 1,
+      "segments": 32,
+      "mode": "heads_first",
+      "old": [
+        1,
+        2,
+        32
+      ],
+      "new": [
+        2,
+        1,
+        32
+      ],
+      "CTAs": 64,
+      "bijection": true
+    },
+    {
+      "n": 1,
+      "segments": 32,
+      "mode": "segments_first",
+      "old": [
+        1,
+        2,
+        32
+      ],
+      "new": [
+        32,
+        1,
+        2
+      ],
+      "CTAs": 64,
+      "bijection": true
+    },
+    {
+      "n": 1,
+      "segments": 32,
+      "mode": "heads_segments_first",
+      "old": [
+        1,
+        2,
+        32
+      ],
+      "new": [
+        2,
+        32,
+        1
+      ],
+      "CTAs": 64,
+      "bijection": true
+    },
+    {
+      "n": 1,
+      "segments": 64,
+      "mode": "current",
+      "old": [
+        1,
+        2,
+        64
+      ],
+      "new": [
+        1,
+        2,
+        64
+      ],
+      "CTAs": 128,
+      "bijection": true
+    },
+    {
+      "n": 1,
+      "segments": 64,
+      "mode": "heads_first",
+      "old": [
+        1,
+        2,
+        64
+      ],
+      "new": [
+        2,
+        1,
+        64
+      ],
+      "CTAs": 128,
+      "bijection": true
+    },
+    {
+      "n": 1,
+      "segments": 64,
+      "mode": "segments_first",
+      "old": [
+        1,
+        2,
+        64
+      ],
+      "new": [
+        64,
+        1,
+        2
+      ],
+      "CTAs": 128,
+      "bijection": true
+    },
+    {
+      "n": 1,
+      "segments": 64,
+      "mode": "heads_segments_first",
+      "old": [
+        1,
+        2,
+        64
+      ],
+      "new": [
+        2,
+        64,
+        1
+      ],
+      "CTAs": 128,
+      "bijection": true
+    },
+    {
+      "n": 2,
+      "segments": 4,
+      "mode": "current",
+      "old": [
+        3,
+        2,
+        4
+      ],
+      "new": [
+        3,
+        2,
+        4
+      ],
+      "CTAs": 24,
+      "bijection": true
+    },
+    {
+      "n": 2,
+      "segments": 4,
+      "mode": "heads_first",
+      "old": [
+        3,
+        2,
+        4
+      ],
+      "new": [
+        2,
+        3,
+        4
+      ],
+      "CTAs": 24,
+      "bijection": true
+    },
+    {
+      "n": 2,
+      "segments": 4,
+      "mode": "segments_first",
+      "old": [
+        3,
+        2,
+        4
+      ],
+      "new": [
+        4,
+        3,
+        2
+      ],
+      "CTAs": 24,
+      "bijection": true
+    },
+    {
+      "n": 2,
+      "segments": 4,
+      "mode": "heads_segments_first",
+      "old": [
+        3,
+        2,
+        4
+      ],
+      "new": [
+        2,
+        4,
+        3
+      ],
+      "CTAs": 24,
+      "bijection": true
+    },
+    {
+      "n": 2,
+      "segments": 8,
+      "mode": "current",
+      "old": [
+        3,
+        2,
+        8
+      ],
+      "new": [
+        3,
+        2,
+        8
+      ],
+      "CTAs": 48,
+      "bijection": true
+    },
+    {
+      "n": 2,
+      "segments": 8,
+      "mode": "heads_first",
+      "old": [
+        3,
+        2,
+        8
+      ],
+      "new": [
+        2,
+        3,
+        8
+      ],
+      "CTAs": 48,
+      "bijection": true
+    },
+    {
+      "n": 2,
+      "segments": 8,
+      "mode": "segments_first",
+      "old": [
+        3,
+        2,
+        8
+      ],
+      "new": [
+        8,
+        3,
+        2
+      ],
+      "CTAs": 48,
+      "bijection": true
+    },
+    {
+      "n": 2,
+      "segments": 8,
+      "mode": "heads_segments_first",
+      "old": [
+        3,
+        2,
+        8
+      ],
+      "new": [
+        2,
+        8,
+        3
+      ],
+      "CTAs": 48,
+      "bijection": true
+    },
+    {
+      "n": 2,
+      "segments": 16,
+      "mode": "current",
+      "old": [
+        3,
+        2,
+        16
+      ],
+      "new": [
+        3,
+        2,
+        16
+      ],
+      "CTAs": 96,
+      "bijection": true
+    },
+    {
+      "n": 2,
+      "segments": 16,
+      "mode": "heads_first",
+      "old": [
+        3,
+        2,
+        16
+      ],
+      "new": [
+        2,
+        3,
+        16
+      ],
+      "CTAs": 96,
+      "bijection": true
+    },
+    {
+      "n": 2,
+      "segments": 16,
+      "mode": "segments_first",
+      "old": [
+        3,
+        2,
+        16
+      ],
+      "new": [
+        16,
+        3,
+        2
+      ],
+      "CTAs": 96,
+      "bijection": true
+    },
+    {
+      "n": 2,
+      "segments": 16,
+      "mode": "heads_segments_first",
+      "old": [
+        3,
+        2,
+        16
+      ],
+      "new": [
+        2,
+        16,
+        3
+      ],
+      "CTAs": 96,
+      "bijection": true
+    },
+    {
+      "n": 2,
+      "segments": 32,
+      "mode": "current",
+      "old": [
+        3,
+        2,
+        32
+      ],
+      "new": [
+        3,
+        2,
+        32
+      ],
+      "CTAs": 192,
+      "bijection": true
+    },
+    {
+      "n": 2,
+      "segments": 32,
+      "mode": "heads_first",
+      "old": [
+        3,
+        2,
+        32
+      ],
+      "new": [
+        2,
+        3,
+        32
+      ],
+      "CTAs": 192,
+      "bijection": true
+    },
+    {
+      "n": 2,
+      "segments": 32,
+      "mode": "segments_first",
+      "old": [
+        3,
+        2,
+        32
+      ],
+      "new": [
+        32,
+        3,
+        2
+      ],
+      "CTAs": 192,
+      "bijection": true
+    },
+    {
+      "n": 2,
+      "segments": 32,
+      "mode": "heads_segments_first",
+      "old": [
+        3,
+        2,
+        32
+      ],
+      "new": [
+        2,
+        32,
+        3
+      ],
+      "CTAs": 192,
+      "bijection": true
+    },
+    {
+      "n": 2,
+      "segments": 64,
+      "mode": "current",
+      "old": [
+        3,
+        2,
+        64
+      ],
+      "new": [
+        3,
+        2,
+        64
+      ],
+      "CTAs": 384,
+      "bijection": true
+    },
+    {
+      "n": 2,
+      "segments": 64,
+      "mode": "heads_first",
+      "old": [
+        3,
+        2,
+        64
+      ],
+      "new": [
+        2,
+        3,
+        64
+      ],
+      "CTAs": 384,
+      "bijection": true
+    },
+    {
+      "n": 2,
+      "segments": 64,
+      "mode": "segments_first",
+      "old": [
+        3,
+        2,
+        64
+      ],
+      "new": [
+        64,
+        3,
+        2
+      ],
+      "CTAs": 384,
+      "bijection": true
+    },
+    {
+      "n": 2,
+      "segments": 64,
+      "mode": "heads_segments_first",
+      "old": [
+        3,
+        2,
+        64
+      ],
+      "new": [
+        2,
+        64,
+        3
+      ],
+      "CTAs": 384,
+      "bijection": true
+    },
+    {
+      "n": 4,
+      "segments": 4,
+      "mode": "current",
+      "old": [
+        6,
+        2,
+        4
+      ],
+      "new": [
+        6,
+        2,
+        4
+      ],
+      "CTAs": 48,
+      "bijection": true
+    },
+    {
+      "n": 4,
+      "segments": 4,
+      "mode": "heads_first",
+      "old": [
+        6,
+        2,
+        4
+      ],
+      "new": [
+        2,
+        6,
+        4
+      ],
+      "CTAs": 48,
+      "bijection": true
+    },
+    {
+      "n": 4,
+      "segments": 4,
+      "mode": "segments_first",
+      "old": [
+        6,
+        2,
+        4
+      ],
+      "new": [
+        4,
+        6,
+        2
+      ],
+      "CTAs": 48,
+      "bijection": true
+    },
+    {
+      "n": 4,
+      "segments": 4,
+      "mode": "heads_segments_first",
+      "old": [
+        6,
+        2,
+        4
+      ],
+      "new": [
+        2,
+        4,
+        6
+      ],
+      "CTAs": 48,
+      "bijection": true
+    },
+    {
+      "n": 4,
+      "segments": 8,
+      "mode": "current",
+      "old": [
+        6,
+        2,
+        8
+      ],
+      "new": [
+        6,
+        2,
+        8
+      ],
+      "CTAs": 96,
+      "bijection": true
+    },
+    {
+      "n": 4,
+      "segments": 8,
+      "mode": "heads_first",
+      "old": [
+        6,
+        2,
+        8
+      ],
+      "new": [
+        2,
+        6,
+        8
+      ],
+      "CTAs": 96,
+      "bijection": true
+    },
+    {
+      "n": 4,
+      "segments": 8,
+      "mode": "segments_first",
+      "old": [
+        6,
+        2,
+        8
+      ],
+      "new": [
+        8,
+        6,
+        2
+      ],
+      "CTAs": 96,
+      "bijection": true
+    },
+    {
+      "n": 4,
+      "segments": 8,
+      "mode": "heads_segments_first",
+      "old": [
+        6,
+        2,
+        8
+      ],
+      "new": [
+        2,
+        8,
+        6
+      ],
+      "CTAs": 96,
+      "bijection": true
+    },
+    {
+      "n": 4,
+      "segments": 16,
+      "mode": "current",
+      "old": [
+        6,
+        2,
+        16
+      ],
+      "new": [
+        6,
+        2,
+        16
+      ],
+      "CTAs": 192,
+      "bijection": true
+    },
+    {
+      "n": 4,
+      "segments": 16,
+      "mode": "heads_first",
+      "old": [
+        6,
+        2,
+        16
+      ],
+      "new": [
+        2,
+        6,
+        16
+      ],
+      "CTAs": 192,
+      "bijection": true
+    },
+    {
+      "n": 4,
+      "segments": 16,
+      "mode": "segments_first",
+      "old": [
+        6,
+        2,
+        16
+      ],
+      "new": [
+        16,
+        6,
+        2
+      ],
+      "CTAs": 192,
+      "bijection": true
+    },
+    {
+      "n": 4,
+      "segments": 16,
+      "mode": "heads_segments_first",
+      "old": [
+        6,
+        2,
+        16
+      ],
+      "new": [
+        2,
+        16,
+        6
+      ],
+      "CTAs": 192,
+      "bijection": true
+    },
+    {
+      "n": 4,
+      "segments": 32,
+      "mode": "current",
+      "old": [
+        6,
+        2,
+        32
+      ],
+      "new": [
+        6,
+        2,
+        32
+      ],
+      "CTAs": 384,
+      "bijection": true
+    },
+    {
+      "n": 4,
+      "segments": 32,
+      "mode": "heads_first",
+      "old": [
+        6,
+        2,
+        32
+      ],
+      "new": [
+        2,
+        6,
+        32
+      ],
+      "CTAs": 384,
+      "bijection": true
+    },
+    {
+      "n": 4,
+      "segments": 32,
+      "mode": "segments_first",
+      "old": [
+        6,
+        2,
+        32
+      ],
+      "new": [
+        32,
+        6,
+        2
+      ],
+      "CTAs": 384,
+      "bijection": true
+    },
+    {
+      "n": 4,
+      "segments": 32,
+      "mode": "heads_segments_first",
+      "old": [
+        6,
+        2,
+        32
+      ],
+      "new": [
+        2,
+        32,
+        6
+      ],
+      "CTAs": 384,
+      "bijection": true
+    },
+    {
+      "n": 4,
+      "segments": 64,
+      "mode": "current",
+      "old": [
+        6,
+        2,
+        64
+      ],
+      "new": [
+        6,
+        2,
+        64
+      ],
+      "CTAs": 768,
+      "bijection": true
+    },
+    {
+      "n": 4,
+      "segments": 64,
+      "mode": "heads_first",
+      "old": [
+        6,
+        2,
+        64
+      ],
+      "new": [
+        2,
+        6,
+        64
+      ],
+      "CTAs": 768,
+      "bijection": true
+    },
+    {
+      "n": 4,
+      "segments": 64,
+      "mode": "segments_first",
+      "old": [
+        6,
+        2,
+        64
+      ],
+      "new": [
+        64,
+        6,
+        2
+      ],
+      "CTAs": 768,
+      "bijection": true
+    },
+    {
+      "n": 4,
+      "segments": 64,
+      "mode": "heads_segments_first",
+      "old": [
+        6,
+        2,
+        64
+      ],
+      "new": [
+        2,
+        64,
+        6
+      ],
+      "CTAs": 768,
+      "bijection": true
+    },
+    {
+      "n": 8,
+      "segments": 4,
+      "mode": "current",
+      "old": [
+        12,
+        2,
+        4
+      ],
+      "new": [
+        12,
+        2,
+        4
+      ],
+      "CTAs": 96,
+      "bijection": true
+    },
+    {
+      "n": 8,
+      "segments": 4,
+      "mode": "heads_first",
+      "old": [
+        12,
+        2,
+        4
+      ],
+      "new": [
+        2,
+        12,
+        4
+      ],
+      "CTAs": 96,
+      "bijection": true
+    },
+    {
+      "n": 8,
+      "segments": 4,
+      "mode": "segments_first",
+      "old": [
+        12,
+        2,
+        4
+      ],
+      "new": [
+        4,
+        12,
+        2
+      ],
+      "CTAs": 96,
+      "bijection": true
+    },
+    {
+      "n": 8,
+      "segments": 4,
+      "mode": "heads_segments_first",
+      "old": [
+        12,
+        2,
+        4
+      ],
+      "new": [
+        2,
+        4,
+        12
+      ],
+      "CTAs": 96,
+      "bijection": true
+    },
+    {
+      "n": 8,
+      "segments": 8,
+      "mode": "current",
+      "old": [
+        12,
+        2,
+        8
+      ],
+      "new": [
+        12,
+        2,
+        8
+      ],
+      "CTAs": 192,
+      "bijection": true
+    },
+    {
+      "n": 8,
+      "segments": 8,
+      "mode": "heads_first",
+      "old": [
+        12,
+        2,
+        8
+      ],
+      "new": [
+        2,
+        12,
+        8
+      ],
+      "CTAs": 192,
+      "bijection": true
+    },
+    {
+      "n": 8,
+      "segments": 8,
+      "mode": "segments_first",
+      "old": [
+        12,
+        2,
+        8
+      ],
+      "new": [
+        8,
+        12,
+        2
+      ],
+      "CTAs": 192,
+      "bijection": true
+    },
+    {
+      "n": 8,
+      "segments": 8,
+      "mode": "heads_segments_first",
+      "old": [
+        12,
+        2,
+        8
+      ],
+      "new": [
+        2,
+        8,
+        12
+      ],
+      "CTAs": 192,
+      "bijection": true
+    },
+    {
+      "n": 8,
+      "segments": 16,
+      "mode": "current",
+      "old": [
+        12,
+        2,
+        16
+      ],
+      "new": [
+        12,
+        2,
+        16
+      ],
+      "CTAs": 384,
+      "bijection": true
+    },
+    {
+      "n": 8,
+      "segments": 16,
+      "mode": "heads_first",
+      "old": [
+        12,
+        2,
+        16
+      ],
+      "new": [
+        2,
+        12,
+        16
+      ],
+      "CTAs": 384,
+      "bijection": true
+    },
+    {
+      "n": 8,
+      "segments": 16,
+      "mode": "segments_first",
+      "old": [
+        12,
+        2,
+        16
+      ],
+      "new": [
+        16,
+        12,
+        2
+      ],
+      "CTAs": 384,
+      "bijection": true
+    },
+    {
+      "n": 8,
+      "segments": 16,
+      "mode": "heads_segments_first",
+      "old": [
+        12,
+        2,
+        16
+      ],
+      "new": [
+        2,
+        16,
+        12
+      ],
+      "CTAs": 384,
+      "bijection": true
+    },
+    {
+      "n": 8,
+      "segments": 32,
+      "mode": "current",
+      "old": [
+        12,
+        2,
+        32
+      ],
+      "new": [
+        12,
+        2,
+        32
+      ],
+      "CTAs": 768,
+      "bijection": true
+    },
+    {
+      "n": 8,
+      "segments": 32,
+      "mode": "heads_first",
+      "old": [
+        12,
+        2,
+        32
+      ],
+      "new": [
+        2,
+        12,
+        32
+      ],
+      "CTAs": 768,
+      "bijection": true
+    },
+    {
+      "n": 8,
+      "segments": 32,
+      "mode": "segments_first",
+      "old": [
+        12,
+        2,
+        32
+      ],
+      "new": [
+        32,
+        12,
+        2
+      ],
+      "CTAs": 768,
+      "bijection": true
+    },
+    {
+      "n": 8,
+      "segments": 32,
+      "mode": "heads_segments_first",
+      "old": [
+        12,
+        2,
+        32
+      ],
+      "new": [
+        2,
+        32,
+        12
+      ],
+      "CTAs": 768,
+      "bijection": true
+    },
+    {
+      "n": 8,
+      "segments": 64,
+      "mode": "current",
+      "old": [
+        12,
+        2,
+        64
+      ],
+      "new": [
+        12,
+        2,
+        64
+      ],
+      "CTAs": 1536,
+      "bijection": true
+    },
+    {
+      "n": 8,
+      "segments": 64,
+      "mode": "heads_first",
+      "old": [
+        12,
+        2,
+        64
+      ],
+      "new": [
+        2,
+        12,
+        64
+      ],
+      "CTAs": 1536,
+      "bijection": true
+    },
+    {
+      "n": 8,
+      "segments": 64,
+      "mode": "segments_first",
+      "old": [
+        12,
+        2,
+        64
+      ],
+      "new": [
+        64,
+        12,
+        2
+      ],
+      "CTAs": 1536,
+      "bijection": true
+    },
+    {
+      "n": 8,
+      "segments": 64,
+      "mode": "heads_segments_first",
+      "old": [
+        12,
+        2,
+        64
+      ],
+      "new": [
+        2,
+        64,
+        12
+      ],
+      "CTAs": 1536,
+      "bijection": true
+    },
+    {
+      "n": 16,
+      "segments": 4,
+      "mode": "current",
+      "old": [
+        24,
+        2,
+        4
+      ],
+      "new": [
+        24,
+        2,
+        4
+      ],
+      "CTAs": 192,
+      "bijection": true
+    },
+    {
+      "n": 16,
+      "segments": 4,
+      "mode": "heads_first",
+      "old": [
+        24,
+        2,
+        4
+      ],
+      "new": [
+        2,
+        24,
+        4
+      ],
+      "CTAs": 192,
+      "bijection": true
+    },
+    {
+      "n": 16,
+      "segments": 4,
+      "mode": "segments_first",
+      "old": [
+        24,
+        2,
+        4
+      ],
+      "new": [
+        4,
+        24,
+        2
+      ],
+      "CTAs": 192,
+      "bijection": true
+    },
+    {
+      "n": 16,
+      "segments": 4,
+      "mode": "heads_segments_first",
+      "old": [
+        24,
+        2,
+        4
+      ],
+      "new": [
+        2,
+        4,
+        24
+      ],
+      "CTAs": 192,
+      "bijection": true
+    },
+    {
+      "n": 16,
+      "segments": 8,
+      "mode": "current",
+      "old": [
+        24,
+        2,
+        8
+      ],
+      "new": [
+        24,
+        2,
+        8
+      ],
+      "CTAs": 384,
+      "bijection": true
+    },
+    {
+      "n": 16,
+      "segments": 8,
+      "mode": "heads_first",
+      "old": [
+        24,
+        2,
+        8
+      ],
+      "new": [
+        2,
+        24,
+        8
+      ],
+      "CTAs": 384,
+      "bijection": true
+    },
+    {
+      "n": 16,
+      "segments": 8,
+      "mode": "segments_first",
+      "old": [
+        24,
+        2,
+        8
+      ],
+      "new": [
+        8,
+        24,
+        2
+      ],
+      "CTAs": 384,
+      "bijection": true
+    },
+    {
+      "n": 16,
+      "segments": 8,
+      "mode": "heads_segments_first",
+      "old": [
+        24,
+        2,
+        8
+      ],
+      "new": [
+        2,
+        8,
+        24
+      ],
+      "CTAs": 384,
+      "bijection": true
+    },
+    {
+      "n": 16,
+      "segments": 16,
+      "mode": "current",
+      "old": [
+        24,
+        2,
+        16
+      ],
+      "new": [
+        24,
+        2,
+        16
+      ],
+      "CTAs": 768,
+      "bijection": true
+    },
+    {
+      "n": 16,
+      "segments": 16,
+      "mode": "heads_first",
+      "old": [
+        24,
+        2,
+        16
+      ],
+      "new": [
+        2,
+        24,
+        16
+      ],
+      "CTAs": 768,
+      "bijection": true
+    },
+    {
+      "n": 16,
+      "segments": 16,
+      "mode": "segments_first",
+      "old": [
+        24,
+        2,
+        16
+      ],
+      "new": [
+        16,
+        24,
+        2
+      ],
+      "CTAs": 768,
+      "bijection": true
+    },
+    {
+      "n": 16,
+      "segments": 16,
+      "mode": "heads_segments_first",
+      "old": [
+        24,
+        2,
+        16
+      ],
+      "new": [
+        2,
+        16,
+        24
+      ],
+      "CTAs": 768,
+      "bijection": true
+    },
+    {
+      "n": 16,
+      "segments": 32,
+      "mode": "current",
+      "old": [
+        24,
+        2,
+        32
+      ],
+      "new": [
+        24,
+        2,
+        32
+      ],
+      "CTAs": 1536,
+      "bijection": true
+    },
+    {
+      "n": 16,
+      "segments": 32,
+      "mode": "heads_first",
+      "old": [
+        24,
+        2,
+        32
+      ],
+      "new": [
+        2,
+        24,
+        32
+      ],
+      "CTAs": 1536,
+      "bijection": true
+    },
+    {
+      "n": 16,
+      "segments": 32,
+      "mode": "segments_first",
+      "old": [
+        24,
+        2,
+        32
+      ],
+      "new": [
+        32,
+        24,
+        2
+      ],
+      "CTAs": 1536,
+      "bijection": true
+    },
+    {
+      "n": 16,
+      "segments": 32,
+      "mode": "heads_segments_first",
+      "old": [
+        24,
+        2,
+        32
+      ],
+      "new": [
+        2,
+        32,
+        24
+      ],
+      "CTAs": 1536,
+      "bijection": true
+    },
+    {
+      "n": 16,
+      "segments": 64,
+      "mode": "current",
+      "old": [
+        24,
+        2,
+        64
+      ],
+      "new": [
+        24,
+        2,
+        64
+      ],
+      "CTAs": 3072,
+      "bijection": true
+    },
+    {
+      "n": 16,
+      "segments": 64,
+      "mode": "heads_first",
+      "old": [
+        24,
+        2,
+        64
+      ],
+      "new": [
+        2,
+        24,
+        64
+      ],
+      "CTAs": 3072,
+      "bijection": true
+    },
+    {
+      "n": 16,
+      "segments": 64,
+      "mode": "segments_first",
+      "old": [
+        24,
+        2,
+        64
+      ],
+      "new": [
+        64,
+        24,
+        2
+      ],
+      "CTAs": 3072,
+      "bijection": true
+    },
+    {
+      "n": 16,
+      "segments": 64,
+      "mode": "heads_segments_first",
+      "old": [
+        24,
+        2,
+        64
+      ],
+      "new": [
+        2,
+        64,
+        24
+      ],
+      "CTAs": 3072,
+      "bijection": true
+    },
+    {
+      "n": 24,
+      "segments": 4,
+      "mode": "current",
+      "old": [
+        36,
+        2,
+        4
+      ],
+      "new": [
+        36,
+        2,
+        4
+      ],
+      "CTAs": 288,
+      "bijection": true
+    },
+    {
+      "n": 24,
+      "segments": 4,
+      "mode": "heads_first",
+      "old": [
+        36,
+        2,
+        4
+      ],
+      "new": [
+        2,
+        36,
+        4
+      ],
+      "CTAs": 288,
+      "bijection": true
+    },
+    {
+      "n": 24,
+      "segments": 4,
+      "mode": "segments_first",
+      "old": [
+        36,
+        2,
+        4
+      ],
+      "new": [
+        4,
+        36,
+        2
+      ],
+      "CTAs": 288,
+      "bijection": true
+    },
+    {
+      "n": 24,
+      "segments": 4,
+      "mode": "heads_segments_first",
+      "old": [
+        36,
+        2,
+        4
+      ],
+      "new": [
+        2,
+        4,
+        36
+      ],
+      "CTAs": 288,
+      "bijection": true
+    },
+    {
+      "n": 24,
+      "segments": 8,
+      "mode": "current",
+      "old": [
+        36,
+        2,
+        8
+      ],
+      "new": [
+        36,
+        2,
+        8
+      ],
+      "CTAs": 576,
+      "bijection": true
+    },
+    {
+      "n": 24,
+      "segments": 8,
+      "mode": "heads_first",
+      "old": [
+        36,
+        2,
+        8
+      ],
+      "new": [
+        2,
+        36,
+        8
+      ],
+      "CTAs": 576,
+      "bijection": true
+    },
+    {
+      "n": 24,
+      "segments": 8,
+      "mode": "segments_first",
+      "old": [
+        36,
+        2,
+        8
+      ],
+      "new": [
+        8,
+        36,
+        2
+      ],
+      "CTAs": 576,
+      "bijection": true
+    },
+    {
+      "n": 24,
+      "segments": 8,
+      "mode": "heads_segments_first",
+      "old": [
+        36,
+        2,
+        8
+      ],
+      "new": [
+        2,
+        8,
+        36
+      ],
+      "CTAs": 576,
+      "bijection": true
+    },
+    {
+      "n": 24,
+      "segments": 16,
+      "mode": "current",
+      "old": [
+        36,
+        2,
+        16
+      ],
+      "new": [
+        36,
+        2,
+        16
+      ],
+      "CTAs": 1152,
+      "bijection": true
+    },
+    {
+      "n": 24,
+      "segments": 16,
+      "mode": "heads_first",
+      "old": [
+        36,
+        2,
+        16
+      ],
+      "new": [
+        2,
+        36,
+        16
+      ],
+      "CTAs": 1152,
+      "bijection": true
+    },
+    {
+      "n": 24,
+      "segments": 16,
+      "mode": "segments_first",
+      "old": [
+        36,
+        2,
+        16
+      ],
+      "new": [
+        16,
+        36,
+        2
+      ],
+      "CTAs": 1152,
+      "bijection": true
+    },
+    {
+      "n": 24,
+      "segments": 16,
+      "mode": "heads_segments_first",
+      "old": [
+        36,
+        2,
+        16
+      ],
+      "new": [
+        2,
+        16,
+        36
+      ],
+      "CTAs": 1152,
+      "bijection": true
+    },
+    {
+      "n": 24,
+      "segments": 32,
+      "mode": "current",
+      "old": [
+        36,
+        2,
+        32
+      ],
+      "new": [
+        36,
+        2,
+        32
+      ],
+      "CTAs": 2304,
+      "bijection": true
+    },
+    {
+      "n": 24,
+      "segments": 32,
+      "mode": "heads_first",
+      "old": [
+        36,
+        2,
+        32
+      ],
+      "new": [
+        2,
+        36,
+        32
+      ],
+      "CTAs": 2304,
+      "bijection": true
+    },
+    {
+      "n": 24,
+      "segments": 32,
+      "mode": "segments_first",
+      "old": [
+        36,
+        2,
+        32
+      ],
+      "new": [
+        32,
+        36,
+        2
+      ],
+      "CTAs": 2304,
+      "bijection": true
+    },
+    {
+      "n": 24,
+      "segments": 32,
+      "mode": "heads_segments_first",
+      "old": [
+        36,
+        2,
+        32
+      ],
+      "new": [
+        2,
+        32,
+        36
+      ],
+      "CTAs": 2304,
+      "bijection": true
+    },
+    {
+      "n": 24,
+      "segments": 64,
+      "mode": "current",
+      "old": [
+        36,
+        2,
+        64
+      ],
+      "new": [
+        36,
+        2,
+        64
+      ],
+      "CTAs": 4608,
+      "bijection": true
+    },
+    {
+      "n": 24,
+      "segments": 64,
+      "mode": "heads_first",
+      "old": [
+        36,
+        2,
+        64
+      ],
+      "new": [
+        2,
+        36,
+        64
+      ],
+      "CTAs": 4608,
+      "bijection": true
+    },
+    {
+      "n": 24,
+      "segments": 64,
+      "mode": "segments_first",
+      "old": [
+        36,
+        2,
+        64
+      ],
+      "new": [
+        64,
+        36,
+        2
+      ],
+      "CTAs": 4608,
+      "bijection": true
+    },
+    {
+      "n": 24,
+      "segments": 64,
+      "mode": "heads_segments_first",
+      "old": [
+        36,
+        2,
+        64
+      ],
+      "new": [
+        2,
+        64,
+        36
+      ],
+      "CTAs": 4608,
+      "bijection": true
+    },
+    {
+      "n": 32,
+      "segments": 4,
+      "mode": "current",
+      "old": [
+        48,
+        2,
+        4
+      ],
+      "new": [
+        48,
+        2,
+        4
+      ],
+      "CTAs": 384,
+      "bijection": true
+    },
+    {
+      "n": 32,
+      "segments": 4,
+      "mode": "heads_first",
+      "old": [
+        48,
+        2,
+        4
+      ],
+      "new": [
+        2,
+        48,
+        4
+      ],
+      "CTAs": 384,
+      "bijection": true
+    },
+    {
+      "n": 32,
+      "segments": 4,
+      "mode": "segments_first",
+      "old": [
+        48,
+        2,
+        4
+      ],
+      "new": [
+        4,
+        48,
+        2
+      ],
+      "CTAs": 384,
+      "bijection": true
+    },
+    {
+      "n": 32,
+      "segments": 4,
+      "mode": "heads_segments_first",
+      "old": [
+        48,
+        2,
+        4
+      ],
+      "new": [
+        2,
+        4,
+        48
+      ],
+      "CTAs": 384,
+      "bijection": true
+    },
+    {
+      "n": 32,
+      "segments": 8,
+      "mode": "current",
+      "old": [
+        48,
+        2,
+        8
+      ],
+      "new": [
+        48,
+        2,
+        8
+      ],
+      "CTAs": 768,
+      "bijection": true
+    },
+    {
+      "n": 32,
+      "segments": 8,
+      "mode": "heads_first",
+      "old": [
+        48,
+        2,
+        8
+      ],
+      "new": [
+        2,
+        48,
+        8
+      ],
+      "CTAs": 768,
+      "bijection": true
+    },
+    {
+      "n": 32,
+      "segments": 8,
+      "mode": "segments_first",
+      "old": [
+        48,
+        2,
+        8
+      ],
+      "new": [
+        8,
+        48,
+        2
+      ],
+      "CTAs": 768,
+      "bijection": true
+    },
+    {
+      "n": 32,
+      "segments": 8,
+      "mode": "heads_segments_first",
+      "old": [
+        48,
+        2,
+        8
+      ],
+      "new": [
+        2,
+        8,
+        48
+      ],
+      "CTAs": 768,
+      "bijection": true
+    },
+    {
+      "n": 32,
+      "segments": 16,
+      "mode": "current",
+      "old": [
+        48,
+        2,
+        16
+      ],
+      "new": [
+        48,
+        2,
+        16
+      ],
+      "CTAs": 1536,
+      "bijection": true
+    },
+    {
+      "n": 32,
+      "segments": 16,
+      "mode": "heads_first",
+      "old": [
+        48,
+        2,
+        16
+      ],
+      "new": [
+        2,
+        48,
+        16
+      ],
+      "CTAs": 1536,
+      "bijection": true
+    },
+    {
+      "n": 32,
+      "segments": 16,
+      "mode": "segments_first",
+      "old": [
+        48,
+        2,
+        16
+      ],
+      "new": [
+        16,
+        48,
+        2
+      ],
+      "CTAs": 1536,
+      "bijection": true
+    },
+    {
+      "n": 32,
+      "segments": 16,
+      "mode": "heads_segments_first",
+      "old": [
+        48,
+        2,
+        16
+      ],
+      "new": [
+        2,
+        16,
+        48
+      ],
+      "CTAs": 1536,
+      "bijection": true
+    },
+    {
+      "n": 32,
+      "segments": 32,
+      "mode": "current",
+      "old": [
+        48,
+        2,
+        32
+      ],
+      "new": [
+        48,
+        2,
+        32
+      ],
+      "CTAs": 3072,
+      "bijection": true
+    },
+    {
+      "n": 32,
+      "segments": 32,
+      "mode": "heads_first",
+      "old": [
+        48,
+        2,
+        32
+      ],
+      "new": [
+        2,
+        48,
+        32
+      ],
+      "CTAs": 3072,
+      "bijection": true
+    },
+    {
+      "n": 32,
+      "segments": 32,
+      "mode": "segments_first",
+      "old": [
+        48,
+        2,
+        32
+      ],
+      "new": [
+        32,
+        48,
+        2
+      ],
+      "CTAs": 3072,
+      "bijection": true
+    },
+    {
+      "n": 32,
+      "segments": 32,
+      "mode": "heads_segments_first",
+      "old": [
+        48,
+        2,
+        32
+      ],
+      "new": [
+        2,
+        32,
+        48
+      ],
+      "CTAs": 3072,
+      "bijection": true
+    },
+    {
+      "n": 32,
+      "segments": 64,
+      "mode": "current",
+      "old": [
+        48,
+        2,
+        64
+      ],
+      "new": [
+        48,
+        2,
+        64
+      ],
+      "CTAs": 6144,
+      "bijection": true
+    },
+    {
+      "n": 32,
+      "segments": 64,
+      "mode": "heads_first",
+      "old": [
+        48,
+        2,
+        64
+      ],
+      "new": [
+        2,
+        48,
+        64
+      ],
+      "CTAs": 6144,
+      "bijection": true
+    },
+    {
+      "n": 32,
+      "segments": 64,
+      "mode": "segments_first",
+      "old": [
+        48,
+        2,
+        64
+      ],
+      "new": [
+        64,
+        48,
+        2
+      ],
+      "CTAs": 6144,
+      "bijection": true
+    },
+    {
+      "n": 32,
+      "segments": 64,
+      "mode": "heads_segments_first",
+      "old": [
+        48,
+        2,
+        64
+      ],
+      "new": [
+        2,
+        64,
+        48
+      ],
+      "CTAs": 6144,
+      "bijection": true
+    },
+    {
+      "n": 40,
+      "segments": 4,
+      "mode": "current",
+      "old": [
+        60,
+        2,
+        4
+      ],
+      "new": [
+        60,
+        2,
+        4
+      ],
+      "CTAs": 480,
+      "bijection": true
+    },
+    {
+      "n": 40,
+      "segments": 4,
+      "mode": "heads_first",
+      "old": [
+        60,
+        2,
+        4
+      ],
+      "new": [
+        2,
+        60,
+        4
+      ],
+      "CTAs": 480,
+      "bijection": true
+    },
+    {
+      "n": 40,
+      "segments": 4,
+      "mode": "segments_first",
+      "old": [
+        60,
+        2,
+        4
+      ],
+      "new": [
+        4,
+        60,
+        2
+      ],
+      "CTAs": 480,
+      "bijection": true
+    },
+    {
+      "n": 40,
+      "segments": 4,
+      "mode": "heads_segments_first",
+      "old": [
+        60,
+        2,
+        4
+      ],
+      "new": [
+        2,
+        4,
+        60
+      ],
+      "CTAs": 480,
+      "bijection": true
+    },
+    {
+      "n": 40,
+      "segments": 8,
+      "mode": "current",
+      "old": [
+        60,
+        2,
+        8
+      ],
+      "new": [
+        60,
+        2,
+        8
+      ],
+      "CTAs": 960,
+      "bijection": true
+    },
+    {
+      "n": 40,
+      "segments": 8,
+      "mode": "heads_first",
+      "old": [
+        60,
+        2,
+        8
+      ],
+      "new": [
+        2,
+        60,
+        8
+      ],
+      "CTAs": 960,
+      "bijection": true
+    },
+    {
+      "n": 40,
+      "segments": 8,
+      "mode": "segments_first",
+      "old": [
+        60,
+        2,
+        8
+      ],
+      "new": [
+        8,
+        60,
+        2
+      ],
+      "CTAs": 960,
+      "bijection": true
+    },
+    {
+      "n": 40,
+      "segments": 8,
+      "mode": "heads_segments_first",
+      "old": [
+        60,
+        2,
+        8
+      ],
+      "new": [
+        2,
+        8,
+        60
+      ],
+      "CTAs": 960,
+      "bijection": true
+    },
+    {
+      "n": 40,
+      "segments": 16,
+      "mode": "current",
+      "old": [
+        60,
+        2,
+        16
+      ],
+      "new": [
+        60,
+        2,
+        16
+      ],
+      "CTAs": 1920,
+      "bijection": true
+    },
+    {
+      "n": 40,
+      "segments": 16,
+      "mode": "heads_first",
+      "old": [
+        60,
+        2,
+        16
+      ],
+      "new": [
+        2,
+        60,
+        16
+      ],
+      "CTAs": 1920,
+      "bijection": true
+    },
+    {
+      "n": 40,
+      "segments": 16,
+      "mode": "segments_first",
+      "old": [
+        60,
+        2,
+        16
+      ],
+      "new": [
+        16,
+        60,
+        2
+      ],
+      "CTAs": 1920,
+      "bijection": true
+    },
+    {
+      "n": 40,
+      "segments": 16,
+      "mode": "heads_segments_first",
+      "old": [
+        60,
+        2,
+        16
+      ],
+      "new": [
+        2,
+        16,
+        60
+      ],
+      "CTAs": 1920,
+      "bijection": true
+    },
+    {
+      "n": 40,
+      "segments": 32,
+      "mode": "current",
+      "old": [
+        60,
+        2,
+        32
+      ],
+      "new": [
+        60,
+        2,
+        32
+      ],
+      "CTAs": 3840,
+      "bijection": true
+    },
+    {
+      "n": 40,
+      "segments": 32,
+      "mode": "heads_first",
+      "old": [
+        60,
+        2,
+        32
+      ],
+      "new": [
+        2,
+        60,
+        32
+      ],
+      "CTAs": 3840,
+      "bijection": true
+    },
+    {
+      "n": 40,
+      "segments": 32,
+      "mode": "segments_first",
+      "old": [
+        60,
+        2,
+        32
+      ],
+      "new": [
+        32,
+        60,
+        2
+      ],
+      "CTAs": 3840,
+      "bijection": true
+    },
+    {
+      "n": 40,
+      "segments": 32,
+      "mode": "heads_segments_first",
+      "old": [
+        60,
+        2,
+        32
+      ],
+      "new": [
+        2,
+        32,
+        60
+      ],
+      "CTAs": 3840,
+      "bijection": true
+    },
+    {
+      "n": 40,
+      "segments": 64,
+      "mode": "current",
+      "old": [
+        60,
+        2,
+        64
+      ],
+      "new": [
+        60,
+        2,
+        64
+      ],
+      "CTAs": 7680,
+      "bijection": true
+    },
+    {
+      "n": 40,
+      "segments": 64,
+      "mode": "heads_first",
+      "old": [
+        60,
+        2,
+        64
+      ],
+      "new": [
+        2,
+        60,
+        64
+      ],
+      "CTAs": 7680,
+      "bijection": true
+    },
+    {
+      "n": 40,
+      "segments": 64,
+      "mode": "segments_first",
+      "old": [
+        60,
+        2,
+        64
+      ],
+      "new": [
+        64,
+        60,
+        2
+      ],
+      "CTAs": 7680,
+      "bijection": true
+    },
+    {
+      "n": 40,
+      "segments": 64,
+      "mode": "heads_segments_first",
+      "old": [
+        60,
+        2,
+        64
+      ],
+      "new": [
+        2,
+        64,
+        60
+      ],
+      "CTAs": 7680,
+      "bijection": true
+    },
+    {
+      "n": 41,
+      "segments": 4,
+      "mode": "current",
+      "old": [
+        61,
+        2,
+        4
+      ],
+      "new": [
+        61,
+        2,
+        4
+      ],
+      "CTAs": 488,
+      "bijection": true
+    },
+    {
+      "n": 41,
+      "segments": 4,
+      "mode": "heads_first",
+      "old": [
+        61,
+        2,
+        4
+      ],
+      "new": [
+        2,
+        61,
+        4
+      ],
+      "CTAs": 488,
+      "bijection": true
+    },
+    {
+      "n": 41,
+      "segments": 4,
+      "mode": "segments_first",
+      "old": [
+        61,
+        2,
+        4
+      ],
+      "new": [
+        4,
+        61,
+        2
+      ],
+      "CTAs": 488,
+      "bijection": true
+    },
+    {
+      "n": 41,
+      "segments": 4,
+      "mode": "heads_segments_first",
+      "old": [
+        61,
+        2,
+        4
+      ],
+      "new": [
+        2,
+        4,
+        61
+      ],
+      "CTAs": 488,
+      "bijection": true
+    },
+    {
+      "n": 41,
+      "segments": 8,
+      "mode": "current",
+      "old": [
+        61,
+        2,
+        8
+      ],
+      "new": [
+        61,
+        2,
+        8
+      ],
+      "CTAs": 976,
+      "bijection": true
+    },
+    {
+      "n": 41,
+      "segments": 8,
+      "mode": "heads_first",
+      "old": [
+        61,
+        2,
+        8
+      ],
+      "new": [
+        2,
+        61,
+        8
+      ],
+      "CTAs": 976,
+      "bijection": true
+    },
+    {
+      "n": 41,
+      "segments": 8,
+      "mode": "segments_first",
+      "old": [
+        61,
+        2,
+        8
+      ],
+      "new": [
+        8,
+        61,
+        2
+      ],
+      "CTAs": 976,
+      "bijection": true
+    },
+    {
+      "n": 41,
+      "segments": 8,
+      "mode": "heads_segments_first",
+      "old": [
+        61,
+        2,
+        8
+      ],
+      "new": [
+        2,
+        8,
+        61
+      ],
+      "CTAs": 976,
+      "bijection": true
+    },
+    {
+      "n": 41,
+      "segments": 16,
+      "mode": "current",
+      "old": [
+        61,
+        2,
+        16
+      ],
+      "new": [
+        61,
+        2,
+        16
+      ],
+      "CTAs": 1952,
+      "bijection": true
+    },
+    {
+      "n": 41,
+      "segments": 16,
+      "mode": "heads_first",
+      "old": [
+        61,
+        2,
+        16
+      ],
+      "new": [
+        2,
+        61,
+        16
+      ],
+      "CTAs": 1952,
+      "bijection": true
+    },
+    {
+      "n": 41,
+      "segments": 16,
+      "mode": "segments_first",
+      "old": [
+        61,
+        2,
+        16
+      ],
+      "new": [
+        16,
+        61,
+        2
+      ],
+      "CTAs": 1952,
+      "bijection": true
+    },
+    {
+      "n": 41,
+      "segments": 16,
+      "mode": "heads_segments_first",
+      "old": [
+        61,
+        2,
+        16
+      ],
+      "new": [
+        2,
+        16,
+        61
+      ],
+      "CTAs": 1952,
+      "bijection": true
+    },
+    {
+      "n": 41,
+      "segments": 32,
+      "mode": "current",
+      "old": [
+        61,
+        2,
+        32
+      ],
+      "new": [
+        61,
+        2,
+        32
+      ],
+      "CTAs": 3904,
+      "bijection": true
+    },
+    {
+      "n": 41,
+      "segments": 32,
+      "mode": "heads_first",
+      "old": [
+        61,
+        2,
+        32
+      ],
+      "new": [
+        2,
+        61,
+        32
+      ],
+      "CTAs": 3904,
+      "bijection": true
+    },
+    {
+      "n": 41,
+      "segments": 32,
+      "mode": "segments_first",
+      "old": [
+        61,
+        2,
+        32
+      ],
+      "new": [
+        32,
+        61,
+        2
+      ],
+      "CTAs": 3904,
+      "bijection": true
+    },
+    {
+      "n": 41,
+      "segments": 32,
+      "mode": "heads_segments_first",
+      "old": [
+        61,
+        2,
+        32
+      ],
+      "new": [
+        2,
+        32,
+        61
+      ],
+      "CTAs": 3904,
+      "bijection": true
+    },
+    {
+      "n": 41,
+      "segments": 64,
+      "mode": "current",
+      "old": [
+        61,
+        2,
+        64
+      ],
+      "new": [
+        61,
+        2,
+        64
+      ],
+      "CTAs": 7808,
+      "bijection": true
+    },
+    {
+      "n": 41,
+      "segments": 64,
+      "mode": "heads_first",
+      "old": [
+        61,
+        2,
+        64
+      ],
+      "new": [
+        2,
+        61,
+        64
+      ],
+      "CTAs": 7808,
+      "bijection": true
+    },
+    {
+      "n": 41,
+      "segments": 64,
+      "mode": "segments_first",
+      "old": [
+        61,
+        2,
+        64
+      ],
+      "new": [
+        64,
+        61,
+        2
+      ],
+      "CTAs": 7808,
+      "bijection": true
+    },
+    {
+      "n": 41,
+      "segments": 64,
+      "mode": "heads_segments_first",
+      "old": [
+        61,
+        2,
+        64
+      ],
+      "new": [
+        2,
+        64,
+        61
+      ],
+      "CTAs": 7808,
+      "bijection": true
+    },
+    {
+      "n": 48,
+      "segments": 4,
+      "mode": "current",
+      "old": [
+        72,
+        2,
+        4
+      ],
+      "new": [
+        72,
+        2,
+        4
+      ],
+      "CTAs": 576,
+      "bijection": true
+    },
+    {
+      "n": 48,
+      "segments": 4,
+      "mode": "heads_first",
+      "old": [
+        72,
+        2,
+        4
+      ],
+      "new": [
+        2,
+        72,
+        4
+      ],
+      "CTAs": 576,
+      "bijection": true
+    },
+    {
+      "n": 48,
+      "segments": 4,
+      "mode": "segments_first",
+      "old": [
+        72,
+        2,
+        4
+      ],
+      "new": [
+        4,
+        72,
+        2
+      ],
+      "CTAs": 576,
+      "bijection": true
+    },
+    {
+      "n": 48,
+      "segments": 4,
+      "mode": "heads_segments_first",
+      "old": [
+        72,
+        2,
+        4
+      ],
+      "new": [
+        2,
+        4,
+        72
+      ],
+      "CTAs": 576,
+      "bijection": true
+    },
+    {
+      "n": 48,
+      "segments": 8,
+      "mode": "current",
+      "old": [
+        72,
+        2,
+        8
+      ],
+      "new": [
+        72,
+        2,
+        8
+      ],
+      "CTAs": 1152,
+      "bijection": true
+    },
+    {
+      "n": 48,
+      "segments": 8,
+      "mode": "heads_first",
+      "old": [
+        72,
+        2,
+        8
+      ],
+      "new": [
+        2,
+        72,
+        8
+      ],
+      "CTAs": 1152,
+      "bijection": true
+    },
+    {
+      "n": 48,
+      "segments": 8,
+      "mode": "segments_first",
+      "old": [
+        72,
+        2,
+        8
+      ],
+      "new": [
+        8,
+        72,
+        2
+      ],
+      "CTAs": 1152,
+      "bijection": true
+    },
+    {
+      "n": 48,
+      "segments": 8,
+      "mode": "heads_segments_first",
+      "old": [
+        72,
+        2,
+        8
+      ],
+      "new": [
+        2,
+        8,
+        72
+      ],
+      "CTAs": 1152,
+      "bijection": true
+    },
+    {
+      "n": 48,
+      "segments": 16,
+      "mode": "current",
+      "old": [
+        72,
+        2,
+        16
+      ],
+      "new": [
+        72,
+        2,
+        16
+      ],
+      "CTAs": 2304,
+      "bijection": true
+    },
+    {
+      "n": 48,
+      "segments": 16,
+      "mode": "heads_first",
+      "old": [
+        72,
+        2,
+        16
+      ],
+      "new": [
+        2,
+        72,
+        16
+      ],
+      "CTAs": 2304,
+      "bijection": true
+    },
+    {
+      "n": 48,
+      "segments": 16,
+      "mode": "segments_first",
+      "old": [
+        72,
+        2,
+        16
+      ],
+      "new": [
+        16,
+        72,
+        2
+      ],
+      "CTAs": 2304,
+      "bijection": true
+    },
+    {
+      "n": 48,
+      "segments": 16,
+      "mode": "heads_segments_first",
+      "old": [
+        72,
+        2,
+        16
+      ],
+      "new": [
+        2,
+        16,
+        72
+      ],
+      "CTAs": 2304,
+      "bijection": true
+    },
+    {
+      "n": 48,
+      "segments": 32,
+      "mode": "current",
+      "old": [
+        72,
+        2,
+        32
+      ],
+      "new": [
+        72,
+        2,
+        32
+      ],
+      "CTAs": 4608,
+      "bijection": true
+    },
+    {
+      "n": 48,
+      "segments": 32,
+      "mode": "heads_first",
+      "old": [
+        72,
+        2,
+        32
+      ],
+      "new": [
+        2,
+        72,
+        32
+      ],
+      "CTAs": 4608,
+      "bijection": true
+    },
+    {
+      "n": 48,
+      "segments": 32,
+      "mode": "segments_first",
+      "old": [
+        72,
+        2,
+        32
+      ],
+      "new": [
+        32,
+        72,
+        2
+      ],
+      "CTAs": 4608,
+      "bijection": true
+    },
+    {
+      "n": 48,
+      "segments": 32,
+      "mode": "heads_segments_first",
+      "old": [
+        72,
+        2,
+        32
+      ],
+      "new": [
+        2,
+        32,
+        72
+      ],
+      "CTAs": 4608,
+      "bijection": true
+    },
+    {
+      "n": 48,
+      "segments": 64,
+      "mode": "current",
+      "old": [
+        72,
+        2,
+        64
+      ],
+      "new": [
+        72,
+        2,
+        64
+      ],
+      "CTAs": 9216,
+      "bijection": true
+    },
+    {
+      "n": 48,
+      "segments": 64,
+      "mode": "heads_first",
+      "old": [
+        72,
+        2,
+        64
+      ],
+      "new": [
+        2,
+        72,
+        64
+      ],
+      "CTAs": 9216,
+      "bijection": true
+    },
+    {
+      "n": 48,
+      "segments": 64,
+      "mode": "segments_first",
+      "old": [
+        72,
+        2,
+        64
+      ],
+      "new": [
+        64,
+        72,
+        2
+      ],
+      "CTAs": 9216,
+      "bijection": true
+    },
+    {
+      "n": 48,
+      "segments": 64,
+      "mode": "heads_segments_first",
+      "old": [
+        72,
+        2,
+        64
+      ],
+      "new": [
+        2,
+        64,
+        72
+      ],
+      "CTAs": 9216,
+      "bijection": true
+    },
+    {
+      "n": 56,
+      "segments": 4,
+      "mode": "current",
+      "old": [
+        84,
+        2,
+        4
+      ],
+      "new": [
+        84,
+        2,
+        4
+      ],
+      "CTAs": 672,
+      "bijection": true
+    },
+    {
+      "n": 56,
+      "segments": 4,
+      "mode": "heads_first",
+      "old": [
+        84,
+        2,
+        4
+      ],
+      "new": [
+        2,
+        84,
+        4
+      ],
+      "CTAs": 672,
+      "bijection": true
+    },
+    {
+      "n": 56,
+      "segments": 4,
+      "mode": "segments_first",
+      "old": [
+        84,
+        2,
+        4
+      ],
+      "new": [
+        4,
+        84,
+        2
+      ],
+      "CTAs": 672,
+      "bijection": true
+    },
+    {
+      "n": 56,
+      "segments": 4,
+      "mode": "heads_segments_first",
+      "old": [
+        84,
+        2,
+        4
+      ],
+      "new": [
+        2,
+        4,
+        84
+      ],
+      "CTAs": 672,
+      "bijection": true
+    },
+    {
+      "n": 56,
+      "segments": 8,
+      "mode": "current",
+      "old": [
+        84,
+        2,
+        8
+      ],
+      "new": [
+        84,
+        2,
+        8
+      ],
+      "CTAs": 1344,
+      "bijection": true
+    },
+    {
+      "n": 56,
+      "segments": 8,
+      "mode": "heads_first",
+      "old": [
+        84,
+        2,
+        8
+      ],
+      "new": [
+        2,
+        84,
+        8
+      ],
+      "CTAs": 1344,
+      "bijection": true
+    },
+    {
+      "n": 56,
+      "segments": 8,
+      "mode": "segments_first",
+      "old": [
+        84,
+        2,
+        8
+      ],
+      "new": [
+        8,
+        84,
+        2
+      ],
+      "CTAs": 1344,
+      "bijection": true
+    },
+    {
+      "n": 56,
+      "segments": 8,
+      "mode": "heads_segments_first",
+      "old": [
+        84,
+        2,
+        8
+      ],
+      "new": [
+        2,
+        8,
+        84
+      ],
+      "CTAs": 1344,
+      "bijection": true
+    },
+    {
+      "n": 56,
+      "segments": 16,
+      "mode": "current",
+      "old": [
+        84,
+        2,
+        16
+      ],
+      "new": [
+        84,
+        2,
+        16
+      ],
+      "CTAs": 2688,
+      "bijection": true
+    },
+    {
+      "n": 56,
+      "segments": 16,
+      "mode": "heads_first",
+      "old": [
+        84,
+        2,
+        16
+      ],
+      "new": [
+        2,
+        84,
+        16
+      ],
+      "CTAs": 2688,
+      "bijection": true
+    },
+    {
+      "n": 56,
+      "segments": 16,
+      "mode": "segments_first",
+      "old": [
+        84,
+        2,
+        16
+      ],
+      "new": [
+        16,
+        84,
+        2
+      ],
+      "CTAs": 2688,
+      "bijection": true
+    },
+    {
+      "n": 56,
+      "segments": 16,
+      "mode": "heads_segments_first",
+      "old": [
+        84,
+        2,
+        16
+      ],
+      "new": [
+        2,
+        16,
+        84
+      ],
+      "CTAs": 2688,
+      "bijection": true
+    },
+    {
+      "n": 56,
+      "segments": 32,
+      "mode": "current",
+      "old": [
+        84,
+        2,
+        32
+      ],
+      "new": [
+        84,
+        2,
+        32
+      ],
+      "CTAs": 5376,
+      "bijection": true
+    },
+    {
+      "n": 56,
+      "segments": 32,
+      "mode": "heads_first",
+      "old": [
+        84,
+        2,
+        32
+      ],
+      "new": [
+        2,
+        84,
+        32
+      ],
+      "CTAs": 5376,
+      "bijection": true
+    },
+    {
+      "n": 56,
+      "segments": 32,
+      "mode": "segments_first",
+      "old": [
+        84,
+        2,
+        32
+      ],
+      "new": [
+        32,
+        84,
+        2
+      ],
+      "CTAs": 5376,
+      "bijection": true
+    },
+    {
+      "n": 56,
+      "segments": 32,
+      "mode": "heads_segments_first",
+      "old": [
+        84,
+        2,
+        32
+      ],
+      "new": [
+        2,
+        32,
+        84
+      ],
+      "CTAs": 5376,
+      "bijection": true
+    },
+    {
+      "n": 56,
+      "segments": 64,
+      "mode": "current",
+      "old": [
+        84,
+        2,
+        64
+      ],
+      "new": [
+        84,
+        2,
+        64
+      ],
+      "CTAs": 10752,
+      "bijection": true
+    },
+    {
+      "n": 56,
+      "segments": 64,
+      "mode": "heads_first",
+      "old": [
+        84,
+        2,
+        64
+      ],
+      "new": [
+        2,
+        84,
+        64
+      ],
+      "CTAs": 10752,
+      "bijection": true
+    },
+    {
+      "n": 56,
+      "segments": 64,
+      "mode": "segments_first",
+      "old": [
+        84,
+        2,
+        64
+      ],
+      "new": [
+        64,
+        84,
+        2
+      ],
+      "CTAs": 10752,
+      "bijection": true
+    },
+    {
+      "n": 56,
+      "segments": 64,
+      "mode": "heads_segments_first",
+      "old": [
+        84,
+        2,
+        64
+      ],
+      "new": [
+        2,
+        64,
+        84
+      ],
+      "CTAs": 10752,
+      "bijection": true
+    },
+    {
+      "n": 63,
+      "segments": 4,
+      "mode": "current",
+      "old": [
+        94,
+        2,
+        4
+      ],
+      "new": [
+        94,
+        2,
+        4
+      ],
+      "CTAs": 752,
+      "bijection": true
+    },
+    {
+      "n": 63,
+      "segments": 4,
+      "mode": "heads_first",
+      "old": [
+        94,
+        2,
+        4
+      ],
+      "new": [
+        2,
+        94,
+        4
+      ],
+      "CTAs": 752,
+      "bijection": true
+    },
+    {
+      "n": 63,
+      "segments": 4,
+      "mode": "segments_first",
+      "old": [
+        94,
+        2,
+        4
+      ],
+      "new": [
+        4,
+        94,
+        2
+      ],
+      "CTAs": 752,
+      "bijection": true
+    },
+    {
+      "n": 63,
+      "segments": 4,
+      "mode": "heads_segments_first",
+      "old": [
+        94,
+        2,
+        4
+      ],
+      "new": [
+        2,
+        4,
+        94
+      ],
+      "CTAs": 752,
+      "bijection": true
+    },
+    {
+      "n": 63,
+      "segments": 8,
+      "mode": "current",
+      "old": [
+        94,
+        2,
+        8
+      ],
+      "new": [
+        94,
+        2,
+        8
+      ],
+      "CTAs": 1504,
+      "bijection": true
+    },
+    {
+      "n": 63,
+      "segments": 8,
+      "mode": "heads_first",
+      "old": [
+        94,
+        2,
+        8
+      ],
+      "new": [
+        2,
+        94,
+        8
+      ],
+      "CTAs": 1504,
+      "bijection": true
+    },
+    {
+      "n": 63,
+      "segments": 8,
+      "mode": "segments_first",
+      "old": [
+        94,
+        2,
+        8
+      ],
+      "new": [
+        8,
+        94,
+        2
+      ],
+      "CTAs": 1504,
+      "bijection": true
+    },
+    {
+      "n": 63,
+      "segments": 8,
+      "mode": "heads_segments_first",
+      "old": [
+        94,
+        2,
+        8
+      ],
+      "new": [
+        2,
+        8,
+        94
+      ],
+      "CTAs": 1504,
+      "bijection": true
+    },
+    {
+      "n": 63,
+      "segments": 16,
+      "mode": "current",
+      "old": [
+        94,
+        2,
+        16
+      ],
+      "new": [
+        94,
+        2,
+        16
+      ],
+      "CTAs": 3008,
+      "bijection": true
+    },
+    {
+      "n": 63,
+      "segments": 16,
+      "mode": "heads_first",
+      "old": [
+        94,
+        2,
+        16
+      ],
+      "new": [
+        2,
+        94,
+        16
+      ],
+      "CTAs": 3008,
+      "bijection": true
+    },
+    {
+      "n": 63,
+      "segments": 16,
+      "mode": "segments_first",
+      "old": [
+        94,
+        2,
+        16
+      ],
+      "new": [
+        16,
+        94,
+        2
+      ],
+      "CTAs": 3008,
+      "bijection": true
+    },
+    {
+      "n": 63,
+      "segments": 16,
+      "mode": "heads_segments_first",
+      "old": [
+        94,
+        2,
+        16
+      ],
+      "new": [
+        2,
+        16,
+        94
+      ],
+      "CTAs": 3008,
+      "bijection": true
+    },
+    {
+      "n": 63,
+      "segments": 32,
+      "mode": "current",
+      "old": [
+        94,
+        2,
+        32
+      ],
+      "new": [
+        94,
+        2,
+        32
+      ],
+      "CTAs": 6016,
+      "bijection": true
+    },
+    {
+      "n": 63,
+      "segments": 32,
+      "mode": "heads_first",
+      "old": [
+        94,
+        2,
+        32
+      ],
+      "new": [
+        2,
+        94,
+        32
+      ],
+      "CTAs": 6016,
+      "bijection": true
+    },
+    {
+      "n": 63,
+      "segments": 32,
+      "mode": "segments_first",
+      "old": [
+        94,
+        2,
+        32
+      ],
+      "new": [
+        32,
+        94,
+        2
+      ],
+      "CTAs": 6016,
+      "bijection": true
+    },
+    {
+      "n": 63,
+      "segments": 32,
+      "mode": "heads_segments_first",
+      "old": [
+        94,
+        2,
+        32
+      ],
+      "new": [
+        2,
+        32,
+        94
+      ],
+      "CTAs": 6016,
+      "bijection": true
+    },
+    {
+      "n": 63,
+      "segments": 64,
+      "mode": "current",
+      "old": [
+        94,
+        2,
+        64
+      ],
+      "new": [
+        94,
+        2,
+        64
+      ],
+      "CTAs": 12032,
+      "bijection": true
+    },
+    {
+      "n": 63,
+      "segments": 64,
+      "mode": "heads_first",
+      "old": [
+        94,
+        2,
+        64
+      ],
+      "new": [
+        2,
+        94,
+        64
+      ],
+      "CTAs": 12032,
+      "bijection": true
+    },
+    {
+      "n": 63,
+      "segments": 64,
+      "mode": "segments_first",
+      "old": [
+        94,
+        2,
+        64
+      ],
+      "new": [
+        64,
+        94,
+        2
+      ],
+      "CTAs": 12032,
+      "bijection": true
+    },
+    {
+      "n": 63,
+      "segments": 64,
+      "mode": "heads_segments_first",
+      "old": [
+        94,
+        2,
+        64
+      ],
+      "new": [
+        2,
+        64,
+        94
+      ],
+      "CTAs": 12032,
+      "bijection": true
+    },
+    {
+      "n": 64,
+      "segments": 4,
+      "mode": "current",
+      "old": [
+        96,
+        2,
+        4
+      ],
+      "new": [
+        96,
+        2,
+        4
+      ],
+      "CTAs": 768,
+      "bijection": true
+    },
+    {
+      "n": 64,
+      "segments": 4,
+      "mode": "heads_first",
+      "old": [
+        96,
+        2,
+        4
+      ],
+      "new": [
+        2,
+        96,
+        4
+      ],
+      "CTAs": 768,
+      "bijection": true
+    },
+    {
+      "n": 64,
+      "segments": 4,
+      "mode": "segments_first",
+      "old": [
+        96,
+        2,
+        4
+      ],
+      "new": [
+        4,
+        96,
+        2
+      ],
+      "CTAs": 768,
+      "bijection": true
+    },
+    {
+      "n": 64,
+      "segments": 4,
+      "mode": "heads_segments_first",
+      "old": [
+        96,
+        2,
+        4
+      ],
+      "new": [
+        2,
+        4,
+        96
+      ],
+      "CTAs": 768,
+      "bijection": true
+    },
+    {
+      "n": 64,
+      "segments": 8,
+      "mode": "current",
+      "old": [
+        96,
+        2,
+        8
+      ],
+      "new": [
+        96,
+        2,
+        8
+      ],
+      "CTAs": 1536,
+      "bijection": true
+    },
+    {
+      "n": 64,
+      "segments": 8,
+      "mode": "heads_first",
+      "old": [
+        96,
+        2,
+        8
+      ],
+      "new": [
+        2,
+        96,
+        8
+      ],
+      "CTAs": 1536,
+      "bijection": true
+    },
+    {
+      "n": 64,
+      "segments": 8,
+      "mode": "segments_first",
+      "old": [
+        96,
+        2,
+        8
+      ],
+      "new": [
+        8,
+        96,
+        2
+      ],
+      "CTAs": 1536,
+      "bijection": true
+    },
+    {
+      "n": 64,
+      "segments": 8,
+      "mode": "heads_segments_first",
+      "old": [
+        96,
+        2,
+        8
+      ],
+      "new": [
+        2,
+        8,
+        96
+      ],
+      "CTAs": 1536,
+      "bijection": true
+    },
+    {
+      "n": 64,
+      "segments": 16,
+      "mode": "current",
+      "old": [
+        96,
+        2,
+        16
+      ],
+      "new": [
+        96,
+        2,
+        16
+      ],
+      "CTAs": 3072,
+      "bijection": true
+    },
+    {
+      "n": 64,
+      "segments": 16,
+      "mode": "heads_first",
+      "old": [
+        96,
+        2,
+        16
+      ],
+      "new": [
+        2,
+        96,
+        16
+      ],
+      "CTAs": 3072,
+      "bijection": true
+    },
+    {
+      "n": 64,
+      "segments": 16,
+      "mode": "segments_first",
+      "old": [
+        96,
+        2,
+        16
+      ],
+      "new": [
+        16,
+        96,
+        2
+      ],
+      "CTAs": 3072,
+      "bijection": true
+    },
+    {
+      "n": 64,
+      "segments": 16,
+      "mode": "heads_segments_first",
+      "old": [
+        96,
+        2,
+        16
+      ],
+      "new": [
+        2,
+        16,
+        96
+      ],
+      "CTAs": 3072,
+      "bijection": true
+    },
+    {
+      "n": 64,
+      "segments": 32,
+      "mode": "current",
+      "old": [
+        96,
+        2,
+        32
+      ],
+      "new": [
+        96,
+        2,
+        32
+      ],
+      "CTAs": 6144,
+      "bijection": true
+    },
+    {
+      "n": 64,
+      "segments": 32,
+      "mode": "heads_first",
+      "old": [
+        96,
+        2,
+        32
+      ],
+      "new": [
+        2,
+        96,
+        32
+      ],
+      "CTAs": 6144,
+      "bijection": true
+    },
+    {
+      "n": 64,
+      "segments": 32,
+      "mode": "segments_first",
+      "old": [
+        96,
+        2,
+        32
+      ],
+      "new": [
+        32,
+        96,
+        2
+      ],
+      "CTAs": 6144,
+      "bijection": true
+    },
+    {
+      "n": 64,
+      "segments": 32,
+      "mode": "heads_segments_first",
+      "old": [
+        96,
+        2,
+        32
+      ],
+      "new": [
+        2,
+        32,
+        96
+      ],
+      "CTAs": 6144,
+      "bijection": true
+    },
+    {
+      "n": 64,
+      "segments": 64,
+      "mode": "current",
+      "old": [
+        96,
+        2,
+        64
+      ],
+      "new": [
+        96,
+        2,
+        64
+      ],
+      "CTAs": 12288,
+      "bijection": true
+    },
+    {
+      "n": 64,
+      "segments": 64,
+      "mode": "heads_first",
+      "old": [
+        96,
+        2,
+        64
+      ],
+      "new": [
+        2,
+        96,
+        64
+      ],
+      "CTAs": 12288,
+      "bijection": true
+    },
+    {
+      "n": 64,
+      "segments": 64,
+      "mode": "segments_first",
+      "old": [
+        96,
+        2,
+        64
+      ],
+      "new": [
+        64,
+        96,
+        2
+      ],
+      "CTAs": 12288,
+      "bijection": true
+    },
+    {
+      "n": 64,
+      "segments": 64,
+      "mode": "heads_segments_first",
+      "old": [
+        96,
+        2,
+        64
+      ],
+      "new": [
+        2,
+        64,
+        96
+      ],
+      "CTAs": 12288,
+      "bijection": true
+    }
+  ],
+  "launch_calls": [
+    {
+      "n": 1,
+      "context": 4096,
+      "mode": "current",
+      "original": [
+        1,
+        2,
+        64
+      ],
+      "actual": [
+        1,
+        2,
+        64
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 1,
+      "context": 4096,
+      "mode": "heads_first",
+      "original": [
+        1,
+        2,
+        64
+      ],
+      "actual": [
+        2,
+        1,
+        64
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 1,
+      "context": 4096,
+      "mode": "segments_first",
+      "original": [
+        1,
+        2,
+        64
+      ],
+      "actual": [
+        64,
+        1,
+        2
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 1,
+      "context": 4096,
+      "mode": "heads_segments_first",
+      "original": [
+        1,
+        2,
+        64
+      ],
+      "actual": [
+        2,
+        64,
+        1
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 1,
+      "context": 16384,
+      "mode": "current",
+      "original": [
+        1,
+        2,
+        64
+      ],
+      "actual": [
+        1,
+        2,
+        64
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 1,
+      "context": 16384,
+      "mode": "heads_first",
+      "original": [
+        1,
+        2,
+        64
+      ],
+      "actual": [
+        2,
+        1,
+        64
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 1,
+      "context": 16384,
+      "mode": "segments_first",
+      "original": [
+        1,
+        2,
+        64
+      ],
+      "actual": [
+        64,
+        1,
+        2
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 1,
+      "context": 16384,
+      "mode": "heads_segments_first",
+      "original": [
+        1,
+        2,
+        64
+      ],
+      "actual": [
+        2,
+        64,
+        1
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 8,
+      "context": 4096,
+      "mode": "current",
+      "original": [
+        12,
+        2,
+        16
+      ],
+      "actual": [
+        12,
+        2,
+        16
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 8,
+      "context": 4096,
+      "mode": "heads_first",
+      "original": [
+        12,
+        2,
+        16
+      ],
+      "actual": [
+        2,
+        12,
+        16
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 8,
+      "context": 4096,
+      "mode": "segments_first",
+      "original": [
+        12,
+        2,
+        16
+      ],
+      "actual": [
+        16,
+        12,
+        2
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 8,
+      "context": 4096,
+      "mode": "heads_segments_first",
+      "original": [
+        12,
+        2,
+        16
+      ],
+      "actual": [
+        2,
+        16,
+        12
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 8,
+      "context": 16384,
+      "mode": "current",
+      "original": [
+        12,
+        2,
+        16
+      ],
+      "actual": [
+        12,
+        2,
+        16
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 8,
+      "context": 16384,
+      "mode": "heads_first",
+      "original": [
+        12,
+        2,
+        16
+      ],
+      "actual": [
+        2,
+        12,
+        16
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 8,
+      "context": 16384,
+      "mode": "segments_first",
+      "original": [
+        12,
+        2,
+        16
+      ],
+      "actual": [
+        16,
+        12,
+        2
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 8,
+      "context": 16384,
+      "mode": "heads_segments_first",
+      "original": [
+        12,
+        2,
+        16
+      ],
+      "actual": [
+        2,
+        16,
+        12
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 32,
+      "context": 4096,
+      "mode": "current",
+      "original": [
+        48,
+        2,
+        4
+      ],
+      "actual": [
+        48,
+        2,
+        4
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 32,
+      "context": 4096,
+      "mode": "heads_first",
+      "original": [
+        48,
+        2,
+        4
+      ],
+      "actual": [
+        2,
+        48,
+        4
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 32,
+      "context": 4096,
+      "mode": "segments_first",
+      "original": [
+        48,
+        2,
+        4
+      ],
+      "actual": [
+        4,
+        48,
+        2
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 32,
+      "context": 4096,
+      "mode": "heads_segments_first",
+      "original": [
+        48,
+        2,
+        4
+      ],
+      "actual": [
+        2,
+        4,
+        48
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 32,
+      "context": 16384,
+      "mode": "current",
+      "original": [
+        48,
+        2,
+        4
+      ],
+      "actual": [
+        48,
+        2,
+        4
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 32,
+      "context": 16384,
+      "mode": "heads_first",
+      "original": [
+        48,
+        2,
+        4
+      ],
+      "actual": [
+        2,
+        48,
+        4
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 32,
+      "context": 16384,
+      "mode": "segments_first",
+      "original": [
+        48,
+        2,
+        4
+      ],
+      "actual": [
+        4,
+        48,
+        2
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 32,
+      "context": 16384,
+      "mode": "heads_segments_first",
+      "original": [
+        48,
+        2,
+        4
+      ],
+      "actual": [
+        2,
+        4,
+        48
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 40,
+      "context": 4096,
+      "mode": "current",
+      "original": [
+        60,
+        2,
+        16
+      ],
+      "actual": [
+        60,
+        2,
+        16
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 40,
+      "context": 4096,
+      "mode": "heads_first",
+      "original": [
+        60,
+        2,
+        16
+      ],
+      "actual": [
+        2,
+        60,
+        16
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 40,
+      "context": 4096,
+      "mode": "segments_first",
+      "original": [
+        60,
+        2,
+        16
+      ],
+      "actual": [
+        16,
+        60,
+        2
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 40,
+      "context": 4096,
+      "mode": "heads_segments_first",
+      "original": [
+        60,
+        2,
+        16
+      ],
+      "actual": [
+        2,
+        16,
+        60
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 40,
+      "context": 16384,
+      "mode": "current",
+      "original": [
+        60,
+        2,
+        16
+      ],
+      "actual": [
+        60,
+        2,
+        16
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 40,
+      "context": 16384,
+      "mode": "heads_first",
+      "original": [
+        60,
+        2,
+        16
+      ],
+      "actual": [
+        2,
+        60,
+        16
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 40,
+      "context": 16384,
+      "mode": "segments_first",
+      "original": [
+        60,
+        2,
+        16
+      ],
+      "actual": [
+        16,
+        60,
+        2
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 40,
+      "context": 16384,
+      "mode": "heads_segments_first",
+      "original": [
+        60,
+        2,
+        16
+      ],
+      "actual": [
+        2,
+        16,
+        60
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 41,
+      "context": 4096,
+      "mode": "current",
+      "original": [
+        61,
+        2,
+        16
+      ],
+      "actual": [
+        61,
+        2,
+        16
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 41,
+      "context": 4096,
+      "mode": "heads_first",
+      "original": [
+        61,
+        2,
+        16
+      ],
+      "actual": [
+        2,
+        61,
+        16
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 41,
+      "context": 4096,
+      "mode": "segments_first",
+      "original": [
+        61,
+        2,
+        16
+      ],
+      "actual": [
+        16,
+        61,
+        2
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 41,
+      "context": 4096,
+      "mode": "heads_segments_first",
+      "original": [
+        61,
+        2,
+        16
+      ],
+      "actual": [
+        2,
+        16,
+        61
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 41,
+      "context": 16384,
+      "mode": "current",
+      "original": [
+        61,
+        2,
+        16
+      ],
+      "actual": [
+        61,
+        2,
+        16
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 41,
+      "context": 16384,
+      "mode": "heads_first",
+      "original": [
+        61,
+        2,
+        16
+      ],
+      "actual": [
+        2,
+        61,
+        16
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 41,
+      "context": 16384,
+      "mode": "segments_first",
+      "original": [
+        61,
+        2,
+        16
+      ],
+      "actual": [
+        16,
+        61,
+        2
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 41,
+      "context": 16384,
+      "mode": "heads_segments_first",
+      "original": [
+        61,
+        2,
+        16
+      ],
+      "actual": [
+        2,
+        16,
+        61
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 56,
+      "context": 4096,
+      "mode": "current",
+      "original": [
+        84,
+        2,
+        16
+      ],
+      "actual": [
+        84,
+        2,
+        16
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 56,
+      "context": 4096,
+      "mode": "heads_first",
+      "original": [
+        84,
+        2,
+        16
+      ],
+      "actual": [
+        2,
+        84,
+        16
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 56,
+      "context": 4096,
+      "mode": "segments_first",
+      "original": [
+        84,
+        2,
+        16
+      ],
+      "actual": [
+        16,
+        84,
+        2
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 56,
+      "context": 4096,
+      "mode": "heads_segments_first",
+      "original": [
+        84,
+        2,
+        16
+      ],
+      "actual": [
+        2,
+        16,
+        84
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 56,
+      "context": 16384,
+      "mode": "current",
+      "original": [
+        84,
+        2,
+        16
+      ],
+      "actual": [
+        84,
+        2,
+        16
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 56,
+      "context": 16384,
+      "mode": "heads_first",
+      "original": [
+        84,
+        2,
+        16
+      ],
+      "actual": [
+        2,
+        84,
+        16
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 56,
+      "context": 16384,
+      "mode": "segments_first",
+      "original": [
+        84,
+        2,
+        16
+      ],
+      "actual": [
+        16,
+        84,
+        2
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 56,
+      "context": 16384,
+      "mode": "heads_segments_first",
+      "original": [
+        84,
+        2,
+        16
+      ],
+      "actual": [
+        2,
+        16,
+        84
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 64,
+      "context": 4096,
+      "mode": "current",
+      "original": [
+        96,
+        2,
+        4
+      ],
+      "actual": [
+        96,
+        2,
+        4
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 64,
+      "context": 4096,
+      "mode": "heads_first",
+      "original": [
+        96,
+        2,
+        4
+      ],
+      "actual": [
+        2,
+        96,
+        4
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 64,
+      "context": 4096,
+      "mode": "segments_first",
+      "original": [
+        96,
+        2,
+        4
+      ],
+      "actual": [
+        4,
+        96,
+        2
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 64,
+      "context": 4096,
+      "mode": "heads_segments_first",
+      "original": [
+        96,
+        2,
+        4
+      ],
+      "actual": [
+        2,
+        4,
+        96
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 64,
+      "context": 16384,
+      "mode": "current",
+      "original": [
+        96,
+        2,
+        4
+      ],
+      "actual": [
+        96,
+        2,
+        4
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 64,
+      "context": 16384,
+      "mode": "heads_first",
+      "original": [
+        96,
+        2,
+        4
+      ],
+      "actual": [
+        2,
+        96,
+        4
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 64,
+      "context": 16384,
+      "mode": "segments_first",
+      "original": [
+        96,
+        2,
+        4
+      ],
+      "actual": [
+        4,
+        96,
+        2
+      ],
+      "launch_arguments_unchanged": true
+    },
+    {
+      "n": 64,
+      "context": 16384,
+      "mode": "heads_segments_first",
+      "original": [
+        96,
+        2,
+        4
+      ],
+      "actual": [
+        2,
+        4,
+        96
+      ],
+      "launch_arguments_unchanged": true
+    }
+  ],
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_cta_order_20261020/source.py": "1b0fdda8cdbd9e076958cf7f25fad75b4831ba6a9208afc7dd19e221561502a5",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_cta_order_20261020/launch.py": "6f45d572bf589be2ebaf23f17a4816b91acbffcb09e3b72ea319f8f3585eabc5",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_cta_order_20261020/check_cpu.py": "f8871f162f76cbfffcad92499dff6c008b50595117823295b78a59114332413b",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/qualified_S16_reader.py": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/component_launch.py": "ebf86912b25e39c052f98698cfbcc385d48f9fd2750aeebe0ab6c7b7ac448a6e",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/guard.py": "050e0bcf9f194b8ef32e27d56376623c9cbb3bb3ea13aa8ad80269f7f870209d",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/legacy_routing.py": "9dae2408de9f77e39350cfd70661e4e282ef0d69f798f968c1886d4172a6dc41",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/dispatch_policy.py": "842d69f6635152afa31d498e6e353e0e5f18bc2d86d89782d4e9db4e32f0157a"
+  }
+}
