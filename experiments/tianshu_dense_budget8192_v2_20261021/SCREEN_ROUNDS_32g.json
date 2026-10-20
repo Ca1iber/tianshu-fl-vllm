@@ -1,0 +1,67 @@
+[
+  {
+    "mode": "control",
+    "round": 1,
+    "duration_seconds": 62.482687870040536,
+    "total_tokens_per_second": 5244.332649093948,
+    "output_tokens_per_second": 1048.8665298187898,
+    "mean_ttft_seconds": 12.877163797114918,
+    "successful_requests": 64,
+    "tuning_records": []
+  },
+  {
+    "mode": "control",
+    "round": 2,
+    "duration_seconds": 60.460671085864305,
+    "total_tokens_per_second": 5419.7215167300965,
+    "output_tokens_per_second": 1083.9443033460193,
+    "mean_ttft_seconds": 10.85710450969782,
+    "successful_requests": 64,
+    "tuning_records": []
+  },
+  {
+    "mode": "control",
+    "round": 3,
+    "duration_seconds": 60.42172331782058,
+    "total_tokens_per_second": 5423.215062509731,
+    "output_tokens_per_second": 1084.6430125019463,
+    "mean_ttft_seconds": 10.930748417638824,
+    "successful_requests": 64,
+    "tuning_records": []
+  },
+  {
+    "mode": "candidate",
+    "round": 1,
+    "duration_seconds": 65.61766796791926,
+    "total_tokens_per_second": 4993.776983360702,
+    "output_tokens_per_second": 998.7553966721404,
+    "mean_ttft_seconds": 12.898375039767416,
+    "successful_requests": 64,
+    "tuning_records": [
+      "(EngineCore pid=126902) Triton autotuning for function _index_linearized_jit_function finished after 0.27s; config key: (8192, 'torch.int32', 'torch.int64', 'torch.int32'), benchmark key: (8192, 'torch.int32', 'torch.int64', 'torch.int32', 'triton_do_bench', 5, 10), best config selected: BLOCK_SIZE0: 128, BLOCK_SIZE1: 1, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None;",
+      "(EngineCore pid=126902) Triton autotuning for function linear_kernel finished after 1.47s; config key: (8192, 12288, 2048, 'torch.bfloat16', 'torch.bfloat16', 'torch.bfloat16', 'torch.bfloat16'), benchmark key: (8192, 12288, 2048, 'torch.bfloat16', 'torch.bfloat16', 'torch.bfloat16', 'torch.bfloat16', 'triton_do_bench', 5, 10), best config selected: BLOCK_M: 256, BLOCK_N: 256, BLOCK_K: 32, num_warps: 16, num_ctas: 1, num_stages: 2, maxnreg: None;",
+      "(EngineCore pid=126902) Triton autotuning for function _index_linearized_jit_function finished after 0.57s; config key: (5120, 'torch.int32', 'torch.int64', 'torch.int32'), benchmark key: (5089, 'torch.int32', 'torch.int64', 'torch.int32', 'triton_do_bench', 5, 10), best config selected: BLOCK_SIZE0: 64, BLOCK_SIZE1: 1, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None;",
+      "(EngineCore pid=126902) Triton autotuning for function linear_kernel finished after 0.96s; config key: (5120, 12288, 2048, 'torch.bfloat16', 'torch.bfloat16', 'torch.bfloat16', 'torch.bfloat16'), benchmark key: (5120, 12288, 2048, 'torch.bfloat16', 'torch.bfloat16', 'torch.bfloat16', 'torch.bfloat16', 'triton_do_bench', 5, 10), best config selected: BLOCK_M: 256, BLOCK_N: 256, BLOCK_K: 32, num_warps: 16, num_ctas: 1, num_stages: 2, maxnreg: None;"
+    ]
+  },
+  {
+    "mode": "candidate",
+    "round": 2,
+    "duration_seconds": 59.90968291088939,
+    "total_tokens_per_second": 5469.56658888341,
+    "output_tokens_per_second": 1093.913317776682,
+    "mean_ttft_seconds": 10.696993459052464,
+    "successful_requests": 64,
+    "tuning_records": []
+  },
+  {
+    "mode": "candidate",
+    "round": 3,
+    "duration_seconds": 59.77163829468191,
+    "total_tokens_per_second": 5482.198737543302,
+    "output_tokens_per_second": 1096.4397475086603,
+    "mean_ttft_seconds": 10.835113384455326,
+    "successful_requests": 64,
+    "tuning_records": []
+  }
+]

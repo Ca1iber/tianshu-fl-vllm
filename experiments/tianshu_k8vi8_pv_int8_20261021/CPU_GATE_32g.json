@@ -1,0 +1,101 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "no_GPU_started": true,
+  "GPU_not_compiled_or_timed": true,
+  "adopted": false,
+  "new_Math_not_run": true,
+  "source_proof": {
+    "parent": {
+      "parent_source_sha256": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+      "generated_sha256": "2ff3daafd25dfc68ebe938ea1c02cf7d1420859884d12efc9c775aedb8425795",
+      "only_two_mode_conditions_extended": true,
+      "paired_K_load_enabled_for_both_modes": true,
+      "producer_arithmetic_and_native_P_scaling_unchanged": true,
+      "reducer_and_API_AST_unchanged": true,
+      "K_fixed_software8_V_per_token_head_INT8": true,
+      "K_per_token_head_scales_stored_as_exact_one": true
+    },
+    "generated_sha256": "dd1d7929c76fc62782a88a7ac9a20a61deee2ae63ccdd219ee0d32472f801a15",
+    "all_edits_reversed_to_exact_parent": true,
+    "native_QK_and_softmax_code_unchanged": true,
+    "public_API_and_reducer_AST_unchanged": true,
+    "default_flag_preserves_native_V8_path": true,
+    "new_path_requires_3D_INT8_V_without_sliding_window": true,
+    "writer_and_cache_layout_not_modified": true,
+    "new_value_and_probability_approximation_requires_fresh_Math": true
+  },
+  "primitive_cases": [
+    {
+      "T": 32,
+      "M": 16,
+      "D": 128,
+      "factor": 1.0,
+      "exact_RNE_and_INT64": true,
+      "max_abs_error": 0.08132091454899637,
+      "analytical_error_bound_passed": true
+    },
+    {
+      "T": 64,
+      "M": 16,
+      "D": 128,
+      "factor": 1.0,
+      "exact_RNE_and_INT64": true,
+      "max_abs_error": 0.13880451550357975,
+      "analytical_error_bound_passed": true
+    },
+    {
+      "T": 128,
+      "M": 16,
+      "D": 128,
+      "factor": 1.0,
+      "exact_RNE_and_INT64": true,
+      "max_abs_error": 0.16866282902446983,
+      "analytical_error_bound_passed": true
+    },
+    {
+      "T": 32,
+      "M": 16,
+      "D": 128,
+      "factor": 0.0,
+      "exact_RNE_and_INT64": true,
+      "max_abs_error": 0.0,
+      "analytical_error_bound_passed": true
+    },
+    {
+      "T": 64,
+      "M": 16,
+      "D": 128,
+      "factor": 1e-12,
+      "exact_RNE_and_INT64": true,
+      "max_abs_error": 1.1003864533756561e-13,
+      "analytical_error_bound_passed": true
+    },
+    {
+      "T": 128,
+      "M": 16,
+      "D": 128,
+      "factor": 0.25,
+      "exact_RNE_and_INT64": true,
+      "max_abs_error": 0.045300791922272765,
+      "analytical_error_bound_passed": true
+    }
+  ],
+  "independent_RNE_elements": 7168,
+  "independent_INT64_outputs": 12288,
+  "CPU_global_RNG_unchanged": true,
+  "integer_maximum_tile_bound": 2064512,
+  "scope": "CPU oracle and source transformation only; no claim of GPU correctness, speed or model quality",
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_pv_int8_20261021/kernel_pv.py": "5ab90568743e73c3943b7e3b406a8a5a0c62d5c0965c48b23908a1615a44a214",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_pv_int8_20261021/source.py": "7dc78ee86544aec63d4d2638605ce8071720e6fbda92ff6e3686ab59d5e6231c",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_pv_int8_20261021/check_cpu.py": "9d466c4d3808e4e01b7909e7ad5020c23b3e87d311ed5245af5977a299db11f7",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_heads_v2_20261021/source.py": "589dc4a5f9d5c4bca2cd0fc05814e45d9d5e6b74291e83e9bd202ee04d6c65c0",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_heads_v2_20261021/writer.py": "49565b1105a0eaa3b68364499d857cf481227af2612f7bdf52c32eb3020802f2",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_heads_v2_20261021/layout.py": "d1b0a926e7883b1de41448465b1b06163db66668600991760f4fe2afdfa799a2",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_heads_v2_20261021/reference_quantize.py": "032b9bfa9abd451a60b0bd809185994b0f94dadfe7c894baadbb85b265fd2633",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_heads_v2_20261021/CPU_GATE_32g.json": "030e6449f058c9897e7a0e247e6c24bcad4e0b01d58cc8e4b84d466535e20598",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_heads_v2_20261021/GPU_GATE_32g.json": "bdaad93fe8b373a584391d7329acd06a05ba646eac65df23dadede6c547b4b25",
+    "/workspace/benchmark-results/20261020_lm_precision_math_tianshu/pair_load_records/generated_reader/generated_pair_rows.py": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002"
+  }
+}
