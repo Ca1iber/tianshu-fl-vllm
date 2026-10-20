@@ -34,6 +34,10 @@ def main():
             a=archive['a'].float();scale=a.abs().amax(1).clamp_min(1.e-8)/127.
             q=torch.round(a/scale[:,None]).clamp(-127,127).to(torch.int8)
             assert torch.equal(q,archive['actual_A_INT8']) and torch.equal(scale,archive['actual_A_scale'])
+            original=archive["original_weight_rows"].float();weight_scale=original.abs().amax(1).clamp_min(1.e-8)/127.
+            weight_q=torch.round(original/weight_scale[:,None]).clamp(-127,127).to(torch.int8)
+            sign=1 if archive["phase"]==0 else -1;factor=.5 if archive["phase"]==2 else 1.
+            assert torch.equal(weight_q*sign,archive["actual_W_INT8"]) and torch.equal(weight_scale*factor,archive["actual_W_scale"])
             exact=q[archive['rows']].to(torch.int64)@archive['actual_W_INT8'].to(torch.int64).T
             assert torch.equal(exact,archive['CPU_INT64'])
             bf16=(exact.float()*scale[archive['rows'],None]*archive['actual_W_scale'][None,:]).to(torch.bfloat16)
@@ -52,7 +56,7 @@ def main():
         for m in (32,37,40,48,56,63):best.append(min((r for r in rows if r['role']==role and r['M']==m),key=lambda r:r['candidate_ms']))
     gate=dict(complete=True,independently_CPU_rechecked=True,official_benchmark=False,model_executed=False,adopted=False,
         cases=12,compiled_configurations=compiled,full_GPU_integer_and_quantized_checks=144,CPU_selected_integer_checks=selected_checks,
-        all_A_quantization_CPU_rechecked=True,actual_weights_match_qualified_Math=True,all_timed_dynamic_A_quantization_included=True,
+        all_A_quantization_CPU_rechecked=True,selected_W_quantization_independently_recomputed=True,actual_weights_match_qualified_Math=True,all_timed_dynamic_A_quantization_included=True,
         LM_baseline_is_actual_vendor_linear=True,static_W_packing_excluded=True,model_quality_not_evaluated=True,
         frozen_sources=result['frozen_sources'],raw_root=str(root),best_by_role_M=best,
         offline_CPU_scope='All A values and selected W rows/output coordinates; full device matrices were asserted during GPU execution, not archived in full.')
