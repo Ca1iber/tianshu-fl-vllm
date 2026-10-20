@@ -10,7 +10,7 @@ def normalized(env,root):return {k:v.replace(str(root)+'/', '<OUTPUT>/') for k,v
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--runner',type=Path,required=True);args=parser.parse_args()
     assert (args.runner/'phase.txt').read_text().strip()=='complete'
-    paths={mode:Path(f'/workspace/benchmark-results/20261020_prefill_linear_service_{mode}_tianshu') for mode in ('control','candidate')}
+    paths={mode:Path(f'/workspace/benchmark-results/20261020_lm_precision_service_{mode}_tianshu') for mode in ('control','candidate')}
     states={mode:read(root/'result.json') for mode,root in paths.items()}
     assert states['control']['frozen_sources']==states['candidate']['frozen_sources']
     sources=states['candidate']['frozen_sources']

@@ -3,7 +3,7 @@ set -euo pipefail
 cd /workspace/vllm-plugin-FL
 base=experiments/tianshu_lm_precision_validation_20261020
 pair=/workspace/benchmark-results/20261020_lm_precision_pair_runner_tianshu
-runner=/workspace/benchmark-results/20261020_lm_precision_validation_runner_tianshu
+runner=/workspace/benchmark-results/20261020_lm_precision_validation_runner_v2_tianshu
 test ! -e "$runner";mkdir "$runner";printf 'waiting_for_screen\n' > "$runner/phase.txt"
 trap 'code=$?;if ((code!=0));then cp "$runner/phase.txt" "$runner/failed_phase.txt";printf "failed\n" > "$runner/phase.txt";printf "%s\n" "$code" > "$runner/exit_code.txt";fi' EXIT
 while :;do
