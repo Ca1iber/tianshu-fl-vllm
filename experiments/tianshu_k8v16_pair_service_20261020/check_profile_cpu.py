@@ -7,7 +7,7 @@ import candidate_profile,policy
 BASE=Path(__file__).resolve().parent
 
 def main():
-    root=Path('/workspace/benchmark-results/20261020_pair_service_PROFILE_CPU_v2_tianshu');root.mkdir(exist_ok=False)
+    root=Path('/workspace/benchmark-results/20261020_pair_service_PROFILE_CPU_v3_tianshu');root.mkdir(exist_ok=False)
     states={mode:candidate_profile.prepare(root/mode,mode) for mode in ('control','candidate')}
     a,b=states.values();assert a[0]==b[0] and a[3]==b[3]
     for key,value in a[2].items():

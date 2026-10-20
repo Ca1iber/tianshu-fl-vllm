@@ -2,7 +2,7 @@
 set -euo pipefail
 cd /workspace/vllm-plugin-FL
 base=experiments/tianshu_k8v16_pair_service_20261020
-root=/workspace/benchmark-results/20261020_k8v16_pair_service4k_tianshu
+root=/workspace/benchmark-results/20261020_k8v16_pair_service4k_v2_tianshu
 remaining=$(( $(date -u -d '2026-10-20 15:58:00 UTC' +%s) - $(date -u +%s) ))
 test "$remaining" -gt 2400
 test ! -e "$root"

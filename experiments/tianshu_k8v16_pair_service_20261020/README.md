@@ -5,3 +5,5 @@
 两个模式均通过相同外层路由，配置和冻结来源必须一致。旧S16绑定记录发生在此新外层之前，仅证明内层初始化；新binding记录实际使用的kernel SHA、Graph键与捕获。审计把这些捕获映射到真实B64、computed>=4096的模型Graph重放，禁止将Python捕获次数当设备重放次数。
 
 每模式3轮4K/1K C64 N64，事前排除首轮，输入seed各轮不同且两模式相同。两次seed777 canary只校验单模式可重复，跨模式文本相同仅诊断，不是额外质量门槛。完整192+192请求、原argv/环境/源码、KV/RNG/原生采样、零preemptions以及实际新kernel绑定均需独立复核。原始回复留容器，GitHub只留代码/报告/关键结果。GPU组件6.75%不是模型成绩，尚无新Math或正式分数。
+
+首次CPU检查的替身stride接口缺少dim参数，修正后通过，未涉及GPU代码。首次服务在Worker初始化时将S16生成kernel模块误认作原Python dispatch模块，身份断言失败；没有请求成绩，GPU随后空闲。新版本以producer实际对象身份定位唯一dispatch owner，保留原函数和reducer；初始源码/日志/状态完整保留在20261020_k8v16_pair_service4k_tianshu，新服务使用独立v2目录。

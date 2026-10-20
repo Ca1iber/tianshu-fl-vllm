@@ -50,7 +50,12 @@ def install(worker,mode,directory):
     control=producer.kernel
     parent=Path(inspect.getsourcefile(control.fn))
     assert hashlib.sha256(parent.read_bytes()).hexdigest()==PARENT_SHA
-    reader=sys.modules[control.fn.__module__]
+    # S16 changed the JIT function's module while retaining the original
+    # Python dispatch module. Locate the object that actually owns Producer.
+    candidates={id(module):module for module in tuple(sys.modules.values())
+        if module is not None and getattr(module,'__dict__',{}).get('kernel_unified_attention') is producer}
+    assert len(candidates)==1
+    reader=next(iter(candidates.values()))
     assert reader.kernel_unified_attention is producer and reader.reduce_segments.producer is producer
     original_reducer=reader.reduce_segments.kernel
     directory=Path(directory);directory.mkdir(parents=True,exist_ok=False)
@@ -63,6 +68,7 @@ def install(worker,mode,directory):
     record=dict(installed=True,mode=mode,parent_source=str(parent),parent_sha256=PARENT_SHA,
         candidate_source=str(generated.__file__),candidate_sha256=CANDIDATE_SHA,proof=proof,
         binding_source=str(Path(__file__).resolve()),binding_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        dispatch_module_source=str(reader.__file__),dispatch_owner_resolved_by_actual_producer_identity=True,
         launches={},old_S16_binding_record_precedes_this_outer_wrapper=True,
         unchanged_writer_cache_V_values_and_reducer=True,RNG_not_read_or_modified=True,
         arguments_forwarded_unchanged=True,observations_are_Python_launches_not_graph_replay_counts=True)
