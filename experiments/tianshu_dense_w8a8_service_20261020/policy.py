@@ -22,8 +22,8 @@ def install(worker,mode,directory):
     import torch
     from vllm.model_executor.layers.linear import UnquantizedLinearMethod
     from vllm.model_executor.layers.vocab_parallel_embedding import UnquantizedEmbeddingMethod,ParallelLMHead
-    from vllm_fl.worker.model_runner import FLModelRunner
-    assert not getattr(FLModelRunner,'_tianshu_dense_int8_installed',False)
+    from vllm_fl.worker.model_runner import ModelRunnerFL
+    assert not getattr(ModelRunnerFL,'_tianshu_dense_int8_installed',False)
     assert digest(COMPONENT/'kernel.py')==KERNEL_SHA
     gate=json.loads((COMPONENT/'GPU_GATE_32g.json').read_text())
     assert gate['complete'] and gate['independently_CPU_rechecked'] and gate['compiled_cases']==113
@@ -116,7 +116,7 @@ def install(worker,mode,directory):
         return apply
     for kind,cls in (('linear',UnquantizedLinearMethod),('embedding',UnquantizedEmbeddingMethod)):
         cls.process_weights_after_loading=make_process(kind);cls.apply=make_apply(kind)
-    original_load=FLModelRunner.load_model
+    original_load=ModelRunnerFL.load_model
     @functools.wraps(original_load)
     def load_model(owner,*args,**kwargs):
         nonlocal active_runner
@@ -131,5 +131,5 @@ def install(worker,mode,directory):
             torch_allocated_after_load=int(torch.cuda.memory_allocated()),actual_packed_banks=len(banks))
         assert record['model_memory_usage_bytes']+16*1024**2>=record['parameter_device_bytes']+record['packed_payload_bytes']
         save();return value
-    FLModelRunner.load_model=load_model;FLModelRunner._tianshu_dense_int8_installed=True
+    ModelRunnerFL.load_model=load_model;ModelRunnerFL._tianshu_dense_int8_installed=True
     atexit.register(save);save()

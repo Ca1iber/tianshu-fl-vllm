@@ -11,3 +11,5 @@ Torch custom-op提供fake输出形状，实际CUDA实现内部调用已验证的
 基线审计由原成对K审计派生，仅扩展环境数量54→56；attention/Future-KV始终candidate，新增mode仅控制整数dense分支。全量实际56项环境与/proc记录逐项一致，不过滤观测来伪装旧环境。
 
 原始目录：/workspace/benchmark-results/20261020_dense_w8a8_service4k_tianshu。正确率必须之后独立跑完整105题，本轮小规模吞吐不得当作正式N256成绩。当前5235.52正式最佳不包含本实验。
+
+初次启动20261020_dense_w8a8_service4k_tianshu因导入了不存在的FLModelRunner失败，尚未加载权重或发送请求；已核对实际类为ModelRunnerFL并修正，原源码快照和失败日志保留。重试使用独立目录20261020_dense_w8a8_service4k_v2_tianshu，启动前直接检查安装源码中的类定义。
