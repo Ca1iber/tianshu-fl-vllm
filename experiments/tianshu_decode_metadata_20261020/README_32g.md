@@ -11,3 +11,11 @@ CPU已验证384项：B1..64、容量64/256、三组位置范围；原生产FL十
 GPU探针使用真实CpuGpuBuffer、同Worker默认的FlagGems全算子注册、生产十条语句与独立CPU参考；计划14个批次/容量组合，覆盖原始及两次改变GPU computed输入的同一CUDA Graph、全缓冲区逐位/尾部、GPU RNG状态、7轮交替图内event与含真实H2D/CPU门控的eager host-wall计时。图内计时不能代替整个服务，数值通过也不自动采用。
 
 已排在当前已确认存活的未来KV准入16K控制器PID41865之后。queue_component.sh只等待该进程终止并要求前一任务complete，run_component.sh再要求GPU空闲，后启动探针，23:58北京时间硬截止。当前尚无GPU或模型性能/Math结果。源、报告、关键JSON保存GitHub，原始产物只存容器。
+
+## GPU已完成与服务集成
+
+14个GPU场景、每场景原始/两次改变computed输入，共84份完整缓冲区状态检查通过；独立分析器以NumPy重建9个完整数组的SHA，共复算756项，覆盖CPU镜像、GPU结果、尾部和只读输入。相同Graph动态输入、GPU RNG不变、实际w4/s1与source快照均通过。真实CpuGpuBuffer+FlagGems参考的B64/cap256组件eager host wall约1.45534→0.06758ms；图内event0.02278→0.01171ms。七轮交替计时，组件结果不当作服务吞吐。详见GPU_GATE、GPU_TIMINGS。
+
+生产集成policy在实际ModelRunnerFL方法中只替换已验证块，保留其它AST与fallback。保留已有构造器包装并在构造完成后对N1..64使用实际Triton warmup=True编译，不执行kernel、不改数组，核验RNG状态不变；control与candidate均预编译，避免不同启动成本和请求期编译。实际导入绑定测试通过，生成方法源码SHA与CPU/GPU已验证版本相同。
+
+服务对照使用同279份来源、54环境，背景为未来KV准入candidate，两边唯一差异TIANSHU_DECODE_METADATA_MODE。17:06已启动4K N64，不跑本候选16K筛选。控制组真实构造器已完成64种预编译，进入评测。最终是否采用由4K服务收益、新Math及最终同源正式成绩决定。

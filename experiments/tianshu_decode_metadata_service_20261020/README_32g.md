@@ -1,0 +1,9 @@
+# 整数元数据融合4K服务对照
+
+同279份冻结来源和54项归一化环境、原始serve命令，仅TIANSHU_DECODE_METADATA_MODE不同。两边均使用已筛选出16K+4.017%的未来KV准入、128MiB暂存区、64 seq、4096预算、83点预热、K8/V BF16/S16和原生采样。
+
+hooks完整链入future_kv_service，然后绑定实际vllm_fl.worker.model_runner.ModelRunnerFL。使用原方法真实源码文件哈希验证，不把上游GPUModelRunner类当作生产调用。实际import测试确认方法code_filename为本次generated_prepare_inputs.py；AST/source SHA与384 CPU和14 GPU用例的版本一致。
+
+构造时control/candidate都对1..64的元数据kernel做compile-only warmup，不执行写入并核验RNG不变。运行记录证明真实命中和实际编译配置，不凭开关推断生效。范围不符走原十条语句。实际integer GPU核不访问权重、KV数据或采样。
+
+只跑4K/1K C64 N64，各3轮、排除首轮；原件20261020_decode_metadata_service4k_tianshu。结果分析器在tianshu_decode_metadata_results_20261020。当前评测中，尚无服务收益、质量或采用结论。
