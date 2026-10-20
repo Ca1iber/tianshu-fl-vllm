@@ -1,0 +1,74 @@
+{
+  "complete": true,
+  "independently_CPU_rechecked": true,
+  "case_count": 4,
+  "CPU_selected_and_failure_checks": 24,
+  "failures": [],
+  "cases": [
+    {
+      "case_id": "M565_s0",
+      "M": 565,
+      "strided_A": false,
+      "methods": {
+        "mm": true,
+        "linear": true
+      },
+      "mm_ms": 0.5413650035858154,
+      "linear_ms": 0.43613576889038086,
+      "linear_gain_percent": 24.127632311185888
+    },
+    {
+      "case_id": "M565_s1",
+      "M": 565,
+      "strided_A": true,
+      "methods": {
+        "mm": true,
+        "linear": true
+      },
+      "mm_ms": 0.5598728656768799,
+      "linear_ms": 0.453220796585083,
+      "linear_gain_percent": 23.53203336991512
+    },
+    {
+      "case_id": "M1537_s0",
+      "M": 1537,
+      "strided_A": false,
+      "methods": {
+        "mm": true,
+        "linear": true
+      },
+      "mm_ms": 1.240678882598877,
+      "linear_ms": 1.0615233421325683,
+      "linear_gain_percent": 16.877211584098628
+    },
+    {
+      "case_id": "M1537_s1",
+      "M": 1537,
+      "strided_A": true,
+      "methods": {
+        "mm": true,
+        "linear": true
+      },
+      "mm_ms": 1.2892541885375977,
+      "linear_ms": 1.1003549575805665,
+      "linear_gain_percent": 17.167117724663882
+    }
+  ],
+  "tolerance_unchanged": true,
+  "failed_methods_not_timed": true,
+  "all_contiguous_linear_passed": true,
+  "model_executed": false,
+  "adopted": false,
+  "official_benchmark": false,
+  "offline_reference_scope": "Archived regular selections plus actual violating pairs; not full offline GPU outputs",
+  "frozen_sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_gateup_bf16_dispatch_20261020/probe_contiguous_copy.py": "32871bf9f3350c1b624d1c58f8a7b5e07bec09df6c27de118d16c9910000e0d2",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_gateup_bf16_dispatch_20261020/verify_contiguous_copy_cpu.py": "94be8fe4f3e07b0be99153d41a3d6871a4acf3c4600ebb6c02fce1670eff3034",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_gateup_bf16_dispatch_20261020/run_contiguous_copy.sh": "e526d32e9d2ec01b6418c38164741bd303b94c73943e086ec62753d2f3345144",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_gateup_bf16_dispatch_20261020/CONTIGUOUS_COPY.md": "1f6d9b39b24c8539bac72f84c722bcd19d6040cc24a1be781594133add894d0d",
+    "/usr/local/lib/python3.12/site-packages/flag_gems/runtime/backend/_iluvatar/ops/mm.py": "4c2e23da2a6b65b89cbb8170967f14c5327d143e21137387f3907ccb4fcde090",
+    "/usr/local/lib/python3.12/site-packages/flag_gems/runtime/backend/_iluvatar/ops/linear.py": "d431a4fa144ed67dc3deab46dd5beace3612858075f85c39e602447ba3bf768a",
+    "/workspace/FlagGems/src/flag_gems/utils/models/sql.py": "6dc19cb581d70154f14b95ed9112d682c6b5919b6cf3f8dea01a78a75ec0efd7"
+  },
+  "raw_root": "/workspace/benchmark-results/20261020_gateup_bf16_contiguous_copy_GPU_tianshu"
+}
