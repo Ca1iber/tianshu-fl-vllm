@@ -1,0 +1,99 @@
+{
+  "complete": true,
+  "fresh_math_for_original_command_profile": true,
+  "reused_original_accuracy": false,
+  "correct": 102,
+  "total": 105,
+  "accuracy": 0.9714285714285714,
+  "official_requirement_passed": true,
+  "execution_summary": {
+    "requested": 105,
+    "succeeded": 105,
+    "errored": 0,
+    "incomplete": false,
+    "subsets": {
+      "Level 3": {
+        "requested": 105,
+        "succeeded": 105,
+        "errored": 0
+      }
+    }
+  },
+  "incorrect_indices": [
+    18,
+    87,
+    83
+  ],
+  "generation_stop_reasons": {
+    "stop": 103,
+    "max_tokens": 2
+  },
+  "max_tokens_indices": [
+    23,
+    83
+  ],
+  "server_command": [
+    "vllm",
+    "serve",
+    "/workspace/MiniCPM5-2B",
+    "--port",
+    "9031",
+    "--compilation-config",
+    "{\"cudagraph_mode\": \"FULL_DECODE_ONLY\"}",
+    "--served-model-name",
+    "minicpm",
+    "--gpu-memory-utilization",
+    "0.85",
+    "--max-model-len",
+    "131072"
+  ],
+  "matched_screen_root": "/workspace/vllm-plugin-FL/experiments/tianshu_dense_budget8192_v2_20261021",
+  "evaluation_command": [
+    "evalscope",
+    "eval",
+    "--model",
+    "minicpm",
+    "--api-url",
+    "http://127.0.0.1:9031/v1/chat/completions",
+    "--api-key",
+    "EMPTY",
+    "--eval-type",
+    "openai_api",
+    "--datasets",
+    "math_500",
+    "--dataset-args",
+    "{\"math_500\":{\"dataset_id\":\"/workspace/evalscope-datasets/math_500\",\"subset_list\":[\"Level 3\"]}}",
+    "--eval-batch-size",
+    "8",
+    "--timeout",
+    "3600",
+    "--generation-config",
+    "{\"temperature\":1.0,\"top_p\":0.95,\"max_tokens\":32768}",
+    "--work-dir",
+    "/workspace/benchmark-results/20261021_dense_budget_v2_math_tianshu/evalscope",
+    "--ignore-errors"
+  ],
+  "raw_files": {
+    "evalscope/20261021_023508/reports/minicpm/math_500.json": {
+      "bytes": 8939,
+      "sha256": "bfb76ecf3c52a4c423aabc7da363634ca3e66bdd075f2e125f5bf3e64afa85ac"
+    },
+    "evalscope/20261021_023508/reviews/minicpm/math_500_Level 3.jsonl": {
+      "bytes": 1608886,
+      "sha256": "2b55dd1e9f66d572070d446729e8851c1b05f1ca1b7d1dc0e392e5ce7dbb4faf"
+    },
+    "evalscope/20261021_023508/predictions/minicpm/math_500_Level 3.jsonl": {
+      "bytes": 2400978,
+      "sha256": "a61d37faeec964ea48d07d83d647e84e288aaab5f5dc21169d63a71bb7f6ec32"
+    }
+  },
+  "final_profile_kind": "W8A8_GateUp_LM64_BF16_LM_small_and_prefill_linear_budget8192",
+  "runtime_source_count": 374,
+  "environment_count": 64,
+  "fresh_Math_for_final_runtime_profile": true,
+  "previous_accuracy_not_reused": true,
+  "actual_C8_GateUp_integer_path_verified": true,
+  "actual_C8_LM_BF16_path_verified": true,
+  "LM_M64_integer_not_exercised_by_C8_Math": true,
+  "actual_new_prefill_path_all_42_GateUp_verified": true
+}

@@ -7,6 +7,9 @@ BASE=Path(__file__).resolve().parent
 PIPELINE=BASE.parent/'tianshu_dense_budget_validation_v2_20261021'
 sys.path.insert(0,str(PIPELINE))
 import framework_profile as profile
+sys.path.insert(0,str(BASE.parent/'tianshu_dense_budget_audit_recovery_20261021'))
+from recover import checked_audit
+profile.audit_runtime=checked_audit().audit_runtime
 
 def read(p):return json.loads(Path(p).read_text())
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
@@ -15,8 +18,10 @@ def signature(runtime):
     dense=runtime['dense_int8_record'];assert dense['load_complete'] and dense['actual_packed_banks']==43
     return sorted([{k:r[k] for k in ('role','prefix','shape','original_BF16_sha256','packed_sha256','scales_sha256','packed_bytes')} for r in dense['banks']],key=lambda r:r['prefix'])
 def main():
-    root=Path(sys.argv[1]);official=Path(sys.argv[2]);state=read(root/'result.json')
+    root=Path(sys.argv[1]);official=Path(sys.argv[2]);state=read(root/'rechecked_result.json')
     assert state['phase']=='complete' and state['stage']=='math'
+    recovery=read(root/'postprocessing_recovery.json');assert recovery['GPU_Math_not_rerun'] and recovery['original_result_sha256']==sha(root/'result.json')
+    for path,digest in recovery['supplemental_controller_sources'].items():assert sha(path)==digest
     profile.frozen_check(state['frozen_sources']);profile.frozen_check(state['controller_sources'])
     assert len(state['frozen_sources'])==374 and len(state['profile_environment'])==64
     expected={str(p) for p in [*PIPELINE.glob('*.py'),*PIPELINE.glob('*.sh'),PIPELINE/'batch_policy.json',BASE.parent/'tianshu_original_command_20261016/validation_profile.py',Path(state['screen_root'])/'SCREEN_GATE_32g.json']}
@@ -28,7 +33,7 @@ def main():
     assert json.loads(arg('--generation-config'))==dict(temperature=1.,top_p=.95,max_tokens=32768)
     assert json.loads(arg('--dataset-args'))=={'math_500':{'dataset_id':'/workspace/evalscope-datasets/math_500','subset_list':['Level 3']}}
     runtime=profile.audit_runtime(root,state,official=False);quality=profile.audit_math(root,state,runtime,write=False)
-    assert quality==read(root/'accuracy_audit.json') and quality['complete'] and quality['total']==105
+    assert quality==read(root/'rechecked_accuracy_audit.json') and quality['complete'] and quality['total']==105
     assert runtime['verified_dense_batch']==runtime['verified_batch']==8
     assert runtime['LM_head_precision_in_verified_batch']=='BF16' and quality['actual_C8_LM_BF16_path_verified'] and quality['actual_C8_GateUp_integer_path_verified'] and quality['LM_M64_integer_not_exercised_by_C8_Math']
     assert state['profile_environment']['TIANSHU_LM_PRECISION_MODE']=='candidate'
@@ -67,6 +72,7 @@ def main():
     archive=dict(complete=True,independently_rechecked=True,fresh_Math=True,correct=quality['correct'],total=105,accuracy=quality['accuracy'],strict_over95_passed=quality['accuracy']>.95,
         generation_stop_reasons=dict(Counter(r['stop_reason'] for r in rows)),output_tokens=dict(total=sum(tokens),minimum=min(tokens),median=statistics.median(tokens),maximum=max(tokens)),
         runtime_source_count=374,environment_count=64,separate_controller_source_count=len(state['controller_sources']),compile_cache_disabled=True,
+        original_audit_failure_preserved=True,postprocessing_recovery=recovery,supplemental_Python_controller_sources=2,
         scheduler_budget=8192,actual_warm_points=99,independent_long_guard_worker_binding_verified=True,
         actual_C8_all_42_GateUp_integer_path_verified=True,actual_C8_LM_BF16_path_verified=True,LM_M64_integer_not_exercised_by_C8_Math=True,actual_new_prefill_ready_path_all_42_GateUp_verified=True,Math_actual_new_prefill_M=sorted({r['M'] for r in actual}),
         all_43_banks_match_successful_screen_and_previous_qualified_Math=True,extra_packed_weight_bytes=1326938112,

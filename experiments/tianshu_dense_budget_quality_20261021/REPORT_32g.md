@@ -1,0 +1,17 @@
+# 预算8192 fresh Math通过：102/105（97.142857%）
+
+本次完整105道Level3，102正确，严格>95%。105请求成功，0错误，incomplete=false。使用原CLI：C8、temperature1、top_p0.95、max_tokens32768。103题自然stop，2题达到原定max_tokens；全部105题按原规则计入分母，没有删除、补跑或复用旧101分。
+
+总输出339858 tokens，最少408、中位1546、最多32768。逐题index/accuracy/stop/usage及原prediction/review行SHA已归档；完整正文和原始报告仅留容器。
+
+## 元数据审计恢复与证据范围
+
+GPU评测正常完成。原后处理审计将实际native_source_sha256字段误读为native_sha256，原result/state记录audit_failed并保留。独立corrected_audit只改这一字段读取，并明确从原冻结目录加载依赖；两处文本修改可逆精确还原旧审计源。复核所有374推理源码、9个原控制源码及其快照、64实际环境、43权重签名、105原始记录后，确认102/105。原始失败记录不覆盖，另存rechecked_result/rechecked_accuracy_audit与postprocessing_recovery；2个补充Python审计源有独立SHA。
+
+原评测根目录：`/workspace/benchmark-results/20261021_dense_budget_v2_math_tianshu`。原始报告SHA bfb76ecf3c52a4c423aabc7da363634ca3e66bdd075f2e125f5bf3e64afa85ac；reviews SHA 2b55dd1e9f66d572070d446729e8851c1b05f1ca1b7d1dc0e392e5ce7dbb4faf；predictions SHA a61d37faeec964ea48d07d83d647e84e288aaab5f5dc21169d63a71bb7f6ec32。
+
+## 实际模型路径
+
+运行时374源/64环境，原serve argv13项、8192预算/seq64/async与99点warm实际核验，独立long policy worker源/哈希与真实预算正确。C8实际42层GateUp整数路径和LM BF16、实际prefill linear路线均验证；43份原BF16/packed/scale权重签名与小4K筛选及此前合格版本相同，额外INT8 payload1326938112B真实计入加载profile，原BF16权重保留。
+
+C64 LM整数路径由独立小4K/后续正式测试覆盖，本次C8 Math不声称验证C64生成质量。新8192正式N256/C64四轮4K已恢复启动，原9控制源保持，补充2个Python审计源及快照明确区分。尚未给出新的正式分数、采用标记或16K结论。

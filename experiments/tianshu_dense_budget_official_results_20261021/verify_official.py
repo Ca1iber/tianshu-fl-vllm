@@ -6,22 +6,27 @@ from pathlib import Path
 BASE=Path(__file__).resolve().parent
 sys.path.insert(0,str(BASE.parent/'tianshu_dense_budget_validation_v2_20261021'))
 import framework_profile as profile
+sys.path.insert(0,str(BASE.parent/'tianshu_dense_budget_audit_recovery_20261021'))
+from recover import checked_audit
+profile.audit_runtime=checked_audit().audit_runtime
 
 def read(p):return json.loads(Path(p).read_text())
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def banks(runtime):return sorted([{k:r[k] for k in ('role','prefix','shape','original_BF16_sha256','packed_sha256','scales_sha256','packed_bytes')} for r in runtime['dense_int8_record']['banks']],key=lambda r:r['prefix'])
 def main():
-    root=Path(sys.argv[1]);math=Path(sys.argv[2]);state=read(root/'result.json');ms=read(math/'result.json')
+    root=Path(sys.argv[1]);math=Path(sys.argv[2]);state=read(root/'result.json');ms=read(math/'rechecked_result.json')
     assert state['phase']==ms['phase']=='complete' and state['stage']=='official' and ms['stage']=='math'
-    assert (root.parent/'20261021_dense_budget_v2_validation_runner_tianshu/complete.txt').is_file()
+    assert (root.parent/'20261021_dense_budget_v2_official_recovery_runner_tianshu/complete.txt').is_file()
     assert state['benchmark_exit_code']==0 and state['benchmark_command'][-1]=='[[4096,1024,64,256]]'
+    recovery=read(root/'supplemental_controller_sources.json');assert recovery['GPU_Math_not_rerun'] and recovery['primary_controller_sources']==state['controller_sources']
+    for path,digest in recovery['supplemental_controller_sources'].items():assert sha(path)==sha(root/'supplemental_source_snapshot'/Path(path).relative_to('/'))==digest
     assert state['frozen_sources']==ms['frozen_sources'] and state['controller_sources']==ms['controller_sources']
     profile.frozen_check(state['frozen_sources']);profile.frozen_check(state['controller_sources'])
     assert len(state['frozen_sources'])==374 and len(state['controller_sources'])==9 and len(state['profile_environment'])==64
     assert state['profile_environment']['VLLM_DISABLE_COMPILE_CACHE']=='1'
     assert state['actual_budget']==ms['actual_budget']==8192 and state['profile_environment']['TIANSHU_DENSE_BUDGET_MODE']=='candidate'
     mruntime=profile.audit_runtime(math,ms,official=False);quality=profile.audit_math(math,ms,mruntime,write=False)
-    assert quality==read(math/'accuracy_audit.json') and quality['complete'] and quality['total']==105 and quality['accuracy']>.95
+    assert quality==read(math/'rechecked_accuracy_audit.json') and quality['complete'] and quality['total']==105 and quality['accuracy']>.95
     assert quality['actual_C8_GateUp_integer_path_verified'] and quality['actual_C8_LM_BF16_path_verified'] and mruntime['verified_dense_batch']==8
     runtime=profile.audit_runtime(root,state,official=True)
     assert runtime['verified_dense_batch']==64 and runtime['actual_42_GateUp_banks_capture_and_replay_verified'] and runtime['actual_LM_head_outside_model_Graph_calls_verified']
@@ -57,6 +62,7 @@ def main():
     qualifies_for_best_review=bool(gain>0 and ttft<=prior['mean_TTFT_ms']*1.01 and spread<1 and current['passes_public_4k_performance_gates']);adopted=False
     files=[root/'comparison.json',root/'result.json',root/'before_metrics.txt',root/'after_metrics.txt',root/'hardware_after.txt',math/'accuracy_audit.json',*raw_files,*summary_files]
     gate=dict(complete=True,independently_rechecked=True,adopted=adopted,original_comparison_not_overwritten=True,official_workloads=[dict(input_tokens=4096,output_tokens=1024,concurrency=64,requests_per_round=256,rounds=4,excluded_rounds=[1])],
+        original_Math_audit_failure_retained=True,postprocessing_only_recovery=True,supplemental_Python_controller_source_count=2,
         qualifies_for_best_review=qualifies_for_best_review,adoption_not_performed_by_archiver=True,actual_budget=8192,actual_warm_points=99,
         total_tok_s=total,output_tok_s=float(summary['Output tok/s']),mean_TTFT_ms=ttft,postfirst_spread_percent=spread,independent_raw_arithmetic_means=means,
         previous_formal_4K_total_tok_s=5482.79,vs_previous_percent=gain,public_baseline_total_tok_s=2028.01,vs_public_percent=100*(total/2028.01-1),
