@@ -1,4 +1,4 @@
-# 天数BI-V150：2026-10-20进展（北京时间12:08）
+# 天数BI-V150：2026-10-20进展（北京时间12:29）
 
 当前已验证同一配置：**正式4K5101.45、正式16K3213.11 total tok/s，Math Level3 102/105=97.142857%**。标签`tianshu-original-command-4k16k-k8v16-budget4096-20261020`；原始serve argv不变，K软件8位/V BF16、12KiB物理页、4096预算、83预热点，原始sampler/随机逻辑保持。
 
@@ -31,3 +31,5 @@
 驱动属性记录在[INT8能力检查](../tianshu_int8_dot_capability_20261020/README_32g.md)：16个multiprocessor、warpSize64等原始值；不是有效硬件性能计数profile。
 
 原件、张量、编译缓存留容器；GitHub保存代码、报告、关键CSV/JSON。已把最佳配置所需22个历史生成代码路径按3份不同内容归档（104171字节），见[恢复入口](../tianshu_k8v16_restore_inputs_20261020/README_32g.md)。代码开发与评测均在天数容器中进行，沐曦仓库保持只读参考。
+
+12:29更新：新长上下文分段已通过[全新Math105](../tianshu_long_segments_quality_20261020/REPORT_32g.md)：102/105（97.142857%），105成功/0错误、全部自然stop。相同225源/46环境已自动进入原始4K+16K完整评测；新正式均值尚未产生。后续[原生KV水位对照](../tianshu_headroom_service_20261020/README_32g.md)仅CPU8边界和双模式234源/48环境组合通过，GPU暂不运行。另完成[沐曦最新提交只读检查](../tianshu_metax_reference_20261020/README_32g.md)，未发现新的稳态可直接移植实现。
