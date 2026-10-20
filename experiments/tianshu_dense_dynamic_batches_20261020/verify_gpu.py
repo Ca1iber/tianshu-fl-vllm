@@ -57,7 +57,7 @@ def main():
     gate=dict(complete=True,independently_CPU_rechecked=True,official_benchmark=False,model_executed=False,adopted=False,
         cases=12,compiled_configurations=compiled,full_GPU_integer_and_quantized_checks=144,CPU_selected_integer_checks=selected_checks,
         all_A_quantization_CPU_rechecked=True,selected_W_quantization_independently_recomputed=True,actual_weights_match_qualified_Math=True,all_timed_dynamic_A_quantization_included=True,
-        LM_baseline_is_actual_vendor_linear=True,static_W_packing_excluded=True,model_quality_not_evaluated=True,
+        LM_baseline_explicit_flag_gems_linear=True,static_W_packing_excluded=True,model_quality_not_evaluated=True,
         frozen_sources=result['frozen_sources'],raw_root=str(root),best_by_role_M=best,
         offline_CPU_scope='All A values and selected W rows/output coordinates; full device matrices were asserted during GPU execution, not archived in full.')
     (BASE/'GPU_GATE_32g.json').write_text(json.dumps(gate,indent=2)+'\n');(BASE/'ROUNDS_32g.json').write_text(json.dumps(rows,indent=2)+'\n')
