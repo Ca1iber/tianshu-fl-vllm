@@ -1,0 +1,68 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "GPU_not_executed": true,
+  "word_decode_lane_cases": 1024,
+  "all_256_code_values_in_each_of_4_lanes": true,
+  "provenance": {
+    "current": {
+      "mode": "current",
+      "parent_sha256": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+      "generated_sha256": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+      "exact_source_reversal": true,
+      "changed_parent_functions": [],
+      "K_cache_V_values_writer_and_reducer_unchanged": true,
+      "all_offsets_remain_int64": true,
+      "K_decode_before_BF16_join": true,
+      "launch_num_warps": 1,
+      "requires_4byte_aligned_K_for_word_modes": true
+    },
+    "word_rows": {
+      "mode": "word_rows",
+      "parent_sha256": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+      "generated_sha256": "3ba683bfb95c39794936d2950c4bcdbc72b617d88e8e4aa068040f7ad54ace2b",
+      "exact_source_reversal": true,
+      "changed_parent_functions": [
+        "kernel_unified_attention"
+      ],
+      "K_cache_V_values_writer_and_reducer_unchanged": true,
+      "all_offsets_remain_int64": true,
+      "K_decode_before_BF16_join": true,
+      "launch_num_warps": 1,
+      "requires_4byte_aligned_K_for_word_modes": true
+    },
+    "word_columns": {
+      "mode": "word_columns",
+      "parent_sha256": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+      "generated_sha256": "66f92f852f0d46c9a507ffa042bd12f26aa61cf32a9b3ba56b0338507797f423",
+      "exact_source_reversal": true,
+      "changed_parent_functions": [
+        "kernel_unified_attention"
+      ],
+      "K_cache_V_values_writer_and_reducer_unchanged": true,
+      "all_offsets_remain_int64": true,
+      "K_decode_before_BF16_join": true,
+      "launch_num_warps": 1,
+      "requires_4byte_aligned_K_for_word_modes": true
+    },
+    "pair_w2": {
+      "mode": "pair_w2",
+      "parent_sha256": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+      "generated_sha256": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+      "exact_source_reversal": true,
+      "changed_parent_functions": [],
+      "K_cache_V_values_writer_and_reducer_unchanged": true,
+      "all_offsets_remain_int64": true,
+      "K_decode_before_BF16_join": true,
+      "launch_num_warps": 2,
+      "requires_4byte_aligned_K_for_word_modes": true
+    }
+  },
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_word_decode_20261020/check_cpu.py": "b603cd205abdbd23faa851d632d563f4cc48ae649b2608dfaf2e2e1f9a9803f8",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_word_decode_20261020/source.py": "ffe585cf4cbf5719522cabaa81190eda0b87382fdf68bfab255851c66b89243c",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_word_decode_20261020/launch.py": "96ebdbc85fab804253f0cc6c0e4bd17f089204d1ee88b2fe903d03eedca11f6c",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pair_load_20261020/source.py": "6b46d13524efa3687274c8210d34f279e855fecd0c643a620ab62aadbd6c4470",
+    "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/pair_rows_reader/generated_pair_rows.py": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002"
+  }
+}
