@@ -1,0 +1,81 @@
+{
+  "complete": true,
+  "official_benchmark": true,
+  "adopted": false,
+  "workloads": [
+    {
+      "input_tokens": 4096,
+      "output_tokens": 1024,
+      "concurrency": 64,
+      "requests_per_round": 256,
+      "total_tok_s": 5099.65,
+      "output_tok_s": 1019.93,
+      "TTFT_ms": 4198.32,
+      "duration_s": 257.02,
+      "excluded_rounds": [
+        1
+      ],
+      "spread_percent": 0.11373336976287603,
+      "previous_qualified_total_tok_s": 5101.45,
+      "change_vs_previous_percent": -0.035284085897147044,
+      "previous_comparison_is_historical_not_paired_AB": true,
+      "public_baseline_total_tok_s": 2028.01,
+      "change_vs_public_percent": 151.46079161345355
+    },
+    {
+      "input_tokens": 16384,
+      "output_tokens": 1024,
+      "concurrency": 64,
+      "requests_per_round": 128,
+      "total_tok_s": 3723.12,
+      "output_tok_s": 219.01,
+      "TTFT_ms": 109729.32,
+      "duration_s": 598.48,
+      "excluded_rounds": [
+        1
+      ],
+      "spread_percent": 0.060970314350764145,
+      "previous_qualified_total_tok_s": 3213.11,
+      "change_vs_previous_percent": 15.87278368932279,
+      "previous_comparison_is_historical_not_paired_AB": true,
+      "public_baseline_total_tok_s": 915.15,
+      "change_vs_public_percent": 306.83166693984595
+    }
+  ],
+  "fresh_Math_correct": 102,
+  "fresh_Math_total": 105,
+  "fresh_Math_accuracy": 0.9714285714285714,
+  "same225_sources_46_environment_original_argv_verified": true,
+  "successful_requests": 1536,
+  "failed_requests": 0,
+  "actual_native_FL_Graph_verified": true,
+  "preemptions": {
+    "before_metrics.txt": 0.0,
+    "after_metrics.txt": 24.0
+  },
+  "post_ready_autotune_lines": [
+    "(EngineCore pid=23910) Triton autotuning for function _index_linearized_jit_function finished after 0.51s; config key: (768, 'torch.int32', 'torch.int64', 'torch.int32'), benchmark key: (756, 'torch.int32', 'torch.int64', 'torch.int32', 'triton_do_bench', 5, 10), best config selected: BLOCK_SIZE0: 128, BLOCK_SIZE1: 1, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None;"
+  ],
+  "no_claim_of_zero_autotune": true,
+  "CSV_provenance": {
+    "/workspace/benchmark-results/20261020_long_segments_official4k16k_tianshu/benchmark_results/raw_runs_20261020_122736.csv": {
+      "original_sha256": "2d828f55e0b22cc5a96a3a497aed4bb7a2895fe4c34e89bddf7536557f029e03",
+      "original_bytes": 1506,
+      "repository_file": "RAW_RUNS_32g.csv",
+      "repository_LF_sha256": "ca6365a6e12343b566d58bb087c7c34f964eae0eeeb5bedc35034f0ceec0ed07"
+    },
+    "/workspace/benchmark-results/20261020_long_segments_official4k16k_tianshu/benchmark_results/summary_20261020_122736.csv": {
+      "original_sha256": "e3bc0e4636c6719cca1181f135809e07f92490a8a1d50e13d798a094a391508b",
+      "original_bytes": 552,
+      "repository_file": "SUMMARY_32g.csv",
+      "repository_LF_sha256": "b58460c090f64ab198f27eb56c364c29c8e34c7f3542f53fa833c9f102fbbf6f"
+    }
+  },
+  "server_log_sha256": "55c35f4ce633bdc021013ca69418aa6045707f91640f2c90e36f49462d326519",
+  "raw_comparison_sha256": "e10c82148a2080d9a4e80d2bd27ae7e2e173771dd138e8cae6db6362b03076ba",
+  "archive_script_sha256": "2e907761bb562658004632ba3bc781f0ed7d0ebb6697b1f0a57e3c96d40372c7",
+  "original_roots": {
+    "official": "/workspace/benchmark-results/20261020_long_segments_official4k16k_tianshu",
+    "math": "/workspace/benchmark-results/20261020_long_segments_math_tianshu"
+  }
+}

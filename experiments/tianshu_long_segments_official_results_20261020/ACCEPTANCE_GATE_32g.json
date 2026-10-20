@@ -1,0 +1,67 @@
+{
+  "adopted": true,
+  "adopted_at": "2026-10-20T13:33:50+08:00",
+  "release_tag": "tianshu-original-command-4k16k-k8v16-longseg-20261020",
+  "profile": "K8V16, native default budget 4096, 83 warm points, long-context S16 only for B33..56",
+  "criteria": {
+    "fresh_Math_accuracy_strictly_greater_than": 0.95,
+    "full_original_both_workloads": true,
+    "all_requests_successful": true,
+    "maximum_4K_regression_vs_previous_percent": 1,
+    "minimum_16K_gain_vs_previous_percent": 2,
+    "previous_formal_comparison_is_historical": true
+  },
+  "fresh_Math_correct": 102,
+  "fresh_Math_total": 105,
+  "fresh_Math_accuracy": 0.9714285714285714,
+  "workloads": [
+    {
+      "input_tokens": 4096,
+      "output_tokens": 1024,
+      "concurrency": 64,
+      "requests_per_round": 256,
+      "total_tok_s": 5099.65,
+      "output_tok_s": 1019.93,
+      "TTFT_ms": 4198.32,
+      "duration_s": 257.02,
+      "excluded_rounds": [
+        1
+      ],
+      "spread_percent": 0.11373336976287603,
+      "previous_qualified_total_tok_s": 5101.45,
+      "change_vs_previous_percent": -0.035284085897147044,
+      "previous_comparison_is_historical_not_paired_AB": true,
+      "public_baseline_total_tok_s": 2028.01,
+      "change_vs_public_percent": 151.46079161345355
+    },
+    {
+      "input_tokens": 16384,
+      "output_tokens": 1024,
+      "concurrency": 64,
+      "requests_per_round": 128,
+      "total_tok_s": 3723.12,
+      "output_tok_s": 219.01,
+      "TTFT_ms": 109729.32,
+      "duration_s": 598.48,
+      "excluded_rounds": [
+        1
+      ],
+      "spread_percent": 0.060970314350764145,
+      "previous_qualified_total_tok_s": 3213.11,
+      "change_vs_previous_percent": 15.87278368932279,
+      "previous_comparison_is_historical_not_paired_AB": true,
+      "public_baseline_total_tok_s": 915.15,
+      "change_vs_public_percent": 306.83166693984595
+    }
+  ],
+  "successful_requests": 1536,
+  "failed_requests": 0,
+  "profile_sources": 225,
+  "profile_environment_variables": 46,
+  "official_audit_sha256": "7858578a91937f8e43f1492ffb58e93a6f8aea29c07d2588fae4a41ce53e037a",
+  "original_official_gate_sha256": "e10c82148a2080d9a4e80d2bd27ae7e2e173771dd138e8cae6db6362b03076ba",
+  "launch_template_sha256": "a9c6d1229ea2b9815e108a5ded6589494af6503600f20721199645d6003aaf59",
+  "raw_gate_adopted_false_is_preserved": true,
+  "KV_headroom_candidate_included": false,
+  "packed_load_candidate_included": false
+}
