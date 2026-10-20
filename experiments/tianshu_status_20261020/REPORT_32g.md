@@ -31,3 +31,5 @@ KV水位实验见[service](../tianshu_headroom_service_20261020/README_32g.md)�
 [沐曦最新提交只读检查](../tianshu_metax_reference_20261020/README_32g.md)未发现新的稳态可直接移植实现。沐曦仓库不修改。代码开发与评测均在天数容器；GitHub保存代码、报告、关键CSV/JSON，原件、张量、编译缓存留容器。当前最佳所需22个历史生成路径按3份不同内容归档，见[恢复入口](../tianshu_k8v16_restore_inputs_20261020/README_32g.md)；当前225源已核验，新克隆完整环境启动尚未验证。
 
 14:25更新：[KV水位](../tianshu_headroom_results_20261020/REPORT_32g.md)六轮完整独立核验完成，抢占6→0，16K N64吞吐+0.02269%，不采用；[K/V合并读取](../tianshu_packed_loads_20261020/README_32g.md)12场景全部数值/同图检查通过，K32负收益、V32仅约+0.4%，未接服务。下一候选是缩小固定512MiB prefill暂存区，先验证容量边界及超容量原路径回退。
+
+14:36更新：[小暂存区](../tianshu_small_arena_20261020/README_32g.md)CPU20边界、GPU22次完整staging/2次超容量分支检查已通过，释放384MiB+96KiB；1475715072活动元素逐位核验，fallback attention仍原样继承，未在本probe单独执行。236源/48环境服务对照正在串行4K→16K，未采用、无新Math。另准备[原生max_num_seqs缺省入口](../tianshu_seq_limit_default_20261020/README_32g.md)，11项真实AST CPU检查通过，旧64-seq微收益证据保留，今天尚未GPU复测。
