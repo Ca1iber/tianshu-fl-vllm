@@ -18,12 +18,13 @@ def main():
     import torch, vllm_fl, flag_gems
     from safetensors import safe_open
     import kernel
+    import baseline
     torch.set_num_threads(8);torch.backends.cuda.matmul.allow_tf32=False
     torch.backends.cuda.matmul.allow_bf16_reduced_precision_reduction=False
     assert getattr(flag_gems,'current_work_registrar',None) is None
     gate=json.loads((BASE/'CPU_GATE_32g.json').read_text());assert gate['complete'] and gate['INT32_no_overflow']
     assert all(digest(path)==sha for path,sha in gate['sources'].items())
-    files=[BASE/name for name in ("weight_signature.json",'kernel.py','check_cpu.py','CPU_GATE_32g.json','probe_gpu.py','run_component.sh','tiles.json')]
+    files=[BASE/name for name in ("baseline.py","qualified_down_route.json","weight_signature.json",'kernel.py','check_cpu.py','CPU_GATE_32g.json','probe_gpu.py','run_component.sh','tiles.json')]
     files += [Path(inspect.getsourcefile(flag_gems.linear)),Path('/workspace/MiniCPM5-2B/config.json')]
     frozen={**gate["sources"],**{str(path):digest(path) for path in files}}
     for path in map(Path,frozen):
@@ -31,7 +32,7 @@ def main():
     result=dict(complete=False,phase='weights',runner_pid=os.getpid(),started_utc=datetime.now(timezone.utc).isoformat(),frozen_sources=frozen,
         plans=PLANS,cases=[],weights={},timing_rounds=[],official_benchmark=False,adopted=False,model_executed=False,
         timing_scope='Hot CUDA Graph: per-token absmax/RNE A quantization plus integer GEMM and dequantization; static W packing excluded and recorded.',
-        baseline='flag_gems.linear(A_BF16.contiguous(), W_BF16, None), hot Graph, same actual checkpoint weights and activations',
+        baseline='Actual Down BF16 mm, existing M2048 specialized tiles retained; auxiliary vendor linear also timed',
         numerical_scope='Full exact INT32 GPU check where actual sum(abs(products))<2**24; independent selected CPU INT64; full BF16 output against quantized reference. Original BF16 approximation error separately reported.',
         full_GPU_checks_saved_as_assertions=True,offline_CPU_verifier_scope='Full A quantization and selected original weight rows / output rows and columns; not offline full GPU output verification',checkpoint_files_never_modified=True)
     def save():
@@ -98,12 +99,15 @@ def main():
                     graphs={};native_out=None
                     try:
                         for _ in range(3):
-                            native_out=flag_gems.linear(a.contiguous(),w,None);quant_kernel=kernel.quantize(a,q,asc)
+                            native_out=baseline.qualified_mm(a,w);linear_out=flag_gems.linear(a,w,None);quant_kernel=kernel.quantize(a,q,asc)
                             gemm_kernel=kernel.mm(q,wq.T,asc,ws,out,integer,config)
                         torch.cuda.synchronize()
                         graph=torch.cuda.CUDAGraph()
-                        with torch.cuda.graph(graph):native_out=flag_gems.linear(a.contiguous(),w,None)
+                        with torch.cuda.graph(graph):native_out=baseline.qualified_mm(a,w)
                         graphs['native']=graph
+                        graph=torch.cuda.CUDAGraph()
+                        with torch.cuda.graph(graph):linear_out=flag_gems.linear(a,w,None)
+                        graphs['linear']=graph
                         graph=torch.cuda.CUDAGraph()
                         with torch.cuda.graph(graph):kernel.quantize(a,q,asc);kernel.mm(q,wq.T,asc,ws,out,integer,config)
                         graphs['candidate']=graph
@@ -117,7 +121,7 @@ def main():
                         w.copy_(wc*sign*factor);wq.copy_(wqc*sign);ws.copy_(wsc*factor)
                         x_before=a.clone();w_before=w.clone();qweight_before=wq.clone();scale_before=ws.clone()
                         rng=torch.cuda.get_rng_state().clone();cpu_rng=torch.get_rng_state().clone()
-                        graphs['native'].replay();graphs['candidate'].replay();torch.cuda.synchronize()
+                        graphs['native'].replay();graphs['linear'].replay();graphs['candidate'].replay();torch.cuda.synchronize()
                         assert torch.equal(q.cpu(),archive['actual_A_INT8']) and torch.equal(asc.cpu(),archive['actual_A_scale'])
                         bound=q.float().abs()@wq.float().abs().T;max_sum_abs=float(bound.max());assert max_sum_abs<2**24
                         integer_reference=q.float()@wq.float().T
@@ -128,8 +132,10 @@ def main():
                         reference=integer_reference*asc[:,None]*ws[None,:]
                         error=(out.float()-reference).abs();assert bool(torch.isfinite(out).all()) and not bool((error>(.02+.01*reference.abs())).any())
                         native_selected=native_out[rdev[:,None],cdev[None,:]].cpu()
+                        linear_selected=linear_out[rdev[:,None],cdev[None,:]].cpu()
                         native_reference=archive['a'][rows].float()@(archive['original_weight_rows'].float()*sign*factor).T
                         assert not bool(((native_selected.float()-native_reference).abs()>(.02+.01*native_reference.abs())).any())
+                        assert not bool(((linear_selected.float()-native_reference).abs()>(.02+.01*native_reference.abs())).any())
                         assert torch.equal(a,x_before) and torch.equal(w,w_before) and torch.equal(wq,qweight_before) and torch.equal(ws,scale_before)
                         assert torch.equal(torch.cuda.get_rng_state(),rng) and torch.equal(torch.get_rng_state(),cpu_rng)
                         assert bool((q_store[m*k:]==17).all() and (asc_store[m:]==17).all() and (out_store[m*n:]==17).all() and (int_store[m*n:]==-777).all() and (wq_store[n*k:]==17).all() and (ws_store[n:]==17).all())
@@ -139,16 +145,16 @@ def main():
                             original_BF16_relative_L2=float((delta.square().sum()/native_out.float().square().sum().clamp_min(1.e-20)).sqrt()),
                             original_BF16_max_abs=float(delta.abs().max()),original_BF16_top1_agreement=float((out.argmax(1)==native_out.argmax(1)).float().mean()))
                         entry['phases'].append(observed)
-                        archive['outputs'][str(index)]=dict(integer=integer[rdev[:,None],cdev[None,:]].cpu(),candidate=out[rdev[:,None],cdev[None,:]].cpu(),native=native_selected)
+                        archive['outputs'][str(index)]=dict(integer=integer[rdev[:,None],cdev[None,:]].cpu(),candidate=out[rdev[:,None],cdev[None,:]].cpu(),native=native_selected,linear=linear_selected)
                         torch.save(archive,root/case['phase_files'][phase])
                         del bound,integer_reference,reference,error,delta,x_before,w_before,qweight_before,scale_before
                     for round_index in range(7):
-                        order=['native','candidate'] if round_index%2==0 else ['candidate','native'];times={mode:measure(graphs[mode]) for mode in order}
+                        order=[['native','candidate','linear'],['candidate','linear','native'],['linear','native','candidate']][round_index%3];times={mode:measure(graphs[mode]) for mode in order}
                         result['timing_rounds'].append(dict(case=name,M=m,index=index,round=round_index,order=order,replays=20,**{mode+'_ms':value for mode,value in times.items()}))
                     assert bool((q_store[m*k:]==17).all() and (asc_store[m:]==17).all() and (out_store[m*n:]==17).all() and (int_store[m*n:]==-777).all())
                     entry['timing_guards_passed']=True;save()
                     print(json.dumps(dict(case=name,M=m,index=index,compiled=True,phases=3)),flush=True)
-                    graphs.clear();del graphs,graph,native_out;gc.collect()
+                    graphs.clear();del graphs,graph,native_out,linear_out;gc.collect()
                 assert any(c.get('compiled') for c in case['configurations'])
                 for archive,path in zip(archives,case['phase_files'],strict=True):torch.save(archive,root/path)
                 del a,astore,w,wq_store,wq,ws_store,ws,q_store,q,asc_store,asc,out_store,out,int_store,integer,archives

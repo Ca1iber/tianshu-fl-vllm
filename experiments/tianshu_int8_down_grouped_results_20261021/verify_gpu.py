@@ -43,13 +43,14 @@ for case in result['cases']:
             assert torch.equal(actual['integer'].to(torch.int64),integer)
             assert bool(torch.isfinite(actual['candidate']).all()) and not bool(((actual['candidate'].float()-reference).abs()>(.02+.01*reference.abs())).any())
             assert not bool(((actual['native'].float()-native_ref).abs()>(.02+.01*native_ref.abs())).any())
+            assert not bool(((actual['linear'].float()-native_ref).abs()>(.02+.01*native_ref.abs())).any())
             cpu_integer_elements+=integer.numel();checks+=1
     for config in valid:
         times=[r for r in result['timing_rounds'] if r['case']==case['name'] and r['M']==m and r['index']==config['index']]
         assert len(times)==7 and sorted(t['round'] for t in times)==list(range(7))
-        assert all(t['replays']==20 and t['native_ms']>0 and t['candidate_ms']>0 and t['order']==(['native','candidate'] if t['round']%2==0 else ['candidate','native']) for t in times)
+        assert all(t['replays']==20 and t['native_ms']>0 and t['candidate_ms']>0 and t['order']==[['native','candidate','linear'],['candidate','linear','native'],['linear','native','candidate']][t['round']%3] and t['linear_ms']>0 for t in times)
         native=statistics.median(t['native_ms'] for t in times);candidate=statistics.median(t['candidate_ms'] for t in times)
-        rows.append(dict(case=case['name'],M=m,N=n,K=k,index=config['index'],configuration=config['configuration'],native_ms=native,candidate_ms=candidate,
+        rows.append(dict(case=case['name'],M=m,N=n,K=k,index=config['index'],configuration=config['configuration'],native_ms=native,candidate_ms=candidate,linear_ms=statistics.median(t["linear_ms"] for t in times),
             throughput_gain_percent=(native/candidate-1)*100,metadata=config['gemm_metadata']))
 best=[]
 for case in result['cases']:
@@ -63,9 +64,9 @@ gate=dict(complete=True,independently_CPU_rechecked=True,cases=len(result['cases
 (BASE/'GPU_GATE_32g.json').write_text(json.dumps(gate,indent=2)+'\n');(BASE/'GPU_ROUNDS_32g.json').write_text(json.dumps(result['timing_rounds'],indent=2)+'\n')
 (BASE/'GPU_COMPARISON_32g.json').write_text(json.dumps(rows,indent=2)+'\n')
 with (BASE/"KEY_TIMINGS_32g.csv").open("w",newline="") as file:
-    fields=("M","index","native_ms","candidate_ms","throughput_gain_percent","configuration")
+    fields=("M","index","native_ms","candidate_ms","linear_ms","throughput_gain_percent","configuration")
     writer=csv.DictWriter(file,fieldnames=fields,lineterminator="\n");writer.writeheader();writer.writerows({k:r[k] for k in fields} for r in rows)
-gate["baseline"]="Iluvatar BF16 flag_gems.linear, actual Down checkpoint weights"
+gate["baseline"]="Actual Down BF16 mm with existing M2048 specialized tiles retained, auxiliary vendor linear timed"
 gate["raw_result_sha256"]=hashlib.sha256((root/"result.json").read_bytes()).hexdigest()
 (BASE/"GPU_GATE_32g.json").write_text(json.dumps(gate,indent=2)+"\n")
 print(json.dumps(gate))

@@ -22,7 +22,10 @@ for c in plans:
         first=pid//(g*cols)*g;size=min(rows-first,g);local=pid%(g*cols);r=first+local%size;column=local//size
         assert 0<=r<rows and 0<=column<cols and (r,column) not in seen;seen.add((r,column))
       assert len(seen)==rows*cols;checks+=1
-paths=[*BASE.glob('*.py'),*BASE.glob('*.sh'),BASE/'tiles.json',BASE/'weight_signature.json',PARENT/'kernel.py',PARENT/'tiles.json']
+route=json.loads((BASE/'qualified_down_route.json').read_text());assert route['shape']==[2048,2048,6144] and route['enabled']
+assert route['configuration']==dict(bm=256,bn=256,bk=32,splits=1,warps=16,stages=2,group_m=1)
+assert sha(route['kernel_source'])==route['kernel_sha256'] and sha(route['vendor_source'])==route['vendor_sha256']
+paths=[*BASE.glob('*.py'),*BASE.glob('*.sh'),BASE/'tiles.json',BASE/'weight_signature.json',BASE/'qualified_down_route.json',Path(route['kernel_source']),Path(route['vendor_source']),BASE.parent/'tianshu_prefill_gemm_tiles_20261014/hooks/sitecustomize.py',PARENT/'kernel.py',PARENT/'tiles.json']
 result=dict(complete=True,CPU_only=True,no_GPU_started=True,INT32_no_overflow=True,worst_absolute_integer_sum=99096576,
  kernel_bytes_identical_to_completed_grouped_GateUp=True,all_tile_geometry_permutations_complete_unique_in_bounds=True,geometry_cases=checks,
  model_accuracy_and_GPU_numerics_unproven=True,source_checkpoint_never_modified=True,sources={str(p.resolve()):sha(p) for p in paths})
