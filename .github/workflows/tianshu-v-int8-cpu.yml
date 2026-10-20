@@ -1,0 +1,56 @@
+name: Tianshu INT8 V CPU contract
+
+on:
+  push:
+    branches: [exp/tianshu-v-int8-20261020]
+    paths:
+      - experiments/tianshu_v_int8_20261020/**
+      - .github/workflows/tianshu-v-int8-cpu.yml
+
+permissions:
+  contents: read
+
+jobs:
+  cpu-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Read the exact public experiment commit
+        env:
+          EXPECTED_SHA: ${{ github.sha }}
+          REPOSITORY: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$REPOSITORY" = Ca1iber/tianshu-fl-vllm
+          git init .
+          git remote add origin "https://github.com/$REPOSITORY.git"
+          git fetch --depth=1 origin "$EXPECTED_SHA"
+          git checkout --detach FETCH_HEAD
+          test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
+      - name: Read the frozen best reader without installing GPU packages
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 \
+            https://github.com/Ca1iber/tianshu-fl-vllm/releases/download/tianshu-archive-20261019/tianshu_k8v16_budget_default_official_20261019.tgz \
+            -o "$RUNNER_TEMP/best_official.tgz"
+          printf '%s  %s\n' \
+            67f6faa0afe2658573ab7273dc665d8460523d2bb76f751aefc47273501e8207 \
+            "$RUNNER_TEMP/best_official.tgz" | sha256sum --check -
+          tar -xzOf "$RUNNER_TEMP/best_official.tgz" \
+            20261019_k8v16_budget_default_official4k_tianshu/decode_coherent_records/cache_generated/97987/generated_cache_policy.py \
+            > "$RUNNER_TEMP/frozen_reader.py"
+      - name: Check the CPU numeric contract and exact source transformations
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 --version
+          python3 -m py_compile \
+            experiments/tianshu_v_int8_20261020/codec.py \
+            experiments/tianshu_v_int8_20261020/check_cpu.py
+          python3 experiments/tianshu_v_int8_20261020/check_cpu.py \
+            --reader-source "$RUNNER_TEMP/frozen_reader.py" \
+            > "$RUNNER_TEMP/CPU_GATE_GITHUB_32g.json"
+          cat "$RUNNER_TEMP/CPU_GATE_GITHUB_32g.json"
+          printf '%s\n' 'Scope: CPU numeric contract and source edits only; no Triton compilation, GPU, service, or adoption proof.'
