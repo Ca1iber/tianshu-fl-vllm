@@ -1,0 +1,13 @@
+# 单token解码整数元数据融合：CPU通过，GPU排队验证
+
+目标为服务实际使用的ModelRunnerFL._prepare_inputs。现有十条语句每步上传req_indices、query_pos、num_scheduled_tokens，再通过GPU索引、转换、相加和填零生成positions/seq_lens。每请求恰好一个scheduled token时，req_indices=i、query_pos=0、num_scheduled_tokens=1，可在一个整数Triton kernel中写出这三项及positions=num_computed_tokens、seq_lens=num_computed_tokens+1，同时保留原seq_lens尾部清零和其它缓冲区尾部不变。
+
+本候选只优化这一个整数元数据块。CPU赋值仍保留；原方法其它语句与签名在AST恢复后完全相同，未命中的else分支是生产原十条语句。保留此前computed-token上传、后续slot mapping、输入ID及所有模型/采样流程。范围限定B1..64、每请求恰好一个token、已验证连续I32/I64元数据；多token、M-RoPE/XD-RoPE、prompt embed、Mamba、投机和非CUDA等回退。
+
+CPU已验证384项：B1..64、容量64/256、三组位置范围；原生产FL十条语句使用真实Torch CPU执行，与独立整数公式比较全部CPU/GPU模拟缓冲区、尾部和只读num_computed_tokens；15个描述符边界检查通过，没有分配GPU或改动RNG。目标生产文件SHA为b0144bcf…；上游原生GPUModelRunner中的相应块与FL块AST相同，但生产类自身定义了方法，最终生成与绑定目标必须是ModelRunnerFL。
+
+初版探针误把FL文件SHA用于上游文件断言，零数值样本退出，原件保留20261020_decode_metadata_CPU_tianshu。随后上游参考384项通过，原件CPU_v2；最终实际生产FL384项通过，原件20261020_decode_metadata_CPU_production_FL_tianshu。本目录CPU_GATE记录最终实际FL目标，不将上游类当作服务实际调用方。
+
+GPU探针使用真实CpuGpuBuffer、同Worker默认的FlagGems全算子注册、生产十条语句与独立CPU参考；计划14个批次/容量组合，覆盖原始及两次改变GPU computed输入的同一CUDA Graph、全缓冲区逐位/尾部、GPU RNG状态、7轮交替图内event与含真实H2D/CPU门控的eager host-wall计时。图内计时不能代替整个服务，数值通过也不自动采用。
+
+已排在当前已确认存活的未来KV准入16K控制器PID41865之后。queue_component.sh只等待该进程终止并要求前一任务complete，run_component.sh再要求GPU空闲，后启动探针，23:58北京时间硬截止。当前尚无GPU或模型性能/Math结果。源、报告、关键JSON保存GitHub，原始产物只存容器。
