@@ -1,0 +1,13 @@
+# 2026-10-21: new slot through 2026-10-22 00:00 Beijing
+
+GPU hard stop is 2026-10-21T15:58:00+00:00 (23:58 Beijing). Default remains published tag tianshu-original-command-4k-prefill-int8-20261021: formal4K5586.28 total tok/s,1117.25 output tok/s,TTFT3780.63ms; fresh Math102/105. No new16K claim.
+
+Down180-config/540-phase component passed numeric checks but is not adopted: decode M8/64 regresses; M4096 only+6.14% and requires another packed bank. Auxiliary BF16 linear regresses at dominant M4096. KV V1 compile failure is preserved; independent V2 passes120 numeric paths but fixed-K/paired-V remain38–40% slower at C64/4K. Both reports and key results are committed with ae24f1a and pushed to GitHub.
+
+Large-M GUP INT8 component independently passes M4096/8192/16384; best M8192 3.980265ms versus BF16 linear4.729503ms (+18.82%). This is not full16K benchmark and not yet model performance.
+
+Prepared independent experiments tianshu_prefill_budget8192_nn_20261021 and tianshu_prefill_budget8192_service_20261021. Compare budget4096/8192, fixed current precision routes, original13argv, N64 C64 4K/1K three rounds per arm excluding first. CPU final gate passes actual13guard cases,16NN/prefill budget expressions,8long-guard cases, actual deep-audit import binding,445frozen runtime sources,64environment variables. Startup own INT8 warms added aligned Ms through actual budget; native warm83/99. No completed GPU experiment source was edited. An initial CPU-only preparation import probe caught old base_runtime_audit module caching; fixed before any GPU launch, old CPU preparation records retained only in container. The final source manifest is frozen before this screen starts.
+
+Queue script: experiments/tianshu_prefill_budget8192_service_20261021/run_queue.sh. Raw runner /workspace/benchmark-results/20261021_prefill_budget8192_runner_tianshu; arm roots /workspace/benchmark-results/20261021_prefill_budget8192_service_{control,candidate}_tianshu. Do not edit frozen .py/.sh, CPU_GATE or selection while/after GPU runs; failures use a new experiment directory or separate CPU-only archive auditor if only result packaging fails. Read real PID and terminal state, not an observation timeout.
+
+Next: finish both small screens and independent CPU audit, report each round. Meaningful gain requires fresh Math105>95% and officialN256. Retain qualified throughput/TTFT alternatives; do not reject solely by a self-imposed TTFT preference. Continue framework exploration if this candidate is negative. Only Tianshu repositories may be modified. Preserve the two pre-existing dirty gateup_silu user files. Code/raw stay in container, code/reports/key results go to GitHub; no local source/data replicas.

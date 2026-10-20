@@ -1,0 +1,134 @@
+{
+  "complete": true,
+  "component_only": true,
+  "component_gate": "/workspace/vllm-plugin-FL/experiments/tianshu_int8_gateup_prefill_grouped_results_20261021/GPU_GATE_32g.json",
+  "component_gate_sha256": "ab27f9aab3bee11c1324e55f6efb461ed83768c16b3552d70d8c9ff4e7b57ab3",
+  "kernel_sha256": "2045cc130a63f624161263c3a2718ad4ac0015b0c84f8a0a396e889e9f93d868",
+  "minimum_M": 128,
+  "required_M_multiple": 128,
+  "configurations": [
+    {
+      "M": 128,
+      "configuration": {
+        "bm": 128,
+        "bn": 512,
+        "bk": 64,
+        "warps": 8,
+        "stages": 1,
+        "group_m": 1
+      },
+      "component_native_ms": 0.13170653581619263,
+      "component_INT8_ms": 0.0955875039100647,
+      "component_gain_percent": 37.786353266543294
+    },
+    {
+      "M": 256,
+      "configuration": {
+        "bm": 128,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1,
+        "group_m": 8
+      },
+      "component_native_ms": 0.21465210914611815,
+      "component_INT8_ms": 0.14445750713348388,
+      "component_gain_percent": 48.59186857473039
+    },
+    {
+      "M": 512,
+      "configuration": {
+        "bm": 128,
+        "bn": 512,
+        "bk": 64,
+        "warps": 8,
+        "stages": 1,
+        "group_m": 8
+      },
+      "component_native_ms": 0.3181403875350952,
+      "component_INT8_ms": 0.2533028841018677,
+      "component_gain_percent": 25.59682794892799
+    },
+    {
+      "M": 1024,
+      "configuration": {
+        "bm": 128,
+        "bn": 512,
+        "bk": 64,
+        "warps": 8,
+        "stages": 1,
+        "group_m": 8
+      },
+      "component_native_ms": 0.5826974868774414,
+      "component_INT8_ms": 0.5027784824371337,
+      "component_gain_percent": 15.895470317845305
+    },
+    {
+      "M": 1152,
+      "configuration": {
+        "bm": 128,
+        "bn": 512,
+        "bk": 64,
+        "warps": 8,
+        "stages": 1,
+        "group_m": 8
+      },
+      "component_native_ms": 0.7688559532165528,
+      "component_INT8_ms": 0.5932844161987305,
+      "component_gain_percent": 29.593148281685465
+    },
+    {
+      "M": 2048,
+      "configuration": {
+        "bm": 128,
+        "bn": 512,
+        "bk": 64,
+        "warps": 8,
+        "stages": 1,
+        "group_m": 8
+      },
+      "component_native_ms": 1.171426010131836,
+      "component_INT8_ms": 1.0033103942871093,
+      "component_gain_percent": 16.756092312208047
+    },
+    {
+      "M": 4096,
+      "configuration": {
+        "bm": 128,
+        "bn": 512,
+        "bk": 64,
+        "warps": 8,
+        "stages": 1,
+        "group_m": 8
+      },
+      "component_native_ms": 2.3646684646606446,
+      "component_INT8_ms": 2.0128007888793946,
+      "component_gain_percent": 17.48149532359575
+    },
+    {
+      "M": 8192,
+      "configuration": {
+        "bm": 128,
+        "bn": 512,
+        "bk": 64,
+        "warps": 8,
+        "stages": 1,
+        "group_m": 8
+      },
+      "component_native_ms": 4.72950325012207,
+      "component_INT8_ms": 3.9802650451660155,
+      "component_gain_percent": 18.8238269676537
+    }
+  ],
+  "excluded_measured_cases": [
+    {
+      "M": 129,
+      "throughput_gain_percent": -48.13681943075638
+    }
+  ],
+  "unknown_or_unaligned_M": "qualified_BF16_fallback",
+  "intermediate_aligned_M": "nearest_upper_measured_config; explicit startup numerical warmup required, intermediate performance unproven",
+  "large_component_gate": "/workspace/vllm-plugin-FL/experiments/tianshu_int8_prefill_budget_large_results_20261021/GPU_GATE_32g.json",
+  "large_component_gate_sha256": "b41797cfb02f74476342d40eb7faab26a8604ba65713fda08ddbae22c8de9c52",
+  "maximum_M": 8192
+}
