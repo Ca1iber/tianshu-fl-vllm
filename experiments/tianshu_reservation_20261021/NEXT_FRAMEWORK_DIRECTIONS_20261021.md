@@ -1,0 +1,11 @@
+# 后续设计约束，均未实现/未测收益
+
+当前默认保持正式5586.28/TTFT3780.63、Math102/105，标签tianshu-original-command-4k-prefill-int8-20261021；优先完成唯一Down→KV组件队列，不启动并行GPU任务。以下只是未来设计，不是成绩或已实现代码。
+
+若Down组件正收益，独立模型profile需以当前prefill INT8版本为对照。真实42层Down[N2048,K6144]每层packed+scale12591104bytes，共528826368bytes；保留BF16原权重，新增payload必须在原生DeviceMemoryProfiler内登记、全权重逻辑SHA不变/量化签名可复核，temporary NT→NN转置释放并正确计费。只启用组件明确有收益/预热的M，unsupported保留原BF16，不用大BM测试失败来代替小M探索。20配置已经包含BM16/32与原大矩阵12点。
+
+纯decode M8/M64的新Down分支必须在真正CUDA Graph捕获时启用；不能在捕获结束后才开关，然后错误声称Graph已经跑INT8。预热必须不改RNG；实际42层capture及Graph replay均有执行证明。若新Down大M启用，profile_run必须反映A量化的workspace峰值，避免KV规划完成后才增加未计入的M4096/K6144临时buffer。原有M2048专用BF16基线的warm证据与新实际运行路径分开，不能拿warm调用冒充计分路径。额外529MB可改变KV block数，逐臂披露真实容量/抢占/FutureKV，不能固定写旧40723/40731。先N64三轮排首轮，稳定显著才新Math>95及原N256四轮，不为随机分数失败重跑。
+
+若Down量化可用，后续可研究SiLU→A量化融合，但当前Inductor已融合slice/SiLU/mul，不能再把分开的未优化kernel当基线。实际生成图Silu语义为FP32 gate*sigmoid先转BF16，再乘up并转BF16；融合必须保留这些rounding点和div_rn/RNE量化语义。RMS→量化的既有RMS_INT8_FUSION_REVIEW需继续参照；当前IR native custom_ops=none，不应假设RMSNormFL.forward_oot正在运行。禁止用Python全局临时tensor字典绕开显式Graph数据依赖。
+
+投机方向需先重读旧speculative/ngram的报告和失败原因，不把ngram负收益直接等同全部draft框架不可能。一个需验证的架构问题：多token verification可能进入当前慢prefill/dequant-arena路由，且LM只在M64整数、其它M可能BF16；draft接受率、真实verification attention、LM batch尺寸和额外KV/weights都需实际检查。若从这里重新研究，先源码证据与小实验，不仅改变num_speculative_tokens重复跑旧慢路径。没有新投机实现或收益，不据此更换默认。
