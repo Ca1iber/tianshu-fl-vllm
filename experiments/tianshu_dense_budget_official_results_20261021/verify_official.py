@@ -60,7 +60,7 @@ def main():
     total=float(summary['Total tok/s']);ttft=float(summary['Mean TTFT (ms)']);values=[float(r['Total tok/s']) for r in raw[1:]]
     spread=100*(max(values)-min(values))/statistics.mean(values);gain=100*(total/prior['total_tok_s']-1)
     qualifies_for_best_review=bool(gain>0 and ttft<=prior['mean_TTFT_ms']*1.01 and spread<1 and current['passes_public_4k_performance_gates']);adopted=False
-    files=[root/'comparison.json',root/'result.json',root/'before_metrics.txt',root/'after_metrics.txt',root/'hardware_after.txt',math/'accuracy_audit.json',*raw_files,*summary_files]
+    files=[root/'comparison.json',root/'result.json',root/'before_metrics.txt',root/'after_metrics.txt',root/'hardware_after.txt',math/'rechecked_accuracy_audit.json',math/'rechecked_result.json',math/'postprocessing_recovery.json',math/'result.json',*raw_files,*summary_files]
     gate=dict(complete=True,independently_rechecked=True,adopted=adopted,original_comparison_not_overwritten=True,official_workloads=[dict(input_tokens=4096,output_tokens=1024,concurrency=64,requests_per_round=256,rounds=4,excluded_rounds=[1])],
         original_Math_audit_failure_retained=True,postprocessing_only_recovery=True,supplemental_Python_controller_source_count=2,
         qualifies_for_best_review=qualifies_for_best_review,adoption_not_performed_by_archiver=True,actual_budget=8192,actual_warm_points=99,
