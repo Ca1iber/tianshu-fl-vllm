@@ -1,0 +1,7 @@
+# 图外采样核启动预热的服务对照
+
+两臂均沿用当前推荐的359源LM BF16小批次/64整数模型配置、4096预算、seq64/async及原13项serve命令。62环境保持，仅PYTHONPATH选择控制或候选hook；没有增加模型参数。Worker原构造和全部合格策略安装后再包装capture_model，先原样调用capture，再在候选启动阶段用私有CUDA生成器预热B1..64原生FP32指数采样核及offset0/2^31/2^32。默认CPU/GPU RNG必须保持，真实source hash、调用时点和192次预热逐条记录。
+
+组件已通过4830720个B37输出逐字与37采样选择一致及RNG检查；当前缓存下0.416秒不等于冷启动成本或服务收益。此A/B不承诺全部cache entries开始为冷态；先检查真实服务路由、seeded canary一致、每轮autotune与实际吞吐/TTFT，之后才决定是否需要受控冷态实验与新Math。小4K/1K C64/N64三轮剔首轮，不能冒充N256完整成绩。
+
+模型计算路径保持原候选LM精度，暖缓存模式使用state.mode区分；审计明确记录qualified_LM_model_precision_mode=candidate。没有旧Math冒充新Math，尚未采用。源与结果全部留天数/GitHub，raw回答只留容器。
