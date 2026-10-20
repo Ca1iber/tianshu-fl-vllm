@@ -26,6 +26,7 @@ try:
     prop=torch.cuda.get_device_properties(0)
     result['device']=dict(name=prop.name,total_memory=prop.total_memory,multi_processor_count=prop.multi_processor_count,
                           major=prop.major,minor=prop.minor,torch_version=torch.__version__)
+    result['torch_device_properties']={name:getattr(prop,name) for name in dir(prop) if not name.startswith('_') and isinstance(getattr(prop,name),(int,float,str,bool))}
     try:result['triton_device_properties']=driver.active.utils.get_device_properties(0)
     except Exception as error:result['properties_query_error']=repr(error)
     for width in (16,32):
