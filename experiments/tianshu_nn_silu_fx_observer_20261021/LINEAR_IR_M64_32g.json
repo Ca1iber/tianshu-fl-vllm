@@ -1,0 +1,423 @@
+{
+  "linear": {
+    "name": "linear",
+    "op": "call_function",
+    "target": "tianshu_prefill_int8.linear.default",
+    "args": [
+      {
+        "node": "getitem"
+      },
+      {
+        "node": "arg5_1"
+      },
+      {
+        "node": "arg6_1"
+      },
+      {
+        "node": "arg7_1"
+      },
+      0
+    ],
+    "kwargs": {},
+    "users": [
+      "slice_1",
+      "slice_2"
+    ],
+    "meta": {
+      "shape": [
+        "64",
+        "12288"
+      ],
+      "stride": [
+        "12288",
+        "1"
+      ],
+      "dtype": "torch.bfloat16",
+      "device": "cuda:0"
+    }
+  },
+  "descendants": [
+    {
+      "name": "slice_1",
+      "op": "call_function",
+      "target": "aten.slice.Tensor",
+      "args": [
+        {
+          "node": "linear"
+        },
+        1,
+        0,
+        6144
+      ],
+      "kwargs": {},
+      "users": [
+        "convert_element_type_2"
+      ],
+      "meta": {
+        "shape": [
+          "64",
+          "6144"
+        ],
+        "stride": [
+          "12288",
+          "1"
+        ],
+        "dtype": "torch.bfloat16",
+        "device": "cuda:0"
+      }
+    },
+    {
+      "name": "convert_element_type_2",
+      "op": "call_function",
+      "target": "prims.convert_element_type.default",
+      "args": [
+        {
+          "node": "slice_1"
+        },
+        "torch.float32"
+      ],
+      "kwargs": {},
+      "users": [
+        "sigmoid",
+        "mul"
+      ],
+      "meta": {
+        "shape": [
+          "64",
+          "6144"
+        ],
+        "stride": [
+          "6144",
+          "1"
+        ],
+        "dtype": "torch.float32",
+        "device": "cuda:0"
+      }
+    },
+    {
+      "name": "sigmoid",
+      "op": "call_function",
+      "target": "aten.sigmoid.default",
+      "args": [
+        {
+          "node": "convert_element_type_2"
+        }
+      ],
+      "kwargs": {},
+      "users": [
+        "mul"
+      ],
+      "meta": {
+        "shape": [
+          "64",
+          "6144"
+        ],
+        "stride": [
+          "6144",
+          "1"
+        ],
+        "dtype": "torch.float32",
+        "device": "cuda:0"
+      }
+    },
+    {
+      "name": "mul",
+      "op": "call_function",
+      "target": "aten.mul.Tensor",
+      "args": [
+        {
+          "node": "convert_element_type_2"
+        },
+        {
+          "node": "sigmoid"
+        }
+      ],
+      "kwargs": {},
+      "users": [
+        "convert_element_type_3"
+      ],
+      "meta": {
+        "shape": [
+          "64",
+          "6144"
+        ],
+        "stride": [
+          "6144",
+          "1"
+        ],
+        "dtype": "torch.float32",
+        "device": "cuda:0"
+      }
+    },
+    {
+      "name": "convert_element_type_3",
+      "op": "call_function",
+      "target": "prims.convert_element_type.default",
+      "args": [
+        {
+          "node": "mul"
+        },
+        "torch.bfloat16"
+      ],
+      "kwargs": {},
+      "users": [
+        "mul_1"
+      ],
+      "meta": {
+        "shape": [
+          "64",
+          "6144"
+        ],
+        "stride": [
+          "6144",
+          "1"
+        ],
+        "dtype": "torch.bfloat16",
+        "device": "cuda:0"
+      }
+    },
+    {
+      "name": "slice_2",
+      "op": "call_function",
+      "target": "aten.slice.Tensor",
+      "args": [
+        {
+          "node": "linear"
+        },
+        1,
+        6144,
+        9223372036854775807
+      ],
+      "kwargs": {},
+      "users": [
+        "mul_1"
+      ],
+      "meta": {
+        "shape": [
+          "64",
+          "6144"
+        ],
+        "stride": [
+          "12288",
+          "1"
+        ],
+        "dtype": "torch.bfloat16",
+        "device": "cuda:0"
+      }
+    },
+    {
+      "name": "mul_1",
+      "op": "call_function",
+      "target": "aten.mul.Tensor",
+      "args": [
+        {
+          "node": "convert_element_type_3"
+        },
+        {
+          "node": "slice_2"
+        }
+      ],
+      "kwargs": {},
+      "users": [
+        "mm_1"
+      ],
+      "meta": {
+        "shape": [
+          "64",
+          "6144"
+        ],
+        "stride": [
+          "6144",
+          "1"
+        ],
+        "dtype": "torch.bfloat16",
+        "device": "cuda:0"
+      }
+    },
+    {
+      "name": "mm_1",
+      "op": "call_function",
+      "target": "aten.mm.default",
+      "args": [
+        {
+          "node": "mul_1"
+        },
+        {
+          "node": "permute_1"
+        }
+      ],
+      "kwargs": {},
+      "users": [
+        "fused_add_rms_norm_1"
+      ],
+      "meta": {
+        "shape": [
+          "64",
+          "2048"
+        ],
+        "stride": [
+          "2048",
+          "1"
+        ],
+        "dtype": "torch.bfloat16",
+        "device": "cuda:0"
+      }
+    },
+    {
+      "name": "fused_add_rms_norm_1",
+      "op": "call_function",
+      "target": "vllm_ir.fused_add_rms_norm.default",
+      "args": [
+        {
+          "node": "mm_1"
+        },
+        {
+          "node": "getitem_1"
+        },
+        {
+          "node": "arg9_1"
+        },
+        0.000001
+      ],
+      "kwargs": {},
+      "users": [
+        "getitem_2",
+        "getitem_3"
+      ],
+      "meta": null
+    },
+    {
+      "name": "getitem_2",
+      "op": "call_function",
+      "target": "<built-in function getitem>",
+      "args": [
+        {
+          "node": "fused_add_rms_norm_1"
+        },
+        0
+      ],
+      "kwargs": {},
+      "users": [
+        "mm_2"
+      ],
+      "meta": {
+        "shape": [
+          "64",
+          "2048"
+        ],
+        "stride": [
+          "2048",
+          "1"
+        ],
+        "dtype": "torch.bfloat16",
+        "device": "cuda:0"
+      }
+    },
+    {
+      "name": "getitem_3",
+      "op": "call_function",
+      "target": "<built-in function getitem>",
+      "args": [
+        {
+          "node": "fused_add_rms_norm_1"
+        },
+        1
+      ],
+      "kwargs": {},
+      "users": [
+        "output"
+      ],
+      "meta": {
+        "shape": [
+          "64",
+          "2048"
+        ],
+        "stride": [
+          "2048",
+          "1"
+        ],
+        "dtype": "torch.bfloat16",
+        "device": "cuda:0"
+      }
+    },
+    {
+      "name": "mm_2",
+      "op": "call_function",
+      "target": "aten.mm.default",
+      "args": [
+        {
+          "node": "getitem_2"
+        },
+        {
+          "node": "permute_2"
+        }
+      ],
+      "kwargs": {},
+      "users": [
+        "split_with_sizes"
+      ],
+      "meta": {
+        "shape": [
+          "64",
+          "2560"
+        ],
+        "stride": [
+          "2560",
+          "1"
+        ],
+        "dtype": "torch.bfloat16",
+        "device": "cuda:0"
+      }
+    },
+    {
+      "name": "split_with_sizes",
+      "op": "call_function",
+      "target": "aten.split_with_sizes.default",
+      "args": [
+        {
+          "node": "mm_2"
+        },
+        [
+          2048,
+          256,
+          256
+        ],
+        -1
+      ],
+      "kwargs": {},
+      "users": [
+        "getitem_4",
+        "getitem_5",
+        "getitem_6"
+      ],
+      "meta": null
+    },
+    {
+      "name": "output",
+      "op": "output",
+      "target": "output",
+      "args": [
+        [
+          {
+            "node": "cat_1"
+          },
+          {
+            "node": "view_8"
+          },
+          {
+            "node": "cat"
+          },
+          {
+            "node": "view_6"
+          },
+          {
+            "node": "getitem_3"
+          }
+        ]
+      ],
+      "kwargs": {},
+      "users": [],
+      "meta": null
+    }
+  ]
+}
