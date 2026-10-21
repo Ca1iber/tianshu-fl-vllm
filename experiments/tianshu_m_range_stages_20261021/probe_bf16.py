@@ -59,7 +59,9 @@ def main():
                 additional_packed_bytes=wp.numel()*wp.element_size(),static_weight_pack_CPU_seconds=packing_CPU_seconds,static_weight_copy_H2D_seconds=packing_H2D_seconds,estimated_42_layer_extra_bytes=42*wp.numel()*wp.element_size(),static_packing_time_is_not_per_step=True)
             for m in ROWS:
                 generator=torch.Generator().manual_seed(202610210000+m+(1 if role=='down' else 2 if role=='o' else 3))
-                ac=torch.randn(m,k,dtype=torch.bfloat16,generator=generator);ac[0].zero_();a=ac.cuda()
+                ac=torch.randn(m,k,dtype=torch.bfloat16,generator=generator)
+                if m>1:ac[0].zero_()
+                a=ac.cuda()
                 xp=torch.empty(k//bk,m,bk,device='cuda',dtype=torch.bfloat16)
                 bm=64 if role=='down' else 128
                 config=dict(bm=bm,bn=bn,bk=bk,warps=4 if role=='down' else 8,stages=2,group_m=8)
