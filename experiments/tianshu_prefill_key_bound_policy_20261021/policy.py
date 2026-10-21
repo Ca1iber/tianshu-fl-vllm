@@ -22,7 +22,7 @@ def narrow(route,kw):
 def install(hybrid,dense,mode):
     assert mode in ('control','candidate') and not getattr(hybrid,'_tianshu_prefill_bound_installed',False)
     original_route=hybrid.route_from_common;cls=type(dense);original_stage=cls.__call__
-    state=dict(mode=mode,route_calls=0,metadata_bounds=0,metadata_unavailable=0,
+    state=dict(mode=mode,stage='installed',route_calls=0,metadata_bounds=0,metadata_unavailable=0,
         stage_calls=0,tightened_calls=0,unchanged_calls=0,
         original_route_identity_preserved=True,original_route_called_once=True,
         decode_dispatch_and_original_kwargs_unchanged=True,
@@ -41,7 +41,8 @@ def install(hybrid,dense,mode):
     @functools.wraps(original_stage)
     def stage(owner,kw):
         if owner is not dense:return original_stage(owner,kw)
-        selected=narrow(hybrid._ROUTE.get(),kw) if mode=='candidate' else kw
+        current_route=hybrid._ROUTE.get()
+        selected=narrow(current_route,kw) if mode=='candidate' else kw
         state['stage_calls']+=1
         state['tightened_calls' if selected is not kw else 'unchanged_calls']+=1
         answer=original_stage(owner,selected)
@@ -51,7 +52,7 @@ def install(hybrid,dense,mode):
             n=selected['seqused_k'].numel();blocks=(selected['max_seqlen_k']+15)//16
             row=owner.records.get(str((n,blocks)))
             if row is not None:
-                row.update(prefill_bound_mode=mode,stage_bound=selected['max_seqlen_k'],
+                row.update(prefill_bound_mode=mode,prefill_bound_stage=state['stage'],prefill_num_decodes=getattr(current_route,'num_decodes',0),prefill_bound_observations=state,stage_bound=selected['max_seqlen_k'],
                     original_global_maxK=kw['max_seqlen_k'],original_global_pages=n*((kw['max_seqlen_k']+15)//16),
                     actual_stage_pages=n*blocks,only_prefill_stage_kwargs_copied=(selected is not kw),
                     helper_source=str(BASE.parent/'tianshu_prefill_key_bound_20261021/bound.py'),

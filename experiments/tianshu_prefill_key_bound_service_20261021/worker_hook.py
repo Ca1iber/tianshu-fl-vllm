@@ -1,0 +1,53 @@
+# SPDX-License-Identifier: Apache-2.0
+"""Install only after qualified pipeline, persist metadata at existing lifecycle points."""
+import atexit
+import functools
+import hashlib
+import importlib.util
+import json
+import os
+from pathlib import Path
+import sys
+BASE=Path(__file__).resolve().parent
+HYBRID_SHA='5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4'
+NATIVE_METADATA_SHA='c524988a2223ec556bdb128a31c255075f0d07e7643e803b447975cd9c30a6b8'
+def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def install(worker,mode,directory):
+    import torch
+    from vllm.platforms import current_platform
+    from vllm_fl.worker import iluvatar_hybrid_attention as hybrid
+    from vllm_fl.worker.model_runner import ModelRunnerFL
+    import vllm.v1.attention.backends.triton_attn as backend
+    import vllm.v1.attention.backend as metadata
+    cfg=worker.vllm_config;hf=cfg.model_config.hf_config
+    assert mode in ('control','candidate') and current_platform.vendor_name=='iluvatar'
+    assert cfg.model_config.model=='/workspace/MiniCPM5-2B' and cfg.model_config.dtype==torch.bfloat16 and cfg.model_config.quantization is None
+    assert cfg.speculative_config is None and cfg.lora_config is None
+    assert (hf.hidden_size,hf.num_hidden_layers,hf.num_attention_heads,hf.num_key_value_heads)==(2048,42,16,2)
+    assert cfg.parallel_config.tensor_parallel_size==cfg.parallel_config.pipeline_parallel_size==cfg.parallel_config.data_parallel_size==cfg.parallel_config.decode_context_parallel_size==1
+    assert cfg.scheduler_config.max_num_batched_tokens==4096 and cfg.scheduler_config.max_num_seqs==64 and cfg.scheduler_config.async_scheduling
+    assert cfg.cache_config.cache_dtype=='auto' and cfg.cache_config.block_size in (None,16) and cfg.cache_config.kv_cache_memory_bytes is None
+    assert sha(hybrid.__file__)==HYBRID_SHA and sha(metadata.__file__)==NATIVE_METADATA_SHA and hybrid._INSTALLED
+    pipeline=backend._soft8_pipeline_installed;dense=pipeline['dense']
+    assert type(dense).__name__=='BoundedDensePrefill' and dense.limit_pages==8192
+    assert Path(sys.modules[type(dense).__module__].__file__).resolve()==BASE.parent/'tianshu_k8v16_pipeline_20261019/bounded_prefill.py'
+    policy_path=BASE.parent/'tianshu_prefill_key_bound_policy_20261021/policy.py'
+    spec=importlib.util.spec_from_file_location('_actual_prefill_key_bound_stage_policy',policy_path)
+    policy=importlib.util.module_from_spec(spec);sys.modules[spec.name]=policy;spec.loader.exec_module(policy)
+    state=policy.install(hybrid,dense,mode);directory=Path(directory);directory.mkdir(parents=True,exist_ok=False)
+    record=dict(mode=mode,installed=True,capture_completed=False,actual_arena_pages=dense.limit_pages,
+        worker_init_complete_before_install=True,only_prefill_bound_changed=True,no_parameter_or_KV_writer_or_sampling_changes=True,
+        metadata_contract_source=str(Path(metadata.__file__).resolve()),metadata_contract_sha256=NATIVE_METADATA_SHA,
+        native_route_source=str(Path(hybrid.__file__).resolve()),native_route_sha256=HYBRID_SHA,
+        policy_source=str(policy_path),policy_sha256=sha(policy_path),hook_source=str(Path(__file__).resolve()),hook_sha256=sha(__file__),
+        component_gate_source=str(BASE.parent/'tianshu_prefill_key_bound_results_20261021/COMPONENT_GATE_32g.json'),
+        component_gate_sha256=sha(BASE.parent/'tianshu_prefill_key_bound_results_20261021/COMPONENT_GATE_32g.json'),
+        counts=state,additional_per_step_file_writes=False,existing_engine_records_only_for_actual_stage_evidence=True)
+    def save():
+        path=directory/f'binding_{os.getpid()}.json';temporary=path.with_suffix('.tmp');temporary.write_text(json.dumps(record,indent=2)+'\n');temporary.replace(path)
+    original_capture=ModelRunnerFL.capture_model
+    @functools.wraps(original_capture)
+    def capture(owner,*args,**kwargs):
+        answer=original_capture(owner,*args,**kwargs);assert not record['capture_completed']
+        state['stage']='active';record['capture_completed']=True;save();return answer
+    ModelRunnerFL.capture_model=capture;atexit.register(save);save()
