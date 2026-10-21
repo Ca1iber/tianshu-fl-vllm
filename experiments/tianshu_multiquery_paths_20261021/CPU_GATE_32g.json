@@ -1,0 +1,87 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "GPU_not_used": true,
+  "query_geometries": 144,
+  "numerical_JIT_AST_unchanged": true,
+  "actual_factory_route_cases": 4,
+  "actual_small_arena_native_source_verified": true,
+  "native_prefill_zero_generator_parent_verified": true,
+  "candidate_configs": [
+    {
+      "block_m": 32,
+      "tile": 32,
+      "warps": 2,
+      "stages": 1
+    },
+    {
+      "block_m": 16,
+      "tile": 16,
+      "warps": 1,
+      "stages": 1
+    },
+    {
+      "block_m": 32,
+      "tile": 16,
+      "warps": 2,
+      "stages": 1
+    },
+    {
+      "block_m": 64,
+      "tile": 16,
+      "warps": 2,
+      "stages": 1
+    }
+  ],
+  "labels": [
+    "split_Q4_T32_w2",
+    "split_Q2_T16_w1",
+    "split_Q4_T16_w2",
+    "split_Q8_T16_w2"
+  ],
+  "proofs": {
+    "control": {
+      "mode": "control",
+      "parent": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/current_reader/generated_current.py",
+      "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+      "generated_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+      "changed_functions": [],
+      "numerical_JIT_AST_unchanged": true,
+      "all_address_widths_and_KV_codec_unchanged": true,
+      "original_source_reversible": true,
+      "scratch_capacity_checked_before_selection": true
+    },
+    "candidate": {
+      "mode": "candidate",
+      "parent": "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/current_reader/generated_current.py",
+      "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+      "generated_sha256": "80521197e59a85605f0528745314a95fbe7ac4fe133a579db4db128bbbb69482",
+      "changed_functions": [
+        "unified_attention"
+      ],
+      "numerical_JIT_AST_unchanged": true,
+      "all_address_widths_and_KV_codec_unchanged": true,
+      "original_source_reversible": true,
+      "scratch_capacity_checked_before_selection": true
+    }
+  },
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_multiquery_paths_20261021/factory.py": "d8ab381951fab58f9d68bec8ddd1179a446a88113582e68db6480896de52cd79",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_multiquery_paths_20261021/probe_gpu.py": "5c65a1e5bccc2d580b91265c22753ca9aa1b99c05107750be7cf62799c058ef9",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_multiquery_paths_20261021/verify_gpu.py": "71aa277b225fdf37bd2d25157e197ab3b5964a446239214d645e87e510b5499c",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_multiquery_paths_20261021/check_cpu.py": "22bfe4cc5405b17c948840b2ce392a8dce572e4d1479cba4ab2bd45590f8aac0",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_multiquery_paths_20261021/run_component.sh": "eccef4768e76fc20a81063bd7c1f086c37cc98f2a85db7c2f7f7c94e5a90e887",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_multiquery_paths_20261021/PLAN_32g.md": "986c6aac2a920e109782899fa222e2943392dedbc59462c200d5a2880310be8a",
+    "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/current_reader/generated_current.py": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+    "/usr/local/lib/python3.12/site-packages/vllm/v1/attention/ops/triton_attention_helpers.py": "59d9d34bbda988436593cfd9bcb05015d17db8ee85c50f6697e45f987acbf0b1",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_multiquery_splitkv_20261021/source.py": "7ffec7715c000d7c425358988c6a69d5fbf2608b140807a6ad502a8514139180",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_multiquery_splitkv_20261021/launch.py": "1839a93610b2e9ab0c2ddfc603ea53b50c0a65c0b787bb5b3253c99a9add327f",
+    "/usr/local/lib/python3.12/site-packages/vllm/v1/attention/ops/triton_unified_attention.py": "bab2c0b9f9a7793ca411796b48ebb4734433160e7e99eabf46ddb7f1c30cb6e0",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_native_prefill_20261012/zero_initialization.py": "34f4d388c1c7820a81eb46561858061d351eb7755d62fca804112f08d35aca6e",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_small_arena_20261020/policy.py": "047fdbeaf22182f461c5cca95cc1e551cb955107554cf7a057b1fa80b395ee4a",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/bounded_prefill.py": "c5a3dd7d8190d4bd5c61510e21482a568f161ddd8ca9e1a519f0be0a31ff2555",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/dense_prefill.py": "fbe479c10e27d3c730f422bdd8b23348a17e0236cf5dea04c0f3d1201e1c29f4",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/value_planes.py": "64f0a0ba89841feb8c091b861d60d687de5d4bdd73c9c7f66476e5cd6ff0d5f0",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_multiquery_short_diagnostic_20261021/emulate.py": "4795f4ed3412714195a3187d4922b322fa9990088689b0ad5b1055af127af010"
+  }
+}
