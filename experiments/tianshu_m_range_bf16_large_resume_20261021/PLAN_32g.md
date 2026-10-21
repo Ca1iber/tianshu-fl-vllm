@@ -1,0 +1,7 @@
+# BF16大M扫描串行续接
+
+上一个排队控制器在父Math8覆盖审计失败时以not_started_parent_validation_failed退出，从未启动本GPU实验。
+本次新建控制器与runner目录，只等待新的tianshu_m_range_prefill_resume_runner_tianshu成功完成C64质量与正式4K。
+不改原probe、既有CPU_GATE、原组件选择表、独立CPU验证器；不重跑任何GPU试验。
+若有充足时间且GPU确认为空闲，再首次执行原定1008项BF16大M独立扫描；最晚23:58停止。
+原始GPU输出根仍未存在，首次创建；全程冻结源文件，独立CPU重算后才能记录收益。
