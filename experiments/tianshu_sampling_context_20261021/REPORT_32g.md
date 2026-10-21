@@ -1,0 +1,11 @@
+# 当前正式benchmark采样参数：原生请求函数CPU核对
+
+当前CLI的backend=vllm映射到vllm.benchmarks.lib.endpoint_request_func.async_request_openai_completions。
+独立CPU实际执行该函数，用无网络capture session拦截构造出的JSON；没有HTTP请求、没有初始化CUDA。
+原13参数/官方benchmark不指定temperature/top_p，当前函数也不再填temperature0；原生CompletionRequest合并模型generation_config后得到temperature1、top_p0.95。
+本轮5695.95和前轮5618.01的全部四轮benchmark日志均包含相同的默认值变更提示；本轮N64筛选也显式temperature1/top_p0.95。
+
+10/14旧SAMPLING_AUDIT引用的vllm.benchmarks.backend_request_func.py是仍存在的legacy文件，但不是当前CLI provider。
+不能把旧文档中的greedy假设用于现在的算子热点或决定LM+argmax融合。保留旧文档和成绩；不回溯推断当时CLI具体版本。
+本核对不修改benchmark、不覆盖采样参数，不将greedy改成计分工作负载；模型/API默认值与源SHA、两轮原始日志SHA在CPU_GATE中。
+协议合并是CPU执行证据，不冒充实时Sampler tracing；未来采样优化仍需实际请求阶段执行证明。

@@ -1,0 +1,85 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "CUDA_not_initialized": true,
+  "component_only": true,
+  "model_executed": false,
+  "adopted": false,
+  "all_34_cases_102_dynamic_phases_verified": true,
+  "all_saved_INT32_elements_independently_CPU_recomputed": 9400320,
+  "full_original_checkpoint_quantization_verified": true,
+  "raw_root": "/workspace/benchmark-results/20261021_QKV_NN_decode_GPU_tianshu",
+  "raw_result_sha256": "a09d3b3002c955d5b8d97949fa5c23cae64d97877ca3b4adbc80b420adf80349",
+  "frozen_sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_qkv_nn_decode_20261021/probe_gpu.py": "a14e418f0907cc6c80bd61f484647346cc108925a9c2178a7addad3901a08a3d",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_qkv_nn_decode_20261021/verify_cpu.py": "ce73b75b0050ae4da05b8d61741996cf363d3e6775a0e90c05ea47cd4ead3f6a",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_qkv_nn_decode_20261021/check_cpu.py": "6c11a70f55d3a45e5c0ce428129a2bb19104f3c13fb91fa722220be4395b0486",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_qkv_nn_decode_20261021/run_after_bf16.sh": "217cdbadd35fbf663fd7576e56e638221facc16420fa5a359e5da287a9c1a630",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_qkv_nn_decode_20261021/tiles.json": "35ebc041732cf6d86f21296bd6170e5f54d733827a3a16c0a178a64b36c77c0e",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_qkv_nn_decode_20261021/PLAN_32g.md": "f903cd23b03691c79c76e6c97feff691403ba83b3a895d853fc189b64e3304b0",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_w8a8_20261020/kernel.py": "b9b692cf561a35ef9c38d05d1edf7aa804436728923efa4800f914ff6b656152",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_w8a8_20261020/GPU_GATE_32g.json": "e52d84b3d067f0c84dc6e8e179ffbb68654981cc32d9927c0cc2bdb6a4196f0c",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_int8_weight_nn_20261021/kernel_nn.py": "b432a10734f15f1f516c3394ed244456f8fb01355eb1f866c9eb4fda54871262",
+    "/workspace/MiniCPM5-2B/config.json": "59613157e5357d62bcb121e04cb90f2170b43d789b142380c12c3d4277d95180",
+    "/usr/local/lib/python3.12/site-packages/flag_gems/runtime/backend/_iluvatar/ops/mm.py": "4c2e23da2a6b65b89cbb8170967f14c5327d143e21137387f3907ccb4fcde090",
+    "/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py": "414e8a3f74e2522e40659e7fccd84e301f4517220837a87af0311f050bbf3025",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_qkv_nn_decode_20261021/CPU_GATE_32g.json": "874da001e05f38bc7c37eea5159f1dbff13bacb772628e5ac9ef387412f42fce"
+  },
+  "best_by_M": [
+    {
+      "M": 8,
+      "tile_id": 2,
+      "NN_configuration": {
+        "bm": 32,
+        "bn": 256,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "NT_configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "native_BF16_eligible": true,
+      "medians_ms": {
+        "NT": 0.06691874861717224,
+        "NN": 0.06117163896560669,
+        "BF16": 0.043478557467460634
+      },
+      "NN_vs_BF16_percent": -28.923667564463763,
+      "NN_vs_NT_percent": 9.395055860440205
+    },
+    {
+      "M": 64,
+      "tile_id": 15,
+      "NN_configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 256,
+        "warps": 2,
+        "stages": 1
+      },
+      "NT_configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 2,
+        "stages": 1
+      },
+      "native_BF16_eligible": true,
+      "medians_ms": {
+        "NT": 0.02983452081680298,
+        "NN": 0.027188077569007874,
+        "BF16": 0.03258480727672577
+      },
+      "NN_vs_BF16_percent": 19.84961862058874,
+      "NN_vs_NT_percent": 9.733837344983254
+    }
+  ],
+  "invalid_BF16_reference_cases": [],
+  "service_candidate_worth_testing": true,
+  "verifier_sha256": "ce73b75b0050ae4da05b8d61741996cf363d3e6775a0e90c05ea47cd4ead3f6a"
+}

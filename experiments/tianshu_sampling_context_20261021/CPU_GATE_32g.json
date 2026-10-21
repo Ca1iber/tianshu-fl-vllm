@@ -1,0 +1,48 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "CUDA_not_initialized": true,
+  "HTTP_requests_sent": 0,
+  "actual_payload_builder_executed": true,
+  "backend": "vllm",
+  "actual_provider": "vllm.benchmarks.lib.endpoint_request_func.async_request_openai_completions",
+  "constructed_payload": {
+    "model": "minicpm",
+    "prompt": "CPU payload audit only",
+    "repetition_penalty": 1.0,
+    "max_tokens": 1024,
+    "logprobs": null,
+    "stream": true,
+    "stream_options": {
+      "include_usage": true
+    },
+    "ignore_eos": true
+  },
+  "native_protocol_effective_parameters": {
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "repetition_penalty": 1.0
+  },
+  "protocol_merge_scope": "Native CompletionRequest with unmodified local model generation defaults; not a live Sampler tracing claim.",
+  "old_and_new_formal_logs": {
+    "20261021_m_range_prefill_resume_official4k_tianshu": {
+      "sha256": "6f9e8fd091b2de6af9c5e077d41b9ce4967c2de328271c09c8d09c54c9e5333c",
+      "current_CLI_default_warning_count": 4
+    },
+    "20261021_nn_silu_fx_official4k_tianshu": {
+      "sha256": "8f15622481d0cd0c7682e206ecdd360eba7fc21c75761d0a5bf0525b3551c5c0",
+      "current_CLI_default_warning_count": 4
+    }
+  },
+  "source_hashes": {
+    "/usr/local/lib/python3.12/site-packages/vllm/benchmarks/lib/endpoint_request_func.py": "5fd4b66d9ac6a88a278c2b7d65dcd17b8a9424279859ade14bddb69e342a312d",
+    "/usr/local/lib/python3.12/site-packages/vllm/benchmarks/serve.py": "b09e85eed6f5f7a9075b40a19fc1dd8e94a1c449665c2c6510f349e0409e77b7",
+    "/usr/local/lib/python3.12/site-packages/vllm/entrypoints/cli/benchmark/serve.py": "bfbdf95a9aa394613ce3a2af0aa025adbe9e01dcac8a184d64d5f94832f64da7",
+    "/usr/local/lib/python3.12/site-packages/vllm/entrypoints/openai/completion/protocol.py": "d971ddc235cb65134f102ec1d5a58bf087db4edc246262b09488b0bbd301c3b1",
+    "/workspace/vllm-plugin-FL/benchmarks/benchmark_throughput_serve.py": "0813eba574e9d1eb50c297c515baa426da1bcb61ce8c78a398b482f246005565",
+    "/workspace/MiniCPM5-2B/generation_config.json": "9ac4f32e5f32358697a9f438a3ea89ef80e6ba786c72c49e932f9f21c122fdb1"
+  },
+  "verifier_sha256": "c27fe3ce97796a87cc3a6de191c54ef559c2d222a646f4503be301664e549a13",
+  "legacy_backend_file_not_current_CLI_provider": true,
+  "benchmark_not_modified": true
+}
