@@ -1,0 +1,88 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "GPU_not_executed": true,
+  "coverage_cases": 2816,
+  "capture_length1_to_runtime_long_length_transition_cases": 1760,
+  "all_valid_tokens_covered_once": true,
+  "all_active_segment_scratch_within_reserved_capacity": true,
+  "n1to24_tile_configuration_unchanged": true,
+  "actual_live_and_zero_query_mapping_cases": 768,
+  "actual_3D_max_query_len1_required": true,
+  "provenance": {
+    "current": {
+      "mode": "current",
+      "parent_sha256": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+      "generated_sha256": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+      "changed_functions": [],
+      "function_ABI_unchanged": true,
+      "only_decode_query_row_tile_and_sequence_mapping": true,
+      "BM8_only_num_seqs_above24": false,
+      "direct_sequence_mapping_all_3D": false,
+      "all_other_functions_AST_unchanged": true,
+      "attention_dot_softmax_reducer_codec_and_writer_text_retained": true,
+      "short_active_segments": 4,
+      "segment_capacity_and_KV_writer_and_format_unchanged": true,
+      "Math_or_service_not_claimed": true
+    },
+    "bm8": {
+      "mode": "bm8",
+      "parent_sha256": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+      "generated_sha256": "2b5c18341f69be9003a8b350dea572f16ba445d5bd5e9f0e07c32c7d043e2c12",
+      "changed_functions": [
+        "unified_attention"
+      ],
+      "function_ABI_unchanged": true,
+      "only_decode_query_row_tile_and_sequence_mapping": true,
+      "BM8_only_num_seqs_above24": true,
+      "direct_sequence_mapping_all_3D": false,
+      "all_other_functions_AST_unchanged": true,
+      "attention_dot_softmax_reducer_codec_and_writer_text_retained": true,
+      "short_active_segments": 4,
+      "segment_capacity_and_KV_writer_and_format_unchanged": true,
+      "Math_or_service_not_claimed": true
+    },
+    "bm16_direct": {
+      "mode": "bm16_direct",
+      "parent_sha256": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+      "generated_sha256": "ff3854a1f91cc6ee3850637bd4ac725f05cf99485c1fd767c821dc2fe79711ac",
+      "changed_functions": [
+        "kernel_unified_attention",
+        "unified_attention"
+      ],
+      "function_ABI_unchanged": true,
+      "only_decode_query_row_tile_and_sequence_mapping": true,
+      "BM8_only_num_seqs_above24": false,
+      "direct_sequence_mapping_all_3D": true,
+      "all_other_functions_AST_unchanged": true,
+      "attention_dot_softmax_reducer_codec_and_writer_text_retained": true,
+      "short_active_segments": 4,
+      "segment_capacity_and_KV_writer_and_format_unchanged": true,
+      "Math_or_service_not_claimed": true
+    },
+    "bm8_direct": {
+      "mode": "bm8_direct",
+      "parent_sha256": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+      "generated_sha256": "5cc0553c18a6aa3696b6bfb7e2f9433c45469cf4b4a1bb5eef806c5c1b5510a9",
+      "changed_functions": [
+        "kernel_unified_attention",
+        "unified_attention"
+      ],
+      "function_ABI_unchanged": true,
+      "only_decode_query_row_tile_and_sequence_mapping": true,
+      "BM8_only_num_seqs_above24": true,
+      "direct_sequence_mapping_all_3D": true,
+      "all_other_functions_AST_unchanged": true,
+      "attention_dot_softmax_reducer_codec_and_writer_text_retained": true,
+      "short_active_segments": 4,
+      "segment_capacity_and_KV_writer_and_format_unchanged": true,
+      "Math_or_service_not_claimed": true
+    }
+  },
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_bm8_20261021/check_cpu.py": "6a3800a3d3b0b3765e0ecc63d9b0d2332c0cbb10bf17f2c73d63661e75905c74",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_bm8_20261021/source.py": "3db42c8a071b50ac1461e76661f78bc86fc3998aa6e509879a7d128ea66028ce",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_bm8_20261021/launch.py": "aaeed3f11e8b52d2982243c3ec3784defdb068d282132d8fc006ad437965f035",
+    "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/pair_rows_reader/generated_pair_rows.py": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002"
+  }
+}
