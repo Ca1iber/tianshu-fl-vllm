@@ -1,3 +1,21 @@
+2026-10-21 18:52:34 CST 最新继续点
+
+当前正式合格最好仍5618.01 total /1123.60 output、TTFT3835.46ms（Math101/105，补充C64 103/105），已tag/push。M范围实验没有新正式成绩。
+
+BF16第一轮24M×3role×2已有QKV48 + O/Down96全部可用，原首轮O8 phase1失败保留且孤立诊断未复现；孤立诊断SPLIT_K1不能证明原失败配置。BF16六tile×14M×3role×2=504完整通过，CPU258048选点A/W及输出独立复核，报告/关键结果tianshu_m_range_bf16_tiles_results_20261021。许多中M改善来自tile而不是W重排，大M4096全负；M2048 O/Down当前special已保留比较。
+
+GateUp首轮24M×8cfg×3相位全部192case数值/计时完成，末行gate字典被临时gate tensor覆盖导致最终source check失败；原failed保留未改，独立CPU恢复tianshu_m_range_int8_gateup_recovery_20261021严格验证全部源、192×3、355200实际GPU选点通过。独立FlagGems激活太慢（M4096约1.067ms），原+35.7%不是模型收益，已BASELINE_SCOPE明确。
+
+随后tianshu_m_range_mlp42_20261021完整42实际weight banks、24 warm_M×3相位=3024通过，GPU fullW8/scale/Down哈希前后不变；CPU147456实际GPU选点/288artifact独立INT64和F64通过，使用AST不变的Inductor生成激活且保留M2048 Down special。仅M384 +3.9229%，其他均负，M4096 -7.5136%；不采用此范围融合。报告tianshu_m_range_mlp42_results_20261021已生成。
+
+当前GPU：PID267428，experiments/tianshu_nn_silu_large_tiles_20261021/probe_gpu.py，源de36fb5冻结，root=/workspace/benchmark-results/20261021_nn_silu_large_tiles_GPU_tianshu；runner同名_runner_tianshu。扩BK32/64/128、BN256/512、warps16，设备函数AST完全不变；8M×30配置=240。M64以原two_dot源码且强制binary匹配现用版做current，其余NN+生成Inductor激活；编译/数值失败留档排除，qualified必须3相位全过，预计十几分钟。观察timeout继续同PID，不重跑。若M64有明显收益，优先42bank与真实4K筛选，新Math/正式仍必需。
+
+尚未启动：tianshu_m_range_bf16_large_20261021/probe_gpu.py，9968e00冻结，12大M×14tile/group1/8×3role×2=1008。此轮旧六tile全group8，故补row-major/group1与256×256 W16等实际native大tile；GPU空闲后可接续，但当前宽INT8 tile M64优先。不要误启动Q2旧重复准备。
+
+所有GPU已运行py/sh/PLAN/CPU gate保持冻结，修复另目录；源/报告/关键结果只容器+GitHub，原始大tensor/log仅容器。本地无环境不放代码。保留两个旧GateUp用户dirty文件和旧CPU logs，不碰沐曦bare参考。SSH master /tmp/tianshu-20261021-afternoon-control；分支exp/tianshu-v-int8-20261020，最后确认push6d9d982，后续9968e00/de36fb5与新MLP结果待push。硬停23:58北京/15:58UTC，预约到10-22 00:00，目标继续，不自行暂停完成。
+
+以下历史以本段最新状态为准。
+
 2026-10-21 18:27 北京时间最新进展（旧状态为历史）
 
 正式4K 5618.01 total/1123.60 output、TTFT3835.46ms，四轮完成CPU完整审核，Math101/105、补充C64 103/105，67220e7与tag tianshu-original-command-4k-nn-silu-fx-20261021已push。正式结果无变化。
