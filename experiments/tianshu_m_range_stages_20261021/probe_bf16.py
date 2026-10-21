@@ -53,9 +53,10 @@ def main():
                 ['model.layers.0.self_attn.o_proj.weight'] if role=='o' else ['model.layers.0.mlp.down_proj.weight'])
             wc=torch.cat([checkpoint.get_tensor(key) for key in keys],0).contiguous();assert tuple(wc.shape)==(n,k)
             w=wc.cuda();bn,bk=(64,64) if role=='down' else (128,32)
-            packed_cpu=wc.reshape(n//bn,bn,k//bk,bk).permute(0,2,1,3).contiguous();wp=packed_cpu.cuda()
+            packing_started=time.perf_counter()
+            packed_cpu=wc.reshape(n//bn,bn,k//bk,bk).permute(0,2,1,3).contiguous();packing_CPU_seconds=time.perf_counter()-packing_started;transfer_started=time.perf_counter();wp=packed_cpu.cuda();torch.cuda.synchronize();packing_H2D_seconds=time.perf_counter()-transfer_started
             weight_proof=dict(keys=keys,source_BF16_sha256=sha_tensor(wc),packed_sha256=sha_tensor(packed_cpu),
-                additional_packed_bytes=wp.numel()*wp.element_size(),static_packing_time_is_not_per_step=True)
+                additional_packed_bytes=wp.numel()*wp.element_size(),static_weight_pack_CPU_seconds=packing_CPU_seconds,static_weight_copy_H2D_seconds=packing_H2D_seconds,estimated_42_layer_extra_bytes=42*wp.numel()*wp.element_size(),static_packing_time_is_not_per_step=True)
             for m in ROWS:
                 generator=torch.Generator().manual_seed(202610210000+m+(1 if role=='down' else 2 if role=='o' else 3))
                 ac=torch.randn(m,k,dtype=torch.bfloat16,generator=generator);ac[0].zero_();a=ac.cuda()
