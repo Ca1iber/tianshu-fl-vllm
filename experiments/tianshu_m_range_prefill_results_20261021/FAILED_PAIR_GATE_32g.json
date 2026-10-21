@@ -1,0 +1,51 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "experiment_passed": false,
+  "model_performance_candidate_not_measured": true,
+  "candidate_failed_before_service_ready": true,
+  "quality_not_run": true,
+  "official_not_run": true,
+  "all_original_sources_and_failed_artifacts_retained": true,
+  "diagnostic_gate": "experiments/tianshu_m_range_compiler_diag_20261021/CPU_GATE_32g.json",
+  "arms": {
+    "control": {
+      "raw_root": "/workspace/benchmark-results/20261021_m_range_prefill_pair_control_tianshu",
+      "phase": "complete",
+      "error": null,
+      "raw_result_sha256": "89fb757ce1f875a2bf1af000143dc70b41ea2561011ed7ec5c6f85739b04773c",
+      "completed_4K_rounds": 3,
+      "rounds": [
+        {
+          "round": 1,
+          "total_tokens_per_second": 5360.538198430376,
+          "output_tokens_per_second": 1072.1076396860751,
+          "mean_ttft_seconds": 12.353346577125194,
+          "successful_requests": 64
+        },
+        {
+          "round": 2,
+          "total_tokens_per_second": 5542.067931445054,
+          "output_tokens_per_second": 1108.4135862890107,
+          "mean_ttft_seconds": 10.39161796728149,
+          "successful_requests": 64
+        },
+        {
+          "round": 3,
+          "total_tokens_per_second": 5550.205704972804,
+          "output_tokens_per_second": 1110.0411409945607,
+          "mean_ttft_seconds": 10.383122451959935,
+          "successful_requests": 64
+        }
+      ]
+    },
+    "candidate": {
+      "raw_root": "/workspace/benchmark-results/20261021_m_range_prefill_pair_candidate_tianshu",
+      "phase": "failed",
+      "error": "AssertionError('Server exited during startup')",
+      "raw_result_sha256": "e2855324f5840211b5083bb5695a8529bb798801e8e081a050630e86c568b289",
+      "completed_4K_rounds": 0,
+      "rounds": []
+    }
+  }
+}
