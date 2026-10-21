@@ -1,0 +1,30 @@
+Traceback (most recent call last):
+  File "<stdin>", line 8, in <module>
+  File "/workspace/vllm-plugin-FL/experiments/tianshu_nn_silu_fx_validation_20261021/framework_profile.py", line 36, in audit_runtime
+    if official:return full_runtime.audit_runtime(root,state,official=True)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/vllm-plugin-FL/experiments/tianshu_nn_silu_fx_screen_20261021/audit_profile.py", line 19, in audit_runtime
+    result=prefill.audit_runtime(root,dict(state,mode='candidate',fusion_mode=mode),official=official)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/vllm-plugin-FL/experiments/tianshu_prefill_int8_service_20261021/audit_profile.py", line 12, in audit_runtime
+    result=parent.audit_runtime(root,dict(state,mode='candidate',prefill_int8_mode=state['mode']),official=official)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/vllm-plugin-FL/experiments/tianshu_nn_silu_fx_screen_20261021/nn_audit.py", line 10, in audit_runtime
+    result=parent.audit_runtime(root,dict(state,mode='candidate'),official=official)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/vllm-plugin-FL/experiments/tianshu_prefill_int8_service_20261021/adapted_qualified_audit.py", line 10, in audit_runtime
+    result=parent.audit_runtime(root,dict(state,mode='candidate'),official=official)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/vllm-plugin-FL/experiments/tianshu_nn_silu_fx_screen_20261021/dense_audit.py", line 20, in audit_runtime
+    result=parent.audit_runtime(root,dict(state,mode='candidate'),official=official)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/vllm-plugin-FL/experiments/tianshu_lm_precision_service_20261020/baseline_pair_audit.py", line 56, in audit_runtime
+    result=baseline_audit_runtime(root,state,official=official)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/vllm-plugin-FL/experiments/tianshu_lm_precision_service_20261020/baseline_pair_audit.py", line 21, in audit_runtime
+    result = parent.audit_runtime(root, dict(state, mode='candidate', arena_mode='candidate', seq_limit=64), official=official)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/vllm-plugin-FL/experiments/tianshu_memory_combo_service_20261020/long_runtime_audit.py", line 12, in audit_runtime
+    if state['workload']['input_tokens']==4096:assert result['zero_preemptions']
+       ~~~~~^^^^^^^^^^^^
+KeyError: 'workload'

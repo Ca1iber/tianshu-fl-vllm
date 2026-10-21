@@ -1,0 +1,7 @@
+# 正式4K的纯CPU审核恢复
+
+原四轮GPU及退出码均成功，原controller审核失败KeyError('workload')。trace定位原long_runtime_audit要求state.workload.input_tokens，以执行零抢占和64请求、4K上下文帧断言。新controller没有这个旧schema字段。
+
+recover_cpu.py先逐项校验未改source、十项controller、四行CSV、1024请求成功、token数量和原benchmark命令；只在CPU副本增加从这些原始数据证明的workload。没有改写原result（保留audit_failed及SHA），没有改原GPU代码或审核器，也没有跳过条件。原full runtime、原Math8和benchmark/C64 validators全部执行并通过，所有旧审核source还与GPU前Git21f9a0e逐字节相等。
+
+OFFICIAL_RECOVERY_GATE_32g.json是本次完整证据恢复成功，明确不把原controller改判成功。原始完整profile约数MB留/workspace/benchmark-results/20261021_nn_silu_fx_official_CPU_recovery_tianshu/full_comparison.json，Git关键摘要与SHA保留。最终正式5618.01/1123.60 tok/s、TTFT3835.46ms，0抢占、Math101/105+补充103/105。
