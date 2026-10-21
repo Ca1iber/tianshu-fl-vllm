@@ -1,0 +1,62 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "no_GPU_started": true,
+  "model_not_installed": true,
+  "GPU_gather_equivalence_not_yet_tested": true,
+  "model_Math_not_run": true,
+  "actual_native_shape_for_AST_executed": true,
+  "deterministic_generated_metadata_cases": 2048,
+  "all_active_CPU_logical_page_addresses_checked": 119960,
+  "explicit_cases": [
+    {
+      "max_key_length": 128,
+      "num_prefills": 1,
+      "num_decodes": 1,
+      "original_max_key_length": 32768
+    },
+    {
+      "max_key_length": 8192,
+      "num_prefills": 2,
+      "num_decodes": 1,
+      "original_max_key_length": 16384
+    },
+    {
+      "max_key_length": 4096,
+      "num_prefills": 2,
+      "num_decodes": 0,
+      "original_max_key_length": 4096
+    },
+    {
+      "max_key_length": 129,
+      "num_prefills": 2,
+      "num_decodes": 2,
+      "original_max_key_length": 32768
+    }
+  ],
+  "invalid_metadata_cases": [
+    "missing_bounds",
+    "missing_starts",
+    "floating_bounds",
+    "short_bounds",
+    "short_starts",
+    "bad_start",
+    "bad_total",
+    "bad_decode_prefix",
+    "too_short_key",
+    "beyond_global_bound",
+    "wrong_max_query"
+  ],
+  "unsupported_values_rejected_without_transfer": true,
+  "full_prefix_key_not_query_length_used": true,
+  "padding_outside_active_rows_ignored": true,
+  "padding_inside_active_rows_rejected": true,
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_prefill_key_bound_20261021/bound.py": "4ff88a99ed731305fa93ab580202fbc19ec1c6c8275702c7b3cc58003175c1e7",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_prefill_key_bound_20261021/check_cpu.py": "3e6325193f0960d6e4939a54469d9ca4d5f629478ef1778ccc5134ec46e5560a",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/dense_prefill.py": "fbe479c10e27d3c730f422bdd8b23348a17e0236cf5dea04c0f3d1201e1c29f4",
+    "/workspace/vllm-plugin-FL/vllm_fl/worker/iluvatar_hybrid_attention.py": "5c55a8d57e438b36d176555fd9273ab9ba665dada4c57d57c19633394c2ed4e4",
+    "/usr/local/lib/python3.12/site-packages/vllm/v1/attention/backend.py": "c524988a2223ec556bdb128a31c255075f0d07e7643e803b447975cd9c30a6b8",
+    "/workspace/vllm-plugin-FL/vllm_fl/worker/model_runner.py": "b0144bcff96bef15b04eb1ad45385b01c47faea056bc56352a6486b7c497fa2e"
+  }
+}

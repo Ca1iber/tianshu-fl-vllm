@@ -1,0 +1,5 @@
+# Prefill key bound helper: CPU preparation only
+
+bound.py derives the largest full key length of the prefill tail from native seq_lens_cpu_upper_bound and CPU query starts. Prefix context is retained; decode key lengths are not substituted into the prefill maximum. Missing,unsupported,non-CPU or inconsistent metadata yields None, so future integration can preserve original behavior. It never accesses deprecated seq_lens_cpu, GPU values, transfer methods or request/token data. The existing Route/GPU cu subtraction is not replaced.
+
+CPU gate passes2048deterministic metadata distributions,119,960actual logical page addresses using the native shape_for AST, four explicit pure/mixed/prefix cases and invalid/padding/no-transfer cases. This does not establish GPU gathered-data equality or model performance/accuracy; no model hook or GPU probe has been installed/run. A separate future GPU component must compare every active gatheredvalue/guard under original and tighter strides, then an independent modelprofile may be considered. The next-KV review in tianshu_reservation_20261021 explains the exact stage-only ContextVar hook and separate arena-capacity hypothesis.

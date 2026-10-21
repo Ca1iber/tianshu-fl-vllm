@@ -1,0 +1,13 @@
+# Budget8192 GUP prefill INT8: fresh Math103/105,98.0952%
+
+Fresh105-question Level3Math completes with103correct/105=98.095238%, strictly above95%. All105 indexed predictions/reviews are independently recomputed; zero request/score errors, incomplete=false. Every generation ends with stop; none hits the32768token cap. Actual output358,536tokens,min355,median1621,max31,015. This is this candidate's fresh evaluation, not a reused earlier score or a retry for a better draw.
+
+Standard requested EvalScope settings: eval_batch_size8, temperature1,top_p.95,max_tokens32768, timeout3600, local math_500 Level3. Actual original13serveargv,445frozen runtime sources,64observed environment keys and16primarycontrollers match the screened8192candidate. The independent additional verifier has its own SHA, outside the primarycontroller list; its data files contain only scores/usages/hashes and compact bindings. Full answer text stays in the container.
+
+Actual C8GateUp NN integer capture/replay, C8LM BF16 and all42prefillINT8 layers are verified. All43logical packed bank/scales/originalBF16 signatures match the qualified references and actual recorded screen banks. New40prefillINT8warm shapes preserve CPU/GPU RNG, native99warm points, originalmodel parameters retained and packing accounted inside nativeDeviceMemoryProfiler. No new model integration from the separate RMS or staticcompile preparations is included. C8Math does not claim C64accuracy coverage.
+
+Raw screen controllers retain metadata-only audit_failed; the new quality audit is independent and complete. It checks actual native_source_sha256, does not forge the screen phase or read a nonexistent profile_audit, and matches screen raw_result SHA and445source manifest. See the screen recovery report for that packaging failure.
+
+Formal4KN256fourroundsexclude1 automatically starts after this successful freshquality. At initial archive time it is starting_server and actualofficialenvironment file is not yet present; QUALITY_ARCHIVE records that observation honestly. Final official source/environment binding and CSV arithmetic remain separate pending checks. Publisheddefault5586.28/TTFT3780.63/Math102/105 is unchanged pending those results. No fresh16K result is claimed.
+
+Raw root:/workspace/benchmark-results/20261021_prefill_budget8192_math_tianshu. Official root:/workspace/benchmark-results/20261021_prefill_budget8192_official4k_tianshu. All rawquestionline hashes are in PER_QUESTION_32g.json; runtime/capacity evidence in RUNTIME_BINDING_GATE_32g.json.
