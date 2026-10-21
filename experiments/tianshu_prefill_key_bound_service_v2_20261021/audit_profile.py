@@ -1,0 +1,36 @@
+# SPDX-License-Identifier: Apache-2.0
+import importlib.util
+from pathlib import Path
+from candidate_profile import read,digest
+BASE=Path(__file__).resolve().parent
+spec=importlib.util.spec_from_file_location('_prefill_key_bound_qualified_audit',BASE.parent/'tianshu_prefill_int8_service_20261021/audit_profile.py')
+parent=importlib.util.module_from_spec(spec);spec.loader.exec_module(parent)
+def audit_runtime(root,state,official=False):
+    result=parent.audit_runtime(root,dict(state,mode='candidate'),official=official)
+    files=list((root/'prefill_key_bound_records').glob('binding_*.json'));assert len(files)==1;record=read(files[0])
+    assert record['mode']==state['mode'] and record['installed'] and record['capture_completed'] and record['actual_arena_pages']==8192
+    guard=record['actual_dense_guard'];assert guard['original_call_and_verify_inherited'] and guard['subclass_reserve_layout_CPU_verified'] and guard['capacity_pages']==8192
+    for prefix in ('actual_small_arena_wrapper','original_native_call'):
+        p=guard[prefix+'_source'];assert digest(p)==state['frozen_sources'][p]==guard[prefix+'_sha256']
+    assert record['only_prefill_bound_changed'] and record['worker_init_complete_before_install'] and record['no_parameter_or_KV_writer_or_sampling_changes']
+    assert not record['additional_per_step_file_writes'] and record['existing_engine_records_only_for_actual_stage_evidence']
+    memory=record['native_memory_budget']
+    assert memory['original_return_and_config_preserved'] and memory['additional_profile_run_not_performed'] and memory['peak_stats_not_reset_by_observer']
+    assert memory['native_cudagraph_estimate_enabled'] and memory['weights_memory']>0
+    assert memory['native_peak_activation_memory']>=0 and memory['native_cudagraph_memory_estimate']>=0
+    assert memory['original_return_KV_memory_bytes']//516096==result['actual_KV_blocks']
+    for name in ('metadata_contract','native_route','policy','hook','component_gate'):
+        p=record[name+'_source'];assert digest(p)==state['frozen_sources'][p]==record[name+'_sha256']
+    engine_files=list(Path(state['profile_environment']['TIANSHU_SOFT8_RECORD_DIR']).glob('engine_*.json'));assert len(engine_files)==1
+    engine=read(engine_files[0]);rows=[r for r in engine['dense_records'].values() if r.get('prefill_bound_stage')=='active']
+    assert rows and all(r['prefill_bound_mode']==state['mode'] and r['actual_stage_pages']==r['sequences']*r['blocks_per_sequence'] for r in rows)
+    assert all(r['stage_bound']<=r['original_global_maxK'] and r['actual_stage_pages']<=r['original_global_pages'] for r in rows)
+    tight=[r for r in rows if r['only_prefill_stage_kwargs_copied']]
+    if state['mode']=='control':assert not tight
+    else:
+        for r in tight:assert r['stage_bound']<r['original_global_maxK'] and r['sequences']>0
+    result.update(mode=state['mode'],prefill_key_bound_binding=record,actual_ready_prefill_stage_rows=rows,
+        actual_tightened_ready_rows=tight,actual_tightened_rows_observed=bool(tight),
+        no_tightening_in_control=(not tight if state['mode']=='control' else None),
+        fixed_arena8192_both_arms=True,new_model_Math_required_if_adopted=True)
+    return result

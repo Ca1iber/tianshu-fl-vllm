@@ -1,0 +1,5 @@
+# V1 startup failed before weights/benchmark: wrong dense class guard
+
+425-source V1 control failed at Worker hook assertion expecting type nameBoundedDensePrefill. The qualified profile already replaces it with CapacityBoundedDensePrefill from tianshu_small_arena_20261020/policy.py. That subclass inherits the original __call__/verify_last and overrides only8192-page reserve; the next V1 module-file assertion would also have assumed the wrong class module. No throughput round, Math or numerical optimization result exists for V1; no accuracy failure is inferred.
+
+Raw/workspace/benchmark-results/20261021_prefill_key_bound_service_control_tianshu remains phasefailed/Server exited during startup, primary runner phasefailed, original425source/CPUgate and all.py/.sh unchanged. GPU resources released. Genuine code correction uses independent tianshu_prefill_key_bound_service_v2_20261021. V2 must execute the actual small-arena install plus native class AST in CPU test, verify inherited call and real full CPU reserve layout equality, reject original/unexpected capacity, then freeze newsource before GPU. Do not rerun V1 unchanged or relabel its state complete.
