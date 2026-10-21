@@ -1,0 +1,63 @@
+{
+  "complete": true,
+  "independently_rechecked": true,
+  "official_benchmark": false,
+  "adopted": false,
+  "new_model_Math_required": true,
+  "model_Math_not_run": true,
+  "runtime_source_count": 426,
+  "environment_count": 62,
+  "timed_successful_requests": 384,
+  "gain_percent": 0.05430053665524959,
+  "TTFT_change_percent": -0.10646478555859096,
+  "summaries": {
+    "control": {
+      "total_tok_s": 5507.383909853959,
+      "mean_TTFT_ms": 10384.443103252124,
+      "spread_percent": 0.06645834439090374,
+      "postfirst_autotuning_records": 0,
+      "actual_KV_blocks": 40731,
+      "prefill_INT8_launches": 5586,
+      "prefill_INT8_shapes": [
+        128,
+        2048,
+        4096
+      ],
+      "prefill_fallback_launches": 42,
+      "warm_shapes": 24,
+      "packed_weight_payload_bytes": 1326938112
+    },
+    "candidate": {
+      "total_tok_s": 5510.374448872675,
+      "mean_TTFT_ms": 10373.387328170793,
+      "spread_percent": 0.16882331520996868,
+      "postfirst_autotuning_records": 0,
+      "actual_KV_blocks": 40723,
+      "prefill_INT8_launches": 5586,
+      "prefill_INT8_shapes": [
+        128,
+        2048,
+        4096
+      ],
+      "prefill_fallback_launches": 42,
+      "warm_shapes": 24,
+      "packed_weight_payload_bytes": 1326938112
+    }
+  },
+  "same_NN_decode_and_packed_weight_layout_in_both_arms": true,
+  "only_prefill_stage_key_bound_changed": true,
+  "actual_effect_exercised": true,
+  "untimed_canaries_unique_cache_salt_for_full_recompute": true,
+  "seed_reproducible_within_each_arm": true,
+  "cross_arm_text_equality_is_additional_canary_not_Math": true,
+  "timed_requests_no_seed_or_cache_salt": true,
+  "raw_roots": {
+    "control": "/workspace/benchmark-results/20261021_prefill_key_bound_service_v3_control_tianshu",
+    "candidate": "/workspace/benchmark-results/20261021_prefill_key_bound_service_v3_candidate_tianshu"
+  },
+  "raw_result_sha256": {
+    "control": "a285fcdedb6ebdb614d1fc843ec63b45f449915da27f82012fbd1defc75eba20",
+    "candidate": "f3041a81399230cde527995e3dd51e8957568bda5430faaf93dbc34007053f23"
+  },
+  "verifier_sha256": "4badd23859ac6069b028eb6c4d23f174c44f1857a5481c9aa856682edb37ea61"
+}
