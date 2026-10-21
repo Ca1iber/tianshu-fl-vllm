@@ -1,0 +1,5 @@
+# 接入失败后的独立CPU证据核对
+
+只读复核首次模型接入现存数据，不执行GPU，不重跑服务。完整继承原verify_smoke中的源码/快照/环境/43权重签名/42融合capture与真实replay/动态与M8保留/prefill/冷C1一致性校验。明确接受的原失败原因仅是日志中的2个指定index调优记录，原state与result保持failed，gate中original_experiment_passed=false。
+
+GPU捕获图实际replay126次，所有实际融合二进制均为组件已验证的c42a5346cb95e93d1d811e9f1fcb5443fab63fd53c9513a86eeed3ebf7942f97。CPU首版后处理假设只有M32调优而拒绝，完整日志确认另有M4001/4032后修正预期；原CPU失败日志仍在容器。未放宽数值或路径验证。后续须在新实验启动阶段预热两个形状，再通过零运行期调优的4K屏测。

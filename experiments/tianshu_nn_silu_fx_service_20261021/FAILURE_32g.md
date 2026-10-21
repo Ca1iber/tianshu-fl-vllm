@@ -1,0 +1,7 @@
+# 首次完整模型接入：运行期index调优门槛失败
+
+模型启动、3个冷C1请求及64并发128/128波次均完成。42层M64融合实际捕获，实际计时二进制与组件完全一致（83 regs、0 spill），M64图实际replay126次，动态43图未修改，M8原NN捕获保留，prefill24个暖形状及42层实际请求路径保留，43个原始与量化bank签名均相同。冷C1的16个输出token前后完全一致。
+
+原始试验总体仍为failed：Application startup complete之后出现2条_index_linearized_jit_function调优，分别为实际M4001（配置桶4032，0.07s）及M32（0.25s），触发probe_service.py第60行严格门槛。不得以缓存现在已存在为由简单重跑或把原失败改成功。
+
+独立CPU后处理见 `../tianshu_nn_silu_fx_integration_recovery_20261021`，仅核验现存输出的接入结构，不宣称无运行期调优。原始result SHA256 89675588e926f8b52733f3e38d1dea8d46db4f62d31f053f8b4618591ea7a6f9，目录 `/workspace/benchmark-results/20261021_nn_silu_fx_service_candidate_GPU_tianshu`。本轮不是benchmark或模型准确率评测。后续新目录补精确index启动预热，再测4K。
