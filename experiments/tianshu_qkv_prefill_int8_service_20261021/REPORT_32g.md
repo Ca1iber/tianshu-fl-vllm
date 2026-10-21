@@ -1,0 +1,5 @@
+# QKV prefill服务V1：辅助模块名遮蔽，启动失败，零计分轮
+
+EngineCore231833在原tianshu_k8v16_pipeline_20261019/engine_hooks.py:68执行routing.install时发现routing已是本轮辅助模块，抛AttributeError。发生于模型加载前，control零轮、candidate未启动、无新Math/吞吐成绩。runner231682已Z，server/core退出，GPU恢复空闲。
+
+原源码/CPU门禁/原始日志和result保持。CPU数值门禁覆盖42层2.2亿值，但未覆盖这种跨hook导入顺序，不能以CPU通过声称服务可运行。独立V2仅重命名辅助模块并增加namespace解析检查；禁止改写原V1后重跑。
