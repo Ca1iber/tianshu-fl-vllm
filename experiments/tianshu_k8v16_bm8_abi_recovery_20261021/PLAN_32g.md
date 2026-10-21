@@ -1,0 +1,6 @@
+# 真实模型ABI组件CPU复核修正，不重新运行GPU
+
+原GPU已完整14场景112输出通过，原CPU审核在最后capture1→8193场景的固定SME断言失败，保持原件及原CPU失败状态。
+4K/5K真实C64实际编译use_sme234881411、hash18a1d267，与模型服务V2拒绝时保存的同一binary a59778c1一致。最后8193夹具table stride不同，实际复用了此前strided的d3073bbb/234881408；不能由strided=False推断一定411。安装jit.py在get_corex_sme之前先compute_cache_key并查缓存，这与记录的缓存复用相符，本次不修改Triton库。
+新CPU复核重执行原完整112输出/8044544元素/304 GQA向量/guard/RNG/时序/源快照审核；4K/5K严格411，其他所有记录逐项核对实际缓存metadata.use_sme、kernel hash和binary SHA，不把长场景声称为411。数值阈值/逐位要求不变，原GPU结果、源码及失败审计不覆写，不重跑GPU。
+model service仍必须匹配新组件实际计时过的二进制，不能仅因为CPU修正就放行模型未测binary。结果仅组件，无新Math或正式成绩。
