@@ -1,0 +1,7 @@
+# 无observer缓存隔离诊断V1：首响应结构校验停止
+
+代码211fb7d、原407源/62env/13argv，服务正常就绪，首个/v1/completions返回HTTP200。控制器在第55行把完整usage字典与三个token计数字段构成的字典比较，断言失败；8个对照中的0个进入已保存cases，实际第一条响应未先落盘。停止并退出GPU，原源码与冻结hash保持。
+
+CPU对实际UsageInfo序列化发现还包括prompt_tokens_details字段；原V1没有保存响应，不能事后补造它的值。V2改为先保存完整响应，再逐项严格检查三个计数及16个token_id，其他payload、采样参数、source/env/argv保持。新运行只为取得未完成的缓存隔离证据，原stage40帧测量不重跑，不挑选质量或性能结果。
+
+本次不能形成缓存是否影响输出的因果结论，没有benchmark、Math或采用。根目录/workspace/benchmark-results/20261021_prefill_cache_canary_tianshu；FAILURE_32g.json保存失败traceback与原result hash。原始日志/快照只在容器，无本地副本。
