@@ -1,0 +1,94 @@
+{
+  "complete": true,
+  "component_only": true,
+  "component_gate": "/workspace/vllm-plugin-FL/experiments/tianshu_int8_qkv_partial_results_20261021/GPU_GATE_32g.json",
+  "component_gate_sha256": "fcf790dda4200cae4e464ccf85f6416f089110eb368faf4cfb7f7af1869178be",
+  "kernel_source": "/workspace/vllm-plugin-FL/experiments/tianshu_int8_attention_projections_20261021/kernel.py",
+  "kernel_sha256": "2045cc130a63f624161263c3a2718ad4ac0015b0c84f8a0a396e889e9f93d868",
+  "parent_GPU_run_remains_failed": true,
+  "selection_scope": "completed QKV only",
+  "configurations": [
+    {
+      "M": 128,
+      "configuration": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1,
+        "group_m": 1
+      },
+      "native_ms": 0.04787692427635193,
+      "candidate_ms": 0.03498115241527557
+    },
+    {
+      "M": 256,
+      "configuration": {
+        "bm": 128,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1,
+        "group_m": 1
+      },
+      "native_ms": 0.07340423464775085,
+      "candidate_ms": 0.04504500031471252
+    },
+    {
+      "M": 512,
+      "configuration": {
+        "bm": 128,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1,
+        "group_m": 8
+      },
+      "native_ms": 0.11420481204986573,
+      "candidate_ms": 0.0787586510181427
+    },
+    {
+      "M": 1024,
+      "configuration": {
+        "bm": 128,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1,
+        "group_m": 1
+      },
+      "native_ms": 0.20423038005828859,
+      "candidate_ms": 0.11910327672958373
+    },
+    {
+      "M": 2048,
+      "configuration": {
+        "bm": 128,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1,
+        "group_m": 1
+      },
+      "native_ms": 0.302929425239563,
+      "candidate_ms": 0.22324690818786622
+    },
+    {
+      "M": 4096,
+      "configuration": {
+        "bm": 128,
+        "bn": 512,
+        "bk": 64,
+        "warps": 8,
+        "stages": 1,
+        "group_m": 1
+      },
+      "native_ms": 0.4920375347137451,
+      "candidate_ms": 0.4281159400939941
+    }
+  ],
+  "extra_packed_payload_bytes": 220631040,
+  "decode_unchanged": true,
+  "unknown_M_falls_back": true,
+  "new_Math_required": true
+}
