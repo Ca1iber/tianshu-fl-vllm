@@ -9,3 +9,5 @@
 若Down量化可用，后续可研究SiLU→A量化融合，但当前Inductor已融合slice/SiLU/mul，不能再把分开的未优化kernel当基线。实际生成图Silu语义为FP32 gate*sigmoid先转BF16，再乘up并转BF16；融合必须保留这些rounding点和div_rn/RNE量化语义。RMS→量化的既有RMS_INT8_FUSION_REVIEW需继续参照；当前IR native custom_ops=none，不应假设RMSNormFL.forward_oot正在运行。禁止用Python全局临时tensor字典绕开显式Graph数据依赖。
 
 投机方向需先重读旧speculative/ngram的报告和失败原因，不把ngram负收益直接等同全部draft框架不可能。一个需验证的架构问题：多token verification可能进入当前慢prefill/dequant-arena路由，且LM只在M64整数、其它M可能BF16；draft接受率、真实verification attention、LM batch尺寸和额外KV/weights都需实际检查。若从这里重新研究，先源码证据与小实验，不仅改变num_speculative_tokens重复跑旧慢路径。没有新投机实现或收益，不据此更换默认。
+
+2026-10-21后续源码核对修正：上文关于实际Inductor SiLU/RMS保留中间BF16rounding只是早期IR推断。RMS_INT8_FUSION_REVIEW及新RMS-A8组件已经检查实际生成Triton：当前编译路径消除了那个中间BF16cast。未来融合必须以实际执行编译代码为参考，不能沿用上文早期推断。旧opaque INT8 GateUp+SiLU模型V3已测，较同规模合格基线慢4.67%，不要重复同一边界方案。
