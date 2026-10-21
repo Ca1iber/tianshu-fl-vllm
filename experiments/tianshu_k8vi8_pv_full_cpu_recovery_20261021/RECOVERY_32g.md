@@ -1,0 +1,7 @@
+# 完整整数PV：独立CPU复核的2D元数据修正
+
+原GPU十场景、210条三阶段路径均完成。原冻结verify_gpu.py完成数值核验后，在最后C128场景的启动metadata断言退出：错误要求record.segments等于传入的num_par_softmax_segments=16。实际原生reader current.py第1040行明确num_segments = num_par_softmax_segments if use_3d else 1；C128是真实2D回退，全部七路IS_3D=false/PV_INT8=false/segments=1，未调用分段合并器。
+
+不改原代码、原CPU失败日志或GPU结果，不重跑GPU。新CPU verifier只修正该元数据谓词为3D等于指定S、2D严格等于1；同样继续验证IS_3D/PV关闭以及默认false和四路2D回退完整输出逐位相同。其余数值容差、参考、计数、原件hash及source snapshots全部不变。新增CPU元数据恢复标记，输出留本独立目录。原GPU/CPU快照继续保留失败的父verifier本身。
+
+4K/C64组件已显示真实writer+attention+reducer当前K8V16约0.539900ms、最快整数PV约1.450207ms，未接入模型，未进行新Math。整数PV相对理想V8 attention有两项原容差失败，保留原判定与误差；声明算法对照通过不代表理想attention逐位等价或模型质量合格。
