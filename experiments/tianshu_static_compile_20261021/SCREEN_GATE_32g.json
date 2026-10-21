@@ -1,0 +1,62 @@
+{
+  "complete": true,
+  "independently_rechecked": true,
+  "official_benchmark": false,
+  "adopted": false,
+  "new_model_Math_required": true,
+  "model_Math_not_run": true,
+  "runtime_source_count": 420,
+  "environment_count": 62,
+  "timed_successful_requests": 384,
+  "gain_percent": 0.25398754063319373,
+  "TTFT_change_percent": -0.05299902976120263,
+  "summaries": {
+    "control": {
+      "total_tok_s": 5506.349496552865,
+      "mean_TTFT_ms": 10394.594691217208,
+      "spread_percent": 0.21811103016664624,
+      "postfirst_autotuning_records": 0,
+      "actual_KV_blocks": 40731,
+      "prefill_INT8_launches": 5586,
+      "prefill_INT8_shapes": [
+        128,
+        2048,
+        4096
+      ],
+      "prefill_fallback_launches": 42,
+      "warm_shapes": 24,
+      "packed_weight_payload_bytes": 1326938112
+    },
+    "candidate": {
+      "total_tok_s": 5520.334938217828,
+      "mean_TTFT_ms": 10389.085656883253,
+      "spread_percent": 0.2653082333045914,
+      "postfirst_autotuning_records": 0,
+      "actual_KV_blocks": 40143,
+      "prefill_INT8_launches": 5586,
+      "prefill_INT8_shapes": [
+        128,
+        2048,
+        4096
+      ],
+      "prefill_fallback_launches": 42,
+      "warm_shapes": 24,
+      "packed_weight_payload_bytes": 1326938112
+    }
+  },
+  "same_NN_decode_and_packed_weight_layout_in_both_arms": true,
+  "only_candidate_exact_compile_sizes_changed": true,
+  "untimed_canaries_unique_cache_salt_for_full_recompute": true,
+  "seed_reproducible_within_each_arm": true,
+  "cross_arm_text_equality_not_required_for_compiler_specialization": true,
+  "timed_requests_no_seed_or_cache_salt": true,
+  "raw_roots": {
+    "control": "/workspace/benchmark-results/20261021_static_compile_service_control_tianshu",
+    "candidate": "/workspace/benchmark-results/20261021_static_compile_service_candidate_tianshu"
+  },
+  "raw_result_sha256": {
+    "control": "e2cb664b5380524e49c52329c1d75102adb81dc4b610f5c5e2edf0010386c1e9",
+    "candidate": "f99cbb2146de7be6c1633c9ffecd9566af49eb6b397a108ea8c77b80a43eb11d"
+  },
+  "verifier_sha256": "2a6577f94226f8e0c6b6c27fbda0e633add5d656af163bcbd715785b644a8b82"
+}

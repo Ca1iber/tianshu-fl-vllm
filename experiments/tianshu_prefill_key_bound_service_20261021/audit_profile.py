@@ -11,6 +11,11 @@ def audit_runtime(root,state,official=False):
     assert record['mode']==state['mode'] and record['installed'] and record['capture_completed'] and record['actual_arena_pages']==8192
     assert record['only_prefill_bound_changed'] and record['worker_init_complete_before_install'] and record['no_parameter_or_KV_writer_or_sampling_changes']
     assert not record['additional_per_step_file_writes'] and record['existing_engine_records_only_for_actual_stage_evidence']
+    memory=record['native_memory_budget']
+    assert memory['original_return_and_config_preserved'] and memory['additional_profile_run_not_performed'] and memory['peak_stats_not_reset_by_observer']
+    assert memory['native_cudagraph_estimate_enabled'] and memory['weights_memory']>0
+    assert memory['native_peak_activation_memory']>=0 and memory['native_cudagraph_memory_estimate']>=0
+    assert memory['original_return_KV_memory_bytes']//516096==result['actual_KV_blocks']
     for name in ('metadata_contract','native_route','policy','hook','component_gate'):
         p=record[name+'_source'];assert digest(p)==state['frozen_sources'][p]==record[name+'_sha256']
     engine_files=list(Path(state['profile_environment']['TIANSHU_SOFT8_RECORD_DIR']).glob('engine_*.json'));assert len(engine_files)==1
