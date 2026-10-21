@@ -1,0 +1,1360 @@
+{
+  "complete": true,
+  "CPU_reverified": true,
+  "diagnostic_only": true,
+  "model_executed": false,
+  "benchmark": false,
+  "original_26_case_plan_still_failed": true,
+  "original_failed_result_sha256": "89d749fdc5e7b1570552607cbe2649b6cd363a5494de87dab8d65f7462451371",
+  "raw_result_sha256": "da49dda9b22cfc7404e7679359a4fdac862cd83bc4b71c477002910949bb14d1",
+  "raw_root": "/workspace/benchmark-results/20261021_multiquery_short_diagnostic_GPU_tianshu",
+  "original_FP32_tolerance_unchanged": true,
+  "all_24_modes_match_native_BF16_P_emulation": true,
+  "CPU_recomputed_modes": 24,
+  "ideal_FP32_failed_modes": [
+    {
+      "case": 0,
+      "label": "control",
+      "failed": 1,
+      "max_abs": 0.007899761199951172
+    },
+    {
+      "case": 0,
+      "label": "old_candidate0",
+      "failed": 1,
+      "max_abs": 0.007899761199951172
+    },
+    {
+      "case": 0,
+      "label": "Q2_T16_w1",
+      "failed": 1,
+      "max_abs": 0.007899761199951172
+    },
+    {
+      "case": 0,
+      "label": "Q4_T16_w2",
+      "failed": 1,
+      "max_abs": 0.007899761199951172
+    },
+    {
+      "case": 3,
+      "label": "control",
+      "failed": 8,
+      "max_abs": 0.009013891220092773
+    },
+    {
+      "case": 3,
+      "label": "old_candidate0",
+      "failed": 8,
+      "max_abs": 0.009013891220092773
+    },
+    {
+      "case": 3,
+      "label": "Q2_T16_w1",
+      "failed": 8,
+      "max_abs": 0.009013891220092773
+    },
+    {
+      "case": 3,
+      "label": "Q4_T16_w2",
+      "failed": 8,
+      "max_abs": 0.009013891220092773
+    }
+  ],
+  "short_q_equals_k_bitwise_control_equivalence": [
+    {
+      "case": 0,
+      "label": "control"
+    },
+    {
+      "case": 0,
+      "label": "old_candidate0"
+    },
+    {
+      "case": 0,
+      "label": "Q2_T16_w1"
+    },
+    {
+      "case": 0,
+      "label": "Q4_T16_w2"
+    },
+    {
+      "case": 3,
+      "label": "control"
+    },
+    {
+      "case": 3,
+      "label": "old_candidate0"
+    },
+    {
+      "case": 3,
+      "label": "Q2_T16_w1"
+    },
+    {
+      "case": 3,
+      "label": "Q4_T16_w2"
+    }
+  ],
+  "full_observations": [
+    {
+      "query_length": 2,
+      "key_length": 2,
+      "causal": true,
+      "modes": [
+        {
+          "label": "control",
+          "config": {
+            "block_m": 256,
+            "tile": 128,
+            "warps": 16,
+            "stages": 1
+          },
+          "ideal_FP32_error": {
+            "passed": false,
+            "max_abs": 0.007899761199951172,
+            "failed": 1
+          },
+          "CPU_BF16_P_emulation_error": {
+            "passed": true,
+            "max_abs": 0.0,
+            "failed": 0
+          },
+          "emulated_vs_ideal": {
+            "passed": false,
+            "max_abs": 0.007899761199951172,
+            "failed": 1
+          },
+          "bitwise_vs_control": true,
+          "cache_and_guards_RNG_preserved": true,
+          "actual_launch": {
+            "mode": "control",
+            "config": {
+              "block_m": 256,
+              "tile": 128,
+              "warps": 16,
+              "stages": 1
+            },
+            "IS_3D": false,
+            "grid": [
+              8,
+              2
+            ],
+            "sequences": 8,
+            "query_tokens": 16,
+            "segments": 1,
+            "block_q": 32,
+            "kernel_hash": "cfaecba9b3a52b185fd213d0a6126f3d488a154ea09eb5e1e19d81fd577d2edc",
+            "n_regs": 256,
+            "n_spills": 339,
+            "warps": 16,
+            "shared": 98304
+          }
+        },
+        {
+          "label": "old_candidate0",
+          "config": {
+            "block_m": 32,
+            "tile": 32,
+            "warps": 2,
+            "stages": 1
+          },
+          "ideal_FP32_error": {
+            "passed": false,
+            "max_abs": 0.007899761199951172,
+            "failed": 1
+          },
+          "CPU_BF16_P_emulation_error": {
+            "passed": true,
+            "max_abs": 0.0,
+            "failed": 0
+          },
+          "emulated_vs_ideal": {
+            "passed": false,
+            "max_abs": 0.007899761199951172,
+            "failed": 1
+          },
+          "bitwise_vs_control": true,
+          "cache_and_guards_RNG_preserved": true,
+          "actual_launch": {
+            "mode": "candidate",
+            "config": {
+              "block_m": 32,
+              "tile": 32,
+              "warps": 2,
+              "stages": 1
+            },
+            "IS_3D": true,
+            "grid": [
+              12,
+              2,
+              16
+            ],
+            "sequences": 8,
+            "query_tokens": 16,
+            "segments": 16,
+            "block_q": 4,
+            "kernel_hash": "161c50b217ea96be58380e5a77173823721be0536e1f88a368948d324205a3f0",
+            "n_regs": 193,
+            "n_spills": 0,
+            "warps": 2,
+            "shared": 16384
+          }
+        },
+        {
+          "label": "Q2_T16_w1",
+          "config": {
+            "block_m": 16,
+            "tile": 16,
+            "warps": 1,
+            "stages": 1
+          },
+          "ideal_FP32_error": {
+            "passed": false,
+            "max_abs": 0.007899761199951172,
+            "failed": 1
+          },
+          "CPU_BF16_P_emulation_error": {
+            "passed": true,
+            "max_abs": 0.0,
+            "failed": 0
+          },
+          "emulated_vs_ideal": {
+            "passed": false,
+            "max_abs": 0.007899761199951172,
+            "failed": 1
+          },
+          "bitwise_vs_control": true,
+          "cache_and_guards_RNG_preserved": true,
+          "actual_launch": {
+            "mode": "candidate",
+            "config": {
+              "block_m": 16,
+              "tile": 16,
+              "warps": 1,
+              "stages": 1
+            },
+            "IS_3D": true,
+            "grid": [
+              16,
+              2,
+              16
+            ],
+            "sequences": 8,
+            "query_tokens": 16,
+            "segments": 16,
+            "block_q": 2,
+            "kernel_hash": "ce852fed49897d4268bfcb47dda98471d304d26ab6226e58c30f972aefd62d50",
+            "n_regs": 143,
+            "n_spills": 0,
+            "warps": 1,
+            "shared": 8192
+          }
+        },
+        {
+          "label": "Q4_T16_w2",
+          "config": {
+            "block_m": 32,
+            "tile": 16,
+            "warps": 2,
+            "stages": 1
+          },
+          "ideal_FP32_error": {
+            "passed": false,
+            "max_abs": 0.007899761199951172,
+            "failed": 1
+          },
+          "CPU_BF16_P_emulation_error": {
+            "passed": true,
+            "max_abs": 0.0,
+            "failed": 0
+          },
+          "emulated_vs_ideal": {
+            "passed": false,
+            "max_abs": 0.007899761199951172,
+            "failed": 1
+          },
+          "bitwise_vs_control": true,
+          "cache_and_guards_RNG_preserved": true,
+          "actual_launch": {
+            "mode": "candidate",
+            "config": {
+              "block_m": 32,
+              "tile": 16,
+              "warps": 2,
+              "stages": 1
+            },
+            "IS_3D": true,
+            "grid": [
+              12,
+              2,
+              16
+            ],
+            "sequences": 8,
+            "query_tokens": 16,
+            "segments": 16,
+            "block_q": 4,
+            "kernel_hash": "18ec954d442a5859461f332cfb9f677c5a0d2121e965d220d86ca720f2bc13a7",
+            "n_regs": 123,
+            "n_spills": 0,
+            "warps": 2,
+            "shared": 12288
+          }
+        }
+      ],
+      "archive_sha256": "37efdc8f282a097c28db5e70f6c84c06317216177dc4e49790486cf99907df37"
+    },
+    {
+      "query_length": 3,
+      "key_length": 17,
+      "causal": true,
+      "modes": [
+        {
+          "label": "control",
+          "config": {
+            "block_m": 256,
+            "tile": 128,
+            "warps": 16,
+            "stages": 1
+          },
+          "ideal_FP32_error": {
+            "passed": true,
+            "max_abs": 0.004678130149841309,
+            "failed": 0
+          },
+          "CPU_BF16_P_emulation_error": {
+            "passed": true,
+            "max_abs": 0.00048828125,
+            "failed": 0
+          },
+          "emulated_vs_ideal": {
+            "passed": true,
+            "max_abs": 0.004678130149841309,
+            "failed": 0
+          },
+          "bitwise_vs_control": true,
+          "cache_and_guards_RNG_preserved": true,
+          "actual_launch": {
+            "mode": "control",
+            "config": {
+              "block_m": 256,
+              "tile": 128,
+              "warps": 16,
+              "stages": 1
+            },
+            "IS_3D": false,
+            "grid": [
+              8,
+              2
+            ],
+            "sequences": 8,
+            "query_tokens": 24,
+            "segments": 1,
+            "block_q": 32,
+            "kernel_hash": "cfaecba9b3a52b185fd213d0a6126f3d488a154ea09eb5e1e19d81fd577d2edc",
+            "n_regs": 256,
+            "n_spills": 339,
+            "warps": 16,
+            "shared": 98304
+          }
+        },
+        {
+          "label": "old_candidate0",
+          "config": {
+            "block_m": 32,
+            "tile": 32,
+            "warps": 2,
+            "stages": 1
+          },
+          "ideal_FP32_error": {
+            "passed": true,
+            "max_abs": 0.004678130149841309,
+            "failed": 0
+          },
+          "CPU_BF16_P_emulation_error": {
+            "passed": true,
+            "max_abs": 0.00048828125,
+            "failed": 0
+          },
+          "emulated_vs_ideal": {
+            "passed": true,
+            "max_abs": 0.004678130149841309,
+            "failed": 0
+          },
+          "bitwise_vs_control": true,
+          "cache_and_guards_RNG_preserved": true,
+          "actual_launch": {
+            "mode": "candidate",
+            "config": {
+              "block_m": 32,
+              "tile": 32,
+              "warps": 2,
+              "stages": 1
+            },
+            "IS_3D": true,
+            "grid": [
+              14,
+              2,
+              16
+            ],
+            "sequences": 8,
+            "query_tokens": 24,
+            "segments": 16,
+            "block_q": 4,
+            "kernel_hash": "161c50b217ea96be58380e5a77173823721be0536e1f88a368948d324205a3f0",
+            "n_regs": 193,
+            "n_spills": 0,
+            "warps": 2,
+            "shared": 16384
+          }
+        },
+        {
+          "label": "Q2_T16_w1",
+          "config": {
+            "block_m": 16,
+            "tile": 16,
+            "warps": 1,
+            "stages": 1
+          },
+          "ideal_FP32_error": {
+            "passed": true,
+            "max_abs": 0.004603385925292969,
+            "failed": 0
+          },
+          "CPU_BF16_P_emulation_error": {
+            "passed": true,
+            "max_abs": 0.00048828125,
+            "failed": 0
+          },
+          "emulated_vs_ideal": {
+            "passed": true,
+            "max_abs": 0.004603385925292969,
+            "failed": 0
+          },
+          "bitwise_vs_control": false,
+          "cache_and_guards_RNG_preserved": true,
+          "actual_launch": {
+            "mode": "candidate",
+            "config": {
+              "block_m": 16,
+              "tile": 16,
+              "warps": 1,
+              "stages": 1
+            },
+            "IS_3D": true,
+            "grid": [
+              20,
+              2,
+              16
+            ],
+            "sequences": 8,
+            "query_tokens": 24,
+            "segments": 16,
+            "block_q": 2,
+            "kernel_hash": "ce852fed49897d4268bfcb47dda98471d304d26ab6226e58c30f972aefd62d50",
+            "n_regs": 143,
+            "n_spills": 0,
+            "warps": 1,
+            "shared": 8192
+          }
+        },
+        {
+          "label": "Q4_T16_w2",
+          "config": {
+            "block_m": 32,
+            "tile": 16,
+            "warps": 2,
+            "stages": 1
+          },
+          "ideal_FP32_error": {
+            "passed": true,
+            "max_abs": 0.004603385925292969,
+            "failed": 0
+          },
+          "CPU_BF16_P_emulation_error": {
+            "passed": true,
+            "max_abs": 0.00048828125,
+            "failed": 0
+          },
+          "emulated_vs_ideal": {
+            "passed": true,
+            "max_abs": 0.004603385925292969,
+            "failed": 0
+          },
+          "bitwise_vs_control": false,
+          "cache_and_guards_RNG_preserved": true,
+          "actual_launch": {
+            "mode": "candidate",
+            "config": {
+              "block_m": 32,
+              "tile": 16,
+              "warps": 2,
+              "stages": 1
+            },
+            "IS_3D": true,
+            "grid": [
+              14,
+              2,
+              16
+            ],
+            "sequences": 8,
+            "query_tokens": 24,
+            "segments": 16,
+            "block_q": 4,
+            "kernel_hash": "18ec954d442a5859461f332cfb9f677c5a0d2121e965d220d86ca720f2bc13a7",
+            "n_regs": 123,
+            "n_spills": 0,
+            "warps": 2,
+            "shared": 12288
+          }
+        }
+      ],
+      "archive_sha256": "8f6bb51ef601be2bca517bea7dae50a9befe2c40791db11bdcef15f2778330f6"
+    },
+    {
+      "query_length": 4,
+      "key_length": 33,
+      "causal": true,
+      "modes": [
+        {
+          "label": "control",
+          "config": {
+            "block_m": 256,
+            "tile": 128,
+            "warps": 16,
+            "stages": 1
+          },
+          "ideal_FP32_error": {
+            "passed": true,
+            "max_abs": 0.0048809051513671875,
+            "failed": 0
+          },
+          "CPU_BF16_P_emulation_error": {
+            "passed": true,
+            "max_abs": 0.0009765625,
+            "failed": 0
+          },
+          "emulated_vs_ideal": {
+            "passed": true,
+            "max_abs": 0.0048809051513671875,
+            "failed": 0
+          },
+          "bitwise_vs_control": true,
+          "cache_and_guards_RNG_preserved": true,
+          "actual_launch": {
+            "mode": "control",
+            "config": {
+              "block_m": 256,
+              "tile": 128,
+              "warps": 16,
+              "stages": 1
+            },
+            "IS_3D": false,
+            "grid": [
+              9,
+              2
+            ],
+            "sequences": 8,
+            "query_tokens": 32,
+            "segments": 1,
+            "block_q": 32,
+            "kernel_hash": "c214fc91d3157f951dbd5d34c5cf2be418ef231b72c02b702b515b2ceb2ede40",
+            "n_regs": 256,
+            "n_spills": 339,
+            "warps": 16,
+            "shared": 98304
+          }
+        },
+        {
+          "label": "old_candidate0",
+          "config": {
+            "block_m": 32,
+            "tile": 32,
+            "warps": 2,
+            "stages": 1
+          },
+          "ideal_FP32_error": {
+            "passed": true,
+            "max_abs": 0.0048809051513671875,
+            "failed": 0
+          },
+          "CPU_BF16_P_emulation_error": {
+            "passed": true,
+            "max_abs": 0.0009765625,
+            "failed": 0
+          },
+          "emulated_vs_ideal": {
+            "passed": true,
+            "max_abs": 0.0048809051513671875,
+            "failed": 0
+          },
+          "bitwise_vs_control": false,
+          "cache_and_guards_RNG_preserved": true,
+          "actual_launch": {
+            "mode": "candidate",
+            "config": {
+              "block_m": 32,
+              "tile": 32,
+              "warps": 2,
+              "stages": 1
+            },
+            "IS_3D": true,
+            "grid": [
+              16,
+              2,
+              16
+            ],
+            "sequences": 8,
+            "query_tokens": 32,
+            "segments": 16,
+            "block_q": 4,
+            "kernel_hash": "22024d88ffcee61e8c60fafb8237615fd357820d7d21ec7adc1c8c998a8293a7",
+            "n_regs": 193,
+            "n_spills": 0,
+            "warps": 2,
+            "shared": 16384
+          }
+        },
+        {
+          "label": "Q2_T16_w1",
+          "config": {
+            "block_m": 16,
+            "tile": 16,
+            "warps": 1,
+            "stages": 1
+          },
+          "ideal_FP32_error": {
+            "passed": true,
+            "max_abs": 0.004843711853027344,
+            "failed": 0
+          },
+          "CPU_BF16_P_emulation_error": {
+            "passed": true,
+            "max_abs": 0.001953125,
+            "failed": 0
+          },
+          "emulated_vs_ideal": {
+            "passed": true,
+            "max_abs": 0.004843711853027344,
+            "failed": 0
+          },
+          "bitwise_vs_control": false,
+          "cache_and_guards_RNG_preserved": true,
+          "actual_launch": {
+            "mode": "candidate",
+            "config": {
+              "block_m": 16,
+              "tile": 16,
+              "warps": 1,
+              "stages": 1
+            },
+            "IS_3D": true,
+            "grid": [
+              24,
+              2,
+              16
+            ],
+            "sequences": 8,
+            "query_tokens": 32,
+            "segments": 16,
+            "block_q": 2,
+            "kernel_hash": "9b66d7c13abaa05f6826f51846d9130aacdf010abd4f9e875ffd7841d0aa16c9",
+            "n_regs": 143,
+            "n_spills": 0,
+            "warps": 1,
+            "shared": 8192
+          }
+        },
+        {
+          "label": "Q4_T16_w2",
+          "config": {
+            "block_m": 32,
+            "tile": 16,
+            "warps": 2,
+            "stages": 1
+          },
+          "ideal_FP32_error": {
+            "passed": true,
+            "max_abs": 0.004843711853027344,
+            "failed": 0
+          },
+          "CPU_BF16_P_emulation_error": {
+            "passed": true,
+            "max_abs": 0.001953125,
+            "failed": 0
+          },
+          "emulated_vs_ideal": {
+            "passed": true,
+            "max_abs": 0.004843711853027344,
+            "failed": 0
+          },
+          "bitwise_vs_control": false,
+          "cache_and_guards_RNG_preserved": true,
+          "actual_launch": {
+            "mode": "candidate",
+            "config": {
+              "block_m": 32,
+              "tile": 16,
+              "warps": 2,
+              "stages": 1
+            },
+            "IS_3D": true,
+            "grid": [
+              16,
+              2,
+              16
+            ],
+            "sequences": 8,
+            "query_tokens": 32,
+            "segments": 16,
+            "block_q": 4,
+            "kernel_hash": "72012063ee9bbe4054a6f3bf871acc20775285eb982bda2d6c436c8a9b532d9e",
+            "n_regs": 123,
+            "n_spills": 0,
+            "warps": 2,
+            "shared": 12288
+          }
+        }
+      ],
+      "archive_sha256": "dc53e1ffab50a176e8f0b9c5154fa101eda923d6baf15f9c8e73e4caca7e850a"
+    },
+    {
+      "query_length": 8,
+      "key_length": 8,
+      "causal": true,
+      "modes": [
+        {
+          "label": "control",
+          "config": {
+            "block_m": 256,
+            "tile": 128,
+            "warps": 16,
+            "stages": 1
+          },
+          "ideal_FP32_error": {
+            "passed": false,
+            "max_abs": 0.009013891220092773,
+            "failed": 8
+          },
+          "CPU_BF16_P_emulation_error": {
+            "passed": true,
+            "max_abs": 0.0,
+            "failed": 0
+          },
+          "emulated_vs_ideal": {
+            "passed": false,
+            "max_abs": 0.009013891220092773,
+            "failed": 8
+          },
+          "bitwise_vs_control": true,
+          "cache_and_guards_RNG_preserved": true,
+          "actual_launch": {
+            "mode": "control",
+            "config": {
+              "block_m": 256,
+              "tile": 128,
+              "warps": 16,
+              "stages": 1
+            },
+            "IS_3D": false,
+            "grid": [
+              10,
+              2
+            ],
+            "sequences": 8,
+            "query_tokens": 64,
+            "segments": 1,
+            "block_q": 32,
+            "kernel_hash": "cfaecba9b3a52b185fd213d0a6126f3d488a154ea09eb5e1e19d81fd577d2edc",
+            "n_regs": 256,
+            "n_spills": 339,
+            "warps": 16,
+            "shared": 98304
+          }
+        },
+        {
+          "label": "old_candidate0",
+          "config": {
+            "block_m": 32,
+            "tile": 32,
+            "warps": 2,
+            "stages": 1
+          },
+          "ideal_FP32_error": {
+            "passed": false,
+            "max_abs": 0.009013891220092773,
+            "failed": 8
+          },
+          "CPU_BF16_P_emulation_error": {
+            "passed": true,
+            "max_abs": 0.0,
+            "failed": 0
+          },
+          "emulated_vs_ideal": {
+            "passed": false,
+            "max_abs": 0.009013891220092773,
+            "failed": 8
+          },
+          "bitwise_vs_control": true,
+          "cache_and_guards_RNG_preserved": true,
+          "actual_launch": {
+            "mode": "candidate",
+            "config": {
+              "block_m": 32,
+              "tile": 32,
+              "warps": 2,
+              "stages": 1
+            },
+            "IS_3D": true,
+            "grid": [
+              24,
+              2,
+              16
+            ],
+            "sequences": 8,
+            "query_tokens": 64,
+            "segments": 16,
+            "block_q": 4,
+            "kernel_hash": "161c50b217ea96be58380e5a77173823721be0536e1f88a368948d324205a3f0",
+            "n_regs": 193,
+            "n_spills": 0,
+            "warps": 2,
+            "shared": 16384
+          }
+        },
+        {
+          "label": "Q2_T16_w1",
+          "config": {
+            "block_m": 16,
+            "tile": 16,
+            "warps": 1,
+            "stages": 1
+          },
+          "ideal_FP32_error": {
+            "passed": false,
+            "max_abs": 0.009013891220092773,
+            "failed": 8
+          },
+          "CPU_BF16_P_emulation_error": {
+            "passed": true,
+            "max_abs": 0.0,
+            "failed": 0
+          },
+          "emulated_vs_ideal": {
+            "passed": false,
+            "max_abs": 0.009013891220092773,
+            "failed": 8
+          },
+          "bitwise_vs_control": true,
+          "cache_and_guards_RNG_preserved": true,
+          "actual_launch": {
+            "mode": "candidate",
+            "config": {
+              "block_m": 16,
+              "tile": 16,
+              "warps": 1,
+              "stages": 1
+            },
+            "IS_3D": true,
+            "grid": [
+              40,
+              2,
+              16
+            ],
+            "sequences": 8,
+            "query_tokens": 64,
+            "segments": 16,
+            "block_q": 2,
+            "kernel_hash": "ce852fed49897d4268bfcb47dda98471d304d26ab6226e58c30f972aefd62d50",
+            "n_regs": 143,
+            "n_spills": 0,
+            "warps": 1,
+            "shared": 8192
+          }
+        },
+        {
+          "label": "Q4_T16_w2",
+          "config": {
+            "block_m": 32,
+            "tile": 16,
+            "warps": 2,
+            "stages": 1
+          },
+          "ideal_FP32_error": {
+            "passed": false,
+            "max_abs": 0.009013891220092773,
+            "failed": 8
+          },
+          "CPU_BF16_P_emulation_error": {
+            "passed": true,
+            "max_abs": 0.0,
+            "failed": 0
+          },
+          "emulated_vs_ideal": {
+            "passed": false,
+            "max_abs": 0.009013891220092773,
+            "failed": 8
+          },
+          "bitwise_vs_control": true,
+          "cache_and_guards_RNG_preserved": true,
+          "actual_launch": {
+            "mode": "candidate",
+            "config": {
+              "block_m": 32,
+              "tile": 16,
+              "warps": 2,
+              "stages": 1
+            },
+            "IS_3D": true,
+            "grid": [
+              24,
+              2,
+              16
+            ],
+            "sequences": 8,
+            "query_tokens": 64,
+            "segments": 16,
+            "block_q": 4,
+            "kernel_hash": "18ec954d442a5859461f332cfb9f677c5a0d2121e965d220d86ca720f2bc13a7",
+            "n_regs": 123,
+            "n_spills": 0,
+            "warps": 2,
+            "shared": 12288
+          }
+        }
+      ],
+      "archive_sha256": "8d503c67ac5cae205ced5a7d56a050a993c74ef2e15fa9277ec52acec3ccf737"
+    },
+    {
+      "query_length": 8,
+      "key_length": 65,
+      "causal": true,
+      "modes": [
+        {
+          "label": "control",
+          "config": {
+            "block_m": 256,
+            "tile": 128,
+            "warps": 16,
+            "stages": 1
+          },
+          "ideal_FP32_error": {
+            "passed": true,
+            "max_abs": 0.0036356449127197266,
+            "failed": 0
+          },
+          "CPU_BF16_P_emulation_error": {
+            "passed": true,
+            "max_abs": 0.0009765625,
+            "failed": 0
+          },
+          "emulated_vs_ideal": {
+            "passed": true,
+            "max_abs": 0.0036356449127197266,
+            "failed": 0
+          },
+          "bitwise_vs_control": true,
+          "cache_and_guards_RNG_preserved": true,
+          "actual_launch": {
+            "mode": "control",
+            "config": {
+              "block_m": 256,
+              "tile": 128,
+              "warps": 16,
+              "stages": 1
+            },
+            "IS_3D": false,
+            "grid": [
+              10,
+              2
+            ],
+            "sequences": 8,
+            "query_tokens": 64,
+            "segments": 1,
+            "block_q": 32,
+            "kernel_hash": "cfaecba9b3a52b185fd213d0a6126f3d488a154ea09eb5e1e19d81fd577d2edc",
+            "n_regs": 256,
+            "n_spills": 339,
+            "warps": 16,
+            "shared": 98304
+          }
+        },
+        {
+          "label": "old_candidate0",
+          "config": {
+            "block_m": 32,
+            "tile": 32,
+            "warps": 2,
+            "stages": 1
+          },
+          "ideal_FP32_error": {
+            "passed": true,
+            "max_abs": 0.0041768550872802734,
+            "failed": 0
+          },
+          "CPU_BF16_P_emulation_error": {
+            "passed": true,
+            "max_abs": 0.0009765625,
+            "failed": 0
+          },
+          "emulated_vs_ideal": {
+            "passed": true,
+            "max_abs": 0.0041768550872802734,
+            "failed": 0
+          },
+          "bitwise_vs_control": false,
+          "cache_and_guards_RNG_preserved": true,
+          "actual_launch": {
+            "mode": "candidate",
+            "config": {
+              "block_m": 32,
+              "tile": 32,
+              "warps": 2,
+              "stages": 1
+            },
+            "IS_3D": true,
+            "grid": [
+              24,
+              2,
+              16
+            ],
+            "sequences": 8,
+            "query_tokens": 64,
+            "segments": 16,
+            "block_q": 4,
+            "kernel_hash": "161c50b217ea96be58380e5a77173823721be0536e1f88a368948d324205a3f0",
+            "n_regs": 193,
+            "n_spills": 0,
+            "warps": 2,
+            "shared": 16384
+          }
+        },
+        {
+          "label": "Q2_T16_w1",
+          "config": {
+            "block_m": 16,
+            "tile": 16,
+            "warps": 1,
+            "stages": 1
+          },
+          "ideal_FP32_error": {
+            "passed": true,
+            "max_abs": 0.0041768550872802734,
+            "failed": 0
+          },
+          "CPU_BF16_P_emulation_error": {
+            "passed": true,
+            "max_abs": 0.00390625,
+            "failed": 0
+          },
+          "emulated_vs_ideal": {
+            "passed": true,
+            "max_abs": 0.0041768550872802734,
+            "failed": 0
+          },
+          "bitwise_vs_control": false,
+          "cache_and_guards_RNG_preserved": true,
+          "actual_launch": {
+            "mode": "candidate",
+            "config": {
+              "block_m": 16,
+              "tile": 16,
+              "warps": 1,
+              "stages": 1
+            },
+            "IS_3D": true,
+            "grid": [
+              40,
+              2,
+              16
+            ],
+            "sequences": 8,
+            "query_tokens": 64,
+            "segments": 16,
+            "block_q": 2,
+            "kernel_hash": "ce852fed49897d4268bfcb47dda98471d304d26ab6226e58c30f972aefd62d50",
+            "n_regs": 143,
+            "n_spills": 0,
+            "warps": 1,
+            "shared": 8192
+          }
+        },
+        {
+          "label": "Q4_T16_w2",
+          "config": {
+            "block_m": 32,
+            "tile": 16,
+            "warps": 2,
+            "stages": 1
+          },
+          "ideal_FP32_error": {
+            "passed": true,
+            "max_abs": 0.0041768550872802734,
+            "failed": 0
+          },
+          "CPU_BF16_P_emulation_error": {
+            "passed": true,
+            "max_abs": 0.00390625,
+            "failed": 0
+          },
+          "emulated_vs_ideal": {
+            "passed": true,
+            "max_abs": 0.0041768550872802734,
+            "failed": 0
+          },
+          "bitwise_vs_control": false,
+          "cache_and_guards_RNG_preserved": true,
+          "actual_launch": {
+            "mode": "candidate",
+            "config": {
+              "block_m": 32,
+              "tile": 16,
+              "warps": 2,
+              "stages": 1
+            },
+            "IS_3D": true,
+            "grid": [
+              24,
+              2,
+              16
+            ],
+            "sequences": 8,
+            "query_tokens": 64,
+            "segments": 16,
+            "block_q": 4,
+            "kernel_hash": "18ec954d442a5859461f332cfb9f677c5a0d2121e965d220d86ca720f2bc13a7",
+            "n_regs": 123,
+            "n_spills": 0,
+            "warps": 2,
+            "shared": 12288
+          }
+        }
+      ],
+      "archive_sha256": "2d5cbf85725c489c15e0c4deb6575deebf1f34db24fde692efb7e1556ed93dd1"
+    },
+    {
+      "query_length": 7,
+      "key_length": 17,
+      "causal": false,
+      "modes": [
+        {
+          "label": "control",
+          "config": {
+            "block_m": 256,
+            "tile": 128,
+            "warps": 16,
+            "stages": 1
+          },
+          "ideal_FP32_error": {
+            "passed": true,
+            "max_abs": 0.007669210433959961,
+            "failed": 0
+          },
+          "CPU_BF16_P_emulation_error": {
+            "passed": true,
+            "max_abs": 0.00390625,
+            "failed": 0
+          },
+          "emulated_vs_ideal": {
+            "passed": true,
+            "max_abs": 0.007669210433959961,
+            "failed": 0
+          },
+          "bitwise_vs_control": true,
+          "cache_and_guards_RNG_preserved": true,
+          "actual_launch": {
+            "mode": "control",
+            "config": {
+              "block_m": 256,
+              "tile": 128,
+              "warps": 16,
+              "stages": 1
+            },
+            "IS_3D": false,
+            "grid": [
+              9,
+              2
+            ],
+            "sequences": 8,
+            "query_tokens": 56,
+            "segments": 1,
+            "block_q": 32,
+            "kernel_hash": "5b6ef8b2b24b6e2a0ad344500c564f9cd4a30fa14d9e8039fb48f09b14e4f123",
+            "n_regs": 256,
+            "n_spills": 337,
+            "warps": 16,
+            "shared": 98304
+          }
+        },
+        {
+          "label": "old_candidate0",
+          "config": {
+            "block_m": 32,
+            "tile": 32,
+            "warps": 2,
+            "stages": 1
+          },
+          "ideal_FP32_error": {
+            "passed": true,
+            "max_abs": 0.007669210433959961,
+            "failed": 0
+          },
+          "CPU_BF16_P_emulation_error": {
+            "passed": true,
+            "max_abs": 0.00390625,
+            "failed": 0
+          },
+          "emulated_vs_ideal": {
+            "passed": true,
+            "max_abs": 0.007669210433959961,
+            "failed": 0
+          },
+          "bitwise_vs_control": true,
+          "cache_and_guards_RNG_preserved": true,
+          "actual_launch": {
+            "mode": "candidate",
+            "config": {
+              "block_m": 32,
+              "tile": 32,
+              "warps": 2,
+              "stages": 1
+            },
+            "IS_3D": true,
+            "grid": [
+              22,
+              2,
+              16
+            ],
+            "sequences": 8,
+            "query_tokens": 56,
+            "segments": 16,
+            "block_q": 4,
+            "kernel_hash": "5efe6beb497fce92a075081f69fb24c5c682292b2e180e75a6025ab665ac9036",
+            "n_regs": 193,
+            "n_spills": 0,
+            "warps": 2,
+            "shared": 16384
+          }
+        },
+        {
+          "label": "Q2_T16_w1",
+          "config": {
+            "block_m": 16,
+            "tile": 16,
+            "warps": 1,
+            "stages": 1
+          },
+          "ideal_FP32_error": {
+            "passed": true,
+            "max_abs": 0.007669210433959961,
+            "failed": 0
+          },
+          "CPU_BF16_P_emulation_error": {
+            "passed": true,
+            "max_abs": 0.001953125,
+            "failed": 0
+          },
+          "emulated_vs_ideal": {
+            "passed": true,
+            "max_abs": 0.007669210433959961,
+            "failed": 0
+          },
+          "bitwise_vs_control": false,
+          "cache_and_guards_RNG_preserved": true,
+          "actual_launch": {
+            "mode": "candidate",
+            "config": {
+              "block_m": 16,
+              "tile": 16,
+              "warps": 1,
+              "stages": 1
+            },
+            "IS_3D": true,
+            "grid": [
+              36,
+              2,
+              16
+            ],
+            "sequences": 8,
+            "query_tokens": 56,
+            "segments": 16,
+            "block_q": 2,
+            "kernel_hash": "f30d530756fc5f53b34c20de502d6e19348319896176a9b1d12bd84cbce24cd5",
+            "n_regs": 143,
+            "n_spills": 0,
+            "warps": 1,
+            "shared": 8192
+          }
+        },
+        {
+          "label": "Q4_T16_w2",
+          "config": {
+            "block_m": 32,
+            "tile": 16,
+            "warps": 2,
+            "stages": 1
+          },
+          "ideal_FP32_error": {
+            "passed": true,
+            "max_abs": 0.007669210433959961,
+            "failed": 0
+          },
+          "CPU_BF16_P_emulation_error": {
+            "passed": true,
+            "max_abs": 0.001953125,
+            "failed": 0
+          },
+          "emulated_vs_ideal": {
+            "passed": true,
+            "max_abs": 0.007669210433959961,
+            "failed": 0
+          },
+          "bitwise_vs_control": false,
+          "cache_and_guards_RNG_preserved": true,
+          "actual_launch": {
+            "mode": "candidate",
+            "config": {
+              "block_m": 32,
+              "tile": 16,
+              "warps": 2,
+              "stages": 1
+            },
+            "IS_3D": true,
+            "grid": [
+              22,
+              2,
+              16
+            ],
+            "sequences": 8,
+            "query_tokens": 56,
+            "segments": 16,
+            "block_q": 4,
+            "kernel_hash": "b922dc41a4ab959153080a5b55b8cd26afdb4fb20a2340d299ddb1ad19501f76",
+            "n_regs": 123,
+            "n_spills": 0,
+            "warps": 2,
+            "shared": 12288
+          }
+        }
+      ],
+      "archive_sha256": "2fa100c5c7a80a4afe976685053e922c1b5b92985aa58f1d1f981b2b1d28b42a"
+    }
+  ],
+  "frozen_sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_multiquery_short_diagnostic_20261021/emulate.py": "4795f4ed3412714195a3187d4922b322fa9990088689b0ad5b1055af127af010",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_multiquery_short_diagnostic_20261021/probe_gpu.py": "1c667e4651e3ba95380b0e1b9258b249541a7303443c02253f1a435b26cc0ed6",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_multiquery_short_diagnostic_20261021/check_cpu.py": "f5a898355490f0d526adb8bc0d27a3c1bbdcf736d8774ed9ed2d13aa82c18e77",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_multiquery_short_diagnostic_20261021/run_component.sh": "60d871bfc364924c1d58ccc9073a48ebd61134ac68e9daa100799a0f8d773ca8",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_multiquery_short_diagnostic_20261021/PLAN_32g.md": "17cc1bbb202495f05c3d05e53bd2123df55ee3839d69378ac40cc8a4fae6ae63",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_multiquery_splitkv_20261021/source.py": "7ffec7715c000d7c425358988c6a69d5fbf2608b140807a6ad502a8514139180",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_multiquery_splitkv_20261021/launch.py": "1839a93610b2e9ab0c2ddfc603ea53b50c0a65c0b787bb5b3253c99a9add327f",
+    "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/current_reader/generated_current.py": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+    "/usr/local/lib/python3.12/site-packages/vllm/v1/attention/ops/triton_attention_helpers.py": "59d9d34bbda988436593cfd9bcb05015d17db8ee85c50f6697e45f987acbf0b1",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/value_planes.py": "64f0a0ba89841feb8c091b861d60d687de5d4bdd73c9c7f66476e5cd6ff0d5f0",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_multiquery_short_diagnostic_20261021/CPU_GATE_32g.json": "1347f95144766e63d6623b353eff7e1315a7c4327c95009580382db88bd40a8f",
+    "/workspace/benchmark-results/20261021_multiquery_short_diagnostic_GPU_tianshu/control/generated_reader.py": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+    "/workspace/benchmark-results/20261021_multiquery_short_diagnostic_GPU_tianshu/old_candidate0/generated_reader.py": "80521197e59a85605f0528745314a95fbe7ac4fe133a579db4db128bbbb69482",
+    "/workspace/benchmark-results/20261021_multiquery_short_diagnostic_GPU_tianshu/Q2_T16_w1/generated_reader.py": "80521197e59a85605f0528745314a95fbe7ac4fe133a579db4db128bbbb69482",
+    "/workspace/benchmark-results/20261021_multiquery_short_diagnostic_GPU_tianshu/Q4_T16_w2/generated_reader.py": "80521197e59a85605f0528745314a95fbe7ac4fe133a579db4db128bbbb69482"
+  },
+  "verifier_source_sha256": "56994e9e91c6f1572b708ecdd24cf2b4bd41406ba93ed9059e5e6fbe1f656470"
+}
