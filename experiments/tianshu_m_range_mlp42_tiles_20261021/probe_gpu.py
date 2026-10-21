@@ -15,7 +15,8 @@ def main():
     remaining=int((datetime.fromisoformat('2026-10-21T15:58:00+00:00')-datetime.now(timezone.utc)).total_seconds());assert remaining>900;signal.alarm(min(remaining,3600))
     hardware=subprocess.check_output(['ixsmi'],text=True);assert 'No running processes found' in hardware
     gate=json.loads((BASE/'CPU_GATE_32g.json').read_text());assert gate['complete'] and gate['CPU_only'];assert all(sha(f)==d for f,d in gate['sources'].items())
-    component=json.loads((EXP/'tianshu_m_range_int8_gateup_recovery_20261021/GPU_GATE_32g.json').read_text());assert component['complete'] and component['CPU_only']
+    component=json.loads((EXP/'tianshu_nn_silu_large_tiles_v2_results_20261021/GPU_GATE_32g.json').read_text());assert component['complete'] and component['CPU_only']
+    assert selection['component_gate_sha256']==sha(EXP/'tianshu_nn_silu_large_tiles_v2_results_20261021/GPU_GATE_32g.json')
     assert root.is_relative_to('/workspace/benchmark-results');root.mkdir(exist_ok=False);(root/'hardware_before.txt').write_text(hardware)
     selection=json.loads((BASE/'selected_plan.json').read_text());assert selection['component_independently_CPU_verified'] and set(map(int,selection['configuration_by_M']))==set(ROWS)
     state=dict(complete=False,phase='starting',runner_pid=os.getpid(),component_only=True,model_executed=False,official_benchmark=False,adopted=False,sources=gate['sources'],rows=ROWS,configuration_by_M=selection['configuration_by_M'],cases=[],timing_rounds=[],bank_signatures=[])
@@ -69,7 +70,14 @@ def main():
                 if m==2048:current.mm(a,bank['D'],(out,out),dict(bm=256,bn=256,bk=32,splits=1,warps=16,stages=2,group_m=1))
                 else:flag_gems.mm_out(a,bank['D'].T,out=out)
             def control_layer(bank):nn.quantize(x,q,s);nn.mm(q,bank['W'],s,bank['S'],p,pi,cfg);activation(p,a0,m);down(a0,bank,o0)
-            def candidate_layer(bank):nn.quantize(x,q,s);fused.fused(q,bank['W'],s,bank['S'],a1,fi,fp,CONFIG);down(a1,bank,o1)
+            def candidate_layer(bank):
+                nn.quantize(x,q,s);compiled=fused.fused(q,bank['W'],s,bank['S'],a1,fi,fp,CONFIG)
+                actual=state.setdefault('actual_timed_candidate_kernels',{})
+                if str(m) not in actual:
+                    binary=hashlib.sha256(compiled.kernel).hexdigest()
+                    actual[str(m)]=dict(configuration=CONFIG,binary_sha256=binary,cache_hash=compiled.hash,registers=compiled.n_regs,spills=compiled.n_spills)
+                    if str(m) in selection['anchor_candidates']:assert binary==selection['anchor_candidates'][str(m)]['binary_sha256']
+                down(a1,bank,o1)
             rows=torch.tensor(sorted({0,1,m//2,m-1}));cols=torch.linspace(0,6143,16).long();full_cols=torch.cat((cols,cols+6144));down_cols=torch.linspace(0,2047,16).long();rd,cd,fc,dc=rows.cuda(),cols.cuda(),full_cols.cuda(),down_cols.cuda()
             selected={index:dict(W=banks[index]['W'].T[fc].cpu(),S=banks[index]['S'][fc].cpu(),Down_W=banks[index]['D'][dc].cpu()) for index in (0,7,20,41)}
             validation_graphs=[]
