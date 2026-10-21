@@ -1,0 +1,105 @@
+{
+  "complete": true,
+  "fresh_math_for_original_command_profile": true,
+  "reused_original_accuracy": false,
+  "correct": 99,
+  "total": 105,
+  "accuracy": 0.9428571428571428,
+  "official_requirement_passed": false,
+  "execution_summary": {
+    "requested": 105,
+    "succeeded": 105,
+    "errored": 0,
+    "incomplete": false,
+    "subsets": {
+      "Level 3": {
+        "requested": 105,
+        "succeeded": 105,
+        "errored": 0
+      }
+    }
+  },
+  "incorrect_indices": [
+    18,
+    47,
+    77,
+    83,
+    87,
+    101
+  ],
+  "generation_stop_reasons": {
+    "stop": 104,
+    "max_tokens": 1
+  },
+  "max_tokens_indices": [
+    101
+  ],
+  "server_command": [
+    "vllm",
+    "serve",
+    "/workspace/MiniCPM5-2B",
+    "--port",
+    "9031",
+    "--compilation-config",
+    "{\"cudagraph_mode\": \"FULL_DECODE_ONLY\"}",
+    "--served-model-name",
+    "minicpm",
+    "--gpu-memory-utilization",
+    "0.85",
+    "--max-model-len",
+    "131072"
+  ],
+  "matched_screen_root": "/workspace/vllm-plugin-FL/experiments/tianshu_topp_grid_current_service_20261021",
+  "evaluation_command": [
+    "evalscope",
+    "eval",
+    "--model",
+    "minicpm",
+    "--api-url",
+    "http://127.0.0.1:9031/v1/chat/completions",
+    "--api-key",
+    "EMPTY",
+    "--eval-type",
+    "openai_api",
+    "--datasets",
+    "math_500",
+    "--dataset-args",
+    "{\"math_500\":{\"dataset_id\":\"/workspace/evalscope-datasets/math_500\",\"subset_list\":[\"Level 3\"]}}",
+    "--eval-batch-size",
+    "8",
+    "--timeout",
+    "3600",
+    "--generation-config",
+    "{\"temperature\":1.0,\"top_p\":0.95,\"max_tokens\":32768}",
+    "--work-dir",
+    "/workspace/benchmark-results/20261021_topp_grid_current_math_tianshu/evalscope",
+    "--ignore-errors"
+  ],
+  "raw_files": {
+    "evalscope/20261021_115330/reports/minicpm/math_500.json": {
+      "bytes": 8941,
+      "sha256": "9677ba4a4f9be93db286a483ecb9e648760d27eefea2d117b861b017486c944e"
+    },
+    "evalscope/20261021_115330/reviews/minicpm/math_500_Level 3.jsonl": {
+      "bytes": 1369506,
+      "sha256": "9ceddd515709c12b8923df559458f50ec2261f5a2c37bf8e9d1b05c024d0739a"
+    },
+    "evalscope/20261021_115330/predictions/minicpm/math_500_Level 3.jsonl": {
+      "bytes": 2429204,
+      "sha256": "862915777d4ccddec1ee230fb7e41316f3478b2d3c03a228fa77e6201d27ff13"
+    }
+  },
+  "final_profile_kind": "current_prefill_INT8_plus_TopP16K_grid2",
+  "runtime_source_count": 438,
+  "environment_count": 62,
+  "fresh_Math_for_final_runtime_profile": true,
+  "previous_accuracy_not_reused": true,
+  "actual_C8_GateUp_NN_integer_path_verified": true,
+  "actual_C8_LM_BF16_path_verified": true,
+  "actual_C8_Math_sampler_candidate_verified": true,
+  "actual_prefill_INT8_all_42_layers_verified": true,
+  "actual_prefill_INT8_shapes": [
+    256
+  ],
+  "C64_quality_not_exercised_by_C8_Math": true
+}

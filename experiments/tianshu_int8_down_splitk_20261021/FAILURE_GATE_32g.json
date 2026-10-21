@@ -1,0 +1,11 @@
+{
+  "archive_complete": true,
+  "component_plan_complete": false,
+  "GPU_numerics_passed": false,
+  "GPU_performance_available": false,
+  "phase": "failed",
+  "complete": false,
+  "failure": "CompilationError('def _partial(A,W,P,M:tl.constexpr,N:tl.constexpr,K:tl.constexpr,BM:tl.constexpr,BN:tl.constexpr,BK:tl.constexpr,GROUP_M:tl.constexpr,SPLITS:tl.constexpr):\\n    pid=tl.program_id(0);split=tl.program_id(1)\\n    tiles_n=tl.cdiv(N,BN);tiles_m=tl.cdiv(M,BM)\\n    per_group=GROUP_M*tiles_n;group=pid//per_group\\n    first=group*GROUP_M;size=tl.minimum(tiles_m-first,GROUP_M);local=pid%per_group\\n    rows=(first+local%size)*BM+tl.arange(0,BM)\\n    cols=(local//size)*BN+tl.arange(0,BN)\\n    inner=tl.arange(0,BK);chunk:tl.constexpr=tl.cdiv(K,SPLITS*BK)*BK\\n    acc=tl.zeros((BM,BN),tl.int32)\\n    for block in range(chunk//BK):\\n        absolute=split*chunk+block*BK+inner\\n        left=tl.load(A+rows[:,None]*K+absolute[None,:],(rows[:,None]<M)&(absolute[None,:]<K),other=0)\\n        right=tl.load(W+absolute[:,None]*N+cols[None,:],(cols[None,:]<N)&(absolute[:,None]<K),other=0)\\n        acc=tl.dot(left,right,acc,out_dtype=tl.int32)\\n    tl.store(P+split*M*N+rows[:,None]*N+cols[None,:],acc,(rows[:,None]<M)&(cols[None,:]<N))\\n', <ast.BinOp object at 0x7d8d2b1d2ed0>, 'Did you forget to add @triton.jit ? (`_semantic` argument must be provided outside of JIT functions.)')",
+  "finished_cases": 0,
+  "finished_tail_cases": 0
+}

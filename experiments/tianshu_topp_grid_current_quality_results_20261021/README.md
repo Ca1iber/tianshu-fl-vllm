@@ -1,7 +1,3 @@
-# 当前TopP16K/grid2独立Math归档器
+# TopP16K/grid2独立Math已归档：99/105，未通过>95%
 
-当前只准备了CPU归档器，尚无本目录的新质量成绩。等待tianshu_topp_grid_current_validation_20261021的Math完整结束，再对105份原始预测/评分重新核对索引、usage、分数、原始行SHA与完整438运行源/13控制器源快照。全部响应留容器，Git只存分数/usage/hash与关键绑定。
-
-命令：`env -u PYTHONPATH OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 python3 experiments/tianshu_topp_grid_current_quality_results_20261021/verify_quality.py /workspace/benchmark-results/20261021_topp_grid_current_math_tianshu /workspace/benchmark-results/20261021_topp_grid_current_official4k_tianshu`。
-
-归档器沿用本轮冻结质量审计，额外确认真实C8新采样路径、几何、源码、原生显存计费和RNG记录；不把C8 Math声称为C64质量测试，不借用407源旧正确率。
+完整105题已独立逐项核对，详见REPORT_32g.md、ACCURACY_GATE_32g.json及PER_QUESTION_32g.json。正式4K未启动，本候选不采用，旧推荐版不变。可用verify_quality.py重读同一份原始记录做CPU复核，不重跑GPU/Math。
