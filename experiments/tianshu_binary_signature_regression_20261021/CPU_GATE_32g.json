@@ -1,0 +1,45 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "Torch_and_GPU_libraries_not_imported": true,
+  "actual_cached_binary_used": true,
+  "actual_cached_binary_sha256": "6ee0dc32c09e050e9ec4c46c43a7a80dd4af07ff187022f72f6438a329fb2454",
+  "helper_source": "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_bm8_abi_recovery_20261021/binary_signature.py",
+  "helper_sha256": "f666459c7c6bfe2e59a482df2d272df071d7c38bbacfc4491f4e2e136208d888",
+  "source_sha256": "f854cbca8219fb7fbe83f98279826a974600909e626029a47d47b69c002a61f0",
+  "mutation_cases": [
+    {
+      "case": "mutate_.text",
+      "rejected_by_code_signature": true
+    },
+    {
+      "case": "mutate_.rodata",
+      "rejected_by_code_signature": true
+    },
+    {
+      "case": "mutate_.note",
+      "rejected_by_code_signature": true
+    },
+    {
+      "case": "mutate_.symtab",
+      "rejected_by_code_signature": true
+    },
+    {
+      "case": "mutate_nonloaded_debug_info_only",
+      "accepted_with_full_SHA_difference_disclosed": true
+    },
+    {
+      "case": "debug_info_marked_loadable",
+      "rejected": true
+    },
+    {
+      "case": "mutate_ELF_machine",
+      "rejected_by_code_signature": true
+    },
+    {
+      "case": "truncated_ELF",
+      "rejected": true
+    }
+  ],
+  "scope": "Loaded code/data/metadata/symbol and machine changes rejected; only flags0 nonloaded debug_info accepted with full SHA retained"
+}
