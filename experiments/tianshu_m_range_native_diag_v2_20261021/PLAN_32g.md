@@ -1,0 +1,1 @@
+原诊断80f7980因LibEntry真实返回(kernel,constexprs)二元组，在首次原生调用后Python记录器退出；原失败保留。v2仅正确解包和原样返回二元组，记录真实launch_constants，不改设备kernel、数值阈值或fixture。保存完整A/W和所有输出，CPU FP64全矩阵参考；complete仅诊断执行，不冒充原BF16范围通过。GPU空闲执行，300秒上限，23:58北京硬停。
