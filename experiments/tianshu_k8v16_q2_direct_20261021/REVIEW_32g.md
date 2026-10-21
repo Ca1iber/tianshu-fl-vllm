@@ -1,0 +1,7 @@
+# 准备后复核：暂不运行该GPU组件
+
+40efaa4仅完成源准备与894组CPU映射，未跑GPU。随后复核发现tianshu_multiquery_paths/recovery_20261021已有完整26场景Q<=8结果，包含Q2/T16/w1和真实gather/byte fallback；本新组件同类覆盖有重复，不应只因新目录就再占GPU。
+
+另本准备版使用BoundedDensePrefill默认32768pages，但当前真实SmallArena是8192pages，C64/K4096会回退byte 2D。它不是当前生产fallback的等价计时对照。保留原准备源与CPU gate，不能直接用此组件宣称替换了当前路线，也未将其准备记录改判GPU通过。
+
+按用户最新指示，先完成当前C64质量/正式4K，之后优先按环节和M范围探索重排/融合。需要小查询时应以已有完整多查询组件为起点，加入真实目标配置与独立新假设，避免重复。

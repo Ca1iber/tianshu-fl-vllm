@@ -1,17 +1,21 @@
-2026-10-21 17:19 北京时间
+2026-10-21 17:34 北京时间
 
-# 继续点
+# 当前任务顺序（最新用户指示优先）
 
-官方Math8已真实终态：runner247467=Z，API247478/EvalScope247928已消失。raw=/workspace/benchmark-results/20261021_nn_silu_fx_math8_tianshu，result.complete，101/105=96.190476%，0请求错误，104正常stop+1达到32768。冻结framework_profile的audit_runtime及audit_math已在CPU完整通过，accuracy_audit.json保存完整4.5MB逐层记录；Git关键摘要86KB在tianshu_nn_silu_fx_math8_results_20261021/MATH_GATE_32g.json，9aedfd6。没有复用旧102/105，没有重复GPU跑分。
+用户刚明确：先把本轮质量/正式4K测完，再按各环节和M范围探索重排/融合，生成分角色的范围白名单。新方向准备目录experiments/tianshu_m_range_stages_20261021：PLAN、两份可变M BF16 packed移植、通用INT8融合、SOURCE_PREPARATION与真实warm/observed M摘要。只CPU准备，GPU driver还未写完，未冻结完整GPU入口，不能宣称已实测或直接启动。
 
-C64补充/正式4K串行watcher249716仍活跃，phase=C64_math。补充controller250826、API250828，截至此刻starting_server（启动实际要几分钟，不因观察超时重启）。root=/workspace/benchmark-results/20261021_nn_silu_fx_c64_quality_tianshu。入口2706c9e已freeze/push；全105题/max32768，62环境唯一FutureKV candidate→control，450数值源保持，原生allocator保持，必须实际42层M64融合replay>=100和LM64 INT8>=10，准确率严格>95%，成功后才自动正式N2564K。官方Math8本身不能覆盖M64融合。
+已核对沐曦只读bare参考：flagos-contest ed3bcfe的_BUNDLE_ROWS五点576/1152/1664/1920/2048是MLP和QKV/O共用；LM另有1/8/32/64。ops来源8eb57f17。适配只改vendor guard，AST确认所有设备计算函数不变；INT8 fused拷贝只扩host M/BM/warps并禁止已知错误single_dot。实际天数GateUp prefill为部分M INT8，必须和真实INT8基准比，而非仅BF16慢对照。QKV/O/Down/GateUp/LM分开，记录W静态重排bytes和A逐次重排/量化成本，再确认42层轮换与4K服务。计划包含范围加密/边界/真实可达点，不用两个端点推整段。
 
-补充gate=experiments/tianshu_nn_silu_fx_c64_quality_20261021/C64_QUALITY_GATE_32g.json，正式root=/workspace/benchmark-results/20261021_nn_silu_fx_official4k_tianshu，C64 N256 4K/1K四轮排首轮。若质量失败，不重复抽分；若仅审核metadata错误，保留原failed并CPU新目录恢复，不重跑GPU补metadata，不降低准确率或捏造覆盖。每完整benchmark轮完成向用户报数。所有已启动代码/CPU gate/PLAN保持冻结。
+先前Q2准备40efaa4 **暂不运行GPU**。复核已有multiquery_paths/recovery完整26场景覆盖Q2/T16/W1及gather/bytefallback，准备有重复；新Q2默认arena32768也不是当前SmallArena8192的等价对照。REVIEW_32g.md已如实记录，原准备源和CPU gate不修改，不冒充GPU通过。用户M范围方向优先，后续不要跟着旧STATE运行Q2。
 
-新独立组件已准备并push 40efaa4：experiments/tianshu_k8v16_q2_direct_20261021。source只把已合格f1df pair-rows reader的3D wrapper max_q>1改>2，所有device函数AST不变，generated1475fff6...。按真实query tokens分配128token缓冲，894组CPU Q1/Q2映射/26925token通过。probe比较T16W1/T32W2/T64W4，uniform Q2用真实BoundedDensePrefill+hybrid FlagGems BF16对照，混合只数值验证，不声称简化baseline服务收益。全输出FP32因果参考+独立CPU抽head、改变QKV/页表/长度两phase、9交替×20真实图重放；不运行模型，不算新吞吐纪录。
+# 正在运行
 
-组件尚未GPU执行。run_component.sh已实际调用验证在watcher活跃时返回3且未创建GPUroot。必须等watcher249716真终态、ixsmi空闲后才手动启动：bash experiments/tianshu_k8v16_q2_direct_20261021/run_component.sh。root=/workspace/benchmark-results/20261021_k8v16_q2_direct_GPU_tianshu。成功后CPU核对：python3 experiments/tianshu_k8v16_q2_direct_20261021/verify_cpu.py --root [该root]，然后写报告和push关键结果；任何失败不改原冻结代码重跑，修复新目录。组件即使好也需真实投机None guards/混合图/M128 GEMM/质量验证，不能直接采用。
+C64质量/正式4K串行watcher PID249716，phase=/workspace/benchmark-results/20261021_nn_silu_fx_c64_quality_runner_tianshu/phase.txt。当前C64_math，质量controller250826、API250828、Engine250980、EvalScope251374，17:33实查均live，103/105完成、剩余长答案正常生成。root=/workspace/benchmark-results/20261021_nn_silu_fx_c64_quality_tianshu。M64真实FULL图已重放1710次，42融合capture route存在。必须等105题最终>95%及完整冻结审核；不因观察超时重启、不重复抽分。
 
-当前450候选三臂小测：原始407参考5508.9690，静态64对照5529.4693，融合5554.9744 total tok/s；整体+0.83510%，融合相对静态+.46126%；576请求全成功，零后就绪调优。未完成新正式N256，当前正式最好仍5586.28 total /1117.25 output，TTFT3780.63ms，407源Math102/105。
+入口2706c9e冻结：C64补充全部105题/max32768，同450数值源，仅FutureKV candidate→control准入，保留原生allocator，实际42层M64融合replay>=100与LM64 INT8>=10。gate=experiments/tianshu_nn_silu_fx_c64_quality_20261021/C64_QUALITY_GATE_32g.json。通过后watcher自动正式N256 C64 4K/1K四轮排首轮，root=/workspace/benchmark-results/20261021_nn_silu_fx_official4k_tianshu。每完整benchmark轮完成向用户报吞吐/TTFT。质量失败不重跑；仅审核metadata错则保留failed、CPU新目录恢复，不重复GPU补metadata或捏造覆盖。所有已启动py/sh/CPU gate/PLAN保持冻结。
 
-预约到2026-10-22 00:00，北京时间10-21 23:58硬停/15:58 UTC。当前17:19，仍有6h39可推进，不自行暂停/完成目标。SSH master=/tmp/tianshu-20261021-afternoon-control（10h）；旧master已过期。代码/报告/关键结果仅天数容器与GitHub，原始大日志/张量容器，不留本地参考。GitHub分支exp/tianshu-v-int8-20261020，push仍需主机stdio FIFO桥。两旧GateUp用户dirty文件及旧CPU log不动，不改沐曦仓库。
+官方Math8已完成并全runtime/Math审核：101/105=96.190476%，105成功/0错误，104stop+1max32768。raw=/workspace/benchmark-results/20261021_nn_silu_fx_math8_tianshu；runtime450源/62环境/13原命令。关键86KB审核在tianshu_nn_silu_fx_math8_results_20261021/MATH_GATE_32g.json，9aedfd6；完整4.5MB重复逐层记录仅容器并有SHA。原runner247467=Z，API/EvalScope已消失。普通Math8不能验证M64融合实际请求，故有C64补充。
+
+三臂小测：原始407参考5508.9690，静态64对照5529.4693，融合5554.9744 total tok/s，整体+.83510%，576请求全部成功，零就绪后调优。新正式尚未完成，正式最好仍407源5586.28 total/1117.25 output、TTFT3780.63ms、Math102/105。不运行例行16K。
+
+截止2026-10-21 23:58北京时间/15:58UTC（预约到10-22零点），目标继续，不自行暂停/完成。SSH master=/tmp/tianshu-20261021-afternoon-control；GitHub分支exp/tianshu-v-int8-20261020，已push7880da9，下一步push本次准备和STATE。所有代码/报告/关键结果仅容器和GitHub，原始大日志张量容器，不留本地。两旧GateUp用户dirty文件和旧CPU logs不动，不改沐曦参考。
