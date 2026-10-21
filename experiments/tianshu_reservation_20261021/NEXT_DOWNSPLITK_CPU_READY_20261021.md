@@ -1,0 +1,7 @@
+# 下一项Down SplitK组件已CPU准备完成
+
+当前GPU仍由PID224721的TopP独立Math/正式4K串行runner占用，Math root=20261021_topp_grid_current_math_tianshu。须等待runner终态和GPU空闲；不可同时启动第二GPU实验。
+
+下一项experiments/tianshu_int8_down_splitk_20261021，e0aecb7已推。CPU通过36组K覆盖分段/189组MN映射、INT32上界99096576；9配置/4真实Down尺寸，三阶段变输入及权重/scale，原BF16+auxlinear+原unsplitINT8同次四路计时。GPU尚未运行。参见PLAN_32g.md，GPU命令bash该目录run_component.sh，GPU完成后同目录verify_gpu.py需独立CPU重算；不要修改已开始的源。
+
+Math归档器在tianshu_topp_grid_current_quality_results_20261021；Math结束并正式4K已保存环境后运行，或质量拒绝且官方未启动时也可归档本次真实失败成绩。其README含完整命令。新推荐候选须独立Math>95%及正式4K，不要根据旧正确率采用。每正式benchmark完成一轮向用户报成绩。23:58北京硬停，不测完整16K，代码和关键证据仅容器+GitHub。
