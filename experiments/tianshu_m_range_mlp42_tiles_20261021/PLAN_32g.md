@@ -1,0 +1,5 @@
+# 完整MLP逐M选tile确认：实时stream、全42bank Graph/eager
+
+在旧固定BK128单cfg已有24M有效完整MLP基准之上，宽tile v2完成和CPU审核后，从M128/384/512/1024/2048/4096锚点选择合格最佳cfg，其他当前warm M取上方锚点cfg作待测候选；每个24当前可达M均要重新完整测量，不把锚点插值当收益。M8/64不在此范围，当前解码路径不改。selected_plan.json和完整CPU gate尚待宽tile完成后生成并冻结，当前禁止GPU启动。
+
+加载实际42bank、GPU full W8/scale/BF16Down哈希前后一致，三输入相位每层Graph毒化激活→replay→完整激活bitwise eager与Down阈值，2016次capture实时非0handle，24整个计时图毒化output/activation与eager一致。全部INT32和投影bitwise，CPU实际4层选点复核，7组交替3次42层图。GPU1小时或23:58北京时间硬停。只有原qualified背景和M子系统变化，未来选择正收益M范围才接真实4K/新Math；未知M原模型回退。
