@@ -1,0 +1,44 @@
+{
+  "complete": true,
+  "component_gate": "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_bm8_v2_20261021/GPU_GATE_32g.json",
+  "component_gate_sha256": "83c999082a063a7a8190cb942f5a99a1619b387c85d30daf7615468175a45ed6",
+  "component_raw_result_sha256": "a4950f2187f54ec921600187577586ad1182368f7d2ea7c584d04a19bc59e572",
+  "selected_mode": "bm8_direct",
+  "selected_sequences": [
+    64
+  ],
+  "IS_3D_only": true,
+  "BLOCK_M": 8,
+  "BLOCK_Q": 1,
+  "TILE_SIZE": 16,
+  "num_warps": 1,
+  "num_stages": 1,
+  "short_segments": 4,
+  "kernel_source": "/workspace/benchmark-results/20261021_k8v16_BM8_v2_GPU_tianshu/bm8_direct_reader/generated_bm8_direct.py",
+  "kernel_sha256": "5cc0553c18a6aa3696b6bfb7e2f9433c45469cf4b4a1bb5eef806c5c1b5510a9",
+  "timed_component_kernels": {
+    "a1dc4511f902b24ef75b6dc432d299f83bcc64f84c05cbfa328708c7e859fa8b": {
+      "binary_sha256": "09f9eced58651021ea3b83bf2840f42709e4f42e7dba194f06c256097d15c95e",
+      "component_cases": [
+        "decode64_4096",
+        "decode64_5120",
+        "decode64_capture1_to4096"
+      ],
+      "n_regs": 167,
+      "n_spills": 0,
+      "shared": 6144
+    },
+    "cd0d2f05f47f86fb9b6ec568a8e4280c1277469ca2bffa303fe69a8e2c49f450": {
+      "binary_sha256": "09f9eced58651021ea3b83bf2840f42709e4f42e7dba194f06c256097d15c95e",
+      "component_cases": [
+        "decode64_ragged_strided",
+        "decode64_capture1_to8193"
+      ],
+      "n_regs": 167,
+      "n_spills": 0,
+      "shared": 6144
+    }
+  },
+  "no_new_packed_weights": true,
+  "other_batches_and_2D_original_method": true
+}
