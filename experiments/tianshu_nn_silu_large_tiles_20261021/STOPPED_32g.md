@@ -1,0 +1,5 @@
+# 中止：对照Graph未更新激活
+
+此轮M8/M64 phase0全通过，但phase1全部表现为NN参考激活滞留旧输入：INT32/投影、CPU整数全部正确，M64新融合与正式旧融合仍全位相同，只有Inductor参考输出与两种融合严重不同。旧脚本在开始处缓存default stream句柄，CUDAGraph capture用其他stream时生成激活显式发给旧stream，疑似未进入Graph。已主动中止PID267428，保留原state/原始输出，不把该轮错误归因候选算子。
+
+先独立诊断固定stream与实时current stream，验证Graph跨动态输入和eager一致，再修复新目录重跑。之前42-bank MLP同样缓存stream，数值eager检查有效但计时Graph缺激活的风险成立，先撤回全部42-bank性能结论，原始数据保留，不采用该融合或宣称收益。

@@ -1,0 +1,1 @@
+独立诊断cached default stream与每次实时torch._C._cuda_getCurrentRawStream(0)。相同Inductor激活函数、相同输入指针，三次动态输入；每次先毒化输出17再replay，独立eager与CPU全FP64参考。固定stream错作为诊断数据保留，实时stream必须全输出bitwise一致eager并CPU阈值通过，不放宽阈值。所有源GPU前冻结，180s超时。先确认原因再新目录修复MLP/宽tile，旧数据不改源，不采纳旧性能。
