@@ -1,0 +1,92 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "GPU_not_executed": true,
+  "coverage_cases": 2816,
+  "capture_length1_to_runtime_long_length_transition_cases": 1760,
+  "all_valid_tokens_covered_once": true,
+  "all_active_segment_scratch_within_reserved_capacity": true,
+  "n1to24_tile_configuration_unchanged": true,
+  "actual_live_and_zero_query_mapping_cases": 768,
+  "actual_3D_max_query_len1_required": true,
+  "native_Producer_guard_normalization_AST_verified": true,
+  "Reducer_AST_unchanged": true,
+  "provenance": {
+    "current": {
+      "mode": "current",
+      "parent_sha256": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+      "generated_sha256": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+      "changed_functions": [],
+      "function_ABI_unchanged": true,
+      "only_decode_query_row_tile_and_sequence_mapping": true,
+      "BM8_only_num_seqs_above24": false,
+      "direct_sequence_mapping_all_3D": false,
+      "all_other_functions_AST_unchanged": true,
+      "attention_dot_softmax_reducer_codec_and_writer_text_retained": true,
+      "short_active_segments": 4,
+      "segment_capacity_and_KV_writer_and_format_unchanged": true,
+      "Math_or_service_not_claimed": true
+    },
+    "bm8": {
+      "mode": "bm8",
+      "parent_sha256": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+      "generated_sha256": "2b5c18341f69be9003a8b350dea572f16ba445d5bd5e9f0e07c32c7d043e2c12",
+      "changed_functions": [
+        "unified_attention"
+      ],
+      "function_ABI_unchanged": true,
+      "only_decode_query_row_tile_and_sequence_mapping": true,
+      "BM8_only_num_seqs_above24": true,
+      "direct_sequence_mapping_all_3D": false,
+      "all_other_functions_AST_unchanged": true,
+      "attention_dot_softmax_reducer_codec_and_writer_text_retained": true,
+      "short_active_segments": 4,
+      "segment_capacity_and_KV_writer_and_format_unchanged": true,
+      "Math_or_service_not_claimed": true
+    },
+    "bm16_direct": {
+      "mode": "bm16_direct",
+      "parent_sha256": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+      "generated_sha256": "ff3854a1f91cc6ee3850637bd4ac725f05cf99485c1fd767c821dc2fe79711ac",
+      "changed_functions": [
+        "kernel_unified_attention",
+        "unified_attention"
+      ],
+      "function_ABI_unchanged": true,
+      "only_decode_query_row_tile_and_sequence_mapping": true,
+      "BM8_only_num_seqs_above24": false,
+      "direct_sequence_mapping_all_3D": true,
+      "all_other_functions_AST_unchanged": true,
+      "attention_dot_softmax_reducer_codec_and_writer_text_retained": true,
+      "short_active_segments": 4,
+      "segment_capacity_and_KV_writer_and_format_unchanged": true,
+      "Math_or_service_not_claimed": true
+    },
+    "bm8_direct": {
+      "mode": "bm8_direct",
+      "parent_sha256": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+      "generated_sha256": "5cc0553c18a6aa3696b6bfb7e2f9433c45469cf4b4a1bb5eef806c5c1b5510a9",
+      "changed_functions": [
+        "kernel_unified_attention",
+        "unified_attention"
+      ],
+      "function_ABI_unchanged": true,
+      "only_decode_query_row_tile_and_sequence_mapping": true,
+      "BM8_only_num_seqs_above24": true,
+      "direct_sequence_mapping_all_3D": true,
+      "all_other_functions_AST_unchanged": true,
+      "attention_dot_softmax_reducer_codec_and_writer_text_retained": true,
+      "short_active_segments": 4,
+      "segment_capacity_and_KV_writer_and_format_unchanged": true,
+      "Math_or_service_not_claimed": true
+    }
+  },
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_bm8_abi_20261021/check_cpu.py": "707ba7805ec6c30528a01358655bc972c1e7cdc685d3464a0d63059b70a115e7",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_bm8_abi_20261021/source.py": "3db42c8a071b50ac1461e76661f78bc86fc3998aa6e509879a7d128ea66028ce",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_bm8_abi_20261021/launch.py": "5423a73d058bf701f61e88bb3fa57a170bfb5526a346a955c725a39050b81d21",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_bm8_abi_20261021/native_launch.py": "666b8ee252765c63f0aa70bc83f2b4cc614774edb1d81f35d8ac160f4183ce5b",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/component_launch.py": "ebf86912b25e39c052f98698cfbcc385d48f9fd2750aeebe0ab6c7b7ac448a6e",
+    "/workspace/benchmark-results/20261020_k8v16_pair_load_GPU_tianshu/pair_rows_reader/generated_pair_rows.py": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002"
+  }
+}
