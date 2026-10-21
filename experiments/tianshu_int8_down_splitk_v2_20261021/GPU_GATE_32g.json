@@ -1,0 +1,197 @@
+{
+  "complete": true,
+  "independently_CPU_rechecked": true,
+  "cases": 4,
+  "compiled_cases": 36,
+  "compile_failures": [],
+  "CPU_selected_integer_checks": 108,
+  "CPU_selected_integer_elements": 27648,
+  "full_A_quantized_elements": 134498304,
+  "timing_groups": 252,
+  "dynamic_activation_quantization_included": true,
+  "static_weight_packing_excluded": true,
+  "numerical_reference_is_quantized_weights_and_activations": true,
+  "offline_scope_is_selected_outputs_and_full_A_not_full_GPU_outputs": true,
+  "model_accuracy_not_evaluated": true,
+  "service_not_executed": true,
+  "adopted": false,
+  "best_by_case": [
+    {
+      "case": "down",
+      "M": 129,
+      "N": 2048,
+      "K": 6144,
+      "index": 5,
+      "configuration": {
+        "bm": 128,
+        "bn": 256,
+        "bk": 128,
+        "warps": 8,
+        "stages": 1,
+        "group_m": 1,
+        "splits": 2
+      },
+      "native_ms": 0.10571558475494384,
+      "candidate_ms": 0.1978265404701233,
+      "linear_ms": 0.10452327728271485,
+      "unsplit_int8_ms": 0.42384867668151854,
+      "throughput_gain_percent": -46.561475268325026,
+      "metadata": {
+        "producer": {
+          "cache_hash": "f73780439526ef79f691777c71c883fdc309735db876fe63638bb723caf39935",
+          "binary_sha256": "ac7886a402a87b6bfc11ed665edefc08817d23c1a200c12486465e9d0fa4a952",
+          "n_regs": 252,
+          "n_spills": 0,
+          "shared": 49152
+        },
+        "reducer": {
+          "cache_hash": "13c88ddfa192d858badc6ef33d5c7985119b336578aad834ee93b2106d361e1b",
+          "binary_sha256": "a5cb515348b3719aad0b81dcc870b566e52050115d516ff81420e4c521553fa7",
+          "n_regs": 22,
+          "n_spills": 0,
+          "shared": 0
+        }
+      }
+    },
+    {
+      "case": "down",
+      "M": 1024,
+      "N": 2048,
+      "K": 6144,
+      "index": 0,
+      "configuration": {
+        "bm": 128,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1,
+        "group_m": 1,
+        "splits": 1
+      },
+      "native_ms": 0.5571802139282227,
+      "candidate_ms": 0.31190037727355957,
+      "linear_ms": 0.2807057619094849,
+      "unsplit_int8_ms": 0.2854682683944702,
+      "throughput_gain_percent": 78.64044243830288,
+      "metadata": {
+        "producer": {
+          "cache_hash": "4cc962367643f60be6444aa4e30543cc068e2117076e3a92caa19c89b5311849",
+          "binary_sha256": "aaab883b6e6acd0b2f9a16af0687bd01669fd7440b8b755f0100aac5f120b8cc",
+          "n_regs": 168,
+          "n_spills": 0,
+          "shared": 32768
+        },
+        "reducer": {
+          "cache_hash": "2079c903e457aa0b0f791659cc4a69e4d22775aee4d095dd72958bdf61414a2b",
+          "binary_sha256": "52ed0bbd711da29a79184b37366a2781f97a88048280b4645da840b296fbec29",
+          "n_regs": 18,
+          "n_spills": 0,
+          "shared": 0
+        }
+      }
+    },
+    {
+      "case": "down",
+      "M": 2048,
+      "N": 2048,
+      "K": 6144,
+      "index": 0,
+      "configuration": {
+        "bm": 128,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1,
+        "group_m": 1,
+        "splits": 1
+      },
+      "native_ms": 0.6559199810028076,
+      "candidate_ms": 0.5970267295837403,
+      "linear_ms": 0.5642463684082031,
+      "unsplit_int8_ms": 0.5374349594116211,
+      "throughput_gain_percent": 9.864424572770636,
+      "metadata": {
+        "producer": {
+          "cache_hash": "f35173b8064ba60b74fd8f379746c429730c6585c9b68cbdd6baed59e6be1c1f",
+          "binary_sha256": "318bf46fb7b01dd80f523c0794dd2043192c781e17db51ae2052b941c996ea25",
+          "n_regs": 168,
+          "n_spills": 0,
+          "shared": 32768
+        },
+        "reducer": {
+          "cache_hash": "fb9c23ed7678ea00f611fe3a5f1deac1a176826d5651bf7d9140467f719863cb",
+          "binary_sha256": "fc4d0313b1fb063dcb5cbd17c00d20f651b9af15cd93375fde778b33f898b93e",
+          "n_regs": 18,
+          "n_spills": 0,
+          "shared": 0
+        }
+      }
+    },
+    {
+      "case": "down",
+      "M": 4096,
+      "N": 2048,
+      "K": 6144,
+      "index": 0,
+      "configuration": {
+        "bm": 128,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1,
+        "group_m": 1,
+        "splits": 1
+      },
+      "native_ms": 1.1034150123596191,
+      "candidate_ms": 1.1576474189758301,
+      "linear_ms": 1.1213324546813965,
+      "unsplit_int8_ms": 1.0395792961120605,
+      "throughput_gain_percent": -4.684708463669396,
+      "metadata": {
+        "producer": {
+          "cache_hash": "78c375eecdc72587e75cc8144e3cd925fae0ebf605d6f546182e102e38c36921",
+          "binary_sha256": "53026c0dafd36ebdbdcd4fe3aac9f96b851587d0cb377ebbeeac1b4693b85d24",
+          "n_regs": 168,
+          "n_spills": 0,
+          "shared": 32768
+        },
+        "reducer": {
+          "cache_hash": "6776904b91717a9525b35891ced6c3962b04747367082eb4c9981cd25c0f9db4",
+          "binary_sha256": "8903725c26569daae9c24fb7edb3d4fbd52008ef825e5e6e631ceb9979ee5b5c",
+          "n_regs": 18,
+          "n_spills": 0,
+          "shared": 0
+        }
+      }
+    }
+  ],
+  "frozen_sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_int8_down_splitk_v2_20261021/baseline.py": "837846b8c1088476155c55dc23c77e8a9ff60631b74711b67828a4083e174633",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_int8_down_splitk_v2_20261021/check_cpu.py": "5520396769f6d5316a69cff95eb131f52db0b54bb201892669b46751e9267844",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_int8_down_splitk_v2_20261021/kernel.py": "f2fb4969376ac47a03f86d6883ea11ea598cb92ae584e0679b96b76845016559",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_int8_down_splitk_v2_20261021/probe_gpu.py": "17b5f22eecb68658fd25b1725583bc2f128c3530b1e2f409ffe4d508adb8df76",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_int8_down_splitk_v2_20261021/tail_gpu.py": "5b59883b6a24f737097ff993e91d8ee91a5ed748a11dcd5cef46164f65950a0a",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_int8_down_splitk_v2_20261021/verify_gpu.py": "4a97abb91df22092cb7d86b1f9e12b829583c1e80f12c5407867045c0e6df302",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_int8_down_splitk_v2_20261021/partition.py": "253d92d50e6cd28e399910b8ffb72557d339c425ffdce443af8e0a1947207560",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_int8_down_splitk_v2_20261021/run_component.sh": "71cc8fe6a6c208e0ec676accdf3274f7ff770b2a718778470f923f7adf1d6c46",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_int8_down_splitk_v2_20261021/tiles.json": "4ce9e18d1152a8eec52040e489bc394ce2e5bad39ef22dc9855df4eb9db2fac1",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_int8_down_splitk_v2_20261021/weight_signature.json": "d443968a39f9fba9a95118602408eb238688f826baba4c52a4e5075019188808",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_int8_down_splitk_v2_20261021/qualified_down_route.json": "0266d7875fbe97d32c20415e866a62411a842807ee54893f71561bd450ce146a",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_int8_down_grouped_20261021/kernel.py": "2045cc130a63f624161263c3a2718ad4ac0015b0c84f8a0a396e889e9f93d868",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_prefill_gemm_tiles_20261014/experimental_mm.py": "cb556d7a6025e50d95a87a7858154fd10e547d9c145a5a18b65133122ab8c880",
+    "/usr/local/lib/python3.12/site-packages/flag_gems/runtime/backend/_iluvatar/ops/mm.py": "4c2e23da2a6b65b89cbb8170967f14c5327d143e21137387f3907ccb4fcde090",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_int8_down_splitk_v2_20261021/CPU_GATE_32g.json": "11cbb2988f5c887086914a3d63313a53717415f12e29440c6f8458524537fc4d",
+    "/usr/local/lib/python3.12/site-packages/flag_gems/runtime/backend/_iluvatar/ops/linear.py": "d431a4fa144ed67dc3deab46dd5beace3612858075f85c39e602447ba3bf768a",
+    "/workspace/MiniCPM5-2B/config.json": "59613157e5357d62bcb121e04cb90f2170b43d789b142380c12c3d4277d95180"
+  },
+  "raw_root": "/workspace/benchmark-results/20261021_int8_down_splitk_v2_GPU_tianshu",
+  "verifier_sha256": "4a97abb91df22092cb7d86b1f9e12b829583c1e80f12c5407867045c0e6df302",
+  "baseline": "Actual Down BF16 mm with existing M2048 specialized tiles retained, auxiliary vendor linear timed",
+  "raw_result_sha256": "0e96650fae1914b73875d756d3df976c475a2c5027f8af9c0afc94d0a6b699ea",
+  "full_tail_CPU_reconstructed_outputs": 54,
+  "full_tail_CPU_integer_and_BF16_values": 70200,
+  "all_actual_selected_Down_partial_INT64_recomputed": true,
+  "deterministic_integer_reduction": true,
+  "atomic_operations": false,
+  "new_model_precision_not_validated": true
+}
