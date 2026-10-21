@@ -1,0 +1,5 @@
+# V2 startup failed in class source introspection, before GPU model work
+
+426-source V2 control reached the actual CapacityBoundedDensePrefill guard, theninspect.getsourcefile(cls) raisedTypeError saying it was built-in. The existing small_arena_service hook dynamically executes _tianshu_capacity_policy without sys.modules registration; inspecting the class via its module therefore fails even though its Python methods have valid code filenames. The V2 CPU fixture registered that module and missed this distinction. No throughput/Math/weight-load result is claimed, and no source is edited after this failure.
+
+Raw/workspace/benchmark-results/20261021_prefill_key_bound_service_v2_control_tianshu staysfailed, runnerfailed. Genuine V3 correction uses method code filenames plus unchanged inheritance/source SHA, and the CPU fixture executes the exact unregistered loader convention. All V2.py/.sh/CPU_GATE and original source426 closure remain unchanged. It is not a rerun of identical V2 code or metadata-only success relabel.
