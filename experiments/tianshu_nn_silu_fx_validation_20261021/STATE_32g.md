@@ -1,3 +1,15 @@
+2026-10-21 17:47:09 CST 最新继续点
+
+正式4K第1轮5451.72/1090.34 tok/s、TTFT5549.84ms、240.42s，N256全成功（按预案排除）；第2轮5615.61/1123.12、TTFT3757.04ms、233.41s，全成功。已分别向用户报数。尚未新最终纪录，第3轮活跃；watcher249716/controller255255/API255257。STATE旧文starting_server已过时；root=/workspace/benchmark-results/20261021_nn_silu_fx_official4k_tianshu，benchmark_results/raw_runs_20261021_173653.csv为逐轮权威数。当前关键两轮已复制至tianshu_nn_silu_fx_official_results_20261021/ROUNDS_LIVE_32g.csv，完成后用完整四轮及comparison审核更新，不把LIVE当完成。普通Math101/105、C64补充103/105均通过。
+
+用户要求当前正式测试完成再试M范围。M目录已有完整BF16 QKV/O/Down driver+CPU syntax/3852个索引反演通过：probe_bf16.py、matched.py（与旧天数匹配layout对照完全同bytes）、run_bf16.sh、verify_bf16_cpu.py、CPU_BF16_PREPARATION_32g.json。实际调用run_bf16.sh在watcher活跃时返回3且GPUroot未创建。主GPU入口代码准备完成，当前还没执行GPU；全部source/PLAN最终freeze后勿改已运行源，新增修复用新目录。
+
+BF16程序三角色24M×2相位，native library mm_out、同tile NT、W-packed、A+W-packed，加单独A_pack timing，7轮轮换×20真实Graph。完整输出只在GPU在线对照FP32；独立CPU重新加载保存的真实选行列F64参考，不冒充保存所有完整输出。native library对照不代表整个当前模型（特别M2048的special BF16 kernel），筛选后仍需42层轮换与真实4K服务。GPU空闲后可bash experiments/tianshu_m_range_stages_20261021/run_bf16.sh，root=/workspace/benchmark-results/20261021_m_range_BF16_GPU_tianshu；成功后python3 .../verify_bf16_cpu.py --root [该root]。
+
+重要新核对：tianshu_int8_gateup_prefill_grouped_20261021/kernel.py虽docstring说NT，真实W地址W+absolute*N+columns，是连续[K,N]的NN。不要把将prefill NT改NN当新假设。M目录int8_fused_grouped.py仅新增GROUP_M调度，K-index setup起完整计算AST suffix相同，GROUP1还原row-major；GROUPED_FUSION_PREPARATION记录，尚无GPU/完整driver。后续优先准备当前unfused grouped-NN vs row-major fused vs grouped-fused的M范围探针，并分别计A8量化/激活，保留同一W8 bank；LM与完整MLP driver也待做。不要因BF16首个driverready就缩小用户全部角色/重排/融合/范围的目标。
+
+所有新增源尚无GPU收益结论。Q2旧准备已REVIEW判定重复且arena不等价，不运行。下方是较早历史状态，以上最新信息优先。
+
 2026-10-21 17:36 北京时间最新更新：下方17:34的C64运行描述已成为历史。
 
 C64质量完整103/105=98.095238%、105成功/0错误、103stop+2max32768，冻结C64_QUALITY_GATE_32g.json审核通过（83KB），42层融合实际replay和LM64 INT8覆盖、450数值源同源、唯一FutureKV准入差异均true。原质量controller/API/EvalScope均终态/消失。

@@ -4,11 +4,11 @@
 
 参考沐曦flagos-contest ed3bcfe中vllm_fl/ops/packed_bundle.py：_BUNDLE_ROWS=(576,1152,1664,1920,2048)。这五点控制MLP和QKV/O projection，但LM head另有(1,8,32,64)条件。不能声称所有环节恰好都用五点。源位于天数容器bare只读参考，不修改沐曦仓库。FlagGems packed来源8eb57f17，两个源仅适配vendor guard，所有设备函数AST必须相同。
 
-天数当前基准必须采用其实际路径：GateUp decode M8/64为NN INT8，候选M64实际融合；prefill已预热24个M128..4096形状走NT INT8。Down/QKV/O仍BF16，LM M64 INT8、M8 BF16。其它M先按实际policy和图记录确定，不用BF16慢对照冒充现有INT8基准。
+天数当前基准必须采用其实际路径：GateUp decode M8/64为NN INT8，候选M64实际融合；prefill已预热24个M128..4096形状，源码实际按NN的[K,N]连续物理布局加载（旧docstring称NT，不能据此误判布局）。Down/QKV/O仍BF16，LM M64 INT8、M8 BF16。其它M先按实际policy和图记录确定，不用BF16慢对照冒充现有INT8基准。
 
 第一阶段逐角色矩阵，探索采样M=[1,8,16,32,48,64,96,128,192,256,384,512,576,768,1024,1152,1536,1664,1920,2048,2560,3072,3584,4096]。QKV/O/Down/GateUp覆盖实际prefill和decode形状；LM只测实际计算logits的1..64及诊断128，不在整段4096上无意义生成全词表。另从当前正式4K原始route统计补实际命中点。
 
-分离并记录：静态W重排的时间与新增bytes；逐步A重排或A量化时间；相同tile下普通W与packed-W GEMM；A+W重排GEMM；GateUp GEMM+原激活与融合；Down独立GEMM；完整GateUp/SiLU/Down链（含activation layout转换）。QKV和O的形状/配置独立，LM单列。INT8 GateUp额外比较NT/NN/NN+融合，使用当前真实同一packed/scales，不额外改变精度。不能把重排、tile、融合联合收益都归因于重排。
+分离并记录：静态W重排的时间与新增bytes；逐步A重排或A量化时间；相同tile下普通W与packed-W GEMM；A+W重排GEMM；GateUp GEMM+原激活与融合；Down独立GEMM；完整GateUp/SiLU/Down链（含activation layout转换）。QKV和O的形状/配置独立，LM单列。INT8 GateUp额外比较原grouped NN、row-major NN和各自融合，使用当前真实同一packed/scales，不额外改变精度。不能把重排、tile、融合联合收益都归因于重排。
 
 通用INT8融合仅放宽host M/BM/warps约束，原_fused设备AST和native SiLU标量不变；禁止已知错误single_dot。BF16 MetaX移植设备AST不变，GPU实测后再决定天数配置，不假定旧五点或任意相邻范围都有收益。
 
@@ -19,3 +19,9 @@
 第三阶段4K真实服务A/B（原命令、相同输入/输出/请求数与随机seed），完成一轮就报数；稳定有收益才跑新鲜Math>95%并正式N2564K，不例行16K。代码、报告与关键结果GitHub，原始张量和完整日志留容器。最晚2026-10-21 23:58北京时间退出GPU。
 
 本目录目前是源和计划准备，不是已经完成GPU验证的实验，也没有完成GPU driver/最终CPU冻结清单。后续准备完成后才能冻结启动。
+
+## 准备进展
+
+BF16 QKV/O/Down独立driver已完成，CPU只做syntax与3852项layout索引反演，不导入GPU库；native公共接口使用实际mm_out。三role×24M×2输入相位，四GEMM路径（native library、同tile普通NT、只pack-W、pack-AW）与单独A-pack，7轮轮换×20图重放。CPU重新算保存的真实选行列向量；完整输出对照仅在GPU在线执行，不冒充CPU保存了全部输出。基准native library不是完整当前模型的性能结论，M2048现用special GEMM另由服务验证。
+
+INT8 GateUp当前prefill kernel检查确认physical NN而非旧docstring的NT。新增grouped融合只改program-ID调度，K索引起的所有运算AST保持，GROUP1还原原row-major。后续应比较当前unfused grouped-NN、row-major融合和grouped融合，避免将已经存在的NN重排再次当新优化。INT8/LM与完整MLP driver仍待完成。本目录任何GPU尚未启动。
