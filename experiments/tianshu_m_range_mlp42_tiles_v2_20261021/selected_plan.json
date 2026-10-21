@@ -1,0 +1,325 @@
+{
+  "component_independently_CPU_verified": true,
+  "component_gate": "/workspace/vllm-plugin-FL/experiments/tianshu_nn_silu_large_tiles_v2_results_20261021/GPU_GATE_32g.json",
+  "component_gate_sha256": "d306108b5ffcd1f4fd11381106438d05ff1ffe2bd28c22a4dd9a9ff523f289da",
+  "anchor_candidates": {
+    "128": {
+      "bm": 64,
+      "bn": 128,
+      "bk": 64,
+      "warps": 8,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 1,
+      "binary_sha256": "325a7a9a5aa891f76879fead8348efbfed377d2d8bb43f576ae35af5f18e7062",
+      "config_id": 2,
+      "speedup_vs_current_pct": 15.69508853227406
+    },
+    "384": {
+      "bm": 128,
+      "bn": 128,
+      "bk": 64,
+      "warps": 8,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 8,
+      "binary_sha256": "e507b4293f7c02a26c4cbe01c8210ac32f1dc2339bf5ceee422d3d11c6862d2a",
+      "config_id": 11,
+      "speedup_vs_current_pct": 15.156369363517964
+    },
+    "512": {
+      "bm": 128,
+      "bn": 256,
+      "bk": 64,
+      "warps": 16,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 8,
+      "binary_sha256": "d15a3766c5c8e0a2d2191c555897873438a39d86a960b0dd926e1f29799de488",
+      "config_id": 15,
+      "speedup_vs_current_pct": 8.840226920980609
+    },
+    "1024": {
+      "bm": 128,
+      "bn": 256,
+      "bk": 64,
+      "warps": 16,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 8,
+      "binary_sha256": "57016d669110990538f307b1ab07fb53b0d2e9010ac39d07444cf3f08903e78a",
+      "config_id": 15,
+      "speedup_vs_current_pct": 11.858323473536437
+    },
+    "2048": {
+      "bm": 128,
+      "bn": 128,
+      "bk": 64,
+      "warps": 8,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 8,
+      "binary_sha256": "266012c0c8a01e54327797d49567bc445513afbf2dc406de2ced9aff759be6a9",
+      "config_id": 11,
+      "speedup_vs_current_pct": 10.732546917940455
+    },
+    "4096": {
+      "bm": 128,
+      "bn": 128,
+      "bk": 64,
+      "warps": 8,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 8,
+      "binary_sha256": "08b98433e60f7b2e7d3c72b71bf44cc1befdd876daebc7adbf2b12bb1be6befa",
+      "config_id": 11,
+      "speedup_vs_current_pct": 15.371504520087642
+    }
+  },
+  "anchor_for_M": {
+    "128": 128,
+    "256": 384,
+    "384": 384,
+    "512": 512,
+    "640": 1024,
+    "768": 1024,
+    "896": 1024,
+    "1024": 1024,
+    "1152": 2048,
+    "1280": 2048,
+    "1408": 2048,
+    "1536": 2048,
+    "1664": 2048,
+    "1792": 2048,
+    "1920": 2048,
+    "2048": 2048,
+    "2304": 4096,
+    "2560": 4096,
+    "2816": 4096,
+    "3072": 4096,
+    "3328": 4096,
+    "3584": 4096,
+    "3840": 4096,
+    "4096": 4096
+  },
+  "configuration_by_M": {
+    "128": {
+      "bm": 64,
+      "bn": 128,
+      "bk": 64,
+      "warps": 8,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 1
+    },
+    "256": {
+      "bm": 128,
+      "bn": 128,
+      "bk": 64,
+      "warps": 8,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 8
+    },
+    "384": {
+      "bm": 128,
+      "bn": 128,
+      "bk": 64,
+      "warps": 8,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 8
+    },
+    "512": {
+      "bm": 128,
+      "bn": 256,
+      "bk": 64,
+      "warps": 16,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 8
+    },
+    "640": {
+      "bm": 128,
+      "bn": 256,
+      "bk": 64,
+      "warps": 16,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 8
+    },
+    "768": {
+      "bm": 128,
+      "bn": 256,
+      "bk": 64,
+      "warps": 16,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 8
+    },
+    "896": {
+      "bm": 128,
+      "bn": 256,
+      "bk": 64,
+      "warps": 16,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 8
+    },
+    "1024": {
+      "bm": 128,
+      "bn": 256,
+      "bk": 64,
+      "warps": 16,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 8
+    },
+    "1152": {
+      "bm": 128,
+      "bn": 128,
+      "bk": 64,
+      "warps": 8,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 8
+    },
+    "1280": {
+      "bm": 128,
+      "bn": 128,
+      "bk": 64,
+      "warps": 8,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 8
+    },
+    "1408": {
+      "bm": 128,
+      "bn": 128,
+      "bk": 64,
+      "warps": 8,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 8
+    },
+    "1536": {
+      "bm": 128,
+      "bn": 128,
+      "bk": 64,
+      "warps": 8,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 8
+    },
+    "1664": {
+      "bm": 128,
+      "bn": 128,
+      "bk": 64,
+      "warps": 8,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 8
+    },
+    "1792": {
+      "bm": 128,
+      "bn": 128,
+      "bk": 64,
+      "warps": 8,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 8
+    },
+    "1920": {
+      "bm": 128,
+      "bn": 128,
+      "bk": 64,
+      "warps": 8,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 8
+    },
+    "2048": {
+      "bm": 128,
+      "bn": 128,
+      "bk": 64,
+      "warps": 8,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 8
+    },
+    "2304": {
+      "bm": 128,
+      "bn": 128,
+      "bk": 64,
+      "warps": 8,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 8
+    },
+    "2560": {
+      "bm": 128,
+      "bn": 128,
+      "bk": 64,
+      "warps": 8,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 8
+    },
+    "2816": {
+      "bm": 128,
+      "bn": 128,
+      "bk": 64,
+      "warps": 8,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 8
+    },
+    "3072": {
+      "bm": 128,
+      "bn": 128,
+      "bk": 64,
+      "warps": 8,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 8
+    },
+    "3328": {
+      "bm": 128,
+      "bn": 128,
+      "bk": 64,
+      "warps": 8,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 8
+    },
+    "3584": {
+      "bm": 128,
+      "bn": 128,
+      "bk": 64,
+      "warps": 8,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 8
+    },
+    "3840": {
+      "bm": 128,
+      "bn": 128,
+      "bk": 64,
+      "warps": 8,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 8
+    },
+    "4096": {
+      "bm": 128,
+      "bn": 128,
+      "bk": 64,
+      "warps": 8,
+      "stages": 1,
+      "mode": "two_dot",
+      "group_m": 8
+    }
+  },
+  "unknown_M_not_in_this_component": "unchanged model fallback; no expanded precision whitelist",
+  "intermediate_M_performance": "unproven until this full24 M/42-bank run"
+}

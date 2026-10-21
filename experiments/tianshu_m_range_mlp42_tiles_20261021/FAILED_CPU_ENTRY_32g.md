@@ -1,0 +1,1 @@
+原入口在GPU import前，selection尚未读取就核对其hash，产生UnboundLocalError；PID275652已退出，GPU root未创建，未执行GPU。原源/PLAN/CPU gate保持不变。新tiles_v2修正顺序，新增实际--preflight-only走完所有非GPU校验，成功且未import torch/flag_gems、未创建GPU root之后才允许GPU。其余三相位Graph/eager、poison、精度阈值与选择完全不改。
