@@ -1,3 +1,13 @@
+2026-10-21 18:27 北京时间最新进展（旧状态为历史）
+
+正式4K 5618.01 total/1123.60 output、TTFT3835.46ms，四轮完成CPU完整审核，Math101/105、补充C64 103/105，67220e7与tag tianshu-original-command-4k-nn-silu-fx-20261021已push。正式结果无变化。
+
+M范围首BF16探针f4b1bc3在QKV48相位+O3相位后O8 phase1原生12元素错误退出，partial51已CPU复核并保留原failed。原生isolated诊断80f7980因记录器tuple协议失败，6577912修正v2后完整12输出CPU FP64复核196608元素通过，实际SPLIT_K=1，不能归因splitK，原失败仍未定位。
+
+O/Down接续75a504c完整96相位、原生和所有候选全通过，无invalid；CPU复核47616选点，QKV48复用旧部分档案，所有三角色24M×2共144相位可分析，报告tianshu_m_range_bf16_results_20261021。QKV M512 W重排相对matched +9.51%，O M1152 +3.49%，A重排多数负，部分对库收益来自tile而非布局，尚未采用，需邻点/tile/42层缓存与服务验证。
+
+当前将启动tianshu_m_range_int8_gateup_20261021/probe_gpu.py，root=/workspace/benchmark-results/20261021_m_range_INT8_GateUp_GPU_tianshu，runner=/workspace/benchmark-results/20261021_m_range_INT8_GateUp_runner_tianshu。24M、8融合配置、3相位，分离quant/GEMM/activation、NT同tile/现有NN、group1/8融合。192 CPU调度双射通过。M64现用已融合，current_total保留该基准；其他稀有M仅INT8子系统探索，不冒充现有模型基准。首次GPU前源/PLAN/gate冻结，运行后修复用新目录，观测timeout继续同PID。23:58北京硬停，继续用户目标，不自行暂停完成。
+
 2026-10-21 18:03:55 CST 最新结果
 
 本轮正式4K已完成并CPU完整恢复审核通过：四轮5451.72/5615.61/5620.41/5618.02 total tok/s，TTFT5549.84/3757.04/3911.58/3837.75ms，均256成功。排第一轮后三轮均值5618.01 total/1123.60 output、TTFT3835.46ms，吞吐比5586.28高.5680%，TTFT比3780.63慢1.4503%，spread .0854395%，0抢占、0后就绪调优。用户已收到四轮逐轮成绩与最终数据。官方Math101/105，C64补充103/105。

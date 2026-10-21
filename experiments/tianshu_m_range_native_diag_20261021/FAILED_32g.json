@@ -1,0 +1,16 @@
+{
+  "complete": false,
+  "phase": "failed",
+  "scope": "diagnostic execution, not model adoption",
+  "original_BF16_range_plan_still_failed": true,
+  "cases": [],
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_m_range_native_diag_20261021/probe_gpu.py": "8d50776c92d2e9c32a28d459c6b565b3e87cdd6f926296c3d4e7b04ac8c94e6e",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_m_range_native_diag_20261021/PLAN_32g.md": "5cf398356c786ed2daf0edaeae97107060a687b26043121bdfe0528f82dca2b5",
+    "/usr/local/lib/python3.12/site-packages/flag_gems/runtime/backend/_iluvatar/ops/mm.py": "4c2e23da2a6b65b89cbb8170967f14c5327d143e21137387f3907ccb4fcde090"
+  },
+  "native_source": "/usr/local/lib/python3.12/site-packages/flag_gems/runtime/backend/_iluvatar/ops/mm.py",
+  "actual_launches": [],
+  "error": "AttributeError(\"'tuple' object has no attribute 'hash'\")",
+  "traceback": "Traceback (most recent call last):\n  File \"/workspace/vllm-plugin-FL/experiments/tianshu_m_range_native_diag_20261021/probe_gpu.py\", line 52, in main\n    for _ in range(2):invoke()\n                      ^^^^^^^^\n  File \"/workspace/vllm-plugin-FL/experiments/tianshu_m_range_native_diag_20261021/probe_gpu.py\", line 51, in invoke\n    def invoke():return flag_gems.mm_out(a,w.T,out=out)\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/site-packages/flag_gems/runtime/backend/_iluvatar/ops/mm.py\", line 264, in mm_out\n    return _launch_mm(a, b, out, M, N, K)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/site-packages/flag_gems/runtime/backend/_iluvatar/ops/mm.py\", line 218, in _launch_mm\n    mm_kernel[grid](\n  File \"/workspace/vllm-plugin-FL/experiments/tianshu_m_range_native_diag_20261021/probe_gpu.py\", line 34, in call\n    result['actual_launches'].append(dict(capture=torch.cuda.is_current_stream_capturing(),cache_hash=kernel.hash,\n                                                                                                      ^^^^^^^^^^^\nAttributeError: 'tuple' object has no attribute 'hash'\n"
+}
