@@ -1,0 +1,13 @@
+# 原407源版本的prefix cache/canary隔离诊断
+
+当前阶段观察实验在128负载请求和40帧测量后，前后同seed777/同128输入canary文本不一致，原实验保留failed。没有证据归因观察器，也不能将其当作新优化失败或已验证通过。原INT8 prefill对128等形状使用A8/W8，16等未知形状回退BF16；重复prompt前缀命中可能改变实际prefill形状，需要受控验证，尚非因果结论。
+
+本诊断直接使用原candidate_profile.prepare(candidate)，407源映射必须逐项等于正式版，不安装阶段observer、不修改PYTHONPATH或任何62环境项、不改原13argv。单服务串行8个128输入/16输出/C1请求，temperature1/top_p.95/ignore_eos/seed777与先前canary相同；所有请求只在cache_salt有差异。首先unsalted两次；然后A/B/C三个相互隔离salt，每个cold/cached两次。额外return_token_ids只用于观察真实生成token，不加入logprobs或改变采样。
+
+实际CompletionRequest在CPU验证盐和return_token_ids有效。记录每个请求完整响应和前后prefix queries/hits/preemption metrics，比较三组cold/cold、cached/cached、cold/cached与unsalted重复；任何不相等均原样保存，不通过断言把差异变成任务失败或反复重跑。完成表示诊断采集完成，不代表质量、确定性或性能通过。metrics是否体现命中由实测决定，不能仅凭salt名称认定实际hits。
+
+服务退出后独立CPU核验407冻结源、控制器快照、实际62env/argv、8份响应与16个token、metrics和比较算术。没有C64 benchmark、新Math或采用；新运行为控制因果实验，不重复失败的阶段测量。原阶段failed结果不重写、不补造after_metrics、不冒称完整运行时审计已完成。所有大日志/回答只留容器，小门控和报告进GitHub，无本地副本。1800秒上限与23:58硬停。
+
+CPU fixture第一次导入真实CompletionRequest时，vLLM发现并激活fl插件，导致torch CUDA initialized标记变true，最后的CPU断言因此拒绝，不当作CPU通过。v2只在CPU检查进程禁用插件自动发现（VLLM_PLUGINS空），原生产prepare仍必须返回VLLM_PLUGINS=fl和完全相同407源/62env。保留初次日志和独立v2 CPU快照，不改GPU服务环境。尚未启动本诊断GPU服务。
+
+V1在首个HTTP200响应后，完整usage字典相等断言失败；尚未保存响应或进入后续7请求，原失败与日志保留。V2先逐字保存完整响应JSON，再分别校验prompt_tokens=128/completion_tokens=16/total_tokens=144和16个token_ids，允许接口附加的可空usage元数据。原8请求payload、407源、62env、原13argv均保持。独立CPU恢复无法重建V1未保存响应或未执行请求，因此只为修正控制器开展新的隔离诊断；不是重跑原40帧测量，也不挑选性能或质量结果。所有结果无论是否一致均原样保留。
