@@ -1,0 +1,59 @@
+{
+  "complete": true,
+  "independently_rechecked": true,
+  "official_benchmark": false,
+  "adopted": false,
+  "new_model_Math_required": true,
+  "model_Math_not_run": true,
+  "runtime_source_count": 432,
+  "environment_count": 62,
+  "timed_successful_requests": 384,
+  "gain_percent": 0.2931821829059267,
+  "TTFT_change_percent": -1.3479199026554145,
+  "summaries": {
+    "control": {
+      "total_tok_s": 5481.311163678474,
+      "mean_TTFT_ms": 10394.334729000548,
+      "spread_percent": 0.028932517245591136,
+      "postfirst_autotuning_records": 0,
+      "actual_KV_blocks": 40133,
+      "prefill_INT8_launches": 0,
+      "prefill_INT8_shapes": [],
+      "prefill_fallback_launches": 5628,
+      "warm_shapes": 0,
+      "packed_weight_payload_bytes": 1326938112
+    },
+    "candidate": {
+      "total_tok_s": 5497.381391400013,
+      "mean_TTFT_ms": 10254.227422439726,
+      "spread_percent": 0.08045489478877561,
+      "postfirst_autotuning_records": 0,
+      "actual_KV_blocks": 39586,
+      "prefill_INT8_launches": 5586,
+      "prefill_INT8_shapes": [
+        128,
+        2048,
+        4096
+      ],
+      "prefill_fallback_launches": 42,
+      "warm_shapes": 24,
+      "packed_weight_payload_bytes": 1547569152
+    }
+  },
+  "same_GateUp_NN_decode_and_weight_layout_in_both_arms": true,
+  "only_candidate_QKV_prefill_precision_changed": true,
+  "untimed_canaries_unique_cache_salt_for_full_recompute": true,
+  "seed_reproducible_within_each_arm": true,
+  "cross_arm_text_equality_not_required_for_changed_prefill_precision": true,
+  "timed_requests_no_seed_or_cache_salt": true,
+  "raw_roots": {
+    "control": "/workspace/benchmark-results/20261021_qkv_prefill_int8_service_v2_control_tianshu",
+    "candidate": "/workspace/benchmark-results/20261021_qkv_prefill_int8_service_v2_candidate_tianshu"
+  },
+  "raw_result_sha256": {
+    "control": "26a02a6a907621e7e093177b9e41e363c38f64680418b9767f981ba9870eb738",
+    "candidate": "d7fb8577bf1716458e53bd4c9361bcceb63b6324cbc7e374da615b7610e04bfb"
+  },
+  "verifier_sha256": "056abb9031ff6d43fedcfcb37ce3f45701869ace21c0d410f1dbc0989e5d948c",
+  "predeclared_service_gate_passed": false
+}
