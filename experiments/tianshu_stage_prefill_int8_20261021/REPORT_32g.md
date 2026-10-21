@@ -28,3 +28,5 @@ CPU准备首次因407正式清单含两个同hash的ModelRunner路径而拒绝�
 可能原因待验证：原INT8 prefill按M选择路径，M128可走INT8而缓存命中后的M16等走BF16；同prompt重复可能改变计算形状。此为假设，正在单独准备无observer、原407源的cache_salt控制诊断，不能提前宣称因果已成立。也已查到早期直接decode CTA映射和INT8 GUP+SiLU模型接入的负收益历史，避免把已试方向当作新发现。
 
 完整原件：`/workspace/benchmark-results/20261021_stage_prefill_int8_tianshu`。原result SHA256 `f6e36487d985be1f7fb582e8e2f0601bd4bf2bb1ce1ea4d44f07fa5982f635b2`，stage SHA256 `6c82fdd1982fc6402bf31e322fecd9343cf3cc20082a86cf33e8897833ebfc4c`。准备提交3936ceb已推送。GitHub仅保存代码、报告和小型诊断，完整回答/日志只在容器。
+
+后续独立无observer对照已完成：`../tianshu_prefill_cache_canary_v2_20261021/REPORT_32g.md`。4冷/4热组内token一致，冷/热第13、14token不同，实际hits为0/112。原stage失败状态不变；新增证据说明不能把这次文本差异直接归因observer，后续canary需使用独立冷缓存。
