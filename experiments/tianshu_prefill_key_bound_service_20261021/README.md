@@ -7,3 +7,5 @@
 N64C64 4K/1K每臂3轮排首轮、同原13serveargv；同seed两次cache_salt canary每次重算，跨臂文本作为附加检查；不能代替Math。必须显示actual_effect_exercised才可把吞吐差归到这个改动。没有触发tightening时如实报告，不伪造覆盖。源门禁425/62，CPU_GATE绑定两臂完整源SHA，GPU开始后不修改或添加.py/.sh；真实代码失败用新目录，纯元数据失败用独立CPU审计恢复。
 
 run_queue.sh不会自动运行；要求当前staticcompile队列complete和GPU空闲，硬停止2026-10-21T15:58UTC。不能与static或其他GPU实验并行。若小测有足够稳定收益，再新Math105题严格>95%，再原N256正式4K。没有当前KV模型Math/吞吐结果，没有arena4096或完整16K结果，不据此改推荐版本。将容量缩小是后续独立因子。
+
+CPU准备阶段补充原生内存可观测性：两臂在原determine_available_memory返回后记录weights、activation peak、non-torch、CUDA Graph estimate和实际返回KVbytes。保持原返回/配置，不增加profile_run、不重置峰值，只在启动时沿用binding文件落盘。用于之后区分暂时编译峰值/非torch/Graph估计，不据此提高KV预算。门禁最终sourcecount以新CPU_GATE为准。

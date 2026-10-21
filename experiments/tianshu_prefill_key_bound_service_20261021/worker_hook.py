@@ -19,6 +19,7 @@ def install(worker,mode,directory):
     from vllm_fl.worker.model_runner import ModelRunnerFL
     import vllm.v1.attention.backends.triton_attn as backend
     import vllm.v1.attention.backend as metadata
+    import vllm.envs as envs
     cfg=worker.vllm_config;hf=cfg.model_config.hf_config
     assert mode in ('control','candidate') and current_platform.vendor_name=='iluvatar'
     assert cfg.model_config.model=='/workspace/MiniCPM5-2B' and cfg.model_config.dtype==torch.bfloat16 and cfg.model_config.quantization is None
@@ -45,6 +46,21 @@ def install(worker,mode,directory):
         counts=state,additional_per_step_file_writes=False,existing_engine_records_only_for_actual_stage_evidence=True)
     def save():
         path=directory/f'binding_{os.getpid()}.json';temporary=path.with_suffix('.tmp');temporary.write_text(json.dumps(record,indent=2)+'\n');temporary.replace(path)
+    original_available=type(worker).determine_available_memory
+    @functools.wraps(original_available)
+    def available(owner,*args,**kwargs):
+        value=original_available(owner,*args,**kwargs)
+        record['native_memory_budget']=dict(original_return_KV_memory_bytes=value,
+            original_return_and_config_preserved=True,additional_profile_run_not_performed=True,
+            peak_stats_not_reset_by_observer=True,
+            weights_memory=int(owner.model_runner.model_memory_usage),
+            native_peak_activation_memory=int(owner.peak_activation_memory),
+            native_non_torch_memory=int(owner.non_torch_memory),
+            native_cudagraph_memory_estimate=int(owner.cudagraph_memory_estimate),
+            native_cudagraph_estimate_enabled=bool(envs.VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS),
+            current_torch_memory_allocated=int(torch.cuda.memory_allocated()))
+        save();return value
+    type(worker).determine_available_memory=available
     original_capture=ModelRunnerFL.capture_model
     @functools.wraps(original_capture)
     def capture(owner,*args,**kwargs):

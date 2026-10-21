@@ -16,7 +16,7 @@ def prepare(root,mode):
     frozen_check(gate['source_manifest'])
     cpu=read(POLICY/'CPU_GATE_32g.json');assert cpu['complete'] and cpu['actual_native_route_AST_executed'];frozen_check(cpu['sources'])
     profile['PYTHONPATH']=str(BASE/('hooks_'+mode));environment.update(profile)
-    paths=[*BASE.rglob('*.py'),*BASE.glob('*.sh'),*POLICY.glob('*.py'),POLICY/'CPU_GATE_32g.json',*HELPER.glob('*.py'),HELPER/'CPU_GATE_32g.json',COMPONENT,NATIVE]
+    paths=[*BASE.rglob('*.py'),*BASE.glob('*.sh'),*POLICY.glob('*.py'),POLICY/'CPU_GATE_32g.json',*HELPER.glob('*.py'),HELPER/'CPU_GATE_32g.json',COMPONENT,NATIVE,Path('/usr/local/lib/python3.12/site-packages/vllm/envs.py')]
     sources.update(gate['source_manifest']);sources.update({str(p):digest(p) for p in paths});frozen_check(sources)
     for name,sha in sources.items():
         target=root/'source_snapshot'/Path(name).relative_to('/');target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(Path(name).read_bytes());assert digest(target)==sha
