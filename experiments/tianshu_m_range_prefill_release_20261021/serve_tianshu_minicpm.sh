@@ -8,7 +8,7 @@ record_root="${TIANSHU_RANGE_FUSION_PROFILE_RECORD_DIR:-/workspace/benchmark-res
 record_root=$(realpath -m -- "$record_root")
 test "$#" -eq 0
 test "$repo" = /workspace/vllm-plugin-FL
-if [[ "$dry" != 1 ]];then
+if [[ "$dry" != 1 || -f "$base/QUALIFIED_RELEASE.sha256" ]];then
     test -f "$base/QUALIFIED_RELEASE.sha256"
     sha256sum --check --status "$base/QUALIFIED_RELEASE.sha256"
     jq -e --slurpfile template "$template" '.complete and .promotion_passed and .official_benchmark and .fresh_official_Math8_correct==103 and .fresh_C64_Math_correct==101 and .actual_C64_M4096_new_fused_all42_verified and .runtime_source_count==471 and .environment_count==62 and .model_frozen_sources==$template[0].frozen_sources and .server_command==$template[0].server_command' "$base/../tianshu_m_range_prefill_official_results_20261021/OFFICIAL_GATE_32g.json" >/dev/null
