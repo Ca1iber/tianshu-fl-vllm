@@ -1,3 +1,19 @@
+2026-10-21 19:00:00 CST 关键修正：旧42-bank性能已撤回
+
+正式5618.01 total/1123.60 output、TTFT3835.46ms及Math结果不变、不受影响。BF16扫描及首192配置的FlagGems组件也不使用显式固定stream。
+
+旧tianshu_m_range_mlp42_20261021缓存default stream=0，capture实际stream非0，Inductor activation未进入Graph。数值3024 eager/CPU147456仍有效，但全部timing/gain（含384+3.9/4096-7.5）均撤回！旧GPU_GATE已加performance_valid=false，TIMING_WITHDRAWN报告保留。原宽tile de36fb5也受此影响，每cfg phase0通过phase1参考滞留，实际M64新旧融合仍bitwise、整数投影全对，故中止PID267428，不能算候选算子错。原state保留probing/不改源。
+
+7470791独立诊断3相位毒化17：fixed stream Graph输出仍全17；dynamic每次getCurrentRawStream Graph全输出与eagerbitwise且CPU全FP64147456元素通过。已确定原因，record在tianshu_inductor_stream_diag_20261021/DIAGNOSTIC_32g.json，实际capture handle非0。
+
+当前GPU PID270432，源e9dc0d8的tianshu_m_range_mlp42_v2_20261021/probe_gpu.py，root=/workspace/benchmark-results/20261021_m_range_MLP42_v2_GPU_tianshu，runner同名_runner_tianshu。每次activation实时raw stream；全部42层每M各捕获control/candidate图，在三动态输入相位先毒化activation再replay并全输出与eager比；整个42层计时链图也毒化activation和output，与eager一致后才timing。CPU复核器已准备tianshu_m_range_mlp42_v2_results_20261021/verify_cpu.py，要求3024 Graph/eager、24整链poison及2016个capture当前stream handle全部通过，尚未执行等GPU完成。
+
+紧接GPU空闲后优先：0382883 tianshu_nn_silu_large_tiles_v2_20261021/probe_gpu.py --output /workspace/benchmark-results/20261021_nn_silu_large_tiles_v2_GPU_tianshu。240配置同原宽tile，kernel字节不变，实时raw stream且每动态相位先reference Graph/eager全位一致；M64仍强制current为已采用旧two_dot同binary，数值配置失败保留隔离，failed full每M仅首个避免磁盘浪费。CPU gate完整，尚未GPU。旧宽tileSTOPPED记录不能当完整通过。
+
+BF16大M group1/8×14tile准备9968e00尚未运行（tianshu_m_range_bf16_large_20261021），可在上述宽tile后安排。不得把旧MLP负收益当采用依据，等修正后完整数据。所有运行过源/CPU gate/PLAN冻结，修复新目录。硬停23:58北京/15:58UTC，继续优化。SSH master仍afternoon-control；GitHub确认只到6d9d982，之后提交即将push。
+
+以下较早状态含已撤回结论，以此段为准。
+
 2026-10-21 18:52:34 CST 最新继续点
 
 当前正式合格最好仍5618.01 total /1123.60 output、TTFT3835.46ms（Math101/105，补充C64 103/105），已tag/push。M范围实验没有新正式成绩。
