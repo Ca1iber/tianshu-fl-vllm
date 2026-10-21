@@ -1,0 +1,2685 @@
+{
+  "complete": true,
+  "phase": "complete",
+  "runner_pid": 189044,
+  "capacity_pages": 8192,
+  "source_manifest": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_prefill_key_bound_component_20261021/gpu_probe.py": "d10fe37e30d4724a0ad9d1d2e2e8447edb1702cbf8ba841631295eff6a65f6fb",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/bounded_prefill.py": "c5a3dd7d8190d4bd5c61510e21482a568f161ddd8ca9e1a519f0be0a31ff2555",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/dense_prefill.py": "fbe479c10e27d3c730f422bdd8b23348a17e0236cf5dea04c0f3d1201e1c29f4",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/value_planes.py": "64f0a0ba89841feb8c091b861d60d687de5d4bdd73c9c7f66476e5cd6ff0d5f0",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_prefill_key_bound_20261021/bound.py": "4ff88a99ed731305fa93ab580202fbc19ec1c6c8275702c7b3cc58003175c1e7",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_prefill_key_bound_20261021/CPU_GATE_32g.json": "b267c0ffe6cd74d2f0d53793f27cd0e2e64b45b1eeae3e41a0590f6a24575472"
+  },
+  "CPU_gate_sha256": "23d78eb1d4aba6f81ca702c0d062f3e3656ca2fc9ae4dd788dc3d405c482f484",
+  "cases": [
+    {
+      "name": "pure_C8",
+      "decodes": 0,
+      "prefills": 8,
+      "page_stride_bytes": 12288,
+      "storage_offset_bytes": 0,
+      "layout_real_typed_V_alias": true,
+      "prefix_queries": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ],
+      "full_key_lengths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ],
+      "arms": [
+        {
+          "arm": "control",
+          "max_seqlen_k": 512,
+          "blocks_per_sequence": 32,
+          "pages": 256,
+          "checked_active_elements": 2097152,
+          "active_bits_sha256": "b46eb296f2afd554e8b344c48672fb0c5b155cea2378127355aae4b967e163a3",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(8, 32)": {
+              "sequences": 8,
+              "blocks_per_sequence": 32,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                256,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102662234112,
+              "table_ptr": 138102616098816
+            }
+          },
+          "kernel_ms_groups": [
+            0.012074999511241913,
+            0.01206249992052714,
+            0.012061618268489838,
+            0.01206113894780477,
+            0.012029887487490972,
+            0.012039262801408768,
+            0.012044151624043783
+          ],
+          "kernel_ms_median": 0.01206113894780477
+        },
+        {
+          "arm": "candidate",
+          "max_seqlen_k": 512,
+          "blocks_per_sequence": 32,
+          "pages": 256,
+          "checked_active_elements": 2097152,
+          "active_bits_sha256": "b46eb296f2afd554e8b344c48672fb0c5b155cea2378127355aae4b967e163a3",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(8, 32)": {
+              "sequences": 8,
+              "blocks_per_sequence": 32,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                256,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138103001972736,
+              "table_ptr": 138102616263168
+            }
+          },
+          "kernel_ms_groups": [
+            0.012041105578343073,
+            0.012050000329812368,
+            0.012054407348235449,
+            0.012029487639665604,
+            0.01204815631111463,
+            0.012028604745864868,
+            0.012029408166805903
+          ],
+          "kernel_ms_median": 0.012041105578343073
+        }
+      ],
+      "kernel_speedup_percent": 0.1663748343651017
+    },
+    {
+      "name": "pure_C8",
+      "decodes": 0,
+      "prefills": 8,
+      "page_stride_bytes": 12544,
+      "storage_offset_bytes": 128,
+      "layout_real_typed_V_alias": true,
+      "prefix_queries": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ],
+      "full_key_lengths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ],
+      "arms": [
+        {
+          "arm": "control",
+          "max_seqlen_k": 512,
+          "blocks_per_sequence": 32,
+          "pages": 256,
+          "checked_active_elements": 2097152,
+          "active_bits_sha256": "b46eb296f2afd554e8b344c48672fb0c5b155cea2378127355aae4b967e163a3",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(8, 32)": {
+              "sequences": 8,
+              "blocks_per_sequence": 32,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                256,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102662234112,
+              "table_ptr": 138102616100864
+            }
+          },
+          "kernel_ms_groups": [
+            0.012045512596766153,
+            0.01203982283671697,
+            0.012033092478911081,
+            0.012047835936148962,
+            0.012050000329812368,
+            0.012044630944728851,
+            0.012050000329812368
+          ],
+          "kernel_ms_median": 0.012045512596766153
+        },
+        {
+          "arm": "candidate",
+          "max_seqlen_k": 512,
+          "blocks_per_sequence": 32,
+          "pages": 256,
+          "checked_active_elements": 2097152,
+          "active_bits_sha256": "b46eb296f2afd554e8b344c48672fb0c5b155cea2378127355aae4b967e163a3",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(8, 32)": {
+              "sequences": 8,
+              "blocks_per_sequence": 32,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                256,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138103014555648,
+              "table_ptr": 138102616265216
+            }
+          },
+          "kernel_ms_groups": [
+            0.012075400600830713,
+            0.01207403838634491,
+            0.012029005835453669,
+            0.012054486821095148,
+            0.01209871843457222,
+            0.012074999511241913,
+            0.012074599663416544
+          ],
+          "kernel_ms_median": 0.012074599663416544
+        }
+      ],
+      "kernel_speedup_percent": -0.24089466699684925
+    },
+    {
+      "name": "pure_C8",
+      "decodes": 0,
+      "prefills": 8,
+      "page_stride_bytes": 24576,
+      "storage_offset_bytes": 256,
+      "layout_real_typed_V_alias": true,
+      "prefix_queries": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ],
+      "full_key_lengths": [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ],
+      "arms": [
+        {
+          "arm": "control",
+          "max_seqlen_k": 512,
+          "blocks_per_sequence": 32,
+          "pages": 256,
+          "checked_active_elements": 2097152,
+          "active_bits_sha256": "b46eb296f2afd554e8b344c48672fb0c5b155cea2378127355aae4b967e163a3",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(8, 32)": {
+              "sequences": 8,
+              "blocks_per_sequence": 32,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                256,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102662234112,
+              "table_ptr": 138102616098816
+            }
+          },
+          "kernel_ms_groups": [
+            0.012025881558656693,
+            0.012000882377227148,
+            0.0120281254251798,
+            0.012004487216472626,
+            0.012034775068362554,
+            0.01199823742111524,
+            0.012004006654024124
+          ],
+          "kernel_ms_median": 0.012004487216472626
+        },
+        {
+          "arm": "candidate",
+          "max_seqlen_k": 512,
+          "blocks_per_sequence": 32,
+          "pages": 256,
+          "checked_active_elements": 2097152,
+          "active_bits_sha256": "b46eb296f2afd554e8b344c48672fb0c5b155cea2378127355aae4b967e163a3",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(8, 32)": {
+              "sequences": 8,
+              "blocks_per_sequence": 32,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                256,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102934863872,
+              "table_ptr": 138102616263168
+            }
+          },
+          "kernel_ms_groups": [
+            0.012040143211682638,
+            0.012023236602544785,
+            0.012037499497334162,
+            0.012014744182427725,
+            0.01203661784529686,
+            0.012017386655012766,
+            0.01201386128862699
+          ],
+          "kernel_ms_median": 0.012023236602544785
+        }
+      ],
+      "kernel_speedup_percent": -0.1559429186329897
+    },
+    {
+      "name": "mixed_63decode_short_prefill",
+      "decodes": 63,
+      "prefills": 1,
+      "page_stride_bytes": 12288,
+      "storage_offset_bytes": 0,
+      "layout_real_typed_V_alias": true,
+      "prefix_queries": [
+        33
+      ],
+      "full_key_lengths": [
+        65
+      ],
+      "arms": [
+        {
+          "arm": "control",
+          "max_seqlen_k": 32768,
+          "blocks_per_sequence": 2048,
+          "pages": 2048,
+          "checked_active_elements": 33280,
+          "active_bits_sha256": "b5df4359a37e72d926c9e7b67d95635705f0967c70450f8ccaced8c65409ec2b",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(1, 2048)": {
+              "sequences": 1,
+              "blocks_per_sequence": 2048,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                2048,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102662234112,
+              "table_ptr": 138102616304640
+            }
+          },
+          "kernel_ms_groups": [
+            0.05750897526741028,
+            0.05762091279029846,
+            0.05743213494618734,
+            0.05745849013328552,
+            0.057501365741093956,
+            0.05751602351665497,
+            0.05751482645670573
+          ],
+          "kernel_ms_median": 0.05750897526741028
+        },
+        {
+          "arm": "candidate",
+          "max_seqlen_k": 65,
+          "blocks_per_sequence": 5,
+          "pages": 5,
+          "checked_active_elements": 33280,
+          "active_bits_sha256": "b5df4359a37e72d926c9e7b67d95635705f0967c70450f8ccaced8c65409ec2b",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(1, 5)": {
+              "sequences": 1,
+              "blocks_per_sequence": 5,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                5,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138103016652800,
+              "table_ptr": 138102616468992
+            }
+          },
+          "kernel_ms_groups": [
+            0.003971875024338563,
+            0.003991105904181798,
+            0.003991105904181798,
+            0.003977243478099505,
+            0.00396875012665987,
+            0.003970512809852759,
+            0.003962500020861626
+          ],
+          "kernel_ms_median": 0.003971875024338563
+        }
+      ],
+      "kernel_speedup_percent": 1347.904954587217
+    },
+    {
+      "name": "mixed_63decode_short_prefill",
+      "decodes": 63,
+      "prefills": 1,
+      "page_stride_bytes": 12544,
+      "storage_offset_bytes": 128,
+      "layout_real_typed_V_alias": true,
+      "prefix_queries": [
+        33
+      ],
+      "full_key_lengths": [
+        65
+      ],
+      "arms": [
+        {
+          "arm": "control",
+          "max_seqlen_k": 32768,
+          "blocks_per_sequence": 2048,
+          "pages": 2048,
+          "checked_active_elements": 33280,
+          "active_bits_sha256": "b5df4359a37e72d926c9e7b67d95635705f0967c70450f8ccaced8c65409ec2b",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(1, 2048)": {
+              "sequences": 1,
+              "blocks_per_sequence": 2048,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                2048,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102662234112,
+              "table_ptr": 138102616097280
+            }
+          },
+          "kernel_ms_groups": [
+            0.05751202007134756,
+            0.05750673015912374,
+            0.05745136241118113,
+            0.057570114731788635,
+            0.05755352973937988,
+            0.05742684006690979,
+            0.05750937263170878
+          ],
+          "kernel_ms_median": 0.05750937263170878
+        },
+        {
+          "arm": "candidate",
+          "max_seqlen_k": 65,
+          "blocks_per_sequence": 5,
+          "pages": 5,
+          "checked_active_elements": 33280,
+          "active_bits_sha256": "b5df4359a37e72d926c9e7b67d95635705f0967c70450f8ccaced8c65409ec2b",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(1, 5)": {
+              "sequences": 1,
+              "blocks_per_sequence": 5,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                5,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102936961024,
+              "table_ptr": 138102616261632
+            }
+          },
+          "kernel_ms_groups": [
+            0.003975881263613701,
+            0.003975881263613701,
+            0.003952644144495328,
+            0.0039423877994219465,
+            0.003958974344034989,
+            0.003969631468256314,
+            0.003946394349137942
+          ],
+          "kernel_ms_median": 0.003958974344034989
+        }
+      ],
+      "kernel_speedup_percent": 1352.6331224742212
+    },
+    {
+      "name": "mixed_63decode_short_prefill",
+      "decodes": 63,
+      "prefills": 1,
+      "page_stride_bytes": 24576,
+      "storage_offset_bytes": 256,
+      "layout_real_typed_V_alias": true,
+      "prefix_queries": [
+        33
+      ],
+      "full_key_lengths": [
+        65
+      ],
+      "arms": [
+        {
+          "arm": "control",
+          "max_seqlen_k": 32768,
+          "blocks_per_sequence": 2048,
+          "pages": 2048,
+          "checked_active_elements": 33280,
+          "active_bits_sha256": "b5df4359a37e72d926c9e7b67d95635705f0967c70450f8ccaced8c65409ec2b",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(1, 2048)": {
+              "sequences": 1,
+              "blocks_per_sequence": 2048,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                2048,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102662234112,
+              "table_ptr": 138102616106496
+            }
+          },
+          "kernel_ms_groups": [
+            0.057484373450279236,
+            0.05761610964934031,
+            0.057578603426615395,
+            0.057400479912757874,
+            0.057514662543932595,
+            0.05750760932763418,
+            0.05759951968987783
+          ],
+          "kernel_ms_median": 0.057514662543932595
+        },
+        {
+          "arm": "candidate",
+          "max_seqlen_k": 65,
+          "blocks_per_sequence": 5,
+          "pages": 5,
+          "checked_active_elements": 33280,
+          "active_bits_sha256": "b5df4359a37e72d926c9e7b67d95635705f0967c70450f8ccaced8c65409ec2b",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(1, 5)": {
+              "sequences": 1,
+              "blocks_per_sequence": 5,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                5,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138103016652800,
+              "table_ptr": 138102616270848
+            }
+          },
+          "kernel_ms_groups": [
+            0.0040205928186575575,
+            0.00406955120464166,
+            0.0040745191896955175,
+            0.004000881376365821,
+            0.00397636213650306,
+            0.00397636213650306,
+            0.003981650496522586
+          ],
+          "kernel_ms_median": 0.004000881376365821
+        }
+      ],
+      "kernel_speedup_percent": 1337.5498079919514
+    },
+    {
+      "name": "mixed_32decode_32prefill",
+      "decodes": 32,
+      "prefills": 32,
+      "page_stride_bytes": 12288,
+      "storage_offset_bytes": 0,
+      "layout_real_typed_V_alias": true,
+      "prefix_queries": [
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16
+      ],
+      "full_key_lengths": [
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        129,
+        130
+      ],
+      "arms": [
+        {
+          "arm": "control",
+          "max_seqlen_k": 2048,
+          "blocks_per_sequence": 128,
+          "pages": 4096,
+          "checked_active_elements": 2221568,
+          "active_bits_sha256": "82dc6bb768f9762319666c1db1b0ec811a7272c1977c6d750a7149d05aa3ba4b",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(32, 128)": {
+              "sequences": 32,
+              "blocks_per_sequence": 128,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                4096,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102662234112,
+              "table_ptr": 138102616123392
+            }
+          },
+          "kernel_ms_groups": [
+            0.11525360743204753,
+            0.11537051200866699,
+            0.11535664399464925,
+            0.11546073357264201,
+            0.11547099550565083,
+            0.11542059977849324,
+            0.11527988314628601
+          ],
+          "kernel_ms_median": 0.11537051200866699
+        },
+        {
+          "arm": "candidate",
+          "max_seqlen_k": 143,
+          "blocks_per_sequence": 9,
+          "pages": 288,
+          "checked_active_elements": 2221568,
+          "active_bits_sha256": "82dc6bb768f9762319666c1db1b0ec811a7272c1977c6d750a7149d05aa3ba4b",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(32, 9)": {
+              "sequences": 32,
+              "blocks_per_sequence": 9,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                288,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102932766720,
+              "table_ptr": 138102616287744
+            }
+          },
+          "kernel_ms_groups": [
+            0.01367500051856041,
+            0.013681250313917795,
+            0.013676361491282782,
+            0.013628125190734863,
+            0.013705369085073471,
+            0.01370889445145925,
+            0.013670592258373896
+          ],
+          "kernel_ms_median": 0.013676361491282782
+        }
+      ],
+      "kernel_speedup_percent": 743.576064307772
+    },
+    {
+      "name": "mixed_32decode_32prefill",
+      "decodes": 32,
+      "prefills": 32,
+      "page_stride_bytes": 12544,
+      "storage_offset_bytes": 128,
+      "layout_real_typed_V_alias": true,
+      "prefix_queries": [
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16
+      ],
+      "full_key_lengths": [
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        129,
+        130
+      ],
+      "arms": [
+        {
+          "arm": "control",
+          "max_seqlen_k": 2048,
+          "blocks_per_sequence": 128,
+          "pages": 4096,
+          "checked_active_elements": 2221568,
+          "active_bits_sha256": "82dc6bb768f9762319666c1db1b0ec811a7272c1977c6d750a7149d05aa3ba4b",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(32, 128)": {
+              "sequences": 32,
+              "blocks_per_sequence": 128,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                4096,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102662234112,
+              "table_ptr": 138102616140288
+            }
+          },
+          "kernel_ms_groups": [
+            0.11564238866170247,
+            0.11552588144938152,
+            0.11540986100832622,
+            0.11557852228482564,
+            0.11564735571543376,
+            0.11558389663696289,
+            0.1154076059659322
+          ],
+          "kernel_ms_median": 0.11557852228482564
+        },
+        {
+          "arm": "candidate",
+          "max_seqlen_k": 143,
+          "blocks_per_sequence": 9,
+          "pages": 288,
+          "checked_active_elements": 2221568,
+          "active_bits_sha256": "82dc6bb768f9762319666c1db1b0ec811a7272c1977c6d750a7149d05aa3ba4b",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(32, 9)": {
+              "sequences": 32,
+              "blocks_per_sequence": 9,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                288,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138103012458496,
+              "table_ptr": 138102616304640
+            }
+          },
+          "kernel_ms_groups": [
+            0.013625399519999823,
+            0.013669631133476893,
+            0.013707131147384644,
+            0.013673638304074606,
+            0.013703604539235434,
+            0.013686137894789377,
+            0.013654968390862146
+          ],
+          "kernel_ms_median": 0.013673638304074606
+        }
+      ],
+      "kernel_speedup_percent": 745.2653179394426
+    },
+    {
+      "name": "mixed_32decode_32prefill",
+      "decodes": 32,
+      "prefills": 32,
+      "page_stride_bytes": 24576,
+      "storage_offset_bytes": 256,
+      "layout_real_typed_V_alias": true,
+      "prefix_queries": [
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16
+      ],
+      "full_key_lengths": [
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        129,
+        130
+      ],
+      "arms": [
+        {
+          "arm": "control",
+          "max_seqlen_k": 2048,
+          "blocks_per_sequence": 128,
+          "pages": 4096,
+          "checked_active_elements": 2221568,
+          "active_bits_sha256": "82dc6bb768f9762319666c1db1b0ec811a7272c1977c6d750a7149d05aa3ba4b",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(32, 128)": {
+              "sequences": 32,
+              "blocks_per_sequence": 128,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                4096,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102662234112,
+              "table_ptr": 138102616114688
+            }
+          },
+          "kernel_ms_groups": [
+            0.1157557765642802,
+            0.11537275711695354,
+            0.11553525924682617,
+            0.11546025673548381,
+            0.11551074186960857,
+            0.11522892117500305,
+            0.11557227373123169
+          ],
+          "kernel_ms_median": 0.11551074186960857
+        },
+        {
+          "arm": "candidate",
+          "max_seqlen_k": 143,
+          "blocks_per_sequence": 9,
+          "pages": 288,
+          "checked_active_elements": 2221568,
+          "active_bits_sha256": "82dc6bb768f9762319666c1db1b0ec811a7272c1977c6d750a7149d05aa3ba4b",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(32, 9)": {
+              "sequences": 32,
+              "blocks_per_sequence": 9,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                288,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102932766720,
+              "table_ptr": 138102616279040
+            }
+          },
+          "kernel_ms_groups": [
+            0.01363357404867808,
+            0.013650480657815933,
+            0.013598717749118805,
+            0.013644230862458548,
+            0.013672756652037302,
+            0.013632211834192276,
+            0.013628604511419931
+          ],
+          "kernel_ms_median": 0.01363357404867808
+        }
+      ],
+      "kernel_speedup_percent": 747.2520958714313
+    },
+    {
+      "name": "mixed_62decode_prefix",
+      "decodes": 62,
+      "prefills": 2,
+      "page_stride_bytes": 12288,
+      "storage_offset_bytes": 0,
+      "layout_real_typed_V_alias": true,
+      "prefix_queries": [
+        128,
+        17
+      ],
+      "full_key_lengths": [
+        4097,
+        1202
+      ],
+      "arms": [
+        {
+          "arm": "control",
+          "max_seqlen_k": 32768,
+          "blocks_per_sequence": 2048,
+          "pages": 4096,
+          "checked_active_elements": 2713088,
+          "active_bits_sha256": "1c7807d6eff2a55a28faba344aaa9a74cd2f5b2d323beb8a50877ee1d95cab8e",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(2, 2048)": {
+              "sequences": 2,
+              "blocks_per_sequence": 2048,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                4096,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102662234112,
+              "table_ptr": 138102616131584
+            }
+          },
+          "kernel_ms_groups": [
+            0.11644375324249268,
+            0.11647276083628337,
+            0.1164838969707489,
+            0.11651650071144104,
+            0.11649823188781738,
+            0.11650672554969788,
+            0.11639687418937683
+          ],
+          "kernel_ms_median": 0.1164838969707489
+        },
+        {
+          "arm": "candidate",
+          "max_seqlen_k": 4097,
+          "blocks_per_sequence": 257,
+          "pages": 514,
+          "checked_active_elements": 2713088,
+          "active_bits_sha256": "1c7807d6eff2a55a28faba344aaa9a74cd2f5b2d323beb8a50877ee1d95cab8e",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(2, 257)": {
+              "sequences": 2,
+              "blocks_per_sequence": 257,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                514,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138103012458496,
+              "table_ptr": 138102616295936
+            }
+          },
+          "kernel_ms_groups": [
+            0.020032613227764767,
+            0.020406249910593033,
+            0.02004951983690262,
+            0.02005753169457118,
+            0.020096474637587864,
+            0.020076361795266468,
+            0.0200656255086263
+          ],
+          "kernel_ms_median": 0.0200656255086263
+        }
+      ],
+      "kernel_speedup_percent": 480.5146563742653
+    },
+    {
+      "name": "mixed_62decode_prefix",
+      "decodes": 62,
+      "prefills": 2,
+      "page_stride_bytes": 12544,
+      "storage_offset_bytes": 128,
+      "layout_real_typed_V_alias": true,
+      "prefix_queries": [
+        128,
+        17
+      ],
+      "full_key_lengths": [
+        4097,
+        1202
+      ],
+      "arms": [
+        {
+          "arm": "control",
+          "max_seqlen_k": 32768,
+          "blocks_per_sequence": 2048,
+          "pages": 4096,
+          "checked_active_elements": 2713088,
+          "active_bits_sha256": "1c7807d6eff2a55a28faba344aaa9a74cd2f5b2d323beb8a50877ee1d95cab8e",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(2, 2048)": {
+              "sequences": 2,
+              "blocks_per_sequence": 2048,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                4096,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102662234112,
+              "table_ptr": 138102616114688
+            }
+          },
+          "kernel_ms_groups": [
+            0.11636650562286377,
+            0.11640937129656474,
+            0.11644190549850464,
+            0.11632636189460754,
+            0.1164187490940094,
+            0.11634238560994466,
+            0.11643301447232564
+          ],
+          "kernel_ms_median": 0.11640937129656474
+        },
+        {
+          "arm": "candidate",
+          "max_seqlen_k": 4097,
+          "blocks_per_sequence": 257,
+          "pages": 514,
+          "checked_active_elements": 2713088,
+          "active_bits_sha256": "1c7807d6eff2a55a28faba344aaa9a74cd2f5b2d323beb8a50877ee1d95cab8e",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(2, 257)": {
+              "sequences": 2,
+              "blocks_per_sequence": 257,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                514,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102932766720,
+              "table_ptr": 138102616279040
+            }
+          },
+          "kernel_ms_groups": [
+            0.020194151749213535,
+            0.020108493665854137,
+            0.020124518622954685,
+            0.02016250044107437,
+            0.02013221134742101,
+            0.02014415090282758,
+            0.020125882079203922
+          ],
+          "kernel_ms_median": 0.02013221134742101
+        }
+      ],
+      "kernel_speedup_percent": 478.2244647033129
+    },
+    {
+      "name": "mixed_62decode_prefix",
+      "decodes": 62,
+      "prefills": 2,
+      "page_stride_bytes": 24576,
+      "storage_offset_bytes": 256,
+      "layout_real_typed_V_alias": true,
+      "prefix_queries": [
+        128,
+        17
+      ],
+      "full_key_lengths": [
+        4097,
+        1202
+      ],
+      "arms": [
+        {
+          "arm": "control",
+          "max_seqlen_k": 32768,
+          "blocks_per_sequence": 2048,
+          "pages": 4096,
+          "checked_active_elements": 2713088,
+          "active_bits_sha256": "1c7807d6eff2a55a28faba344aaa9a74cd2f5b2d323beb8a50877ee1d95cab8e",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(2, 2048)": {
+              "sequences": 2,
+              "blocks_per_sequence": 2048,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                4096,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102662234112,
+              "table_ptr": 138102616131584
+            }
+          },
+          "kernel_ms_groups": [
+            0.11644239226977031,
+            0.11644014716148376,
+            0.11652772625287373,
+            0.11662099758783977,
+            0.11647540330886841,
+            0.1164214809735616,
+            0.11650624871253967
+          ],
+          "kernel_ms_median": 0.11647540330886841
+        },
+        {
+          "arm": "candidate",
+          "max_seqlen_k": 4097,
+          "blocks_per_sequence": 257,
+          "pages": 514,
+          "checked_active_elements": 2713088,
+          "active_bits_sha256": "1c7807d6eff2a55a28faba344aaa9a74cd2f5b2d323beb8a50877ee1d95cab8e",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(2, 257)": {
+              "sequences": 2,
+              "blocks_per_sequence": 257,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                514,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138103012458496,
+              "table_ptr": 138102616295936
+            }
+          },
+          "kernel_ms_groups": [
+            0.020153605689605076,
+            0.0201182688275973,
+            0.020134775588909786,
+            0.020167869826157887,
+            0.020154087493817013,
+            0.020183412979046505,
+            0.020150399456421535
+          ],
+          "kernel_ms_median": 0.020153605689605076
+        }
+      ],
+      "kernel_speedup_percent": 477.9382860951014
+    },
+    {
+      "name": "mixed_60decode_4prefill",
+      "decodes": 60,
+      "prefills": 4,
+      "page_stride_bytes": 12288,
+      "storage_offset_bytes": 0,
+      "layout_real_typed_V_alias": true,
+      "prefix_queries": [
+        2048,
+        512,
+        33,
+        128
+      ],
+      "full_key_lengths": [
+        8192,
+        7169,
+        65,
+        4096
+      ],
+      "arms": [
+        {
+          "arm": "control",
+          "max_seqlen_k": 32768,
+          "blocks_per_sequence": 2048,
+          "pages": 8192,
+          "checked_active_elements": 9995264,
+          "active_bits_sha256": "f75f72431351e02d799c95343cb16b0dccbb85ed5db59ed83c4904da66a97d63",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(4, 2048)": {
+              "sequences": 4,
+              "blocks_per_sequence": 2048,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                8192,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102662234112,
+              "table_ptr": 138102616097280
+            }
+          },
+          "kernel_ms_groups": [
+            0.2537923852602641,
+            0.25386788447697956,
+            0.25416914621988934,
+            0.2539973457654317,
+            0.2538571357727051,
+            0.2539878884951274,
+            0.25401514768600464
+          ],
+          "kernel_ms_median": 0.2539878884951274
+        },
+        {
+          "arm": "candidate",
+          "max_seqlen_k": 8192,
+          "blocks_per_sequence": 512,
+          "pages": 2048,
+          "checked_active_elements": 9995264,
+          "active_bits_sha256": "f75f72431351e02d799c95343cb16b0dccbb85ed5db59ed83c4904da66a97d63",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(4, 512)": {
+              "sequences": 4,
+              "blocks_per_sequence": 512,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                2048,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102918086656,
+              "table_ptr": 138102616296448
+            }
+          },
+          "kernel_ms_groups": [
+            0.09001738826433818,
+            0.08990536133448283,
+            0.08997227748235066,
+            0.0899597704410553,
+            0.08997988700866699,
+            0.08993309736251831,
+            0.08997011184692383
+          ],
+          "kernel_ms_median": 0.08997011184692383
+        }
+      ],
+      "kernel_speedup_percent": 182.30251500327714
+    },
+    {
+      "name": "mixed_60decode_4prefill",
+      "decodes": 60,
+      "prefills": 4,
+      "page_stride_bytes": 12544,
+      "storage_offset_bytes": 128,
+      "layout_real_typed_V_alias": true,
+      "prefix_queries": [
+        2048,
+        512,
+        33,
+        128
+      ],
+      "full_key_lengths": [
+        8192,
+        7169,
+        65,
+        4096
+      ],
+      "arms": [
+        {
+          "arm": "control",
+          "max_seqlen_k": 32768,
+          "blocks_per_sequence": 2048,
+          "pages": 8192,
+          "checked_active_elements": 9995264,
+          "active_bits_sha256": "f75f72431351e02d799c95343cb16b0dccbb85ed5db59ed83c4904da66a97d63",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(4, 2048)": {
+              "sequences": 4,
+              "blocks_per_sequence": 2048,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                8192,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102662234112,
+              "table_ptr": 138102616131072
+            }
+          },
+          "kernel_ms_groups": [
+            0.25612274805704754,
+            0.2565366228421529,
+            0.2562040090560913,
+            0.2562999924023946,
+            0.25640128056208294,
+            0.256131649017334,
+            0.25622010231018066
+          ],
+          "kernel_ms_median": 0.25622010231018066
+        },
+        {
+          "arm": "candidate",
+          "max_seqlen_k": 8192,
+          "blocks_per_sequence": 512,
+          "pages": 2048,
+          "checked_active_elements": 9995264,
+          "active_bits_sha256": "f75f72431351e02d799c95343cb16b0dccbb85ed5db59ed83c4904da66a97d63",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(4, 512)": {
+              "sequences": 4,
+              "blocks_per_sequence": 512,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                2048,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102997778432,
+              "table_ptr": 138102616295424
+            }
+          },
+          "kernel_ms_groups": [
+            0.09218524893124898,
+            0.0922325352827708,
+            0.09216249982515971,
+            0.09207811951637268,
+            0.09200841188430786,
+            0.09224278728167216,
+            0.09223484992980957
+          ],
+          "kernel_ms_median": 0.09218524893124898
+        }
+      ],
+      "kernel_speedup_percent": 177.9404571562936
+    },
+    {
+      "name": "mixed_60decode_4prefill",
+      "decodes": 60,
+      "prefills": 4,
+      "page_stride_bytes": 24576,
+      "storage_offset_bytes": 256,
+      "layout_real_typed_V_alias": true,
+      "prefix_queries": [
+        2048,
+        512,
+        33,
+        128
+      ],
+      "full_key_lengths": [
+        8192,
+        7169,
+        65,
+        4096
+      ],
+      "arms": [
+        {
+          "arm": "control",
+          "max_seqlen_k": 32768,
+          "blocks_per_sequence": 2048,
+          "pages": 8192,
+          "checked_active_elements": 9995264,
+          "active_bits_sha256": "f75f72431351e02d799c95343cb16b0dccbb85ed5db59ed83c4904da66a97d63",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(4, 2048)": {
+              "sequences": 4,
+              "blocks_per_sequence": 2048,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                8192,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102802743296,
+              "table_ptr": 138102616097280
+            }
+          },
+          "kernel_ms_groups": [
+            0.25544687112172443,
+            0.2551843722661336,
+            0.2553236285845439,
+            0.25557225942611694,
+            0.25546298424402875,
+            0.25536922613779706,
+            0.25523438056310016
+          ],
+          "kernel_ms_median": 0.25536922613779706
+        },
+        {
+          "arm": "candidate",
+          "max_seqlen_k": 8192,
+          "blocks_per_sequence": 512,
+          "pages": 2048,
+          "checked_active_elements": 9995264,
+          "active_bits_sha256": "f75f72431351e02d799c95343cb16b0dccbb85ed5db59ed83c4904da66a97d63",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(4, 512)": {
+              "sequences": 4,
+              "blocks_per_sequence": 512,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                2048,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138103054401536,
+              "table_ptr": 138102616295936
+            }
+          },
+          "kernel_ms_groups": [
+            0.09154239296913147,
+            0.09157499670982361,
+            0.09147324164708455,
+            0.09151650468508403,
+            0.09154911835988362,
+            0.09134647250175476,
+            0.09147452314694722
+          ],
+          "kernel_ms_median": 0.09151650468508403
+        }
+      ],
+      "kernel_speedup_percent": 179.04171713784743
+    },
+    {
+      "name": "pure_C8_prefix",
+      "decodes": 0,
+      "prefills": 8,
+      "page_stride_bytes": 12288,
+      "storage_offset_bytes": 0,
+      "layout_real_typed_V_alias": true,
+      "prefix_queries": [
+        128,
+        128,
+        128,
+        128,
+        128,
+        128,
+        128,
+        128
+      ],
+      "full_key_lengths": [
+        1025,
+        1202,
+        1297,
+        1536,
+        1665,
+        1792,
+        1921,
+        2048
+      ],
+      "arms": [
+        {
+          "arm": "control",
+          "max_seqlen_k": 2048,
+          "blocks_per_sequence": 128,
+          "pages": 1024,
+          "checked_active_elements": 6392832,
+          "active_bits_sha256": "05424a5a14da2920b2f3f79541e2774d586795c4e60867b82bb5063ce8c1e15c",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(8, 128)": {
+              "sequences": 8,
+              "blocks_per_sequence": 128,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                1024,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102802743296,
+              "table_ptr": 138102616102400
+            }
+          },
+          "kernel_ms_groups": [
+            0.04808621605237325,
+            0.04806426167488098,
+            0.04796834786732992,
+            0.04800889392693838,
+            0.04799511035283407,
+            0.04807187616825104,
+            0.04806113739808401
+          ],
+          "kernel_ms_median": 0.04806113739808401
+        },
+        {
+          "arm": "candidate",
+          "max_seqlen_k": 2048,
+          "blocks_per_sequence": 128,
+          "pages": 1024,
+          "checked_active_elements": 6392832,
+          "active_bits_sha256": "05424a5a14da2920b2f3f79541e2774d586795c4e60867b82bb5063ce8c1e15c",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(8, 128)": {
+              "sequences": 8,
+              "blocks_per_sequence": 128,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                1024,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138103127801856,
+              "table_ptr": 138102616266752
+            }
+          },
+          "kernel_ms_groups": [
+            0.04772628347078959,
+            0.047725881139437355,
+            0.047812978426615395,
+            0.04779062668482462,
+            0.04777988791465759,
+            0.04777676363786062,
+            0.04774599273999532
+          ],
+          "kernel_ms_median": 0.04777676363786062
+        }
+      ],
+      "kernel_speedup_percent": 0.5952135276028558
+    },
+    {
+      "name": "pure_C8_prefix",
+      "decodes": 0,
+      "prefills": 8,
+      "page_stride_bytes": 12544,
+      "storage_offset_bytes": 128,
+      "layout_real_typed_V_alias": true,
+      "prefix_queries": [
+        128,
+        128,
+        128,
+        128,
+        128,
+        128,
+        128,
+        128
+      ],
+      "full_key_lengths": [
+        1025,
+        1202,
+        1297,
+        1536,
+        1665,
+        1792,
+        1921,
+        2048
+      ],
+      "arms": [
+        {
+          "arm": "control",
+          "max_seqlen_k": 2048,
+          "blocks_per_sequence": 128,
+          "pages": 1024,
+          "checked_active_elements": 6392832,
+          "active_bits_sha256": "05424a5a14da2920b2f3f79541e2774d586795c4e60867b82bb5063ce8c1e15c",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(8, 128)": {
+              "sequences": 8,
+              "blocks_per_sequence": 128,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                1024,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102802743296,
+              "table_ptr": 138102616107008
+            }
+          },
+          "kernel_ms_groups": [
+            0.0482196311155955,
+            0.04829863707224528,
+            0.04818220933278402,
+            0.04836739102999369,
+            0.04836834967136383,
+            0.04838757713635763,
+            0.04829286535580953
+          ],
+          "kernel_ms_median": 0.04829863707224528
+        },
+        {
+          "arm": "candidate",
+          "max_seqlen_k": 2048,
+          "blocks_per_sequence": 128,
+          "pages": 1024,
+          "checked_active_elements": 6392832,
+          "active_bits_sha256": "05424a5a14da2920b2f3f79541e2774d586795c4e60867b82bb5063ce8c1e15c",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(8, 128)": {
+              "sequences": 8,
+              "blocks_per_sequence": 128,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                1024,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138103127801856,
+              "table_ptr": 138102616271360
+            }
+          },
+          "kernel_ms_groups": [
+            0.04798301557699839,
+            0.047944714625676475,
+            0.04795577128728231,
+            0.04796690742174784,
+            0.04799327254295349,
+            0.0479749987522761,
+            0.04799511035283407
+          ],
+          "kernel_ms_median": 0.0479749987522761
+        }
+      ],
+      "kernel_speedup_percent": 0.6745978705290145
+    },
+    {
+      "name": "pure_C8_prefix",
+      "decodes": 0,
+      "prefills": 8,
+      "page_stride_bytes": 24576,
+      "storage_offset_bytes": 256,
+      "layout_real_typed_V_alias": true,
+      "prefix_queries": [
+        128,
+        128,
+        128,
+        128,
+        128,
+        128,
+        128,
+        128
+      ],
+      "full_key_lengths": [
+        1025,
+        1202,
+        1297,
+        1536,
+        1665,
+        1792,
+        1921,
+        2048
+      ],
+      "arms": [
+        {
+          "arm": "control",
+          "max_seqlen_k": 2048,
+          "blocks_per_sequence": 128,
+          "pages": 1024,
+          "checked_active_elements": 6392832,
+          "active_bits_sha256": "05424a5a14da2920b2f3f79541e2774d586795c4e60867b82bb5063ce8c1e15c",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(8, 128)": {
+              "sequences": 8,
+              "blocks_per_sequence": 128,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                1024,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102802743296,
+              "table_ptr": 138102616102400
+            }
+          },
+          "kernel_ms_groups": [
+            0.046085258324941,
+            0.04608397682507833,
+            0.04598165055116018,
+            0.046040624380111694,
+            0.046036213636398315,
+            0.04610528548558553,
+            0.046063860257466636
+          ],
+          "kernel_ms_median": 0.046063860257466636
+        },
+        {
+          "arm": "candidate",
+          "max_seqlen_k": 2048,
+          "blocks_per_sequence": 128,
+          "pages": 1024,
+          "checked_active_elements": 6392832,
+          "active_bits_sha256": "05424a5a14da2920b2f3f79541e2774d586795c4e60867b82bb5063ce8c1e15c",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(8, 128)": {
+              "sequences": 8,
+              "blocks_per_sequence": 128,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                1024,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138103127801856,
+              "table_ptr": 138102616266752
+            }
+          },
+          "kernel_ms_groups": [
+            0.04577948649724325,
+            0.04566690822442373,
+            0.045753603180249534,
+            0.04570176204045614,
+            0.04590088129043579,
+            0.04583614071210226,
+            0.04580665131409963
+          ],
+          "kernel_ms_median": 0.04577948649724325
+        }
+      ],
+      "kernel_speedup_percent": 0.6211816295504269
+    },
+    {
+      "name": "mixed_57decode_unaligned",
+      "decodes": 57,
+      "prefills": 7,
+      "page_stride_bytes": 12288,
+      "storage_offset_bytes": 0,
+      "layout_real_typed_V_alias": true,
+      "prefix_queries": [
+        17,
+        16,
+        17,
+        33,
+        64,
+        128,
+        128
+      ],
+      "full_key_lengths": [
+        1201,
+        16,
+        33,
+        65,
+        129,
+        257,
+        513
+      ],
+      "arms": [
+        {
+          "arm": "control",
+          "max_seqlen_k": 16384,
+          "blocks_per_sequence": 1024,
+          "pages": 7168,
+          "checked_active_elements": 1133568,
+          "active_bits_sha256": "ab2f9c0ca18f036882bc78c6d33ea7fb680f232b8628c30d1bda19129c0c5372",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(7, 1024)": {
+              "sequences": 7,
+              "blocks_per_sequence": 1024,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                7168,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102802743296,
+              "table_ptr": 138102616131584
+            }
+          },
+          "kernel_ms_groups": [
+            0.198748250802358,
+            0.19854863484700522,
+            0.19896111885706583,
+            0.1986383001009623,
+            0.1990228295326233,
+            0.19869454701741537,
+            0.19882635275522867
+          ],
+          "kernel_ms_median": 0.198748250802358
+        },
+        {
+          "arm": "candidate",
+          "max_seqlen_k": 1201,
+          "blocks_per_sequence": 76,
+          "pages": 532,
+          "checked_active_elements": 1133568,
+          "active_bits_sha256": "ab2f9c0ca18f036882bc78c6d33ea7fb680f232b8628c30d1bda19129c0c5372",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(7, 76)": {
+              "sequences": 7,
+              "blocks_per_sequence": 76,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                532,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138103071178752,
+              "table_ptr": 138102616295936
+            }
+          },
+          "kernel_ms_groups": [
+            0.019068750242392223,
+            0.019075000037749607,
+            0.019107211381196976,
+            0.019155848771333694,
+            0.01902596155802409,
+            0.019086698691050213,
+            0.019119550784428913
+          ],
+          "kernel_ms_median": 0.019086698691050213
+        }
+      ],
+      "kernel_speedup_percent": 941.2919175779277
+    },
+    {
+      "name": "mixed_57decode_unaligned",
+      "decodes": 57,
+      "prefills": 7,
+      "page_stride_bytes": 12544,
+      "storage_offset_bytes": 128,
+      "layout_real_typed_V_alias": true,
+      "prefix_queries": [
+        17,
+        16,
+        17,
+        33,
+        64,
+        128,
+        128
+      ],
+      "full_key_lengths": [
+        1201,
+        16,
+        33,
+        65,
+        129,
+        257,
+        513
+      ],
+      "arms": [
+        {
+          "arm": "control",
+          "max_seqlen_k": 16384,
+          "blocks_per_sequence": 1024,
+          "pages": 7168,
+          "checked_active_elements": 1133568,
+          "active_bits_sha256": "ab2f9c0ca18f036882bc78c6d33ea7fb680f232b8628c30d1bda19129c0c5372",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(7, 1024)": {
+              "sequences": 7,
+              "blocks_per_sequence": 1024,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                7168,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102662234112,
+              "table_ptr": 138102616097792
+            }
+          },
+          "kernel_ms_groups": [
+            0.19895360867182413,
+            0.19884606202443442,
+            0.19875985383987427,
+            0.1987437605857849,
+            0.19900000095367432,
+            0.1984821359316508,
+            0.19871826966603598
+          ],
+          "kernel_ms_median": 0.19875985383987427
+        },
+        {
+          "arm": "candidate",
+          "max_seqlen_k": 1201,
+          "blocks_per_sequence": 76,
+          "pages": 532,
+          "checked_active_elements": 1133568,
+          "active_bits_sha256": "ab2f9c0ca18f036882bc78c6d33ea7fb680f232b8628c30d1bda19129c0c5372",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(7, 76)": {
+              "sequences": 7,
+              "blocks_per_sequence": 76,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                532,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138103001972736,
+              "table_ptr": 138102616292352
+            }
+          },
+          "kernel_ms_groups": [
+            0.019072356323401134,
+            0.01903084913889567,
+            0.01901562511920929,
+            0.018977724015712738,
+            0.018995913366476696,
+            0.01904599368572235,
+            0.01908613865574201
+          ],
+          "kernel_ms_median": 0.01903084913889567
+        }
+      ],
+      "kernel_speedup_percent": 944.4087512293105
+    },
+    {
+      "name": "mixed_57decode_unaligned",
+      "decodes": 57,
+      "prefills": 7,
+      "page_stride_bytes": 24576,
+      "storage_offset_bytes": 256,
+      "layout_real_typed_V_alias": true,
+      "prefix_queries": [
+        17,
+        16,
+        17,
+        33,
+        64,
+        128,
+        128
+      ],
+      "full_key_lengths": [
+        1201,
+        16,
+        33,
+        65,
+        129,
+        257,
+        513
+      ],
+      "arms": [
+        {
+          "arm": "control",
+          "max_seqlen_k": 16384,
+          "blocks_per_sequence": 1024,
+          "pages": 7168,
+          "checked_active_elements": 1133568,
+          "active_bits_sha256": "ab2f9c0ca18f036882bc78c6d33ea7fb680f232b8628c30d1bda19129c0c5372",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(7, 1024)": {
+              "sequences": 7,
+              "blocks_per_sequence": 1024,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                7168,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102662234112,
+              "table_ptr": 138102616126976
+            }
+          },
+          "kernel_ms_groups": [
+            0.19877050320307413,
+            0.19874199231465658,
+            0.19877813259760538,
+            0.19888798395792642,
+            0.1987250049908956,
+            0.19904824097951254,
+            0.1988691488901774
+          ],
+          "kernel_ms_median": 0.19877813259760538
+        },
+        {
+          "arm": "candidate",
+          "max_seqlen_k": 1201,
+          "blocks_per_sequence": 76,
+          "pages": 532,
+          "checked_active_elements": 1133568,
+          "active_bits_sha256": "ab2f9c0ca18f036882bc78c6d33ea7fb680f232b8628c30d1bda19129c0c5372",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(7, 76)": {
+              "sequences": 7,
+              "blocks_per_sequence": 76,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                532,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102934863872,
+              "table_ptr": 138102616291328
+            }
+          },
+          "kernel_ms_groups": [
+            0.01910496751467387,
+            0.01906826967994372,
+            0.019055768847465515,
+            0.01905721177657445,
+            0.019136217733224232,
+            0.019078525404135387,
+            0.019130768875281017
+          ],
+          "kernel_ms_median": 0.019078525404135387
+        }
+      ],
+      "kernel_speedup_percent": 941.8946348679494
+    },
+    {
+      "name": "mixed_full_context_bound",
+      "decodes": 63,
+      "prefills": 1,
+      "page_stride_bytes": 12288,
+      "storage_offset_bytes": 0,
+      "layout_real_typed_V_alias": true,
+      "prefix_queries": [
+        128
+      ],
+      "full_key_lengths": [
+        2404
+      ],
+      "arms": [
+        {
+          "arm": "control",
+          "max_seqlen_k": 131072,
+          "blocks_per_sequence": 8192,
+          "pages": 8192,
+          "checked_active_elements": 1230848,
+          "active_bits_sha256": "65af872e539c606bfa1da4bdfd7283e8983df11ff6f3b111b3841a6998d5e48e",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(1, 8192)": {
+              "sequences": 1,
+              "blocks_per_sequence": 8192,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                8192,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102662234112,
+              "table_ptr": 138102616160256
+            }
+          },
+          "kernel_ms_groups": [
+            0.22671514749526978,
+            0.22679599126180014,
+            0.22683749596277872,
+            0.22690673669179282,
+            0.22682676712671915,
+            0.22659999132156372,
+            0.22696699698766074
+          ],
+          "kernel_ms_median": 0.22682676712671915
+        },
+        {
+          "arm": "candidate",
+          "max_seqlen_k": 2404,
+          "blocks_per_sequence": 151,
+          "pages": 151,
+          "checked_active_elements": 1230848,
+          "active_bits_sha256": "65af872e539c606bfa1da4bdfd7283e8983df11ff6f3b111b3841a6998d5e48e",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(1, 151)": {
+              "sequences": 1,
+              "blocks_per_sequence": 151,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                151,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138103014555648,
+              "table_ptr": 138102616324608
+            }
+          },
+          "kernel_ms_groups": [
+            0.008490625148018202,
+            0.00847323735555013,
+            0.008471474051475525,
+            0.008484775821367899,
+            0.008484374731779099,
+            0.008499118809898695,
+            0.008504486953218779
+          ],
+          "kernel_ms_median": 0.008484775821367899
+        }
+      ],
+      "kernel_speedup_percent": 2573.338363937476
+    },
+    {
+      "name": "mixed_full_context_bound",
+      "decodes": 63,
+      "prefills": 1,
+      "page_stride_bytes": 12544,
+      "storage_offset_bytes": 128,
+      "layout_real_typed_V_alias": true,
+      "prefix_queries": [
+        128
+      ],
+      "full_key_lengths": [
+        2404
+      ],
+      "arms": [
+        {
+          "arm": "control",
+          "max_seqlen_k": 131072,
+          "blocks_per_sequence": 8192,
+          "pages": 8192,
+          "checked_active_elements": 1230848,
+          "active_bits_sha256": "65af872e539c606bfa1da4bdfd7283e8983df11ff6f3b111b3841a6998d5e48e",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(1, 8192)": {
+              "sequences": 1,
+              "blocks_per_sequence": 8192,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                8192,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102662234112,
+              "table_ptr": 138102616097280
+            }
+          },
+          "kernel_ms_groups": [
+            0.22710361083348593,
+            0.22685497999191284,
+            0.22715938091278076,
+            0.2270910938580831,
+            0.22724783420562744,
+            0.22722949584325156,
+            0.2270848552385966
+          ],
+          "kernel_ms_median": 0.22710361083348593
+        },
+        {
+          "arm": "candidate",
+          "max_seqlen_k": 2404,
+          "blocks_per_sequence": 151,
+          "pages": 151,
+          "checked_active_elements": 1230848,
+          "active_bits_sha256": "65af872e539c606bfa1da4bdfd7283e8983df11ff6f3b111b3841a6998d5e48e",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(1, 151)": {
+              "sequences": 1,
+              "blocks_per_sequence": 151,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                151,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102934863872,
+              "table_ptr": 138102616325120
+            }
+          },
+          "kernel_ms_groups": [
+            0.008462019264698029,
+            0.00846290091673533,
+            0.008452163388331732,
+            0.008493750045696894,
+            0.008459855491916338,
+            0.008459374929467836,
+            0.008484775821367899
+          ],
+          "kernel_ms_median": 0.008462019264698029
+        }
+      ],
+      "kernel_speedup_percent": 2583.7992650397287
+    },
+    {
+      "name": "mixed_full_context_bound",
+      "decodes": 63,
+      "prefills": 1,
+      "page_stride_bytes": 24576,
+      "storage_offset_bytes": 256,
+      "layout_real_typed_V_alias": true,
+      "prefix_queries": [
+        128
+      ],
+      "full_key_lengths": [
+        2404
+      ],
+      "arms": [
+        {
+          "arm": "control",
+          "max_seqlen_k": 131072,
+          "blocks_per_sequence": 8192,
+          "pages": 8192,
+          "checked_active_elements": 1230848,
+          "active_bits_sha256": "65af872e539c606bfa1da4bdfd7283e8983df11ff6f3b111b3841a6998d5e48e",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(1, 8192)": {
+              "sequences": 1,
+              "blocks_per_sequence": 8192,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                8192,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138102662234112,
+              "table_ptr": 138102616131072
+            }
+          },
+          "kernel_ms_groups": [
+            0.22673662503560385,
+            0.22652812798817953,
+            0.22639872630437216,
+            0.22671433289845785,
+            0.22671387592951456,
+            0.2265134652455648,
+            0.22659512360890707
+          ],
+          "kernel_ms_median": 0.22659512360890707
+        },
+        {
+          "arm": "candidate",
+          "max_seqlen_k": 2404,
+          "blocks_per_sequence": 151,
+          "pages": 151,
+          "checked_active_elements": 1230848,
+          "active_bits_sha256": "65af872e539c606bfa1da4bdfd7283e8983df11ff6f3b111b3841a6998d5e48e",
+          "all_active_K_V_bits_equal_independent_CPU_expected": true,
+          "all_inactive_tokens_and_extra_guard_preserved": true,
+          "poison_table_inactive_pages_masked": true,
+          "dense_table_exact": true,
+          "actual_kernel_records": {
+            "(1, 151)": {
+              "sequences": 1,
+              "blocks_per_sequence": 151,
+              "scratch_bytes": 134234112,
+              "key_dtype": "torch.uint8",
+              "scratch_dtype": "torch.bfloat16",
+              "n_regs": 30,
+              "n_spills": 0,
+              "grid": [
+                151,
+                2
+              ],
+              "warps": 4,
+              "arena_ptr": 138103014555648,
+              "table_ptr": 138102616295424
+            }
+          },
+          "kernel_ms_groups": [
+            0.008519551406304041,
+            0.00852187474568685,
+            0.00850809303422769,
+            0.00852187474568685,
+            0.008548637852072716,
+            0.008534374957283338,
+            0.008502243707577387
+          ],
+          "kernel_ms_median": 0.00852187474568685
+        }
+      ],
+      "kernel_speedup_percent": 2558.9820945630886
+    }
+  ],
+  "model_integration": false,
+  "quality_not_claimed": true,
+  "official_score_not_claimed": true,
+  "stored_K_uint8_V_BF16": true,
+  "actual_native_BoundedDensePrefill_and_gather_unmodified": true,
+  "only_isolated_process_capacity_constant_set8192": true,
+  "started_utc": "2026-10-21T00:33:04.070299+00:00",
+  "all24cases_every_active_bit_and_inactive_guard_passed": true,
+  "completed_utc": "2026-10-21T00:33:17.385652+00:00",
+  "model_speedup_not_inferred": true
+}

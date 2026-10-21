@@ -34,3 +34,7 @@ bash experiments/tianshu_prefill_int8_release_20261021/serve_tianshu_minicpm.sh
 更早同一FutureKV profile曾完成4K5103.41、16K3885.91、Math103/105，标签tianshu-original-command-4k16k-k8v16-futurekv-20261020，保留双长度旧证据。
 
 后续 index缓存-0.2386%、DEBUG阈值-0.0748%、KV空分配+0.1209%、NN单项+0.1423%都未建立稳定模型收益；当前新prefill包含NN以共享所需物理权重，不把整体收益归给NN单项。新Down真实权重和KV fixed-K/pair-V组件仍独立探索，尚不属于本5586.28配置或正确率。
+
+## 后续8192预算完整4K实测，保留为未建立稳定收益的候选
+
+新8192预算prefillINT8完成原N256四轮：排首轮后三轮5582.83/5616.21/5626.15，均值**5608.40total、1121.68output tok/s、TTFT4406.24ms**；新Math**103/105（98.10%）**，1024成功、无抢占。比推荐5586.28高0.396%，但轮间极差0.772%，TTFT高16.55%，并有4条采样/索引autotune，无新增GEMM调优。没有稳定改善证据，当前推荐和复现标签不变；此数值仍是实际完整结果，不把它删去或当成N64筛选分数。详见[8192正式报告](experiments/tianshu_prefill_budget8192_official_results_20261021/REPORT_32g.md)。本候选也没有完整16K。
