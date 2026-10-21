@@ -17,13 +17,16 @@ for p,h in gate['sources'].items():assert sha(p)==h==sha(ROOT/'source_snapshot'/
 expected={(role,m,ci,phase) for role in ('qkv','o','down') for m in schedule.ROWS for ci in range(len(schedule.CONFIGS)) for phase in range(2)}
 actual=[(r['role'],r['M'],r['config_id'],r['phase']) for r in state['cases']];assert len(actual)==len(set(actual))==1008 and set(actual)==expected
 assert state['rows']==schedule.ROWS and state['configurations']==schedule.CONFIGS
-samples=0;rows=[];lookup={};invalid=[]
+samples=0;rows=[];lookup={};invalid=[];fixture_cache={}
 with safe_open('/workspace/MiniCPM5-2B/model-00000-of-00001.safetensors',framework='pt',device='cpu') as ck:
  weights={role:torch.cat([ck.get_tensor(k) for k in (['model.layers.0.self_attn.'+s+'_proj.weight' for s in ('q','k','v')] if role=='qkv' else ['model.layers.0.self_attn.o_proj.weight'] if role=='o' else ['model.layers.0.mlp.down_proj.weight'])],0).contiguous() for role in ('qkv','o','down')}
  for case in state['cases']:
   role,m,ci,phase=case['role'],case['M'],case['config_id'],case['phase'];cfg=schedule.CONFIGS[ci];assert case['configuration']==cfg
   factor=1. if phase==0 else -.5;w=weights[role];n,k=w.shape;selected_rows=torch.tensor(sorted({0,1,m//2,m-1}));selected_cols=torch.linspace(0,n-1,16).long()
-  ac=torch.randn(m,k,dtype=torch.bfloat16,generator=torch.Generator().manual_seed(202610212000+m+len(role)));ac[0].zero_();expected_a=(ac*factor)[selected_rows];expected_w=(w*factor)[selected_cols]
+  key=(role,m)
+  if key not in fixture_cache:
+   ac=torch.randn(m,k,dtype=torch.bfloat16,generator=torch.Generator().manual_seed(202610212000+m+len(role)));ac[0].zero_();fixture_cache[key]=(ac[selected_rows].clone(),w[selected_cols].clone());del ac
+  expected_a=fixture_cache[key][0]*factor;expected_w=fixture_cache[key][1]*factor
   fixture=torch.load(ROOT/case['artifact'],map_location='cpu',weights_only=True)
   assert torch.equal(fixture['A'].view(torch.int16),expected_a.view(torch.int16)) and torch.equal(fixture['W'].view(torch.int16),expected_w.view(torch.int16))
   expected_c=(expected_a.double()@expected_w.double().T).to(torch.bfloat16);assert torch.equal(fixture['CPU_reference'].view(torch.int16),expected_c.view(torch.int16))
@@ -56,8 +59,8 @@ for role in ('qkv','o','down'):
    for impl in ('matched_NT','packed_W'):
     configs.append(dict(role=role,M=m,implementation=impl,configuration=cfg,current_ms=values['current'],candidate_ms=values[impl],improvement_percent=100*(values['current']/values[impl]-1),pack_increment_same_tile_percent=100*(values['matched_NT']/values['packed_W']-1),extra_W_bytes=(selected[0]['extra_W_bytes'] if impl=='packed_W' else 0)))
   if configs:best.append(max(configs,key=lambda x:x['improvement_percent']))
-assert not torch.cuda.is_initialized()
-result=dict(complete=True,CPU_only=True,CUDA_not_initialized=True,component_only=True,adopted=False,official_benchmark=False,full_1008_schedule_and_unique_cases_verified=True,actual_GPU_samples_checked=samples,real_checkpoint_and_seeded_A_fixtures_exact=True,all_compiled_candidate_binary_hashes_checked_against_real_cache=True,all_candidate_numerical_checks_passed=True,invalid_reference_cases=invalid,rows=best,raw_root=str(ROOT),raw_result_sha256=sha(ROOT/'result.json'),source_hashes=gate['sources'],verifier_source_sha256=sha(__file__),baseline_scope='Current actual model BF16 path including M2048 O/Down special; no cross-tile packing attribution')
+assert not torch.cuda.is_initialized() and len(fixture_cache)==36
+result=dict(complete=True,CPU_only=True,CUDA_not_initialized=True,component_only=True,adopted=False,official_benchmark=False,full_1008_schedule_and_unique_cases_verified=True,actual_GPU_samples_checked=samples,independent_seeded_fixture_generations=36,all_1008_fixture_comparisons_still_executed=True,real_checkpoint_and_seeded_A_fixtures_exact=True,all_compiled_candidate_binary_hashes_checked_against_real_cache=True,all_candidate_numerical_checks_passed=True,invalid_reference_cases=invalid,rows=best,raw_root=str(ROOT),raw_result_sha256=sha(ROOT/'result.json'),source_hashes=gate['sources'],verifier_source_sha256=sha(__file__),baseline_scope='Current actual model BF16 path including M2048 O/Down special; no cross-tile packing attribution')
 assert not (BASE/'GPU_GATE_32g.json').exists();(BASE/'GPU_GATE_32g.json').write_text(json.dumps(result,indent=2)+'\n')
 with (BASE/'ALL_TIMINGS_32g.csv').open('w',newline='') as f:
  writer=csv.DictWriter(f,fieldnames=list(rows[0]));writer.writeheader();writer.writerows(rows)
