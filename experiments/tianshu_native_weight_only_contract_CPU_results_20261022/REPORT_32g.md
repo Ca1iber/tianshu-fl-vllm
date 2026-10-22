@@ -1,0 +1,7 @@
+# 原生weight-only接口：BF16契约确实支持，真实速度尚未测试
+
+CoreX2.10实际CUDA环境中调用aten::_weight_int8pack_mm，BF16激活、INT8矩阵、FP32或BF16逐输出scale，M8/64/128、N=K256，NT连续与NN转置view，12组全接受、24变化相位通过完整eager/poisonedGraph/输入权重scale和RNG保护。独立CPU重建全部fixture，24工件SHA及409600输出全满足预声明post-scale FP64误差界，两布局结果逐位相同，Torch原生provider与源文件前后hash一致。
+
+API注册、Meta和nm符号只能提供线索；之前float指针stub的FP32猜测被实际BF16实验纠正。当前证明接口在这些小尺寸上的契约与数值界，未证明采用何种底层指令、是否内部转换、真实模型尺寸速度或任务质量。误差界通过不等于相对FP64逐位精确。图和不变性保护来自原冻结GPU实验，CPU核验没有重放GPU。
+
+因为12组BF16均接受，另备FP32wrapper V2的前置条件不满足，未执行，不据此声称FP32不支持。下一步另立新冻结版本测原始checkpoint投影实际M/布局、包含完整转换/分配成本及真实vendorBF16对照；阳性必须全层和新105题C8/C64后才可采用。r3正式5950.75tok/s不变，当前QKV64质量在独立版本运行。
