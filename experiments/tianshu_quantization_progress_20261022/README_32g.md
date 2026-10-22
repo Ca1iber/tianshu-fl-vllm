@@ -20,3 +20,11 @@ C8与正式程序原审核失败状态均保留，分别按实际BF16覆盖和�
 - [新Down服务设计](../tianshu_native_int8_down_service_20261022/PLAN_32g.md)和[新质量验证](../tianshu_native_int8_down_quality_20261022/PLAN_32g.md)：890模型源、27控制文件冻结，原877源完整保留；原13argv/63环境。新增约504MiB单一NN packed Down bank计入真实显存profile。14:38启动新scopeall C64完整105题，之后才跑新官方C8；若质量不足，另测预先声明的prefill-only范围。当前运行结果只在容器，未宣称通过。
 
 正式r1仍为5777.22 total tok/s、TTFT3459.44ms，fresh C8/C64各101/105；原不可变FINAL_REPORT_32g.md与r1标签不变。
+
+## 15:30 更新
+
+新Down allscope实际C64为95/105（90.48%），拒绝，不跑C8/吞吐。原audit_failed保留：[负结果](../tianshu_native_int8_down_all_negative_20261022/REPORT_32g.md)。新V2恢复实际BF16 vendorMM回退并保留原三项GEMM检查，仅prefill量化；首次启动遇到50GiB配额，尚未评测。经快照内容去重和可重建FXcache备份，恢复约7.4GiB空间，17.8万snapshot文件SHA完全一致、r1缓存/启动检查通过：[存储维护](../tianshu_storage_recovery_20261022/REPORT_32g.md)。
+
+正在使用同一冻结V2代码、新raw根重试prefill C64：[重试计划](../tianshu_native_int8_down_quality_v2_retry_20261022/PLAN_32g.md)，原始配额失败目录未改。只有新C64/C8均>95%才运行与精确r1基线的短4K对照。正式r1仍5777.22 total tok/s。
+
+CPU通道平衡仅使相关验证误差相对减少2.43%，没有独立随机holdout/模型质量结论，暂不占GPU：[CPU分析](../tianshu_down_channel_balance_CPU_20261022/REPORT_32g.md)。
