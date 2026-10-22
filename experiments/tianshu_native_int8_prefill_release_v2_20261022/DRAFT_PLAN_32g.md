@@ -1,0 +1,13 @@
+# 新原生INT8发布入口草案，等待正式晋升
+
+此目录尚未晋升；未生成QUALIFIED_RELEASE.sha256和serve_profile_template.json之前，入口会拒绝启动。只完成Bash语法检查，未宣称dry或GPU验证通过。
+
+最终必须来自本轮OFFICIAL_GATE：四轮N256排首轮、完整审计、原checkpoint SHA、全新C8实际BF16范围复核101、真实C64 INT8全42层101、原M64图与LM64路径、同877模型源和原471子集、实际63环境/原13argv，且晋升条件通过。
+
+入口直接用Bash执行原vllm命令，不通过Python包装。实际工作目录固定/workspace，与已测Popen一致；用户输出根只替换记录路径。63项选定环境在exec前逐项核对，包含单独明示TRITON_CACHE_DIR。所有877源及正式控制器hash逐项检查，质量/性能gate与模板精确绑定。
+
+当前仅适用于原比赛镜像与已有/workspace容器依赖。原Triton qualified cache及其原source cache文件均被hash冻结并保留在容器，未上传二进制大文件；若实例缓存缺失，入口将拒绝启动，需要按已有显式源码预热流程重新生成并校验，不能声称仅git clone就能恢复全部运行时cache。
+
+待官方结果完成后生成模板/冻结清单并做无GPU dry run，比较原13argv、重定位63环境、877源和控制器，与正式run的profile精确一致。然后才写正式使用报告并推送新标签，旧发布版保留。
+
+V2发布绑定正式独立CPU恢复门槛：原GPU benchmark四轮全成功，原result audit_failed因缺workload元数据，原失败不改。正式workload由原命令和四轮CSV唯一重建，全部原检查（含4K零抢占）再次完整执行；晋升标准未变。Bash入口明确要求CPU_workload_metadata_reconciliation和original_experiment_passed=false，不能把CPU恢复冒充原GPU审计通过。冻结清单使用绝对路径，入口可从任意工作目录做dry；真正exec前仍固定/workspace，与原测试一致。

@@ -1,0 +1,19 @@
+# 原生INT8预填充正式4K独立汇总计划
+
+在读取首轮成绩前固定：官方原始benchmark脚本和13项serve参数，4K/1K C64/N256四轮排首轮；必须4轮全成功共1024请求，每轮input/output tokens精确匹配原脚本。CPU重读原CSV并独立重算后三轮吞吐、TTFT和差幅，实际原始响应不由官方benchmark保存，不能声称逐body核对。
+
+重跑当前完整运行时审核，源/控制器snapshots与877份模型源逐项比对，原471精确子集。绑定全新C8的实际BF16范围复核101分（原GPU audit_failed保留）和新C64实际INT8 M4096全42层101分；其独立QUALITY_GATE和原始结果hash必须匹配，不能借历史分数。
+
+明示原62项环境与额外TRITON_CACHE_DIR共63项，C64补验唯一FUTURE_KV准入差异；正式仍candidate配置。原生192MiB临时workspace必须计入profile，无新增权重payload，M8/M64、LM、KV与其全部原检查保留。日志就绪后的Triton autotune记录数为0；不把这个日志观察扩大为没有任何JIT。硬件清理为空闲后，以sha256sum复核原checkpoint为14fb8e7f0a18d53d1f239773758bf581cee7e456a4523a54622c3a245b64402c。
+
+晋升条件：两份新质量各>=100/105且作用范围如实；短测同期对照门槛已通过；正式四轮全成功、热轮差幅<1%、公开4K性能门槛通过，且新正式总吞吐高于旧5695.95。旧5695.95和TTFT3663.77只作历史比较，不冒充同期A/B；真实性能归因来自已完成的同源N64对照+2.1563%。新16K未测，不引用旧16K作为本版成绩。
+
+只上传代码、报告、关键gate与CSV；原始数据/日志/cache仅容器。正式结果合格后提供直接Bash启动入口，冻结源和质量/性能证据必须在启动前校验，再推送天数专用Git分支与标签。若晋升不通过，不覆盖旧发布版本。
+
+## V2：保留正式原失败，只补齐可核验的审核元数据
+
+原GPU benchmark四轮全部成功，原始result.json仍为audit_failed，KeyError('workload')。long_runtime_audit.py在检查4K必须零抢占时取state.workload.input_tokens；正式控制器没有写workload字段。冻结的原始benchmark_command明确[[4096,1024,64,256]]，四轮原始CSV逐字段、tokens与请求数一致，足以唯一重建input/output/conc/N/rounds/excluded metadata。
+
+V2保留原预先固定的晋升条件、全部877模型源码和所有原始数据，不把原phase改成complete。只向内存中的CPU审核上下文加入由原命令+全部CSV验证的workload，继续执行原全部runtime检查，明确要求zero_preemptions=true。独立比较写入本V2目录CPU_COMPARISON，门槛带original_experiment_passed=false、CPU_workload_metadata_reconciliation=true、原失败hash与派生metadata，不能声称原GPU程序审核通过。
+
+正式四轮数据不重跑、不裁剪；后三轮原CSV均值5777.22、TTFT3459.44，是否晋升仍按R1前已固定规则，由本次完整独立复核决定。新C8/真实C64质量门槛、原checkpoint SHA和全部源快照照旧逐项核对。发布入口另建V2绑定本门槛，旧草案及失败收尾流程不覆盖。
