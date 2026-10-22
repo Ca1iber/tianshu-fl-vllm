@@ -67,6 +67,7 @@ def main():
     fn();torch.cuda.synchronize();out=outputs[name];assert bool(torch.isfinite(out).all()) and bool((out[0]==0).all());artifact[name+'_words']=words(out);hashes[name]=ahash(artifact[name+'_words'])
     if name!='service_BF16':relative[name]=float(torch.linalg.vector_norm(out.float()-outputs['service_BF16'].float())/torch.linalg.vector_norm(outputs['service_BF16'].float()).clamp_min(1e-20))
     graph_outputs[('whole_MLP',name)].fill_(float('nan'));h.fill_(float('nan'));graphs[('whole_MLP',name)].replay();torch.cuda.synchronize();assert ahash(words(graph_outputs[('whole_MLP',name)]))==hashes[name]
+    graph_outputs[('Down_only',name)].fill_(float('nan'));graphs[('Down_only',name)].replay();torch.cuda.synchronize();assert ahash(words(graph_outputs[('Down_only',name)]))==hashes[name]
    assert torch.equal(a,before) and torch.equal(h,hidden) and torch.equal(cpu_rng,torch.get_rng_state()) and torch.equal(gpu_rng,torch.cuda.get_rng_state())
    for store,value in guards:assert bool((store[:256]==value).all() and (store[-256:]==value).all())
    path=ROOT/f'M64_phase{phase}.npz';np.savez(path,**artifact);state['phases'].append(dict(phase=phase,seed=202610239200+phase,artifact=path.name,sha256=sha(path),output_hashes=hashes,graph_poison_eager_exact=True,guards_inputs_weights_RNG=True,relative_L2_vs_service_BF16=relative));save()

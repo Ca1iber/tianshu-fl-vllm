@@ -1,14 +1,14 @@
 # 天数量化探索，2026-10-22
 
-当前已交付推荐版是不可变 **r2**：正式4K **5911.45 total /1182.29 output tok/s，TTFT3305.80ms**，较r1吞吐+2.3234%，热轮极差0.2008%。新鲜完整105题C8=102、C64=103；全部890模型输入与原13serve参数/63环境通过独立CPU核验。原checkpoint保持不变，没有架构转换或微调。
+当前已交付推荐版为不可变 **r3**：正式4K **5950.75 total /1190.15 output tok/s，TTFT3174.58ms**，较r2吞吐+0.6648%、TTFT-3.9694%，热轮极差0.2059%。新鲜完整105题C8=101、C64=102；903模型输入/73控制输入/原13serve参数和63环境全部通过独立最终审核。原checkpoint和结构不变，未训练/微调。
 
-[直接Bash发布入口及复现](../tianshu_native_int8_down_prefill_release_v2_20261022/README_32g.md) · [r2正式4K报告](../tianshu_native_int8_down_prefill_official_results_v2_20261022/REPORT_32g.md) · [r2双并发完整质量](../tianshu_native_int8_down_prefill_quality_results_v2_20261022/REPORT_32g.md)。发布标签 `tianshu-original-command-4k-native-int8-down-prefill-20261022-r2`，提交5bb7f7d。没有新16K成绩，未声称整个比赛资格已审核。
+[r3直接Bash启动与复现](../tianshu_native_int8_attention_prefill_release_20261022/README_32g.md) · [r3正式报告](../tianshu_native_int8_attention_official_results_20261022/REPORT_32g.md) · [双并发完整质量](../tianshu_native_int8_attention_quality_results_20261022/REPORT_32g.md) · [三组同请求短测](../tianshu_attention_three_arm_results_20261022/REPORT_32g.md)。标签`tianshu-original-command-4k-native-int8-attention-prefill-20261022-r3`，提交9044c25，已push。只新增预填充QKV/O量化，M64保持BF16；额外378.74MiB全部计入真实显存。前序r2（5911.45）和r1（5777.22）均冻结保留，没有新16K成绩。
 
-19:42更新：新QKV/O预填充候选903项模型输入、额外397135872字节W8副本，已通过独立完整105题C8=101、C64=102；[质量报告](../tianshu_native_int8_attention_quality_results_20261022/REPORT_32g.md)。同请求短4K对照净增0.8720%，热轮均值5880.27vs5829.43；[三组归因报告](../tianshu_attention_three_arm_results_20261022/REPORT_32g.md)。相同框架BF16控制5804.93，量化相对它+1.2978%，不能将所有收益归于一个kernel。该候选正进行原始N256x4/exclude1正式4K，尚未替换r2。
+20:24后续：全42层M64组件已通过168工件/43008CPU校验，QKV1.204倍、O负向；[组件报告](../tianshu_native_int8_attention64_20261022/REPORT_32g.md)。仅增加QKV64的新版本915模型源/51控制源已冻结，正在完整C64质量评测，之后仅通过>95%才继续C8，不能借用r3质量。没有该候选的新吞吐或采用结论。
 
-后续独立M64全部42层组件与原生权重量化接口仅在前一GPU服务停止后执行；需要新数值、性能和完整质量证据才可采用。每天北京时间06:00–24:00，本日硬停止23:58。代码、报告和关键结果在天数GitHub与容器，原始数组/完整日志/cache只在容器，无本地项目副本。
+原生weight-only BF16接口12组/24相位确实支持，409600输出独立CPU界核验通过；[契约报告](../tianshu_native_weight_only_contract_CPU_results_20261022/REPORT_32g.md)。真实Down及整段MLP nativeW8A16性能测试已预备，等待GPU空闲，不将小尺寸API支持当作模型收益。只哈希native大库，不复制或上传。.so的float符号猜测已被BF16硬件证据纠正，条件FP32wrapper未执行。
 
-第一阶段不可变 [FINAL_REPORT_32g.md](FINAL_REPORT_32g.md) 属于较早r1（5777.22），不是当前r2。[第一阶段负结果](../tianshu_quantization_survey_20261022/REPORT_FINAL_32g.md)局限当时W4/W8原型；后续阳性证据分别见对应版本，不覆盖历史结论。以下为按时间追加的研究记录。
+每天北京时间06:00–24:00，本日硬停止23:58。代码、报告、关键结果在天数GitHub与容器，完整日志/数组/cache仅容器，无本地项目副本。GPU空闲窗口备份并清理1.15GB可重建FX缓存，所有903源/73控制和384strict缓存清理后再核验：[维护报告](../tianshu_storage_after_r3_20261022/REPORT_32g.md)。以下保留历史分阶段记录。
 
 推荐版作为冻结检查点保留。后续继续探索其他M范围的原生INT8收益，全部新尝试使用独立目录，未通过新模型与质量门槛前不改推荐版。本索引允许更新，独立版本的最终报告和数值源码仍冻结。
 
