@@ -1,0 +1,7 @@
+# Full42 QKV/O v2 actual eager apply control
+
+All84 real weight banks and504 independent phase artifacts passed full GPU native/Triton INT32 and BF16 equality, independent CPU all84 packing/scales and129024 selected INT64/BF16/originalFP64 cells, full84 poisoned graph/eager hashes, source/snapshot/weight/checkpoint/input/RNG/canary checks. No artificial copy in BF16 control: CUDA Graph retains each actual apply allocation separately from later eager outputs.
+
+Control mirrors WorkerFL enable-all and the installed UnquantizedLinearMethod.apply/F.linear, which enters vendor linear. Combined-pair BF16/native per-layer M1280.06951001/0.06247619ms (+11.26%), M5120.15720375/0.09752579ms (+61.19%), M40960.88429230/0.64684096ms (+36.71%). This is a projection memory-traffic component, not actual attention or Transformer throughput. Small O128 gain is marginal and excluded from the first service shortlist.
+
+A separate read of existing generated nativeDown model code shows compiler lowering of QKV/O linear to extern_kernels.mm. That cached file is not asserted to be tied to the exact published r2 execution. Hence eager F.linear and explicit mm remain separately labelled controls; neither alone proves full-model performance. New candidate uses qualified vendor-mm BF16 fallback and nativeQKV128/512/4096,O512/4096; fresh C64/C8 and real service throughput validation are required. No model/quality/official benchmark/adoption in this component run. Published r2 intact.

@@ -61,3 +61,9 @@ CPU通道平衡仅使相关验证误差相对减少2.43%，没有独立随机hol
 - `tianshu_down_group_gpu_v4_20261022`、`v5` 均数值通过，但改用实际BF16对照并包括GateUp后无收益，不接模型。
 - `tianshu_down_W8A16_gpu_20261022`、`v2` 全输出独立FP64/预先数学误差界通过；高warp最好Down0.07846ms，对照0.05899ms，负结果保留。
 - `tianshu_native_int8_attention_projections_20261022` QKV/O预填充原生INT8有组件线索，M4096相对显式vendor BF16约+39%/+31%；仅组件、非模型成绩，尚需实际路由核验。新 `tianshu_native_int8_attention42_20261022` 正验证全42层，M128/512/4096，M64暂不接入。所有新尝试不覆盖已发布r2。
+
+## 18:36 新 QKV/O 预填充量化进入全量质量验证
+
+`tianshu_native_int8_attention42_20261022` 和实际 eager apply 对照 `tianshu_native_int8_attention42_v2_20261022` 均通过504阶段/84真实bank的GPU与CPU独立核验；M4096组合组件分别约+35.96%/+36.71%。eagerF.linear进入vendorlinear，而已有生成代码将linear降为extern_kernels.mm；已区分两种对照，未将组件数值当作模型吞吐。
+
+`tianshu_native_int8_attention_service_20261022` 冻结903模型输入，原890完整保留；新增397135872bytes单NN布局权重计入真实DeviceMemoryProfiler。只接QKV128/512/4096与O512/4096，M64等BF16vendorMM回退，原三项2048实际GEMM检查保留。`tianshu_native_int8_attention_quality_20261022` 冻结51控制输入与原13argv/63环境，C64新鲜105题先跑，>95%才继续C8；无新模型成绩或采用结论。
