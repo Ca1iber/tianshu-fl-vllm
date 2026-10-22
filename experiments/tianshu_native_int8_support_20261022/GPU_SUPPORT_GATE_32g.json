@@ -1,0 +1,26 @@
+{
+  "complete": false,
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_native_int8_support_20261022/smoke_gpu.py": "ad4287fc42fd3087cf2eb05797192b95c35ae0d9cb7ca92743db6f59fcbd5cc6",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_native_int8_support_20261022/PLAN_32g.md": "fb8eeb3e5a82a717f2e24d191cf177df098de565954a25cecfc25bcab11c2888"
+  },
+  "cases": [
+    {
+      "M": 8,
+      "K": 2048,
+      "N": 256,
+      "layout": "NN",
+      "weight_stride": [
+        256,
+        1
+      ],
+      "phases": []
+    }
+  ],
+  "runner_pid": 14277,
+  "model_executed": false,
+  "adopted": false,
+  "torch_version": "2.10.0",
+  "device": "Iluvatar BI-V150",
+  "error": "Traceback (most recent call last):\n  File \"/workspace/vllm-plugin-FL/experiments/tianshu_native_int8_support_20261022/smoke_gpu.py\", line 20, in <module>\n    torch._int_mm(a,w,out=out);torch.cuda.synchronize();graph=torch.cuda.CUDAGraph()\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: self.size(0) needs to be greater than 16, but got 8\n"
+}

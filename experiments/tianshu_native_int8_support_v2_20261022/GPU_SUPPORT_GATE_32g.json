@@ -1,0 +1,150 @@
+{
+  "complete": true,
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_native_int8_support_v2_20261022/smoke_gpu.py": "b489460274a046ba84e3e2b95b993c08d6ba93292187429d8dd11c05ec770a77",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_native_int8_support_v2_20261022/PLAN_32g.md": "f1e9eba699502c71a61deea748e7fba8c46255b6c3d89920c86dd4b0f0b3dbad"
+  },
+  "cases": [
+    {
+      "M": 64,
+      "K": 2048,
+      "N": 256,
+      "layout": "NN",
+      "weight_stride": [
+        256,
+        1
+      ],
+      "phases": [
+        {
+          "phase": 0,
+          "full_CPU_INT64_exact": true,
+          "guards_inputs_RNG": true,
+          "artifact": "M64_K2048_NN_phase0.npz",
+          "sha256": "6e67f0372f4df9370edf116ea9afa7e574ecf6020516b685fdaa91865b526dc2"
+        },
+        {
+          "phase": 1,
+          "full_CPU_INT64_exact": true,
+          "guards_inputs_RNG": true,
+          "artifact": "M64_K2048_NN_phase1.npz",
+          "sha256": "7157b92dacd17ac285977be5e5048b07c950d650a7cddc310150b2546d5d4976"
+        },
+        {
+          "phase": 2,
+          "full_CPU_INT64_exact": true,
+          "guards_inputs_RNG": true,
+          "artifact": "M64_K2048_NN_phase2.npz",
+          "sha256": "1721d4d526145be6dca5a38ed45a559ad2eda4b378904ad69bd1df25610b46bc"
+        }
+      ],
+      "complete": true
+    },
+    {
+      "M": 64,
+      "K": 2048,
+      "N": 256,
+      "layout": "NT",
+      "weight_stride": [
+        1,
+        2048
+      ],
+      "phases": [
+        {
+          "phase": 0,
+          "full_CPU_INT64_exact": true,
+          "guards_inputs_RNG": true,
+          "artifact": "M64_K2048_NT_phase0.npz",
+          "sha256": "6e67f0372f4df9370edf116ea9afa7e574ecf6020516b685fdaa91865b526dc2"
+        },
+        {
+          "phase": 1,
+          "full_CPU_INT64_exact": true,
+          "guards_inputs_RNG": true,
+          "artifact": "M64_K2048_NT_phase1.npz",
+          "sha256": "7157b92dacd17ac285977be5e5048b07c950d650a7cddc310150b2546d5d4976"
+        },
+        {
+          "phase": 2,
+          "full_CPU_INT64_exact": true,
+          "guards_inputs_RNG": true,
+          "artifact": "M64_K2048_NT_phase2.npz",
+          "sha256": "1721d4d526145be6dca5a38ed45a559ad2eda4b378904ad69bd1df25610b46bc"
+        }
+      ],
+      "complete": true
+    },
+    {
+      "M": 64,
+      "K": 6144,
+      "N": 256,
+      "layout": "NN",
+      "weight_stride": [
+        256,
+        1
+      ],
+      "phases": [
+        {
+          "phase": 0,
+          "full_CPU_INT64_exact": true,
+          "guards_inputs_RNG": true,
+          "artifact": "M64_K6144_NN_phase0.npz",
+          "sha256": "6e39834a1ad92775d65c9c1f820b887e3576cbc39a11d9755fa308ef37149be3"
+        },
+        {
+          "phase": 1,
+          "full_CPU_INT64_exact": true,
+          "guards_inputs_RNG": true,
+          "artifact": "M64_K6144_NN_phase1.npz",
+          "sha256": "e0e592fa44d991d62aebde766094a8d5e5bfe7f7d6053685db65b36688d6d05f"
+        },
+        {
+          "phase": 2,
+          "full_CPU_INT64_exact": true,
+          "guards_inputs_RNG": true,
+          "artifact": "M64_K6144_NN_phase2.npz",
+          "sha256": "6dc5070fdf80edc6abacd07205ca5bd792fd44ccfbed2fda8637ebaba48f80ef"
+        }
+      ],
+      "complete": true
+    },
+    {
+      "M": 64,
+      "K": 6144,
+      "N": 256,
+      "layout": "NT",
+      "weight_stride": [
+        1,
+        6144
+      ],
+      "phases": [
+        {
+          "phase": 0,
+          "full_CPU_INT64_exact": true,
+          "guards_inputs_RNG": true,
+          "artifact": "M64_K6144_NT_phase0.npz",
+          "sha256": "6e39834a1ad92775d65c9c1f820b887e3576cbc39a11d9755fa308ef37149be3"
+        },
+        {
+          "phase": 1,
+          "full_CPU_INT64_exact": true,
+          "guards_inputs_RNG": true,
+          "artifact": "M64_K6144_NT_phase1.npz",
+          "sha256": "e0e592fa44d991d62aebde766094a8d5e5bfe7f7d6053685db65b36688d6d05f"
+        },
+        {
+          "phase": 2,
+          "full_CPU_INT64_exact": true,
+          "guards_inputs_RNG": true,
+          "artifact": "M64_K6144_NT_phase2.npz",
+          "sha256": "6dc5070fdf80edc6abacd07205ca5bd792fd44ccfbed2fda8637ebaba48f80ef"
+        }
+      ],
+      "complete": true
+    }
+  ],
+  "runner_pid": 14369,
+  "model_executed": false,
+  "adopted": false,
+  "torch_version": "2.10.0",
+  "device": "Iluvatar BI-V150"
+}
