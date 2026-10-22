@@ -13,7 +13,7 @@ def pack(v):
  s=np.asarray(np.maximum(abs(v).max(1),np.float32(1e-8)).astype(np.float64)/127.,np.float32);return np.clip(np.rint(np.asarray(v.astype(np.float64)/s[:,None].astype(np.float64),np.float32)),-127,127).astype(np.int8),s
 def main():
  assert not (BASE/'INDEPENDENT_CPU_GATE_32g.json').exists();r=json.loads((ROOT/'result.json').read_text());assert r['complete'] and r['all84_bank_hashes_before_after'] and r['checkpoint_before']==r['checkpoint_after']==sha(MODEL) and len(r['banks'])==84 and [c['M'] for c in r['cases']]==[64]
- assert r['BF16_control']=='actual_903source_service_explicit_vendor_mm'
+ assert r['BF16_control']=='actual_903source_service_explicit_vendor_mm' and r['M64_service_wrapper_delegation_verified']
  for p,h in r['frozen_sources'].items():assert sha(p)==h and sha(ROOT/'source_snapshot'/Path(p).relative_to('/'))==h
  with MODEL.open('rb') as stream:header_size=int.from_bytes(stream.read(8),'little');header=json.loads(stream.read(header_size))
  def get(layer,role):
@@ -35,5 +35,5 @@ def main():
  assert artifacts==168 and not any(name.split('.')[0] in ('torch','triton','vllm','flag_gems') for name in sys.modules)
  with (BASE/'KEY_TIMINGS_32g.csv').open('w') as stream:
   writer=csv.DictWriter(stream,fieldnames=list(timings[0]));writer.writeheader();writer.writerows(timings)
- gate=dict(complete=True,CPU_only=True,no_GPU_imports=True,all84_original_and_W8_scale_hashes_recomputed=True,independent_INT64_exact_BF16_and_FP64_control_cells=count,artifacts_checked=artifacts,full_GPU_native_and_Triton_INT32_BF16_exact=True,full84_graph_poison_eager_exact=True,sources_snapshots_checkpoint_inputs_weights_RNG_canaries_verified=True,actual_service_route_not_yet_verified=True,model_executed=False,official_benchmark=False,adopted=False,new_full_C8_C64_Math_required=True,timings=timings,raw_directory=str(ROOT),raw_result_sha256=sha(ROOT/'result.json'),key_timings_sha256=sha(BASE/'KEY_TIMINGS_32g.csv'));(BASE/'INDEPENDENT_CPU_GATE_32g.json').write_text(json.dumps(gate,indent=2)+'\n');print(json.dumps(gate))
+ gate=dict(complete=True,CPU_only=True,no_GPU_imports=True,all84_original_and_W8_scale_hashes_recomputed=True,independent_INT64_exact_BF16_and_FP64_control_cells=count,artifacts_checked=artifacts,full_GPU_native_and_Triton_INT32_BF16_exact=True,full84_graph_poison_eager_exact=True,sources_snapshots_checkpoint_inputs_weights_RNG_canaries_verified=True,M64_service_wrapper_delegation_verified=True,actual_complete_service_not_yet_verified=True,model_executed=False,official_benchmark=False,adopted=False,new_full_C8_C64_Math_required=True,timings=timings,raw_directory=str(ROOT),raw_result_sha256=sha(ROOT/'result.json'),key_timings_sha256=sha(BASE/'KEY_TIMINGS_32g.csv'));(BASE/'INDEPENDENT_CPU_GATE_32g.json').write_text(json.dumps(gate,indent=2)+'\n');print(json.dumps(gate))
 if __name__=='__main__':main()

@@ -28,6 +28,7 @@ def main():
   from vllm.model_executor.layers.linear import UnquantizedLinearMethod
   from vllm_fl.utils import get_flag_gems_whitelist_blacklist
   torch.set_num_threads(4);dense=load('_attention42_ref',EXP/'tianshu_dense_w8a8_20261020/kernel.py');dequant=load('_attention42_dequant',EXP/'tianshu_native_int8_lm64_20261022/kernel.py');vendor_name=next((n for n in ('_iluvatar.ops.mm','flag_gems.runtime.backend._iluvatar.ops.mm') if n in sys.modules),None);vendor=sys.modules[vendor_name] if vendor_name else importlib.import_module('flag_gems.runtime.backend._iluvatar.ops.mm');vendor_path=Path(vendor.__file__).resolve();assert sha(vendor_path)=='4c2e23da2a6b65b89cbb8170967f14c5327d143e21137387f3907ccb4fcde090' and Path(inspect.getsourcefile(vendor._launch_mm)).resolve()==vendor_path;state['target']=str(triton.runtime.driver.active.get_current_target())
+  service_launch_hook=EXP/'tianshu_prefill_gemm_tiles_20261014/hooks/sitecustomize.py';assert sources[str(service_launch_hook)]==sha(service_launch_hook)=='eb2e24f0bb1cf1cade2474075404cda46aac05a5b34eee45d42b133fa48c6928' and 'M!=2048' in service_launch_hook.read_text();state['M64_service_wrapper_delegation_verified']=True
   def thash(t):return ahash(t.detach().cpu().contiguous().view(torch.uint8).numpy())
   def words(t):return t.contiguous().view(torch.uint16).cpu().numpy().copy()
   def pack(t):v=t.float();s=v.abs().amax(1).clamp_min(1.e-8)/127.;return (v/s[:,None]).round().clamp(-127,127).to(torch.int8),s
