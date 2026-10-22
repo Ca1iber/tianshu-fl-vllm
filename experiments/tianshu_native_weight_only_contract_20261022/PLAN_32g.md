@@ -1,0 +1,9 @@
+# Native Torch _weight_int8pack_mm hardware contract diagnostic
+
+CPU inventory proves a CUDA registration and 2D int8 weight contract only; hardware execution untested. Separate diagnostic after current GPU work is idle, not concurrent with Math/bench. No checkpoint/model/data loaded. Freeze all code/plan before first GPU. Fixed12 cases: M8/64/128,N256,K256; NT-contiguous and transposed-NN-view weights; FP32/BF16 scales. Original row-major integer codes-127..127, two independent deterministic synthetic BF16 inputs/weight/scales phases,zero activation row. Explicitly record host dtype/stride/unsupported errors; these are not passing cases. Any launch/CUDA fault or unclassified numerical result aborts, preserve raw failure.
+
+For accepted cases test eager plus same capturedGraph with changed inputs/weight/scales and poisoned output. Directly retain return allocation, no copy. Full output finite/zero row, exact graph/eager hashes, input/weight/scales/RNG unchanged, source and native library hashes before/after. No performance timing or adoption in this diagnostic.
+
+Independent CPU full FP64 reconstructions classify four predeclared hypotheses: scale after exact dot, BF16 weight-dequant before dot, FP16 weight-dequant before dot, BF16-rounded dot before scale. FP32 gamma_(2K+4) accumulation/multiply bound plus half outputBF16ULP and FP64 reference bound applies to each hypothesis; this is a diagnostic arithmetic bound, not a promise of bit equality. Preserve all classification outcomes, including ambiguous multiple matches. Tiny cases do not establish real-model support, accuracy, or throughput. New real-weight/independent numerical/performance test and fresh full C8/C64>95% mandatory before any model use.
+
+Hard stop23:58BJT20261022; max5min, GPU initiallyidle and clean process exit. Source/report/keyresults GitHub, raw arrays container only. Current903source candidate/activeMath/publishedr2 untouched. Ready code is not an executed GPU result.
