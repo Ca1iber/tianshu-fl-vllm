@@ -1,0 +1,13 @@
+import csv,hashlib,io,json,re
+from pathlib import Path
+BASE=Path(__file__).resolve().parent;raw=Path('/workspace/benchmark-results/20261022_ixkn_v3_down_M64_W8_channel_BF16_tianshu')
+def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+wait=(raw/'timeout_proc_stat.txt').read_text().split();assert wait[2]=='Z' and int(wait[51])==0
+app=json.loads((raw/'app/result.json').read_text());assert app['complete'] and app['pre_profile_output_verified'] and app['post_profile_output_verified'];assert all(sha(p)==v for p,v in app['sources'].items())
+lines=(raw/'metrics.csv').read_text().splitlines();start=next(i for i,l in enumerate(lines) if l.startswith('"Kernel ID"'));rows=list(csv.DictReader(io.StringIO('\n'.join(lines[start:]))));assert len(rows)>=90 and all(set(r)=={'Kernel ID','Process ID','Process Name','Kernel Name','Context','Stream','Section','Metrics','Value'} and all(v is not None for v in r.values()) for r in rows)
+assert {r['Kernel ID'] for r in rows}=={'0'} and {r['Kernel Name'] for r in rows}=={'mm_kernel'} and {r['Process ID'] for r in rows}=={str(app['runner_pid'])};metrics={r['Section']+'/'+r['Metrics']:r['Value'] for r in rows if r['Metrics'] not in ('INF','WRN','OPT')};assert len({r['Section'] for r in rows})==8
+required=['GPU Speed Of Light/Duration','GPU Speed Of Light/TCU Efficiency','GPU Speed Of Light/Dram Read Efficiency','Launch Statistics/Grid Size','Launch Statistics/Block Size','Launch Statistics/Vector Register','Launch Statistics/Dynamic Shared Memory','Occupancy/Achieved Occupancy','Scheduler Statistics/No Eligible'];assert all(k in metrics for k in required)
+duration=float(re.match(r'[-.0-9]+',metrics[required[0]]).group())/1e6;reference=float(app['component_graph_median_ms']['BF16_ms']);assert abs(duration-reference)<.15*reference
+config=json.loads((BASE/'NATIVE_CONFIG_32g.json').read_text());assert config['complete'] and sha(config['source'])==config['source_sha256'];assert config['configs'][0]['kwargs']=={'BLOCK_M':64,'BLOCK_N':64,'BLOCK_K':128,'SPLIT_K':1,'num_warps':16,'num_ctas':1,'num_stages':2}
+result=dict(complete=True,CPU_only=True,parent_timeout_wait_status=0,app_before_after_verified=True,kernels=1,metric_rows=len(rows),sections=8,metrics=metrics,actual_native_configuration=config['configs'][0]['kwargs'],CSV_sha256=sha(raw/'metrics.csv'),app_result_sha256=sha(raw/'app/result.json'),native_config_sha256=sha(BASE/'NATIVE_CONFIG_32g.json'),raw_directory=str(raw),not_official_benchmark=True)
+(BASE/'PROFILE_GATE_32g.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps({k:result[k] for k in ('complete','metric_rows','actual_native_configuration')}))

@@ -1,0 +1,46 @@
+{
+  "complete": true,
+  "runner_pid": 9167,
+  "original_checkpoint_read_only": true,
+  "source": "/usr/local/lib/python3.12/site-packages/flag_gems/runtime/backend/_iluvatar/ops/mm.py",
+  "source_sha256": "4c2e23da2a6b65b89cbb8170967f14c5327d143e21137387f3907ccb4fcde090",
+  "fixture": "down_W8_channel_M64_tile2_phase2.npz",
+  "selected_output_matches": true,
+  "configs": [
+    {
+      "depth": 1,
+      "kwargs": {
+        "BLOCK_M": 64,
+        "BLOCK_N": 64,
+        "BLOCK_K": 128,
+        "SPLIT_K": 1,
+        "num_warps": 16,
+        "num_ctas": 1,
+        "num_stages": 2
+      }
+    }
+  ],
+  "wrapper_chain": [
+    {
+      "depth": 0,
+      "type": "LibEntry"
+    },
+    {
+      "depth": 1,
+      "type": "AnonymousLibTunerImpl"
+    },
+    {
+      "depth": 2,
+      "type": "Heuristics"
+    },
+    {
+      "depth": 3,
+      "type": "JITFunction"
+    },
+    {
+      "depth": 4,
+      "type": "function"
+    }
+  ],
+  "script_sha256": "2b5209d7792896afcdb6e5ea653fa8d5f30d73c93643eb2e681126d3d1dbab0c"
+}
