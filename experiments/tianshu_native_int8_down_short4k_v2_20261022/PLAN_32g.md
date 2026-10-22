@@ -1,0 +1,7 @@
+# DownV2 prefill short4K versus exact publishedr1
+
+V1 allDown failed actualC64 95/105 and was not benchmarked. V2 restores original BF16 vendorMM, keeping all original three warm-GEMM guards. Benchmark only after exactV2 retry1 fresh105 C8 and C64 both>95% with complete runtime coverage. Primaryscopeprefill: newprecisionM128/512/4096, decodeM64 BF16. The untouched exactr1 profile877 is baseline, V2profile890 candidate; original877 exact subset candidate, original13argv63env, only PYTHONPATH differs after normalizing raw roots. Candidate's504MiB extra bank is part of actual implementation.
+
+Proven streaming shortcontroller: 4K/1K,C64,N64,3 rounds exclude1, same per-round prompt seeds, full ignore_eos usage check, samearm seededrepeatcanary plus8-wave smoke. No cross-arm text equality. Original attention/KV/scheduler/sampling/GUI/M8/M64/LM audits retained; candidate adds new Down proof and restored originalBF16MMstartupguard. All source/controller snapshots frozen, original384cache bytes unchanged. Original qualitymodeFutureKVcontrol C64 is explicitly kept only in quality, benchmarkusescandidateasr1.
+
+Screen newcandidate hotmean>.5% above exactr1 and hotspread<1%, zero preemption and no timed runtime autotune, all202 requests/arm successful. Short is not officialN256. Newofficial4K only after screen. No16K. Stop23:58BJT. NoGPU if freshquality gate absent, originalfailedsource/raw never edited. Keyresults/code/report GitHub/container, raw/cache onlycontainer.
