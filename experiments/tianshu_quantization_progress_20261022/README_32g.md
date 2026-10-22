@@ -28,3 +28,9 @@ C8与正式程序原审核失败状态均保留，分别按实际BF16覆盖和�
 正在使用同一冻结V2代码、新raw根重试prefill C64：[重试计划](../tianshu_native_int8_down_quality_v2_retry_20261022/PLAN_32g.md)，原始配额失败目录未改。只有新C64/C8均>95%才运行与精确r1基线的短4K对照。正式r1仍5777.22 total tok/s。
 
 CPU通道平衡仅使相关验证误差相对减少2.43%，没有独立随机holdout/模型质量结论，暂不占GPU：[CPU分析](../tianshu_down_channel_balance_CPU_20261022/REPORT_32g.md)。
+
+## 15:42 之后：Down prefill-only V2 和通道分拆
+
+保持已发布 r1 不变。Down 全范围 INT8 的旧候选仅 95/105（90.48%）已拒绝；只在 M128/512/4096 启用的 V2 首轮 C64 已完整通过 103/105（98.10%），原三个 BF16 GEMM 预热路径也通过启动检查，正在继续 C8。尚无该候选端到端吞吐成绩。磁盘配额故障的原始失败目录保留，当前是同一冻结数值/控制代码在新输出目录重试。
+
+新增 `tianshu_down_outlier_partition_CPU_20261022/REPORT_32g.md`：BF16 128 通道加 INT8 主体的 CPU 相关验证误差 2.5630%，原 INT8 为 3.4638%；这是合成样本数值线索，尚未验证 GPU 性能或模型质量。
