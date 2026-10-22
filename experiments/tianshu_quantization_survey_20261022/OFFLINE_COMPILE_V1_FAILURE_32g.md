@@ -1,0 +1,3 @@
+首次compile_cpu.py的第一个W4Sym kernel已生成离线编译产物，但记录c.metadata时包含GPUTarget对象，JSON序列化TypeError；随后失败状态写入也遇到同一非JSON类型。原脚本和compile.log保留，不宣称整组通过。
+
+compile_cpu_v2.py仅将metadata.target显式转换为backend/arch/warp_size字典并单独命名门禁；GEMM源码、目标、配置、测试形状完全不变。不涉及GPU执行或重跑模型。
