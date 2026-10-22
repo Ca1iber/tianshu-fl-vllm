@@ -11,3 +11,5 @@
 当前继续原生INT8大M128/512/4096预填充：严格用现用逐M配置与实际binary作控制，2布局×2epilogue行分组，完整量化/GEMM/中间读写/缩放/SiLU计时。已冻结源并通过12点离线编译，正在GPU与独立CPU审核。最大单INT32 workspace约201MB，尚未审核模型allocator/bank成本，不提前宣称收益。目录 ../tianshu_native_int8_prefill_20261022。
 
 源码、报告、关键结果天数GitHub研究分支；完整raw/日志/profile仅容器，无本地项目副本。不改原模型、不改架构、不训练、不动沐曦仓库或用户已有未提交文件。
+
+更新：大M V1因debug源码路径导致完整cubin不匹配，零计时case，已保留；独立来源复现+V2继续严格全binary校验，三个M全部GPU/独立CPU通过。NN/ROWS1完整GateUp：M512 0.261038→0.232177ms(+12.43%)，M4096 1.957708→1.493048ms(+31.12%)；M128负。优先NN复用现有bank，下一步固定NN/ROWS1的42bank含Down holdout，再决定真实服务与新Math。尚无新模型成绩，正式发布不变。详见 ../tianshu_native_int8_prefill_v2_20261022/REPORT_32g.md。

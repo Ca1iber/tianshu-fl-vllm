@@ -1,0 +1,7 @@
+# 正式预填充控制binary来源已逐M复现
+
+两个来源的_fused设备函数AST完全相同。独立cache下6次真实GPU零输入编译/执行，输出0且RNG保持；正式完整cubin严格匹配结果：M128取large_tiles的V1来源，M512/M4096取large_tiles_v2来源。所有cache_hash等于正式记录，但另一源码路径的完整cubin不同；新GPU_BINARY_GATE保留全部6条实际SHA，包括不匹配的三条，没有删除反例。
+
+M128两种cubin经独立CPU ELF64解析，全部ALLOC section(.text/.rodata/.note)内容及属性相同，DWARF等非ALLOC路径差异导致完整SHA不同。原资格缓存可混合来源，因为Triton函数cache key不包含绝对源码路径。此证据只解释首个M128控制拒绝，不把零输入支持性检查当数值质量或性能评测。
+
+新原生INT8预填充V2复制选中cache索引，并冻结其group实际引用的来源文件及索引；继续完整cubin严格匹配，不改原资格缓存。若缓存丢失，可用本来源诊断重新复现，不能只信cache_hash或跳过binary检查。所有源码/原始6条证据在GitHub，实际设备文件仅容器 `/workspace/benchmark-results/20261022_prefill_control_binary_GPU_tianshu`。
