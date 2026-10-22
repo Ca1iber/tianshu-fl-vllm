@@ -67,3 +67,7 @@ CPU通道平衡仅使相关验证误差相对减少2.43%，没有独立随机hol
 `tianshu_native_int8_attention42_20261022` 和实际 eager apply 对照 `tianshu_native_int8_attention42_v2_20261022` 均通过504阶段/84真实bank的GPU与CPU独立核验；M4096组合组件分别约+35.96%/+36.71%。eagerF.linear进入vendorlinear，而已有生成代码将linear降为extern_kernels.mm；已区分两种对照，未将组件数值当作模型吞吐。
 
 `tianshu_native_int8_attention_service_20261022` 冻结903模型输入，原890完整保留；新增397135872bytes单NN布局权重计入真实DeviceMemoryProfiler。只接QKV128/512/4096与O512/4096，M64等BF16vendorMM回退，原三项2048实际GEMM检查保留。`tianshu_native_int8_attention_quality_20261022` 冻结51控制输入与原13argv/63环境，C64新鲜105题先跑，>95%才继续C8；无新模型成绩或采用结论。
+
+## 20:28：QKV64 新C64独立核验通过
+
+新915源/51控制C64完整105题102正确，独立全量重计与QKV64capture42/O64BF16及真实prefill4096全42验证通过：[C64部分报告](../tianshu_native_int8_attention_decode64_C64_results_20261022/REPORT_32g.md)。该partial gate不能资格通过；新C8运行中，benchmark入口仍要求双批次独立gate，r3不变。
