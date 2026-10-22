@@ -1,0 +1,1856 @@
+{
+  "complete": true,
+  "phase": "complete",
+  "runner_pid": 16862,
+  "frozen_sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_native_int8_gateup_20261022/PLAN_32g.md": "b8aa68e025effab65e03a4f5a81bda2b9a2bafc6608be41c9f8652b725d82dd1",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_native_int8_gateup_20261022/kernel.py": "6b3e1b2d86634d201a08955e1c19121db91f2f1e35075cc6063ad89cddb92054",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_native_int8_gateup_20261022/probe_gpu.py": "a504a5ca9438877fcabbd92e488da3a4712bb81d0b7fabd1bbc6163f610b248c",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_native_int8_gateup_20261022/verify_cpu.py": "bd6c074af7a5fe3285a3e418695df33d0117f4af2c3d8e7e11043584f4504f40",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_native_int8_gateup_20261022/compile_cpu.py": "a16d3adeb705ac4f046cfbb2918c7fe50117215f5f8063cf3d7e3cd27f38f8ef",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_native_int8_gateup_20261022/OFFLINE_COMPILE_GATE_32g.json": "a47b7cf784e58cff854bc3107a442cc284d837a0b6957c3c748e8423250df847",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_native_int8_gateup_20261022/prepare_cpu.py": "6d61e8e37fdd22c601fd1d89e7a058d1c296bc581dd9c06a8b3acfd496e30768",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_native_int8_gateup_20261022/run.sh": "f1eaa5eb4dcafb624270a86625858127d4275665c1f59b148dd9b7346f2d7675",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_int8_weight_nn_20261021/kernel_nn.py": "b432a10734f15f1f516c3394ed244456f8fb01355eb1f866c9eb4fda54871262",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_nn_silu_two_dot_20261021/kernel.py": "9b679045c5367cdeadf02171055d0d0e400ef0feb6393a55e3d9a9f246ce9d0e",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_nn_silu_two_dot_20261021/GPU_GATE_32g.json": "a18a8616e35e045b88247876554571bd8278ada53979c79513ff9b93ffab7430",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_nn_silu_fx_service_20261021/policy.py": "2e84925c05022738c0e5aae3bd8f07ed83aef58248bce25987384a4450e4fb12",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_w8a8_quality_20261020/PACKED_WEIGHT_SIGNATURE_32g.json": "9112cd1eadccb4a07d336bbfbfd9e4bbeb577916d2201434bf7178146f5611d7",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_native_int8_support_v2_20261022/GPU_SUPPORT_GATE_32g.json": "f71367513f6277446213cb4e6492dc30343730d7b5097e27c1e628e22ab0cb4c",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_native_int8_support_v2_20261022/smoke_gpu.py": "b489460274a046ba84e3e2b95b993c08d6ba93292187429d8dd11c05ec770a77",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_native_int8_support_v2_20261022/PLAN_32g.md": "f1e9eba699502c71a61deea748e7fba8c46255b6c3d89920c86dd4b0f0b3dbad"
+  },
+  "cases": [
+    {
+      "M": 64,
+      "K": 2048,
+      "N": 12288,
+      "strided": false,
+      "current_compiled": {
+        "hash": "0c2126b0e74bc423be0720e80407fd6936aa608a1eb0a51c89612ad51a165aca",
+        "binary_sha256": "c42a5346cb95e93d1d811e9f1fcb5443fab63fd53c9513a86eeed3ebf7942f97",
+        "n_regs": 83,
+        "n_spills": 0,
+        "shared": 16384
+      },
+      "configuration": {
+        "bm": 64,
+        "bn": 64,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1,
+        "mode": "two_dot"
+      },
+      "variants": {
+        "NN_B256W4": {
+          "block": 256,
+          "warps": 4,
+          "layout": "NN",
+          "compiled": {
+            "hash": "52fdfbf8aa870008b47c756ddd5841c1f84f10523f2e0efe43370abba7b4d7da",
+            "binary_sha256": "978752c66ad18567e64daecc0f45d9f025ca2e81a4eb208f04bcb72c2a711170",
+            "n_regs": 7,
+            "n_spills": 0,
+            "shared": 0
+          }
+        },
+        "NN_B256W8": {
+          "block": 256,
+          "warps": 8,
+          "layout": "NN",
+          "compiled": {
+            "hash": "62da454be56c38abbc4e124d1810dd0193e7f70e11d74c523a8d1dd41d3532aa",
+            "binary_sha256": "bee79928c2e00e19528ea22067345607845cc611cd03bdebeef6acb5f8034d47",
+            "n_regs": 7,
+            "n_spills": 0,
+            "shared": 0
+          }
+        },
+        "NN_B512W4": {
+          "block": 512,
+          "warps": 4,
+          "layout": "NN",
+          "compiled": {
+            "hash": "ccb4278966c7681a60d66bcef748174d4d1e81617c717e1527d609f016050518",
+            "binary_sha256": "b0386ae909952478084f89ed001fd3e519b1a99f890730323d61e58a96653cbf",
+            "n_regs": 10,
+            "n_spills": 0,
+            "shared": 0
+          }
+        },
+        "NN_B512W8": {
+          "block": 512,
+          "warps": 8,
+          "layout": "NN",
+          "compiled": {
+            "hash": "0558cb5995f5c4c6be219707d60f98a6d3a380ed8efacb4adae34f09c6b74b7a",
+            "binary_sha256": "1a8b9815f87a02ce8ccfa5e86de2ba27a6a080eb9036c814a6d0033943ccb2ff",
+            "n_regs": 7,
+            "n_spills": 0,
+            "shared": 0
+          }
+        },
+        "NN_B1024W4": {
+          "block": 1024,
+          "warps": 4,
+          "layout": "NN",
+          "compiled": {
+            "hash": "d057ac4aa34ede87469ecf1e34dfd72e597c9ecab65a00b390b51b36900c0372",
+            "binary_sha256": "aecf0d840bf41cf8169906a1046c64f35e1ea544e1f24aa399a008facbb37d35",
+            "n_regs": 18,
+            "n_spills": 0,
+            "shared": 0
+          }
+        },
+        "NN_B1024W8": {
+          "block": 1024,
+          "warps": 8,
+          "layout": "NN",
+          "compiled": {
+            "hash": "60cedce3825cb60feb0cbffc1bbfac77315a9bea8dd6dc0fe6b3ad9de07ba859",
+            "binary_sha256": "6e8da621eaade6af16fcd031f924cc8c8e12b71700d057a24a2c04bbc0ae65ef",
+            "n_regs": 10,
+            "n_spills": 0,
+            "shared": 0
+          }
+        },
+        "NT_B256W4": {
+          "block": 256,
+          "warps": 4,
+          "layout": "NT",
+          "compiled": {
+            "hash": "52fdfbf8aa870008b47c756ddd5841c1f84f10523f2e0efe43370abba7b4d7da",
+            "binary_sha256": "978752c66ad18567e64daecc0f45d9f025ca2e81a4eb208f04bcb72c2a711170",
+            "n_regs": 7,
+            "n_spills": 0,
+            "shared": 0
+          }
+        },
+        "NT_B256W8": {
+          "block": 256,
+          "warps": 8,
+          "layout": "NT",
+          "compiled": {
+            "hash": "62da454be56c38abbc4e124d1810dd0193e7f70e11d74c523a8d1dd41d3532aa",
+            "binary_sha256": "bee79928c2e00e19528ea22067345607845cc611cd03bdebeef6acb5f8034d47",
+            "n_regs": 7,
+            "n_spills": 0,
+            "shared": 0
+          }
+        },
+        "NT_B512W4": {
+          "block": 512,
+          "warps": 4,
+          "layout": "NT",
+          "compiled": {
+            "hash": "ccb4278966c7681a60d66bcef748174d4d1e81617c717e1527d609f016050518",
+            "binary_sha256": "b0386ae909952478084f89ed001fd3e519b1a99f890730323d61e58a96653cbf",
+            "n_regs": 10,
+            "n_spills": 0,
+            "shared": 0
+          }
+        },
+        "NT_B512W8": {
+          "block": 512,
+          "warps": 8,
+          "layout": "NT",
+          "compiled": {
+            "hash": "0558cb5995f5c4c6be219707d60f98a6d3a380ed8efacb4adae34f09c6b74b7a",
+            "binary_sha256": "1a8b9815f87a02ce8ccfa5e86de2ba27a6a080eb9036c814a6d0033943ccb2ff",
+            "n_regs": 7,
+            "n_spills": 0,
+            "shared": 0
+          }
+        },
+        "NT_B1024W4": {
+          "block": 1024,
+          "warps": 4,
+          "layout": "NT",
+          "compiled": {
+            "hash": "d057ac4aa34ede87469ecf1e34dfd72e597c9ecab65a00b390b51b36900c0372",
+            "binary_sha256": "aecf0d840bf41cf8169906a1046c64f35e1ea544e1f24aa399a008facbb37d35",
+            "n_regs": 18,
+            "n_spills": 0,
+            "shared": 0
+          }
+        },
+        "NT_B1024W8": {
+          "block": 1024,
+          "warps": 8,
+          "layout": "NT",
+          "compiled": {
+            "hash": "60cedce3825cb60feb0cbffc1bbfac77315a9bea8dd6dc0fe6b3ad9de07ba859",
+            "binary_sha256": "6e8da621eaade6af16fcd031f924cc8c8e12b71700d057a24a2c04bbc0ae65ef",
+            "n_regs": 10,
+            "n_spills": 0,
+            "shared": 0
+          }
+        }
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "weight_sign": 1,
+          "weight_scale_factor": 1.0,
+          "entries": [
+            {
+              "variant": "NN_B256W4",
+              "artifact": "strided0_NN_B256W4_phase0.npz",
+              "sha256": "6cf54f8ca881cb24cfbdb91c14e4d6c10cfa6c3e5540c5123250cfc16a3195be",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "8447f0321607ba8e50abae4f6265ec38c2d7ea17d8e5731d2de7c78bf02ed4b5",
+                "binary_sha256": "44a6b9c4562a57527c2333250615baceee1dd93da4104e18992d5f46247904be",
+                "n_regs": 9,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B256W8",
+              "artifact": "strided0_NN_B256W8_phase0.npz",
+              "sha256": "6cf54f8ca881cb24cfbdb91c14e4d6c10cfa6c3e5540c5123250cfc16a3195be",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "166b5875611c02286b85d7d0b6fcc3e8655d1ea6c5ed31a74d481665ce292d60",
+                "binary_sha256": "882381b1f90d98e687e79de8ad59a8315a3765e12788d4074b84e275ae78e954",
+                "n_regs": 8,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B512W4",
+              "artifact": "strided0_NN_B512W4_phase0.npz",
+              "sha256": "6cf54f8ca881cb24cfbdb91c14e4d6c10cfa6c3e5540c5123250cfc16a3195be",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "604d54b39b0e81f91535f2dd0d31347923b92c4fc2619bcd14b12a603de51c1e",
+                "binary_sha256": "e290893805d399e60d1d1f56c12521bc204a1fdc704573604fb49eced74e8091",
+                "n_regs": 12,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B512W8",
+              "artifact": "strided0_NN_B512W8_phase0.npz",
+              "sha256": "6cf54f8ca881cb24cfbdb91c14e4d6c10cfa6c3e5540c5123250cfc16a3195be",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "d305e236f85517ca049dc056f7efd5b2b3a75ac1ddcde3e5e92071a179372df6",
+                "binary_sha256": "4cbe7246469003737580cd5c5a2f8894e5a25588c5ee596c788548f7660851d3",
+                "n_regs": 9,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B1024W4",
+              "artifact": "strided0_NN_B1024W4_phase0.npz",
+              "sha256": "6cf54f8ca881cb24cfbdb91c14e4d6c10cfa6c3e5540c5123250cfc16a3195be",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "e5fb3c75e4df9b6cb7adf0a35f34f5843955ef460d31dc9c1a7e563db7a71778",
+                "binary_sha256": "1f25ab10b8114ffbf42575500c1e63d8b135be2e3333a75a68083f00ff3c2403",
+                "n_regs": 21,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B1024W8",
+              "artifact": "strided0_NN_B1024W8_phase0.npz",
+              "sha256": "6cf54f8ca881cb24cfbdb91c14e4d6c10cfa6c3e5540c5123250cfc16a3195be",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "58f925458410645c6465fc793028a44c5cf601fb18451b76147e5d1e7e5e17be",
+                "binary_sha256": "20cfcf5b823527f8b2af5ef96e63de0be4131073218a6bf36850c61e70fcddd4",
+                "n_regs": 12,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B256W4",
+              "artifact": "strided0_NT_B256W4_phase0.npz",
+              "sha256": "6cf54f8ca881cb24cfbdb91c14e4d6c10cfa6c3e5540c5123250cfc16a3195be",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "8447f0321607ba8e50abae4f6265ec38c2d7ea17d8e5731d2de7c78bf02ed4b5",
+                "binary_sha256": "44a6b9c4562a57527c2333250615baceee1dd93da4104e18992d5f46247904be",
+                "n_regs": 9,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B256W8",
+              "artifact": "strided0_NT_B256W8_phase0.npz",
+              "sha256": "6cf54f8ca881cb24cfbdb91c14e4d6c10cfa6c3e5540c5123250cfc16a3195be",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "166b5875611c02286b85d7d0b6fcc3e8655d1ea6c5ed31a74d481665ce292d60",
+                "binary_sha256": "882381b1f90d98e687e79de8ad59a8315a3765e12788d4074b84e275ae78e954",
+                "n_regs": 8,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B512W4",
+              "artifact": "strided0_NT_B512W4_phase0.npz",
+              "sha256": "6cf54f8ca881cb24cfbdb91c14e4d6c10cfa6c3e5540c5123250cfc16a3195be",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "604d54b39b0e81f91535f2dd0d31347923b92c4fc2619bcd14b12a603de51c1e",
+                "binary_sha256": "e290893805d399e60d1d1f56c12521bc204a1fdc704573604fb49eced74e8091",
+                "n_regs": 12,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B512W8",
+              "artifact": "strided0_NT_B512W8_phase0.npz",
+              "sha256": "6cf54f8ca881cb24cfbdb91c14e4d6c10cfa6c3e5540c5123250cfc16a3195be",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "d305e236f85517ca049dc056f7efd5b2b3a75ac1ddcde3e5e92071a179372df6",
+                "binary_sha256": "4cbe7246469003737580cd5c5a2f8894e5a25588c5ee596c788548f7660851d3",
+                "n_regs": 9,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B1024W4",
+              "artifact": "strided0_NT_B1024W4_phase0.npz",
+              "sha256": "6cf54f8ca881cb24cfbdb91c14e4d6c10cfa6c3e5540c5123250cfc16a3195be",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "e5fb3c75e4df9b6cb7adf0a35f34f5843955ef460d31dc9c1a7e563db7a71778",
+                "binary_sha256": "1f25ab10b8114ffbf42575500c1e63d8b135be2e3333a75a68083f00ff3c2403",
+                "n_regs": 21,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B1024W8",
+              "artifact": "strided0_NT_B1024W8_phase0.npz",
+              "sha256": "6cf54f8ca881cb24cfbdb91c14e4d6c10cfa6c3e5540c5123250cfc16a3195be",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "58f925458410645c6465fc793028a44c5cf601fb18451b76147e5d1e7e5e17be",
+                "binary_sha256": "20cfcf5b823527f8b2af5ef96e63de0be4131073218a6bf36850c61e70fcddd4",
+                "n_regs": 12,
+                "n_spills": 0,
+                "shared": 0
+              }
+            }
+          ],
+          "guards_inputs_weights_RNG": true
+        },
+        {
+          "phase": 1,
+          "weight_sign": -1,
+          "weight_scale_factor": 1.0,
+          "entries": [
+            {
+              "variant": "NN_B256W4",
+              "artifact": "strided0_NN_B256W4_phase1.npz",
+              "sha256": "8f422b5fc04e6a2eb3759d53d3fb55d3d01032efc9a7aa93a798b82c04ca6a4b",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "8447f0321607ba8e50abae4f6265ec38c2d7ea17d8e5731d2de7c78bf02ed4b5",
+                "binary_sha256": "44a6b9c4562a57527c2333250615baceee1dd93da4104e18992d5f46247904be",
+                "n_regs": 9,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B256W8",
+              "artifact": "strided0_NN_B256W8_phase1.npz",
+              "sha256": "8f422b5fc04e6a2eb3759d53d3fb55d3d01032efc9a7aa93a798b82c04ca6a4b",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "166b5875611c02286b85d7d0b6fcc3e8655d1ea6c5ed31a74d481665ce292d60",
+                "binary_sha256": "882381b1f90d98e687e79de8ad59a8315a3765e12788d4074b84e275ae78e954",
+                "n_regs": 8,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B512W4",
+              "artifact": "strided0_NN_B512W4_phase1.npz",
+              "sha256": "8f422b5fc04e6a2eb3759d53d3fb55d3d01032efc9a7aa93a798b82c04ca6a4b",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "604d54b39b0e81f91535f2dd0d31347923b92c4fc2619bcd14b12a603de51c1e",
+                "binary_sha256": "e290893805d399e60d1d1f56c12521bc204a1fdc704573604fb49eced74e8091",
+                "n_regs": 12,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B512W8",
+              "artifact": "strided0_NN_B512W8_phase1.npz",
+              "sha256": "8f422b5fc04e6a2eb3759d53d3fb55d3d01032efc9a7aa93a798b82c04ca6a4b",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "d305e236f85517ca049dc056f7efd5b2b3a75ac1ddcde3e5e92071a179372df6",
+                "binary_sha256": "4cbe7246469003737580cd5c5a2f8894e5a25588c5ee596c788548f7660851d3",
+                "n_regs": 9,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B1024W4",
+              "artifact": "strided0_NN_B1024W4_phase1.npz",
+              "sha256": "8f422b5fc04e6a2eb3759d53d3fb55d3d01032efc9a7aa93a798b82c04ca6a4b",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "e5fb3c75e4df9b6cb7adf0a35f34f5843955ef460d31dc9c1a7e563db7a71778",
+                "binary_sha256": "1f25ab10b8114ffbf42575500c1e63d8b135be2e3333a75a68083f00ff3c2403",
+                "n_regs": 21,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B1024W8",
+              "artifact": "strided0_NN_B1024W8_phase1.npz",
+              "sha256": "8f422b5fc04e6a2eb3759d53d3fb55d3d01032efc9a7aa93a798b82c04ca6a4b",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "58f925458410645c6465fc793028a44c5cf601fb18451b76147e5d1e7e5e17be",
+                "binary_sha256": "20cfcf5b823527f8b2af5ef96e63de0be4131073218a6bf36850c61e70fcddd4",
+                "n_regs": 12,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B256W4",
+              "artifact": "strided0_NT_B256W4_phase1.npz",
+              "sha256": "8f422b5fc04e6a2eb3759d53d3fb55d3d01032efc9a7aa93a798b82c04ca6a4b",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "8447f0321607ba8e50abae4f6265ec38c2d7ea17d8e5731d2de7c78bf02ed4b5",
+                "binary_sha256": "44a6b9c4562a57527c2333250615baceee1dd93da4104e18992d5f46247904be",
+                "n_regs": 9,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B256W8",
+              "artifact": "strided0_NT_B256W8_phase1.npz",
+              "sha256": "8f422b5fc04e6a2eb3759d53d3fb55d3d01032efc9a7aa93a798b82c04ca6a4b",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "166b5875611c02286b85d7d0b6fcc3e8655d1ea6c5ed31a74d481665ce292d60",
+                "binary_sha256": "882381b1f90d98e687e79de8ad59a8315a3765e12788d4074b84e275ae78e954",
+                "n_regs": 8,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B512W4",
+              "artifact": "strided0_NT_B512W4_phase1.npz",
+              "sha256": "8f422b5fc04e6a2eb3759d53d3fb55d3d01032efc9a7aa93a798b82c04ca6a4b",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "604d54b39b0e81f91535f2dd0d31347923b92c4fc2619bcd14b12a603de51c1e",
+                "binary_sha256": "e290893805d399e60d1d1f56c12521bc204a1fdc704573604fb49eced74e8091",
+                "n_regs": 12,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B512W8",
+              "artifact": "strided0_NT_B512W8_phase1.npz",
+              "sha256": "8f422b5fc04e6a2eb3759d53d3fb55d3d01032efc9a7aa93a798b82c04ca6a4b",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "d305e236f85517ca049dc056f7efd5b2b3a75ac1ddcde3e5e92071a179372df6",
+                "binary_sha256": "4cbe7246469003737580cd5c5a2f8894e5a25588c5ee596c788548f7660851d3",
+                "n_regs": 9,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B1024W4",
+              "artifact": "strided0_NT_B1024W4_phase1.npz",
+              "sha256": "8f422b5fc04e6a2eb3759d53d3fb55d3d01032efc9a7aa93a798b82c04ca6a4b",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "e5fb3c75e4df9b6cb7adf0a35f34f5843955ef460d31dc9c1a7e563db7a71778",
+                "binary_sha256": "1f25ab10b8114ffbf42575500c1e63d8b135be2e3333a75a68083f00ff3c2403",
+                "n_regs": 21,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B1024W8",
+              "artifact": "strided0_NT_B1024W8_phase1.npz",
+              "sha256": "8f422b5fc04e6a2eb3759d53d3fb55d3d01032efc9a7aa93a798b82c04ca6a4b",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "58f925458410645c6465fc793028a44c5cf601fb18451b76147e5d1e7e5e17be",
+                "binary_sha256": "20cfcf5b823527f8b2af5ef96e63de0be4131073218a6bf36850c61e70fcddd4",
+                "n_regs": 12,
+                "n_spills": 0,
+                "shared": 0
+              }
+            }
+          ],
+          "guards_inputs_weights_RNG": true
+        },
+        {
+          "phase": 2,
+          "weight_sign": -1,
+          "weight_scale_factor": 0.5,
+          "entries": [
+            {
+              "variant": "NN_B256W4",
+              "artifact": "strided0_NN_B256W4_phase2.npz",
+              "sha256": "e6695c36446e93fa9af5a7ebf6ec079cabe9550a48282d119df918f44dbb6d7a",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "8447f0321607ba8e50abae4f6265ec38c2d7ea17d8e5731d2de7c78bf02ed4b5",
+                "binary_sha256": "44a6b9c4562a57527c2333250615baceee1dd93da4104e18992d5f46247904be",
+                "n_regs": 9,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B256W8",
+              "artifact": "strided0_NN_B256W8_phase2.npz",
+              "sha256": "e6695c36446e93fa9af5a7ebf6ec079cabe9550a48282d119df918f44dbb6d7a",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "166b5875611c02286b85d7d0b6fcc3e8655d1ea6c5ed31a74d481665ce292d60",
+                "binary_sha256": "882381b1f90d98e687e79de8ad59a8315a3765e12788d4074b84e275ae78e954",
+                "n_regs": 8,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B512W4",
+              "artifact": "strided0_NN_B512W4_phase2.npz",
+              "sha256": "e6695c36446e93fa9af5a7ebf6ec079cabe9550a48282d119df918f44dbb6d7a",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "604d54b39b0e81f91535f2dd0d31347923b92c4fc2619bcd14b12a603de51c1e",
+                "binary_sha256": "e290893805d399e60d1d1f56c12521bc204a1fdc704573604fb49eced74e8091",
+                "n_regs": 12,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B512W8",
+              "artifact": "strided0_NN_B512W8_phase2.npz",
+              "sha256": "e6695c36446e93fa9af5a7ebf6ec079cabe9550a48282d119df918f44dbb6d7a",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "d305e236f85517ca049dc056f7efd5b2b3a75ac1ddcde3e5e92071a179372df6",
+                "binary_sha256": "4cbe7246469003737580cd5c5a2f8894e5a25588c5ee596c788548f7660851d3",
+                "n_regs": 9,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B1024W4",
+              "artifact": "strided0_NN_B1024W4_phase2.npz",
+              "sha256": "e6695c36446e93fa9af5a7ebf6ec079cabe9550a48282d119df918f44dbb6d7a",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "e5fb3c75e4df9b6cb7adf0a35f34f5843955ef460d31dc9c1a7e563db7a71778",
+                "binary_sha256": "1f25ab10b8114ffbf42575500c1e63d8b135be2e3333a75a68083f00ff3c2403",
+                "n_regs": 21,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B1024W8",
+              "artifact": "strided0_NN_B1024W8_phase2.npz",
+              "sha256": "e6695c36446e93fa9af5a7ebf6ec079cabe9550a48282d119df918f44dbb6d7a",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "58f925458410645c6465fc793028a44c5cf601fb18451b76147e5d1e7e5e17be",
+                "binary_sha256": "20cfcf5b823527f8b2af5ef96e63de0be4131073218a6bf36850c61e70fcddd4",
+                "n_regs": 12,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B256W4",
+              "artifact": "strided0_NT_B256W4_phase2.npz",
+              "sha256": "e6695c36446e93fa9af5a7ebf6ec079cabe9550a48282d119df918f44dbb6d7a",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "8447f0321607ba8e50abae4f6265ec38c2d7ea17d8e5731d2de7c78bf02ed4b5",
+                "binary_sha256": "44a6b9c4562a57527c2333250615baceee1dd93da4104e18992d5f46247904be",
+                "n_regs": 9,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B256W8",
+              "artifact": "strided0_NT_B256W8_phase2.npz",
+              "sha256": "e6695c36446e93fa9af5a7ebf6ec079cabe9550a48282d119df918f44dbb6d7a",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "166b5875611c02286b85d7d0b6fcc3e8655d1ea6c5ed31a74d481665ce292d60",
+                "binary_sha256": "882381b1f90d98e687e79de8ad59a8315a3765e12788d4074b84e275ae78e954",
+                "n_regs": 8,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B512W4",
+              "artifact": "strided0_NT_B512W4_phase2.npz",
+              "sha256": "e6695c36446e93fa9af5a7ebf6ec079cabe9550a48282d119df918f44dbb6d7a",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "604d54b39b0e81f91535f2dd0d31347923b92c4fc2619bcd14b12a603de51c1e",
+                "binary_sha256": "e290893805d399e60d1d1f56c12521bc204a1fdc704573604fb49eced74e8091",
+                "n_regs": 12,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B512W8",
+              "artifact": "strided0_NT_B512W8_phase2.npz",
+              "sha256": "e6695c36446e93fa9af5a7ebf6ec079cabe9550a48282d119df918f44dbb6d7a",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "d305e236f85517ca049dc056f7efd5b2b3a75ac1ddcde3e5e92071a179372df6",
+                "binary_sha256": "4cbe7246469003737580cd5c5a2f8894e5a25588c5ee596c788548f7660851d3",
+                "n_regs": 9,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B1024W4",
+              "artifact": "strided0_NT_B1024W4_phase2.npz",
+              "sha256": "e6695c36446e93fa9af5a7ebf6ec079cabe9550a48282d119df918f44dbb6d7a",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "e5fb3c75e4df9b6cb7adf0a35f34f5843955ef460d31dc9c1a7e563db7a71778",
+                "binary_sha256": "1f25ab10b8114ffbf42575500c1e63d8b135be2e3333a75a68083f00ff3c2403",
+                "n_regs": 21,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B1024W8",
+              "artifact": "strided0_NT_B1024W8_phase2.npz",
+              "sha256": "e6695c36446e93fa9af5a7ebf6ec079cabe9550a48282d119df918f44dbb6d7a",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "58f925458410645c6465fc793028a44c5cf601fb18451b76147e5d1e7e5e17be",
+                "binary_sha256": "20cfcf5b823527f8b2af5ef96e63de0be4131073218a6bf36850c61e70fcddd4",
+                "n_regs": 12,
+                "n_spills": 0,
+                "shared": 0
+              }
+            }
+          ],
+          "guards_inputs_weights_RNG": true
+        }
+      ],
+      "complete": true
+    },
+    {
+      "M": 64,
+      "K": 2048,
+      "N": 12288,
+      "strided": true,
+      "current_compiled": {
+        "hash": "0c2126b0e74bc423be0720e80407fd6936aa608a1eb0a51c89612ad51a165aca",
+        "binary_sha256": "c42a5346cb95e93d1d811e9f1fcb5443fab63fd53c9513a86eeed3ebf7942f97",
+        "n_regs": 83,
+        "n_spills": 0,
+        "shared": 16384
+      },
+      "configuration": {
+        "bm": 64,
+        "bn": 64,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1,
+        "mode": "two_dot"
+      },
+      "variants": {
+        "NN_B256W4": {
+          "block": 256,
+          "warps": 4,
+          "layout": "NN",
+          "compiled": {
+            "hash": "52fdfbf8aa870008b47c756ddd5841c1f84f10523f2e0efe43370abba7b4d7da",
+            "binary_sha256": "978752c66ad18567e64daecc0f45d9f025ca2e81a4eb208f04bcb72c2a711170",
+            "n_regs": 7,
+            "n_spills": 0,
+            "shared": 0
+          }
+        },
+        "NN_B256W8": {
+          "block": 256,
+          "warps": 8,
+          "layout": "NN",
+          "compiled": {
+            "hash": "62da454be56c38abbc4e124d1810dd0193e7f70e11d74c523a8d1dd41d3532aa",
+            "binary_sha256": "bee79928c2e00e19528ea22067345607845cc611cd03bdebeef6acb5f8034d47",
+            "n_regs": 7,
+            "n_spills": 0,
+            "shared": 0
+          }
+        },
+        "NN_B512W4": {
+          "block": 512,
+          "warps": 4,
+          "layout": "NN",
+          "compiled": {
+            "hash": "ccb4278966c7681a60d66bcef748174d4d1e81617c717e1527d609f016050518",
+            "binary_sha256": "b0386ae909952478084f89ed001fd3e519b1a99f890730323d61e58a96653cbf",
+            "n_regs": 10,
+            "n_spills": 0,
+            "shared": 0
+          }
+        },
+        "NN_B512W8": {
+          "block": 512,
+          "warps": 8,
+          "layout": "NN",
+          "compiled": {
+            "hash": "0558cb5995f5c4c6be219707d60f98a6d3a380ed8efacb4adae34f09c6b74b7a",
+            "binary_sha256": "1a8b9815f87a02ce8ccfa5e86de2ba27a6a080eb9036c814a6d0033943ccb2ff",
+            "n_regs": 7,
+            "n_spills": 0,
+            "shared": 0
+          }
+        },
+        "NN_B1024W4": {
+          "block": 1024,
+          "warps": 4,
+          "layout": "NN",
+          "compiled": {
+            "hash": "d057ac4aa34ede87469ecf1e34dfd72e597c9ecab65a00b390b51b36900c0372",
+            "binary_sha256": "aecf0d840bf41cf8169906a1046c64f35e1ea544e1f24aa399a008facbb37d35",
+            "n_regs": 18,
+            "n_spills": 0,
+            "shared": 0
+          }
+        },
+        "NN_B1024W8": {
+          "block": 1024,
+          "warps": 8,
+          "layout": "NN",
+          "compiled": {
+            "hash": "60cedce3825cb60feb0cbffc1bbfac77315a9bea8dd6dc0fe6b3ad9de07ba859",
+            "binary_sha256": "6e8da621eaade6af16fcd031f924cc8c8e12b71700d057a24a2c04bbc0ae65ef",
+            "n_regs": 10,
+            "n_spills": 0,
+            "shared": 0
+          }
+        },
+        "NT_B256W4": {
+          "block": 256,
+          "warps": 4,
+          "layout": "NT",
+          "compiled": {
+            "hash": "52fdfbf8aa870008b47c756ddd5841c1f84f10523f2e0efe43370abba7b4d7da",
+            "binary_sha256": "978752c66ad18567e64daecc0f45d9f025ca2e81a4eb208f04bcb72c2a711170",
+            "n_regs": 7,
+            "n_spills": 0,
+            "shared": 0
+          }
+        },
+        "NT_B256W8": {
+          "block": 256,
+          "warps": 8,
+          "layout": "NT",
+          "compiled": {
+            "hash": "62da454be56c38abbc4e124d1810dd0193e7f70e11d74c523a8d1dd41d3532aa",
+            "binary_sha256": "bee79928c2e00e19528ea22067345607845cc611cd03bdebeef6acb5f8034d47",
+            "n_regs": 7,
+            "n_spills": 0,
+            "shared": 0
+          }
+        },
+        "NT_B512W4": {
+          "block": 512,
+          "warps": 4,
+          "layout": "NT",
+          "compiled": {
+            "hash": "ccb4278966c7681a60d66bcef748174d4d1e81617c717e1527d609f016050518",
+            "binary_sha256": "b0386ae909952478084f89ed001fd3e519b1a99f890730323d61e58a96653cbf",
+            "n_regs": 10,
+            "n_spills": 0,
+            "shared": 0
+          }
+        },
+        "NT_B512W8": {
+          "block": 512,
+          "warps": 8,
+          "layout": "NT",
+          "compiled": {
+            "hash": "0558cb5995f5c4c6be219707d60f98a6d3a380ed8efacb4adae34f09c6b74b7a",
+            "binary_sha256": "1a8b9815f87a02ce8ccfa5e86de2ba27a6a080eb9036c814a6d0033943ccb2ff",
+            "n_regs": 7,
+            "n_spills": 0,
+            "shared": 0
+          }
+        },
+        "NT_B1024W4": {
+          "block": 1024,
+          "warps": 4,
+          "layout": "NT",
+          "compiled": {
+            "hash": "d057ac4aa34ede87469ecf1e34dfd72e597c9ecab65a00b390b51b36900c0372",
+            "binary_sha256": "aecf0d840bf41cf8169906a1046c64f35e1ea544e1f24aa399a008facbb37d35",
+            "n_regs": 18,
+            "n_spills": 0,
+            "shared": 0
+          }
+        },
+        "NT_B1024W8": {
+          "block": 1024,
+          "warps": 8,
+          "layout": "NT",
+          "compiled": {
+            "hash": "60cedce3825cb60feb0cbffc1bbfac77315a9bea8dd6dc0fe6b3ad9de07ba859",
+            "binary_sha256": "6e8da621eaade6af16fcd031f924cc8c8e12b71700d057a24a2c04bbc0ae65ef",
+            "n_regs": 10,
+            "n_spills": 0,
+            "shared": 0
+          }
+        }
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "weight_sign": 1,
+          "weight_scale_factor": 1.0,
+          "entries": [
+            {
+              "variant": "NN_B256W4",
+              "artifact": "strided1_NN_B256W4_phase0.npz",
+              "sha256": "76e55c2a45df099fc9e4147956faa5e267d964587e9bf436d75cb4570ef8855d",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "8447f0321607ba8e50abae4f6265ec38c2d7ea17d8e5731d2de7c78bf02ed4b5",
+                "binary_sha256": "44a6b9c4562a57527c2333250615baceee1dd93da4104e18992d5f46247904be",
+                "n_regs": 9,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B256W8",
+              "artifact": "strided1_NN_B256W8_phase0.npz",
+              "sha256": "76e55c2a45df099fc9e4147956faa5e267d964587e9bf436d75cb4570ef8855d",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "166b5875611c02286b85d7d0b6fcc3e8655d1ea6c5ed31a74d481665ce292d60",
+                "binary_sha256": "882381b1f90d98e687e79de8ad59a8315a3765e12788d4074b84e275ae78e954",
+                "n_regs": 8,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B512W4",
+              "artifact": "strided1_NN_B512W4_phase0.npz",
+              "sha256": "76e55c2a45df099fc9e4147956faa5e267d964587e9bf436d75cb4570ef8855d",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "604d54b39b0e81f91535f2dd0d31347923b92c4fc2619bcd14b12a603de51c1e",
+                "binary_sha256": "e290893805d399e60d1d1f56c12521bc204a1fdc704573604fb49eced74e8091",
+                "n_regs": 12,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B512W8",
+              "artifact": "strided1_NN_B512W8_phase0.npz",
+              "sha256": "76e55c2a45df099fc9e4147956faa5e267d964587e9bf436d75cb4570ef8855d",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "d305e236f85517ca049dc056f7efd5b2b3a75ac1ddcde3e5e92071a179372df6",
+                "binary_sha256": "4cbe7246469003737580cd5c5a2f8894e5a25588c5ee596c788548f7660851d3",
+                "n_regs": 9,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B1024W4",
+              "artifact": "strided1_NN_B1024W4_phase0.npz",
+              "sha256": "76e55c2a45df099fc9e4147956faa5e267d964587e9bf436d75cb4570ef8855d",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "e5fb3c75e4df9b6cb7adf0a35f34f5843955ef460d31dc9c1a7e563db7a71778",
+                "binary_sha256": "1f25ab10b8114ffbf42575500c1e63d8b135be2e3333a75a68083f00ff3c2403",
+                "n_regs": 21,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B1024W8",
+              "artifact": "strided1_NN_B1024W8_phase0.npz",
+              "sha256": "76e55c2a45df099fc9e4147956faa5e267d964587e9bf436d75cb4570ef8855d",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "58f925458410645c6465fc793028a44c5cf601fb18451b76147e5d1e7e5e17be",
+                "binary_sha256": "20cfcf5b823527f8b2af5ef96e63de0be4131073218a6bf36850c61e70fcddd4",
+                "n_regs": 12,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B256W4",
+              "artifact": "strided1_NT_B256W4_phase0.npz",
+              "sha256": "76e55c2a45df099fc9e4147956faa5e267d964587e9bf436d75cb4570ef8855d",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "8447f0321607ba8e50abae4f6265ec38c2d7ea17d8e5731d2de7c78bf02ed4b5",
+                "binary_sha256": "44a6b9c4562a57527c2333250615baceee1dd93da4104e18992d5f46247904be",
+                "n_regs": 9,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B256W8",
+              "artifact": "strided1_NT_B256W8_phase0.npz",
+              "sha256": "76e55c2a45df099fc9e4147956faa5e267d964587e9bf436d75cb4570ef8855d",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "166b5875611c02286b85d7d0b6fcc3e8655d1ea6c5ed31a74d481665ce292d60",
+                "binary_sha256": "882381b1f90d98e687e79de8ad59a8315a3765e12788d4074b84e275ae78e954",
+                "n_regs": 8,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B512W4",
+              "artifact": "strided1_NT_B512W4_phase0.npz",
+              "sha256": "76e55c2a45df099fc9e4147956faa5e267d964587e9bf436d75cb4570ef8855d",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "604d54b39b0e81f91535f2dd0d31347923b92c4fc2619bcd14b12a603de51c1e",
+                "binary_sha256": "e290893805d399e60d1d1f56c12521bc204a1fdc704573604fb49eced74e8091",
+                "n_regs": 12,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B512W8",
+              "artifact": "strided1_NT_B512W8_phase0.npz",
+              "sha256": "76e55c2a45df099fc9e4147956faa5e267d964587e9bf436d75cb4570ef8855d",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "d305e236f85517ca049dc056f7efd5b2b3a75ac1ddcde3e5e92071a179372df6",
+                "binary_sha256": "4cbe7246469003737580cd5c5a2f8894e5a25588c5ee596c788548f7660851d3",
+                "n_regs": 9,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B1024W4",
+              "artifact": "strided1_NT_B1024W4_phase0.npz",
+              "sha256": "76e55c2a45df099fc9e4147956faa5e267d964587e9bf436d75cb4570ef8855d",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "e5fb3c75e4df9b6cb7adf0a35f34f5843955ef460d31dc9c1a7e563db7a71778",
+                "binary_sha256": "1f25ab10b8114ffbf42575500c1e63d8b135be2e3333a75a68083f00ff3c2403",
+                "n_regs": 21,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B1024W8",
+              "artifact": "strided1_NT_B1024W8_phase0.npz",
+              "sha256": "76e55c2a45df099fc9e4147956faa5e267d964587e9bf436d75cb4570ef8855d",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "58f925458410645c6465fc793028a44c5cf601fb18451b76147e5d1e7e5e17be",
+                "binary_sha256": "20cfcf5b823527f8b2af5ef96e63de0be4131073218a6bf36850c61e70fcddd4",
+                "n_regs": 12,
+                "n_spills": 0,
+                "shared": 0
+              }
+            }
+          ],
+          "guards_inputs_weights_RNG": true
+        },
+        {
+          "phase": 1,
+          "weight_sign": -1,
+          "weight_scale_factor": 1.0,
+          "entries": [
+            {
+              "variant": "NN_B256W4",
+              "artifact": "strided1_NN_B256W4_phase1.npz",
+              "sha256": "1d5911f15d843fca0fc6f84537c8c9d58576d1283f1b40e335833971cc305ee3",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "8447f0321607ba8e50abae4f6265ec38c2d7ea17d8e5731d2de7c78bf02ed4b5",
+                "binary_sha256": "44a6b9c4562a57527c2333250615baceee1dd93da4104e18992d5f46247904be",
+                "n_regs": 9,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B256W8",
+              "artifact": "strided1_NN_B256W8_phase1.npz",
+              "sha256": "1d5911f15d843fca0fc6f84537c8c9d58576d1283f1b40e335833971cc305ee3",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "166b5875611c02286b85d7d0b6fcc3e8655d1ea6c5ed31a74d481665ce292d60",
+                "binary_sha256": "882381b1f90d98e687e79de8ad59a8315a3765e12788d4074b84e275ae78e954",
+                "n_regs": 8,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B512W4",
+              "artifact": "strided1_NN_B512W4_phase1.npz",
+              "sha256": "1d5911f15d843fca0fc6f84537c8c9d58576d1283f1b40e335833971cc305ee3",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "604d54b39b0e81f91535f2dd0d31347923b92c4fc2619bcd14b12a603de51c1e",
+                "binary_sha256": "e290893805d399e60d1d1f56c12521bc204a1fdc704573604fb49eced74e8091",
+                "n_regs": 12,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B512W8",
+              "artifact": "strided1_NN_B512W8_phase1.npz",
+              "sha256": "1d5911f15d843fca0fc6f84537c8c9d58576d1283f1b40e335833971cc305ee3",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "d305e236f85517ca049dc056f7efd5b2b3a75ac1ddcde3e5e92071a179372df6",
+                "binary_sha256": "4cbe7246469003737580cd5c5a2f8894e5a25588c5ee596c788548f7660851d3",
+                "n_regs": 9,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B1024W4",
+              "artifact": "strided1_NN_B1024W4_phase1.npz",
+              "sha256": "1d5911f15d843fca0fc6f84537c8c9d58576d1283f1b40e335833971cc305ee3",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "e5fb3c75e4df9b6cb7adf0a35f34f5843955ef460d31dc9c1a7e563db7a71778",
+                "binary_sha256": "1f25ab10b8114ffbf42575500c1e63d8b135be2e3333a75a68083f00ff3c2403",
+                "n_regs": 21,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B1024W8",
+              "artifact": "strided1_NN_B1024W8_phase1.npz",
+              "sha256": "1d5911f15d843fca0fc6f84537c8c9d58576d1283f1b40e335833971cc305ee3",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "58f925458410645c6465fc793028a44c5cf601fb18451b76147e5d1e7e5e17be",
+                "binary_sha256": "20cfcf5b823527f8b2af5ef96e63de0be4131073218a6bf36850c61e70fcddd4",
+                "n_regs": 12,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B256W4",
+              "artifact": "strided1_NT_B256W4_phase1.npz",
+              "sha256": "1d5911f15d843fca0fc6f84537c8c9d58576d1283f1b40e335833971cc305ee3",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "8447f0321607ba8e50abae4f6265ec38c2d7ea17d8e5731d2de7c78bf02ed4b5",
+                "binary_sha256": "44a6b9c4562a57527c2333250615baceee1dd93da4104e18992d5f46247904be",
+                "n_regs": 9,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B256W8",
+              "artifact": "strided1_NT_B256W8_phase1.npz",
+              "sha256": "1d5911f15d843fca0fc6f84537c8c9d58576d1283f1b40e335833971cc305ee3",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "166b5875611c02286b85d7d0b6fcc3e8655d1ea6c5ed31a74d481665ce292d60",
+                "binary_sha256": "882381b1f90d98e687e79de8ad59a8315a3765e12788d4074b84e275ae78e954",
+                "n_regs": 8,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B512W4",
+              "artifact": "strided1_NT_B512W4_phase1.npz",
+              "sha256": "1d5911f15d843fca0fc6f84537c8c9d58576d1283f1b40e335833971cc305ee3",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "604d54b39b0e81f91535f2dd0d31347923b92c4fc2619bcd14b12a603de51c1e",
+                "binary_sha256": "e290893805d399e60d1d1f56c12521bc204a1fdc704573604fb49eced74e8091",
+                "n_regs": 12,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B512W8",
+              "artifact": "strided1_NT_B512W8_phase1.npz",
+              "sha256": "1d5911f15d843fca0fc6f84537c8c9d58576d1283f1b40e335833971cc305ee3",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "d305e236f85517ca049dc056f7efd5b2b3a75ac1ddcde3e5e92071a179372df6",
+                "binary_sha256": "4cbe7246469003737580cd5c5a2f8894e5a25588c5ee596c788548f7660851d3",
+                "n_regs": 9,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B1024W4",
+              "artifact": "strided1_NT_B1024W4_phase1.npz",
+              "sha256": "1d5911f15d843fca0fc6f84537c8c9d58576d1283f1b40e335833971cc305ee3",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "e5fb3c75e4df9b6cb7adf0a35f34f5843955ef460d31dc9c1a7e563db7a71778",
+                "binary_sha256": "1f25ab10b8114ffbf42575500c1e63d8b135be2e3333a75a68083f00ff3c2403",
+                "n_regs": 21,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B1024W8",
+              "artifact": "strided1_NT_B1024W8_phase1.npz",
+              "sha256": "1d5911f15d843fca0fc6f84537c8c9d58576d1283f1b40e335833971cc305ee3",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "58f925458410645c6465fc793028a44c5cf601fb18451b76147e5d1e7e5e17be",
+                "binary_sha256": "20cfcf5b823527f8b2af5ef96e63de0be4131073218a6bf36850c61e70fcddd4",
+                "n_regs": 12,
+                "n_spills": 0,
+                "shared": 0
+              }
+            }
+          ],
+          "guards_inputs_weights_RNG": true
+        },
+        {
+          "phase": 2,
+          "weight_sign": -1,
+          "weight_scale_factor": 0.5,
+          "entries": [
+            {
+              "variant": "NN_B256W4",
+              "artifact": "strided1_NN_B256W4_phase2.npz",
+              "sha256": "4c0fc68523e7dc7882ce308ce41ddf4b7c74597102a8132107f7cf21ac8fb531",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "8447f0321607ba8e50abae4f6265ec38c2d7ea17d8e5731d2de7c78bf02ed4b5",
+                "binary_sha256": "44a6b9c4562a57527c2333250615baceee1dd93da4104e18992d5f46247904be",
+                "n_regs": 9,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B256W8",
+              "artifact": "strided1_NN_B256W8_phase2.npz",
+              "sha256": "4c0fc68523e7dc7882ce308ce41ddf4b7c74597102a8132107f7cf21ac8fb531",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "166b5875611c02286b85d7d0b6fcc3e8655d1ea6c5ed31a74d481665ce292d60",
+                "binary_sha256": "882381b1f90d98e687e79de8ad59a8315a3765e12788d4074b84e275ae78e954",
+                "n_regs": 8,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B512W4",
+              "artifact": "strided1_NN_B512W4_phase2.npz",
+              "sha256": "4c0fc68523e7dc7882ce308ce41ddf4b7c74597102a8132107f7cf21ac8fb531",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "604d54b39b0e81f91535f2dd0d31347923b92c4fc2619bcd14b12a603de51c1e",
+                "binary_sha256": "e290893805d399e60d1d1f56c12521bc204a1fdc704573604fb49eced74e8091",
+                "n_regs": 12,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B512W8",
+              "artifact": "strided1_NN_B512W8_phase2.npz",
+              "sha256": "4c0fc68523e7dc7882ce308ce41ddf4b7c74597102a8132107f7cf21ac8fb531",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "d305e236f85517ca049dc056f7efd5b2b3a75ac1ddcde3e5e92071a179372df6",
+                "binary_sha256": "4cbe7246469003737580cd5c5a2f8894e5a25588c5ee596c788548f7660851d3",
+                "n_regs": 9,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B1024W4",
+              "artifact": "strided1_NN_B1024W4_phase2.npz",
+              "sha256": "4c0fc68523e7dc7882ce308ce41ddf4b7c74597102a8132107f7cf21ac8fb531",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "e5fb3c75e4df9b6cb7adf0a35f34f5843955ef460d31dc9c1a7e563db7a71778",
+                "binary_sha256": "1f25ab10b8114ffbf42575500c1e63d8b135be2e3333a75a68083f00ff3c2403",
+                "n_regs": 21,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NN_B1024W8",
+              "artifact": "strided1_NN_B1024W8_phase2.npz",
+              "sha256": "4c0fc68523e7dc7882ce308ce41ddf4b7c74597102a8132107f7cf21ac8fb531",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "58f925458410645c6465fc793028a44c5cf601fb18451b76147e5d1e7e5e17be",
+                "binary_sha256": "20cfcf5b823527f8b2af5ef96e63de0be4131073218a6bf36850c61e70fcddd4",
+                "n_regs": 12,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B256W4",
+              "artifact": "strided1_NT_B256W4_phase2.npz",
+              "sha256": "4c0fc68523e7dc7882ce308ce41ddf4b7c74597102a8132107f7cf21ac8fb531",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "8447f0321607ba8e50abae4f6265ec38c2d7ea17d8e5731d2de7c78bf02ed4b5",
+                "binary_sha256": "44a6b9c4562a57527c2333250615baceee1dd93da4104e18992d5f46247904be",
+                "n_regs": 9,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B256W8",
+              "artifact": "strided1_NT_B256W8_phase2.npz",
+              "sha256": "4c0fc68523e7dc7882ce308ce41ddf4b7c74597102a8132107f7cf21ac8fb531",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "166b5875611c02286b85d7d0b6fcc3e8655d1ea6c5ed31a74d481665ce292d60",
+                "binary_sha256": "882381b1f90d98e687e79de8ad59a8315a3765e12788d4074b84e275ae78e954",
+                "n_regs": 8,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B512W4",
+              "artifact": "strided1_NT_B512W4_phase2.npz",
+              "sha256": "4c0fc68523e7dc7882ce308ce41ddf4b7c74597102a8132107f7cf21ac8fb531",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "604d54b39b0e81f91535f2dd0d31347923b92c4fc2619bcd14b12a603de51c1e",
+                "binary_sha256": "e290893805d399e60d1d1f56c12521bc204a1fdc704573604fb49eced74e8091",
+                "n_regs": 12,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B512W8",
+              "artifact": "strided1_NT_B512W8_phase2.npz",
+              "sha256": "4c0fc68523e7dc7882ce308ce41ddf4b7c74597102a8132107f7cf21ac8fb531",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "d305e236f85517ca049dc056f7efd5b2b3a75ac1ddcde3e5e92071a179372df6",
+                "binary_sha256": "4cbe7246469003737580cd5c5a2f8894e5a25588c5ee596c788548f7660851d3",
+                "n_regs": 9,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B1024W4",
+              "artifact": "strided1_NT_B1024W4_phase2.npz",
+              "sha256": "4c0fc68523e7dc7882ce308ce41ddf4b7c74597102a8132107f7cf21ac8fb531",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "e5fb3c75e4df9b6cb7adf0a35f34f5843955ef460d31dc9c1a7e563db7a71778",
+                "binary_sha256": "1f25ab10b8114ffbf42575500c1e63d8b135be2e3333a75a68083f00ff3c2403",
+                "n_regs": 21,
+                "n_spills": 0,
+                "shared": 0
+              }
+            },
+            {
+              "variant": "NT_B1024W8",
+              "artifact": "strided1_NT_B1024W8_phase2.npz",
+              "sha256": "4c0fc68523e7dc7882ce308ce41ddf4b7c74597102a8132107f7cf21ac8fb531",
+              "full_INT32_BF16_projection_output_exact": true,
+              "diagnostic": {
+                "hash": "58f925458410645c6465fc793028a44c5cf601fb18451b76147e5d1e7e5e17be",
+                "binary_sha256": "20cfcf5b823527f8b2af5ef96e63de0be4131073218a6bf36850c61e70fcddd4",
+                "n_regs": 12,
+                "n_spills": 0,
+                "shared": 0
+              }
+            }
+          ],
+          "guards_inputs_weights_RNG": true
+        }
+      ],
+      "complete": true
+    }
+  ],
+  "rounds": [
+    {
+      "strided": false,
+      "round": 0,
+      "order": [
+        "current",
+        "NN_B256W4",
+        "NN_B256W8",
+        "NN_B512W4",
+        "NN_B512W8",
+        "NN_B1024W4",
+        "NN_B1024W8",
+        "NT_B256W4",
+        "NT_B256W8",
+        "NT_B512W4",
+        "NT_B512W8",
+        "NT_B1024W4",
+        "NT_B1024W8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "current": 0.0632357656955719,
+        "NN_B256W4": 0.06610172986984253,
+        "NN_B256W8": 0.07054596543312072,
+        "NN_B512W4": 0.06632692217826844,
+        "NN_B512W8": 0.06614788174629212,
+        "NN_B1024W4": 0.06630961298942566,
+        "NN_B1024W8": 0.06607500314712525,
+        "NT_B256W4": 0.07038750052452088,
+        "NT_B256W8": 0.07471500039100647,
+        "NT_B512W4": 0.07015923261642457,
+        "NT_B512W8": 0.07019346356391906,
+        "NT_B1024W4": 0.06990115642547608,
+        "NT_B1024W8": 0.0702267348766327
+      }
+    },
+    {
+      "strided": false,
+      "round": 1,
+      "order": [
+        "NN_B512W8",
+        "NN_B512W4",
+        "NN_B256W8",
+        "NN_B256W4",
+        "current",
+        "NT_B1024W8",
+        "NT_B1024W4",
+        "NT_B512W8",
+        "NT_B512W4",
+        "NT_B256W8",
+        "NT_B256W4",
+        "NN_B1024W8",
+        "NN_B1024W4"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "NN_B512W8": 0.06621307730674744,
+        "NN_B512W4": 0.06634615659713745,
+        "NN_B256W8": 0.07036827206611633,
+        "NN_B256W4": 0.06653769016265869,
+        "current": 0.06312192082405091,
+        "NT_B1024W8": 0.0698838472366333,
+        "NT_B1024W4": 0.0699619174003601,
+        "NT_B512W8": 0.07011961936950684,
+        "NT_B512W4": 0.07025692462921143,
+        "NT_B256W8": 0.07468615174293518,
+        "NT_B256W4": 0.0706499993801117,
+        "NN_B1024W8": 0.06636634469032288,
+        "NN_B1024W4": 0.06630846261978149
+      }
+    },
+    {
+      "strided": false,
+      "round": 2,
+      "order": [
+        "NT_B512W8",
+        "NT_B1024W4",
+        "NT_B1024W8",
+        "current",
+        "NN_B256W4",
+        "NN_B256W8",
+        "NN_B512W4",
+        "NN_B512W8",
+        "NN_B1024W4",
+        "NN_B1024W8",
+        "NT_B256W4",
+        "NT_B256W8",
+        "NT_B512W4"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "NT_B512W8": 0.0702298104763031,
+        "NT_B1024W4": 0.06988826990127564,
+        "NT_B1024W8": 0.07011114954948425,
+        "current": 0.06286923289299011,
+        "NN_B256W4": 0.06624557375907898,
+        "NN_B256W8": 0.07044115662574768,
+        "NN_B512W4": 0.06634384393692017,
+        "NN_B512W8": 0.06613942384719848,
+        "NN_B1024W4": 0.06639000177383422,
+        "NN_B1024W8": 0.06613615155220032,
+        "NT_B256W4": 0.07033615112304688,
+        "NT_B256W8": 0.07455654144287109,
+        "NT_B512W4": 0.0702323079109192
+      }
+    },
+    {
+      "strided": false,
+      "round": 3,
+      "order": [
+        "NN_B256W4",
+        "current",
+        "NT_B1024W8",
+        "NT_B1024W4",
+        "NT_B512W8",
+        "NT_B512W4",
+        "NT_B256W8",
+        "NT_B256W4",
+        "NN_B1024W8",
+        "NN_B1024W4",
+        "NN_B512W8",
+        "NN_B512W4",
+        "NN_B256W8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "NN_B256W4": 0.06644346117973328,
+        "current": 0.06299788355827332,
+        "NT_B1024W8": 0.06995903849601745,
+        "NT_B1024W4": 0.06979942321777344,
+        "NT_B512W8": 0.07004038095474244,
+        "NT_B512W4": 0.07033076882362366,
+        "NT_B256W8": 0.07476096153259278,
+        "NT_B256W4": 0.07039923071861268,
+        "NN_B1024W8": 0.06619827151298523,
+        "NN_B1024W4": 0.06637827157974244,
+        "NN_B512W8": 0.06623788475990296,
+        "NN_B512W4": 0.06635576486587524,
+        "NN_B256W8": 0.07049557566642761
+      }
+    },
+    {
+      "strided": false,
+      "round": 4,
+      "order": [
+        "NT_B256W4",
+        "NT_B256W8",
+        "NT_B512W4",
+        "NT_B512W8",
+        "NT_B1024W4",
+        "NT_B1024W8",
+        "current",
+        "NN_B256W4",
+        "NN_B256W8",
+        "NN_B512W4",
+        "NN_B512W8",
+        "NN_B1024W4",
+        "NN_B1024W8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "NT_B256W4": 0.07054288387298584,
+        "NT_B256W8": 0.07459500432014465,
+        "NT_B512W4": 0.07013480663299561,
+        "NT_B512W8": 0.06998480558395385,
+        "NT_B1024W4": 0.07010250091552735,
+        "NT_B1024W8": 0.0704442322254181,
+        "current": 0.06338250041007995,
+        "NN_B256W4": 0.06609307527542115,
+        "NN_B256W8": 0.07056634426116944,
+        "NN_B512W4": 0.06630326509475708,
+        "NN_B512W8": 0.06612095832824708,
+        "NN_B1024W4": 0.06644365787506104,
+        "NN_B1024W8": 0.06616499423980712
+      }
+    },
+    {
+      "strided": false,
+      "round": 5,
+      "order": [
+        "NT_B1024W4",
+        "NT_B512W8",
+        "NT_B512W4",
+        "NT_B256W8",
+        "NT_B256W4",
+        "NN_B1024W8",
+        "NN_B1024W4",
+        "NN_B512W8",
+        "NN_B512W4",
+        "NN_B256W8",
+        "NN_B256W4",
+        "current",
+        "NT_B1024W8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "NT_B1024W4": 0.07023653984069825,
+        "NT_B512W8": 0.07012807130813599,
+        "NT_B512W4": 0.07041096091270446,
+        "NT_B256W8": 0.07470115423202514,
+        "NT_B256W4": 0.07042942047119141,
+        "NN_B1024W8": 0.06639096140861511,
+        "NN_B1024W4": 0.06631615161895751,
+        "NN_B512W8": 0.06624115705490112,
+        "NN_B512W4": 0.06640288829803467,
+        "NN_B256W8": 0.07048172950744629,
+        "NN_B256W4": 0.0664286494255066,
+        "current": 0.06295827031135559,
+        "NT_B1024W8": 0.0698294222354889
+      }
+    },
+    {
+      "strided": false,
+      "round": 6,
+      "order": [
+        "NN_B512W8",
+        "NN_B1024W4",
+        "NN_B1024W8",
+        "NT_B256W4",
+        "NT_B256W8",
+        "NT_B512W4",
+        "NT_B512W8",
+        "NT_B1024W4",
+        "NT_B1024W8",
+        "current",
+        "NN_B256W4",
+        "NN_B256W8",
+        "NN_B512W4"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "NN_B512W8": 0.06618326902389526,
+        "NN_B1024W4": 0.06633538603782654,
+        "NN_B1024W8": 0.0661371111869812,
+        "NT_B256W4": 0.07044865489006043,
+        "NT_B256W8": 0.07455634474754333,
+        "NT_B512W4": 0.07024807333946229,
+        "NT_B512W8": 0.07004673480987549,
+        "NT_B1024W4": 0.06998038291931152,
+        "NT_B1024W8": 0.07037884593009949,
+        "current": 0.06348096132278443,
+        "NN_B256W4": 0.0662453830242157,
+        "NN_B256W8": 0.07045807838439941,
+        "NN_B512W4": 0.06638904213905335
+      }
+    },
+    {
+      "strided": true,
+      "round": 0,
+      "order": [
+        "current",
+        "NN_B256W4",
+        "NN_B256W8",
+        "NN_B512W4",
+        "NN_B512W8",
+        "NN_B1024W4",
+        "NN_B1024W8",
+        "NT_B256W4",
+        "NT_B256W8",
+        "NT_B512W4",
+        "NT_B512W8",
+        "NT_B1024W4",
+        "NT_B1024W8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "current": 0.06297211647033692,
+        "NN_B256W4": 0.06647307872772217,
+        "NN_B256W8": 0.07082480788230897,
+        "NN_B512W4": 0.06624519228935241,
+        "NN_B512W8": 0.06610288619995117,
+        "NN_B1024W4": 0.06636096239089966,
+        "NN_B1024W8": 0.06639980673789977,
+        "NT_B256W4": 0.07065961956977844,
+        "NT_B256W8": 0.07444941997528076,
+        "NT_B512W4": 0.07057923078536987,
+        "NT_B512W8": 0.07045288681983948,
+        "NT_B1024W4": 0.07014423608779907,
+        "NT_B1024W8": 0.07040249705314636
+      }
+    },
+    {
+      "strided": true,
+      "round": 1,
+      "order": [
+        "NN_B512W8",
+        "NN_B512W4",
+        "NN_B256W8",
+        "NN_B256W4",
+        "current",
+        "NT_B1024W8",
+        "NT_B1024W4",
+        "NT_B512W8",
+        "NT_B512W4",
+        "NT_B256W8",
+        "NT_B256W4",
+        "NN_B1024W8",
+        "NN_B1024W4"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "NN_B512W8": 0.0662601888179779,
+        "NN_B512W4": 0.06635153889656067,
+        "NN_B256W8": 0.07064692378044128,
+        "NN_B256W4": 0.0666653871536255,
+        "current": 0.0626744270324707,
+        "NT_B1024W8": 0.06996750235557556,
+        "NT_B1024W4": 0.07025461792945861,
+        "NT_B512W8": 0.07037557363510132,
+        "NT_B512W4": 0.07033288478851318,
+        "NT_B256W8": 0.07451134920120239,
+        "NT_B256W4": 0.07062211632728577,
+        "NN_B1024W8": 0.066485196352005,
+        "NN_B1024W4": 0.06636423468589783
+      }
+    },
+    {
+      "strided": true,
+      "round": 2,
+      "order": [
+        "NT_B512W8",
+        "NT_B1024W4",
+        "NT_B1024W8",
+        "current",
+        "NN_B256W4",
+        "NN_B256W8",
+        "NN_B512W4",
+        "NN_B512W8",
+        "NN_B1024W4",
+        "NN_B1024W8",
+        "NT_B256W4",
+        "NT_B256W8",
+        "NT_B512W4"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "NT_B512W8": 0.07040249705314636,
+        "NT_B1024W4": 0.07028577327728272,
+        "NT_B1024W8": 0.0702867329120636,
+        "current": 0.06342634558677673,
+        "NN_B256W4": 0.06633192896842957,
+        "NN_B256W8": 0.07068095803260803,
+        "NN_B512W4": 0.06638576984405517,
+        "NN_B512W8": 0.06635576486587524,
+        "NN_B1024W4": 0.06647135019302368,
+        "NN_B1024W8": 0.06637615561485291,
+        "NT_B256W4": 0.0706188440322876,
+        "NT_B256W8": 0.07482442259788513,
+        "NT_B512W4": 0.07035980820655822
+      }
+    },
+    {
+      "strided": true,
+      "round": 3,
+      "order": [
+        "NN_B256W4",
+        "current",
+        "NT_B1024W8",
+        "NT_B1024W4",
+        "NT_B512W8",
+        "NT_B512W4",
+        "NT_B256W8",
+        "NT_B256W4",
+        "NN_B1024W8",
+        "NN_B1024W4",
+        "NN_B512W8",
+        "NN_B512W4",
+        "NN_B256W8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "NN_B256W4": 0.06665788292884826,
+        "current": 0.06290461421012879,
+        "NT_B1024W8": 0.0699632704257965,
+        "NT_B1024W4": 0.07028999924659729,
+        "NT_B512W8": 0.0702975034713745,
+        "NT_B512W4": 0.07046903967857361,
+        "NT_B256W8": 0.0745511531829834,
+        "NT_B256W4": 0.07058807611465454,
+        "NN_B1024W8": 0.06644230484962463,
+        "NN_B1024W4": 0.06642653346061707,
+        "NN_B512W8": 0.06634499430656433,
+        "NN_B512W4": 0.06636961102485657,
+        "NN_B256W8": 0.07068750262260437
+      }
+    },
+    {
+      "strided": true,
+      "round": 4,
+      "order": [
+        "NT_B256W4",
+        "NT_B256W8",
+        "NT_B512W4",
+        "NT_B512W8",
+        "NT_B1024W4",
+        "NT_B1024W8",
+        "current",
+        "NN_B256W4",
+        "NN_B256W8",
+        "NN_B512W4",
+        "NN_B512W8",
+        "NN_B1024W4",
+        "NN_B1024W8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "NT_B256W4": 0.07084922790527344,
+        "NT_B256W8": 0.07468711137771607,
+        "NT_B512W4": 0.0702836573123932,
+        "NT_B512W8": 0.07004885077476501,
+        "NT_B1024W4": 0.07024807333946229,
+        "NT_B1024W8": 0.07038634419441223,
+        "current": 0.06279653906822205,
+        "NN_B256W4": 0.06644153594970703,
+        "NN_B256W8": 0.07073557376861572,
+        "NN_B512W4": 0.06632365584373474,
+        "NN_B512W8": 0.0663621187210083,
+        "NN_B1024W4": 0.06657750010490418,
+        "NN_B1024W8": 0.06636980772018433
+      }
+    },
+    {
+      "strided": true,
+      "round": 5,
+      "order": [
+        "NT_B1024W4",
+        "NT_B512W8",
+        "NT_B512W4",
+        "NT_B256W8",
+        "NT_B256W4",
+        "NN_B1024W8",
+        "NN_B1024W4",
+        "NN_B512W8",
+        "NN_B512W4",
+        "NN_B256W8",
+        "NN_B256W4",
+        "current",
+        "NT_B1024W8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "NT_B1024W4": 0.07018807530403137,
+        "NT_B512W8": 0.07046346068382263,
+        "NT_B512W4": 0.07036172747611999,
+        "NT_B256W8": 0.07469807863235474,
+        "NT_B256W4": 0.07079673409461976,
+        "NN_B1024W8": 0.06639000177383422,
+        "NN_B1024W4": 0.06625826954841614,
+        "NN_B512W8": 0.06623692512512207,
+        "NN_B512W4": 0.06608577370643616,
+        "NN_B256W8": 0.07077422738075256,
+        "NN_B256W4": 0.06663326621055603,
+        "current": 0.06310403943061829,
+        "NT_B1024W8": 0.06995692253112792
+      }
+    },
+    {
+      "strided": true,
+      "round": 6,
+      "order": [
+        "NN_B512W8",
+        "NN_B1024W4",
+        "NN_B1024W8",
+        "NT_B256W4",
+        "NT_B256W8",
+        "NT_B512W4",
+        "NT_B512W8",
+        "NT_B1024W4",
+        "NT_B1024W8",
+        "current",
+        "NN_B256W4",
+        "NN_B256W8",
+        "NN_B512W4"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "NN_B512W8": 0.06631615161895751,
+        "NN_B1024W4": 0.0662507712841034,
+        "NN_B1024W8": 0.06640711426734924,
+        "NT_B256W4": 0.07093615531921386,
+        "NT_B256W8": 0.07473750114440918,
+        "NT_B512W4": 0.07039711475372315,
+        "NT_B512W8": 0.07041749954223633,
+        "NT_B1024W4": 0.07020750045776367,
+        "NT_B1024W8": 0.07028884887695312,
+        "current": 0.06244922876358032,
+        "NN_B256W4": 0.06632692217826844,
+        "NN_B256W8": 0.07070249915122986,
+        "NN_B512W4": 0.06613288521766662
+      }
+    }
+  ],
+  "model_executed": false,
+  "official_benchmark": false,
+  "adopted": false,
+  "checkpoint_sha256_before": "14fb8e7f0a18d53d1f239773758bf581cee7e456a4523a54622c3a245b64402c",
+  "target": "GPUTarget(backend='corex', arch=71, warp_size=64)",
+  "scalar_cache_key": "23d0f83649af60ff1cb953dc463ed1dda54a2797d7f2d85b2652214538c4c73d",
+  "weight_signature": {
+    "original_BF16_sha256": "f67a8c10be7f318e2bbb9139462aef1410e309ab30755e02a057199090efd643",
+    "packed_sha256": "5f7cfebb5e3a70b3f31bc0e9cbc9efa232f5a01c81096f85dc193cdb23f78db5",
+    "scales_sha256": "85139ad7dfbd6b82bce6533e085f33bf29165508a7c7db3174b53333331d4219"
+  },
+  "per_native_INT32_workspace_bytes": 3145728,
+  "per_W8_layout_bytes": 25165824,
+  "checkpoint_sha256_after": "14fb8e7f0a18d53d1f239773758bf581cee7e456a4523a54622c3a245b64402c",
+  "checkpoint_unchanged": true
+}
