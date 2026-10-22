@@ -1,0 +1,73 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "CUDA_not_initialized": true,
+  "all9_rounds_recomputed": true,
+  "all_source_and_controller_snapshots_verified": true,
+  "all_inherited_and_new_runtime_audits_recomputed": true,
+  "same903_model_inputs_between_candidate_and_hook_control": true,
+  "fresh_quality_applies_to_candidate_only": true,
+  "control_quality_not_claimed": true,
+  "official_benchmark": false,
+  "adopted": false,
+  "requests_per_round": 64,
+  "rounds": 3,
+  "excluded_rounds": [
+    1
+  ],
+  "arms": {
+    "r2": {
+      "raw_root": "/workspace/benchmark-results/20261022_native_int8_attention_short4k_control_tianshu",
+      "raw_result_sha256": "19d9cfcebdb5335a3f180adf075f339ec5b0334cf028a8a7205235cacc39a257",
+      "source_count": 890,
+      "mean_total_tok_s": 5829.431978356946,
+      "mean_TTFT_ms": 8881.81796531353,
+      "hot_spread_percent": 0.17100688250787419,
+      "actual_runtime_audits_recomputed": true,
+      "KV_capacity_lines": [
+        "(EngineCore pid=86724) INFO 10-22 19:23:25 [kv_cache_utils.py:2146] GPU KV cache size: 621,440 tokens"
+      ]
+    },
+    "candidate": {
+      "raw_root": "/workspace/benchmark-results/20261022_native_int8_attention_short4k_candidate_tianshu",
+      "raw_result_sha256": "9789954fdf5772df897d7c28b6059d1a8aa26b213f0ce16d70c0a6916529b5d7",
+      "source_count": 903,
+      "mean_total_tok_s": 5880.266282971996,
+      "mean_TTFT_ms": 8613.13825795878,
+      "hot_spread_percent": 0.8590691247030001,
+      "actual_runtime_audits_recomputed": true,
+      "KV_capacity_lines": [
+        "(EngineCore pid=87755) INFO 10-22 19:29:54 [kv_cache_utils.py:2146] GPU KV cache size: 604,912 tokens"
+      ]
+    },
+    "same_hook_BF16": {
+      "raw_root": "/workspace/benchmark-results/20261022_attention_route_control_short4k_tianshu",
+      "raw_result_sha256": "c7c2bc4b30a4aad1ce47a28a657b5fde190a829a46adff9c35c9fb4cb806a7ea",
+      "source_count": 903,
+      "mean_total_tok_s": 5804.929103995799,
+      "mean_TTFT_ms": 8915.239873458631,
+      "hot_spread_percent": 0.8879533139657679,
+      "actual_runtime_audits_recomputed": true,
+      "KV_capacity_lines": [
+        "(EngineCore pid=89123) INFO 10-22 19:37:33 [kv_cache_utils.py:2146] GPU KV cache size: 604,912 tokens"
+      ]
+    }
+  },
+  "changes": {
+    "r2_to_candidate": {
+      "total_throughput_gain_percent": 0.8720284378269216,
+      "TTFT_change_percent": -3.025053073639128
+    },
+    "r2_to_same_hook_BF16": {
+      "total_throughput_gain_percent": -0.4203303932890812,
+      "TTFT_change_percent": 0.3762958020038676
+    },
+    "same_hook_BF16_to_candidate": {
+      "total_throughput_gain_percent": 1.2978139375438458,
+      "TTFT_change_percent": -3.3885977246583265
+    }
+  },
+  "verifier_sha256": "65ade9cdae3e56326664fb1099c35bf051ea52922af8a1484b45c9427bcb6223",
+  "plan_sha256": "637ecbce58cd4cd1c57ce3669488abcd59dbc1201c679cf8ef9df69298884c91",
+  "key_runs_sha256": "a5130376fb86f9b79855bc2a15e2c2896e9b2149261ee1ae075a4c4e257eece5"
+}
