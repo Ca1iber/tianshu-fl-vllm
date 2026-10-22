@@ -1,0 +1,13 @@
+# 原生INT8预填充：新C8与真实C64质量均101/105
+
+新C8和C64各105题、101正确=96.1905%，均超过95%；共210请求全成功、0接口错误。独立CPU重新读取全部prediction/review/report并复算分数，重跑全量范围对应的运行时审核，逐项核对模型和控制器source snapshot hash。
+
+C8原GPU实验保持audit_failed；旧断言要求新INT8预填充覆盖42层，实际19种M均在白名单以外，因此预填充全部BF16，原生INT8运行命中0。独立CPU范围复核只认真实路径，完整旧attention/KV/scheduler/sampling/43bank/M8 NN/M64capture/LM8 BF16检查保留。C8有1题达到官方32768输出上限，已按错误计入101分，没有排除。
+
+C64原GPU阶段complete且完整审核通过：真实Math请求下新M4096原生INT8覆盖全42层，实际M64融合Graph重放与LM64 INT8验证通过；全部105题自然stop，无max_tokens截断。它提供了新INT8路径的真实质量证据，未用C8未命中路径或组件正确性代替。
+
+两轮同877份冻结模型源，原正式471份精确子集，原13项serve argv相同，实际63环境绑定。C64仅将TIANSHU_FUTURE_KV_MODE从candidate转control，恢复原生准入以达到真实并发64；native allocator参数和返回保持原样，差异明确，不改模型数值源码。全部43量化bank签名、BF16原权重、原M8/M64、原23预填充完整binary及新kernel binary、临时workspace实际profile、RNG检查均保留。
+
+正式4K N256四轮排首轮已进入流水线，尚未有新正式结果。现有正式最好仍5695.95 total tok/s；此前N64短测5721.43、同期+2.1563%仅为筛选结果。
+
+原始数组/全部响应/日志仅容器，GitHub只保留代码、报告和关键gate。C8 raw为/workspace/benchmark-results/20261022_native_int8_prefill_math8_tianshu，范围恢复为/workspace/benchmark-results/20261022_native_int8_prefill_math8_CPU_recovery_tianshu；C64 raw为/workspace/benchmark-results/20261022_native_int8_prefill_math64_v2_tianshu。
