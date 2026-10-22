@@ -1,0 +1,68 @@
+{
+  "phase": "complete",
+  "mode": "control",
+  "raw_root": "/workspace/benchmark-results/20261022_native_int8_prefill_pair_v2_control_tianshu",
+  "workload": {
+    "input_tokens": 4096,
+    "output_tokens": 1024,
+    "concurrency": 64,
+    "requests_per_round": 64,
+    "rounds": 3,
+    "excluded_rounds": [
+      1
+    ]
+  },
+  "original_serve_command": true,
+  "server_command": [
+    "vllm",
+    "serve",
+    "/workspace/MiniCPM5-2B",
+    "--port",
+    "9031",
+    "--compilation-config",
+    "{\"cudagraph_mode\": \"FULL_DECODE_ONLY\"}",
+    "--served-model-name",
+    "minicpm",
+    "--gpu-memory-utilization",
+    "0.85",
+    "--max-model-len",
+    "131072"
+  ],
+  "additional_environment": {
+    "TRITON_CACHE_DIR": "/workspace/benchmark-results/20261022_prefill_control_binary_all_GPU_tianshu/qualified_model_cache"
+  },
+  "mean_total_tok_s": 5600.6611625066525,
+  "spread_percent": 0.7140225697548317,
+  "rounds": [
+    {
+      "round": 1,
+      "duration_seconds": 60.60622422490269,
+      "total_tokens_per_second": 5406.70540345852,
+      "output_tokens_per_second": 1081.3410806917038,
+      "mean_ttft_seconds": 12.156545739620924,
+      "successful_requests": 64,
+      "tuning_records": []
+    },
+    {
+      "round": 2,
+      "duration_seconds": 58.299243179149926,
+      "total_tokens_per_second": 5620.6561548845475,
+      "output_tokens_per_second": 1124.1312309769096,
+      "mean_ttft_seconds": 9.949102839695115,
+      "successful_requests": 64,
+      "tuning_records": []
+    },
+    {
+      "round": 3,
+      "duration_seconds": 58.717004388105124,
+      "total_tokens_per_second": 5580.666170128757,
+      "output_tokens_per_second": 1116.1332340257513,
+      "mean_ttft_seconds": 10.247556341724703,
+      "successful_requests": 64,
+      "tuning_records": []
+    }
+  ],
+  "runtime_audit_passed": true,
+  "official_benchmark": false,
+  "adopted": false
+}
