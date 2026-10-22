@@ -1,0 +1,9 @@
+# QKV/O native INT8 — independent all42-bank prefill holdout
+
+Layer0 component passed full native/Triton integer+BF16 equality and independent CPU reconstruction. Select one NN physical weight layout per bank; dequant block1024 atM128/512,512 atM4096. Both QKV/O only these prefill sizes; M64 and all other rows are excluded. No quality-derived layer/sample whitelist.
+
+New independent BF16 inputs, seeds202610233000+M+phase, two phases, zero row. All42 real merged QKV and42 real O weights, full original BF16 retained, same signed-int8 per-output packing, exact CPU signatures. GPU checks full native INT32 and BF16 versus separate existing Triton NT diagnostic per bank. Independent CPU verifier reads original checkpoint, recomputes all84 W8/scales,8 selected rows/32 selected columns INT64 products and exact sequential scales/BF16, original BF16 FP64 bound. Save selected artifacts only. Verify full bank hashes at end, full inputs/RNG/canaries/source/checkpoint unchanged, and poisoned full42 graph outputs equal eager hashes per bank.
+
+Control explicit unchanged vendor BF16 mm. Measure seven alternating rounds x3 replay, QKV-only/O-only/combined-pair, normalized per layer. QKV and O here consume the same independent X, so combined-pair is a memory-traffic component screen, not attention/Transformer/full service throughput. No fabricated dependency or hidden model execution. Actual untouched-service routing and compilation behavior still require verification before promotion. Full C8/C64 Math>95% mandatory for any new model version.
+
+Freeze890 r2 model sources and controllers before GPU. Same private strict cache, all existing frozen bytes must remain exact. GPU40min max or23:58BJT. Model unexecuted, no official benchmark/adoption. Source/report/keyresults GitHub, raw arrays/cache container only. Prior failed Down screens and released r2 intact.
