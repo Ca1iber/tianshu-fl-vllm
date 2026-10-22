@@ -1,0 +1,84 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "no_GPU_imports": true,
+  "all84_original_and_W8_scale_hashes_recomputed": true,
+  "independent_INT64_exact_BF16_and_FP64_control_cells": 129024,
+  "artifacts_checked": 504,
+  "full_GPU_native_and_Triton_INT32_BF16_exact": true,
+  "full84_graph_poison_eager_exact": true,
+  "sources_snapshots_checkpoint_inputs_weights_RNG_canaries_verified": true,
+  "actual_service_route_not_yet_verified": true,
+  "model_executed": false,
+  "official_benchmark": false,
+  "adopted": false,
+  "new_full_C8_C64_Math_required": true,
+  "timings": [
+    {
+      "M": 128,
+      "scope": "QKV",
+      "BF16_ms_per_layer": 0.05347961092752124,
+      "INT8_ms_per_layer": 0.03254575577993241,
+      "speedup_pct": 64.32130594581724
+    },
+    {
+      "M": 128,
+      "scope": "O",
+      "BF16_ms_per_layer": 0.034938248376997695,
+      "INT8_ms_per_layer": 0.030161904910254098,
+      "speedup_pct": 15.835682397897187
+    },
+    {
+      "M": 128,
+      "scope": "combined_pair",
+      "BF16_ms_per_layer": 0.08801923479352679,
+      "INT8_ms_per_layer": 0.06282826453920395,
+      "speedup_pct": 40.09496432708883
+    },
+    {
+      "M": 512,
+      "scope": "QKV",
+      "BF16_ms_per_layer": 0.11040528615315755,
+      "INT8_ms_per_layer": 0.05153299891759479,
+      "speedup_pct": 114.24191968665372
+    },
+    {
+      "M": 512,
+      "scope": "O",
+      "BF16_ms_per_layer": 0.08828929113963294,
+      "INT8_ms_per_layer": 0.04363147417704264,
+      "speedup_pct": 102.3522991255878
+    },
+    {
+      "M": 512,
+      "scope": "combined_pair",
+      "BF16_ms_per_layer": 0.19886867583744108,
+      "INT8_ms_per_layer": 0.09742005666097005,
+      "speedup_pct": 104.13524961242912
+    },
+    {
+      "M": 4096,
+      "scope": "QKV",
+      "BF16_ms_per_layer": 0.49147433326357887,
+      "INT8_ms_per_layer": 0.3519414871458023,
+      "speedup_pct": 39.64660354463152
+    },
+    {
+      "M": 4096,
+      "scope": "O",
+      "BF16_ms_per_layer": 0.3871788751511347,
+      "INT8_ms_per_layer": 0.2939581492590526,
+      "speedup_pct": 31.71224411605975
+    },
+    {
+      "M": 4096,
+      "scope": "combined_pair",
+      "BF16_ms_per_layer": 0.8779146709139385,
+      "INT8_ms_per_layer": 0.6457324557834201,
+      "speedup_pct": 35.95641090222554
+    }
+  ],
+  "raw_directory": "/workspace/benchmark-results/20261022_native_int8_attention42_GPU_tianshu",
+  "raw_result_sha256": "091ce1b55efc5a9ded3b1a55be37681bce8af080c109d350f939cb38628be75f",
+  "key_timings_sha256": "e7830eb929d0578fb5f450695db2c4ddc23b871398988d99e68794c6a0728da8"
+}
