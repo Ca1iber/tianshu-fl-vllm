@@ -1,0 +1,11 @@
+# Native INT8 LM64 — frozen component study
+
+Baseline is the actual qualified M64 LM head: unchanged original 130560x2048 checkpoint weight, existing per-output W8 bank in NT physical layout, original dynamic row A8, selected Triton NT INT32 accumulation with BF16 dequant output. Existing config BM64/BN128/BK128/4warps/1stage and original dense kernel source. M8 remains BF16 and is out of scope.
+
+Candidate reuses the same W8 bank as its transposed view, torch._int_mm to INT32, then a new small dequant kernel that preserves the original sequential FP32 multiplication and BF16 rounding. No activation, no model weight/architecture change, no new weight layout/payload, no change in precision whitelist. INT32 scratch64*130560*4 = 33,423,360 bytes. Dequant sweep BLOCK256/512/1024/2048 x warps4/8; all8 configurations tested, no selection based on correctness failures.
+
+Three input/weight/scale phases using real original LM weights and deterministic BF16 inputs, including zero row and tail columns. Compare full integer accumulation and BF16 output to baseline diagnostics; require bit equality, not relaxed tolerance. Every candidate and baseline graph gets poisoned output and must equal eager; candidate integer is poisoned too and must fully equal diagnostic baseline. Full inputs/weights/scales/RNG and sentinels unchanged. CPU independently reconstructs all A8/scales and real W8, selected INT64 products and their exact BF16 projection. Save hashes of full outputs and small selected artifacts, raw stays in container.
+
+Seven alternating/rotating order rounds,20 calls per arm, separately graph/eager; record all8 variant medians plus baseline and native-int-only/dequant-only breakdowns (breakdown uses same buffers but is not a model throughput claim). Actual LM path is eager outside model graph, so prefer eager signal. Freeze source/plan before GPU and original checkpoint hashes before/after. GPU failure keeps source/raw intact; fixes new version directory. Independent fresh holdout needed before service; stable short4K >.5% plus fresh C8/C64 quality required before new official4K. No16K.
+
+Isolated cache and all qualified r1 sources frozen; no mutation of published version. Daily hard stop23:58 BJT. Source/report/keyresults only to Tianshu GitHub, all cache/raw only container.
