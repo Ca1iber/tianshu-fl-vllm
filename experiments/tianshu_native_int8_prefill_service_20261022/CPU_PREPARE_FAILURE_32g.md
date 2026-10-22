@@ -1,0 +1,5 @@
+# 初次CPU准备的symbolic测试断言错误
+
+6种静态真实fake dispatch先通过；symbolic输出测试误用Python对象is检查SymInt。同一符号表达式可被包装为不同Python对象，因此在开始profile准备前assert停止，没有初始化CUDA，也未启动任何GPU。原测试保存check_cpu_v1_failed.py，原raw目录保持。
+
+新CPU测试只改为比较两个SymInt的node.expr，验证符号表达式保存；不改变候选op/fake/FX或数值规则，重新使用新的CPU输出目录。GPU运行仍须完整冻结后独立验证。
