@@ -10,6 +10,8 @@ jq -e '.complete and .promotion_passed and .official_benchmark and .source_count
 gzip -n -9 -c "$results/CPU_COMPARISON_32g.json" > "$results/CPU_COMPARISON_32g.json.gz"
 comparison_sha=$(gzip -cd "$results/CPU_COMPARISON_32g.json.gz" | sha256sum);comparison_sha=${comparison_sha%% *}
 jq -e --arg h "$comparison_sha" '.CPU_comparison_sha256==$h' "$gate" >/dev/null
+jq -e '.all_inherited_runtime_and_new_Down_QKV_O_audits_recomputed and .source_count==903' "$gate" >/dev/null
+gzip -cd "$results/CPU_COMPARISON_32g.json.gz" | jq -e '.profile.actual_attention_M64_capture_native_banks==0 and .profile.new_attention_packed_payload_bytes==397135872 and (.profile.actual_attention_runtime_native_by_role|all(.banks==42 and .M4096_banks==42))' >/dev/null
 mkdir "$base/evidence"
 evidence_tmp=$(mktemp /tmp/tianshu-attention-evidence.XXXXXX)
 trap 'rm -f -- "$evidence_tmp"' EXIT
