@@ -1,0 +1,219 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "GPU_executed": false,
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_w4a8_group_nt_20261022/compile_cpu.py": "3bf8c3cb72b261d16a3b0b31c2e8ce3b4564bdb20989dfdbef9c65037093119c",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_w4a8_group_nt_20261022/kernel_w4a8.py": "6953e12244ccb09076dd596fc968ed5c3fc83db6c231140472c217549f9719e1"
+  },
+  "cases": [
+    {
+      "label": "tail_sym",
+      "compiled": true,
+      "cache_hash": "70d98a77a5bf7bf645dfae632f2bcc8c915998ab52e507d1747afa2fe7277144",
+      "integer_dot_TTIR": true,
+      "artifacts": {
+        "source": "5f61d48ea0f425219b9378093c0b583bece187a32aa00c2128bd699b039432a1",
+        "ttir": "9351fff58b9601238f897ce4b0d16c5654afe0d77142ca16b02f307ca67a55fb",
+        "ttgir": "830ecf8cc11e24ef92e6eff57a4c31ae67ea012b49d2d4f319ebaea0839d1dd3",
+        "llir": "8bab14ff8542e53a4e36f3f70f40f35fb75fadfbd46a8ca6155bf7bc738503f7",
+        "asm": "f17930436fdd43f109e637bc278fdb814bf9c406c7f5f06f2febb560521335ed",
+        "cubin": "393d512ff3ac415813682ad31911d03d59038c9c0791742d8fef669efdae9f6c"
+      },
+      "metadata": {
+        "allowed_dot_input_precisions": [
+          "tf32",
+          "tf32x3",
+          "ieee",
+          "bf16x3",
+          "bf16x6"
+        ],
+        "arch": "sm71",
+        "backend_name": "corex",
+        "debug": false,
+        "default_dot_input_precision": "tf32",
+        "deprecated_fp8_dot_operand_dtypes": [],
+        "enable_fp_fusion": true,
+        "enable_reflect_ftz": true,
+        "extern_libs": [
+          [
+            "libdevice",
+            "/usr/local/corex-4.5.0/nvvm/libdevice/libdevice.compute_bi.10.bc"
+          ]
+        ],
+        "global_scratch_align": 1,
+        "global_scratch_size": 0,
+        "hash": "70d98a77a5bf7bf645dfae632f2bcc8c915998ab52e507d1747afa2fe7277144",
+        "instrumentation_mode": "",
+        "ir_override": null,
+        "launch_cooperative_grid": false,
+        "launch_pdl": false,
+        "max_num_imprecise_acc_default": 0,
+        "maxnreg": null,
+        "name": "_matmul",
+        "num_ctas": 1,
+        "num_stages": 2,
+        "num_warps": 8,
+        "profile_scratch_align": 1,
+        "profile_scratch_size": 0,
+        "ptx_options": null,
+        "ptx_version": null,
+        "sanitize_overflow": true,
+        "shared": 12288,
+        "supported_fp8_dtypes": [
+          "fp8e4nv",
+          "fp8e5"
+        ],
+        "target": {
+          "backend": "corex",
+          "arch": 71,
+          "warp_size": 64
+        },
+        "tensordesc_meta": [],
+        "tmem_size": null,
+        "triton_version": "3.6.0",
+        "use_sme": 0,
+        "warp_size": 64
+      }
+    },
+    {
+      "label": "down_sym",
+      "compiled": true,
+      "cache_hash": "5059e5db582f0e0bb8b984cb4840da28be4f0e6389ff14548c3837fb61db9cbc",
+      "integer_dot_TTIR": true,
+      "artifacts": {
+        "source": "35cebfaa69a9c1dc787181ea57fd8c76a787df858a31b199be5659e26fbb0fe0",
+        "ttir": "b8885983c8cc3d3507a912c3f2dfa2b4e71cffc294492bb8007c3f1374b65f63",
+        "ttgir": "6f5cf0dc052c088d211e463ade658ae5225933be3e17750792cd66a5ae9e1397",
+        "llir": "e225969680df3798a92e228bed4ab3f9f63e7ff6067826f5e03d855c73a83a8b",
+        "asm": "e3f2d9383d1e2115899f8c047d78eb12327747debf4fbd186aa9536165320bb4",
+        "cubin": "1a0cba05a39f531081be78258d148924d02dc5b3e7d238b067bda74240c8b68a"
+      },
+      "metadata": {
+        "allowed_dot_input_precisions": [
+          "tf32",
+          "tf32x3",
+          "ieee",
+          "bf16x3",
+          "bf16x6"
+        ],
+        "arch": "sm71",
+        "backend_name": "corex",
+        "debug": false,
+        "default_dot_input_precision": "tf32",
+        "deprecated_fp8_dot_operand_dtypes": [],
+        "enable_fp_fusion": true,
+        "enable_reflect_ftz": true,
+        "extern_libs": [
+          [
+            "libdevice",
+            "/usr/local/corex-4.5.0/nvvm/libdevice/libdevice.compute_bi.10.bc"
+          ]
+        ],
+        "global_scratch_align": 1,
+        "global_scratch_size": 0,
+        "hash": "5059e5db582f0e0bb8b984cb4840da28be4f0e6389ff14548c3837fb61db9cbc",
+        "instrumentation_mode": "",
+        "ir_override": null,
+        "launch_cooperative_grid": false,
+        "launch_pdl": false,
+        "max_num_imprecise_acc_default": 0,
+        "maxnreg": null,
+        "name": "_matmul",
+        "num_ctas": 1,
+        "num_stages": 2,
+        "num_warps": 8,
+        "profile_scratch_align": 1,
+        "profile_scratch_size": 0,
+        "ptx_options": null,
+        "ptx_version": null,
+        "sanitize_overflow": true,
+        "shared": 12288,
+        "supported_fp8_dtypes": [
+          "fp8e4nv",
+          "fp8e5"
+        ],
+        "target": {
+          "backend": "corex",
+          "arch": 71,
+          "warp_size": 64
+        },
+        "tensordesc_meta": [],
+        "tmem_size": null,
+        "triton_version": "3.6.0",
+        "use_sme": 0,
+        "warp_size": 64
+      }
+    },
+    {
+      "label": "down_aff",
+      "compiled": true,
+      "cache_hash": "bbf25b9bb577dac82e7b31ec6283a23b1800024b607af331d3d41b4b4e42fecb",
+      "integer_dot_TTIR": true,
+      "artifacts": {
+        "source": "e30461fe9cb416754cea3d47b443edc9d335bf973b135407e30a8a23d1262881",
+        "ttir": "eeedf907be80e0a446833c50fef8357ed18af9522cc25c71b15f24a7a7a2b741",
+        "ttgir": "ff5133805577da9956274a2c59c76ff2d1a99f9adfc5217358002cd43b94c82d",
+        "llir": "b2cb1d4e61cb0a282683c405afcf966333a822238077383bc5ec2dc634df39c7",
+        "asm": "eb0f7e991b0e7d36b7f092e0b20501d220b32259530c04c80ff72c4aa3c41fa6",
+        "cubin": "e321639d6e346687d7a0aee6646e797f7cba2adb0af28237b82264b3d762cb3b"
+      },
+      "metadata": {
+        "allowed_dot_input_precisions": [
+          "tf32",
+          "tf32x3",
+          "ieee",
+          "bf16x3",
+          "bf16x6"
+        ],
+        "arch": "sm71",
+        "backend_name": "corex",
+        "debug": false,
+        "default_dot_input_precision": "tf32",
+        "deprecated_fp8_dot_operand_dtypes": [],
+        "enable_fp_fusion": true,
+        "enable_reflect_ftz": true,
+        "extern_libs": [
+          [
+            "libdevice",
+            "/usr/local/corex-4.5.0/nvvm/libdevice/libdevice.compute_bi.10.bc"
+          ]
+        ],
+        "global_scratch_align": 1,
+        "global_scratch_size": 0,
+        "hash": "bbf25b9bb577dac82e7b31ec6283a23b1800024b607af331d3d41b4b4e42fecb",
+        "instrumentation_mode": "",
+        "ir_override": null,
+        "launch_cooperative_grid": false,
+        "launch_pdl": false,
+        "max_num_imprecise_acc_default": 0,
+        "maxnreg": null,
+        "name": "_matmul",
+        "num_ctas": 1,
+        "num_stages": 2,
+        "num_warps": 8,
+        "profile_scratch_align": 1,
+        "profile_scratch_size": 0,
+        "ptx_options": null,
+        "ptx_version": null,
+        "sanitize_overflow": true,
+        "shared": 12288,
+        "supported_fp8_dtypes": [
+          "fp8e4nv",
+          "fp8e5"
+        ],
+        "target": {
+          "backend": "corex",
+          "arch": 71,
+          "warp_size": 64
+        },
+        "tensordesc_meta": [],
+        "tmem_size": null,
+        "triton_version": "3.6.0",
+        "use_sme": 0,
+        "warp_size": 64
+      }
+    }
+  ],
+  "runner_pid": 9973
+}

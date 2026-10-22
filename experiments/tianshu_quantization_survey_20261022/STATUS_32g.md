@@ -6,6 +6,6 @@
 
 原checkpoint未改、架构未转换、未训练。这些是weight-only运行时副本原型，单份压缩字节比不能视为引擎净显存节省。没有组件阳性时未浪费时间跑新模型Math或正式benchmark；尚无新模型正确率和正式吞吐成绩。
 
-IXKN首次导出异常保留；V2直接CSV成功并CPU审核105行/8section，完整候选输出与同一binary保持。V3原生控制也成功，103行/8section，应用前后selected输出一致。确认原生Down/M64实际使用16warps/2stage，旧量化候选主要4warps/1stage；实际指标提示并行度/资源配置差异。新12点只测Down/M64+尾部，包含原生同tile/threads/stages与邻点，正在组件验证，尚无结论。详见../tianshu_w8a16_native_tiles_20261022和两个有效profile报告。
+IXKN首次导出异常保留；V2直接CSV成功并CPU审核105行/8section，完整候选输出与同一binary保持。V3原生控制也成功，103行/8section，应用前后selected输出一致。确认原生Down/M64实际使用16warps/2stage，旧量化候选主要4warps/1stage；实际指标提示并行度/资源配置差异。新12点Down/M64+尾部全部通过独立审核；最快W8A16从旧0.226373ms降至0.090219ms，仍慢于BF16 0.058685ms，未采用。下一独立W4A8候选保留压缩权重、解包INT8走整数dot，48配置组件和每K块实际INT32证明正在运行。详见../tianshu_w8a16_native_tiles_20261022和两个有效profile报告。
 
 正式发布仍 **5695.95 total /1139.19 output tok/s，TTFT3663.77ms**；官方4K N256四轮排首轮，官方C8 Math103/105、实际C64补充101/105。当前任何量化原型不借用这些质量成绩。
