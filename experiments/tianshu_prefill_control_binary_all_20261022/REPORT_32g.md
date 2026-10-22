@@ -1,0 +1,9 @@
+# 全23个正式prefill控制与M64 cache准备完成
+
+两个AST完全相同设备来源、各独立cache共46次真实GPU编译/零输入执行，全部23个现用range M各找到与正式gate完整cubin SHA严格匹配的来源，RNG保持。保留全部46条匹配/不匹配记录，不以cache_hash相同冒充cubin相同。该任务只验证binary来源，不称为数值质量或性能评测。
+
+随后标准Bash复制选中23个cache索引到独立qualified_model_cache，另加入已通过真实M64完整组件审核的当前two_dot控制。独立CPU逐一核对24个完整cubin和metadata，冻结复制文件及group绝对引用的所有实际来源文件。旧/tmp与/root默认cache不修改。
+
+模型集成可显式使用QUALIFIED_MODEL_CACHE_32g.json中的TRITON_CACHE_DIR，并把该实际环境和缓存源hash纳入新profile审计；group仍引用本容器保存的来源路径，不能仅拷贝索引目录就宣称跨容器可复现。源目录也保存容器，丢失时必须用对应原始源码来源重建并逐点匹配。新服务还须真实fake/FX/Graph/profile_run与完整质量/性能验证，不能由cache准备通过升级正式成绩。
+
+合并cache只容器 `/workspace/benchmark-results/20261022_prefill_control_binary_all_GPU_tianshu/qualified_model_cache`；代码/46条结果/CPU cache清单/报告天数GitHub，无本地项目副本。

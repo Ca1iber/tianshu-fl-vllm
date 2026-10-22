@@ -11,3 +11,5 @@ native整数workspace是每调用临时torch.empty([M,12288],int32)，epilogue P
 CoreX控制cubin有debug路径问题：设备函数V1/V2 AST相同，但完整cubin不同。3点已复现M128取V1、M512/4096取V2，其余旧range warm共23M仍需严格匹配。新全23M来源复现任务将开始，见tianshu_prefill_control_binary_all_20261022；勿替换旧/tmp cache。可用匹配private cache对原range kernel的同一JIT对象做一次启动预热，确保后续其device_caches命中匹配binary；必要时在load_model期间42nd bank处理内完成。所有23M正收益原路径仍会在旧capture wrapper后warm，不能只处理新native两个M导致其他M校验失败。full-binary gate保留，GPU来源诊断不当模型质量或性能。
 
 优先复用已有服务candidate_profile/audit_profile和数值/route trace，冻结新增源、真实env、argv及正确继承旧Math门禁；新的Math必须fresh C8全105与实际C64全105>95%=至少100。短4K N64三轮排首轮，官方N256四轮仅在稳定>0.5%后；不要常测16K。每轮报告推GitHub，raw只容器，不在本机建工作副本。要核对所有生成/实际命中数值路径、GPU idle、source freeze和RNG，无法证明实际命中就不能声称收益。
+
+最新：全23M来源复现已完成(46次，严格全cubin匹配)，另与真实M64当前控制合并为24点private cache并独立CPU冻结，见 ../tianshu_prefill_control_binary_all_20261022/QUALIFIED_MODEL_CACHE_32g.json。路径 /workspace/benchmark-results/20261022_prefill_control_binary_all_GPU_tianshu/qualified_model_cache。可在新服务环境显式TRITON_CACHE_DIR指向它并纳入实际profile；group仍绝对引用本容器实际来源文件，已一并hash。不要假设仅复制索引可跨容器。若环境有效保持此cache，可能不必额外手动warm全23M，实际startup以binary严格审核为准。M64控制也已加入以避免相同源码路径cache碰撞。

@@ -15,3 +15,5 @@
 更新：大M V1因debug源码路径导致完整cubin不匹配，零计时case，已保留；独立来源复现+V2继续严格全binary校验，三个M全部GPU/独立CPU通过。NN/ROWS1完整GateUp：M512 0.261038→0.232177ms(+12.43%)，M4096 1.957708→1.493048ms(+31.12%)；M128负。优先NN复用现有bank，下一步固定NN/ROWS1的42bank含Down holdout，再决定真实服务与新Math。尚无新模型成绩，正式发布不变。详见 ../tianshu_native_int8_prefill_v2_20261022/REPORT_32g.md。
 
 更新：固定NN/ROWS1的42bank+Down holdout也已GPU与独立CPU通过，M512 0.535758→0.504657ms(+6.16%)，M4096 3.059375→2.591161ms(+18.07%)；不是完整Transformer或正式吞吐。见 ../tianshu_native_int8_mlp42_20261022/REPORT_32g.md。下一步真实FX/memory接入；已安排全部23个旧range控制来源复现，避免debug路径导致严格binary门禁失败。详细实施约束在该holdout目录NEXT_STEPS_32g.md，正式成绩和原模型保持。
+
+真实服务准备：全23个旧range点的46次来源复现完成，另加入原M64控制，共24个完整binary private cache通过CPU逐文件审核。没有启动真实vLLM服务或新Math/benchmark；下一步必须实现原生内存profile覆盖与FX实际路由，不能把该准备当模型成绩。
