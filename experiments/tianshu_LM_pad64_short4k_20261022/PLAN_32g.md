@@ -1,0 +1,9 @@
+# 原正式r3对照与LM32–64补齐候选短4K
+
+只在本925源/82质量控制器版本新C8/C64全105题独立核验均>95%后运行。对照精确原r3 903模型输入，候选925精确保留903源、仅新LM batch32..64补齐与FP32输出融合；原QKV/GU/Down/KV/scheduler/sampling不变。相同原13 serve argv、63环境变量，规范化目录后仅PYTHONPATH不同。
+
+两组各新服务固定N64/C64/4096输入/1024输出三轮排首轮、全部64响应/相同请求种子计入。独立CPU重算所有轮吞吐/TTFT与快照、质量门槛。保留原全部运行时审计，对照仍核验旧LM64路径；候选明确替换LM64 guard为新整数路由/原pack/CUBIN/显存证明，其余GU图重放/LM8 BF16/QKV-O/Down/KV/RNG/零抢占/无计时autotune检查保留。CPU预检确认两份legacy审计对象相互独立，不能把候选修改泄漏到对照或伪造旧LM64计数。
+
+候选新LM实际运行M范围、64命中与总调用记录；其他dtype/scale/bias及小批次沿用原_get_logits。没有新权重布局或全局workspace。短测只在>0.5%平均热轮吞吐、候选热轮极差<1%、TTFT<=对照1.01且所有审计通过后授权另建原N256四轮正式4K。不得按成绩原样重跑挑选，不跑16K，不提前采用。GPU串行，首GPU前冻结，2026-10-22T15:58Z硬停止并核验结束空闲。
+
+首次短测GPU前预检发现实际正式audit在nn_silu_fx_screen/dense_audit.py而不是旧lm_precision副本；改为独立恢复目录中的完整实际审计副本，只替换LM64 guard，真实GU helper与parent组合不改。CPU retry1验证对照仍用原文件、候选实际目标函数指向修正副本，旧失败预检与初始Gate保留。质量准入使用V2最终Gate，显式识别C64 CPU恢复/original_experiment_passed=false与原失败SHA，原82 GPU控制器及额外恢复控制器分开冻结；C8必须第一次新完整105题>95%。不将原C64 audit_failed改写成complete。

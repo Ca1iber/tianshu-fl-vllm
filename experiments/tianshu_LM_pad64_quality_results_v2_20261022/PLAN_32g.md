@@ -1,0 +1,9 @@
+# LM补齐双质量独立CPU核验
+
+925模型输入、82质量控制器与全部源快照、原r3 903源精确保留。每组完整105题report/review/prediction独立计分、API全部成功、无缺题，所有达到长度上限的题计入；读取实际分数，不借用旧版本。新LM/原r3 QKV-O/Down审计独立重算，其他继承审计由冻结原控制器完成，不冒称独立重跑。
+
+核验新LM真实原NT pack、组件CUBIN、实际loader/profile显存、实际整数64总计数>=100，旧LM64执行不再声称。用state.startup_contract新LM路由计数快照与最终计数作差，独立区分真实Math请求期间和启动探针：C64应实际命中64及新32..63范围；C8预期无新LM路由，不能用启动64探针冒称C8自然命中。原checkpoint SHA与原13 argv/63环境/结束空闲核验。
+
+默认两组完整后才生成model_quality_qualified，两组均严格>95%才授权短4K。--batches64只能在单独部分目录运行，不能把部分门槛覆盖最终目录或冒称双质量。纯标准库不导入GPU库，source/plan在相应后续GPU前冻结；原raw不改。
+
+V2在任何下游GPU前新增对C64 CPU审计恢复的显式支持，原初版verifier尚未执行且保留。C64原phase=audit_failed及原82控制器不改；恢复输出必须phase=CPU_recovery_complete/original_experiment_passed=false，核对原失败哈希、恢复Gate、全部5份恢复控制器及快照与实际新Math分支执行trace。C8仍是原冻结82控制器第一次真实运行，明确核验LM8 BF16、自然Math间隔无新LM路由；不要求C8未命中的LM64十次覆盖。C64保持原Math实际阈值10，正式保持100，不能把C64恢复伪装成原控制器成功。最终Gate分开列82 GPU控制器及额外CPU恢复源，全部105真实分数重计，不原样重测。
