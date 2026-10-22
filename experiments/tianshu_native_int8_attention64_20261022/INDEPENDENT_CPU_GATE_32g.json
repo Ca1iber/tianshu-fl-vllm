@@ -1,0 +1,43 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "no_GPU_imports": true,
+  "all84_original_and_W8_scale_hashes_recomputed": true,
+  "independent_INT64_exact_BF16_and_FP64_control_cells": 43008,
+  "artifacts_checked": 168,
+  "full_GPU_native_and_Triton_INT32_BF16_exact": true,
+  "full84_graph_poison_eager_exact": true,
+  "sources_snapshots_checkpoint_inputs_weights_RNG_canaries_verified": true,
+  "M64_service_wrapper_delegation_verified": true,
+  "actual_complete_service_not_yet_verified": true,
+  "model_executed": false,
+  "official_benchmark": false,
+  "adopted": false,
+  "new_full_C8_C64_Math_required": true,
+  "timings": [
+    {
+      "M": 64,
+      "scope": "QKV",
+      "BF16_ms_per_layer": 0.03444218635559082,
+      "INT8_ms_per_layer": 0.02860647156125023,
+      "speedup_pct": 20.39998110862975
+    },
+    {
+      "M": 64,
+      "scope": "O",
+      "BF16_ms_per_layer": 0.02582909190465534,
+      "INT8_ms_per_layer": 0.027064132311987496,
+      "speedup_pct": -4.563384456944597
+    },
+    {
+      "M": 64,
+      "scope": "combined_pair",
+      "BF16_ms_per_layer": 0.06011239309159536,
+      "INT8_ms_per_layer": 0.05543739455086844,
+      "speedup_pct": 8.432933363124096
+    }
+  ],
+  "raw_directory": "/workspace/benchmark-results/20261022_native_int8_attention64_GPU_tianshu",
+  "raw_result_sha256": "5ffb27eb339dc9105a4130d2ad74cc00713378b42949f159c48c55122fcb3c4e",
+  "key_timings_sha256": "97cec416c86590cf7e489cd6adcb06b05de8e3fe615cfed8c5de2eba0ba8c0c3"
+}
