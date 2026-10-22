@@ -18,6 +18,7 @@ def quality_gate(scope,sources=None):
 
 def prepare(root,mode,scope='prefill',check_quality=True):
  assert mode in ('control','candidate') and scope=='prefill';command,environment,profile,sources=(r2.prepare(root,'candidate','prefill') if mode=='control' else attention.prepare(root,'candidate'))
+ if mode=='control':published=read(EXP/'tianshu_native_int8_down_prefill_release_v2_20261022/serve_profile_template.json');assert sources==published['frozen_sources'] and command==published['server_command']
  if check_quality:quality_gate(scope,sources if mode=='candidate' else None)
  paths=set(BASE.glob('*.py'))|{BASE/'PLAN_32g.md',BASE/'run_pair.sh'};paths.update(Path(p) for p in read(EXP/'tianshu_native_int8_down_prefill_release_v2_20261022/serve_profile_template.json')['controller_sources']);paths.update((EXP/'tianshu_native_int8_attention_quality_20261022').glob('*.py'))
  if check_quality:paths.update({EXP/'tianshu_native_int8_attention_quality_results_20261022/QUALITY_GATE_32g.json',EXP/'tianshu_native_int8_attention_quality_results_20261022/verify_cpu.py',EXP/'tianshu_native_int8_attention_quality_results_20261022/PLAN_32g.md'})

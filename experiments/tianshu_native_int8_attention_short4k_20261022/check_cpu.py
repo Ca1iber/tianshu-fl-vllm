@@ -2,7 +2,7 @@
 import ast,json,sys
 from pathlib import Path
 from candidate_profile import BASE,prepare,digest,frozen_check,normalized_environment
-root=Path('/workspace/benchmark-results/20261022_native_int8_attention_short4k_CPU_tianshu');assert not root.exists();root.mkdir();arms={}
+root=Path('/workspace/benchmark-results/20261022_native_int8_attention_short4k_CPU_retry1_tianshu');assert not root.exists();root.mkdir();arms={}
 for path in BASE.glob('*.py'):ast.parse(path.read_text())
 for arm in ('control','candidate'):
  out=root/arm;out.mkdir();command,env,profile,sources=prepare(out,arm,'prefill',check_quality=False)
