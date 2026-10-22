@@ -1,0 +1,1135 @@
+{
+  "complete": true,
+  "phase": "complete",
+  "runner_pid": 11808,
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_a8_reciprocal_20261022/PLAN_CPU_32g.md": "ff39844c47ef9ac12697d17843472e9c543f8b138570b921fd9dd06216669ed0",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_a8_reciprocal_20261022/PLAN_GPU_32g.md": "71ecfd28d8f31bd2f54ce8fbef1a9c8160fdf78e4dd2b1e4f0cf62206b14eb36",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_a8_reciprocal_20261022/domain_cpu.py": "470d181694919f3db18547f584b9e8fba81583b9cc11a3e1c5182cf13ed73029",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_a8_reciprocal_20261022/analyze_cpu.py": "cb13061db95302b0d30979c57e5a73df5edbfd42e1ba3b19bf5790c556ffa126",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_a8_reciprocal_20261022/CPU_FORMULA_GATE_32g.json": "b445436fb3d0e425452a72950b4793915acad3df52703b835b57a10f1cb6ad59",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_a8_reciprocal_20261022/kernel.py": "27f4cee26f535f00c8a33507ad6fc716923954bc2a68c48c8e62649f5c25e544",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_a8_reciprocal_20261022/probe_gpu.py": "c125b5433b58dad939610c1fb735b288e30c4e81c6dfce1ed3f0e6d007d1bf3d",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_a8_reciprocal_20261022/verify_cpu.py": "0b95efab8ce842188392d0b0b147a94a34f41a6bae184cfc24c855c218ca7497",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_a8_reciprocal_20261022/compile_cpu.py": "93d6453d145b9d1c71f8084cff6501f2787006636bc51df13dcc2f3f99432b48",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_a8_reciprocal_20261022/OFFLINE_COMPILE_GATE_32g.json": "24810f846dac0d43e4ceec4a88e0e2c1dccb020887b4153b5047b0412cac3c37",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_a8_reciprocal_20261022/prepare_cpu.py": "80fb33e5034f1650b4c39a2e4ffe52b1c5350c63b2b417a31f78e6e7b3564605",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_w8a8_20261020/kernel.py": "b9b692cf561a35ef9c38d05d1edf7aa804436728923efa4800f914ff6b656152",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_int8_weight_nn_20261021/kernel_nn.py": "b432a10734f15f1f516c3394ed244456f8fb01355eb1f866c9eb4fda54871262"
+  },
+  "domain": {
+    "old": {
+      "compiled": {
+        "hash": "e4264ad43084b9a9773dc831403f55741a2886316684bb59b05bd900b11abcf3",
+        "binary_sha256": "2405c90228f7008c9ec2af7ecb2e705e2cfe93a438e6d618192ffe2916c6a038",
+        "n_regs": 30,
+        "n_spills": 0,
+        "shared": 16
+      },
+      "q_sha256": "06e7dd79aed7880cd295d1b24bde90897e8742e311143850bb0709a6ec5bffc2",
+      "scale_sha256": "41626a5e4497d0b3563b49e76e90001546d92ac01c0470a597ad3a37720976b3",
+      "graph_replayed": true
+    },
+    "half_div": {
+      "compiled": {
+        "hash": "d9c215a121565fcb43099843e2f91088c7fb6517113a115d02d71d47af71c4c5",
+        "binary_sha256": "bbd14cc42efaf4a62210a1732a0f07ef1f2cbe11b43ca9d1cdb5ec1847b6a231",
+        "n_regs": 41,
+        "n_spills": 0,
+        "shared": 16
+      },
+      "q_sha256": "06e7dd79aed7880cd295d1b24bde90897e8742e311143850bb0709a6ec5bffc2",
+      "scale_sha256": "41626a5e4497d0b3563b49e76e90001546d92ac01c0470a597ad3a37720976b3",
+      "graph_replayed": true
+    },
+    "half_fma": {
+      "compiled": {
+        "hash": "4bc4cb5180a2f02ddae08d28e074fbdffa79b3156434603a59be93f789bea559",
+        "binary_sha256": "56f8170381eb44cead54724b34f6a532ec3477f0d1ee85b324ea1719f07a6044",
+        "n_regs": 41,
+        "n_spills": 0,
+        "shared": 16
+      },
+      "q_sha256": "06e7dd79aed7880cd295d1b24bde90897e8742e311143850bb0709a6ec5bffc2",
+      "scale_sha256": "41626a5e4497d0b3563b49e76e90001546d92ac01c0470a597ad3a37720976b3",
+      "graph_replayed": true
+    },
+    "M": 19803,
+    "K": 4096,
+    "peaks": 19796,
+    "clamp_words": 25688,
+    "input_sha256": "a78641421a537562e001037ec511f058e486084623a65083cfb1228c988ae2b4",
+    "guards": true,
+    "input_unchanged": true,
+    "RNG_unchanged": true
+  },
+  "cases": [
+    {
+      "M": 8,
+      "K": 2048,
+      "strided": false,
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "M8_K2048_phase0.npz",
+          "sha256": "a56595a986db42c02e452ba189f47ddcaf4a195101280b3442a664a652690ff5",
+          "full_q_scale_equal": true,
+          "guards": true,
+          "RNG_unchanged": true,
+          "input_unchanged": true
+        },
+        {
+          "phase": 1,
+          "artifact": "M8_K2048_phase1.npz",
+          "sha256": "3007b9c5e33ad4565ae0a577ffb974dc120f64bbc0c5ebe4c5dc866b0f0dc7de",
+          "full_q_scale_equal": true,
+          "guards": true,
+          "RNG_unchanged": true,
+          "input_unchanged": true
+        },
+        {
+          "phase": 2,
+          "artifact": "M8_K2048_phase2.npz",
+          "sha256": "c01c36a91aca34e77f5a0a65c5fff653842b86aa03594f3730aa624fb44327bc",
+          "full_q_scale_equal": true,
+          "guards": true,
+          "RNG_unchanged": true,
+          "input_unchanged": true
+        }
+      ],
+      "compiled": {
+        "old": {
+          "hash": "3e8d4b88a66a8ee15ac065d9af7e810835577d480043dce3c6a58999ed16c638",
+          "binary_sha256": "073f341fd904e9a1aa0d9351d74177c9f747e20355fb104174c8486fe42faef9",
+          "n_regs": 19,
+          "n_spills": 0,
+          "shared": 16
+        },
+        "half_div": {
+          "hash": "3d327d14e398859d6949934cef9781e4acd8f5d467f562bea11afe7346644032",
+          "binary_sha256": "fa5323f91ef8b01418bcb975bd30713cfae6d23783c85f23d18d12a1b80c5ffd",
+          "n_regs": 32,
+          "n_spills": 0,
+          "shared": 16
+        },
+        "half_fma": {
+          "hash": "a44198ddb2c506242254b3d35c97bc2ec06b516bd676ab102dd30eb178ebdc90",
+          "binary_sha256": "a815fab56f22ffeeacb89fffd3d0c4144ceb618b3607a657fd01048afd6180ea",
+          "n_regs": 30,
+          "n_spills": 0,
+          "shared": 16
+        }
+      },
+      "complete": true
+    },
+    {
+      "M": 64,
+      "K": 2048,
+      "strided": false,
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "M64_K2048_phase0.npz",
+          "sha256": "987f4d19226ce523b535fb73d33a3084d356abddbaf9f6217043c2acbe897239",
+          "full_q_scale_equal": true,
+          "guards": true,
+          "RNG_unchanged": true,
+          "input_unchanged": true
+        },
+        {
+          "phase": 1,
+          "artifact": "M64_K2048_phase1.npz",
+          "sha256": "546a3f404a9f47e3908faa696d8f3087c25e935f417eed47c5ce31012e24a481",
+          "full_q_scale_equal": true,
+          "guards": true,
+          "RNG_unchanged": true,
+          "input_unchanged": true
+        },
+        {
+          "phase": 2,
+          "artifact": "M64_K2048_phase2.npz",
+          "sha256": "412a784e68b345967947a02919bc4de88a9cce7cf5b256a1a01a7e34a18aeb8d",
+          "full_q_scale_equal": true,
+          "guards": true,
+          "RNG_unchanged": true,
+          "input_unchanged": true
+        }
+      ],
+      "compiled": {
+        "old": {
+          "hash": "2ef557601981f420627166a505d36b24084c5cdb57b9f7e50c4806f6c5bfe684",
+          "binary_sha256": "073f341fd904e9a1aa0d9351d74177c9f747e20355fb104174c8486fe42faef9",
+          "n_regs": 19,
+          "n_spills": 0,
+          "shared": 16
+        },
+        "half_div": {
+          "hash": "ab331473df97b9f7537163f6e4f5e3f91d6365f74e731011374efad62fd3d619",
+          "binary_sha256": "fa5323f91ef8b01418bcb975bd30713cfae6d23783c85f23d18d12a1b80c5ffd",
+          "n_regs": 32,
+          "n_spills": 0,
+          "shared": 16
+        },
+        "half_fma": {
+          "hash": "861041d4b76c0e2f0c220c3cb51a1f4c81d6086db0dd65c889154e95b9bd6a92",
+          "binary_sha256": "a815fab56f22ffeeacb89fffd3d0c4144ceb618b3607a657fd01048afd6180ea",
+          "n_regs": 30,
+          "n_spills": 0,
+          "shared": 16
+        }
+      },
+      "complete": true
+    },
+    {
+      "M": 64,
+      "K": 6144,
+      "strided": false,
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "M64_K6144_phase0.npz",
+          "sha256": "cd537704a3c535a65b487da2fdf2e7ffb7857f960b44c215b3fa24f9c6b34202",
+          "full_q_scale_equal": true,
+          "guards": true,
+          "RNG_unchanged": true,
+          "input_unchanged": true
+        },
+        {
+          "phase": 1,
+          "artifact": "M64_K6144_phase1.npz",
+          "sha256": "661e0a5ad949e3e37801387433eea00a229d0dcef8c148bfa0c022a358176360",
+          "full_q_scale_equal": true,
+          "guards": true,
+          "RNG_unchanged": true,
+          "input_unchanged": true
+        },
+        {
+          "phase": 2,
+          "artifact": "M64_K6144_phase2.npz",
+          "sha256": "e8afb49c44334ccc71be1881d7af15a7e256c515d3fbcacb2744f4e76306ae97",
+          "full_q_scale_equal": true,
+          "guards": true,
+          "RNG_unchanged": true,
+          "input_unchanged": true
+        }
+      ],
+      "compiled": {
+        "old": {
+          "hash": "a9998ebcd6ed59adb95e935c56ec83bba657286fcd93abe0a8fe7a0e801d32d2",
+          "binary_sha256": "0a03830c354d34106d29b38e7c6d9ac48cb0a0118e2b97578490bfd1d866185f",
+          "n_regs": 40,
+          "n_spills": 0,
+          "shared": 16
+        },
+        "half_div": {
+          "hash": "71845a4576532a0e2e6d6b59765acd570ac989028453d32c12a7e1e8c02d352e",
+          "binary_sha256": "6d7e8fd3fad3273baa1a2f70ff51e16734a0e3c9fb66f15eb3379e5c9870b51c",
+          "n_regs": 59,
+          "n_spills": 0,
+          "shared": 16
+        },
+        "half_fma": {
+          "hash": "80542ea634218b9a794dafe05b898dc5628c2c2b614de71fa8f5ec7e684af740",
+          "binary_sha256": "519732aa8c9fc0a828ddca420ba7c287a8e6914edff86926cd970f7903fd6fbc",
+          "n_regs": 58,
+          "n_spills": 0,
+          "shared": 16
+        }
+      },
+      "complete": true
+    },
+    {
+      "M": 17,
+      "K": 259,
+      "strided": true,
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "M17_K259_phase0.npz",
+          "sha256": "f4b6576bd50df9440c40af01c9fdaff26a640a69a99fc2a2fe03fb9a9ce6c5e5",
+          "full_q_scale_equal": true,
+          "guards": true,
+          "RNG_unchanged": true,
+          "input_unchanged": true
+        },
+        {
+          "phase": 1,
+          "artifact": "M17_K259_phase1.npz",
+          "sha256": "427cbbf77975b2304f61a8929701c061e9900990370e43fb81c7a54e30eaac08",
+          "full_q_scale_equal": true,
+          "guards": true,
+          "RNG_unchanged": true,
+          "input_unchanged": true
+        },
+        {
+          "phase": 2,
+          "artifact": "M17_K259_phase2.npz",
+          "sha256": "11aa1608927c83b693bf69540a801e9c0e99af2c285e072ab8f38bfe9d5d4199",
+          "full_q_scale_equal": true,
+          "guards": true,
+          "RNG_unchanged": true,
+          "input_unchanged": true
+        }
+      ],
+      "compiled": {
+        "old": {
+          "hash": "29cd8ceee7219e41c2954c6bc5e38ccb6e4c4a5365aa229993ce0965f9b2cf5b",
+          "binary_sha256": "b38864ed1549081e687ab07482e78a436367dce57bac0b9676eb5ff89c685b77",
+          "n_regs": 11,
+          "n_spills": 0,
+          "shared": 16
+        },
+        "half_div": {
+          "hash": "b4d7c2b7e6d9d869a5a9626406764b49307478b05c5e1d945e833497fc700939",
+          "binary_sha256": "29548d29dfbbe9d76306997af957983861b0b073ab65ceb712d1243b84d9c0b7",
+          "n_regs": 15,
+          "n_spills": 0,
+          "shared": 16
+        },
+        "half_fma": {
+          "hash": "7989366ec463e1ad026e0b4c53c78d598acc9669fba81502414f9726f4de4653",
+          "binary_sha256": "f6667e4f17a6798e45c02484de992451fa064c435456edeb71dddde0ffb9e418",
+          "n_regs": 14,
+          "n_spills": 0,
+          "shared": 16
+        }
+      },
+      "complete": true
+    },
+    {
+      "M": 512,
+      "K": 2048,
+      "strided": false,
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "M512_K2048_phase0.npz",
+          "sha256": "5ab4144f1d763526b49aedef528bf08919ea332cd70f2b6b0e60e497f524c7d7",
+          "full_q_scale_equal": true,
+          "guards": true,
+          "RNG_unchanged": true,
+          "input_unchanged": true
+        },
+        {
+          "phase": 1,
+          "artifact": "M512_K2048_phase1.npz",
+          "sha256": "5a93f3b8beecff59f163f3eed26759b313efe845c3dfe031902ad56e40f85c46",
+          "full_q_scale_equal": true,
+          "guards": true,
+          "RNG_unchanged": true,
+          "input_unchanged": true
+        },
+        {
+          "phase": 2,
+          "artifact": "M512_K2048_phase2.npz",
+          "sha256": "b0975f396235e39e09e39e81358d02d62dfbb7b72c2404070fcc09605531f4dd",
+          "full_q_scale_equal": true,
+          "guards": true,
+          "RNG_unchanged": true,
+          "input_unchanged": true
+        }
+      ],
+      "compiled": {
+        "old": {
+          "hash": "0d465fc7b1492945ffee2b03231ec72a283a10b369107917a51b078495c3d570",
+          "binary_sha256": "2bb853b516266233471c8706b1adbe7633b9b0d594f0a59b8ac658fe0e1cef66",
+          "n_regs": 19,
+          "n_spills": 0,
+          "shared": 16
+        },
+        "half_div": {
+          "hash": "c2afbde763b5a227fc21fce31c0faa9c9f7fa5ae03b2e875aecd107628ef2b19",
+          "binary_sha256": "fa5323f91ef8b01418bcb975bd30713cfae6d23783c85f23d18d12a1b80c5ffd",
+          "n_regs": 32,
+          "n_spills": 0,
+          "shared": 16
+        },
+        "half_fma": {
+          "hash": "a76e96db29c3738acd029a388b3983b3c495e86df2b8f2b4b623a229bd80fc93",
+          "binary_sha256": "a815fab56f22ffeeacb89fffd3d0c4144ceb618b3607a657fd01048afd6180ea",
+          "n_regs": 30,
+          "n_spills": 0,
+          "shared": 16
+        }
+      },
+      "complete": true
+    },
+    {
+      "M": 4096,
+      "K": 2048,
+      "strided": false,
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "M4096_K2048_phase0.npz",
+          "sha256": "de8097a7a65930c593a6154cf7842272113e9ddc4ce69c4ff5f8f52521573254",
+          "full_q_scale_equal": true,
+          "guards": true,
+          "RNG_unchanged": true,
+          "input_unchanged": true
+        },
+        {
+          "phase": 1,
+          "artifact": "M4096_K2048_phase1.npz",
+          "sha256": "e00cd4b6047700e716df440a39fb72b62b4c6f172709bd71a4ae4ca4c12e6fc3",
+          "full_q_scale_equal": true,
+          "guards": true,
+          "RNG_unchanged": true,
+          "input_unchanged": true
+        },
+        {
+          "phase": 2,
+          "artifact": "M4096_K2048_phase2.npz",
+          "sha256": "26421ef925ab94ea0a9e327e11b8a4041614e8dac3f5f7e961ade2c6d82ea269",
+          "full_q_scale_equal": true,
+          "guards": true,
+          "RNG_unchanged": true,
+          "input_unchanged": true
+        }
+      ],
+      "compiled": {
+        "old": {
+          "hash": "edf4a7743bb525598bcc757b75dfaca678d1222c292c6335f44f3b8a7dfde502",
+          "binary_sha256": "073f341fd904e9a1aa0d9351d74177c9f747e20355fb104174c8486fe42faef9",
+          "n_regs": 19,
+          "n_spills": 0,
+          "shared": 16
+        },
+        "half_div": {
+          "hash": "63b557df15883307fe5da30a586cb2822c6756c339e75c89fc02dd5036d89f2c",
+          "binary_sha256": "fa5323f91ef8b01418bcb975bd30713cfae6d23783c85f23d18d12a1b80c5ffd",
+          "n_regs": 32,
+          "n_spills": 0,
+          "shared": 16
+        },
+        "half_fma": {
+          "hash": "3cef2a07b4d36a1ca6d5f2319b6cdf5249109ea65bac7db36cafe0280bd381ca",
+          "binary_sha256": "a815fab56f22ffeeacb89fffd3d0c4144ceb618b3607a657fd01048afd6180ea",
+          "n_regs": 30,
+          "n_spills": 0,
+          "shared": 16
+        }
+      },
+      "complete": true
+    }
+  ],
+  "rounds": [
+    {
+      "M": 8,
+      "K": 2048,
+      "round": 0,
+      "order": [
+        "old",
+        "half_div",
+        "half_fma"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "old": 0.0027521634474396706,
+        "half_div": 0.003073726035654545,
+        "half_fma": 0.0030757330358028414
+      }
+    },
+    {
+      "M": 8,
+      "K": 2048,
+      "round": 1,
+      "order": [
+        "old",
+        "half_fma",
+        "half_div"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "old": 0.0027522355318069457,
+        "half_fma": 0.003076286241412163,
+        "half_div": 0.003070781193673611
+      }
+    },
+    {
+      "M": 8,
+      "K": 2048,
+      "round": 2,
+      "order": [
+        "half_fma",
+        "old",
+        "half_div"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "half_fma": 0.0030765384435653687,
+        "old": 0.0027527643367648126,
+        "half_div": 0.003074411116540432
+      }
+    },
+    {
+      "M": 8,
+      "K": 2048,
+      "round": 3,
+      "order": [
+        "half_fma",
+        "half_div",
+        "old"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "half_fma": 0.0030957451090216637,
+        "half_div": 0.003073461540043354,
+        "old": 0.0027500960975885393
+      }
+    },
+    {
+      "M": 8,
+      "K": 2048,
+      "round": 4,
+      "order": [
+        "half_div",
+        "half_fma",
+        "old"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "half_div": 0.0030714541673660277,
+        "half_fma": 0.0030770191922783853,
+        "old": 0.0027507573366165163
+      }
+    },
+    {
+      "M": 8,
+      "K": 2048,
+      "round": 5,
+      "order": [
+        "half_div",
+        "old",
+        "half_fma"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "half_div": 0.0030719229951500894,
+        "old": 0.0027516946196556092,
+        "half_fma": 0.0030762137845158576
+      }
+    },
+    {
+      "M": 8,
+      "K": 2048,
+      "round": 6,
+      "order": [
+        "old",
+        "half_div",
+        "half_fma"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "old": 0.00275197122246027,
+        "half_div": 0.0030699759721755982,
+        "half_fma": 0.0030752643942832947
+      }
+    },
+    {
+      "M": 64,
+      "K": 2048,
+      "round": 0,
+      "order": [
+        "old",
+        "half_div",
+        "half_fma"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "old": 0.002959891967475414,
+        "half_div": 0.003259892016649246,
+        "half_fma": 0.003291093930602074
+      }
+    },
+    {
+      "M": 64,
+      "K": 2048,
+      "round": 1,
+      "order": [
+        "old",
+        "half_fma",
+        "half_div"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "old": 0.002959411218762398,
+        "half_fma": 0.0032903485000133513,
+        "half_div": 0.003259146586060524
+      }
+    },
+    {
+      "M": 64,
+      "K": 2048,
+      "round": 2,
+      "order": [
+        "half_fma",
+        "old",
+        "half_div"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "half_fma": 0.003290553018450737,
+        "old": 0.0029623556882143022,
+        "half_div": 0.0032592188566923142
+      }
+    },
+    {
+      "M": 64,
+      "K": 2048,
+      "round": 3,
+      "order": [
+        "half_fma",
+        "half_div",
+        "old"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "half_fma": 0.003290288522839546,
+        "half_div": 0.003259555250406265,
+        "old": 0.0029608292505145075
+      }
+    },
+    {
+      "M": 64,
+      "K": 2048,
+      "round": 4,
+      "order": [
+        "half_div",
+        "half_fma",
+        "old"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "half_div": 0.0032586175948381424,
+        "half_fma": 0.003291502222418785,
+        "old": 0.0029586900025606157
+      }
+    },
+    {
+      "M": 64,
+      "K": 2048,
+      "round": 5,
+      "order": [
+        "half_div",
+        "old",
+        "half_fma"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "half_div": 0.003258425369858742,
+        "old": 0.0029582811519503595,
+        "half_fma": 0.003290553018450737
+      }
+    },
+    {
+      "M": 64,
+      "K": 2048,
+      "round": 6,
+      "order": [
+        "old",
+        "half_div",
+        "half_fma"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "old": 0.0029623556882143022,
+        "half_div": 0.0032574761658906936,
+        "half_fma": 0.0032898195087909697
+      }
+    },
+    {
+      "M": 64,
+      "K": 6144,
+      "round": 0,
+      "order": [
+        "old",
+        "half_div",
+        "half_fma"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "old": 0.0045819591730833055,
+        "half_div": 0.005505673214793205,
+        "half_fma": 0.005538281053304672
+      }
+    },
+    {
+      "M": 64,
+      "K": 6144,
+      "round": 1,
+      "order": [
+        "old",
+        "half_fma",
+        "half_div"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "old": 0.0045812979340553285,
+        "half_fma": 0.005537944659590721,
+        "half_div": 0.005505204200744629
+      }
+    },
+    {
+      "M": 64,
+      "K": 6144,
+      "round": 2,
+      "order": [
+        "half_fma",
+        "old",
+        "half_div"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "half_fma": 0.005538076907396316,
+        "old": 0.004580757394433021,
+        "half_div": 0.005505865439772606
+      }
+    },
+    {
+      "M": 64,
+      "K": 6144,
+      "round": 3,
+      "order": [
+        "half_fma",
+        "half_div",
+        "old"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "half_fma": 0.005538750067353248,
+        "half_div": 0.005504795908927917,
+        "old": 0.004581490531563759
+      }
+    },
+    {
+      "M": 64,
+      "K": 6144,
+      "round": 4,
+      "order": [
+        "half_div",
+        "half_fma",
+        "old"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "half_div": 0.005501982942223549,
+        "half_fma": 0.005539218708872795,
+        "old": 0.004585384577512741
+      }
+    },
+    {
+      "M": 64,
+      "K": 6144,
+      "round": 5,
+      "order": [
+        "half_div",
+        "old",
+        "half_fma"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "half_div": 0.005503329262137413,
+        "old": 0.004582031071186066,
+        "half_fma": 0.005539819598197937
+      }
+    },
+    {
+      "M": 64,
+      "K": 6144,
+      "round": 6,
+      "order": [
+        "old",
+        "half_div",
+        "half_fma"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "old": 0.004581490531563759,
+        "half_div": 0.005504194647073746,
+        "half_fma": 0.005540348589420319
+      }
+    },
+    {
+      "M": 17,
+      "K": 259,
+      "round": 0,
+      "order": [
+        "old",
+        "half_div",
+        "half_fma"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "old": 0.0023272115737199782,
+        "half_div": 0.002463149093091488,
+        "half_fma": 0.0024524999782443045
+      }
+    },
+    {
+      "M": 17,
+      "K": 259,
+      "round": 1,
+      "order": [
+        "old",
+        "half_fma",
+        "half_div"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "old": 0.0023274758830666544,
+        "half_fma": 0.0024541707709431647,
+        "half_div": 0.00246054083108902
+      }
+    },
+    {
+      "M": 17,
+      "K": 259,
+      "round": 2,
+      "order": [
+        "half_fma",
+        "old",
+        "half_div"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "half_fma": 0.002454110607504845,
+        "old": 0.002327415719628334,
+        "half_div": 0.0024620791897177695
+      }
+    },
+    {
+      "M": 17,
+      "K": 259,
+      "round": 3,
+      "order": [
+        "half_fma",
+        "half_div",
+        "old"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "half_fma": 0.002453173138201237,
+        "half_div": 0.0024624759331345557,
+        "old": 0.0023260096088051794
+      }
+    },
+    {
+      "M": 17,
+      "K": 259,
+      "round": 4,
+      "order": [
+        "half_div",
+        "half_fma",
+        "old"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "half_div": 0.0024614062160253523,
+        "half_fma": 0.002453173138201237,
+        "old": 0.002326478436589241
+      }
+    },
+    {
+      "M": 17,
+      "K": 259,
+      "round": 5,
+      "order": [
+        "half_div",
+        "old",
+        "half_fma"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "half_div": 0.0024624759331345557,
+        "old": 0.002328341268002987,
+        "half_fma": 0.0024521034210920334
+      }
+    },
+    {
+      "M": 17,
+      "K": 259,
+      "round": 6,
+      "order": [
+        "old",
+        "half_div",
+        "half_fma"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "old": 0.0023265384137630464,
+        "half_div": 0.0024615984410047533,
+        "half_fma": 0.002453305386006832
+      }
+    },
+    {
+      "M": 512,
+      "K": 2048,
+      "round": 0,
+      "order": [
+        "old",
+        "half_div",
+        "half_fma"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "old": 0.006884470582008362,
+        "half_div": 0.00765562430024147,
+        "half_fma": 0.007691526412963867
+      }
+    },
+    {
+      "M": 512,
+      "K": 2048,
+      "round": 1,
+      "order": [
+        "old",
+        "half_fma",
+        "half_div"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "old": 0.0068831853568553925,
+        "half_fma": 0.007688641548156738,
+        "half_div": 0.007652620226144791
+      }
+    },
+    {
+      "M": 512,
+      "K": 2048,
+      "round": 2,
+      "order": [
+        "half_fma",
+        "old",
+        "half_div"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "half_fma": 0.007692452520132065,
+        "old": 0.006881982833147049,
+        "half_div": 0.007653016597032547
+      }
+    },
+    {
+      "M": 512,
+      "K": 2048,
+      "round": 3,
+      "order": [
+        "half_fma",
+        "half_div",
+        "old"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "half_fma": 0.0076947353780269625,
+        "half_div": 0.007652343809604644,
+        "old": 0.006881658732891083
+      }
+    },
+    {
+      "M": 512,
+      "K": 2048,
+      "round": 4,
+      "order": [
+        "half_div",
+        "half_fma",
+        "old"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "half_div": 0.007652079313993454,
+        "half_fma": 0.007692331820726395,
+        "old": 0.0068793751299381254
+      }
+    },
+    {
+      "M": 512,
+      "K": 2048,
+      "round": 5,
+      "order": [
+        "half_div",
+        "old",
+        "half_fma"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "half_div": 0.007650937885046005,
+        "old": 0.00688057690858841,
+        "half_fma": 0.007692728191614151
+      }
+    },
+    {
+      "M": 512,
+      "K": 2048,
+      "round": 6,
+      "order": [
+        "old",
+        "half_div",
+        "half_fma"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "old": 0.006880649179220199,
+        "half_div": 0.007651610672473908,
+        "half_fma": 0.007691106200218201
+      }
+    },
+    {
+      "M": 4096,
+      "K": 2048,
+      "round": 0,
+      "order": [
+        "old",
+        "half_div",
+        "half_fma"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "old": 0.0499716967344284,
+        "half_div": 0.05141906142234802,
+        "half_fma": 0.05118435025215149
+      }
+    },
+    {
+      "M": 4096,
+      "K": 2048,
+      "round": 1,
+      "order": [
+        "old",
+        "half_fma",
+        "half_div"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "old": 0.04993961453437805,
+        "half_fma": 0.051167082786560056,
+        "half_div": 0.05135336518287659
+      }
+    },
+    {
+      "M": 4096,
+      "K": 2048,
+      "round": 2,
+      "order": [
+        "half_fma",
+        "old",
+        "half_div"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "half_fma": 0.051202356815338135,
+        "old": 0.049962598085403445,
+        "half_div": 0.05135424137115478
+      }
+    },
+    {
+      "M": 4096,
+      "K": 2048,
+      "round": 3,
+      "order": [
+        "half_fma",
+        "half_div",
+        "old"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "half_fma": 0.05120089054107666,
+        "half_div": 0.05138639211654663,
+        "old": 0.04995722472667694
+      }
+    },
+    {
+      "M": 4096,
+      "K": 2048,
+      "round": 4,
+      "order": [
+        "half_div",
+        "half_fma",
+        "old"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "half_div": 0.05135630965232849,
+        "half_fma": 0.05117518305778503,
+        "old": 0.04995629787445068
+      }
+    },
+    {
+      "M": 4096,
+      "K": 2048,
+      "round": 5,
+      "order": [
+        "half_div",
+        "old",
+        "half_fma"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "half_div": 0.051377004384994505,
+        "old": 0.049939879775047304,
+        "half_fma": 0.05121193528175354
+      }
+    },
+    {
+      "M": 4096,
+      "K": 2048,
+      "round": 6,
+      "order": [
+        "old",
+        "half_div",
+        "half_fma"
+      ],
+      "nodes_per_graph": 32,
+      "replays": 10,
+      "milliseconds_per_quantization": {
+        "old": 0.049933391809463504,
+        "half_div": 0.05134828090667724,
+        "half_fma": 0.05122131109237671
+      }
+    }
+  ],
+  "model_executed": false,
+  "adopted": false,
+  "target": "GPUTarget(backend='corex', arch=71, warp_size=64)"
+}
