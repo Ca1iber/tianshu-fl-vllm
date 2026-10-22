@@ -1,0 +1,7 @@
+# Down prefill-only V2: official 4K conditional validation
+
+Only launch after exact-r1 versus candidate short4K N64 x3 (exclude1) passes >0.5% gain and candidate hot spread <1%, and fresh full105 C8/C64 quality both >95%. Candidate is unchanged frozen Down service V2, M128/512/4096 INT8; all other M BF16 through the original vendor mm module, with original three warm shapes required. Published r1 unchanged.
+
+Use original benchmark file/hash and original13 serve argv, original62 profile env + frozen TRITON_CACHE_DIR. Original benchmark cases [[4096,1024,64,256]], four rounds, exclude first only. Record explicit workload before execution so full inherited zero-preemption audit receives actual metadata. Preserve all original attention/KV/scheduler/sampling/M8/M64/LM/GateUp and new Down checks, including real4096 execution all42, M64 INT8 capture absent, local workspace, all42 load/profile, and restored real BF16 mm startup records. Fresh C8/C64 sources must equal actual890 sources; no reused prior accuracy.
+
+Output /workspace/benchmark-results/20261022_native_int8_down_prefill_official4k_v2_tianshu. Stop UTC 2026-10-22T15:58. Source/controller frozen before first GPU; any failure retains raw and code; fixes new version. Historical r1 formal 5777.22 total tok/s/3459.44ms is context, short same-run exact-r1 comparison decides entry. No16K. CPU final verification and report before any promotion.
