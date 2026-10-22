@@ -1,0 +1,7 @@
+# M64 grouped A8W8 v5 — actual service BF16 control and higher parallelism
+
+V4 tested2/4warps/stage1 and its~1%best whole-MLP gain used torch.mm, while the released service uses the faster vendor BF16 launcher. V5 freezes a new source directory, new JIT function names and independent fixture seed202610231500+M*10+phase before first GPU.
+
+Fixed16 variants G128/G512 x NT/NN x8/16warps x1/2stages, all BM64/BN64/BK128. Actual-service unchanged Iluvatar _launch_mm is the BF16 control; persistent M64 BF16 config is64x64x128/16warps/2stages. Same static W8 code/scales and dynamic groupA8. Candidate explicit FP32 FMA per group. Require full integer groups and full BF16 candidate exactly equal independent native _int_mm per group plus separate vector FMA reference, then independently CPU INT64/libm.fmaf reconstruct selected projections. No error tolerance relaxation. Full inputs/weights/RNG/canaries/source/checkpoint/graph-poison guards unchanged. Inherit and verify890 r2 sources exactly.
+
+Layer0 M64 two independent fixtures only,7 alternating rounds x10 calls,Down-only and whole MLP,eager/graph. Report actual-service comparison. No model/Math execution or promotion. Full42bank independent holdout and fresh full C8/C64 Math>95% remain mandatory before adoption. Resource/correctness failure preserves all frozen files and raw artifacts, fixes new version only. Max40min, hard stop23:58BJT. Code/reports/keyresults GitHub, all raw arrays/cache container.
