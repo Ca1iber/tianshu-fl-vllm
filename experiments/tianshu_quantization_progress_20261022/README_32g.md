@@ -42,3 +42,7 @@ CPU通道平衡仅使相关验证误差相对减少2.43%，没有独立随机hol
 ## 16:11：Down prefill-only V2 完整质量通过
 
 独立原始评审重算：C8 102/105（97.14%），C64 103/105（98.10%）。C8 本轮未实际命中 INT8 Down，C64 已核验 M128/4096 全42层真实调用，M64 仍 BF16。两份完整105均计分，C8 两个输出上限请求未剔除。详见 `tianshu_native_int8_down_prefill_quality_results_v2_20261022/REPORT_32g.md`。4K 短对照已启动，尚无候选吞吐结果，已发布 r1 不变。
+
+## 16:47：Down prefill V2 正式4K独立核验通过
+
+正式四轮 total tok/s =5731.84（剔除）/5912.19/5917.01/5905.14；汇总 **5911.45 total、1182.29 output tok/s，TTFT3305.80ms**。相对 r1 吞吐+2.3234%、TTFT-4.4412%，热轮波动0.2008%。1024请求全部成功，零抢占、服务就绪后无autotune，890模型输入及全部控制快照和继承运行核验通过CPU重核。新鲜 C8=102/105，C64=103/105。详见 `tianshu_native_int8_down_prefill_official_results_v2_20261022/REPORT_32g.md`。正在独立 r2 打包和CPU dry-run，原r1不覆盖，无16K复测。

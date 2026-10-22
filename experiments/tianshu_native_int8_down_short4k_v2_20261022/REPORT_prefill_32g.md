@@ -11,4 +11,6 @@
 
 候选额外保留约 504.33 MiB INT8 Down 权重和缩放，原 BF16 权重不删除；实际 KV 容量从 r1 的 642784 tokens 降到 621440 tokens。新分配和预热由 DeviceMemoryProfiler 计入。完整新鲜质量 C8=102/105、C64=103/105 已独立重核通过；C8 本轮未命中 INT8 Down，C64 已验证实际 M128/4096 全 42 层，没有混淆两档证据。
 
+同次短测后两轮平均 TTFT：r1 为 9498.28 ms，候选 8876.26 ms，降低约 6.55%。短测与原始正式客户端的到达序列不同，不横向比较两种客户端的 TTFT。
+
 这是 N64 短测，不是 N256 正式成绩。通过后才启动原始 N256 x4（剔除第一轮）正式 4K；尚未采用候选，没有重跑 16K。原始 JSON、逐请求结果、服务日志、路由和快照仅容器 `/workspace/benchmark-results/20261022_native_int8_down_prefill_short4k_v2_{control,candidate}_tianshu`。Git 保留代码、报告、关键 CSV 和 SCREEN_GATE。
