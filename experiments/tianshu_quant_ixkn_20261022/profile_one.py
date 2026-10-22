@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: Apache-2.0
 """Profile a proven exact fixture; CUDA profiler boundaries exclude preparation."""
-import argparse,csv,hashlib,importlib.util,json,os,signal,subprocess,sys
+import argparse,csv,hashlib,importlib.util,inspect,json,os,signal,subprocess,sys
 from datetime import datetime,timezone
 from pathlib import Path
 import numpy as np
@@ -30,6 +30,7 @@ def main():
   import torch,vllm_fl,flag_gems
   from safetensors import safe_open
   torch.set_num_threads(4);torch.backends.cuda.matmul.allow_tf32=False;assert getattr(flag_gems,'current_work_registrar',None) is None
+  result["actual_BF16_callable"]={"module":flag_gems.mm_out.__module__,"qualname":flag_gems.mm_out.__qualname__,"source":inspect.getsourcefile(flag_gems.mm_out)};save()
   fmt=load('_ixkn_formats',ROOT/'tianshu_quantization_survey_20261022/formats_cpu.py');kernel=load('_ixkn_candidate',experiment/kfile);nt=load('_ixkn_nt',ROOT/'tianshu_dense_w8a8_20261020/kernel.py')
   with np.load(raw/record['artifact'],allow_pickle=False) as src:fixture={key:src[key].copy() for key in src.files}
   a=torch.from_numpy(fixture['A_words']).view(torch.bfloat16).cuda();m,k=a.shape;n=case['N'];out=torch.empty((m,n),dtype=torch.bfloat16,device='cuda');flo=torch.empty((m,n),dtype=torch.float32,device='cuda')
