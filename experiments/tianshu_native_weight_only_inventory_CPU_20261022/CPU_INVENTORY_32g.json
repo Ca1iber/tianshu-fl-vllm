@@ -1,0 +1,149 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "CUDA_uninitialized": true,
+  "hardware_execution_not_tested": true,
+  "torch_version": "2.10.0",
+  "Torch_path": "/usr/local/lib/python3.12/site-packages/torch/__init__.py",
+  "meta_source": "/usr/local/lib/python3.12/site-packages/torch/_meta_registrations.py",
+  "meta_source_sha256": "c2c73d369f497bef4f63abced368badae6085deafe33e2e64c791e9c350ea3d7",
+  "operators": [
+    {
+      "operator": "aten::_convert_weight_to_int4pack",
+      "CUDA_dispatch_registered": true,
+      "CUDA_registration": [
+        "CUDA: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCUDA_0.cpp:16260 [kernel]"
+      ],
+      "schemas": [
+        "aten::_convert_weight_to_int4pack(Tensor self, int innerKTiles) -> Tensor"
+      ]
+    },
+    {
+      "operator": "aten::_convert_weight_to_int4pack_for_cpu",
+      "CUDA_dispatch_registered": false,
+      "CUDA_registration": [],
+      "schemas": [
+        "aten::_convert_weight_to_int4pack_for_cpu(Tensor self, int innerKTiles) -> Tensor"
+      ]
+    },
+    {
+      "operator": "aten::_int_mm",
+      "CUDA_dispatch_registered": true,
+      "CUDA_registration": [
+        "CUDA: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCUDA_0.cpp:16227 [kernel]"
+      ],
+      "schemas": [
+        "aten::_int_mm(Tensor self, Tensor mat2) -> Tensor",
+        "aten::_int_mm.out(Tensor self, Tensor mat2, *, Tensor(a!) out) -> Tensor(a!)"
+      ]
+    },
+    {
+      "operator": "aten::_scaled_mm",
+      "CUDA_dispatch_registered": true,
+      "CUDA_registration": [
+        "CUDA: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCUDA_0.cpp:24376 [kernel]"
+      ],
+      "schemas": [
+        "aten::_scaled_mm(Tensor self, Tensor mat2, Tensor scale_a, Tensor scale_b, Tensor? bias=None, Tensor? scale_result=None, ScalarType? out_dtype=None, bool use_fast_accum=False) -> Tensor",
+        "aten::_scaled_mm.out(Tensor self, Tensor mat2, Tensor scale_a, Tensor scale_b, Tensor? bias=None, Tensor? scale_result=None, ScalarType? out_dtype=None, bool use_fast_accum=False, *, Tensor(a!) out) -> Tensor(a!)"
+      ]
+    },
+    {
+      "operator": "aten::_scaled_mm_v2",
+      "CUDA_dispatch_registered": true,
+      "CUDA_registration": [
+        "CUDA: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCUDA_0.cpp:24427 [kernel]"
+      ],
+      "schemas": [
+        "aten::_scaled_mm_v2.out(Tensor self, Tensor mat2, Tensor[] scale_a, int[] recipe_a, int[] swizzle_a, Tensor[] scale_b, int[] recipe_b, int[] swizzle_b, Tensor? bias, ScalarType? out_dtype, int[] contraction_dim=[], bool use_fast_accum=False, *, Tensor(a!) out) -> Tensor(a!)",
+        "aten::_scaled_mm_v2(Tensor self, Tensor mat2, Tensor[] scale_a, int[] recipe_a, int[] swizzle_a, Tensor[] scale_b, int[] recipe_b, int[] swizzle_b, Tensor? bias, ScalarType? out_dtype, int[] contraction_dim=[], bool use_fast_accum=False) -> Tensor"
+      ]
+    },
+    {
+      "operator": "aten::_weight_int4pack_mm",
+      "CUDA_dispatch_registered": true,
+      "CUDA_registration": [
+        "CUDA: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCUDA_0.cpp:16287 [kernel]"
+      ],
+      "schemas": [
+        "aten::_weight_int4pack_mm(Tensor self, Tensor mat2, int qGroupSize, Tensor qScaleAndZeros) -> Tensor"
+      ]
+    },
+    {
+      "operator": "aten::_weight_int4pack_mm_awq",
+      "CUDA_dispatch_registered": true,
+      "CUDA_registration": [
+        "CUDA: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCUDA_0.cpp:16344 [kernel]"
+      ],
+      "schemas": [
+        "aten::_weight_int4pack_mm_awq(Tensor self, Tensor mat2, int qGroupSize, Tensor qScale, Tensor qZero, Tensor? bias=None, str? activation=None) -> Tensor"
+      ]
+    },
+    {
+      "operator": "aten::_weight_int4pack_mm_dotsaddz",
+      "CUDA_dispatch_registered": true,
+      "CUDA_registration": [
+        "CUDA: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCUDA_0.cpp:16315 [kernel]"
+      ],
+      "schemas": [
+        "aten::_weight_int4pack_mm_dotsaddz(Tensor self, Tensor mat2, int qGroupSize, Tensor qScale, Tensor qZero, *, int size_n=0, Tensor? bias=None, str? activation=None) -> Tensor"
+      ]
+    },
+    {
+      "operator": "aten::_weight_int4pack_mm_for_cpu",
+      "CUDA_dispatch_registered": false,
+      "CUDA_registration": [],
+      "schemas": [
+        "aten::_weight_int4pack_mm_for_cpu(Tensor self, Tensor mat2, int qGroupSize, Tensor qScaleAndZeros) -> Tensor"
+      ]
+    },
+    {
+      "operator": "aten::_weight_int4pack_mm_with_scales_and_zeros",
+      "CUDA_dispatch_registered": false,
+      "CUDA_registration": [],
+      "schemas": [
+        "aten::_weight_int4pack_mm_with_scales_and_zeros(Tensor self, Tensor mat2, int qGroupSize, Tensor qScale, Tensor qZeros) -> Tensor"
+      ]
+    },
+    {
+      "operator": "aten::_weight_int8pack_mm",
+      "CUDA_dispatch_registered": true,
+      "CUDA_registration": [
+        "CUDA: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCUDA_0.cpp:16371 [kernel]"
+      ],
+      "schemas": [
+        "aten::_weight_int8pack_mm(Tensor self, Tensor mat2, Tensor scales) -> Tensor"
+      ]
+    },
+    {
+      "operator": "aten::fbgemm_linear_int8_weight",
+      "CUDA_dispatch_registered": false,
+      "CUDA_registration": [
+        "CUDA: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeImplicitAutograd_0.cpp:6141 [math kernel]"
+      ],
+      "schemas": [
+        "aten::fbgemm_linear_int8_weight(Tensor input, Tensor weight, Tensor packed, Tensor col_offsets, Scalar weight_scale, Scalar weight_zero_point, Tensor bias) -> Tensor"
+      ]
+    },
+    {
+      "operator": "aten::fbgemm_linear_int8_weight_fp32_activation",
+      "CUDA_dispatch_registered": false,
+      "CUDA_registration": [
+        "CUDA: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCompositeImplicitAutograd_0.cpp:6118 [math kernel]"
+      ],
+      "schemas": [
+        "aten::fbgemm_linear_int8_weight_fp32_activation(Tensor input, Tensor weight, Tensor packed, Tensor col_offsets, Scalar weight_scale, Scalar weight_zero_point, Tensor bias) -> Tensor"
+      ]
+    },
+    {
+      "operator": "quantized::int4mm_packed_weight_cpu",
+      "CUDA_dispatch_registered": false,
+      "CUDA_registration": [],
+      "schemas": [
+        "quantized::int4mm_packed_weight_cpu(Tensor self, Tensor mat2, Tensor qGroupSize, Tensor qScaleAndZeros) -> Tensor"
+      ]
+    }
+  ],
+  "model_read": false,
+  "adopted": false
+}
