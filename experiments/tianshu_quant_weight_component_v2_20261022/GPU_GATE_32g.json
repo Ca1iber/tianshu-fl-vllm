@@ -1,0 +1,5432 @@
+{
+  "complete": true,
+  "phase": "complete",
+  "runner_pid": 932,
+  "started_at_utc": "2026-10-22T01:22:18.175479+00:00",
+  "frozen_sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_quant_weight_component_v2_20261022/PLAN_32g.md": "e993d21ff39fb437d234edd3f602a7068598dd846445fedef6a6f702c15caab3",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_quant_weight_component_v2_20261022/probe_gpu.py": "5e55f91763820d2bffddec3cafe36ed24c9dd9a3db9e309bb318f952d278a153",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_quant_weight_component_v2_20261022/verify_cpu.py": "dab3f15ed0c926d4d15fd42d229c1d53ef3fcc458a1f3420ccd2f9543f05e499",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_quant_weight_component_v2_20261022/prepare_cpu.py": "caa39c1ee8f5e9c8c7f67ad4e7be071774f7c05aaa59c29b6a87697e09aadba0",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_quantization_survey_20261022/formats_cpu.py": "63f97d66763b50b3a42611ebab4f6c7cca30d1bc74111f6968dc794f766af5c3",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_quantization_survey_20261022/kernel_weight_only.py": "20653258d72c759828dc3b45f28dc13d8d79d7139600ab19772e10daba7b2523",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_quantization_survey_20261022/CPU_SURVEY_GATE_32g.json": "b1fd4d352f37a7101c9c5058c4b2b904533fc4dbfdad7fb4a52e2126153c128d",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_quantization_survey_20261022/RESERVATION_20261022.md": "63152b5654a4ccd22757d41e7f7845d07340520f7b79ec2ef19b71afa374985e",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_w8a8_20261020/kernel.py": "b9b692cf561a35ef9c38d05d1edf7aa804436728923efa4800f914ff6b656152",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_w8a8_20261020/GPU_GATE_32g.json": "e52d84b3d067f0c84dc6e8e179ffbb68654981cc32d9927c0cc2bdb6a4196f0c",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_quant_weight_component_v2_20261022/diagnose_decode.py": "9b2eb35a8869b48e744766c338e02aa3d59c14b2a2faa0b67d8ecf7dfaa19b63",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_quant_weight_component_v2_20261022/SIGNED_ZERO_DIAGNOSIS_32g.json": "9b6b1c192725b00aa2fbb5a508e7a578ce2e5ac27585dd0cb11809a87fe5f019",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_quant_weight_component_v2_20261022/V1_FAILURE_32g.md": "8577d197eb2d234da49254d2e06019fbc80c998578226ef0cd720d4e3d9db887"
+  },
+  "checkpoint_sha256_before": "14fb8e7f0a18d53d1f239773758bf581cee7e456a4523a54622c3a245b64402c",
+  "model_executed": false,
+  "official_benchmark": false,
+  "adopted": false,
+  "cases": [
+    {
+      "role": "tail",
+      "format": "W4_sym128",
+      "M": 17,
+      "N": 131,
+      "K": 259,
+      "tile_id": 0,
+      "configuration": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "tail_W4_sym128_M17_tile0_phase0.npz",
+          "sha256": "4a305d056db54276c27e4c9cc69f1b82db879c9312e8e4cd6a0361d0b4c858c5",
+          "full_GPU_FP32_max_error": 4.76837158203125e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "tail_W4_sym128_M17_tile0_phase1.npz",
+          "sha256": "17a2be04a84f961ad15d9459563739cf29338e40fd6c62bf8795551cbdd8d720",
+          "full_GPU_FP32_max_error": 2.384185791015625e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "tail_W4_sym128_M17_tile0_phase2.npz",
+          "sha256": "d21ee188ff141fc6e0320de45ce14dbbb37dab9eb1daf2dcedf9d454be2df57a",
+          "full_GPU_FP32_max_error": 1.1920928955078125e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "806b1655d6a61421f13964528a6503908aa5baedcbbbfeb60b602770a1b557e5",
+        "binary_sha256": "cc2636923549e517fbc6c70172552c7cd31f31167fd1fd254586f7b776d2f6c3",
+        "n_regs": 55,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "diagnostic_compiled": {
+        "hash": "552ed30381514339e7046767e3027d78475cd1438fc155ed1842398ee83bc9c6",
+        "binary_sha256": "b96b927652e05316db45aa8e6233f918947b6d83eeabd41409cfb51013325eaf",
+        "n_regs": 55,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "tail",
+      "format": "W4_sym128",
+      "M": 17,
+      "N": 131,
+      "K": 259,
+      "tile_id": 1,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "tail_W4_sym128_M17_tile1_phase0.npz",
+          "sha256": "4a305d056db54276c27e4c9cc69f1b82db879c9312e8e4cd6a0361d0b4c858c5",
+          "full_GPU_FP32_max_error": 4.76837158203125e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "tail_W4_sym128_M17_tile1_phase1.npz",
+          "sha256": "17a2be04a84f961ad15d9459563739cf29338e40fd6c62bf8795551cbdd8d720",
+          "full_GPU_FP32_max_error": 2.384185791015625e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "tail_W4_sym128_M17_tile1_phase2.npz",
+          "sha256": "d21ee188ff141fc6e0320de45ce14dbbb37dab9eb1daf2dcedf9d454be2df57a",
+          "full_GPU_FP32_max_error": 1.1920928955078125e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "b6e981c06c5c944148a1663c39ff7fcfe0f63ccc70e855b31139bda9a7f5bcaf",
+        "binary_sha256": "76368c2a4dbf42c194bfb168b4116d05818dd5bcc6d0cbfac3796ef1663d34e4",
+        "n_regs": 126,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "diagnostic_compiled": {
+        "hash": "f51d8835473a7dd4bcd7b5b6dd1bb0e24a688a30bb034c592e30d4a894370ca1",
+        "binary_sha256": "056b3eacd52df005b0781a1f0d3c475da09c636645b731f55e8e944ea9cdce80",
+        "n_regs": 126,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "tail",
+      "format": "W4_sym128",
+      "M": 17,
+      "N": 131,
+      "K": 259,
+      "tile_id": 2,
+      "configuration": {
+        "bm": 16,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "tail_W4_sym128_M17_tile2_phase0.npz",
+          "sha256": "4a305d056db54276c27e4c9cc69f1b82db879c9312e8e4cd6a0361d0b4c858c5",
+          "full_GPU_FP32_max_error": 4.76837158203125e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "tail_W4_sym128_M17_tile2_phase1.npz",
+          "sha256": "17a2be04a84f961ad15d9459563739cf29338e40fd6c62bf8795551cbdd8d720",
+          "full_GPU_FP32_max_error": 2.384185791015625e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "tail_W4_sym128_M17_tile2_phase2.npz",
+          "sha256": "d21ee188ff141fc6e0320de45ce14dbbb37dab9eb1daf2dcedf9d454be2df57a",
+          "full_GPU_FP32_max_error": 1.1920928955078125e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "fb54085f2698b9df7550d7aac4498b9543e840b5662c31e79639e5479096b894",
+        "binary_sha256": "f12c0e6b8a4d2f4afe50253ed88fc7db3d71f24ea962d51d97e932343057e917",
+        "n_regs": 118,
+        "n_spills": 0,
+        "shared": 36864
+      },
+      "diagnostic_compiled": {
+        "hash": "e754aa69c1760e9c02997473f05d79a30b4d744f843073e1e6b6a4f125bd8481",
+        "binary_sha256": "418f0594f51e5bf78d8adfe5809dab0619e693a1ce14154e8ea10fbb00b2dc48",
+        "n_regs": 118,
+        "n_spills": 0,
+        "shared": 36864
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "tail",
+      "format": "W4_aff128",
+      "M": 17,
+      "N": 131,
+      "K": 259,
+      "tile_id": 0,
+      "configuration": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "tail_W4_aff128_M17_tile0_phase0.npz",
+          "sha256": "c7313e4d0f5b9621d040035d5725406e19a9d022e808b7214f29141ef4254eab",
+          "full_GPU_FP32_max_error": 9.5367431640625e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "tail_W4_aff128_M17_tile0_phase1.npz",
+          "sha256": "094ae7488919cf5a2b2e401775f5f807afa1e61f6843a52d43f3385a34731baf",
+          "full_GPU_FP32_max_error": 4.76837158203125e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "tail_W4_aff128_M17_tile0_phase2.npz",
+          "sha256": "d358ba4ed5dac4404f7f90be0f3b6cba4ddfa7cbac6b32603ba4999dacddcc14",
+          "full_GPU_FP32_max_error": 2.384185791015625e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "95e52db7351cc71d004dcb2017426e873c4b4896a4214eb580443909bcba8e4a",
+        "binary_sha256": "f0a85db3d0bab5cef4331a7b5bedc3fc922a5702fdd5acac8bb4438c4aca4fef",
+        "n_regs": 56,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "diagnostic_compiled": {
+        "hash": "fdad075ee2ee29011df141cf1e76b2dccb4fdcd20cc0109374eb2e4e254c2f68",
+        "binary_sha256": "df24bf164715872c7f690835e41bdc7eac2b629dd981beaf5f56d245d4328a98",
+        "n_regs": 56,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "tail",
+      "format": "W4_aff128",
+      "M": 17,
+      "N": 131,
+      "K": 259,
+      "tile_id": 1,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "tail_W4_aff128_M17_tile1_phase0.npz",
+          "sha256": "c7313e4d0f5b9621d040035d5725406e19a9d022e808b7214f29141ef4254eab",
+          "full_GPU_FP32_max_error": 9.5367431640625e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "tail_W4_aff128_M17_tile1_phase1.npz",
+          "sha256": "094ae7488919cf5a2b2e401775f5f807afa1e61f6843a52d43f3385a34731baf",
+          "full_GPU_FP32_max_error": 4.76837158203125e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "tail_W4_aff128_M17_tile1_phase2.npz",
+          "sha256": "d358ba4ed5dac4404f7f90be0f3b6cba4ddfa7cbac6b32603ba4999dacddcc14",
+          "full_GPU_FP32_max_error": 2.384185791015625e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "513c7dd4310b894526b229f8191d7f722c05cc0d7fa1f4278933e5e71c748867",
+        "binary_sha256": "de2b27f61dbf6d28f7240766b4d5384ee28efe9e8d96b40387aea06b746a5f61",
+        "n_regs": 171,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "diagnostic_compiled": {
+        "hash": "810f5fb38d13c598e455b376f851bb6315e463d070c4574ba5220133c8fdb2f9",
+        "binary_sha256": "7718cb73bcd4bc4c4edf3205b004f2c08d9ce686633e9e273cfdec6f083cd8de",
+        "n_regs": 171,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "tail",
+      "format": "W4_aff128",
+      "M": 17,
+      "N": 131,
+      "K": 259,
+      "tile_id": 2,
+      "configuration": {
+        "bm": 16,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "tail_W4_aff128_M17_tile2_phase0.npz",
+          "sha256": "c7313e4d0f5b9621d040035d5725406e19a9d022e808b7214f29141ef4254eab",
+          "full_GPU_FP32_max_error": 9.5367431640625e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "tail_W4_aff128_M17_tile2_phase1.npz",
+          "sha256": "094ae7488919cf5a2b2e401775f5f807afa1e61f6843a52d43f3385a34731baf",
+          "full_GPU_FP32_max_error": 4.76837158203125e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "tail_W4_aff128_M17_tile2_phase2.npz",
+          "sha256": "d358ba4ed5dac4404f7f90be0f3b6cba4ddfa7cbac6b32603ba4999dacddcc14",
+          "full_GPU_FP32_max_error": 2.384185791015625e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "74bfcbe3a4f630b313859095676638b985478203f6f682fcc6799c2910340c07",
+        "binary_sha256": "eef83c4c3674ecbf35502efeae417016c7f160e91225a1753d029225d868c337",
+        "n_regs": 163,
+        "n_spills": 0,
+        "shared": 36864
+      },
+      "diagnostic_compiled": {
+        "hash": "0882428e72c62147547b90b15f51c78a88c5dcefb209b633b8625bcaa303bd38",
+        "binary_sha256": "86d0d9e911f7a81cf5e0861580857dfc31d0c0eadff5830f6ec81d2f5b4c016e",
+        "n_regs": 163,
+        "n_spills": 0,
+        "shared": 36864
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "tail",
+      "format": "W8_channel",
+      "M": 17,
+      "N": 131,
+      "K": 259,
+      "tile_id": 0,
+      "configuration": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "tail_W8_channel_M17_tile0_phase0.npz",
+          "sha256": "dbd988d3e10e95f92f75d8dc5afa0a754e4fa5edd8cd9b23f7b3310c9cd99795",
+          "full_GPU_FP32_max_error": 7.152557373046875e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "tail_W8_channel_M17_tile0_phase1.npz",
+          "sha256": "805fe0353ad8bd0b0ceab1682d02194d860798c195cf52ccb5a164759a243ba4",
+          "full_GPU_FP32_max_error": 3.5762786865234375e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "tail_W8_channel_M17_tile0_phase2.npz",
+          "sha256": "fea918de351d02b7a83d8637da55301ff3e3b69512a5c70ebc6b77fe2a750809",
+          "full_GPU_FP32_max_error": 1.7881393432617188e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "36453c9361bb7685caa125ec365a0deb9fcebf67bbadf3f76bb40602ea00f34f",
+        "binary_sha256": "3a3bee1a81f3cbface9f002281db3f592a24b48b12678ad7816faac322659e96",
+        "n_regs": 47,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "diagnostic_compiled": {
+        "hash": "e8a71bd48c7757292e89b9361b4fea55dce584d4ef01d4898db2b37a9df9eedd",
+        "binary_sha256": "b7a492d76ce097fe092cbd17422c1f345d3d285b595a609cd7bbb706d6c40ef4",
+        "n_regs": 47,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "tail",
+      "format": "W8_channel",
+      "M": 17,
+      "N": 131,
+      "K": 259,
+      "tile_id": 1,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "tail_W8_channel_M17_tile1_phase0.npz",
+          "sha256": "dbd988d3e10e95f92f75d8dc5afa0a754e4fa5edd8cd9b23f7b3310c9cd99795",
+          "full_GPU_FP32_max_error": 7.152557373046875e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "tail_W8_channel_M17_tile1_phase1.npz",
+          "sha256": "805fe0353ad8bd0b0ceab1682d02194d860798c195cf52ccb5a164759a243ba4",
+          "full_GPU_FP32_max_error": 3.5762786865234375e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "tail_W8_channel_M17_tile1_phase2.npz",
+          "sha256": "fea918de351d02b7a83d8637da55301ff3e3b69512a5c70ebc6b77fe2a750809",
+          "full_GPU_FP32_max_error": 1.7881393432617188e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "ff763b27798849591a133ed0f50192863dee34353791875cbabb2a0abe38339b",
+        "binary_sha256": "1084e0dfcd33a55e6ae799c06ab02f4da3a461d409bd92e987b35a153e374eec",
+        "n_regs": 90,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "diagnostic_compiled": {
+        "hash": "47c5ade398a10fff0bb236b7c63405737434cc2ce2256af771b4f54ab49b3960",
+        "binary_sha256": "bc0c2a917a323d9fbad89e9ad8f83a1270e22822a3323829fcd0709aff1f3bfa",
+        "n_regs": 90,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "tail",
+      "format": "W8_channel",
+      "M": 17,
+      "N": 131,
+      "K": 259,
+      "tile_id": 2,
+      "configuration": {
+        "bm": 16,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "tail_W8_channel_M17_tile2_phase0.npz",
+          "sha256": "dbd988d3e10e95f92f75d8dc5afa0a754e4fa5edd8cd9b23f7b3310c9cd99795",
+          "full_GPU_FP32_max_error": 7.152557373046875e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "tail_W8_channel_M17_tile2_phase1.npz",
+          "sha256": "805fe0353ad8bd0b0ceab1682d02194d860798c195cf52ccb5a164759a243ba4",
+          "full_GPU_FP32_max_error": 3.5762786865234375e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "tail_W8_channel_M17_tile2_phase2.npz",
+          "sha256": "fea918de351d02b7a83d8637da55301ff3e3b69512a5c70ebc6b77fe2a750809",
+          "full_GPU_FP32_max_error": 1.7881393432617188e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "34205fd63b23b0f150fbf777e5ca392e67815a3213a3d7b7a9aa5501dd2e408e",
+        "binary_sha256": "151b0588762a48a9f15db0ef1c60d3799a50a293fb54d292c72da46da5766560",
+        "n_regs": 82,
+        "n_spills": 0,
+        "shared": 36864
+      },
+      "diagnostic_compiled": {
+        "hash": "d94bfdef56ee64c1c40fd55bda9c9bb10ab2622dff77fe67e2b1afbc64704321",
+        "binary_sha256": "b410149d69af6856a28a42f0cd63dbc6470ce3b98312be7f66b143cdf078091b",
+        "n_regs": 83,
+        "n_spills": 0,
+        "shared": 36864
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "down",
+      "format": "W4_sym128",
+      "M": 8,
+      "N": 2048,
+      "K": 6144,
+      "tile_id": 0,
+      "configuration": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "down_W4_sym128_M8_tile0_phase0.npz",
+          "sha256": "3fb9ab1e3ce49b571128804903b7db4bf64a508ab4639b7a312e7e5ac73884d6",
+          "full_GPU_FP32_max_error": 9.775161743164062e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "down_W4_sym128_M8_tile0_phase1.npz",
+          "sha256": "bce2f8b30a54195976447e798299a327a44b15d334b34e8e056759523d32fe3b",
+          "full_GPU_FP32_max_error": 4.887580871582031e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "down_W4_sym128_M8_tile0_phase2.npz",
+          "sha256": "7d3598c617c573a402867cb323668233d1059c0774b4edea9e25b02d80d67b5a",
+          "full_GPU_FP32_max_error": 2.4437904357910156e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "b96db74a558fb006289e104659fe4db55b97caddc3f75547b9b4454628858206",
+        "binary_sha256": "ca8059015c37607ccd609637f904f61347623d64243690efd8341c5f527a25e7",
+        "n_regs": 56,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "diagnostic_compiled": {
+        "hash": "9ec7e3a47e0da9d188c7e822eabc7c9c0dc436748b53829fbdf5895491e0aa84",
+        "binary_sha256": "cbe628f254215bf2eedf2360ae14e066fa4b8fd4ebd88815fc189b3587ae2297",
+        "n_regs": 57,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "down",
+      "format": "W4_sym128",
+      "M": 8,
+      "N": 2048,
+      "K": 6144,
+      "tile_id": 1,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "down_W4_sym128_M8_tile1_phase0.npz",
+          "sha256": "3fb9ab1e3ce49b571128804903b7db4bf64a508ab4639b7a312e7e5ac73884d6",
+          "full_GPU_FP32_max_error": 9.775161743164062e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "down_W4_sym128_M8_tile1_phase1.npz",
+          "sha256": "bce2f8b30a54195976447e798299a327a44b15d334b34e8e056759523d32fe3b",
+          "full_GPU_FP32_max_error": 4.887580871582031e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "down_W4_sym128_M8_tile1_phase2.npz",
+          "sha256": "7d3598c617c573a402867cb323668233d1059c0774b4edea9e25b02d80d67b5a",
+          "full_GPU_FP32_max_error": 2.4437904357910156e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "5a42d8ad2db3e6f911cb3c86101bfec21574e506d63a42012d9cd5ec2f0df707",
+        "binary_sha256": "84a943410967349530bccc428031a7f087c33f2a92b140055ae1c50bd429294b",
+        "n_regs": 101,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "diagnostic_compiled": {
+        "hash": "074e3fd8fc93bcc103174f885c88479ad4cd1ce108dad8bc434b146aa9792994",
+        "binary_sha256": "d64cad4a910b27ff95fef12c93785b5101d2efe2275247e33ccf1e83148821c7",
+        "n_regs": 101,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "down",
+      "format": "W4_sym128",
+      "M": 8,
+      "N": 2048,
+      "K": 6144,
+      "tile_id": 2,
+      "configuration": {
+        "bm": 16,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "down_W4_sym128_M8_tile2_phase0.npz",
+          "sha256": "3fb9ab1e3ce49b571128804903b7db4bf64a508ab4639b7a312e7e5ac73884d6",
+          "full_GPU_FP32_max_error": 9.775161743164062e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "down_W4_sym128_M8_tile2_phase1.npz",
+          "sha256": "bce2f8b30a54195976447e798299a327a44b15d334b34e8e056759523d32fe3b",
+          "full_GPU_FP32_max_error": 4.887580871582031e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "down_W4_sym128_M8_tile2_phase2.npz",
+          "sha256": "7d3598c617c573a402867cb323668233d1059c0774b4edea9e25b02d80d67b5a",
+          "full_GPU_FP32_max_error": 2.4437904357910156e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "8375ae3372aca395a3bdb1567691065e4924651ef091cb10a94be55cb8749163",
+        "binary_sha256": "acae47c12bb248bbf195be1cbac0e5107b6a164e1a6bc43294e1160ccbacc452",
+        "n_regs": 93,
+        "n_spills": 0,
+        "shared": 36864
+      },
+      "diagnostic_compiled": {
+        "hash": "fb25d61f152bb6ef88998e1977b05fbeeab0d6860d4f856c8d71c1b706b4bd89",
+        "binary_sha256": "973bb82bd13ae1fbc1b56257358e171ad63123a81e509577d4c00dc1fc6db411",
+        "n_regs": 93,
+        "n_spills": 0,
+        "shared": 36864
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "down",
+      "format": "W4_sym128",
+      "M": 64,
+      "N": 2048,
+      "K": 6144,
+      "tile_id": 0,
+      "configuration": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "down_W4_sym128_M64_tile0_phase0.npz",
+          "sha256": "c70554670fc4514700f3ed23aa543ff0fcbb5a9ed369203fd03ed5137483f341",
+          "full_GPU_FP32_max_error": 1.049041748046875e-05,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "down_W4_sym128_M64_tile0_phase1.npz",
+          "sha256": "eb5cf0c562bc5ed8afb21cd2c0cfe2f4828b0b0458e77fab41116c803834baa6",
+          "full_GPU_FP32_max_error": 5.245208740234375e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "down_W4_sym128_M64_tile0_phase2.npz",
+          "sha256": "95f880f4b23b8308ed06f79120c79911561796283f4cc53f7c052a47900f7faa",
+          "full_GPU_FP32_max_error": 2.6226043701171875e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "c0887bbdb9322e7fc2c989a85f1ad3916d36fff69a2b36439b6eba8ab3a00dcb",
+        "binary_sha256": "479de2545c484cbb0c83cda9bc8670268a2ecb7b018e2029f8c5ad6ecc083c64",
+        "n_regs": 81,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "diagnostic_compiled": {
+        "hash": "3c3ce33d0f3add49e5da0253484ec43381e8aa202addb29fe86ed4f265463db0",
+        "binary_sha256": "ff4ee42c88b9b14b442d259fde879d6fdc2e7a408197af04b380ebbdf04593fb",
+        "n_regs": 82,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "down",
+      "format": "W4_sym128",
+      "M": 64,
+      "N": 2048,
+      "K": 6144,
+      "tile_id": 1,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "down_W4_sym128_M64_tile1_phase0.npz",
+          "sha256": "c70554670fc4514700f3ed23aa543ff0fcbb5a9ed369203fd03ed5137483f341",
+          "full_GPU_FP32_max_error": 1.049041748046875e-05,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "down_W4_sym128_M64_tile1_phase1.npz",
+          "sha256": "eb5cf0c562bc5ed8afb21cd2c0cfe2f4828b0b0458e77fab41116c803834baa6",
+          "full_GPU_FP32_max_error": 5.245208740234375e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "down_W4_sym128_M64_tile1_phase2.npz",
+          "sha256": "95f880f4b23b8308ed06f79120c79911561796283f4cc53f7c052a47900f7faa",
+          "full_GPU_FP32_max_error": 2.6226043701171875e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "bfc28edc14c17837cf60b90a52e29623d8a7e58ba486ef8b2525f47176502183",
+        "binary_sha256": "53230fa72cfd8597ee7dc2557e42ae33f47b927151ba56c427dda5557431f7ab",
+        "n_regs": 126,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "diagnostic_compiled": {
+        "hash": "5036306fcff18d87e83430f5535e672c698d81cc2dd568fa7e4680ac99db3589",
+        "binary_sha256": "8acdc85abf16160717da26222598d4635994d7de4af8175a91aebd8aa83f9e97",
+        "n_regs": 126,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "down",
+      "format": "W4_sym128",
+      "M": 64,
+      "N": 2048,
+      "K": 6144,
+      "tile_id": 2,
+      "configuration": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "down_W4_sym128_M64_tile2_phase0.npz",
+          "sha256": "c70554670fc4514700f3ed23aa543ff0fcbb5a9ed369203fd03ed5137483f341",
+          "full_GPU_FP32_max_error": 1.049041748046875e-05,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "down_W4_sym128_M64_tile2_phase1.npz",
+          "sha256": "eb5cf0c562bc5ed8afb21cd2c0cfe2f4828b0b0458e77fab41116c803834baa6",
+          "full_GPU_FP32_max_error": 5.245208740234375e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "down_W4_sym128_M64_tile2_phase2.npz",
+          "sha256": "95f880f4b23b8308ed06f79120c79911561796283f4cc53f7c052a47900f7faa",
+          "full_GPU_FP32_max_error": 2.6226043701171875e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "d3453ab65918665fb18d03c7dcf5744eff8cba6752b4d1fbd3b3f3f71db2c76c",
+        "binary_sha256": "f94585c559335d192ca256b7b20cb47f9aa8b0a5f49102fe2d075ae87a9af4cc",
+        "n_regs": 141,
+        "n_spills": 0,
+        "shared": 49152
+      },
+      "diagnostic_compiled": {
+        "hash": "09bcc5c985458c8db967c2e3583d0b55243b676c73889eac39d7217c61f5217d",
+        "binary_sha256": "d4c077e02d93ad864f02329b1e7738f227c21fda64d1d5c160f7cd06fccc465d",
+        "n_regs": 142,
+        "n_spills": 0,
+        "shared": 49152
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "down",
+      "format": "W4_aff128",
+      "M": 8,
+      "N": 2048,
+      "K": 6144,
+      "tile_id": 0,
+      "configuration": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "down_W4_aff128_M8_tile0_phase0.npz",
+          "sha256": "11a35fb4835175b3fd970f456ec7577db6c4d39816c52fa52085d77bfbcc82ff",
+          "full_GPU_FP32_max_error": 8.106231689453125e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "down_W4_aff128_M8_tile0_phase1.npz",
+          "sha256": "271c474590f4c398ddd6420283af8c053e94fdd8b5abe7abebaec78ec4c933ac",
+          "full_GPU_FP32_max_error": 4.0531158447265625e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "down_W4_aff128_M8_tile0_phase2.npz",
+          "sha256": "2ea37d86a811321b4e79cb7c26feb9949764086d5044b90722a9b5e2d845e443",
+          "full_GPU_FP32_max_error": 2.0265579223632812e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "7206cc6aa1b6a86997a959e95e5415ac5d023ab9f9747926c19844eef9e17241",
+        "binary_sha256": "15bc0eb28667a040bb439717a57019402975beb5f36158a94e440b33a1290e51",
+        "n_regs": 86,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "diagnostic_compiled": {
+        "hash": "add24402c849e56f4babcc87b87708590bc31602ada3832ee4b3c8f1332dbcef",
+        "binary_sha256": "156c7cd608c3f1f9c3bd9eec98f7709d0b7a019aaecefc6c4e745edcd770f400",
+        "n_regs": 87,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "down",
+      "format": "W4_aff128",
+      "M": 8,
+      "N": 2048,
+      "K": 6144,
+      "tile_id": 1,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "down_W4_aff128_M8_tile1_phase0.npz",
+          "sha256": "11a35fb4835175b3fd970f456ec7577db6c4d39816c52fa52085d77bfbcc82ff",
+          "full_GPU_FP32_max_error": 8.106231689453125e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "down_W4_aff128_M8_tile1_phase1.npz",
+          "sha256": "271c474590f4c398ddd6420283af8c053e94fdd8b5abe7abebaec78ec4c933ac",
+          "full_GPU_FP32_max_error": 4.0531158447265625e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "down_W4_aff128_M8_tile1_phase2.npz",
+          "sha256": "2ea37d86a811321b4e79cb7c26feb9949764086d5044b90722a9b5e2d845e443",
+          "full_GPU_FP32_max_error": 2.0265579223632812e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "cd9c9dff71c080ba09967708a3fe65083504091a5d1157ba26d8a7597f8b8822",
+        "binary_sha256": "678ad67ab78bd188aa3f42162a567219fbe946850c54db292e78534f77984fc6",
+        "n_regs": 147,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "diagnostic_compiled": {
+        "hash": "698c260ebed5e9108a13e3cea6d3fda053f92d0cae5ba763e4315c15a3682015",
+        "binary_sha256": "8b3340893961313a23837f5329e94db6df2572b1f19e9933cc4443ca54734959",
+        "n_regs": 147,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "down",
+      "format": "W4_aff128",
+      "M": 8,
+      "N": 2048,
+      "K": 6144,
+      "tile_id": 2,
+      "configuration": {
+        "bm": 16,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "down_W4_aff128_M8_tile2_phase0.npz",
+          "sha256": "11a35fb4835175b3fd970f456ec7577db6c4d39816c52fa52085d77bfbcc82ff",
+          "full_GPU_FP32_max_error": 8.106231689453125e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "down_W4_aff128_M8_tile2_phase1.npz",
+          "sha256": "271c474590f4c398ddd6420283af8c053e94fdd8b5abe7abebaec78ec4c933ac",
+          "full_GPU_FP32_max_error": 4.0531158447265625e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "down_W4_aff128_M8_tile2_phase2.npz",
+          "sha256": "2ea37d86a811321b4e79cb7c26feb9949764086d5044b90722a9b5e2d845e443",
+          "full_GPU_FP32_max_error": 2.0265579223632812e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "febab3626429805cc3ae5b9f20cf26c3eff7973f30ec0becae83c27a5faf0bfa",
+        "binary_sha256": "60fdb64a10af4a8c28dec44e5ff3d488c09db80b0ab24afa41ad12c5910e70ca",
+        "n_regs": 136,
+        "n_spills": 0,
+        "shared": 36864
+      },
+      "diagnostic_compiled": {
+        "hash": "72917da969e33580a603cb8304a6ae8e3ad2145791d48fdd78b08f1a41d0e242",
+        "binary_sha256": "e718dc669d9c9bf647de1d436ca57a77115bc183d9f411b9f7af844fa798cb3e",
+        "n_regs": 136,
+        "n_spills": 0,
+        "shared": 36864
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "down",
+      "format": "W4_aff128",
+      "M": 64,
+      "N": 2048,
+      "K": 6144,
+      "tile_id": 0,
+      "configuration": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "down_W4_aff128_M64_tile0_phase0.npz",
+          "sha256": "8f18f6ff25ef3a6e6b2001622681ed278c0cf8c1e51d7f89b1f011552b8f1920",
+          "full_GPU_FP32_max_error": 1.52587890625e-05,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "down_W4_aff128_M64_tile0_phase1.npz",
+          "sha256": "5002ff2269649af64b49e27b3791a63cee9c899afff043a758bc9efd814e603a",
+          "full_GPU_FP32_max_error": 7.62939453125e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "down_W4_aff128_M64_tile0_phase2.npz",
+          "sha256": "8c5df848275ff6df766500505de5fdf48eaf0ed64d1ee035407d2175696b19d4",
+          "full_GPU_FP32_max_error": 3.814697265625e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "89d02752ba34b19f941171494fc0a8f3810b3ed4e2c63e27d2b711e3e0ffa9e3",
+        "binary_sha256": "853b570d5a0122daf219897389690f188de8b03a59a9dda45b6dd272fd467302",
+        "n_regs": 85,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "diagnostic_compiled": {
+        "hash": "7459ccc81787b17674ef1ab7cd64c6fc0d809e1943186379ffc795374a26a78e",
+        "binary_sha256": "4803ab9c49d04640bd8832ad046120d6b0ddc67aff51ee2fd378ad8428e061bc",
+        "n_regs": 86,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "down",
+      "format": "W4_aff128",
+      "M": 64,
+      "N": 2048,
+      "K": 6144,
+      "tile_id": 1,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "down_W4_aff128_M64_tile1_phase0.npz",
+          "sha256": "8f18f6ff25ef3a6e6b2001622681ed278c0cf8c1e51d7f89b1f011552b8f1920",
+          "full_GPU_FP32_max_error": 1.52587890625e-05,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "down_W4_aff128_M64_tile1_phase1.npz",
+          "sha256": "5002ff2269649af64b49e27b3791a63cee9c899afff043a758bc9efd814e603a",
+          "full_GPU_FP32_max_error": 7.62939453125e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "down_W4_aff128_M64_tile1_phase2.npz",
+          "sha256": "8c5df848275ff6df766500505de5fdf48eaf0ed64d1ee035407d2175696b19d4",
+          "full_GPU_FP32_max_error": 3.814697265625e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "c6fab091184cc600ffe7dc577395bb5e415b2d2ebfe5bd4d8ce61fd092481901",
+        "binary_sha256": "69ddef8ad6daa4dac28b3055918abcbd704400ae5bb3c52c65271ba276247d3f",
+        "n_regs": 140,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "diagnostic_compiled": {
+        "hash": "13d5e0dd8cf0834f71e0b0c4f2af7d2fbce62716107fb31421d19457952e0df1",
+        "binary_sha256": "037f700b1e4b0470da891786b7ed164dfa10f1fb1125a2352756491d1029c55d",
+        "n_regs": 140,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "down",
+      "format": "W4_aff128",
+      "M": 64,
+      "N": 2048,
+      "K": 6144,
+      "tile_id": 2,
+      "configuration": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "down_W4_aff128_M64_tile2_phase0.npz",
+          "sha256": "8f18f6ff25ef3a6e6b2001622681ed278c0cf8c1e51d7f89b1f011552b8f1920",
+          "full_GPU_FP32_max_error": 1.52587890625e-05,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "down_W4_aff128_M64_tile2_phase1.npz",
+          "sha256": "5002ff2269649af64b49e27b3791a63cee9c899afff043a758bc9efd814e603a",
+          "full_GPU_FP32_max_error": 7.62939453125e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "down_W4_aff128_M64_tile2_phase2.npz",
+          "sha256": "8c5df848275ff6df766500505de5fdf48eaf0ed64d1ee035407d2175696b19d4",
+          "full_GPU_FP32_max_error": 3.814697265625e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "8b59d5ed5ff3ac8ff4e4da2e2ef27e28a6fe1010a3925266e51bbdd3bf90919a",
+        "binary_sha256": "b818b4a2f6b95ea4e98e1626586ab91fc4eecb685856e7eec3381c77d503627e",
+        "n_regs": 156,
+        "n_spills": 0,
+        "shared": 49152
+      },
+      "diagnostic_compiled": {
+        "hash": "ac9334012817897b78ee0fc9b4fe1e949741aa6a3f1124443e79b60c7fa61c14",
+        "binary_sha256": "bfca5c22bcc6968f5068e8871da8eff6d601ca4d434c708ffce2915f951637e5",
+        "n_regs": 156,
+        "n_spills": 0,
+        "shared": 49152
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "down",
+      "format": "W8_channel",
+      "M": 8,
+      "N": 2048,
+      "K": 6144,
+      "tile_id": 0,
+      "configuration": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "down_W8_channel_M8_tile0_phase0.npz",
+          "sha256": "653c0767512043f17cedf7876d55f8e2cecefb6dfd38b756036d64dfeffbed0c",
+          "full_GPU_FP32_max_error": 1.049041748046875e-05,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "down_W8_channel_M8_tile0_phase1.npz",
+          "sha256": "41a2bd93708cc84db44d3f7ca5107542dffb0737d589b060c29ef96b49890a37",
+          "full_GPU_FP32_max_error": 5.245208740234375e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "down_W8_channel_M8_tile0_phase2.npz",
+          "sha256": "69d8b4e4d5a516be0624e31d58f0e673f7c3b05e5059a879b7cbcdaadd240a00",
+          "full_GPU_FP32_max_error": 2.6226043701171875e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "4506b31992b5b5d5c78c8e12380642a312b7746e278581d026c54869a4087e1d",
+        "binary_sha256": "d703e957125f81734feec08ef2814d5c2c8f9602a130222b93e3bf11ad6567eb",
+        "n_regs": 44,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "diagnostic_compiled": {
+        "hash": "b86d3fb21ebccced125308feadb249dad9206ec0303fa5179b32efc40f8d4ba9",
+        "binary_sha256": "0c230671941909596b83b6e46d1cef10f6730511e277ac1e863532dd7aa0037c",
+        "n_regs": 44,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "down",
+      "format": "W8_channel",
+      "M": 8,
+      "N": 2048,
+      "K": 6144,
+      "tile_id": 1,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "down_W8_channel_M8_tile1_phase0.npz",
+          "sha256": "653c0767512043f17cedf7876d55f8e2cecefb6dfd38b756036d64dfeffbed0c",
+          "full_GPU_FP32_max_error": 1.049041748046875e-05,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "down_W8_channel_M8_tile1_phase1.npz",
+          "sha256": "41a2bd93708cc84db44d3f7ca5107542dffb0737d589b060c29ef96b49890a37",
+          "full_GPU_FP32_max_error": 5.245208740234375e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "down_W8_channel_M8_tile1_phase2.npz",
+          "sha256": "69d8b4e4d5a516be0624e31d58f0e673f7c3b05e5059a879b7cbcdaadd240a00",
+          "full_GPU_FP32_max_error": 2.6226043701171875e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "50a59f9926e70ede24f07209d1af9bdf6a2849bcb26a115871adfc53e70bea5f",
+        "binary_sha256": "8c593b7772e30747d15883c69e63e5c4f98354b2c0426bbaf8b99de0cf45d1e5",
+        "n_regs": 81,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "diagnostic_compiled": {
+        "hash": "3812ffa5135323d211486237d2bc0db7ff75e8988b4523001f8c300426c1d38f",
+        "binary_sha256": "3de71011ffa52588f23e23c80e164a1465a76e987a35fdf20b7bf8ac3c1a3ff6",
+        "n_regs": 81,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "down",
+      "format": "W8_channel",
+      "M": 8,
+      "N": 2048,
+      "K": 6144,
+      "tile_id": 2,
+      "configuration": {
+        "bm": 16,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "down_W8_channel_M8_tile2_phase0.npz",
+          "sha256": "653c0767512043f17cedf7876d55f8e2cecefb6dfd38b756036d64dfeffbed0c",
+          "full_GPU_FP32_max_error": 1.049041748046875e-05,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "down_W8_channel_M8_tile2_phase1.npz",
+          "sha256": "41a2bd93708cc84db44d3f7ca5107542dffb0737d589b060c29ef96b49890a37",
+          "full_GPU_FP32_max_error": 5.245208740234375e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "down_W8_channel_M8_tile2_phase2.npz",
+          "sha256": "69d8b4e4d5a516be0624e31d58f0e673f7c3b05e5059a879b7cbcdaadd240a00",
+          "full_GPU_FP32_max_error": 2.6226043701171875e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "79752e0b332194e93e0b6db37106d168a385472b42e706762b18288f5cd70875",
+        "binary_sha256": "c4091a4632820eb3825d3b9e824609e7ea45a11330dc46cf40e1d51cf7a87dbc",
+        "n_regs": 74,
+        "n_spills": 0,
+        "shared": 36864
+      },
+      "diagnostic_compiled": {
+        "hash": "90cc474050dd38679a768d4f94c5399ff411299c0b18775b83eda3ac4544c3b4",
+        "binary_sha256": "ccf03459bff5a918ba7b739f66d2c67db971788d2b069aceceada4e3583a28d1",
+        "n_regs": 74,
+        "n_spills": 0,
+        "shared": 36864
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "down",
+      "format": "W8_channel",
+      "M": 64,
+      "N": 2048,
+      "K": 6144,
+      "tile_id": 0,
+      "configuration": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "down_W8_channel_M64_tile0_phase0.npz",
+          "sha256": "a9e8afc3642e1984cf1a7627779082b7d86ddc64983765252bf3ff932c075fbd",
+          "full_GPU_FP32_max_error": 1.430511474609375e-05,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "down_W8_channel_M64_tile0_phase1.npz",
+          "sha256": "6e107f9d188b8eaa3d5598366f5528e3cf7d07e95235a4eb9b0751a8e9cf8279",
+          "full_GPU_FP32_max_error": 7.152557373046875e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "down_W8_channel_M64_tile0_phase2.npz",
+          "sha256": "c97e6f30e6ed9672a461d4e11e896082d37779f4f20369e8045b1c668e416692",
+          "full_GPU_FP32_max_error": 3.5762786865234375e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "b212ff7ffd769247028d470267a2d3541369647858ccfe923cf157e275f6f15c",
+        "binary_sha256": "6e0eb564d8a6ecc9916c3c4ae0fc34772e4004caf0b5cfee2fca444805af0055",
+        "n_regs": 59,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "diagnostic_compiled": {
+        "hash": "a62c8c3ec57dd9d7b1c41d66e4a8fe615a392077638cca1187cb29382fa39843",
+        "binary_sha256": "e344d49c55a25d0de0bf61c6e777980c5c71743a312f754f6f58d1a0104d91f5",
+        "n_regs": 59,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "down",
+      "format": "W8_channel",
+      "M": 64,
+      "N": 2048,
+      "K": 6144,
+      "tile_id": 1,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "down_W8_channel_M64_tile1_phase0.npz",
+          "sha256": "a9e8afc3642e1984cf1a7627779082b7d86ddc64983765252bf3ff932c075fbd",
+          "full_GPU_FP32_max_error": 1.430511474609375e-05,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "down_W8_channel_M64_tile1_phase1.npz",
+          "sha256": "6e107f9d188b8eaa3d5598366f5528e3cf7d07e95235a4eb9b0751a8e9cf8279",
+          "full_GPU_FP32_max_error": 7.152557373046875e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "down_W8_channel_M64_tile1_phase2.npz",
+          "sha256": "c97e6f30e6ed9672a461d4e11e896082d37779f4f20369e8045b1c668e416692",
+          "full_GPU_FP32_max_error": 3.5762786865234375e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "45ee95e12ffaaf35726f32c309c6840672dd030c786dddcba3115c752ec04c98",
+        "binary_sha256": "677fcda67815cd21110c880f17e673ae725a780571f7f9de826703b594a5ae0d",
+        "n_regs": 110,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "diagnostic_compiled": {
+        "hash": "bd6860039399616bd782982c9fb64d3a03efad86b0848e8c7b84873de6b8b3ff",
+        "binary_sha256": "e1fa2d7746e7f700446c4d27e039fa10dd831e076f124a63a16e8ae6811be2f2",
+        "n_regs": 110,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "down",
+      "format": "W8_channel",
+      "M": 64,
+      "N": 2048,
+      "K": 6144,
+      "tile_id": 2,
+      "configuration": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "down_W8_channel_M64_tile2_phase0.npz",
+          "sha256": "a9e8afc3642e1984cf1a7627779082b7d86ddc64983765252bf3ff932c075fbd",
+          "full_GPU_FP32_max_error": 1.430511474609375e-05,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "down_W8_channel_M64_tile2_phase1.npz",
+          "sha256": "6e107f9d188b8eaa3d5598366f5528e3cf7d07e95235a4eb9b0751a8e9cf8279",
+          "full_GPU_FP32_max_error": 7.152557373046875e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "down_W8_channel_M64_tile2_phase2.npz",
+          "sha256": "c97e6f30e6ed9672a461d4e11e896082d37779f4f20369e8045b1c668e416692",
+          "full_GPU_FP32_max_error": 3.5762786865234375e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "8dfcc2e818a8162c86a1dd61969bf61a9203595a420d37db6c2c591dd9fb6627",
+        "binary_sha256": "ccb677bae53cddb31743dda55d0d8b20f2f5b5a2e88c46dc2b8ac18886ef6003",
+        "n_regs": 130,
+        "n_spills": 0,
+        "shared": 49152
+      },
+      "diagnostic_compiled": {
+        "hash": "24b5f992aa4e5c639fe260bfd5de3d9a68d636fcfbf200e84f0b7e3275af26c0",
+        "binary_sha256": "be89f5c1ba961f2ee9fc0b7d68676560a872fe3b62e192a26b87d2948d3e24fc",
+        "n_regs": 130,
+        "n_spills": 0,
+        "shared": 49152
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_sym128",
+      "M": 8,
+      "N": 130560,
+      "K": 2048,
+      "tile_id": 0,
+      "configuration": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "lm_head_W4_sym128_M8_tile0_phase0.npz",
+          "sha256": "1d8e52593d4e3809261b7ebe96ce73e0dbb0f25ca6f3ddc8a66f7483756aac7b",
+          "full_GPU_FP32_max_error": 4.5299530029296875e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "lm_head_W4_sym128_M8_tile0_phase1.npz",
+          "sha256": "0b1ef65ea9364375d9a93b0ed986ccd990b5066e6d4ed305153d08dde4234b6c",
+          "full_GPU_FP32_max_error": 2.2649765014648438e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "lm_head_W4_sym128_M8_tile0_phase2.npz",
+          "sha256": "4468ae886a9b1cbbed53c7c48195a586a7b76efbe775d276e1afc47f8caebfa7",
+          "full_GPU_FP32_max_error": 1.1324882507324219e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "058736c5afbb14be7a151ea7711d3f21c8a2046e7677a24531c189f121dbd0d4",
+        "binary_sha256": "e5f41cd7f16f6bc7a2bccbae4d2761a64809eb79adc33a30e6eb1b61fa83f72b",
+        "n_regs": 57,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "diagnostic_compiled": {
+        "hash": "0f4a001d0f733d89186ac3343b350bfd311c9c91561e29b3c6a585c353a8dae8",
+        "binary_sha256": "b8fe076104711798949038e3c03678692532a704eb5837ae21d549fadb834729",
+        "n_regs": 57,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_sym128",
+      "M": 8,
+      "N": 130560,
+      "K": 2048,
+      "tile_id": 1,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "lm_head_W4_sym128_M8_tile1_phase0.npz",
+          "sha256": "1d8e52593d4e3809261b7ebe96ce73e0dbb0f25ca6f3ddc8a66f7483756aac7b",
+          "full_GPU_FP32_max_error": 4.5299530029296875e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "lm_head_W4_sym128_M8_tile1_phase1.npz",
+          "sha256": "0b1ef65ea9364375d9a93b0ed986ccd990b5066e6d4ed305153d08dde4234b6c",
+          "full_GPU_FP32_max_error": 2.2649765014648438e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "lm_head_W4_sym128_M8_tile1_phase2.npz",
+          "sha256": "4468ae886a9b1cbbed53c7c48195a586a7b76efbe775d276e1afc47f8caebfa7",
+          "full_GPU_FP32_max_error": 1.1324882507324219e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "6edf24e0e459887b009ec2cfa648b0d805c7f15d51feade69c0ae3211ed7f576",
+        "binary_sha256": "4ed96a8a45f099f0554e8e74b40d8eca2849b13fa17192c83e30ff46b7b72340",
+        "n_regs": 103,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "diagnostic_compiled": {
+        "hash": "d164f11d34a7435dc21e4f5a97ff7412c0864ef5f60c685db43e1b1663fdbf94",
+        "binary_sha256": "0ccdc06191648d9d26b457fa122d0ebea92633bfc6ebc0ce28e575bfc97726f8",
+        "n_regs": 103,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_sym128",
+      "M": 8,
+      "N": 130560,
+      "K": 2048,
+      "tile_id": 2,
+      "configuration": {
+        "bm": 16,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "lm_head_W4_sym128_M8_tile2_phase0.npz",
+          "sha256": "1d8e52593d4e3809261b7ebe96ce73e0dbb0f25ca6f3ddc8a66f7483756aac7b",
+          "full_GPU_FP32_max_error": 4.5299530029296875e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "lm_head_W4_sym128_M8_tile2_phase1.npz",
+          "sha256": "0b1ef65ea9364375d9a93b0ed986ccd990b5066e6d4ed305153d08dde4234b6c",
+          "full_GPU_FP32_max_error": 2.2649765014648438e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "lm_head_W4_sym128_M8_tile2_phase2.npz",
+          "sha256": "4468ae886a9b1cbbed53c7c48195a586a7b76efbe775d276e1afc47f8caebfa7",
+          "full_GPU_FP32_max_error": 1.1324882507324219e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "7b330faefb52a38681a3415521c7b1631c2195a9030b79e070988969273bc203",
+        "binary_sha256": "6985cf441dfee819385e224dfc94877342b1a3cbb1bd2c924a532b7c8efbb709",
+        "n_regs": 95,
+        "n_spills": 0,
+        "shared": 36864
+      },
+      "diagnostic_compiled": {
+        "hash": "d48a2c5302458112920ed30fc4fb6d52ea5f1372543fdd973cbe9f6b1a52b592",
+        "binary_sha256": "572d43b50e3ce63fdabe6a9c97d92df26736becbddcc729b117f2cef9494177a",
+        "n_regs": 95,
+        "n_spills": 0,
+        "shared": 36864
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_sym128",
+      "M": 64,
+      "N": 130560,
+      "K": 2048,
+      "tile_id": 0,
+      "configuration": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "lm_head_W4_sym128_M64_tile0_phase0.npz",
+          "sha256": "77c1512f2406ce5366481bda80b8d755ebc97b8b7ac10f59c2abaea42642ca73",
+          "full_GPU_FP32_max_error": 4.291534423828125e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "lm_head_W4_sym128_M64_tile0_phase1.npz",
+          "sha256": "9c4202fbf877d66ae1ddb9c90e875c490794108c1dcf57e691f087c197648877",
+          "full_GPU_FP32_max_error": 2.1457672119140625e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "lm_head_W4_sym128_M64_tile0_phase2.npz",
+          "sha256": "7538376fc9d9b70437e29ba7ec6d20431c8dd15b1a24573929cdbc97e55a6442",
+          "full_GPU_FP32_max_error": 1.0728836059570312e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "122b324292a60c57ef9fe1cb234a9e2b9ff131b0ca479b27f8a929936de9ad3f",
+        "binary_sha256": "5d89d3272f76ae105c676cf0fd712c2d525449fc3ea237927a76415ed4fbb7b8",
+        "n_regs": 81,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "diagnostic_compiled": {
+        "hash": "3133c329a604710efc07fe4c934453e0db64ef19c370313415410c8586564b74",
+        "binary_sha256": "9d89e032342e99acdf5392de71326c748e3ea2ef388dce28dcfeae40a48589ee",
+        "n_regs": 81,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_sym128",
+      "M": 64,
+      "N": 130560,
+      "K": 2048,
+      "tile_id": 1,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "lm_head_W4_sym128_M64_tile1_phase0.npz",
+          "sha256": "77c1512f2406ce5366481bda80b8d755ebc97b8b7ac10f59c2abaea42642ca73",
+          "full_GPU_FP32_max_error": 4.291534423828125e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "lm_head_W4_sym128_M64_tile1_phase1.npz",
+          "sha256": "9c4202fbf877d66ae1ddb9c90e875c490794108c1dcf57e691f087c197648877",
+          "full_GPU_FP32_max_error": 2.1457672119140625e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "lm_head_W4_sym128_M64_tile1_phase2.npz",
+          "sha256": "7538376fc9d9b70437e29ba7ec6d20431c8dd15b1a24573929cdbc97e55a6442",
+          "full_GPU_FP32_max_error": 1.0728836059570312e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "b7273eb80cea927f071a6198a2feca2820230bdabbd6c37d173a94d421895cda",
+        "binary_sha256": "a696f3b145ab2c4fd7a479bc95814f72907ee712c6bdefdf255d29ba089a8737",
+        "n_regs": 126,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "diagnostic_compiled": {
+        "hash": "2638ffd5b22aeb2feae5c922143030f2614e3fa774f10a3e1a8a76b9d2d77066",
+        "binary_sha256": "4331ebb99f7d522527138b01a65502bbe8bb1c32714c798b8a30260027e07489",
+        "n_regs": 126,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_sym128",
+      "M": 64,
+      "N": 130560,
+      "K": 2048,
+      "tile_id": 2,
+      "configuration": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "lm_head_W4_sym128_M64_tile2_phase0.npz",
+          "sha256": "77c1512f2406ce5366481bda80b8d755ebc97b8b7ac10f59c2abaea42642ca73",
+          "full_GPU_FP32_max_error": 4.291534423828125e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "lm_head_W4_sym128_M64_tile2_phase1.npz",
+          "sha256": "9c4202fbf877d66ae1ddb9c90e875c490794108c1dcf57e691f087c197648877",
+          "full_GPU_FP32_max_error": 2.1457672119140625e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "lm_head_W4_sym128_M64_tile2_phase2.npz",
+          "sha256": "7538376fc9d9b70437e29ba7ec6d20431c8dd15b1a24573929cdbc97e55a6442",
+          "full_GPU_FP32_max_error": 1.0728836059570312e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "1228a7cf0f701808ba328652b8b4cffe676c23b2f352a41783168a0b62a3f3d5",
+        "binary_sha256": "4c5cf91f9fca21e5812d6d75dc1c1c4e950c433c5fe5f0d775f8861408d5925d",
+        "n_regs": 142,
+        "n_spills": 0,
+        "shared": 49152
+      },
+      "diagnostic_compiled": {
+        "hash": "f5d1d7488a14bf3603f1baa3a0d6f31a78ec6a9fedf532b58881b6d60569c1c6",
+        "binary_sha256": "17581dbe85c635021047450bcdbf178ef5d4792644f78ff6523c5d1d149f1861",
+        "n_regs": 142,
+        "n_spills": 0,
+        "shared": 49152
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_aff128",
+      "M": 8,
+      "N": 130560,
+      "K": 2048,
+      "tile_id": 0,
+      "configuration": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "lm_head_W4_aff128_M8_tile0_phase0.npz",
+          "sha256": "f4bc7445273e77b09930a1d39329e83ba91abfa2feb84385f0b839e080d27258",
+          "full_GPU_FP32_max_error": 3.814697265625e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "lm_head_W4_aff128_M8_tile0_phase1.npz",
+          "sha256": "de6509e5d37f84a9d426389eb6b4e81cdc456f0cc9fc356c347bf6ac8b909f64",
+          "full_GPU_FP32_max_error": 1.9073486328125e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "lm_head_W4_aff128_M8_tile0_phase2.npz",
+          "sha256": "d19fda295faff63e4acc63a87ae6819f16bc42a213b9eb93cd46a8745ab622a1",
+          "full_GPU_FP32_max_error": 9.5367431640625e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "04726af67878b8fe1c7e4a3ad65250b57b0a777fda7a6266469294fbc2655555",
+        "binary_sha256": "ad76839273ba24ce78d99bd38b34a84401406e079ee59272859a72406697f669",
+        "n_regs": 87,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "diagnostic_compiled": {
+        "hash": "c8707bdd42769487afa08eb7212c1436999374a8814b10c4daac0e48a258d59b",
+        "binary_sha256": "9739cf84dcb38921a3a948ce5ae620d3421e791a119bf45b51098b8c4525b541",
+        "n_regs": 87,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_aff128",
+      "M": 8,
+      "N": 130560,
+      "K": 2048,
+      "tile_id": 1,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "lm_head_W4_aff128_M8_tile1_phase0.npz",
+          "sha256": "f4bc7445273e77b09930a1d39329e83ba91abfa2feb84385f0b839e080d27258",
+          "full_GPU_FP32_max_error": 3.814697265625e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "lm_head_W4_aff128_M8_tile1_phase1.npz",
+          "sha256": "de6509e5d37f84a9d426389eb6b4e81cdc456f0cc9fc356c347bf6ac8b909f64",
+          "full_GPU_FP32_max_error": 1.9073486328125e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "lm_head_W4_aff128_M8_tile1_phase2.npz",
+          "sha256": "d19fda295faff63e4acc63a87ae6819f16bc42a213b9eb93cd46a8745ab622a1",
+          "full_GPU_FP32_max_error": 9.5367431640625e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "c80c984e553881f46dbaa924d91777a8eb5446f01b145dbaacfd201a7c7318aa",
+        "binary_sha256": "bdd4444b447d33e69d94dd639bf9b67c78d9622a1c221091b13f213ca82d5249",
+        "n_regs": 144,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "diagnostic_compiled": {
+        "hash": "05a2b9dbbf2150434a80eab5ab53bbee8da64660183bf4980d87253419bb751b",
+        "binary_sha256": "69d9f0e58503086e45616e6a02c38dd42fba5c5a484872d0b48f0f925c17e2cc",
+        "n_regs": 144,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_aff128",
+      "M": 8,
+      "N": 130560,
+      "K": 2048,
+      "tile_id": 2,
+      "configuration": {
+        "bm": 16,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "lm_head_W4_aff128_M8_tile2_phase0.npz",
+          "sha256": "f4bc7445273e77b09930a1d39329e83ba91abfa2feb84385f0b839e080d27258",
+          "full_GPU_FP32_max_error": 3.814697265625e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "lm_head_W4_aff128_M8_tile2_phase1.npz",
+          "sha256": "de6509e5d37f84a9d426389eb6b4e81cdc456f0cc9fc356c347bf6ac8b909f64",
+          "full_GPU_FP32_max_error": 1.9073486328125e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "lm_head_W4_aff128_M8_tile2_phase2.npz",
+          "sha256": "d19fda295faff63e4acc63a87ae6819f16bc42a213b9eb93cd46a8745ab622a1",
+          "full_GPU_FP32_max_error": 9.5367431640625e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "7a9d719def857de4a9668e48537052ef92d6f550a4aeef2ea577af26f5138dc3",
+        "binary_sha256": "45a615d53d82785d21fdf488fd6a122f3e308364caa1b4a3d90ee29445ec5450",
+        "n_regs": 136,
+        "n_spills": 0,
+        "shared": 36864
+      },
+      "diagnostic_compiled": {
+        "hash": "a29288c0decbf6a593cc1f3b10bbdce0fd1aa5cbb3a00f688adf5ca2e7abe0b1",
+        "binary_sha256": "cbbc703e2a408d0a669205abd40c3cb07b72ef7e71a8870ebe89704281d1e6b9",
+        "n_regs": 136,
+        "n_spills": 0,
+        "shared": 36864
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_aff128",
+      "M": 64,
+      "N": 130560,
+      "K": 2048,
+      "tile_id": 0,
+      "configuration": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "lm_head_W4_aff128_M64_tile0_phase0.npz",
+          "sha256": "dbce6fd0e3edf81af6f964b2ee4de5109a848feb405e76537386711f8659d3d9",
+          "full_GPU_FP32_max_error": 4.76837158203125e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "lm_head_W4_aff128_M64_tile0_phase1.npz",
+          "sha256": "095951908be963a6e01381689079cc87a657a2652f28fa3c88885e80b2692ad6",
+          "full_GPU_FP32_max_error": 2.384185791015625e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "lm_head_W4_aff128_M64_tile0_phase2.npz",
+          "sha256": "7ab86c5896a39e36d58c6e3eb3b34a45103fc8a129910a94e0f186907db3a6d7",
+          "full_GPU_FP32_max_error": 1.1920928955078125e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "ac2b3e1f5420aa195474c79f66026ba9722b6c8789e99d8708069e925264437f",
+        "binary_sha256": "b36d622481148acfaff3d01c2cb8c5a6dc9a2ed5a10152a386800ec8919cd36f",
+        "n_regs": 85,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "diagnostic_compiled": {
+        "hash": "6874b2e57e5a395ffceb1df4ea9642ac81e8adbf977f2ea05b575d4b199830b1",
+        "binary_sha256": "6c66ff5fd0a4e11662c180bc156bbfe7debfde8e4c6e83ee675f6f246726a84f",
+        "n_regs": 85,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_aff128",
+      "M": 64,
+      "N": 130560,
+      "K": 2048,
+      "tile_id": 1,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "lm_head_W4_aff128_M64_tile1_phase0.npz",
+          "sha256": "dbce6fd0e3edf81af6f964b2ee4de5109a848feb405e76537386711f8659d3d9",
+          "full_GPU_FP32_max_error": 4.76837158203125e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "lm_head_W4_aff128_M64_tile1_phase1.npz",
+          "sha256": "095951908be963a6e01381689079cc87a657a2652f28fa3c88885e80b2692ad6",
+          "full_GPU_FP32_max_error": 2.384185791015625e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "lm_head_W4_aff128_M64_tile1_phase2.npz",
+          "sha256": "7ab86c5896a39e36d58c6e3eb3b34a45103fc8a129910a94e0f186907db3a6d7",
+          "full_GPU_FP32_max_error": 1.1920928955078125e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "ee192670fb4db8f85740a5e07c7e7a98eb33ce28b1d5eed4cabf3e30a72947d7",
+        "binary_sha256": "6123cc28ff2f84a2b5ef840a5c54e66c1fabad488807fa58181fcb24ac89bdf4",
+        "n_regs": 140,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "diagnostic_compiled": {
+        "hash": "94f6ccd7c57a5bf34ad66ba592444ffca51edb05e43c9aa11b0313b7914a0343",
+        "binary_sha256": "3084ae0a455bf44a7338751295e61ecd52ab940203074db86c1509a291ea727d",
+        "n_regs": 140,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_aff128",
+      "M": 64,
+      "N": 130560,
+      "K": 2048,
+      "tile_id": 2,
+      "configuration": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "lm_head_W4_aff128_M64_tile2_phase0.npz",
+          "sha256": "dbce6fd0e3edf81af6f964b2ee4de5109a848feb405e76537386711f8659d3d9",
+          "full_GPU_FP32_max_error": 4.76837158203125e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "lm_head_W4_aff128_M64_tile2_phase1.npz",
+          "sha256": "095951908be963a6e01381689079cc87a657a2652f28fa3c88885e80b2692ad6",
+          "full_GPU_FP32_max_error": 2.384185791015625e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "lm_head_W4_aff128_M64_tile2_phase2.npz",
+          "sha256": "7ab86c5896a39e36d58c6e3eb3b34a45103fc8a129910a94e0f186907db3a6d7",
+          "full_GPU_FP32_max_error": 1.1920928955078125e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "0d094fe65644d72486e56dff87b1553fa6628ed9afd933dcb57063a398d37d57",
+        "binary_sha256": "2807a31a1a534fad36d5da49275fc0082ba02c379b79ed2de8c19eb135064d9c",
+        "n_regs": 156,
+        "n_spills": 0,
+        "shared": 49152
+      },
+      "diagnostic_compiled": {
+        "hash": "6592bb1d81187c636e545b565d9fc07c1264911c1fba383238c42b84a3473df0",
+        "binary_sha256": "5ffae350c336a46d920311d2273ce545da99a75eea5b53056f48d7b6a3ecaa40",
+        "n_regs": 156,
+        "n_spills": 0,
+        "shared": 49152
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "lm_head",
+      "format": "W8_channel",
+      "M": 8,
+      "N": 130560,
+      "K": 2048,
+      "tile_id": 0,
+      "configuration": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "lm_head_W8_channel_M8_tile0_phase0.npz",
+          "sha256": "5e58ce5bee7ee7f6806e290c0abc0ee1b5fc57637a522d3fbb5c6d8982c4ca96",
+          "full_GPU_FP32_max_error": 5.0067901611328125e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "lm_head_W8_channel_M8_tile0_phase1.npz",
+          "sha256": "e6d6484a2f1484cf401008276aa19b3209b1988f94a747969a2f4a6f07c0b1c7",
+          "full_GPU_FP32_max_error": 2.5033950805664062e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "lm_head_W8_channel_M8_tile0_phase2.npz",
+          "sha256": "b66c97efba80efd448394c63ee199e10df8dc9448416abc245b2f9e58c4dd9ed",
+          "full_GPU_FP32_max_error": 1.2516975402832031e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "8ac7d06228891564b2a16c017ca78ca7b693a1c9daed0d572e3022e367246daa",
+        "binary_sha256": "351c0a178a55afeceb08a9d2846546aefcca1566d7d3b92a3232c39d64f0f78f",
+        "n_regs": 39,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "diagnostic_compiled": {
+        "hash": "756e456fe9e4b986ddb6fbe77287efc5f2846059a830a5bedfe5caac9e7538f7",
+        "binary_sha256": "58efd2677d9f31438d985b9fc3c149fa459df1fbbcd128366676553bf7689701",
+        "n_regs": 39,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "lm_head",
+      "format": "W8_channel",
+      "M": 8,
+      "N": 130560,
+      "K": 2048,
+      "tile_id": 1,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "lm_head_W8_channel_M8_tile1_phase0.npz",
+          "sha256": "5e58ce5bee7ee7f6806e290c0abc0ee1b5fc57637a522d3fbb5c6d8982c4ca96",
+          "full_GPU_FP32_max_error": 5.0067901611328125e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "lm_head_W8_channel_M8_tile1_phase1.npz",
+          "sha256": "e6d6484a2f1484cf401008276aa19b3209b1988f94a747969a2f4a6f07c0b1c7",
+          "full_GPU_FP32_max_error": 2.5033950805664062e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "lm_head_W8_channel_M8_tile1_phase2.npz",
+          "sha256": "b66c97efba80efd448394c63ee199e10df8dc9448416abc245b2f9e58c4dd9ed",
+          "full_GPU_FP32_max_error": 1.2516975402832031e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "60e2897572ef9fa78969e8b9aaab6e8d732e411c83339ead9abca3cb750dc151",
+        "binary_sha256": "8ed433a93934834b9920ae0be80cbf7978ff6df410ccfbc0d319aa37a181e80a",
+        "n_regs": 67,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "diagnostic_compiled": {
+        "hash": "d727976f8b101b28f0184dfecd03a90f5559a76ff03c9bf55d0415da0e195290",
+        "binary_sha256": "3942f49cd951e75a78c85c184e03a3585a0b87c7c26dd35f63f441950db39d07",
+        "n_regs": 67,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "lm_head",
+      "format": "W8_channel",
+      "M": 8,
+      "N": 130560,
+      "K": 2048,
+      "tile_id": 2,
+      "configuration": {
+        "bm": 16,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "lm_head_W8_channel_M8_tile2_phase0.npz",
+          "sha256": "5e58ce5bee7ee7f6806e290c0abc0ee1b5fc57637a522d3fbb5c6d8982c4ca96",
+          "full_GPU_FP32_max_error": 5.0067901611328125e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "lm_head_W8_channel_M8_tile2_phase1.npz",
+          "sha256": "e6d6484a2f1484cf401008276aa19b3209b1988f94a747969a2f4a6f07c0b1c7",
+          "full_GPU_FP32_max_error": 2.5033950805664062e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "lm_head_W8_channel_M8_tile2_phase2.npz",
+          "sha256": "b66c97efba80efd448394c63ee199e10df8dc9448416abc245b2f9e58c4dd9ed",
+          "full_GPU_FP32_max_error": 1.2516975402832031e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "ee07f4a39d9ac2332dda6d5b8919316843ab522d86502fa53f6e2564191dea6f",
+        "binary_sha256": "f84f1156564905c9bf797e74fd04de43a0575ba296f3db1c44d579ffbeb0a473",
+        "n_regs": 61,
+        "n_spills": 0,
+        "shared": 36864
+      },
+      "diagnostic_compiled": {
+        "hash": "6dcf87330d998d2f6647aea4b93ec5451533d34abcfe3a5d7d97b93f4e56cd08",
+        "binary_sha256": "6f8a8b40d197cd4c7bc0104c7efac0eb03bc01de53b7063b945b4b180aecead9",
+        "n_regs": 61,
+        "n_spills": 0,
+        "shared": 36864
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "lm_head",
+      "format": "W8_channel",
+      "M": 64,
+      "N": 130560,
+      "K": 2048,
+      "tile_id": 0,
+      "configuration": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "lm_head_W8_channel_M64_tile0_phase0.npz",
+          "sha256": "d9096b1fd781cc58e7b40f9882c3c69d3e411cd13dd10abdf3d6e229c662f6c7",
+          "full_GPU_FP32_max_error": 6.198883056640625e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "lm_head_W8_channel_M64_tile0_phase1.npz",
+          "sha256": "5ddc1f13ef666f6de8fccfbac3434b1c903a55a194aff7d737a1928ec5eda0aa",
+          "full_GPU_FP32_max_error": 3.0994415283203125e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "lm_head_W8_channel_M64_tile0_phase2.npz",
+          "sha256": "33e6c61bb07816b0deefa6e80677a37955a67199f1792fc2eb35aaaf458db79d",
+          "full_GPU_FP32_max_error": 1.5497207641601562e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "725cc3352c4d17db20d95527eaee1b9b45fd46caaf5ccd68e719daf91c2ec19f",
+        "binary_sha256": "0b4f90baf1682df1ce999b1ebb411751a5eb517dd8aa819ed6e77a0bfeda50c6",
+        "n_regs": 52,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "diagnostic_compiled": {
+        "hash": "7d2ec6e88e0a48a7c1a6a335c68c0b708a4fc6f44a4330c80cbae3144314e256",
+        "binary_sha256": "c3d7e700e9fa9aa75f028ee7274033ea9e632c8756b8599156d91a06bd525e89",
+        "n_regs": 52,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "lm_head",
+      "format": "W8_channel",
+      "M": 64,
+      "N": 130560,
+      "K": 2048,
+      "tile_id": 1,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "lm_head_W8_channel_M64_tile1_phase0.npz",
+          "sha256": "d9096b1fd781cc58e7b40f9882c3c69d3e411cd13dd10abdf3d6e229c662f6c7",
+          "full_GPU_FP32_max_error": 6.198883056640625e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "lm_head_W8_channel_M64_tile1_phase1.npz",
+          "sha256": "5ddc1f13ef666f6de8fccfbac3434b1c903a55a194aff7d737a1928ec5eda0aa",
+          "full_GPU_FP32_max_error": 3.0994415283203125e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "lm_head_W8_channel_M64_tile1_phase2.npz",
+          "sha256": "33e6c61bb07816b0deefa6e80677a37955a67199f1792fc2eb35aaaf458db79d",
+          "full_GPU_FP32_max_error": 1.5497207641601562e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "63b82428baa9aefb7414532f2a0bafd8c0f23fbe390e06aa91f51d5443b7d7d1",
+        "binary_sha256": "3b3c3f60d4dbfb9a4be9cddf1fb82037673f7cf16d55d33e152c9c11a58cceda",
+        "n_regs": 95,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "diagnostic_compiled": {
+        "hash": "58edf9ed3e2aa483dc0fce4112a0bfc289eaa3df9979de53e36908c282ff0330",
+        "binary_sha256": "58c9b906a3e720e56bfde00106e7624f1445dcdb248b5e74225d12aa273324ef",
+        "n_regs": 95,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    },
+    {
+      "role": "lm_head",
+      "format": "W8_channel",
+      "M": 64,
+      "N": 130560,
+      "K": 2048,
+      "tile_id": 2,
+      "configuration": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "lm_head_W8_channel_M64_tile2_phase0.npz",
+          "sha256": "d9096b1fd781cc58e7b40f9882c3c69d3e411cd13dd10abdf3d6e229c662f6c7",
+          "full_GPU_FP32_max_error": 6.198883056640625e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 1,
+          "artifact": "lm_head_W8_channel_M64_tile2_phase1.npz",
+          "sha256": "5ddc1f13ef666f6de8fccfbac3434b1c903a55a194aff7d737a1928ec5eda0aa",
+          "full_GPU_FP32_max_error": 3.0994415283203125e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        },
+        {
+          "phase": 2,
+          "artifact": "lm_head_W8_channel_M64_tile2_phase2.npz",
+          "sha256": "33e6c61bb07816b0deefa6e80677a37955a67199f1792fc2eb35aaaf458db79d",
+          "full_GPU_FP32_max_error": 1.5497207641601562e-06,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": true,
+      "compiled": {
+        "hash": "6b44ee3ee0bc6d6d89c38e7a7c08ed380114ee7971bfd1965d78b5d2292b0ab9",
+        "binary_sha256": "a1f5d2f47d4b80e09094ebf7cca625a53bd73a3ba48fd0c606bc912255313dde",
+        "n_regs": 115,
+        "n_spills": 0,
+        "shared": 49152
+      },
+      "diagnostic_compiled": {
+        "hash": "b91c9de11071db62a8d63ac873df894749ad51b9afe68f78402ae03d96bc3e16",
+        "binary_sha256": "4dae5a8535ae711cae69e8ac546327d7fb18bc8f1beb4db52bf4829ffc64eafc",
+        "n_regs": 115,
+        "n_spills": 0,
+        "shared": 49152
+      },
+      "guards": true,
+      "RNG_unchanged": true,
+      "packed_inputs_immutable": true
+    }
+  ],
+  "decodes": [
+    {
+      "role": "tail",
+      "format": "W4_sym128",
+      "phase": 0,
+      "elements": 33929,
+      "actual_BF16_sha256": "3a2d4fc41e0481dfed57af3237e98b50045204b83a10bfdd1cd6214361e7f97f",
+      "expected_BF16_sha256": "3a2d4fc41e0481dfed57af3237e98b50045204b83a10bfdd1cd6214361e7f97f",
+      "bitwise_equal": true
+    },
+    {
+      "role": "tail",
+      "format": "W4_sym128",
+      "phase": 1,
+      "elements": 33929,
+      "actual_BF16_sha256": "355eed03f2f932639043353b3344ddc79f0f10c45f8447ed14399aa32704430a",
+      "expected_BF16_sha256": "355eed03f2f932639043353b3344ddc79f0f10c45f8447ed14399aa32704430a",
+      "bitwise_equal": true
+    },
+    {
+      "role": "tail",
+      "format": "W4_sym128",
+      "phase": 2,
+      "elements": 33929,
+      "actual_BF16_sha256": "9af16771bb49599fb740be850dc7c5f4d641c6a8cc5f2a5fd794f291cbd075ce",
+      "expected_BF16_sha256": "9af16771bb49599fb740be850dc7c5f4d641c6a8cc5f2a5fd794f291cbd075ce",
+      "bitwise_equal": true
+    },
+    {
+      "role": "tail",
+      "format": "W4_aff128",
+      "phase": 0,
+      "elements": 33929,
+      "actual_BF16_sha256": "b5e865e8a8229fc4254ff232cb73c7ea4bad62e5e9cc2f9f54abc2abdc0c04d0",
+      "expected_BF16_sha256": "b5e865e8a8229fc4254ff232cb73c7ea4bad62e5e9cc2f9f54abc2abdc0c04d0",
+      "bitwise_equal": true
+    },
+    {
+      "role": "tail",
+      "format": "W4_aff128",
+      "phase": 1,
+      "elements": 33929,
+      "actual_BF16_sha256": "63cfc0f31c26333dd824bd03dd0c263f499d48c193a23b341e4225f851e508e6",
+      "expected_BF16_sha256": "63cfc0f31c26333dd824bd03dd0c263f499d48c193a23b341e4225f851e508e6",
+      "bitwise_equal": true
+    },
+    {
+      "role": "tail",
+      "format": "W4_aff128",
+      "phase": 2,
+      "elements": 33929,
+      "actual_BF16_sha256": "442f28290ca0d31951977244a479b905dc0756863331cf30aab1a83638b38806",
+      "expected_BF16_sha256": "442f28290ca0d31951977244a479b905dc0756863331cf30aab1a83638b38806",
+      "bitwise_equal": true
+    },
+    {
+      "role": "tail",
+      "format": "W8_channel",
+      "phase": 0,
+      "elements": 33929,
+      "actual_BF16_sha256": "fdf1f805fcea0c71e7d3486218c22be14452fb7a452d04eb716c79ecc6cd9055",
+      "expected_BF16_sha256": "fdf1f805fcea0c71e7d3486218c22be14452fb7a452d04eb716c79ecc6cd9055",
+      "bitwise_equal": true
+    },
+    {
+      "role": "tail",
+      "format": "W8_channel",
+      "phase": 1,
+      "elements": 33929,
+      "actual_BF16_sha256": "43034338c302f4fe4d10f061ef897397db64868ed8f446309e65e99dce147e51",
+      "expected_BF16_sha256": "43034338c302f4fe4d10f061ef897397db64868ed8f446309e65e99dce147e51",
+      "bitwise_equal": true
+    },
+    {
+      "role": "tail",
+      "format": "W8_channel",
+      "phase": 2,
+      "elements": 33929,
+      "actual_BF16_sha256": "35a411eea0ca1b92fe2d48f001ef9e222b36c20b243d0a17bd28abe4713b8743",
+      "expected_BF16_sha256": "35a411eea0ca1b92fe2d48f001ef9e222b36c20b243d0a17bd28abe4713b8743",
+      "bitwise_equal": true
+    },
+    {
+      "role": "down",
+      "format": "W4_sym128",
+      "phase": 0,
+      "elements": 12582912,
+      "actual_BF16_sha256": "08dcf45c934a41f3c7eee41d3219f46f396c6407c7abf4c03d1f81737875bb8d",
+      "expected_BF16_sha256": "08dcf45c934a41f3c7eee41d3219f46f396c6407c7abf4c03d1f81737875bb8d",
+      "bitwise_equal": true
+    },
+    {
+      "role": "down",
+      "format": "W4_sym128",
+      "phase": 1,
+      "elements": 12582912,
+      "actual_BF16_sha256": "e582b3c52ff8965b826c4717567ff7474e137a2cf9402ff284f816485860c55f",
+      "expected_BF16_sha256": "e582b3c52ff8965b826c4717567ff7474e137a2cf9402ff284f816485860c55f",
+      "bitwise_equal": true
+    },
+    {
+      "role": "down",
+      "format": "W4_sym128",
+      "phase": 2,
+      "elements": 12582912,
+      "actual_BF16_sha256": "c77b6944ba5f223e92a0d61da768cb47b2c5fb56c596f96b236f71da401c9a88",
+      "expected_BF16_sha256": "c77b6944ba5f223e92a0d61da768cb47b2c5fb56c596f96b236f71da401c9a88",
+      "bitwise_equal": true
+    },
+    {
+      "role": "down",
+      "format": "W4_aff128",
+      "phase": 0,
+      "elements": 12582912,
+      "actual_BF16_sha256": "a915698228bd1c90bb095471a35499ab84994738861b9fea5c72a152acc5deeb",
+      "expected_BF16_sha256": "a915698228bd1c90bb095471a35499ab84994738861b9fea5c72a152acc5deeb",
+      "bitwise_equal": true
+    },
+    {
+      "role": "down",
+      "format": "W4_aff128",
+      "phase": 1,
+      "elements": 12582912,
+      "actual_BF16_sha256": "b1dd04ae7f3540c652f4d33728ad0b14353440fd9b6f6a40f572d5fbc22f39ed",
+      "expected_BF16_sha256": "b1dd04ae7f3540c652f4d33728ad0b14353440fd9b6f6a40f572d5fbc22f39ed",
+      "bitwise_equal": true
+    },
+    {
+      "role": "down",
+      "format": "W4_aff128",
+      "phase": 2,
+      "elements": 12582912,
+      "actual_BF16_sha256": "ae347ee6e7ae58688397f376ba0338a028f34ca2ff7617ef45be8c459daa656d",
+      "expected_BF16_sha256": "ae347ee6e7ae58688397f376ba0338a028f34ca2ff7617ef45be8c459daa656d",
+      "bitwise_equal": true
+    },
+    {
+      "role": "down",
+      "format": "W8_channel",
+      "phase": 0,
+      "elements": 12582912,
+      "actual_BF16_sha256": "1693853544ebf84327c4ef515178fbb59ffdc38de8180f4695ae2fbe85dd9218",
+      "expected_BF16_sha256": "1693853544ebf84327c4ef515178fbb59ffdc38de8180f4695ae2fbe85dd9218",
+      "bitwise_equal": true
+    },
+    {
+      "role": "down",
+      "format": "W8_channel",
+      "phase": 1,
+      "elements": 12582912,
+      "actual_BF16_sha256": "1b7f96bab46bf7be3663ab733de99caacb135cb5cd092700cb4a29e93bd139ec",
+      "expected_BF16_sha256": "1b7f96bab46bf7be3663ab733de99caacb135cb5cd092700cb4a29e93bd139ec",
+      "bitwise_equal": true
+    },
+    {
+      "role": "down",
+      "format": "W8_channel",
+      "phase": 2,
+      "elements": 12582912,
+      "actual_BF16_sha256": "89612d300e65b866f0875ba09ede60ba0a92842a87fda6e50fc646bfa7cf1287",
+      "expected_BF16_sha256": "89612d300e65b866f0875ba09ede60ba0a92842a87fda6e50fc646bfa7cf1287",
+      "bitwise_equal": true
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_sym128",
+      "phase": 0,
+      "elements": 267386880,
+      "actual_BF16_sha256": "ef8534a270a192b3efa236ee8226618d0a4bdd65e482e761b0f54f532b2e2317",
+      "expected_BF16_sha256": "ef8534a270a192b3efa236ee8226618d0a4bdd65e482e761b0f54f532b2e2317",
+      "bitwise_equal": true
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_sym128",
+      "phase": 1,
+      "elements": 267386880,
+      "actual_BF16_sha256": "c3d1761eab364f8f2d3faac2be870ded699d2697f2150a0bf1c435a53481c219",
+      "expected_BF16_sha256": "c3d1761eab364f8f2d3faac2be870ded699d2697f2150a0bf1c435a53481c219",
+      "bitwise_equal": true
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_sym128",
+      "phase": 2,
+      "elements": 267386880,
+      "actual_BF16_sha256": "a2a8f2004851dd2aa5d6e4d8b408d927696347a80e10f4843b5088c7617e638d",
+      "expected_BF16_sha256": "a2a8f2004851dd2aa5d6e4d8b408d927696347a80e10f4843b5088c7617e638d",
+      "bitwise_equal": true
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_aff128",
+      "phase": 0,
+      "elements": 267386880,
+      "actual_BF16_sha256": "2eddcc929b6e7716a914df33057c46c5c79f11b19e61018edf317a85c3ba63ed",
+      "expected_BF16_sha256": "2eddcc929b6e7716a914df33057c46c5c79f11b19e61018edf317a85c3ba63ed",
+      "bitwise_equal": true
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_aff128",
+      "phase": 1,
+      "elements": 267386880,
+      "actual_BF16_sha256": "1deaa06769bbf20ad0d1370a628e9cf5c3f5f02d41503c00a235d627f94a5fdc",
+      "expected_BF16_sha256": "1deaa06769bbf20ad0d1370a628e9cf5c3f5f02d41503c00a235d627f94a5fdc",
+      "bitwise_equal": true
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_aff128",
+      "phase": 2,
+      "elements": 267386880,
+      "actual_BF16_sha256": "6adf8162a3a0ddd413836695c9d96c63ca7077d82b1d08f5486f59ae6b231141",
+      "expected_BF16_sha256": "6adf8162a3a0ddd413836695c9d96c63ca7077d82b1d08f5486f59ae6b231141",
+      "bitwise_equal": true
+    },
+    {
+      "role": "lm_head",
+      "format": "W8_channel",
+      "phase": 0,
+      "elements": 267386880,
+      "actual_BF16_sha256": "6dba114f70c442fee4f6d79d2c35a15e774f67f0cf3561999e7c3857acf42b5c",
+      "expected_BF16_sha256": "6dba114f70c442fee4f6d79d2c35a15e774f67f0cf3561999e7c3857acf42b5c",
+      "bitwise_equal": true
+    },
+    {
+      "role": "lm_head",
+      "format": "W8_channel",
+      "phase": 1,
+      "elements": 267386880,
+      "actual_BF16_sha256": "4da22948fa67cd737f120cd5779ed91258ab32738d1f55319a3edaecf18d59b8",
+      "expected_BF16_sha256": "4da22948fa67cd737f120cd5779ed91258ab32738d1f55319a3edaecf18d59b8",
+      "bitwise_equal": true
+    },
+    {
+      "role": "lm_head",
+      "format": "W8_channel",
+      "phase": 2,
+      "elements": 267386880,
+      "actual_BF16_sha256": "18adfb2ca591e9985b5405d6145e50ba03b22e170362fef9440ddd7b137602ab",
+      "expected_BF16_sha256": "18adfb2ca591e9985b5405d6145e50ba03b22e170362fef9440ddd7b137602ab",
+      "bitwise_equal": true
+    }
+  ],
+  "timings": [
+    {
+      "role": "tail",
+      "format": "W4_sym128",
+      "M": 17,
+      "round": 0,
+      "order": [
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 0.010751730948686599,
+        "W8A8": 0.0349263459444046,
+        "tile0": 0.03568499982357025,
+        "tile1": 0.06778807640075683,
+        "tile2": 0.06698018908500672
+      }
+    },
+    {
+      "role": "tail",
+      "format": "W4_sym128",
+      "M": 17,
+      "round": 1,
+      "order": [
+        "BF16",
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 0.01248442307114601,
+        "tile2": 0.0673799991607666,
+        "tile1": 0.06713557243347168,
+        "tile0": 0.035710769891738894,
+        "W8A8": 0.03501865267753601
+      }
+    },
+    {
+      "role": "tail",
+      "format": "W4_sym128",
+      "M": 17,
+      "round": 2,
+      "order": [
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 0.03570538461208343,
+        "tile1": 0.06793615221977234,
+        "tile2": 0.06700192093849182,
+        "BF16": 0.012075000256299973,
+        "W8A8": 0.03499807715415955
+      }
+    },
+    {
+      "role": "tail",
+      "format": "W4_sym128",
+      "M": 17,
+      "round": 3,
+      "order": [
+        "tile0",
+        "W8A8",
+        "BF16",
+        "tile2",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 0.03572903871536255,
+        "W8A8": 0.03476788401603699,
+        "BF16": 0.012311730533838272,
+        "tile2": 0.0669117271900177,
+        "tile1": 0.06807422637939453
+      }
+    },
+    {
+      "role": "tail",
+      "format": "W4_sym128",
+      "M": 17,
+      "round": 4,
+      "order": [
+        "tile2",
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 0.06704134941101074,
+        "BF16": 0.012697499990463258,
+        "W8A8": 0.034977883100509644,
+        "tile0": 0.03565596342086792,
+        "tile1": 0.06787596344947815
+      }
+    },
+    {
+      "role": "tail",
+      "format": "W4_sym128",
+      "M": 17,
+      "round": 5,
+      "order": [
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 0.0669663429260254,
+        "tile1": 0.06598384380340576,
+        "tile0": 0.0362067312002182,
+        "W8A8": 0.03512769341468811,
+        "BF16": 0.012510000169277192
+      }
+    },
+    {
+      "role": "tail",
+      "format": "W4_sym128",
+      "M": 17,
+      "round": 6,
+      "order": [
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "W8A8": 0.03510000109672547,
+        "tile0": 0.03581365644931793,
+        "tile1": 0.06718730926513672,
+        "tile2": 0.06702653765678405,
+        "BF16": 0.01218326911330223
+      }
+    },
+    {
+      "role": "tail",
+      "format": "W4_aff128",
+      "M": 17,
+      "round": 0,
+      "order": [
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 0.012126345932483674,
+        "W8A8": 0.03425249755382538,
+        "tile0": 0.04261384606361389,
+        "tile1": 0.08283750414848327,
+        "tile2": 0.08078673481941223
+      }
+    },
+    {
+      "role": "tail",
+      "format": "W4_aff128",
+      "M": 17,
+      "round": 1,
+      "order": [
+        "BF16",
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 0.012510000169277192,
+        "tile2": 0.0812990427017212,
+        "tile1": 0.0829917311668396,
+        "tile0": 0.04212865233421326,
+        "W8A8": 0.034205195307731626
+      }
+    },
+    {
+      "role": "tail",
+      "format": "W4_aff128",
+      "M": 17,
+      "round": 2,
+      "order": [
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 0.04255076944828033,
+        "tile1": 0.0828023076057434,
+        "tile2": 0.08105250000953675,
+        "BF16": 0.020116153359413146,
+        "W8A8": 0.034636154770851135
+      }
+    },
+    {
+      "role": "tail",
+      "format": "W4_aff128",
+      "M": 17,
+      "round": 3,
+      "order": [
+        "tile0",
+        "W8A8",
+        "BF16",
+        "tile2",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 0.042979422211647036,
+        "W8A8": 0.03510211706161499,
+        "BF16": 0.019279231131076813,
+        "tile2": 0.08111576437950134,
+        "tile1": 0.08342134952545166
+      }
+    },
+    {
+      "role": "tail",
+      "format": "W4_aff128",
+      "M": 17,
+      "round": 4,
+      "order": [
+        "tile2",
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 0.08109519481658936,
+        "BF16": 0.019679999351501463,
+        "W8A8": 0.03454827070236206,
+        "tile0": 0.043024423718452456,
+        "tile1": 0.08324673175811767
+      }
+    },
+    {
+      "role": "tail",
+      "format": "W4_aff128",
+      "M": 17,
+      "round": 5,
+      "order": [
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 0.08159769177436829,
+        "tile1": 0.08368731141090394,
+        "tile0": 0.04201403558254242,
+        "W8A8": 0.034557881951332095,
+        "BF16": 0.010801153630018235
+      }
+    },
+    {
+      "role": "tail",
+      "format": "W4_aff128",
+      "M": 17,
+      "round": 6,
+      "order": [
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "W8A8": 0.03456192314624786,
+        "tile0": 0.04227634370326996,
+        "tile1": 0.08284403681755066,
+        "tile2": 0.08086499571800232,
+        "BF16": 0.010416538268327714
+      }
+    },
+    {
+      "role": "tail",
+      "format": "W8_channel",
+      "M": 17,
+      "round": 0,
+      "order": [
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 0.012272308021783829,
+        "W8A8": 0.03383038341999054,
+        "tile0": 0.012159422785043717,
+        "tile1": 0.023015384376049042,
+        "tile2": 0.02077923119068146
+      }
+    },
+    {
+      "role": "tail",
+      "format": "W8_channel",
+      "M": 17,
+      "round": 1,
+      "order": [
+        "BF16",
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 0.012094423174858093,
+        "tile2": 0.01964673101902008,
+        "tile1": 0.02410384565591812,
+        "tile0": 0.012045961618423463,
+        "W8A8": 0.03386249840259552
+      }
+    },
+    {
+      "role": "tail",
+      "format": "W8_channel",
+      "M": 17,
+      "round": 2,
+      "order": [
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 0.012062115222215652,
+        "tile1": 0.023023846745491027,
+        "tile2": 0.019727115333080292,
+        "BF16": 0.012068653851747513,
+        "W8A8": 0.03379923105239868
+      }
+    },
+    {
+      "role": "tail",
+      "format": "W8_channel",
+      "M": 17,
+      "round": 3,
+      "order": [
+        "tile0",
+        "W8A8",
+        "BF16",
+        "tile2",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 0.011980769038200379,
+        "W8A8": 0.03359807729721069,
+        "BF16": 0.012323461472988129,
+        "tile2": 0.01974307745695114,
+        "tile1": 0.02299923002719879
+      }
+    },
+    {
+      "role": "tail",
+      "format": "W8_channel",
+      "M": 17,
+      "round": 4,
+      "order": [
+        "tile2",
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 0.020170769095420836,
+        "BF16": 0.011911153793334961,
+        "W8A8": 0.033786344528198245,
+        "tile0": 0.011969999969005584,
+        "tile1": 0.02304961532354355
+      }
+    },
+    {
+      "role": "tail",
+      "format": "W8_channel",
+      "M": 17,
+      "round": 5,
+      "order": [
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 0.019739037752151488,
+        "tile1": 0.023030383884906767,
+        "tile0": 0.012563653290271759,
+        "W8A8": 0.03326461613178253,
+        "BF16": 0.011834999918937683
+      }
+    },
+    {
+      "role": "tail",
+      "format": "W8_channel",
+      "M": 17,
+      "round": 6,
+      "order": [
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "W8A8": 0.033300000429153445,
+        "tile0": 0.01213807687163353,
+        "tile1": 0.02300461530685425,
+        "tile2": 0.01975826919078827,
+        "BF16": 0.011692500114440918
+      }
+    },
+    {
+      "role": "down",
+      "format": "W4_sym128",
+      "M": 8,
+      "round": 0,
+      "order": [
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 0.09317346215248108,
+        "W8A8": 0.13608423471450806,
+        "tile0": 0.9565017700195313,
+        "tile1": 1.5269078254699706,
+        "tile2": 1.515774631500244
+      }
+    },
+    {
+      "role": "down",
+      "format": "W4_sym128",
+      "M": 8,
+      "round": 1,
+      "order": [
+        "BF16",
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 0.09254557490348816,
+        "tile2": 1.5163832664489747,
+        "tile1": 1.5269569396972655,
+        "tile0": 0.948626708984375,
+        "W8A8": 0.1362375020980835
+      }
+    },
+    {
+      "role": "down",
+      "format": "W4_sym128",
+      "M": 8,
+      "round": 2,
+      "order": [
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 0.955479621887207,
+        "tile1": 1.526906681060791,
+        "tile2": 1.515711498260498,
+        "BF16": 0.09242038130760193,
+        "W8A8": 0.13601691722869874
+      }
+    },
+    {
+      "role": "down",
+      "format": "W4_sym128",
+      "M": 8,
+      "round": 3,
+      "order": [
+        "tile0",
+        "W8A8",
+        "BF16",
+        "tile2",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 0.9511019706726074,
+        "W8A8": 0.1359557628631592,
+        "BF16": 0.0928523063659668,
+        "tile2": 1.5163853645324707,
+        "tile1": 1.5268544197082519
+      }
+    },
+    {
+      "role": "down",
+      "format": "W4_sym128",
+      "M": 8,
+      "round": 4,
+      "order": [
+        "tile2",
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 1.515499210357666,
+        "BF16": 0.09283730387687683,
+        "W8A8": 0.13587000370025634,
+        "tile0": 0.949810791015625,
+        "tile1": 1.5269291877746582
+      }
+    },
+    {
+      "role": "down",
+      "format": "W4_sym128",
+      "M": 8,
+      "round": 5,
+      "order": [
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 1.5155688285827638,
+        "tile1": 1.5268852233886718,
+        "tile0": 0.9488569259643554,
+        "W8A8": 0.13606404066085814,
+        "BF16": 0.09292191863059998
+      }
+    },
+    {
+      "role": "down",
+      "format": "W4_sym128",
+      "M": 8,
+      "round": 6,
+      "order": [
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "W8A8": 0.13579288721084595,
+        "tile0": 0.956513500213623,
+        "tile1": 1.5268982887268066,
+        "tile2": 1.5156107902526856,
+        "BF16": 0.09227153658866882
+      }
+    },
+    {
+      "role": "down",
+      "format": "W4_sym128",
+      "M": 64,
+      "round": 0,
+      "order": [
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 0.05908827185630798,
+        "W8A8": 0.06936538219451904,
+        "tile0": 3.5460620880126954,
+        "tile1": 2.6977148056030273,
+        "tile2": 1.6278087615966796
+      }
+    },
+    {
+      "role": "down",
+      "format": "W4_sym128",
+      "M": 64,
+      "round": 1,
+      "order": [
+        "BF16",
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 0.05923384428024292,
+        "tile2": 1.6285425186157227,
+        "tile1": 2.7005895614624023,
+        "tile0": 3.6047904968261717,
+        "W8A8": 0.06967923045158386
+      }
+    },
+    {
+      "role": "down",
+      "format": "W4_sym128",
+      "M": 64,
+      "round": 2,
+      "order": [
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 3.566416549682617,
+        "tile1": 2.698642539978027,
+        "tile2": 1.6277935028076171,
+        "BF16": 0.059323078393936156,
+        "W8A8": 0.06931173205375671
+      }
+    },
+    {
+      "role": "down",
+      "format": "W4_sym128",
+      "M": 64,
+      "round": 3,
+      "order": [
+        "tile0",
+        "W8A8",
+        "BF16",
+        "tile2",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 3.4514228820800783,
+        "W8A8": 0.06932673454284669,
+        "BF16": 0.05926172733306885,
+        "tile2": 1.628546905517578,
+        "tile1": 2.70185546875
+      }
+    },
+    {
+      "role": "down",
+      "format": "W4_sym128",
+      "M": 64,
+      "round": 4,
+      "order": [
+        "tile2",
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 1.6278074264526368,
+        "BF16": 0.05927249789237976,
+        "W8A8": 0.0694350004196167,
+        "tile0": 3.5863819122314453,
+        "tile1": 2.69964542388916
+      }
+    },
+    {
+      "role": "down",
+      "format": "W4_sym128",
+      "M": 64,
+      "round": 5,
+      "order": [
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 1.6278610229492188,
+        "tile1": 2.7024545669555664,
+        "tile0": 3.581338119506836,
+        "W8A8": 0.06944345831871032,
+        "BF16": 0.05909576416015625
+      }
+    },
+    {
+      "role": "down",
+      "format": "W4_sym128",
+      "M": 64,
+      "round": 6,
+      "order": [
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "W8A8": 0.06942115426063537,
+        "tile0": 3.5089168548583984,
+        "tile1": 2.7028499603271485,
+        "tile2": 1.627813720703125,
+        "BF16": 0.058474224805831906
+      }
+    },
+    {
+      "role": "down",
+      "format": "W4_aff128",
+      "M": 8,
+      "round": 0,
+      "order": [
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 0.09321654438972474,
+        "W8A8": 0.1360274910926819,
+        "tile0": 1.2082886695861816,
+        "tile1": 1.5810728073120117,
+        "tile2": 1.5708075523376466
+      }
+    },
+    {
+      "role": "down",
+      "format": "W4_aff128",
+      "M": 8,
+      "round": 1,
+      "order": [
+        "BF16",
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 0.09275788068771362,
+        "tile2": 1.5711213111877442,
+        "tile1": 1.5811113357543944,
+        "tile0": 1.2246685028076172,
+        "W8A8": 0.13625999689102172
+      }
+    },
+    {
+      "role": "down",
+      "format": "W4_aff128",
+      "M": 8,
+      "round": 2,
+      "order": [
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 1.212662124633789,
+        "tile1": 1.5811511039733888,
+        "tile2": 1.570990753173828,
+        "BF16": 0.0926925003528595,
+        "W8A8": 0.13591192960739135
+      }
+    },
+    {
+      "role": "down",
+      "format": "W4_aff128",
+      "M": 8,
+      "round": 3,
+      "order": [
+        "tile0",
+        "W8A8",
+        "BF16",
+        "tile2",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 1.2135096549987794,
+        "W8A8": 0.1359965443611145,
+        "BF16": 0.092535001039505,
+        "tile2": 1.57112455368042,
+        "tile1": 1.581477737426758
+      }
+    },
+    {
+      "role": "down",
+      "format": "W4_aff128",
+      "M": 8,
+      "round": 4,
+      "order": [
+        "tile2",
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 1.570733642578125,
+        "BF16": 0.09221346378326416,
+        "W8A8": 0.13607347011566162,
+        "tile0": 1.2356796264648438,
+        "tile1": 1.581064224243164
+      }
+    },
+    {
+      "role": "down",
+      "format": "W4_aff128",
+      "M": 8,
+      "round": 5,
+      "order": [
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 1.5707409858703614,
+        "tile1": 1.581062126159668,
+        "tile0": 1.2353400230407714,
+        "W8A8": 0.13634250164031983,
+        "BF16": 0.09203461408615113
+      }
+    },
+    {
+      "role": "down",
+      "format": "W4_aff128",
+      "M": 8,
+      "round": 6,
+      "order": [
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "W8A8": 0.13595250844955445,
+        "tile0": 1.2131186485290528,
+        "tile1": 1.581060028076172,
+        "tile2": 1.5706626892089843,
+        "BF16": 0.0922124981880188
+      }
+    },
+    {
+      "role": "down",
+      "format": "W4_aff128",
+      "M": 64,
+      "round": 0,
+      "order": [
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 0.06014673113822937,
+        "W8A8": 0.06923884153366089,
+        "tile0": 3.200535202026367,
+        "tile1": 2.013804626464844,
+        "tile2": 1.6880582809448241
+      }
+    },
+    {
+      "role": "down",
+      "format": "W4_aff128",
+      "M": 64,
+      "round": 1,
+      "order": [
+        "BF16",
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 0.05917384624481201,
+        "tile2": 1.6897756576538085,
+        "tile1": 2.0130664825439455,
+        "tile0": 3.189052391052246,
+        "W8A8": 0.06906634569168091
+      }
+    },
+    {
+      "role": "down",
+      "format": "W4_aff128",
+      "M": 64,
+      "round": 2,
+      "order": [
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 3.181670379638672,
+        "tile1": 2.0132164001464843,
+        "tile2": 1.6879917144775392,
+        "BF16": 0.05919422507286072,
+        "W8A8": 0.06756519675254821
+      }
+    },
+    {
+      "role": "down",
+      "format": "W4_aff128",
+      "M": 64,
+      "round": 3,
+      "order": [
+        "tile0",
+        "W8A8",
+        "BF16",
+        "tile2",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 3.1717885971069335,
+        "W8A8": 0.06920250058174134,
+        "BF16": 0.060036540031433105,
+        "tile2": 1.6897937774658203,
+        "tile1": 2.0131811141967773
+      }
+    },
+    {
+      "role": "down",
+      "format": "W4_aff128",
+      "M": 64,
+      "round": 4,
+      "order": [
+        "tile2",
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 1.6879833221435547,
+        "BF16": 0.05862115621566773,
+        "W8A8": 0.0690890371799469,
+        "tile0": 3.1727657318115234,
+        "tile1": 2.013045883178711
+      }
+    },
+    {
+      "role": "down",
+      "format": "W4_aff128",
+      "M": 64,
+      "round": 5,
+      "order": [
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 1.6880016326904297,
+        "tile1": 2.012944221496582,
+        "tile0": 3.1877227783203126,
+        "W8A8": 0.06889172792434692,
+        "BF16": 0.05930249691009522
+      }
+    },
+    {
+      "role": "down",
+      "format": "W4_aff128",
+      "M": 64,
+      "round": 6,
+      "order": [
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "W8A8": 0.06886730790138244,
+        "tile0": 3.194710922241211,
+        "tile1": 2.0131061553955076,
+        "tile2": 1.6880090713500977,
+        "BF16": 0.05945365428924561
+      }
+    },
+    {
+      "role": "down",
+      "format": "W8_channel",
+      "M": 8,
+      "round": 0,
+      "order": [
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 0.09248999953269958,
+        "W8A8": 0.13594943284988403,
+        "tile0": 0.14426461458206177,
+        "tile1": 0.22966384887695312,
+        "tile2": 0.2096271276473999
+      }
+    },
+    {
+      "role": "down",
+      "format": "W8_channel",
+      "M": 8,
+      "round": 1,
+      "order": [
+        "BF16",
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 0.09288750290870666,
+        "tile2": 0.2103642225265503,
+        "tile1": 0.22961885929107667,
+        "tile0": 0.14389077425003052,
+        "W8A8": 0.1359890341758728
+      }
+    },
+    {
+      "role": "down",
+      "format": "W8_channel",
+      "M": 8,
+      "round": 2,
+      "order": [
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 0.14435904026031493,
+        "tile1": 0.22965538501739502,
+        "tile2": 0.2096355676651001,
+        "BF16": 0.09266346096992492,
+        "W8A8": 0.13580557107925414
+      }
+    },
+    {
+      "role": "down",
+      "format": "W8_channel",
+      "M": 8,
+      "round": 3,
+      "order": [
+        "tile0",
+        "W8A8",
+        "BF16",
+        "tile2",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 0.14430654048919678,
+        "W8A8": 0.13577672243118286,
+        "BF16": 0.09326673150062562,
+        "tile2": 0.21033115386962892,
+        "tile1": 0.22963500022888184
+      }
+    },
+    {
+      "role": "down",
+      "format": "W8_channel",
+      "M": 8,
+      "round": 4,
+      "order": [
+        "tile2",
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 0.20961422920227052,
+        "BF16": 0.09227904081344604,
+        "W8A8": 0.13587000370025634,
+        "tile0": 0.14415327310562134,
+        "tile1": 0.229653263092041
+      }
+    },
+    {
+      "role": "down",
+      "format": "W8_channel",
+      "M": 8,
+      "round": 5,
+      "order": [
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 0.20962193012237548,
+        "tile1": 0.22965750694274903,
+        "tile0": 0.14361518621444702,
+        "W8A8": 0.13576288223266603,
+        "BF16": 0.09251250028610229
+      }
+    },
+    {
+      "role": "down",
+      "format": "W8_channel",
+      "M": 8,
+      "round": 6,
+      "order": [
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "W8A8": 0.13579826354980468,
+        "tile0": 0.14420480728149415,
+        "tile1": 0.2296607732772827,
+        "tile2": 0.2096271276473999,
+        "BF16": 0.09225865006446839
+      }
+    },
+    {
+      "role": "down",
+      "format": "W8_channel",
+      "M": 64,
+      "round": 0,
+      "order": [
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 0.05861884355545044,
+        "W8A8": 0.06679384708404541,
+        "tile0": 0.38830616474151614,
+        "tile1": 0.39777750968933107,
+        "tile2": 0.3508478879928589
+      }
+    },
+    {
+      "role": "down",
+      "format": "W8_channel",
+      "M": 64,
+      "round": 1,
+      "order": [
+        "BF16",
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 0.0587024986743927,
+        "tile2": 0.35228672027587893,
+        "tile1": 0.39774537086486816,
+        "tile0": 0.3887955665588379,
+        "W8A8": 0.06683250069618225
+      }
+    },
+    {
+      "role": "down",
+      "format": "W8_channel",
+      "M": 64,
+      "round": 2,
+      "order": [
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 0.38783557415008546,
+        "tile1": 0.39777865409851076,
+        "tile2": 0.3507857799530029,
+        "BF16": 0.058716344833374026,
+        "W8A8": 0.06713442206382751
+      }
+    },
+    {
+      "role": "down",
+      "format": "W8_channel",
+      "M": 64,
+      "round": 3,
+      "order": [
+        "tile0",
+        "W8A8",
+        "BF16",
+        "tile2",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 0.38738558292388914,
+        "W8A8": 0.06683461666107178,
+        "BF16": 0.058453845977783206,
+        "tile2": 0.35221498012542723,
+        "tile1": 0.3978173017501831
+      }
+    },
+    {
+      "role": "down",
+      "format": "W8_channel",
+      "M": 64,
+      "round": 4,
+      "order": [
+        "tile2",
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 0.35083057880401614,
+        "BF16": 0.05858038067817688,
+        "W8A8": 0.06680442690849304,
+        "tile0": 0.38768365383148196,
+        "tile1": 0.39778385162353513
+      }
+    },
+    {
+      "role": "down",
+      "format": "W8_channel",
+      "M": 64,
+      "round": 5,
+      "order": [
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 0.350825572013855,
+        "tile1": 0.3977142333984375,
+        "tile0": 0.3870857715606689,
+        "W8A8": 0.06705230474472046,
+        "BF16": 0.05927884578704834
+      }
+    },
+    {
+      "role": "down",
+      "format": "W8_channel",
+      "M": 64,
+      "round": 6,
+      "order": [
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "W8A8": 0.06682615280151367,
+        "tile0": 0.388219428062439,
+        "tile1": 0.39777212142944335,
+        "tile2": 0.35087673664093016,
+        "BF16": 0.059180188179016116
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_sym128",
+      "M": 8,
+      "round": 0,
+      "order": [
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 0.8169161796569824,
+        "W8A8": 0.8688792228698731,
+        "tile0": 14.731594848632813,
+        "tile1": 20.532850646972655,
+        "tile2": 19.875885009765625
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_sym128",
+      "M": 8,
+      "round": 1,
+      "order": [
+        "BF16",
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 0.8187299728393554,
+        "tile2": 19.882670593261718,
+        "tile1": 20.569949340820312,
+        "tile0": 14.729695129394532,
+        "W8A8": 0.8665028572082519
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_sym128",
+      "M": 8,
+      "round": 2,
+      "order": [
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 14.739064025878907,
+        "tile1": 20.57549591064453,
+        "tile2": 19.916035461425782,
+        "BF16": 0.8178975105285644,
+        "W8A8": 0.8670256614685059
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_sym128",
+      "M": 8,
+      "round": 3,
+      "order": [
+        "tile0",
+        "W8A8",
+        "BF16",
+        "tile2",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 14.765750122070312,
+        "W8A8": 0.8662242889404297,
+        "BF16": 0.8174830436706543,
+        "tile2": 19.928709411621092,
+        "tile1": 20.579640197753907
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_sym128",
+      "M": 8,
+      "round": 4,
+      "order": [
+        "tile2",
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 19.84331817626953,
+        "BF16": 0.8174894332885743,
+        "W8A8": 0.866845703125,
+        "tile0": 14.756437683105469,
+        "tile1": 20.57652130126953
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_sym128",
+      "M": 8,
+      "round": 5,
+      "order": [
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 19.913056945800783,
+        "tile1": 20.62286834716797,
+        "tile0": 14.7781005859375,
+        "W8A8": 0.8683778762817382,
+        "BF16": 0.8170113563537598
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_sym128",
+      "M": 8,
+      "round": 6,
+      "order": [
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "W8A8": 0.8667536735534668,
+        "tile0": 14.717420959472657,
+        "tile1": 20.561146545410157,
+        "tile2": 19.885421752929688,
+        "BF16": 0.8181674957275391
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_sym128",
+      "M": 64,
+      "round": 0,
+      "order": [
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 1.0363968849182128,
+        "W8A8": 0.6209080696105957,
+        "tile0": 58.5573486328125,
+        "tile1": 39.675604248046874,
+        "tile2": 21.61107940673828
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_sym128",
+      "M": 64,
+      "round": 1,
+      "order": [
+        "BF16",
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 1.0382914543151855,
+        "tile2": 21.631007385253906,
+        "tile1": 39.73019714355469,
+        "tile0": 58.4916748046875,
+        "W8A8": 0.6188655853271484
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_sym128",
+      "M": 64,
+      "round": 2,
+      "order": [
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 58.5184326171875,
+        "tile1": 39.75850830078125,
+        "tile2": 21.629808044433595,
+        "BF16": 1.0391604423522949,
+        "W8A8": 0.619801139831543
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_sym128",
+      "M": 64,
+      "round": 3,
+      "order": [
+        "tile0",
+        "W8A8",
+        "BF16",
+        "tile2",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 58.48836669921875,
+        "W8A8": 0.6189449787139892,
+        "BF16": 1.0369617462158203,
+        "tile2": 21.601229858398437,
+        "tile1": 39.75069580078125
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_sym128",
+      "M": 64,
+      "round": 4,
+      "order": [
+        "tile2",
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 21.62048797607422,
+        "BF16": 1.0401127815246582,
+        "W8A8": 0.6212280750274658,
+        "tile0": 58.36295776367187,
+        "tile1": 39.791806030273435
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_sym128",
+      "M": 64,
+      "round": 5,
+      "order": [
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 21.615080261230467,
+        "tile1": 39.76814270019531,
+        "tile0": 58.391204833984375,
+        "W8A8": 0.6206217288970948,
+        "BF16": 1.039711093902588
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_sym128",
+      "M": 64,
+      "round": 6,
+      "order": [
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "W8A8": 0.6177031040191651,
+        "tile0": 58.52283935546875,
+        "tile1": 39.86641845703125,
+        "tile2": 21.61060485839844,
+        "BF16": 1.0380525588989258
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_aff128",
+      "M": 8,
+      "round": 0,
+      "order": [
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 0.8184590339660645,
+        "W8A8": 0.8678036689758301,
+        "tile0": 15.132585144042968,
+        "tile1": 19.56389923095703,
+        "tile2": 18.990565490722656
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_aff128",
+      "M": 8,
+      "round": 1,
+      "order": [
+        "BF16",
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 0.8169105529785157,
+        "tile2": 19.045481872558593,
+        "tile1": 19.179710388183594,
+        "tile0": 15.124923706054688,
+        "W8A8": 0.874610424041748
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_aff128",
+      "M": 8,
+      "round": 2,
+      "order": [
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 15.154106140136719,
+        "tile1": 20.159207153320313,
+        "tile2": 19.41113739013672,
+        "BF16": 0.8181009292602539,
+        "W8A8": 0.8623702049255371
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_aff128",
+      "M": 8,
+      "round": 3,
+      "order": [
+        "tile0",
+        "W8A8",
+        "BF16",
+        "tile2",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 15.124320983886719,
+        "W8A8": 0.8638906478881836,
+        "BF16": 0.8171069145202636,
+        "tile2": 19.875283813476564,
+        "tile1": 19.55095672607422
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_aff128",
+      "M": 8,
+      "round": 4,
+      "order": [
+        "tile2",
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 19.112811279296874,
+        "BF16": 0.8170758247375488,
+        "W8A8": 0.8607375144958496,
+        "tile0": 15.157540893554687,
+        "tile1": 19.775767517089843
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_aff128",
+      "M": 8,
+      "round": 5,
+      "order": [
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 19.35045928955078,
+        "tile1": 19.224998474121094,
+        "tile0": 15.208966064453126,
+        "W8A8": 0.8659029006958008,
+        "BF16": 0.8171956062316894
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_aff128",
+      "M": 8,
+      "round": 6,
+      "order": [
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "W8A8": 0.8667492866516113,
+        "tile0": 15.263365173339844,
+        "tile1": 19.78473815917969,
+        "tile2": 19.02485809326172,
+        "BF16": 0.8172480583190918
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_aff128",
+      "M": 64,
+      "round": 0,
+      "order": [
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 1.0431900024414062,
+        "W8A8": 0.6322821140289306,
+        "tile0": 60.22474975585938,
+        "tile1": 41.31513671875,
+        "tile2": 23.412739562988282
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_aff128",
+      "M": 64,
+      "round": 1,
+      "order": [
+        "BF16",
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 1.0232946395874023,
+        "tile2": 23.429057312011718,
+        "tile1": 40.657379150390625,
+        "tile0": 59.851416015625,
+        "W8A8": 0.6211680889129638
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_aff128",
+      "M": 64,
+      "round": 2,
+      "order": [
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 60.238714599609374,
+        "tile1": 41.209756469726564,
+        "tile2": 23.413246154785156,
+        "BF16": 1.023792839050293,
+        "W8A8": 0.6051611423492431
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_aff128",
+      "M": 64,
+      "round": 3,
+      "order": [
+        "tile0",
+        "W8A8",
+        "BF16",
+        "tile2",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 59.564080810546876,
+        "W8A8": 0.6139318943023682,
+        "BF16": 1.0279082298278808,
+        "tile2": 23.440174865722657,
+        "tile1": 42.02452087402344
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_aff128",
+      "M": 64,
+      "round": 4,
+      "order": [
+        "tile2",
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 23.445675659179688,
+        "BF16": 1.024775218963623,
+        "W8A8": 0.6059765338897705,
+        "tile0": 59.996978759765625,
+        "tile1": 40.26451721191406
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_aff128",
+      "M": 64,
+      "round": 5,
+      "order": [
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 23.235981750488282,
+        "tile1": 40.12380676269531,
+        "tile0": 59.89996337890625,
+        "W8A8": 0.6168042182922363,
+        "BF16": 1.0338501930236816
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W4_aff128",
+      "M": 64,
+      "round": 6,
+      "order": [
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "W8A8": 0.614393663406372,
+        "tile0": 60.22774047851563,
+        "tile1": 40.751007080078125,
+        "tile2": 23.32178497314453,
+        "BF16": 1.0220498085021972
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W8_channel",
+      "M": 8,
+      "round": 0,
+      "order": [
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 0.8187331199645996,
+        "W8A8": 0.8721139907836915,
+        "tile0": 1.8854387283325196,
+        "tile1": 2.1501995086669923,
+        "tile2": 2.00362491607666
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W8_channel",
+      "M": 8,
+      "round": 1,
+      "order": [
+        "BF16",
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 0.8183388710021973,
+        "tile2": 2.0014801025390625,
+        "tile1": 2.1467796325683595,
+        "tile0": 1.88353271484375,
+        "W8A8": 0.8694963455200195
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W8_channel",
+      "M": 8,
+      "round": 2,
+      "order": [
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 1.8867975234985352,
+        "tile1": 2.1494680404663087,
+        "tile2": 2.0059606552124025,
+        "BF16": 0.818358039855957,
+        "W8A8": 0.8670107841491699
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W8_channel",
+      "M": 8,
+      "round": 3,
+      "order": [
+        "tile0",
+        "W8A8",
+        "BF16",
+        "tile2",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 1.88546142578125,
+        "W8A8": 0.8700086593627929,
+        "BF16": 0.8180475234985352,
+        "tile2": 2.0144044876098635,
+        "tile1": 2.1396331787109375
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W8_channel",
+      "M": 8,
+      "round": 4,
+      "order": [
+        "tile2",
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 2.0174379348754883,
+        "BF16": 0.8179661750793457,
+        "W8A8": 0.8700836181640625,
+        "tile0": 1.8796297073364259,
+        "tile1": 2.1359485626220702
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W8_channel",
+      "M": 8,
+      "round": 5,
+      "order": [
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 2.013838005065918,
+        "tile1": 2.139900016784668,
+        "tile0": 1.8798065185546875,
+        "W8A8": 0.8688030242919922,
+        "BF16": 0.818392562866211
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W8_channel",
+      "M": 8,
+      "round": 6,
+      "order": [
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "W8A8": 0.8700749397277832,
+        "tile0": 1.8900922775268554,
+        "tile1": 2.1390558242797852,
+        "tile2": 2.0142919540405275,
+        "BF16": 0.8175032615661622
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W8_channel",
+      "M": 64,
+      "round": 0,
+      "order": [
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 1.0346390724182128,
+        "W8A8": 0.6195419311523438,
+        "tile0": 7.587393951416016,
+        "tile1": 5.090738296508789,
+        "tile2": 4.316393661499023
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W8_channel",
+      "M": 64,
+      "round": 1,
+      "order": [
+        "BF16",
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "BF16": 1.0337700843811035,
+        "tile2": 4.31501579284668,
+        "tile1": 5.090556335449219,
+        "tile0": 7.588204956054687,
+        "W8A8": 0.61874361038208
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W8_channel",
+      "M": 64,
+      "round": 2,
+      "order": [
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16",
+        "W8A8"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 7.587450408935547,
+        "tile1": 5.0905006408691404,
+        "tile2": 4.314355850219727,
+        "BF16": 1.0350749969482422,
+        "W8A8": 0.6206046104431152
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W8_channel",
+      "M": 64,
+      "round": 3,
+      "order": [
+        "tile0",
+        "W8A8",
+        "BF16",
+        "tile2",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile0": 7.585543823242188,
+        "W8A8": 0.6196447849273682,
+        "BF16": 1.031689453125,
+        "tile2": 4.316115188598633,
+        "tile1": 5.0921142578125
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W8_channel",
+      "M": 64,
+      "round": 4,
+      "order": [
+        "tile2",
+        "BF16",
+        "W8A8",
+        "tile0",
+        "tile1"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 4.311149978637696,
+        "BF16": 1.0328742027282716,
+        "W8A8": 0.6182775020599365,
+        "tile0": 7.588044738769531,
+        "tile1": 5.094076156616211
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W8_channel",
+      "M": 64,
+      "round": 5,
+      "order": [
+        "tile2",
+        "tile1",
+        "tile0",
+        "W8A8",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "tile2": 4.31262321472168,
+        "tile1": 5.089633560180664,
+        "tile0": 7.585858154296875,
+        "W8A8": 0.6174269199371338,
+        "BF16": 1.0319153785705566
+      }
+    },
+    {
+      "role": "lm_head",
+      "format": "W8_channel",
+      "M": 64,
+      "round": 6,
+      "order": [
+        "W8A8",
+        "tile0",
+        "tile1",
+        "tile2",
+        "BF16"
+      ],
+      "replays": 20,
+      "milliseconds": {
+        "W8A8": 0.618232536315918,
+        "tile0": 7.586795043945313,
+        "tile1": 5.097205734252929,
+        "tile2": 4.314962005615234,
+        "BF16": 1.0306586265563964
+      }
+    }
+  ],
+  "versions": {
+    "torch": "2.10.0",
+    "triton": "3.6.0",
+    "target": "GPUTarget(backend='corex', arch=71, warp_size=64)"
+  },
+  "weights": {
+    "tail": {
+      "N": 131,
+      "K": 259,
+      "BF16_sha256": "40e1ca06384d5d83bd3b09af3ff9b01aeb8d841a8b1fb9ab1a56acd7d917eb23",
+      "original_bytes": 67858
+    },
+    "down": {
+      "N": 2048,
+      "K": 6144,
+      "BF16_sha256": "1a6e6d547d5f0ffd08fd020690ccf75323ba4dd54181617e406a84f644cee501",
+      "original_bytes": 25165824
+    },
+    "lm_head": {
+      "N": 130560,
+      "K": 2048,
+      "BF16_sha256": "9f5cf86ab727309a3130cad08fc6153925b3a2b29084afc24e641a4733e65189",
+      "original_bytes": 534773760
+    }
+  },
+  "checkpoint_sha256_after": "14fb8e7f0a18d53d1f239773758bf581cee7e456a4523a54622c3a245b64402c",
+  "checkpoint_unchanged": true,
+  "ended_at_utc": "2026-10-22T01:27:11.014265+00:00"
+}
