@@ -1,0 +1,36 @@
+{
+  "complete": true,
+  "minimum_M": 32,
+  "maximum_M": 64,
+  "physical_M": 64,
+  "configuration": {
+    "bm": 64,
+    "bn": 128,
+    "bk": 128,
+    "warps": 4,
+    "stages": 1
+  },
+  "component_gate": "/workspace/vllm-plugin-FL/experiments/tianshu_LM_pad64_20261022/INDEPENDENT_CPU_GATE_32g.json",
+  "component_gate_sha256": "6c4ebb1c959d8380e7d76d92f7dff8ed99c367946f29609d67324ad79b6861bd",
+  "component_raw_sha256": "49a1b04425a19dca324b19b6b32a0e9c361ab1911f9a3884f55d1413cb0f88d8",
+  "expected_compiled": {
+    "quantizer": {
+      "binary_sha256": "414c430f335f19ccfcc61b58ec0905875401e969a211afb6271bd978c4c81225",
+      "cache_hash": "b1f4a9c6bfe54995190156ade05528880c2fe1ee47945e681a4b42c7b2efa38f",
+      "n_regs": 19,
+      "n_spills": 0,
+      "shared": 16
+    },
+    "GEMM": {
+      "binary_sha256": "adc515249b4c09cd99520c5d3d0c707d5268b2fee0b364194703d4230d9138e9",
+      "cache_hash": "10b9eeb92f80bcd450df74392e2bddf25aa45caed52195ed6190d33131264fce",
+      "n_regs": 93,
+      "n_spills": 0,
+      "shared": 24576
+    }
+  },
+  "M64_original_bits_exact": true,
+  "smaller_M_new_full_quality_required": true,
+  "no_new_pack": true,
+  "source_baseline": "r3_original903"
+}
