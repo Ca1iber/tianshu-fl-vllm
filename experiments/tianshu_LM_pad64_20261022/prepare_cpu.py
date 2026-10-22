@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: Apache-2.0
 import ast,hashlib,json,sys
 from pathlib import Path
-BASE=Path(__file__).resolve().parent;EXP=BASE.parent;RUNNER=Path('/workspace/benchmark-results/20261022_LM_pad64_runner_tianshu');assert not RUNNER.exists();RUNNER.mkdir();(RUNNER/'cache').mkdir()
+BASE=Path(__file__).resolve().parent;EXP=BASE.parent;RUNNER=Path('/workspace/benchmark-results/20261022_LM_pad64_runner_v2_tianshu');assert not RUNNER.exists();RUNNER.mkdir();(RUNNER/'cache').mkdir()
 def sha(p):
  with Path(p).open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
 sources=dict(json.loads((EXP/'tianshu_native_int8_attention_prefill_release_20261022/serve_profile_template.json').read_text())['frozen_sources']);assert len(sources)==903

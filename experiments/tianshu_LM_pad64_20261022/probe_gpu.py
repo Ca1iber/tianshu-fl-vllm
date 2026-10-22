@@ -50,6 +50,8 @@ def main():
    finally:sys.setprofile(None)
    if m<64:assert any(Path(r['source']).resolve()==Path(freeze['actual_vendor_linear_source']).resolve() for r in traces)
    state['actual_vendor_traces'][str(m)]=traces;graphs={};graph_outputs={};ops={'actual_control':control,'padded_fused':candidate}
+   qkernel=new.quantize_padded(a,q,s);gkernel=new.mm(q,w,s,ws,fpout,dummy,cfg)
+   state.setdefault("compiled",{})[str(m)]={name:dict(binary_sha256=hashlib.sha256(ker.kernel).hexdigest(),cache_hash=ker.hash,n_regs=ker.n_regs,n_spills=ker.n_spills,shared=ker.metadata.shared) for name,ker in (("quantizer",qkernel),("GEMM",gkernel))}
    for name,fn in ops.items():
     fn();torch.cuda.synchronize();graph=torch.cuda.CUDAGraph()
     with torch.cuda.graph(graph):out=fn()
