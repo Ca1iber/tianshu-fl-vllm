@@ -39,7 +39,7 @@ def main():
      weight=torch.cat([checkpoint.get_tensor(f'model.layers.{layer}.self_attn.{p}_proj.weight') for p in ('q','k','v')],0).contiguous() if role=='QKV' else checkpoint.get_tensor(f'model.layers.{layer}.self_attn.o_proj.weight').contiguous();q,s=pack(weight);proof=dict(layer=layer,role=role,prefix=f'model.layers.{layer}.self_attn.'+('qkv_proj' if role=='QKV' else 'o_proj'),N=weight.shape[0],K=weight.shape[1],original_BF16_sha256=thash(weight),packed_sha256=thash(q),scales_sha256=thash(s),packed_payload_bytes=q.numel()+s.numel()*4);banks.append(dict(W=weight.cuda(),Q=q.T.contiguous().cuda(),S=s.cuda()));state['banks'].append(proof)
     print(json.dumps(dict(layer=layer,loaded=True)),flush=True)
   state.update(phase='banks_loaded',new_packed_payload_bytes=sum(b['packed_payload_bytes'] for b in state['banks']));save()
-  whitelist,blacklist=get_flag_gems_whitelist_blacklist();assert not whitelist and not blacklist;linear_path=Path(inspect.getsourcefile(flag_gems.linear)).resolve();assert sources[str(linear_path)]==sha(linear_path);flag_gems.enable(record=False,once=True);method=UnquantizedLinearMethod();layers=[SimpleNamespace(weight=b['W'],prefix=p['prefix']) for p,b in zip(state['banks'],banks)];state.update(BF16_control='actual_UnquantizedLinearMethod_F_linear',actual_linear_source=str(linear_path),actual_linear_sha256=sha(linear_path))
+  whitelist,blacklist=get_flag_gems_whitelist_blacklist();assert not whitelist and not blacklist;linear_path=Path(inspect.getsourcefile(flag_gems.linear)).resolve();assert sources[str(linear_path)]==sha(linear_path);flag_gems.enable(record=False,once=True);state.update(BF16_control='actual_903source_service_explicit_vendor_mm',actual_linear_source=str(linear_path),actual_linear_sha256=sha(linear_path))
   def run_case(m):
    guards=[]
    def allocate(shape,dtype,value):
@@ -47,7 +47,7 @@ def main():
    x=allocate((m,2048),torch.bfloat16,17.);q=allocate((m,2048),torch.int8,17);asc=allocate((m,),torch.float32,17.);integer={n:allocate((m,n),torch.int32,-777) for n in (2048,2560)};refint={n:allocate((m,n),torch.int32,-777) for n in (2048,2560)};refout={n:allocate((m,n),torch.bfloat16,17.) for n in (2048,2560)};outputs={mode:[allocate((m,p['N']),torch.bfloat16,17.) for p in state['banks']] for mode in ('control','candidate')};block=512
    def fixture(phase):
     sample=np.random.default_rng(202610237200+m+phase).standard_normal((m,2048),dtype=np.float32);bits=sample.view(np.uint32);bits=((bits+32767+((bits>>16)&1))>>16).astype(np.uint16);bits[0]=0;x.copy_(torch.from_numpy(bits).view(torch.bfloat16))
-   def control(index):out=method.apply(layers[index],x,None);outputs['control'][index]=out;return out
+   def control(index):out=vendor.mm(x,banks[index]['W'].T);outputs['control'][index]=out;return out
    def candidate(index):
     bank=banks[index];n=bank['W'].shape[0];dense.quantize(x,q,asc);torch._int_mm(q,bank['Q'],out=integer[n]);return dequant._dequant[(triton.cdiv(m*n,block),)](integer[n],asc,bank['S'],outputs['candidate'][index],m,n,block,num_warps=4,num_stages=1)
    fixture(0);compiled={}
