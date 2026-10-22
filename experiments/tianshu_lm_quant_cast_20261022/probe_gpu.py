@@ -65,6 +65,9 @@ def main():
      for _ in range(20):fn()
      end.record();end.synchronize();values[name]=start.elapsed_time(end)/20
     state['rounds'].append(dict(mode=mode,round=roundid,excluded=roundid==0,order=names,repeats=20,milliseconds=values));save()
+  for tensor,before in zip((a,w,ws),immutable):assert torch.equal(tensor,before)
+  for buf,value in guards:assert bool((buf[:256]==value).all() and (buf[-256:]==value).all())
+  assert torch.equal(cpu_rng,torch.get_rng_state()) and torch.equal(gpu_rng,torch.cuda.get_rng_state())
   assert all(sha(p)==h for p,h in sources.items());state['checkpoint_sha256_after']=sha(MODEL);assert state['checkpoint_sha256_before']==state['checkpoint_sha256_after'];state.update(complete=True,phase='complete');save();print(json.dumps(dict(complete=True,phases=3,variants=3)),flush=True)
  except BaseException as error:state.update(phase='failed',error=repr(error));save();raise
 if __name__=='__main__':main()

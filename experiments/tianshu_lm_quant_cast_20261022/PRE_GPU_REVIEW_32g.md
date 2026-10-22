@@ -1,0 +1,3 @@
+# 首次GPU前复核
+
+r3实际LM64 binding显示actually_inside_capture=false、graph_key=null，因此后续资格筛选改为eager组件链>3%，不能只凭graph加速授权模型实验。图计时继续保留诊断。补充全部计时结束后的输入/权重/scales/RNG与边界哨兵检查，明确七轮排首轮、后六轮中位数。首版CPU源/Gate/执行清单保留在Git61bf083和容器preGPU_review目录；本组件尚未运行GPU。新runner_v2为独立空目录，原r3及正在运行的928质量源码均未变。
