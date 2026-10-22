@@ -71,3 +71,9 @@ CPU通道平衡仅使相关验证误差相对减少2.43%，没有独立随机hol
 ## 20:28：QKV64 新C64独立核验通过
 
 新915源/51控制C64完整105题102正确，独立全量重计与QKV64capture42/O64BF16及真实prefill4096全42验证通过：[C64部分报告](../tianshu_native_int8_attention_decode64_C64_results_20261022/REPORT_32g.md)。该partial gate不能资格通过；新C8运行中，benchmark入口仍要求双批次独立gate，r3不变。
+
+## 20:56：QKV64全模式质量失败，原生W8A16实际尺寸性能失败
+
+新QKV64双105独立重计C64=102、C8=99（94.29%），不满足>95%，原冻结版本不重复抽样，不启动短/正式。C8真实M64非capture42bank/504Python调用，后续另立uniformdecode-only/小prefill BF16策略，不能声称已解决。[完整负结果](../tianshu_native_int8_attention_decode64_quality_results_20261022/REPORT_32g.md)。
+
+小尺寸支持的nativeW8A16到了真实Down/M64，完整524288输出数值界通过但Graph9.928ms，对照BF16仅0.05940ms，整个MLP同样严重退化，不进入全42或Math。[真实原生W8A16负结果](../tianshu_native_Down_W8A16_20261022/REPORT_32g.md)。推荐r3不变。

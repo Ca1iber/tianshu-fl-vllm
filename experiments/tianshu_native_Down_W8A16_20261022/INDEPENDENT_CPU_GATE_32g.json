@@ -1,0 +1,216 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "no_GPU_imports": true,
+  "independent_full_FP64_BF16_times_INT8_dot_cells": 524288,
+  "predeclared_forward_error_bound": {
+    "gamma32": 0.000733197478258774,
+    "gamma64": 1.3646861418711048e-12,
+    "rounding": "one half BF16 output ULP"
+  },
+  "all_full_outputs_within_bound": true,
+  "original_checkpoint_and_source_snapshots_exact": true,
+  "weight_codes_scales_exact_CPU": true,
+  "NT_NN_output_equal": true,
+  "actual_service_M64_vendor_delegation_verified": true,
+  "registered_native_op_executed": true,
+  "internal_conversion_costs_included": true,
+  "independent_fixtures": 2,
+  "single_bank_cache_screen_only": true,
+  "full42_bank_holdout_still_required": true,
+  "new_full_C8_C64_Math_required": true,
+  "model_executed": false,
+  "official_benchmark": false,
+  "adopted": false,
+  "numerical": [
+    {
+      "phase": 0,
+      "seed": 202610239200,
+      "variants": {
+        "native_W8A16_NT": {
+          "full_output_cells": 131072,
+          "maximum_bound_utilization": 0.41763695318541466,
+          "relative_L2_vs_ideal_W8A16": 0.0016499623341935433,
+          "different_BF16_cells_vs_ideal": 31,
+          "relative_L2_vs_original_BF16_ideal": 0.01026354882730748
+        },
+        "native_W8A16_NN": {
+          "full_output_cells": 131072,
+          "maximum_bound_utilization": 0.41763695318541466,
+          "relative_L2_vs_ideal_W8A16": 0.0016499623341935433,
+          "different_BF16_cells_vs_ideal": 31,
+          "relative_L2_vs_original_BF16_ideal": 0.01026354882730748
+        }
+      }
+    },
+    {
+      "phase": 1,
+      "seed": 202610239201,
+      "variants": {
+        "native_W8A16_NT": {
+          "full_output_cells": 131072,
+          "maximum_bound_utilization": 0.42070257918750803,
+          "relative_L2_vs_ideal_W8A16": 0.001657791680313119,
+          "different_BF16_cells_vs_ideal": 39,
+          "relative_L2_vs_original_BF16_ideal": 0.010188212109417123
+        },
+        "native_W8A16_NN": {
+          "full_output_cells": 131072,
+          "maximum_bound_utilization": 0.42070257918750803,
+          "relative_L2_vs_ideal_W8A16": 0.001657791680313119,
+          "different_BF16_cells_vs_ideal": 39,
+          "relative_L2_vs_original_BF16_ideal": 0.010188212109417123
+        }
+      }
+    }
+  ],
+  "timings": [
+    {
+      "M": 64,
+      "scope": "whole_MLP",
+      "mode": "graph",
+      "variant": "service_BF16",
+      "median_ms": 0.11826115846633911,
+      "speedup_vs_service_BF16_pct": 0.0,
+      "speedup_vs_torch_BF16_pct": 16.969113846981966
+    },
+    {
+      "M": 64,
+      "scope": "whole_MLP",
+      "mode": "graph",
+      "variant": "torch_BF16",
+      "median_ms": 0.13832902908325195,
+      "speedup_vs_service_BF16_pct": -14.507345818812322,
+      "speedup_vs_torch_BF16_pct": 0.0
+    },
+    {
+      "M": 64,
+      "scope": "whole_MLP",
+      "mode": "graph",
+      "variant": "native_W8A16_NT",
+      "median_ms": 9.86061782836914,
+      "speedup_vs_service_BF16_pct": -98.80067192010931,
+      "speedup_vs_torch_BF16_pct": -98.59715657283384
+    },
+    {
+      "M": 64,
+      "scope": "whole_MLP",
+      "mode": "graph",
+      "variant": "native_W8A16_NN",
+      "median_ms": 11.068126678466797,
+      "speedup_vs_service_BF16_pct": -98.93151603788183,
+      "speedup_vs_torch_BF16_pct": -98.75020377791327
+    },
+    {
+      "M": 64,
+      "scope": "whole_MLP",
+      "mode": "eager",
+      "variant": "service_BF16",
+      "median_ms": 0.11737614870071411,
+      "speedup_vs_service_BF16_pct": 0.0,
+      "speedup_vs_torch_BF16_pct": 16.948312678209156
+    },
+    {
+      "M": 64,
+      "scope": "whole_MLP",
+      "mode": "eager",
+      "variant": "torch_BF16",
+      "median_ms": 0.13726942539215087,
+      "speedup_vs_service_BF16_pct": -14.49213955300367,
+      "speedup_vs_torch_BF16_pct": 0.0
+    },
+    {
+      "M": 64,
+      "scope": "whole_MLP",
+      "mode": "eager",
+      "variant": "native_W8A16_NT",
+      "median_ms": 9.877397918701172,
+      "speedup_vs_service_BF16_pct": -98.81166933167204,
+      "speedup_vs_torch_BF16_pct": -98.61026733435277
+    },
+    {
+      "M": 64,
+      "scope": "whole_MLP",
+      "mode": "eager",
+      "variant": "native_W8A16_NN",
+      "median_ms": 11.08309097290039,
+      "speedup_vs_service_BF16_pct": -98.94094392089974,
+      "speedup_vs_torch_BF16_pct": -98.76145178517625
+    },
+    {
+      "M": 64,
+      "scope": "Down_only",
+      "mode": "graph",
+      "variant": "service_BF16",
+      "median_ms": 0.059395575523376466,
+      "speedup_vs_service_BF16_pct": 0.0,
+      "speedup_vs_torch_BF16_pct": 26.228639576177404
+    },
+    {
+      "M": 64,
+      "scope": "Down_only",
+      "mode": "graph",
+      "variant": "torch_BF16",
+      "median_ms": 0.07497422695159912,
+      "speedup_vs_service_BF16_pct": -20.77867563513488,
+      "speedup_vs_torch_BF16_pct": 0.0
+    },
+    {
+      "M": 64,
+      "scope": "Down_only",
+      "mode": "graph",
+      "variant": "native_W8A16_NT",
+      "median_ms": 9.927995300292968,
+      "speedup_vs_service_BF16_pct": -99.40173646615624,
+      "speedup_vs_torch_BF16_pct": -99.24482008014864
+    },
+    {
+      "M": 64,
+      "scope": "Down_only",
+      "mode": "graph",
+      "variant": "native_W8A16_NN",
+      "median_ms": 10.998206329345702,
+      "speedup_vs_service_BF16_pct": -99.4599521617912,
+      "speedup_vs_torch_BF16_pct": -99.31830496076846
+    },
+    {
+      "M": 64,
+      "scope": "Down_only",
+      "mode": "eager",
+      "variant": "service_BF16",
+      "median_ms": 0.055765575170516966,
+      "speedup_vs_service_BF16_pct": 0.0,
+      "speedup_vs_torch_BF16_pct": 27.93975915333098
+    },
+    {
+      "M": 64,
+      "scope": "Down_only",
+      "mode": "eager",
+      "variant": "torch_BF16",
+      "median_ms": 0.07134634256362915,
+      "speedup_vs_service_BF16_pct": -21.838214592733628,
+      "speedup_vs_torch_BF16_pct": 0.0
+    },
+    {
+      "M": 64,
+      "scope": "Down_only",
+      "mode": "eager",
+      "variant": "native_W8A16_NT",
+      "median_ms": 9.88393325805664,
+      "speedup_vs_service_BF16_pct": -99.43579571295606,
+      "speedup_vs_torch_BF16_pct": -99.27815839402322
+    },
+    {
+      "M": 64,
+      "scope": "Down_only",
+      "mode": "eager",
+      "variant": "native_W8A16_NN",
+      "median_ms": 11.005368041992188,
+      "speedup_vs_service_BF16_pct": -99.4932875033553,
+      "speedup_vs_torch_BF16_pct": -99.35171325219294
+    }
+  ],
+  "raw_directory": "/workspace/benchmark-results/20261022_native_Down_W8A16_GPU_tianshu",
+  "raw_result_sha256": "f6e87392eb62125f22b6885ee23bf92432f945bed97acca436c630ac9149c882",
+  "key_timings_sha256": "110b2337395dc050c7b00322427a10efa8f85412526bb06323f051ffdeb63b47"
+}
