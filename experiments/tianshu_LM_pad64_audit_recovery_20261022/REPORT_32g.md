@@ -1,0 +1,13 @@
+# LM补齐 C64 审计失败与CPU恢复
+
+925个模型输入与82个原GPU质量控制输入在首次模型GPU运行前冻结。C64完成全部105题生成，真实答对103题（98.095238%）；随后原控制器报audit_failed。原失败result.json、日志和快照保持原样，不能称原实验通过。
+
+原因：实际Math64审计仍只统计旧LM64 kernel，模型已经改为补齐融合kernel，旧计数为0。之前修改的是另一条未使用的审计分支。CPU恢复先重现原AssertionError，再仅替换实际Math分支的LM64计数来源，保留原阈值10以及所有继承的GU、KV、Down、QKV/O、签名、环境、allocator与RNG检查。正式吞吐的另一审计分支同样独立更正计数来源，保留原阈值100。
+
+不重跑或重采样任何题目。独立CPU重计全部105题，错误与生成上限样本均不剔除。记录实际执行函数调用轨迹，证明使用新实际Math审计；重新执行完整原质量评分与运行时检查。五个新CPU恢复输入及其快照独立记录，不能混称原82个GPU控制输入事先包含修正。
+
+RECOVERY_GATE_32g.json记录原失败哈希、CPU派生结果/accuracy哈希、103/105计分、五个恢复输入签名及执行轨迹结论。派生结果phase=CPU_recovery_complete，original_experiment_passed=false。原C64目录保持audit_failed。后续资格必须同时要求新完整C8>95%、本C64恢复全部核验通过，且保留原失败来源。
+
+原始：/workspace/benchmark-results/20261022_LM_pad64_math64_tianshu
+
+CPU派生：/workspace/benchmark-results/20261022_LM_pad64_math64_CPU_recovery_tianshu

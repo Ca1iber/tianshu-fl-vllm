@@ -1,0 +1,36 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "no_GPU_imports": true,
+  "original_experiment_passed": false,
+  "original_phase": "audit_failed",
+  "original_failure_reproduced": {
+    "file": "/workspace/vllm-plugin-FL/experiments/tianshu_nn_silu_fx_c64_quality_20261021/dense_quality_audit.py",
+    "line": 45,
+    "statement": "else:assert sum(x[\"calls\"] for x in lm)>=replays",
+    "error": "AssertionError()"
+  },
+  "original_result_sha256": "2d56979bca33ec6f6e4fb239fbce0c65cf340060003933da661aa143d3489227",
+  "model_source_count": 925,
+  "original_controller_count": 82,
+  "recovery_controller_sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_LM_pad64_audit_recovery_20261022/math_dense_audit.py": "1a2c6737f77640527dc0739636d04b1bed463851a4a9ee39ab48713becf31633",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_LM_pad64_audit_recovery_20261022/official_dense_audit.py": "0bfa13983a7088b5ddf4a6c419db786f53b631027ca82246a4880797ba29d8f2",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_LM_pad64_audit_recovery_20261022/patch_runtime.py": "321249c733b6bad93f9ff0951397f62952c2bb997a61a3255a64261e0687955e",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_LM_pad64_audit_recovery_20261022/recover_C64_cpu.py": "b3c131f662de3f81cda12192b6fee54aa25124e7e01312bc9538b23b7d711bee",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_LM_pad64_audit_recovery_20261022/PLAN_32g.md": "c80c368b54d6eb13628a90b9d2fba497679de40fd9b01cd64c48e3239b3ae65e"
+  },
+  "recovery_snapshot_hashes_verified": true,
+  "new_actual_Math_guard_execution_traced": true,
+  "all_other_runtime_checks_recomputed": true,
+  "correct": 103,
+  "total": 105,
+  "accuracy": 0.9809523809523809,
+  "accuracy_passed": true,
+  "raw_root": "/workspace/benchmark-results/20261022_LM_pad64_math64_tianshu",
+  "recovery_root": "/workspace/benchmark-results/20261022_LM_pad64_math64_CPU_recovery_tianshu",
+  "recovery_result_sha256": "9c603d26a3b0cc79867059657bd3b3d7952151ae6866bd5682ec3c0d56eb6f36",
+  "recovery_accuracy_sha256": "c82a965553d9f292ff8d22fe897f762e6d503ab24b2132705ff1161e3662d4e1",
+  "raw_untouched": true,
+  "adopted": false
+}
