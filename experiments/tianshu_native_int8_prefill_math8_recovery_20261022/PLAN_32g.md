@@ -1,0 +1,5 @@
+# 当前全新C8的CPU范围复核
+
+原GPU实验保留audit_failed；105题101正确、无接口错误。触发的断言要求新INT8预填充实际42层，而所有19种实际M都不在预填充白名单。只用新控制器按实际路径复核：旧全部attention/KV/scheduler/sampling/weights/M8NN/M64capture/LM8BF16和source/env checks保留，明确记录预填充全BF16回退42层，INT8预填充实际命中0。模型877源一字不改，原控制器冻结hash和原raw结果hash必须匹配。
+
+读取同一轮全105预测、review、report并独立重算101/105；不从旧模型借分，不重跑GPU，不伪造原phase。CPU新结果为CPU_recovery_complete，并带original_experiment_passed=false。全部原模型和新复核控制器冻结，source snapshots和raw仅容器。必须随后新跑同源C64 Math实际M4096 INT8全42层并>=100/105，才能正式4K N256。

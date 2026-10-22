@@ -1,0 +1,9 @@
+# 新量化版本C8：101/105，按实际BF16预填充范围复核
+
+同一轮新模型全105题，101正确=96.1905%，请求105/成功105/接口错误0；prediction/review/report全部独立复算。原GPU结果仍为audit_failed，失败断言要求预填充INT8覆盖42层，实际19种M均在白名单以外，全部为qualified BF16委托。因此没有声称新INT8路径被C8验证。
+
+新独立CPU恢复结果为CPU_recovery_complete，并始终带original_experiment_passed=false。保留原attention、KV、scheduler、sampling、全部43权重bank、M8 NN、M64 capture、LM8 BF16及所有源/环境检查；另核对BF16委托全42层、实际M不在INT8白名单、stride/calls有效。明确actual_new_prefill_path_all_42_GateUp_verified=false、native_runtime_bank_count=0。877份模型源码、原控制器与原始结果hash不变，没有重新跑GPU或从旧模型借正确率。
+
+这份C8结果只支持其实际覆盖范围。后续必须新跑真实C64全105题>=100正确，验证新M4096原生INT8全42层、M64融合图重放和LM64 INT8，再允许官方4K N256。新控制器放validation_v2目录，数值代码仍是同一份877源。
+
+CPU恢复raw /workspace/benchmark-results/20261022_native_int8_prefill_math8_CPU_recovery_tianshu；原GPU raw /workspace/benchmark-results/20261022_native_int8_prefill_math8_tianshu。只有代码、报告与关键gate进GitHub，完整预测/日志/数组仅容器。
