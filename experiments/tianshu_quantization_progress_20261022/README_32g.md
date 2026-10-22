@@ -77,3 +77,15 @@ CPU通道平衡仅使相关验证误差相对减少2.43%，没有独立随机hol
 新QKV64双105独立重计C64=102、C8=99（94.29%），不满足>95%，原冻结版本不重复抽样，不启动短/正式。C8真实M64非capture42bank/504Python调用，后续另立uniformdecode-only/小prefill BF16策略，不能声称已解决。[完整负结果](../tianshu_native_int8_attention_decode64_quality_results_20261022/REPORT_32g.md)。
 
 小尺寸支持的nativeW8A16到了真实Down/M64，完整524288输出数值界通过但Graph9.928ms，对照BF16仅0.05940ms，整个MLP同样严重退化，不进入全42或Math。[真实原生W8A16负结果](../tianshu_native_Down_W8A16_20261022/REPORT_32g.md)。推荐r3不变。
+
+## 2026-10-22 21:34：新上下文白名单质量与LM转换融合准备
+
+当前已发布正式最好版本保持r3：5950.75 total tok/s、1190.15 output tok/s、TTFT3174.58ms，C8=101/105、C64=102/105，标签和发布证据不变。
+
+915源全M64 QKV量化版本最终C8=99/105、C64=102/105，独立核验质量不合格，不重试、不跑吞吐、不采用。原生W8A16真实Down64虽然全部数值核验通过，但BF16约0.0594ms对原生INT8 NT约9.928ms（约167倍延迟），保留失败结论，不扩展到模型。
+
+新928源版本限定QKV64只在FULL/64token/64req/uniform/noLoRA解码上下文，其他M64及QKV128均BF16。新C64全105题独立计分100/105=95.238095%，全部题计入且通过源/快照/上下文与Down核验；C8正在新跑。单C64部分门槛model_quality_qualified=false，不授权吞吐。已冻结的序列仅在新完整C8/C64均>95%后执行903对928短4K三轮排首轮；只有预设收益/稳定性/TTFT门槛通过才跑原N256四轮正式4K，再独立CPU核验，不自动发布。
+
+另备LM64量化输出与Sampler FP32转换融合组件：原路径Triton GEMM BF16+torch.to(FP32)，候选显式保留BF16舍入再直接写FP32；另比较原生INT8+dequant。真实r3 binding显示LM64在eager，故按eager>3%收益筛选，graph只作诊断。当前仅CPU准备，尚未运行GPU，必须等当前序列结束且GPU空闲。不声称模型收益。详情见tianshu_lm_quant_cast_20261022的冻结计划。
+
+用户确认每日06:00至次日00:00可用，今天GPU硬停止2026-10-22T15:58Z（北京时间23:58）。代码、报告和关键结果存天数仓库/容器，完整日志、数组与checkpoint保留容器，不存本地，不推送大原始数据。
