@@ -54,3 +54,10 @@ CPU通道平衡仅使相关验证误差相对减少2.43%，没有独立随机hol
 `tianshu_down_outlier128_gpu_20261022` 首版侧路128在42-bank独立随机GPU输入上数值通过但速度负优化：整段MLP M64=0.142750ms，BF16对照0.134484ms；M4096=4.298262ms，普通native INT8为2.128494ms。不进入Math。此结论限当前固定tile实现；全输出误差3.5309%→3.0924%，未声称模型精度。
 
 `tianshu_down_W8A16_CPU_20261022` 保留激活BF16、仅W8的理想CPU相关验证误差1.2534%，原W8A8为3.4638%，需要实际GPU数值与速度验证。动态K分组GPU初筛已启动，原r2不覆盖。
+
+## 18时后组件探索：实际服务对照及新投影
+
+- `tianshu_down_BF16_control_20261022` 核对实际 M64 Down 为 vendor mm，Graph0.05959ms，torch.mm0.07435ms。旧单层1%收益不能当作对当前服务收益；r2正式端到端不受影响。
+- `tianshu_down_group_gpu_v4_20261022`、`v5` 均数值通过，但改用实际BF16对照并包括GateUp后无收益，不接模型。
+- `tianshu_down_W8A16_gpu_20261022`、`v2` 全输出独立FP64/预先数学误差界通过；高warp最好Down0.07846ms，对照0.05899ms，负结果保留。
+- `tianshu_native_int8_attention_projections_20261022` QKV/O预填充原生INT8有组件线索，M4096相对显式vendor BF16约+39%/+31%；仅组件、非模型成绩，尚需实际路由核验。新 `tianshu_native_int8_attention42_20261022` 正验证全42层，M128/512/4096，M64暂不接入。所有新尝试不覆盖已发布r2。
