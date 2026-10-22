@@ -46,3 +46,11 @@ CPU通道平衡仅使相关验证误差相对减少2.43%，没有独立随机hol
 ## 16:47：Down prefill V2 正式4K独立核验通过
 
 正式四轮 total tok/s =5731.84（剔除）/5912.19/5917.01/5905.14；汇总 **5911.45 total、1182.29 output tok/s，TTFT3305.80ms**。相对 r1 吞吐+2.3234%、TTFT-4.4412%，热轮波动0.2008%。1024请求全部成功，零抢占、服务就绪后无autotune，890模型输入及全部控制快照和继承运行核验通过CPU重核。新鲜 C8=102/105，C64=103/105。详见 `tianshu_native_int8_down_prefill_official_results_v2_20261022/REPORT_32g.md`。正在独立 r2 打包和CPU dry-run，原r1不覆盖，无16K复测。
+
+## 17点后续组件探索
+
+已封存 r2 `tianshu-original-command-4k-native-int8-down-prefill-20261022-r2`，提交5bb7f7d；正式5911.45 total tok/s、TTFT3305.80ms，所有CPU核验和/root、/tmp污染环境dry-run通过。六份必要控制JSON及完整comparison均精确gzip保存，合计压缩871448 bytes，无预测全文或数组上传。
+
+`tianshu_down_outlier128_gpu_20261022` 首版侧路128在42-bank独立随机GPU输入上数值通过但速度负优化：整段MLP M64=0.142750ms，BF16对照0.134484ms；M4096=4.298262ms，普通native INT8为2.128494ms。不进入Math。此结论限当前固定tile实现；全输出误差3.5309%→3.0924%，未声称模型精度。
+
+`tianshu_down_W8A16_CPU_20261022` 保留激活BF16、仅W8的理想CPU相关验证误差1.2534%，原W8A8为3.4638%，需要实际GPU数值与速度验证。动态K分组GPU初筛已启动，原r2不覆盖。
