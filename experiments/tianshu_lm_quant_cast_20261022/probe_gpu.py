@@ -18,6 +18,8 @@ def main():
  def save():
   t=root/'result.tmp';t.write_text(json.dumps(state,indent=2)+'\n');t.replace(root/'result.json')
  save()
+ def deadline(signum,frame):raise TimeoutError(f"component stop signal {signum}")
+ for sig in (signal.SIGALRM,signal.SIGTERM,signal.SIGINT):signal.signal(sig,deadline)
  try:
   import torch,vllm_fl
   from safetensors import safe_open
@@ -35,7 +37,7 @@ def main():
   def fused():old.quantize(a,q,asc);new.mm(q,w,asc,ws,fp32['fused_Triton'],dummy,config);return fp32['fused_Triton']
   def native(name,block):old.quantize(a,q,asc);torch._int_mm(q,w.T,out=integer);new.native_dequant(integer,asc,ws,fp32[name],block);return fp32[name]
   operations={'control':control,'fused_Triton':fused,'native_B512':lambda:native('native_B512',512),'native_B1024':lambda:native('native_B1024',1024)};graphs={};graph_outputs={}
-  actual=old.mm(q,w,asc,ws,bf16,dummy,config);state['control_compiled']=dict(kernel_sha256=hashlib.sha256(actual.kernel).hexdigest(),n_regs=actual.n_regs,n_spills=actual.n_spills);assert state['control_compiled']['kernel_sha256']==freeze['actual_r3_LM64']['kernel_sha256']
+  actual=old.mm(q,w,asc,ws,bf16,dummy,config);state['control_compiled']=dict(source_sha256=sha(EXP/'tianshu_dense_w8a8_20261020/kernel.py'),binary_sha256=hashlib.sha256(actual.kernel).hexdigest(),n_regs=actual.n_regs,n_spills=actual.n_spills);assert state['control_compiled']['source_sha256']==freeze['actual_r3_LM64']['kernel_sha256'] and actual.n_regs==93 and actual.n_spills==0
   for name,fn in operations.items():
    fn();torch.cuda.synchronize();graph=torch.cuda.CUDAGraph()
    with torch.cuda.graph(graph):out=fn()
