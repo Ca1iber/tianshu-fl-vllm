@@ -73,6 +73,8 @@ def main():
         state["controller_sources"] = read(root / "controller_sources.json")
         state["final_profile_kind"] = "native_INT8_prefill_M512_M4096"
         state["quality_batch"]=args.batch
+        state["fresh_math_for_original_command_profile"]=(args.stage=="math" and args.batch==8)
+        state["supplementary_C64_quality"]=(args.stage=="math" and args.batch==64)
         state["additional_environment"]={"TRITON_CACHE_DIR":environment["TRITON_CACHE_DIR"]}
         if args.stage == "official":
             assert args.math_root is not None

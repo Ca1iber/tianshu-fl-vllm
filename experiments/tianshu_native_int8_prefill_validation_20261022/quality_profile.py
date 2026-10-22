@@ -44,6 +44,7 @@ def audit_runtime(root,state,official=False):
     old=extra.audit(root,state,require_fused=False);native=structure.audit_runtime(root,state,official=False)
     result.update(old);result.update(native)
     result['all_inherited_attention_KV_scheduler_sampling_M8_M64_LM_checks_retained']=True
+    result['actual_C8_Math_only_not_C64_request_claim']=(batch==8)
     routes=native['native_prefill_record']['routes'].values();hits=[r for r in routes if r['phase']=='runtime' and not r['capturing'] and r['implementation']=='native_A8W8_GateUp']
     result.update(actual_quality_batch=batch,actual_native_prefill_bank_count=len({r['bank_id'] for r in hits}),actual_native_prefill_M_values=sorted({r['M'] for r in hits}),actual_C8_is_not_C64_claim=(batch==8),actual_C64_fused_replay_verified=(batch==64))
     return result
