@@ -1,0 +1,51 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "stdlib_only": true,
+  "no_GPU_libraries_imported": true,
+  "CUDA_and_schema_queries_NOT_executed": true,
+  "actual_architectures": [
+    "LlamaForCausalLM"
+  ],
+  "model_type": "llama",
+  "model_config_sha256": "59613157e5357d62bcb121e04cb90f2170b43d789b142380c12c3d4277d95180",
+  "source_hashes": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_rms_quant_fusion_inventory_CPU_v2_20261022/query_cpu.py": "4453df7a74c06716026c17303629f639b892f4d3ddcc61385c0331fd727ac451",
+    "/usr/local/lib/python3.12/site-packages/vllm/_custom_ops.py": "cbc7fec3a616e318870a2f117ed73cc17b779ef00460320df11e8a5a4dd8a5c8",
+    "/usr/local/lib/python3.12/site-packages/vllm/model_executor/layers/layernorm.py": "696615d858292fea7a2942480803cd4c7d2d1e88d818bfe5cd9d695ac464f37c",
+    "/usr/local/lib/python3.12/site-packages/vllm/model_executor/models/llama.py": "1e1003454985bf86d3868a7755bcf5324676881548b3895809edf0b76698d384",
+    "/usr/local/lib/python3.12/site-packages/vllm/compilation/passes/fusion/rms_quant_fusion.py": "d4fc85f6e2ef74cec2987c590968c18e24b98c4ea54e2c4d8ac19d4015834d19",
+    "/usr/local/lib/python3.12/site-packages/vllm/compilation/passes/pass_manager.py": "8ccc54639c7ba1db7752bdace340937f8bc6fa6a9ff1d38474306eb49291d12a"
+  },
+  "standard_fusion_key_names": [
+    "kFp8Dynamic128Sym",
+    "kFp8Dynamic64Sym",
+    "kFp8DynamicTensorSym",
+    "kFp8DynamicTokenSym",
+    "kFp8StaticTensorSym",
+    "kNvfp4Dynamic"
+  ],
+  "standard_fusion_INT8_key_found": false,
+  "standard_C_shared_objects_found": [],
+  "missing_standard_C_extension_does_not_prove_no_plugin_provider": true,
+  "wrappers": {
+    "rms_norm_dynamic_per_token_quant": {
+      "line": 418,
+      "torch_op_calls": [
+        "torch.ops._C.rms_norm_dynamic_per_token_quant"
+      ]
+    },
+    "scaled_int8_quant": {
+      "line": 2039,
+      "torch_op_calls": [
+        "torch.ops._C.dynamic_scaled_int8_quant",
+        "torch.ops._C.static_scaled_int8_quant"
+      ]
+    }
+  },
+  "previous_import_attempt_rejected_by_CPU_only_guard": true,
+  "native_runtime_and_INT8_dtype_NOT_tested": true,
+  "model_or_framework_NOT_modified": true,
+  "performance_measured": false,
+  "adopted": false
+}

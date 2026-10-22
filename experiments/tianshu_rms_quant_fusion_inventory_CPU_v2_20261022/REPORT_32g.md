@@ -1,0 +1,9 @@
+# RMSNorm/INT8融合纯源码盘点V2，无GPU库导入
+
+当前模型配置architectures=LlamaForCausalLM、model_type=llama；不能根据目录MiniCPM5-2B推断MiniCPMDecoderLayer。RMSNorm.forward_native使用vllmIR的rms_norm/fused_add_rms_norm。标准RMSNormQuantFusionPass注册FP8/FP4量化键，未发现INT8键，当前QKV/GU量化又封装在独立custom-op内，因此不能只开fuse_norm_quant就声称已融合INT8路径。
+
+源文件提供scaled_int8_quant和rms_norm_dynamic_per_token_quant wrappers，标准vllm目录未找到_C*.so；schema/provider的真实注册和INT8输出dtype尚未查询，插件可能提供其他实现，不能从文件缺失推出硬件不支持。需要另立GPU版本测试，或确认适用的Triton融合实现及编译pass。
+
+首次导入盘点触发插件CUDA初始化，CPU-only断言已拒绝、失败原代码/日志保留。新V2只导入Python标准库，记录AST函数/调用/行号和源SHA，没有导入torch/vllm/FlagGems，没有CUDA/schema查询，未改模型/框架，也未跑新GPU、质量或性能。当前915源质量版本及r3均未加入融合。
+
+后续可考虑显式IR模式RMSNorm→QKV native linear，替换为正确Norm+INT8与显式GEMM，须验证BF16中间舍入、RNE/clamp、residual语义和真实pipeline收益；不用隐藏张量缓存或未初始化中间输出。新全105题C8/C64与正式性能证据前不采用。
