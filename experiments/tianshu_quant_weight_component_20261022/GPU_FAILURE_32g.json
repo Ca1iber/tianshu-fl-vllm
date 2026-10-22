@@ -1,0 +1,176 @@
+{
+  "complete": false,
+  "phase": "failed",
+  "runner_pid": 631,
+  "started_at_utc": "2026-10-22T01:20:39.308883+00:00",
+  "frozen_sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_quant_weight_component_20261022/PLAN_32g.md": "e993d21ff39fb437d234edd3f602a7068598dd846445fedef6a6f702c15caab3",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_quant_weight_component_20261022/probe_gpu.py": "a08cf803b245e6ae573c6b744d9702599fde767d19f0f357028bc4b62ca79074",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_quant_weight_component_20261022/verify_cpu.py": "ec95e0bae35cd9ae6ae7cb2578ba57e4f2b09932469c607488531bdf1609b3e2",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_quant_weight_component_20261022/prepare_cpu.py": "09db3a2326eabbeb2ca115f2686aa903c2318245a71c68a8a5ac2a3504bbc90e",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_quantization_survey_20261022/formats_cpu.py": "63f97d66763b50b3a42611ebab4f6c7cca30d1bc74111f6968dc794f766af5c3",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_quantization_survey_20261022/kernel_weight_only.py": "20653258d72c759828dc3b45f28dc13d8d79d7139600ab19772e10daba7b2523",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_quantization_survey_20261022/CPU_SURVEY_GATE_32g.json": "b1fd4d352f37a7101c9c5058c4b2b904533fc4dbfdad7fb4a52e2126153c128d",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_quantization_survey_20261022/RESERVATION_20261022.md": "63152b5654a4ccd22757d41e7f7845d07340520f7b79ec2ef19b71afa374985e",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_w8a8_20261020/kernel.py": "b9b692cf561a35ef9c38d05d1edf7aa804436728923efa4800f914ff6b656152",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_w8a8_20261020/GPU_GATE_32g.json": "e52d84b3d067f0c84dc6e8e179ffbb68654981cc32d9927c0cc2bdb6a4196f0c"
+  },
+  "checkpoint_sha256_before": "14fb8e7f0a18d53d1f239773758bf581cee7e456a4523a54622c3a245b64402c",
+  "model_executed": false,
+  "official_benchmark": false,
+  "adopted": false,
+  "cases": [
+    {
+      "role": "tail",
+      "format": "W4_sym128",
+      "M": 17,
+      "N": 131,
+      "K": 259,
+      "tile_id": 0,
+      "configuration": {
+        "bm": 16,
+        "bn": 64,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "tail_W4_sym128_M17_tile0_phase0.npz",
+          "sha256": "4a305d056db54276c27e4c9cc69f1b82db879c9312e8e4cd6a0361d0b4c858c5",
+          "full_GPU_FP32_max_error": 4.76837158203125e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": false,
+      "compiled": {
+        "hash": "806b1655d6a61421f13964528a6503908aa5baedcbbbfeb60b602770a1b557e5",
+        "binary_sha256": "cc2636923549e517fbc6c70172552c7cd31f31167fd1fd254586f7b776d2f6c3",
+        "n_regs": 55,
+        "n_spills": 0,
+        "shared": 20480
+      },
+      "diagnostic_compiled": {
+        "hash": "552ed30381514339e7046767e3027d78475cd1438fc155ed1842398ee83bc9c6",
+        "binary_sha256": "b96b927652e05316db45aa8e6233f918947b6d83eeabd41409cfb51013325eaf",
+        "n_regs": 55,
+        "n_spills": 0,
+        "shared": 20480
+      }
+    },
+    {
+      "role": "tail",
+      "format": "W4_sym128",
+      "M": 17,
+      "N": 131,
+      "K": 259,
+      "tile_id": 1,
+      "configuration": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "tail_W4_sym128_M17_tile1_phase0.npz",
+          "sha256": "4a305d056db54276c27e4c9cc69f1b82db879c9312e8e4cd6a0361d0b4c858c5",
+          "full_GPU_FP32_max_error": 4.76837158203125e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": false,
+      "compiled": {
+        "hash": "b6e981c06c5c944148a1663c39ff7fcfe0f63ccc70e855b31139bda9a7f5bcaf",
+        "binary_sha256": "76368c2a4dbf42c194bfb168b4116d05818dd5bcc6d0cbfac3796ef1663d34e4",
+        "n_regs": 126,
+        "n_spills": 0,
+        "shared": 40960
+      },
+      "diagnostic_compiled": {
+        "hash": "f51d8835473a7dd4bcd7b5b6dd1bb0e24a688a30bb034c592e30d4a894370ca1",
+        "binary_sha256": "056b3eacd52df005b0781a1f0d3c475da09c636645b731f55e8e944ea9cdce80",
+        "n_regs": 126,
+        "n_spills": 0,
+        "shared": 40960
+      }
+    },
+    {
+      "role": "tail",
+      "format": "W4_sym128",
+      "M": 17,
+      "N": 131,
+      "K": 259,
+      "tile_id": 2,
+      "configuration": {
+        "bm": 16,
+        "bn": 128,
+        "bk": 128,
+        "warps": 4,
+        "stages": 1
+      },
+      "phases": [
+        {
+          "phase": 0,
+          "artifact": "tail_W4_sym128_M17_tile2_phase0.npz",
+          "sha256": "4a305d056db54276c27e4c9cc69f1b82db879c9312e8e4cd6a0361d0b4c858c5",
+          "full_GPU_FP32_max_error": 4.76837158203125e-07,
+          "full_BF16_FP32_cast_equal": true,
+          "captured_equals_diagnostic": true,
+          "reference_full_passed": true,
+          "native_full_passed": true
+        }
+      ],
+      "complete": false,
+      "compiled": {
+        "hash": "fb54085f2698b9df7550d7aac4498b9543e840b5662c31e79639e5479096b894",
+        "binary_sha256": "f12c0e6b8a4d2f4afe50253ed88fc7db3d71f24ea962d51d97e932343057e917",
+        "n_regs": 118,
+        "n_spills": 0,
+        "shared": 36864
+      },
+      "diagnostic_compiled": {
+        "hash": "e754aa69c1760e9c02997473f05d79a30b4d744f843073e1e6b6a4f125bd8481",
+        "binary_sha256": "418f0594f51e5bf78d8adfe5809dab0619e693a1ce14154e8ea10fbb00b2dc48",
+        "n_regs": 118,
+        "n_spills": 0,
+        "shared": 36864
+      }
+    }
+  ],
+  "decodes": [
+    {
+      "role": "tail",
+      "format": "W4_sym128",
+      "phase": 0,
+      "elements": 33929,
+      "actual_BF16_sha256": "3a2d4fc41e0481dfed57af3237e98b50045204b83a10bfdd1cd6214361e7f97f",
+      "expected_BF16_sha256": "3a2d4fc41e0481dfed57af3237e98b50045204b83a10bfdd1cd6214361e7f97f",
+      "bitwise_equal": true
+    }
+  ],
+  "timings": [],
+  "versions": {
+    "torch": "2.10.0",
+    "triton": "3.6.0",
+    "target": "GPUTarget(backend='corex', arch=71, warp_size=64)"
+  },
+  "weights": {
+    "tail": {
+      "N": 131,
+      "K": 259,
+      "BF16_sha256": "40e1ca06384d5d83bd3b09af3ff9b01aeb8d841a8b1fb9ab1a56acd7d917eb23",
+      "original_bytes": 67858
+    }
+  },
+  "error": "AssertionError()"
+}

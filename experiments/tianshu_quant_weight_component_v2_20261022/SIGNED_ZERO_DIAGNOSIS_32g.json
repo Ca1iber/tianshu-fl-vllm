@@ -1,0 +1,83 @@
+{
+  "complete": true,
+  "records": [
+    {
+      "bits": 4,
+      "affine": false,
+      "phase": 0,
+      "bit_mismatches": 0,
+      "all_mismatches_signed_zero": true,
+      "canonical_zero_bitwise_pass": true
+    },
+    {
+      "bits": 4,
+      "affine": false,
+      "phase": 1,
+      "bit_mismatches": 1780,
+      "all_mismatches_signed_zero": true,
+      "canonical_zero_bitwise_pass": true
+    },
+    {
+      "bits": 4,
+      "affine": false,
+      "phase": 2,
+      "bit_mismatches": 1780,
+      "all_mismatches_signed_zero": true,
+      "canonical_zero_bitwise_pass": true
+    },
+    {
+      "bits": 4,
+      "affine": true,
+      "phase": 0,
+      "bit_mismatches": 0,
+      "all_mismatches_signed_zero": true,
+      "canonical_zero_bitwise_pass": true
+    },
+    {
+      "bits": 4,
+      "affine": true,
+      "phase": 1,
+      "bit_mismatches": 1674,
+      "all_mismatches_signed_zero": true,
+      "canonical_zero_bitwise_pass": true
+    },
+    {
+      "bits": 4,
+      "affine": true,
+      "phase": 2,
+      "bit_mismatches": 1674,
+      "all_mismatches_signed_zero": true,
+      "canonical_zero_bitwise_pass": true
+    },
+    {
+      "bits": 8,
+      "affine": false,
+      "phase": 0,
+      "bit_mismatches": 0,
+      "all_mismatches_signed_zero": true,
+      "canonical_zero_bitwise_pass": true
+    },
+    {
+      "bits": 8,
+      "affine": false,
+      "phase": 1,
+      "bit_mismatches": 343,
+      "all_mismatches_signed_zero": true,
+      "canonical_zero_bitwise_pass": true
+    },
+    {
+      "bits": 8,
+      "affine": false,
+      "phase": 2,
+      "bit_mismatches": 343,
+      "all_mismatches_signed_zero": true,
+      "canonical_zero_bitwise_pass": true
+    }
+  ],
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_quant_weight_component_v2_20261022/diagnose_decode.py": "9b2eb35a8869b48e744766c338e02aa3d59c14b2a2faa0b67d8ecf7dfaa19b63",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_quantization_survey_20261022/formats_cpu.py": "63f97d66763b50b3a42611ebab4f6c7cca30d1bc74111f6968dc794f766af5c3",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_quantization_survey_20261022/kernel_weight_only.py": "20653258d72c759828dc3b45f28dc13d8d79d7139600ab19772e10daba7b2523"
+  },
+  "reason": "Negating decoded CPU float zero produces -0; negating integer zero then decoding has +0. Expected reference must reconstruct integer format, not negate floating signed zeros."
+}
