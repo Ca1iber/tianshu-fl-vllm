@@ -1,0 +1,9 @@
+# Fresh Down quality: original105 C8 and actual105 C64
+
+Use frozen native-Down service selected from independently audited42-bank MLP holdout. First scopeall (M64/128/512/4096); if fresh quality insufficient, scopeprefill (128/512/4096) may be run in a different raw root without source changes. Start C64 first because it exercises all42 new4096 paths and scopeall M64 graphs. Then fresh officialC8. Do not borrow previous101/105. Both require all105 success and accuracy>95%; max_tokens, missing predictions, exceptions stay in denominator, no selective exclusion. C8 unhit shapes are reported honestly; C64 actual coverage mandatory.
+
+Keep original13 vllm serve argv and inherited62 selected environment +explicitcache63. QualityC64 uses inherited explicit FUTURE_KV control override as prior qualifiedC64, C8 unchanged. Scope/mode from hook directory, no extra switches. Inherit every attention/KV/scheduler/sampling/GateUp/M8NN/M64fusion/LM audit and add Down profiler/weight/binary/capture/runtime proofs. Original frozen877 sources exact subset. New private Down weights/scratch counted by real memory profiling; no manualKVbudget. Original384 frozen cache files unchanged even though extra Down groups may be added to existing required cache path.
+
+Controller copied from proven native-prefill validation; modified only own quality-profile import via directory, explicit scope and Down metadata, math-only guard, profile kind. It uses exact original evalscope command, generation temp1/top_p.95/max32768, timeout3600, datasetLevel3 all105 and actualbatch8/64. Original server cleanup and23:58 alarm retained. Controller files frozen before first GPU and source snapshots preserved. A GPU failure leaves source/raw immutable; fixes newversiondirectory.
+
+Only after fresh quality and stable short4K>.5% may a separate official4K controller be designed. No routine16K. All source/report/keyresults container+Tianshu GitHub, fullraw/cache containeronly.
