@@ -1,0 +1,9 @@
+# DownV2 fresh quality: primary prefill scope, original BF16 vendorMM restored
+
+V1 allscope produced95/105 C64 (90.476%) and failed the old Down BF16 vendorMM warm-record guard; original failed source/raw remain untouched. V2 primary scopeprefill changes only M128/512/4096 Down precision; M64 and all other shapes BF16 via the same loaded qualified vendorMM module. New V2 service uses direct vendorMM with source4c2e23... and its original launch hook, avoiding eagerF.linear. No original attention/KV/GateUp/LM audit removed or relaxed. Strict original three-GEMM warm records required before evaluation; original source877 exact subset of new890.
+
+Fresh all105 C64 first must exercise all42 new4096 Down and show zeroINT8-M64 capture, then fresh all105 officialC8. Both require >95%; no samples excluded, caps/error/missing stay denominator. No V1 or r1 score borrowed. Scopeall still represented in the CPU profile check but not selected for this GPU pipeline. Predeclared prefill mode only, no per-answer or dataset-dependent logic.
+
+Original13serveargv/62selectedkeys+explicitcache63. Existing C64 FUTURE_KV control override retained, C8 candidate. All native packing504MiB and private scratch are accounted inside actual profiler before KV allocation. All model sources/controller snapshots checked before/after (runtime source count verified890; original877 unchanged). Inherited384 cache files unchanged, new groups permitted at original required cache path.
+
+Controller is V1 copied to new directory, service path/root names/version/scope changed, startup guard added before evalscope. No numerical JIT edits. On GPU failure preserve all sources/raw, fixes newversion. Fresh quality then frozen short4K vs literalr1; only stable>.5% leads to a separately designed official4K. No16K. Stop23:58 BJT. Code/reports/keyresults container+TianshuGitHub, arrays/cache/raw onlycontainer.
