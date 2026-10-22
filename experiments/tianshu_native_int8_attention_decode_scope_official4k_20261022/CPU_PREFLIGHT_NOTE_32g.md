@@ -1,0 +1,3 @@
+# GPU前控制器预检修正
+
+首次纯CPU预检在EXECUTION.sha256尚未生成时尝试读取它，FileNotFoundError；未启动GPU或benchmark。原失败日志及CPU输出目录保留。现将该执行清单限定为check_screen=True的真实执行路径冻结；CPU预检本就声明跳过尚未产生的质量/短测门槛，先检查全部模型源和控制器，再生成最终执行清单。修正发生在本正式控制器首次GPU之前，未修改已在GPU运行的928模型源、质量控制器或预冻结短测控制器。retry1纯CPU预检成功，真实执行仍必须核对EXECUTION与双质量和短测门槛。

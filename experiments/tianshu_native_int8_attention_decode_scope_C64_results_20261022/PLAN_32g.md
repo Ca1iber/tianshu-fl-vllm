@@ -1,0 +1,3 @@
+# 新928源上下文策略C64部分核验
+
+只独立核验本版本刚完成的C64全105题、原始review/prediction/report哈希、928模型源/51控制器和快照、原checkpoint SHA、真实上下文白名单及继承Down运行时审计。CPU标准库读取，不导入GPU库。使用--batches64，缺少本版本C8完整分数时model_quality_qualified必须为false。不得据此启动短测/正式评测或借用其他版本C8。最终两组完整核验写入独立最终目录，不覆盖此部分结果。
