@@ -13,6 +13,7 @@ def pack(v):
  s=np.asarray(np.maximum(abs(v).max(1),np.float32(1e-8)).astype(np.float64)/127.,np.float32);return np.clip(np.rint(np.asarray(v.astype(np.float64)/s[:,None].astype(np.float64),np.float32)),-127,127).astype(np.int8),s
 def main():
  assert not (BASE/'INDEPENDENT_CPU_GATE_32g.json').exists();r=json.loads((ROOT/'result.json').read_text());assert r['complete'] and r['all84_bank_hashes_before_after'] and r['checkpoint_before']==r['checkpoint_after']==sha(MODEL) and len(r['banks'])==84 and [c['M'] for c in r['cases']]==[64]
+ assert r['BF16_control']=='actual_903source_service_explicit_vendor_mm'
  for p,h in r['frozen_sources'].items():assert sha(p)==h and sha(ROOT/'source_snapshot'/Path(p).relative_to('/'))==h
  with MODEL.open('rb') as stream:header_size=int.from_bytes(stream.read(8),'little');header=json.loads(stream.read(header_size))
  def get(layer,role):

@@ -1,14 +1,14 @@
 # 天数量化探索，2026-10-22
 
-当前已交付推荐版：[最终报告](FINAL_REPORT_32g.md)。
+当前已交付推荐版是不可变 **r2**：正式4K **5911.45 total /1182.29 output tok/s，TTFT3305.80ms**，较r1吞吐+2.3234%，热轮极差0.2008%。新鲜完整105题C8=102、C64=103；全部890模型输入与原13serve参数/63环境通过独立CPU核验。原checkpoint保持不变，没有架构转换或微调。
 
-新正式4K **5777.22 total / 1155.45 output tok/s，TTFT3459.44ms**，较旧5695.95吞吐+1.43%，TTFT降低5.58%。全新C8与真实C64 Math500 Level3各101/105=96.1905%；C64实际M4096原生INT8全42层、M64融合Graph与LM64 INT8均通过。
+[直接Bash发布入口及复现](../tianshu_native_int8_down_prefill_release_v2_20261022/README_32g.md) · [r2正式4K报告](../tianshu_native_int8_down_prefill_official_results_v2_20261022/REPORT_32g.md) · [r2双并发完整质量](../tianshu_native_int8_down_prefill_quality_results_v2_20261022/REPORT_32g.md)。发布标签 `tianshu-original-command-4k-native-int8-down-prefill-20261022-r2`，提交5bb7f7d。没有新16K成绩，未声称整个比赛资格已审核。
 
-[直接Bash推荐入口](../tianshu_native_int8_prefill_release_v2_20261022/README_32g.md)；[正式四轮报告](../tianshu_native_int8_prefill_official_results_v2_20261022/REPORT_32g.md)；[独立双并发质量](../tianshu_native_int8_prefill_quality_results_20261022/REPORT_32g.md)；[同期N64对照](../tianshu_native_int8_prefill_results_v2_20261022/REPORT_32g.md)。
+19:42更新：新QKV/O预填充候选903项模型输入、额外397135872字节W8副本，已通过独立完整105题C8=101、C64=102；[质量报告](../tianshu_native_int8_attention_quality_results_20261022/REPORT_32g.md)。同请求短4K对照净增0.8720%，热轮均值5880.27vs5829.43；[三组归因报告](../tianshu_attention_three_arm_results_20261022/REPORT_32g.md)。相同框架BF16控制5804.93，量化相对它+1.2978%，不能将所有收益归于一个kernel。该候选正进行原始N256x4/exclude1正式4K，尚未替换r2。
 
-C8与正式程序原审核失败状态均保留，分别按实际BF16覆盖和原命令/CSV中的workload metadata完成独立CPU恢复，未修改原raw。完整范围、hash和零抢占检查见报告与gate。新16K未复测。代码/报告/关键结果在天数GitHub，原始数组、cache和全部日志仅容器。
+后续独立M64全部42层组件与原生权重量化接口仅在前一GPU服务停止后执行；需要新数值、性能和完整质量证据才可采用。每天北京时间06:00–24:00，本日硬停止23:58。代码、报告和关键结果在天数GitHub与容器，原始数组/完整日志/cache只在容器，无本地项目副本。
 
-[第一阶段负结果](../tianshu_quantization_survey_20261022/REPORT_FINAL_32g.md)仅属于当时的W4/W8原型阶段；后续原生INT8新阳性证据纳入本最终报告。原模型SHA保持不变，旧发布版和全部历史记录保留。
+第一阶段不可变 [FINAL_REPORT_32g.md](FINAL_REPORT_32g.md) 属于较早r1（5777.22），不是当前r2。[第一阶段负结果](../tianshu_quantization_survey_20261022/REPORT_FINAL_32g.md)局限当时W4/W8原型；后续阳性证据分别见对应版本，不覆盖历史结论。以下为按时间追加的研究记录。
 
 推荐版作为冻结检查点保留。后续继续探索其他M范围的原生INT8收益，全部新尝试使用独立目录，未通过新模型与质量门槛前不改推荐版。本索引允许更新，独立版本的最终报告和数值源码仍冻结。
 
