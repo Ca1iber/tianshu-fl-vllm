@@ -1,0 +1,30 @@
+# SPDX-License-Identifier: Apache-2.0
+import importlib.util,json,sys
+from pathlib import Path
+BASE=Path(__file__).resolve().parent;EXP=BASE.parent
+def load(name,path):
+ spec=importlib.util.spec_from_file_location(name,path);module=importlib.util.module_from_spec(spec);sys.modules[name]=module;spec.loader.exec_module(module);return module
+r2=load('_attention_short_exact_r2',EXP/'tianshu_native_int8_down_service_v2_20261022/candidate_profile.py');attention=load('_attention_short_candidate',EXP/'tianshu_native_int8_attention_service_20261022/candidate_profile.py');digest,read,frozen_check=r2.digest,r2.read,r2.frozen_check;CACHE_GATE=r2.parent.CACHE_GATE
+normalizer=load('_attention_short_original_normalizer',EXP/'tianshu_original_command_20261016/validation_profile.py');normalized_environment=normalizer.normalized_environment
+
+def quality_gate(scope,sources=None):
+ assert scope=='prefill';gate=read(EXP/'tianshu_native_int8_attention_quality_results_20261022/QUALITY_GATE_32g.json');assert gate['complete'] and gate['model_quality_qualified'] and gate['total_per_batch']==105 and gate['model_source_count']==903 and gate['controller_count']==51 and gate['C8_correct']/105>.95 and gate['C64_correct']/105>.95
+ if sources is not None:assert sources==gate['model_frozen_sources']
+ frozen_check(gate['model_frozen_sources'])
+ for batch in (8,64):
+  root=Path(f'/workspace/benchmark-results/20261022_native_int8_attention_math{batch}_tianshu');state=read(root/'result.json');q=read(root/'accuracy_audit.json');assert state['phase']=='complete' and state['accuracy_passed'] and state['quality_batch']==batch and state['attention_mode']=='candidate' and state['down_scope']=='prefill' and q['complete'] and q['total']==105 and q['correct']==gate['arms'][str(batch)]['correct'] and q['accuracy']>.95 and state['frozen_sources']==q['frozen_sources']==gate['model_frozen_sources'];assert digest(root/'result.json')==gate['raw_files'][str(root/'result.json')] and digest(root/'accuracy_audit.json')==gate['raw_files'][str(root/'accuracy_audit.json')];frozen_check(state['frozen_sources']);frozen_check(state['controller_sources'])
+  if batch==64:assert all(v['banks']==v['M4096_banks']==42 for v in q['actual_attention_runtime_native_by_role'].values()) and q['actual_attention_M64_capture_native_banks']==0
+ return gate
+
+def prepare(root,mode,scope='prefill',check_quality=True):
+ assert mode in ('control','candidate') and scope=='prefill';command,environment,profile,sources=(r2.prepare(root,'candidate','prefill') if mode=='control' else attention.prepare(root,'candidate'))
+ if check_quality:quality_gate(scope,sources if mode=='candidate' else None)
+ paths=set(BASE.glob('*.py'))|{BASE/'PLAN_32g.md',BASE/'run_pair.sh'};paths.update(Path(p) for p in read(EXP/'tianshu_native_int8_down_prefill_release_v2_20261022/serve_profile_template.json')['controller_sources']);paths.update((EXP/'tianshu_native_int8_attention_quality_20261022').glob('*.py'))
+ if check_quality:paths.update({EXP/'tianshu_native_int8_attention_quality_results_20261022/QUALITY_GATE_32g.json',EXP/'tianshu_native_int8_attention_quality_results_20261022/verify_cpu.py',EXP/'tianshu_native_int8_attention_quality_results_20261022/PLAN_32g.md'})
+ for module in tuple(sys.modules.values()):
+  path=getattr(module,'__file__',None)
+  if path and path.endswith('.py') and Path(path).is_relative_to(EXP):paths.add(Path(path).resolve())
+ controllers={str(p):digest(p) for p in paths};(root/'controller_sources.json').write_text(json.dumps(controllers,indent=2)+'\n')
+ for p,h in controllers.items():
+  target=root/'controller_source_snapshot'/Path(p).relative_to('/');target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(Path(p).read_bytes());assert digest(target)==h
+ return command,environment,profile,sources
