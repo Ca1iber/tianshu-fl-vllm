@@ -42,7 +42,7 @@ def main():
    fn();torch.cuda.synchronize();graph=torch.cuda.CUDAGraph()
    with torch.cuda.graph(graph):out=fn()
    graphs[name]=graph;graph_outputs[name]=out
-  rows=np.unique(np.linspace(0,m-1,8).astype(np.int64));columns=np.unique(np.concatenate([np.linspace(0,n-1,64).astype(np.int64),np.array([0,1,1023,1024,65535,65536,n-2,n-1])]))
+  rows=np.unique(np.linspace(0,m-1,8).astype(np.int64));columns=np.unique(np.concatenate([np.linspace(0,n-1,64).astype(np.int64),np.array([0,1,1023,1024,65535,65536,32767,32768,n-2,n-1])]))
   state.update(phase='numerical',M=m,N=n,K=k,config=config,candidate_writes_FP32_after_explicit_BF16_round=True);save()
   for phase in range(3):
    seed=202610240100+phase;sample=np.random.default_rng(seed).standard_normal((m,k),dtype=np.float32);bits=sample.view(np.uint32);words=((bits+32767+((bits>>16)&1))>>16).astype(np.uint16);words[0]=0;ac=torch.from_numpy(words.copy()).view(torch.bfloat16);sign=-1 if phase==1 else 1;factor=.5 if phase==2 else 1.;a.copy_(ac);w.copy_(codes*sign);ws.copy_(sc*factor);immutable=[t.clone() for t in (a,w,ws)];cpu_rng=torch.get_rng_state().clone();gpu_rng=torch.cuda.get_rng_state().clone()

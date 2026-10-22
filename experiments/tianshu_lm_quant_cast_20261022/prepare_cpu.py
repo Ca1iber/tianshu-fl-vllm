@@ -2,7 +2,7 @@
 import ast,hashlib,json,sys
 from pathlib import Path
 BASE=Path(__file__).resolve().parent;EXP=BASE.parent
-RUNNER=Path('/workspace/benchmark-results/20261022_lm_quant_cast_runner_v3_tianshu')
+RUNNER=Path('/workspace/benchmark-results/20261022_lm_quant_cast_runner_v4_tianshu')
 assert not RUNNER.exists();RUNNER.mkdir();(RUNNER/'cache').mkdir()
 def sha(p):
  with Path(p).open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
