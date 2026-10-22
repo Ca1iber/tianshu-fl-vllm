@@ -1,0 +1,7 @@
+# Conditional r4 LM32..64 padded publication
+
+Draft only. Build solely if the frozen925-source original4K formal independent gate passes promotion, fresh dual105 quality strictly>95, zero errors/preemptions, all original runtime audits and new LM runtime/pack/CUBIN/memory checks, stable >0.5% short and >0.5% historical formal gain with TTFT <=101% r3. Original13argv/63env and903 originalr3 inputs exact, checkpoint immutable. No tag/qualified template before those gates.
+
+Preserve C64 original audit_failed result; identify actual old-LM counter defect and CPU-only full audit recovery, five recovery controllers separate from82 originalGPU inputs. Package exact six key C8/recoveredC64 controller JSON plus originalfailedC64 result, recoveryGate, full gate and keyCSV. No raw predictions/arrays/model uploaded. Never imply originalC64fullvalidator passed. Preserve r3 unchanged.
+
+Bash/JQ launcher checks925 source and all formalcontroller exactSHA; exact command, environment and only outputroot relocation. Delegate r3 generated26 and strict384cache checks. Add only two new LMcomponent cachegroups, 16files canonicalpath SHA, explicit archive restore missing files only and no overwrite. NoGPU packaging. Validate /root and /tmp with polluted experimentENV, exact925/13/63/controller counts, all restore --check paths and release hashes. Newisolated r4 tag only after all gates/dryruns. No new16K/fullcompetition eligibility claim.
