@@ -1,0 +1,7 @@
+# 首次模型启动失败，未开始Math
+
+2026-10-23 10:46:46启动首版916项模型输入/80质量控制器的C64服务。静态M64图改写已实际生成，但Inductor在torch/_inductor/graph.py normalize_function处因新增op的eager_input_vals与schema不匹配而断言，服务未就绪，evalscope从未启动，无模型正确率或吞吐结果。pipeline16763终止，GPU已空闲，原始state/result/server.log与源码快照完整保留。
+
+根因：fx_pass把旧fused_add_rms_norm节点整份meta复制给新7参数op，旧meta中的eager_input_vals对应旧4参数schema。安装版本Inductor明确在存在此字段时用新target去normalize旧fake输入，于是返回None。图改写的实际参数及norm/GEMM数值算法无需改变；新版本将只保留新op的输出val，避免继承过期schema元信息。首版源码与门槛不改，不覆盖或原样重跑。
+
+真实失败根路径/workspace/benchmark-results/20261023_RMS_A8_GU_math64_tianshu；实际失败图RMS_A8_GU_records/fx_pass/pass_17699_002_64_64.py。没有生成合格质量/正式性能/新发布。
