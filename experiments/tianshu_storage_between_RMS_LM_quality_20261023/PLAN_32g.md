@@ -1,0 +1,5 @@
+# RMS与LM组合双质量之间的不可变快照共享
+
+容器磁盘当前只余约2.4GB，后续仍须C8与短4K/潜在正式4K的完整源快照。只暂停外层质量shell26165，当前C64 runner26954、API26956、GPU worker27147及evalscope不暂停；等待C64彻底终止且GPU空闲才用既有逐文件SHA算法共享相同的不可变快照，完成后恢复外层继续C8。后续序列27948一直等待外层，避免同时使用GPU。该阶段不改变任何GPU性能计时。
+
+只source_snapshot/controller_source_snapshot/recovery_controller_source_snapshot内部文件之间硬链接，保持所有原始路径和字节，绝不链接到活跃代码/checkpoint/cache。全文件原/最终SHA验证，944模型和91控制器与384严格cache前后SHA检查，另外16项LM组件cache前后核对。完整逐文件清单仅容器；本目录代码与汇总门槛/报告GitHub。异常由trap恢复外层，23:58北京时间硬停沿用。
