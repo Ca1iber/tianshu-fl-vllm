@@ -1,0 +1,5 @@
+# 组合C64单批次独立核验，不作为完整质量资格
+
+仅--batches64复用原字节完整独立verifier，读取新组合实际C64全部105条prediction/review/report、源与控制器/快照/原checkpoint，重新执行全部继承及RMS/LM真实运行审计，profile和accuracy_audit均须原样全等。C64本轮原始已完成101/105，不重复运行GPU；所有caps/errors均计入105分母。
+
+本目录model_quality_qualified必须false，因为没有C8，不能以部分结果放行性能测试或发布。完整双批次核验继续使用独立的tianshu_RMS_LM_quality_results_20261023；本目录不占用完整结果路径。完整原始响应/数组/日志只容器，代码/报告/关键分数GitHub。

@@ -1,0 +1,7 @@
+# 组合两批质量之间的快照共享已完成
+
+只暂停质量外层shell26165，C64实际runner26954、API/GPU worker及评测未暂停；C64完整终止且GPU空闲后，48.54秒完成1693个快照目录、295066文件逐一校验，共12999份相同副本改为不可变快照内部共享，净释放929976320B（约886.9MiB）。GPU前后均空闲，所有原路径和字节保留，所有最终独立inode的SHA重新核验。
+
+944模型/91控制器与384严格cache的去重并集1406项，前后SHA全部一致，16项LM组件cache另行前后核对。未把活跃代码、checkpoint或cache作为链接目标。完整文件清单及SHA仅容器/workspace/benchmark-results/20261023_RMS_LM_quality_snapshot_dedup_CPU_tianshu；GitHub只存代码、汇总门槛和报告。
+
+外层已恢复S状态，存储runner28171终止Z，C8 API28830已启动，无残留暂停。后续GPU顺序不变，未改变任何已记录GPU计时。
