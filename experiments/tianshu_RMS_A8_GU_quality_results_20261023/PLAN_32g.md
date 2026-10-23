@@ -1,0 +1,7 @@
+# RMS+A8 GateUp候选：独立完整质量核验
+
+在新模型质量尚未产生结果时固定本核验。输入仅20261023_RMS_A8_GU_math8/math64原始结果；新模型916项输入、每组80质量控制器均逐项核验当前文件与GPU前快照，r3原903为精确子集，原checkpoint SHA。C8/C64各105条原始review/prediction/report独立计分、错误和cap全部计入，不复用旧准确率或挑选重跑。
+
+通过原完整quality_profile重新计算全部框架/量化运行检查及新RMS+A8专项检查，并以全量profile和原GPU控制器质量快照比较，明确核验真实42层norm与相同GU GEMM二进制、图键/重放、旧兼容索引没有伪造原独立A8调用、动态范围不改。观察实际63环境/原13参数、真实QKV/O/Down的工作负载覆盖，C8未击中的M4096不冒充已覆盖。全部两组严格>95%才能model_quality_qualified；单批次--batches仅partial Gate不可授权benchmark。
+
+本脚本仅CPU读取原始数据，不修改原始结果或启动GPU；源码/门槛在看到质量成绩前固定。GPU模型/控制器此前已在eeb962b冻结。GitHub仅关键逐题分数、门槛和报告，原题/预测全文/数组仅容器。性能必须另行同请求短4K对照；没有新正式成绩或发布。
