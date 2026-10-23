@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: Apache-2.0
+import csv,hashlib,importlib.util,json,sys
+from pathlib import Path
+import numpy as np
+BASE=Path(__file__).resolve().parent;EXP=BASE.parent;path=EXP/'tianshu_native_dotsaddz_down42_20261023/common.py';spec=importlib.util.spec_from_file_location('_W4_affine_cpu_reference',path);c=importlib.util.module_from_spec(spec);spec.loader.exec_module(c);proof=json.loads((EXP/'tianshu_native_dotsaddz_down42_20261023/CPU_GATE_32g.json').read_text());assert c.sha(c.MODEL)==proof['checkpoint_sha256'];rows=[]
+for layer in (0,20,41):
+ wf=c.f32(c.weight(layer));refs={}
+ for phase in (0,1,2):
+  r=next(v for v in proof['references'] if v['layer']==layer and v['phase']==phase);assert c.sha(r['file'])==r['sha256'];refs[phase]=np.load(r['file'],allow_pickle=False)
+ for group in (32,64,128,256):
+  v=wf.reshape(2048,6144//group,group);lo=v.min(2);hi=v.max(2);z=c.bf16(lo);s=c.bf16(np.maximum(hi-lo,np.float32(1e-8))/np.float32(15));q=np.clip(np.rint((v-c.f32(z)[:,:,None])/c.f32(s)[:,:,None]),0,15).astype(np.uint8);deq=c.f32(c.bf16(q.astype(np.float32)*c.f32(s)[:,:,None]+c.f32(z)[:,:,None])).reshape(2048,6144);assert np.isfinite(deq).all()
+  for phase,ref in refs.items():
+   projected=c.f32(ref['H']).astype(np.float64)@deq.T.astype(np.float64);original=ref['original'];rows.append(dict(layer=layer,phase=phase,group_size=group,projection_relative_L2=float(np.linalg.norm(projected-original)/max(np.linalg.norm(original),1e-30)),maximum_abs_projection_error=float(abs(projected-original).max()),cells=64*2048,scale_BF16_sha256=c.ahash(s),offset_BF16_sha256=c.ahash(z),unsigned_q_sha256=c.ahash(q)))
+  print(json.dumps(dict(layer=layer,group_size=group,affine_projection_relative_L2=[r['projection_relative_L2'] for r in rows if r['layer']==layer and r['group_size']==group])),flush=True)
+with (BASE/'KEY_ERRORS_32g.csv').open('w',newline='') as f:w=csv.DictWriter(f,fieldnames=list(rows[0]),lineterminator='\n');w.writeheader();w.writerows(rows)
+assert c.sha(c.MODEL)==proof['checkpoint_sha256'] and not any(k.split('.')[0] in ('torch','triton','vllm','flag_gems') for k in sys.modules);sym=json.loads((EXP/'tianshu_W4_group_error_CPU_20261023/CPU_GATE_32g.json').read_text());g=dict(complete=True,CPU_only=True,no_GPU_imports=True,checkpoint_sha256=proof['checkpoint_sha256'],quantizer='affine_minmax_using_actual_BF16_scale_and_offset_then_uint4_round_clamp',kernel_semantics_required='BF16_round(q*actual_BF16_scale+actual_BF16_offset)',groups=[32,64,128,256],layers=[0,20,41],phases=3,full_K_projection_cells=len(rows)*64*2048,source_sha256=c.sha(__file__),parent_helper_sha256=c.sha(path),symmetric_control_gate_sha256=c.sha(EXP/'tianshu_W4_group_error_CPU_20261023/CPU_GATE_32g.json'),key_errors_sha256=c.sha(BASE/'KEY_ERRORS_32g.csv'),statistics={str(group):dict(affine_mean_projection_relative_L2=float(np.mean([r['projection_relative_L2'] for r in rows if r['group_size']==group])),affine_maximum_projection_relative_L2=max(r['projection_relative_L2'] for r in rows if r['group_size']==group),symmetric_mean_projection_relative_L2=sym['statistics'][str(group)]['mean_projection_relative_L2']) for group in (32,64,128,256)},new_formats_on_real_GPU_not_tested=True,model_not_executed=True,performance_not_tested=True,adopted=False);(BASE/'CPU_GATE_32g.json').write_text(json.dumps(g,indent=2)+'\n');print(json.dumps(g))
