@@ -1,0 +1,13 @@
+{
+  "complete": false,
+  "phase": "failed",
+  "error": "RuntimeError('Expected qGroupSize == -1 || qGroupSize == 32 || qGroupSize == 64 || qGroupSize == 128 to be true, but got false.  (Could this error message be improved?  If so, please report an enhancement request to PyTorch.)')",
+  "traceback": "Traceback (most recent call last):\n  File \"/workspace/vllm-plugin-FL/experiments/tianshu_native_dots_groups_Down64_20261023/probe_gpu.py\", line 30, in main\n    for _ in range(2):fn()\n                      ^^^^\n  File \"/workspace/vllm-plugin-FL/experiments/tianshu_native_dots_groups_Down64_20261023/probe_gpu.py\", line 28, in <lambda>\n    operations={'BF16_qualified':bf16_run,**{f'W4_G{group}':lambda group=group:w4_run(group) for group in GROUPS}};outputs={};graphs={};state['phase']='warming';save()\n                                                                               ^^^^^^^^^^^^^\n  File \"/workspace/vllm-plugin-FL/experiments/tianshu_native_dots_groups_Down64_20261023/probe_gpu.py\", line 27, in w4_run\n    def w4_run(group):return [torch.ops.aten._weight_int4pack_mm_dotsaddz.default(b['x'],b['groups'][str(group)]['w'],group,b['groups'][str(group)]['s'],b['groups'][str(group)]['z'],size_n=2048) for b in banks]\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/site-packages/torch/_ops.py\", line 819, in __call__\n    return self._op(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Expected qGroupSize == -1 || qGroupSize == 32 || qGroupSize == 64 || qGroupSize == 128 to be true, but got false.  (Could this error message be improved?  If so, please report an enhancement request to PyTorch.)\n",
+  "raw_result_sha256": "3cc7b4d292df002b59a743235d382e02ac1c8330c2e92ce9343cf7e81fbbe960",
+  "first_GPU_failed_before_numeric_or_timing": true,
+  "numeric_records": 0,
+  "rounds": 0,
+  "adopted": false,
+  "official_benchmark": false,
+  "model_quality_tested": false
+}
