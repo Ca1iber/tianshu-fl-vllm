@@ -34,9 +34,9 @@ def main():
   if batch==64:assert correct==s['correct'] and s['total']==105 and s['accuracy_passed']==(correct/105>.95)
   for p in (rp,vp,pp):
    v=a['raw_files'][str(p.relative_to(root))];assert sha(p)==v['sha256'] and p.stat().st_size==v['bytes'];raw[str(p)]=sha(p)
-  profile=q.audit_runtime(root,s,official=False);calculated=q.audit_math(root,s,profile,write=False);assert profile==a['profile']
+  profile=q.audit_runtime(root,s,official=False);calculated=q.audit_math(root,s,profile,write=False);assert json.loads(json.dumps(profile))==a['profile']
   extras={'CPU_coverage_reconciliation','original_experiment_passed','actual_math_raw_root','original_result_sha256','CPU_reconciliation_sources','GPU_rerun','only_new_CPU_guard'} if batch==8 else set()
-  assert calculated=={k:v for k,v in a.items() if k not in extras}
+  assert json.loads(json.dumps(calculated))=={k:v for k,v in a.items() if k not in extras}
   assert profile['actual_Down64_W4_capture_banks']==42 and profile['old_Down64_BF16_capture_banks']==0 and profile['dots_Down64_load_and_native_memory_scratch_all42_accounted'] and profile['actual_attention_M64_capture_BF16_banks']==84 and profile['actual_attention_M64_capture_native_banks']==0
   assert profile['new_LM64_actual_W4_bank_verified'] and profile['new_LM64_load_and_native_peak_accounting_verified'] and profile['new_LM1_64_range_and_padding_profile_verified'] and profile['old_LM1_64_BF16_W8_calls_absent'] and profile['LM_head_precision_in_verified_batch']=='W4A16' and profile['new_LM_verified_batch_W4_runtime_calls']>=10
   assert profile['all_original_GU_KV_attention_scheduler_sampling_checks_retained'] and profile['only_original_LM1_64_precision_requirements_explicitly_replaced']

@@ -21,7 +21,7 @@ def main():
  assert profile['zero_preemptions'] and profile['actual_Down64_W4_capture_banks']==42 and profile['old_Down64_BF16_capture_banks']==0 and profile['new_W4_all42_capture_linked_to_actual_B64_model_replays']
  assert profile['new_LM64_W4_actual_runtime_calls']>=100 and profile['old_LM64_W8_calls_absent'] and profile['new_LM64_load_and_native_peak_accounting_verified'];assert profile['new_LM8_W4_actual_runtime_calls']>=1 and profile['old_LM1_64_BF16_W8_calls_absent']
  c8=q.read(Path(state.get('math8_quality_root',state['math_root']))/'accuracy_audit.json');comparison=q.audit_benchmark(ROOT,state,profile,c8,write=False)
- assert comparison==q.read(ROOT/'comparison.json')
+ assert json.loads(json.dumps(comparison))==q.read(ROOT/'comparison.json')
  rows=q.csv_rows(ROOT,'raw_runs_*.csv');summary=q.csv_rows(ROOT,'summary_*.csv');assert len(rows)==4 and len(summary)==1
  for row in rows:
   assert row['Run Status']=='SUCCESS' and int(float(row['Successful Requests']))==256
