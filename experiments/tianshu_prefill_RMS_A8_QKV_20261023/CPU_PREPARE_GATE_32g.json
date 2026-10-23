@@ -1,0 +1,103 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "no_GPU_imports": true,
+  "checkpoint_sha256": "14fb8e7f0a18d53d1f239773758bf581cee7e456a4523a54622c3a245b64402c",
+  "selected_banks": [
+    {
+      "layer": 0,
+      "has_residual": false,
+      "prefix": "model.layers.0.self_attn.qkv_proj",
+      "N": 2560,
+      "K": 2048,
+      "original_BF16_sha256": "b51f7b84ce022d4d5cfd3c6159908567d259185d765137089692731950536fd1",
+      "packed_NT_sha256": "f5134a442626ff7bd18bc49a1c01bd8bc9253aac1003725f25913678b8ae26cb",
+      "scale_sha256": "1ec30a1b58b3bd78a9d2af99510b0cf126ba039973c974dcb5b20bcc029fc33a",
+      "CPU_exactly_matches_original_live_pack": true,
+      "norm_name": "model.layers.0.input_layernorm.weight",
+      "norm_path": "/workspace/benchmark-results/20261023_prefill_RMS_A8_QKV_CPU_tianshu/input_norm_layer0.u16",
+      "norm_sha256": "6105be864db4b6fc00baaa3b400283b034559a726e2e693b949a23f649abd25e",
+      "full_weight_copy_written": false
+    },
+    {
+      "layer": 20,
+      "has_residual": true,
+      "prefix": "model.layers.20.self_attn.qkv_proj",
+      "N": 2560,
+      "K": 2048,
+      "original_BF16_sha256": "4ba1b5105fb0406c13c6e69009ac02993c40cebaff3becfd934d3b3f9958baf8",
+      "packed_NT_sha256": "86e4278ec6425a11bf142bf645be9ce324965d44163a1aa24261d3bf2a1273c3",
+      "scale_sha256": "5ae158dd95e120d9292480181b13ae08d4610223e3e225b98b5b0ff20b6ac78a",
+      "CPU_exactly_matches_original_live_pack": true,
+      "norm_name": "model.layers.20.input_layernorm.weight",
+      "norm_path": "/workspace/benchmark-results/20261023_prefill_RMS_A8_QKV_CPU_tianshu/input_norm_layer20.u16",
+      "norm_sha256": "f7e7136f54dfcaceb65db51a3f5639c67b316b5c5dac4faad908177c32359514",
+      "full_weight_copy_written": false
+    },
+    {
+      "layer": 41,
+      "has_residual": true,
+      "prefix": "model.layers.41.self_attn.qkv_proj",
+      "N": 2560,
+      "K": 2048,
+      "original_BF16_sha256": "2c266b0484298c4232fc99c9031b079ebfb54a484dca827108aa2f2d8ff2e693",
+      "packed_NT_sha256": "3c8fdbe40da7488d03fd7a10471b070ca49320cdfb96b5f29032653c1d939df4",
+      "scale_sha256": "b55f9e94dbe821aedf06f41ad1f2430e0d31c822b88ef0efb792026804183b67",
+      "CPU_exactly_matches_original_live_pack": true,
+      "norm_name": "model.layers.41.input_layernorm.weight",
+      "norm_path": "/workspace/benchmark-results/20261023_prefill_RMS_A8_QKV_CPU_tianshu/input_norm_layer41.u16",
+      "norm_sha256": "92c1cf304422bca40d657eabaf641c477b6b2828e94a0f0c3eea0edba658e41a",
+      "full_weight_copy_written": false
+    }
+  ],
+  "three_QKV_weight_packs_independently_recomputed_exact": true,
+  "M_values": [
+    512,
+    4096
+  ],
+  "phases": [
+    0,
+    1,
+    2
+  ],
+  "expected_numeric_cases": 18,
+  "expected_full_K_INT64_projection_samples": 4608,
+  "expected_timing_rows": 180,
+  "primary_timing_M": 4096,
+  "diagnostic_timing_M": 512,
+  "actual_residual_cases_by_layer": {
+    "0": false,
+    "20": true,
+    "41": true
+  },
+  "fixed_norm_kernel_sha256": "85072fc022d08182db4e4a830afe7549403162a0e2a8719d9c56b4225c7a63f5",
+  "expected_norm_binaries": {
+    "False": "5f923912e0d99a08cce11d763b10b918a4d935e133105388b170077505b93e37",
+    "True": "7d380b57a57b9133b7d81cea47ef22b10c76fd335e86fb4eba9486083663448c"
+  },
+  "expected_QKV_dequant_binaries": {
+    "512": "d65b46bda73897545726973b602ff1852e9925dcf5b349433765dfa78177cbc5",
+    "4096": "d83445c4034d618aff6b20f0159c5aaef061eccc18909dcc88c932443242aca6"
+  },
+  "block_by_M": {
+    "512": 1024,
+    "4096": 512
+  },
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_prefill_RMS_A8_QKV_20261023/prepare_cpu.py": "187d5fcc066b734459eb6f47fd29c5d0a39adc70e1c6b239765b2e86ca6a6814",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_prefill_RMS_A8_QKV_20261023/PLAN_32g.md": "920e9fed074f971a8e8b8127a7b5027c62bf268903f43c32adf9ecc7bb02a2b6",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_native_int8_attention_service_20261022/selected_plan.json": "7182998fc71d13af77d8a0f1aed646601b9d148568c0bcf87d43ca336a258c34",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_IR_RMS_A8_20261023/INDEPENDENT_CPU_GATE_32g.json": "bcee5925bccd8d5ee6e8a7f9b7d8a802bafc1e536c10ea2c97a15c5ae74b4f3c",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_IR_RMS_A8_20261023/kernel.py": "85072fc022d08182db4e4a830afe7549403162a0e2a8719d9c56b4225c7a63f5",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_w8a8_20261020/kernel.py": "b9b692cf561a35ef9c38d05d1edf7aa804436728923efa4800f914ff6b656152",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_native_int8_lm64_20261022/kernel.py": "ffb9225fd1a16bcc3a7d97a34c72eee80d9840d1c24f8204bb93b2a83496ef68",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_w8_gpu_packing_20261020/packing.py": "d0ceedae9f55e7ad700bf330a6c52567ffe63897d970125e63600301758338c3",
+    "/usr/local/lib/python3.12/site-packages/vllm/ir/ops/layernorm.py": "d8e4380ca97d2c719836a7e15fb410a73d354b15d79fc54275b573bbb1c06910",
+    "/usr/local/lib/python3.12/site-packages/vllm/ir/op.py": "fd0355b398c0d96235bb6aba0c9c08f73c199429bd8ec2aed227178c297c1eb2"
+  },
+  "GPU_probe_not_implemented_yet": true,
+  "no_new_M4096_numeric_or_perf_result": true,
+  "whole_model_CUBIN_equivalence_not_asserted": true,
+  "model_not_started": true,
+  "adopted": false
+}
