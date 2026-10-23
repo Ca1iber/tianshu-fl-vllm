@@ -1,0 +1,3 @@
+CPU API预检最初使用torch.compile(dynamic=True,backend=CPU-eager)，在vendor Torch的has_triton→device properties检查处出现IndexError: list index out of range，未进入自定义op测试，未初始化CUDA。保留原源码与日志到容器initial目录，INITIAL_REGISTRATION_CPU.sha256可验证。
+
+改用torch.fx.symbolic_trace构造一个真实保留原namespace op的CPU图：先执行原kernel，再通过公开register_kernel替换kernel，同一个图依次测试M2/64/5/64/2，M64走新body，其余委托保存的真实原backend，同时原schema、fake、_init_fn、bank closure与图本身不变。该测试只证明此安装版本CPU注册API与已有FX图的调度行为，不声称CUDA/TorchDynamo编译已通过。真实GPU模型仍须独立检查W4捕获42与旧BF16捕获0后才能发题，没有放宽真实门禁。
