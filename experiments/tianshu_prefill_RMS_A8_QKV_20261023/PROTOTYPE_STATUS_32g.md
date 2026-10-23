@@ -1,0 +1,7 @@
+# 完整链原型已写，尚无GPU执行
+
+chain.py实现两个组件分支：安装版IR-native独立编译norm加原A8，或原固定RMS+A8融合kernel；分支之后共用完全相同的原Torch _int_mm与原_dequant代码，返回真实norm/residual/q/scale/INT32/projection对象。只接受M512/4096、K2048、N2560与原NN INT8布局，norm及dequant首次编译必须匹配既有真实CUBIN。所有Tensor临时空间属于单次调用，Runtime只保存模块、编译函数和纯元信息。守卫分配仅用于数值阶段，双方计时均用普通调用内分配。
+
+当前只有语法检查和既有CPU输入准备，没有导入/执行该原型、没有新GPU数值或计时。原CPU_PREPARE_GATE的“probe尚未实现”仍为真实的准备时状态：完整GPU probe、独立CPU验证和GPU前冻结清单仍待下一步完成。旧CPU计划/来源保持，新增GPU源码之后以新的GPU输入清单冻结，不把历史准备门槛冒称完整GPU通过。
+
+既有IR torch.compile内部产生的norm输出由编译器分配；可显式控制的q/scale/INT32/projection及候选norm/residual临时输出带保护区，所有实际Graph返回值仍必须完整毒化重放和全字节比对。数值/物理内存/计时具体验证按原预定计划实现，当前没有模型接入或采用。
