@@ -1,4 +1,4 @@
-# 2026-10-23 Tianshu量化进展（北京时间15:45更新）
+# 2026-10-23 Tianshu量化进展（北京时间16:03更新）
 
 正式最佳仍是r3：4K 5950.75 total /1190.15 output tok/s、TTFT3174.58ms。以下均为组件结果或候选，不是新的正式分数。
 
@@ -22,3 +22,9 @@ v2原始状态目录：`/workspace/benchmark-results/20261023_dots_Down64_v2_mat
 所有代码/报告/关键结果推天数GitHub分支exp/tianshu-quantization-20261022。全部大数组/原始日志/模型/缓存只在容器，无用户本地项目文件。MuXi只读参考，没有修改其仓库。
 
 15:45现场状态：v2实际模型启动和独立startup审计已通过，真实W4 M64 capture42、原BF16 M64 capture0、42个实际worker-memory-profile scratch探针完成。已进入C64完整105题，完成101题，剩4题生成中；尚无最终准确率，C8和短4K均未开始。不会把组件通过/预热命中当作模型正确率通过。
+
+16:03更新：新鲜C64已完整103/105=98.095238%，独立CPU全量复核通过（916模型来源/85控制器/105题与全部raw SHA/实际profile逐字重算）。104正常stop、1个max_tokens，按官方review全部计入分母；无请求错误。C8同一冻结版本已开始评测，最后确认42/105，尚无最终分数。完整模型质量资格仍pending。
+
+下一步已准备并冻结e74e039短4K控制器 `experiments/tianshu_dots_Down64_short4k_v2_20261023`，CPU预检确认精确903来源r3对916来源新W4、13官方argv/63环境仅入口不同。真实GPU执行强制要求独立完整C8/C64 QUALITY_GATE合格；每臂N64x3/exclude1，筛选>0.5%收益、candidate spread<1%、TTFT<=1.01。当前未运行短4K。新鲜质量全部完成后运行独立结果目录的verify_cpu.py生成完整QUALITY_GATE，再执行run_pair.sh；不在已执行目录修改任何来源。
+
+CPU另发现G32非对称minmax的3层3fixture平均投影误差7.70%（当前G128对称12.53%）；新group/参数未GPU或模型测试，保持独立候选，不混入当前模型。仅代码、关键误差表与CPU门禁入GitHub。
