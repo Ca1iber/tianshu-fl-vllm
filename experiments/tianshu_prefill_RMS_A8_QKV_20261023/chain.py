@@ -58,7 +58,7 @@ class Runtime:
    normalized,residual_out=self.compiled_norm(x,residual,norm_weight);kernel=self.dense.quantize(normalized,q,scale);self.observe(f'baseline_A8_M{m}',kernel)
   else:
    normalized=allocate((m,k),torch.bfloat16);residual_out=allocate((m,k),torch.bfloat16) if residual is not None else None
-   kernel=self.norm.run(x,residual,norm_weight,normalized,residual_out,q,scale);self.observe(f'fused_norm_residual_{residual is not None}',kernel,self.preparation['expected_norm_binaries'][str(residual is not None)])
+   kernel=self.norm.run(x,residual,norm_weight,normalized,residual_out,q,scale);self.observe(f'fused_norm_M{m}_residual_{residual is not None}',kernel,self.preparation['expected_norm_binaries'][str(residual is not None)])
   # Identical original projection tail for both arms. Keep integer output alive
   # for full-byte graph/eager checks and independent INT64 sample references.
   integer=allocate((m,2560),torch.int32);projection=allocate((m,2560),torch.bfloat16)
