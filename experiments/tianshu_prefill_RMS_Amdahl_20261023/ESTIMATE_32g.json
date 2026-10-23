@@ -1,0 +1,76 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "no_GPU_run": true,
+  "heuristic_extrapolation_not_a_bound_or_full_model_measurement": true,
+  "standalone_component_control_not_claimed_full_model_CUBIN_equivalent": true,
+  "only_three_component_layers_sampled": true,
+  "assumption": "same per-call saving replicated across 41 residual layers; same call counts and no other scheduling/static-shape effects",
+  "official_original_r3_QKV_runtime_calls": 43008,
+  "actual_runtime_banks": 42,
+  "actual_calls_per_bank": 1024,
+  "actual_M4096_calls_per_bank_per_round": 256.0,
+  "official_hot_duration_seconds": 220.26,
+  "official_previous_total_tok_s": 5950.75,
+  "scenarios": [
+    {
+      "component_execution": "graph",
+      "chain_length": 16,
+      "residual_sample_layer": 20,
+      "component_QKV_total_ms_per_prefill_chunk": 19.764978408813477,
+      "saved_ms_per_prefill_chunk": 0.9560845494270329,
+      "estimated_QKV_seconds_per_official_round": 5.05983447265625,
+      "estimated_QKV_fraction_percent": 2.297209875899505,
+      "estimated_saved_seconds_per_official_round": 0.24475764465332042,
+      "estimated_overall_throughput_gain_percent": 0.11124576735370706
+    },
+    {
+      "component_execution": "graph",
+      "chain_length": 16,
+      "residual_sample_layer": 41,
+      "component_QKV_total_ms_per_prefill_chunk": 19.763934421539307,
+      "saved_ms_per_prefill_chunk": 1.0193327784538277,
+      "estimated_QKV_seconds_per_official_round": 5.059567211914063,
+      "estimated_QKV_fraction_percent": 2.2970885371443126,
+      "estimated_saved_seconds_per_official_round": 0.2609491912841799,
+      "estimated_overall_throughput_gain_percent": 0.11861378052537841
+    },
+    {
+      "component_execution": "eager",
+      "chain_length": 1,
+      "residual_sample_layer": 20,
+      "component_QKV_total_ms_per_prefill_chunk": 20.00084254741669,
+      "saved_ms_per_prefill_chunk": 0.9972224235534681,
+      "estimated_QKV_seconds_per_official_round": 5.120215692138673,
+      "estimated_QKV_fraction_percent": 2.3246234868512996,
+      "estimated_saved_seconds_per_official_round": 0.25528894042968786,
+      "estimated_overall_throughput_gain_percent": 0.11603794264232192
+    },
+    {
+      "component_execution": "eager",
+      "chain_length": 1,
+      "residual_sample_layer": 41,
+      "component_QKV_total_ms_per_prefill_chunk": 20.000457406044006,
+      "saved_ms_per_prefill_chunk": 1.0454403638839729,
+      "estimated_QKV_seconds_per_official_round": 5.120117095947266,
+      "estimated_QKV_fraction_percent": 2.3245787233030355,
+      "estimated_saved_seconds_per_official_round": 0.26763273315429703,
+      "estimated_overall_throughput_gain_percent": 0.12165546308688935
+    }
+  ],
+  "estimate_gain_percent_range": [
+    0.11124576735370706,
+    0.12165546308688935
+  ],
+  "source_sha256": "7d8e1abb9338c61ed2bbe917fdcdfaaf757f3a060a8ea8c1e1dde9d7831d6db6",
+  "inputs": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_prefill_RMS_A8_QKV_20261023/KEY_SUMMARY_32g.csv": "03501a20620edd325c1e4754e141672dcae457646272ab1fe4073780b1945383",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_prefill_RMS_A8_QKV_20261023/INDEPENDENT_CPU_GATE_32g.json": "7747ece05c3305405360d2110242e5a262853d94de3c6ace7d7bc4e9e7ea14db",
+    "/workspace/benchmark-results/20261023_prefill_RMS_A8_QKV_GPU_tianshu/result.json": "67725346626aed5e849d8c3bbe16d8825b555759542db8b084fac4cc3b10325d",
+    "/workspace/benchmark-results/20261022_native_int8_attention_official4k_tianshu/result.json": "12ea28a71abec71e3d846b6f0663e0d31f554e2dbbbb7d4ec9dee1d1a2e0b24a",
+    "/workspace/benchmark-results/20261022_native_int8_attention_official4k_tianshu/native_attention_records/route_90343.json": "6fff07fe9924b62f968e9765dbe62a1ef8e194a2e2d68a346f521e84afeafde0"
+  },
+  "new_model_short_still_required": true,
+  "not_a_performance_gate": true,
+  "adopted": false
+}

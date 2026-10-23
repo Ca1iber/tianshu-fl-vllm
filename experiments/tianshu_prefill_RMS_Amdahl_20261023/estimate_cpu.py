@@ -1,0 +1,20 @@
+# SPDX-License-Identifier: Apache-2.0
+import csv,hashlib,json,statistics,subprocess
+from pathlib import Path
+BASE=Path(__file__).resolve().parent;EXP=BASE.parent;REPO=EXP.parent
+
+def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def read(p):return json.loads(Path(p).read_text())
+def main():
+ assert not (BASE/'ESTIMATE_32g.json').exists();component=EXP/'tianshu_prefill_RMS_A8_QKV_20261023';csv_path=component/'KEY_SUMMARY_32g.csv';original=subprocess.check_output(['git','show','b7a4990:experiments/tianshu_prefill_RMS_A8_QKV_20261023/KEY_SUMMARY_32g.csv'],cwd=REPO);assert original==csv_path.read_bytes();gate=read(component/'INDEPENDENT_CPU_GATE_32g.json');assert gate['complete'] and gate['component_lead'];raw=Path('/workspace/benchmark-results/20261023_prefill_RMS_A8_QKV_GPU_tianshu/result.json');assert gate['result_sha256']==sha(raw)
+ release=read(EXP/'tianshu_native_int8_attention_prefill_release_20261022/serve_profile_template.json');root=Path(release['old_output_root']);state=read(root/'result.json');assert state['phase']=='complete' and state['frozen_sources']==release['frozen_sources'] and len(state['frozen_sources'])==903 and len(state['raw_runs'])==4 and state['completed_runs']==4;route=next((root/'native_attention_records').glob('route_*.json'));record=read(route);assert record['completed'] and record['phase']=='runtime';counts={}
+ for row in record['routes'].values():
+  if row['role']=='QKV' and row['M']==4096 and row['phase']=='runtime' and not row['capturing']:counts[row['bank_id']]=counts.get(row['bank_id'],0)+row['calls']
+ assert set(counts)==set(range(0,84,2)) and set(counts.values())=={1024};per_bank_per_round=statistics.mean(counts.values())/4;assert per_bank_per_round==256;duration=statistics.mean(float(r['Benchmark Duration (s)']) for r in state['raw_runs'][1:]);rows=list(csv.DictReader(csv_path.open()));scenarios=[]
+ for execution,chain in [('graph',16),('eager',1)]:
+  selected=[r for r in rows if int(r['M'])==4096 and r['execution']==execution and int(r['chain_length'])==chain];by_layer={int(r['layer']):r for r in selected};assert set(by_layer)=={0,20,41}
+  for residual_sample in (20,41):
+   first=by_layer[0];res=by_layer[residual_sample];control_ms=float(first['control_ms'])+41*float(res['control_ms']);saving_ms=float(first['control_ms'])-float(first['candidate_ms'])+41*(float(res['control_ms'])-float(res['candidate_ms']));saved_seconds=per_bank_per_round*saving_ms/1000
+   scenarios.append(dict(component_execution=execution,chain_length=chain,residual_sample_layer=residual_sample,component_QKV_total_ms_per_prefill_chunk=control_ms,saved_ms_per_prefill_chunk=saving_ms,estimated_QKV_seconds_per_official_round=per_bank_per_round*control_ms/1000,estimated_QKV_fraction_percent=100*per_bank_per_round*control_ms/1000/duration,estimated_saved_seconds_per_official_round=saved_seconds,estimated_overall_throughput_gain_percent=100*(duration/(duration-saved_seconds)-1)))
+ result=dict(complete=True,CPU_only=True,no_GPU_run=True,heuristic_extrapolation_not_a_bound_or_full_model_measurement=True,standalone_component_control_not_claimed_full_model_CUBIN_equivalent=True,only_three_component_layers_sampled=True,assumption='same per-call saving replicated across 41 residual layers; same call counts and no other scheduling/static-shape effects',official_original_r3_QKV_runtime_calls=sum(counts.values()),actual_runtime_banks=len(counts),actual_calls_per_bank=1024,actual_M4096_calls_per_bank_per_round=per_bank_per_round,official_hot_duration_seconds=duration,official_previous_total_tok_s=state['total_tok_s'],scenarios=scenarios,estimate_gain_percent_range=[min(s['estimated_overall_throughput_gain_percent'] for s in scenarios),max(s['estimated_overall_throughput_gain_percent'] for s in scenarios)],source_sha256=sha(__file__),inputs={str(p):sha(p) for p in (csv_path,component/'INDEPENDENT_CPU_GATE_32g.json',raw,root/'result.json',route)},new_model_short_still_required=True,not_a_performance_gate=True,adopted=False);(BASE/'ESTIMATE_32g.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))
+if __name__=='__main__':main()
