@@ -1,0 +1,1458 @@
+{
+  "complete": true,
+  "CPU_AST_only": true,
+  "GPU_not_started": true,
+  "Torch_not_imported": true,
+  "raw_C64_result_sha256": "d0eacad4af576dc8e731db14c98adf6f111e833f0c3c2453d2799742020f2f2e",
+  "model_source_count": 944,
+  "actual_general_graphs": 43,
+  "actual_static64_graphs": 43,
+  "current_no_static4096_graph": true,
+  "current_general_range_all_unchanged": true,
+  "matched_QKV_norms": 42,
+  "matched_GateUp_norms": 42,
+  "QKV41_residual_first_layer_no_residual": true,
+  "GateUp42_residual": true,
+  "current_prefill_4096_uses_native_INT8_dispatch": true,
+  "general_graph_cannot_be_wholly_quantized_without_changing_BF16_fallback": true,
+  "possible_separate_static4096_compile_size_requires_new_component_and_quality": true,
+  "no_integration_implemented": true,
+  "no_quality_or_perf_gain_claim": true,
+  "configuration_source": "/usr/local/lib/python3.12/site-packages/vllm/config/compilation.py",
+  "configuration_source_sha256": "1eab106378e99ff9de668e30e5e1af02eac0d9ded13c2579ca3969a22705c110",
+  "source_sha256": "c09dfe69e1e7774eec4ae703934ec7adc61ea52dcf5e724ea937d2426cd45437",
+  "sources": {
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_001_1_4096.py": "42b4654066c38668834dc3c85b539b72bb3a1de9512d0835274a7690471eb917",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_001_1_4096.json": "227eed620cd4bc3df3daec1debece32fb16327c4ae1cf66039f39908b447ee4c",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_003_1_4096.py": "a519efd3bc86c2958a6e8236049849a998babc84cdec3df9518c4b3f459a532e",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_003_1_4096.json": "2f09441b75477e0707c86753e244bf53f201b977bcefa5ba11055f91d17b6b2c",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_005_1_4096.py": "16e0d42352f560339440ff544b23553214b5a6f93c51f9f88cb1feb9498b8a9c",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_005_1_4096.json": "062bd5a7f9b6fbf0cf2a3d7c1f22c6ef3dc8d645d98ba9b958e9e49bce5c8b74",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_007_1_4096.py": "b25f2a3e56992d1ab776f33e985a8babb42435f5964dffd6a31df177dcd3ea55",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_007_1_4096.json": "5f510d3f0e63f25bd3f22e6f5bfec17856c663a6ed707449db86f2a54c4fed79",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_009_1_4096.py": "e5536b0220e9e1528c1f3168b3da1ba3b4ca6dcf66168f67b7245e80d2a94fb9",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_009_1_4096.json": "aa9953420cf4e2db175b1a6f31c3c0389620556cc085d1aec49f4071c8dd6557",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_011_1_4096.py": "b8802635a9247e1c230974cafe36f4ac15edd25c612d8eb68695e5181722a741",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_011_1_4096.json": "fc116e3fb4d4f2438ce991f08fa66315492e6f7e54316578449393a02b11dfb1",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_013_1_4096.py": "b3424da568beb320ef63fd701b34d43def2a052274002e92c4ae6f8db15cd93d",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_013_1_4096.json": "a8594ed2ed915b8101e89c0f37a856e87bf946a90bcecfa9db63d12fb464d01d",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_015_1_4096.py": "465111b9c019ea5a2ca9c981628fca467ca2b4c8bd3222fb812783c17092ede2",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_015_1_4096.json": "2f286119eb1da564930692be3cac093546b4e6cf378cc46e07dffd8da1cdb1b6",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_017_1_4096.py": "33aa5eb918b9424656ff20001d52e7e70923a934dd6cb1ce217dda4eb18c4619",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_017_1_4096.json": "ba24c35ec66f6f64ab381422f371c5355ea2a9862d339de8d7bd5a2c4f7a5616",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_019_1_4096.py": "3fb4c9bec4fb283e32ab40c92e65d96ac18a84a70d1c1941327e51709b1f9d26",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_019_1_4096.json": "7d7d9309fdec9922950a644edda0b3015bb946fe538b39356cb1efb7de04c258",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_021_1_4096.py": "35e233eb7b83b81df117f0df7502ce1233d0bb0050b5ffc9975ec806f47be8cd",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_021_1_4096.json": "9944c233753abbc98177d2283b0f813b0832420f37c91730ce33aa97bd56b61e",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_023_1_4096.py": "c1d522aacc23364c0193b38f3c8392cbc7fd16bc2b67d761d444d0bd255a0a70",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_023_1_4096.json": "f9d469c9daa14085a7e89d37c113a99ff5de9e66ab2f4af585482990e43d121b",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_025_1_4096.py": "d6f3c8afe9e35b7576c3410bd12ff257416b6ce778d9a9b877f3ae7d4e450b5c",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_025_1_4096.json": "b7e473d93a1c327114811bbf92a52b597c37a6a890fbd04a9d03577393b22b4c",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_027_1_4096.py": "a4ffd46c7bd054ad3cdd2ba677aae908647f478613285f0476e3c42f5deb6a58",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_027_1_4096.json": "b056583fc9e180df3d7a926c8a696573c8f4b91d57acb7ee3a819da390d8dc9b",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_029_1_4096.py": "265498d3d3abd9af5ff4a81952a77f41146887c1834a183366967e64c51caf3a",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_029_1_4096.json": "d702846e8200395dbe87ef9e6e42af75b9fbe286400ea6a0aa66f468f7b103c9",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_031_1_4096.py": "3277f0c5e8804527a28e223255ce87913b9510acdfc37ec409926f002618c983",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_031_1_4096.json": "e5af61260fde80d5042f4dcc0492266e92485d6172b7f5bd7cc8adc373e02ef0",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_033_1_4096.py": "bd13b8f81192a651db86c7ae9118afa0479a5501f7a79cbee8e800143970b8a3",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_033_1_4096.json": "055258381fcc085c6e818f813312c2d87ef62c1e2ee88b5d6b061921b7587ef1",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_035_1_4096.py": "814aa70acc9b6930f0df0b2259e2e2a9d2b763fe926443626d5c5364a56d809e",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_035_1_4096.json": "e4b995f225ebd0567bfcd8fbdf955d4ed49b84ec145c32deee49f400c08eff05",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_037_1_4096.py": "f03a5c46f793567bbab012fc8186bfa854104a17d8bf752606826e9c49457b8d",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_037_1_4096.json": "7a575373d9658a264fa4ff4bbe6ceb7677633e4fd4786229be60d8a3abfbf42f",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_039_1_4096.py": "950ba4768e900482217c6e09a1ab4bcdd875a2cbc716c21dd7985aa92d3d6d73",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_039_1_4096.json": "796bcabe0dc313f7875dffc5084151255d126adb31e512b185e981ae79d983e6",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_041_1_4096.py": "e4532237ae86c94304ff7af6229ea10e77c7301c8dfa48743aaa1680d14c6761",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_041_1_4096.json": "959e736e5ba2ca1f380cb3e1feaf8e2ee90ce0794d072c33c5beedfc3bfa99d1",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_043_1_4096.py": "8ea0d0862a18dea3a20ae74197eab15fde1c13008ab9fcd7726011653b40431f",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_043_1_4096.json": "44067592630b7063ec023c25a320dff144223ad236082d94052aa30182e54dd5",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_045_1_4096.py": "268c042b6e5824483bd2bc6d38e5b3c49e7955679b9786e8756e749e9a3cdce7",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_045_1_4096.json": "dc58c57036dd6d88a4a41cc6dff7124dfb2fe30e9e01ca6e0a0fb5c2d38e7fe2",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_047_1_4096.py": "0d95d288620eedf3ae4e5f51ab7bcf6209bc430f8700d02c3b07cc507e8c087a",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_047_1_4096.json": "f3dc052d80255f3f88791c33ea3e580d83a17545d9b68829e5b00c9fdb8976bd",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_049_1_4096.py": "9b62572f9d994807e1e5b3e3c3c74a87a2da57aa17347b19ab4bb3be76541da2",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_049_1_4096.json": "a6e5d5ac410d7bae56c7dc219c66710edef219ce96d382fb82bc45971c928e28",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_051_1_4096.py": "dc9ffe5283b08937eb63761343d5ee23593b4531a50cea64f74627f957760d16",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_051_1_4096.json": "36e48f635969f5651e12e1d75a4643526cd8659f6ea0ed9ae5c68981e0951e52",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_053_1_4096.py": "82dbd208c37e03727d71ccfd713200ddc2f695ac9eaf039bf5c7d3f460b1dd11",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_053_1_4096.json": "79156e36cf8047882988e8ddf08a9aa7089cf5716fafecc885e4dd96b4e21e1a",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_055_1_4096.py": "26035492ddd069a717cdbced3a428644fe3aebfd2526852e49d1d1732ba763c3",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_055_1_4096.json": "e364a5cdbefcbededfde4e0f6c70d92940cc629bb18f69349a1e739a82a57b56",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_057_1_4096.py": "abe7c8dcfcac36ae5b5f2660f9ff9aeb39a56ddc18a50efa83d1e175ec62173b",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_057_1_4096.json": "56d68314dd61ad722f371e15a41c13d93759b80fc05335740f96e04b706dad0a",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_059_1_4096.py": "bb98f1e3b3cbceba3b593719de42428653f023074db3c35820e806321812b056",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_059_1_4096.json": "ab1ade055fe7ed4e52128c6be1282d5a2e1bfc6156743cb755ce2761a8a0dbfe",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_061_1_4096.py": "fd0409d143354168cf841589ceafff584b6500e9a1bb868625b9bd54f4fb1422",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_061_1_4096.json": "7215d9df4135f3642e2b38304ced0ea4ff5e67e64b500526ce27de44dc515720",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_063_1_4096.py": "2cbab7bf67cfa8f7c1798c26e64ed66f57c6b81440daf7d903ec7b65c0fbfdac",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_063_1_4096.json": "923ab4580d2c5d9361ff0a7d9141bd3d8db89412960074b79dc99fc05c4904f9",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_065_1_4096.py": "110623a63c71ee74eeac91588588f22e9c15f60b27f714fa46116339204c92d1",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_065_1_4096.json": "3973291f042b47ce50db522c2c52fc3d4a8c819d7d27d3d8dcca8120f2183a7c",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_067_1_4096.py": "63fc6adc1621e79a9ffa16c3de2ac8d2f6885d46bfb55f890fa9bc92d80ad1ea",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_067_1_4096.json": "a61c8de5f6f572bebad31e9ab9396aec02231e875b4f2ee542a1f485ea4f5096",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_069_1_4096.py": "214a57b00ac7e32d15188ba0d262ef508762c403dd030c669260662812e54ea2",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_069_1_4096.json": "76bf9f726864be2167ec0533359f346e0c127f0a5239e71e093f130276ede45d",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_071_1_4096.py": "9b9bff1885818ea3705a3783d9e18309fb75f3a735d423767e4da15501418d04",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_071_1_4096.json": "b55544e95c4a9c38f251cb57e0107f6c88ef3305e849f21733597e8009296d9d",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_073_1_4096.py": "12062987385549b83f354086adcc99447a851852ee18ace5170efd6ac200da08",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_073_1_4096.json": "bd3419aa74940539836a64c79b7782716f687a41acdba0816b5d8662a6381fe7",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_075_1_4096.py": "0184735ee3ee2750b981eb759f5e0f447dde4bc8b87a3956ca53a8e571c96eed",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_075_1_4096.json": "0c49b1abca2d6f36a2a00016b83e8daa4d492850b033759ce0677f71e49bd6f5",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_077_1_4096.py": "44e7411ccf5ce0e84e7b5cd80da5ad5f0fedf789fd57fdb0ddea42579fbb33d6",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_077_1_4096.json": "ef4d53b3c1445dab2cd0b3cbb321c027ad96a0bc4bd3f47fc0f0b703c7bb8b6a",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_079_1_4096.py": "278681e44c1345bfd3bc6d4aac371386587c012227a8338d27aca8dc00f5189f",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_079_1_4096.json": "d42991dbbc2bb71097c492458bda1f56c23856052662e5b6bded80e7a6230103",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_081_1_4096.py": "085714e0c075fbbe4138d628f83fb01b81b74667cb8433532b5f028132ad35a9",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_081_1_4096.json": "8f4f45355fe0e55cdece60fc55937199173565ff67b0d536f04791e9ce9b6458",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_083_1_4096.py": "06f4ed6b6b0e882783560e12ca1423bfa1e14bcda9eb51a07ab9b66b2294d000",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_083_1_4096.json": "0c94bce0a32757ccf6903fc46cf9810923b5a74d0d8a8f2beed655ebb8ad61e1",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_085_1_4096.py": "af8054d9d5d27be51aacae6459cebd7a777766e65801ae80ac2e651be75c39c6",
+    "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_085_1_4096.json": "10b5c1de55054f0c85ea2e62abae11a72bf3160665882b0bbe950100b6169576"
+  },
+  "matches": [
+    {
+      "role": "QKV",
+      "bank": 0,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_001_1_4096.py",
+      "source_sha256": "42b4654066c38668834dc3c85b539b72bb3a1de9512d0835274a7690471eb917",
+      "norm_node": "rms_norm",
+      "projection_node": "linear",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": false,
+      "residual_output_node": null,
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 0,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_003_1_4096.py",
+      "source_sha256": "a519efd3bc86c2958a6e8236049849a998babc84cdec3df9518c4b3f459a532e",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 1,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_003_1_4096.py",
+      "source_sha256": "a519efd3bc86c2958a6e8236049849a998babc84cdec3df9518c4b3f459a532e",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 1,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_005_1_4096.py",
+      "source_sha256": "16e0d42352f560339440ff544b23553214b5a6f93c51f9f88cb1feb9498b8a9c",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 2,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_005_1_4096.py",
+      "source_sha256": "16e0d42352f560339440ff544b23553214b5a6f93c51f9f88cb1feb9498b8a9c",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 2,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_007_1_4096.py",
+      "source_sha256": "b25f2a3e56992d1ab776f33e985a8babb42435f5964dffd6a31df177dcd3ea55",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 3,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_007_1_4096.py",
+      "source_sha256": "b25f2a3e56992d1ab776f33e985a8babb42435f5964dffd6a31df177dcd3ea55",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 3,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_009_1_4096.py",
+      "source_sha256": "e5536b0220e9e1528c1f3168b3da1ba3b4ca6dcf66168f67b7245e80d2a94fb9",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 4,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_009_1_4096.py",
+      "source_sha256": "e5536b0220e9e1528c1f3168b3da1ba3b4ca6dcf66168f67b7245e80d2a94fb9",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 4,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_011_1_4096.py",
+      "source_sha256": "b8802635a9247e1c230974cafe36f4ac15edd25c612d8eb68695e5181722a741",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 5,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_011_1_4096.py",
+      "source_sha256": "b8802635a9247e1c230974cafe36f4ac15edd25c612d8eb68695e5181722a741",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 5,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_013_1_4096.py",
+      "source_sha256": "b3424da568beb320ef63fd701b34d43def2a052274002e92c4ae6f8db15cd93d",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 6,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_013_1_4096.py",
+      "source_sha256": "b3424da568beb320ef63fd701b34d43def2a052274002e92c4ae6f8db15cd93d",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 6,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_015_1_4096.py",
+      "source_sha256": "465111b9c019ea5a2ca9c981628fca467ca2b4c8bd3222fb812783c17092ede2",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 7,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_015_1_4096.py",
+      "source_sha256": "465111b9c019ea5a2ca9c981628fca467ca2b4c8bd3222fb812783c17092ede2",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 7,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_017_1_4096.py",
+      "source_sha256": "33aa5eb918b9424656ff20001d52e7e70923a934dd6cb1ce217dda4eb18c4619",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 8,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_017_1_4096.py",
+      "source_sha256": "33aa5eb918b9424656ff20001d52e7e70923a934dd6cb1ce217dda4eb18c4619",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 8,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_019_1_4096.py",
+      "source_sha256": "3fb4c9bec4fb283e32ab40c92e65d96ac18a84a70d1c1941327e51709b1f9d26",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 9,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_019_1_4096.py",
+      "source_sha256": "3fb4c9bec4fb283e32ab40c92e65d96ac18a84a70d1c1941327e51709b1f9d26",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 9,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_021_1_4096.py",
+      "source_sha256": "35e233eb7b83b81df117f0df7502ce1233d0bb0050b5ffc9975ec806f47be8cd",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 10,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_021_1_4096.py",
+      "source_sha256": "35e233eb7b83b81df117f0df7502ce1233d0bb0050b5ffc9975ec806f47be8cd",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 10,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_023_1_4096.py",
+      "source_sha256": "c1d522aacc23364c0193b38f3c8392cbc7fd16bc2b67d761d444d0bd255a0a70",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 11,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_023_1_4096.py",
+      "source_sha256": "c1d522aacc23364c0193b38f3c8392cbc7fd16bc2b67d761d444d0bd255a0a70",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 11,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_025_1_4096.py",
+      "source_sha256": "d6f3c8afe9e35b7576c3410bd12ff257416b6ce778d9a9b877f3ae7d4e450b5c",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 12,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_025_1_4096.py",
+      "source_sha256": "d6f3c8afe9e35b7576c3410bd12ff257416b6ce778d9a9b877f3ae7d4e450b5c",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 12,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_027_1_4096.py",
+      "source_sha256": "a4ffd46c7bd054ad3cdd2ba677aae908647f478613285f0476e3c42f5deb6a58",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 13,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_027_1_4096.py",
+      "source_sha256": "a4ffd46c7bd054ad3cdd2ba677aae908647f478613285f0476e3c42f5deb6a58",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 13,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_029_1_4096.py",
+      "source_sha256": "265498d3d3abd9af5ff4a81952a77f41146887c1834a183366967e64c51caf3a",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 14,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_029_1_4096.py",
+      "source_sha256": "265498d3d3abd9af5ff4a81952a77f41146887c1834a183366967e64c51caf3a",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 14,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_031_1_4096.py",
+      "source_sha256": "3277f0c5e8804527a28e223255ce87913b9510acdfc37ec409926f002618c983",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 15,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_031_1_4096.py",
+      "source_sha256": "3277f0c5e8804527a28e223255ce87913b9510acdfc37ec409926f002618c983",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 15,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_033_1_4096.py",
+      "source_sha256": "bd13b8f81192a651db86c7ae9118afa0479a5501f7a79cbee8e800143970b8a3",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 16,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_033_1_4096.py",
+      "source_sha256": "bd13b8f81192a651db86c7ae9118afa0479a5501f7a79cbee8e800143970b8a3",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 16,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_035_1_4096.py",
+      "source_sha256": "814aa70acc9b6930f0df0b2259e2e2a9d2b763fe926443626d5c5364a56d809e",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 17,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_035_1_4096.py",
+      "source_sha256": "814aa70acc9b6930f0df0b2259e2e2a9d2b763fe926443626d5c5364a56d809e",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 17,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_037_1_4096.py",
+      "source_sha256": "f03a5c46f793567bbab012fc8186bfa854104a17d8bf752606826e9c49457b8d",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 18,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_037_1_4096.py",
+      "source_sha256": "f03a5c46f793567bbab012fc8186bfa854104a17d8bf752606826e9c49457b8d",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 18,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_039_1_4096.py",
+      "source_sha256": "950ba4768e900482217c6e09a1ab4bcdd875a2cbc716c21dd7985aa92d3d6d73",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 19,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_039_1_4096.py",
+      "source_sha256": "950ba4768e900482217c6e09a1ab4bcdd875a2cbc716c21dd7985aa92d3d6d73",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 19,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_041_1_4096.py",
+      "source_sha256": "e4532237ae86c94304ff7af6229ea10e77c7301c8dfa48743aaa1680d14c6761",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 20,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_041_1_4096.py",
+      "source_sha256": "e4532237ae86c94304ff7af6229ea10e77c7301c8dfa48743aaa1680d14c6761",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 20,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_043_1_4096.py",
+      "source_sha256": "8ea0d0862a18dea3a20ae74197eab15fde1c13008ab9fcd7726011653b40431f",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 21,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_043_1_4096.py",
+      "source_sha256": "8ea0d0862a18dea3a20ae74197eab15fde1c13008ab9fcd7726011653b40431f",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 21,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_045_1_4096.py",
+      "source_sha256": "268c042b6e5824483bd2bc6d38e5b3c49e7955679b9786e8756e749e9a3cdce7",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 22,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_045_1_4096.py",
+      "source_sha256": "268c042b6e5824483bd2bc6d38e5b3c49e7955679b9786e8756e749e9a3cdce7",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 22,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_047_1_4096.py",
+      "source_sha256": "0d95d288620eedf3ae4e5f51ab7bcf6209bc430f8700d02c3b07cc507e8c087a",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 23,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_047_1_4096.py",
+      "source_sha256": "0d95d288620eedf3ae4e5f51ab7bcf6209bc430f8700d02c3b07cc507e8c087a",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 23,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_049_1_4096.py",
+      "source_sha256": "9b62572f9d994807e1e5b3e3c3c74a87a2da57aa17347b19ab4bb3be76541da2",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 24,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_049_1_4096.py",
+      "source_sha256": "9b62572f9d994807e1e5b3e3c3c74a87a2da57aa17347b19ab4bb3be76541da2",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 24,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_051_1_4096.py",
+      "source_sha256": "dc9ffe5283b08937eb63761343d5ee23593b4531a50cea64f74627f957760d16",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 25,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_051_1_4096.py",
+      "source_sha256": "dc9ffe5283b08937eb63761343d5ee23593b4531a50cea64f74627f957760d16",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 25,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_053_1_4096.py",
+      "source_sha256": "82dbd208c37e03727d71ccfd713200ddc2f695ac9eaf039bf5c7d3f460b1dd11",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 26,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_053_1_4096.py",
+      "source_sha256": "82dbd208c37e03727d71ccfd713200ddc2f695ac9eaf039bf5c7d3f460b1dd11",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 26,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_055_1_4096.py",
+      "source_sha256": "26035492ddd069a717cdbced3a428644fe3aebfd2526852e49d1d1732ba763c3",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 27,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_055_1_4096.py",
+      "source_sha256": "26035492ddd069a717cdbced3a428644fe3aebfd2526852e49d1d1732ba763c3",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 27,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_057_1_4096.py",
+      "source_sha256": "abe7c8dcfcac36ae5b5f2660f9ff9aeb39a56ddc18a50efa83d1e175ec62173b",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 28,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_057_1_4096.py",
+      "source_sha256": "abe7c8dcfcac36ae5b5f2660f9ff9aeb39a56ddc18a50efa83d1e175ec62173b",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 28,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_059_1_4096.py",
+      "source_sha256": "bb98f1e3b3cbceba3b593719de42428653f023074db3c35820e806321812b056",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 29,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_059_1_4096.py",
+      "source_sha256": "bb98f1e3b3cbceba3b593719de42428653f023074db3c35820e806321812b056",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 29,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_061_1_4096.py",
+      "source_sha256": "fd0409d143354168cf841589ceafff584b6500e9a1bb868625b9bd54f4fb1422",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 30,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_061_1_4096.py",
+      "source_sha256": "fd0409d143354168cf841589ceafff584b6500e9a1bb868625b9bd54f4fb1422",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 30,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_063_1_4096.py",
+      "source_sha256": "2cbab7bf67cfa8f7c1798c26e64ed66f57c6b81440daf7d903ec7b65c0fbfdac",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 31,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_063_1_4096.py",
+      "source_sha256": "2cbab7bf67cfa8f7c1798c26e64ed66f57c6b81440daf7d903ec7b65c0fbfdac",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 31,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_065_1_4096.py",
+      "source_sha256": "110623a63c71ee74eeac91588588f22e9c15f60b27f714fa46116339204c92d1",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 32,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_065_1_4096.py",
+      "source_sha256": "110623a63c71ee74eeac91588588f22e9c15f60b27f714fa46116339204c92d1",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 32,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_067_1_4096.py",
+      "source_sha256": "63fc6adc1621e79a9ffa16c3de2ac8d2f6885d46bfb55f890fa9bc92d80ad1ea",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 33,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_067_1_4096.py",
+      "source_sha256": "63fc6adc1621e79a9ffa16c3de2ac8d2f6885d46bfb55f890fa9bc92d80ad1ea",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 33,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_069_1_4096.py",
+      "source_sha256": "214a57b00ac7e32d15188ba0d262ef508762c403dd030c669260662812e54ea2",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 34,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_069_1_4096.py",
+      "source_sha256": "214a57b00ac7e32d15188ba0d262ef508762c403dd030c669260662812e54ea2",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 34,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_071_1_4096.py",
+      "source_sha256": "9b9bff1885818ea3705a3783d9e18309fb75f3a735d423767e4da15501418d04",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 35,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_071_1_4096.py",
+      "source_sha256": "9b9bff1885818ea3705a3783d9e18309fb75f3a735d423767e4da15501418d04",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 35,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_073_1_4096.py",
+      "source_sha256": "12062987385549b83f354086adcc99447a851852ee18ace5170efd6ac200da08",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 36,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_073_1_4096.py",
+      "source_sha256": "12062987385549b83f354086adcc99447a851852ee18ace5170efd6ac200da08",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 36,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_075_1_4096.py",
+      "source_sha256": "0184735ee3ee2750b981eb759f5e0f447dde4bc8b87a3956ca53a8e571c96eed",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 37,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_075_1_4096.py",
+      "source_sha256": "0184735ee3ee2750b981eb759f5e0f447dde4bc8b87a3956ca53a8e571c96eed",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 37,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_077_1_4096.py",
+      "source_sha256": "44e7411ccf5ce0e84e7b5cd80da5ad5f0fedf789fd57fdb0ddea42579fbb33d6",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 38,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_077_1_4096.py",
+      "source_sha256": "44e7411ccf5ce0e84e7b5cd80da5ad5f0fedf789fd57fdb0ddea42579fbb33d6",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 38,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_079_1_4096.py",
+      "source_sha256": "278681e44c1345bfd3bc6d4aac371386587c012227a8338d27aca8dc00f5189f",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 39,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_079_1_4096.py",
+      "source_sha256": "278681e44c1345bfd3bc6d4aac371386587c012227a8338d27aca8dc00f5189f",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 39,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_081_1_4096.py",
+      "source_sha256": "085714e0c075fbbe4138d628f83fb01b81b74667cb8433532b5f028132ad35a9",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 40,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_081_1_4096.py",
+      "source_sha256": "085714e0c075fbbe4138d628f83fb01b81b74667cb8433532b5f028132ad35a9",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 40,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_083_1_4096.py",
+      "source_sha256": "06f4ed6b6b0e882783560e12ca1423bfa1e14bcda9eb51a07ab9b66b2294d000",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "QKV",
+      "bank": 41,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_083_1_4096.py",
+      "source_sha256": "06f4ed6b6b0e882783560e12ca1423bfa1e14bcda9eb51a07ab9b66b2294d000",
+      "norm_node": "fused_add_rms_norm_1",
+      "projection_node": "linear_3",
+      "projection_op": "torch.ops.tianshu_native_attention.linear.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_3",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    },
+    {
+      "role": "GateUp_SiLU",
+      "bank": 41,
+      "source": "/workspace/benchmark-results/20261023_RMS_LM_math64_tianshu/RMS_A8_GU_records/fx_pass/pass_27147_085_1_4096.py",
+      "source_sha256": "af8054d9d5d27be51aacae6459cebd7a777766e65801ae80ac2e651be75c39c6",
+      "norm_node": "fused_add_rms_norm",
+      "projection_node": "fused_or_original_default",
+      "projection_op": "torch.ops.tianshu_native_prefill.fused_or_original.default",
+      "has_residual": true,
+      "residual_output_node": "getitem_1",
+      "norm_output_only_consumed_by_projection": true,
+      "compile_range": [
+        1,
+        4096
+      ]
+    }
+  ]
+}
