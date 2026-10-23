@@ -1,0 +1,7 @@
+# 2026-10-23组间缓存整理
+
+r3对照三轮完整通过后、候选启动前，GPU空闲时，将221个未冻结FX缓存对象精确tar备份至容器/dev/shm/tianshu-storage-20261023/fxgraph_backup.tar。tar逐字节compare通过后只删除原缓存对象，释放286216192字节（约273MiB）。操作不占本地磁盘，不上传大缓存到GitHub。
+
+925项模型输入、r3严格384缓存文件及新LM16缓存文件整理前后SHA均通过；这些文件均未更改或删除。源码、checkpoint、生成源、原评测结果和冻结cache保留。暂停的仅为外层Bash1807，对照GPU子进程与全部计时轮照常结束；整理完成才SIGCONT外层，候选随后独立启动。缓存变化只影响重新启动，计时期间未执行存储整理。
+
+关键数值见KEY_STORAGE_32g.json；完整归档文件清单、SHA、磁盘前后输出、严格cache核验日志和时间记录仅在容器/workspace/benchmark-results/20261023_storage_between_LM_arms_tianshu。脚本在执行前已提交06d917f。
