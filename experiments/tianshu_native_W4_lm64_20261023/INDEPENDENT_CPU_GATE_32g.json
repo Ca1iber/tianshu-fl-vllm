@@ -1,0 +1,143 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "all_numeric_passed": true,
+  "checks": [
+    {
+      "variant": "W8A8_current",
+      "phase": 0,
+      "quantization_relative_L2_vs_original_FP64": 0.013880411918765892,
+      "passed": true,
+      "different_cells": 0,
+      "cells": 32768,
+      "full_A8_and_scale_exact": true,
+      "reference": "full_K_INT64_selected_columns_BF16_exact"
+    },
+    {
+      "variant": "W4_AWQ_RTN",
+      "phase": 0,
+      "quantization_relative_L2_vs_original_FP64": 0.13197633128018324,
+      "passed": true,
+      "relative_L2": 0.0016573990450270977,
+      "max_abs": 0.013766417279839516,
+      "failed_cells": 0,
+      "cells": 8355840,
+      "reference": "all_output_full_K_FP64_of_BF16_dequantized_weights"
+    },
+    {
+      "variant": "W4_DOTS_RTN",
+      "phase": 0,
+      "quantization_relative_L2_vs_original_FP64": 0.13197633128018324,
+      "passed": true,
+      "relative_L2": 0.0016573990450270977,
+      "max_abs": 0.013766417279839516,
+      "failed_cells": 0,
+      "cells": 8355840,
+      "reference": "all_output_full_K_FP64_of_BF16_dequantized_weights"
+    },
+    {
+      "variant": "W8A8_current",
+      "phase": 1,
+      "quantization_relative_L2_vs_original_FP64": 0.01369314049349706,
+      "passed": true,
+      "different_cells": 0,
+      "cells": 32768,
+      "full_A8_and_scale_exact": true,
+      "reference": "full_K_INT64_selected_columns_BF16_exact"
+    },
+    {
+      "variant": "W4_AWQ_RTN",
+      "phase": 1,
+      "quantization_relative_L2_vs_original_FP64": 0.12968242833251092,
+      "passed": true,
+      "relative_L2": 0.0016579897015330243,
+      "max_abs": 0.014732771553099155,
+      "failed_cells": 0,
+      "cells": 8355840,
+      "reference": "all_output_full_K_FP64_of_BF16_dequantized_weights"
+    },
+    {
+      "variant": "W4_DOTS_RTN",
+      "phase": 1,
+      "quantization_relative_L2_vs_original_FP64": 0.12968242833251092,
+      "passed": true,
+      "relative_L2": 0.0016579897015330243,
+      "max_abs": 0.014732771553099155,
+      "failed_cells": 0,
+      "cells": 8355840,
+      "reference": "all_output_full_K_FP64_of_BF16_dequantized_weights"
+    },
+    {
+      "variant": "W8A8_current",
+      "phase": 2,
+      "quantization_relative_L2_vs_original_FP64": 0.013755944603813007,
+      "passed": true,
+      "different_cells": 0,
+      "cells": 32768,
+      "full_A8_and_scale_exact": true,
+      "reference": "full_K_INT64_selected_columns_BF16_exact"
+    },
+    {
+      "variant": "W4_AWQ_RTN",
+      "phase": 2,
+      "quantization_relative_L2_vs_original_FP64": 0.1306014097866399,
+      "passed": true,
+      "relative_L2": 0.0016570532342337497,
+      "max_abs": 0.013601165381260216,
+      "failed_cells": 0,
+      "cells": 8355840,
+      "reference": "all_output_full_K_FP64_of_BF16_dequantized_weights"
+    },
+    {
+      "variant": "W4_DOTS_RTN",
+      "phase": 2,
+      "quantization_relative_L2_vs_original_FP64": 0.1306014097866399,
+      "passed": true,
+      "relative_L2": 0.0016570532342337497,
+      "max_abs": 0.013601165381260216,
+      "failed_cells": 0,
+      "cells": 8355840,
+      "reference": "all_output_full_K_FP64_of_BF16_dequantized_weights"
+    }
+  ],
+  "timings": [
+    {
+      "mode": "eager",
+      "variant": "W4_AWQ_RTN",
+      "control_ms": 0.6113532543182374,
+      "candidate_ms": 0.5350172996520997,
+      "time_saved_ms": 0.07633595466613774,
+      "speedup_pct": 14.267941376059422
+    },
+    {
+      "mode": "eager",
+      "variant": "W4_DOTS_RTN",
+      "control_ms": 0.6113532543182374,
+      "candidate_ms": 0.519834041595459,
+      "time_saved_ms": 0.09151921272277841,
+      "speedup_pct": 17.605467399151166
+    },
+    {
+      "mode": "graph",
+      "variant": "W4_AWQ_RTN",
+      "control_ms": 0.615958857536316,
+      "candidate_ms": 0.5368216276168823,
+      "time_saved_ms": 0.07913722991943362,
+      "speedup_pct": 14.741811031486996
+    },
+    {
+      "mode": "graph",
+      "variant": "W4_DOTS_RTN",
+      "control_ms": 0.615958857536316,
+      "candidate_ms": 0.5216224193572998,
+      "time_saved_ms": 0.09433643817901616,
+      "speedup_pct": 18.085196241229372
+    }
+  ],
+  "CPU_gate_sha256": "48d8d883c75cc0204dc70cdfb0c550d23532e210b7f31d35010760ee426cbea1",
+  "result_sha256": "25b3cd4152a6928b489349431f2559a1bad8440e1c1667bd75738ea87dd3699f",
+  "raw_directory": "/workspace/benchmark-results/20261023_native_W4_lm64_GPU_tianshu",
+  "adopted": false,
+  "model_quality_not_tested": true,
+  "official_benchmark": false
+}
