@@ -1,0 +1,7 @@
+# Short4K CPU audit reconciliation
+
+Preserve original r3 control complete and original W4 candidate audit_failed. Both finished all3x64 requests once, no GPU rerun. Failure traceback points to inherited prefill audit requiring old LM8 BF16 calls, although actual LM1..64 W4 was already verified in fresh C8/C64 quality. This precision requirement was missed in the short controller. Replace only that old LM8 BF16 presence with absence of old calls and actual new W4 runtime>=1 plus all W4 bank/native memory/range checks. Preserve all remaining runtime audits, frozen source/snapshot checks and original timing data.
+
+CPU recovery independently recomputes every request token count, throughput, TTFT, fixed seeds, raw SHA, source/snapshot SHA, all runtime checks, and fixed >0.5% gain/spread<1%/TTFT<=control1.01. Control replay must exactly match its saved profile. Save a separate CPU_recovery_complete candidate audit with original_experiment_passed=false and GPU_rerun=false; leave both original results untouched. Additional CPU adapter sources are pinned separately. This is qualification of existing measurements, not a new GPU experiment or normal-pass claim.
+
+Initial CPU-only reconciliation still reached the old guard via a second module alias. Preserve its freeze/log and bind the same explicit adapted audit at both aliases before refreezing; no GPU activity, original source edit or result overwrite occurred.

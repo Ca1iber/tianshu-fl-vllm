@@ -1,17 +1,20 @@
 # SPDX-License-Identifier: Apache-2.0
 import importlib.util,json,sys
 from pathlib import Path
-BASE=Path(__file__).resolve().parent;EXP=BASE.parent;SHORT=EXP/'tianshu_W4_LMpad_short4k_v3_20261023';HOLDOUT=EXP/'tianshu_native_int8_attention42_20261022';RESULTS=EXP/'tianshu_W4_LMpad_quality_results_v3_20261023'
+BASE=Path(__file__).resolve().parent;EXP=BASE.parent;SHORT=EXP/'tianshu_W4_LMpad_short4k_v3_20261023';HOLDOUT=EXP/'tianshu_native_int8_attention42_20261022';RESULTS=EXP/'tianshu_W4_LMpad_quality_results_v3_20261023';RECOVERY=EXP/'tianshu_W4_LMpad_short4k_recovery_20261023'
 def load(name,p):
  s=importlib.util.spec_from_file_location(name,p);m=importlib.util.module_from_spec(s);sys.modules[name]=m;s.loader.exec_module(m);return m
-short=load('_LMpad_official_short_profile',SHORT/'candidate_profile.py');full=load('_LMpad_official_all_runtime',SHORT/'audit_profile.py');old=load('_LMpad_official_original_helpers',EXP/'tianshu_W4_LMpad_quality_v2_20261023/quality_profile.py');digest,read,frozen_check=short.digest,short.read,short.frozen_check;BENCH_SHA,csv_rows,normalized_environment=old.BENCH_SHA,old.csv_rows,old.normalized_environment;original=short.normalizer;audit_startup=full.audit_startup
+short=load('_LMpad_official_short_profile',SHORT/'candidate_profile.py');full=load('_LMpad_official_all_runtime',RECOVERY/'audit_profile.py');old=load('_LMpad_official_original_helpers',EXP/'tianshu_W4_LMpad_quality_v2_20261023/quality_profile.py');digest,read,frozen_check=short.digest,short.read,short.frozen_check;BENCH_SHA,csv_rows,normalized_environment=old.BENCH_SHA,old.csv_rows,old.normalized_environment;original=short.normalizer;audit_startup=full.audit_startup
 
 def audit_math(*args,**kwargs):raise AssertionError('Official-only after complete fresh model quality')
 
 def screen_gate():
- g=read(SHORT/'SCREEN_GATE_prefill_32g.json');assert g['complete'] and g['candidate_passes_perf_screen'] and g['vs_exact_r3_short_gain_percent']>.5 and g['arms']['candidate']['hot_spread_pct']<1
+ g=read(RECOVERY/'SCREEN_GATE_prefill_32g.json');assert g['complete'] and g['candidate_passes_perf_screen'] and g['vs_exact_r3_short_gain_percent']>.5 and g['arms']['candidate']['hot_spread_pct']<1
+ assert g['candidate_CPU_coverage_reconciliation'] and not g['candidate_original_experiment_passed'] and not g['candidate_GPU_rerun'];frozen_check(g['CPU_reconciliation_sources'])
+ rr=Path(g['CPU_recovery_root']);assert digest(rr/'result.json')==g['CPU_recovery_result_sha256'];r=read(rr/'result.json');assert r['phase']=='CPU_recovery_complete' and not r['original_experiment_passed'] and not r['GPU_rerun']
  for name in ('control','candidate'):
-  root=Path(g['arms'][name]['raw_root']);assert digest(root/'result.json')==g['arms'][name]['raw_result_sha256'];s=read(root/'result.json');assert s['phase']=='complete';frozen_check(s['frozen_sources']);frozen_check(s['controller_sources'])
+  root=Path(g['arms'][name]['raw_root']);assert digest(root/'result.json')==g['arms'][name]['raw_result_sha256'];s=read(root/'result.json');assert s['phase']==('complete' if name=='control' else 'audit_failed');frozen_check(s['frozen_sources']);frozen_check(s['controller_sources'])
+  if name=='candidate':assert r['original_result_sha256']==digest(root/'result.json') and s['error']=='AssertionError()'
  return g
 
 def prepare(root,screen_root,batch=8,scope='prefill',check_screen=True,check_quality=True):
@@ -19,7 +22,8 @@ def prepare(root,screen_root,batch=8,scope='prefill',check_screen=True,check_qua
  if check_screen:screen_gate()
  command,env,profile,sources=short.prepare(root,'candidate',scope,check_quality=check_quality);assert len(sources)==944
  paths=set(BASE.glob('*.py'))|{BASE/'PLAN_32g.md',BASE/'run.sh'}
- if check_screen:assert read(BASE/'CPU_GATE_32g.json')['complete'];paths.update((BASE/'CPU_GATE_32g.json',BASE/'EXECUTION.sha256',SHORT/'SCREEN_GATE_prefill_32g.json',SHORT/'KEY_RUNS_prefill_32g.csv'))
+ if check_screen:assert read(BASE/'CPU_GATE_32g.json')['complete'];paths.update((BASE/'CPU_GATE_32g.json',BASE/'EXECUTION.sha256',RECOVERY/'SCREEN_GATE_prefill_32g.json',RECOVERY/'KEY_RUNS_prefill_32g.csv'))
+ if check_screen:paths.update(Path(p) for p in screen_gate()['CPU_reconciliation_sources']);paths.add(Path(screen_gate()['CPU_recovery_root'])/'result.json')
  if check_quality:
   for raw in ('/workspace/benchmark-results/20261023_W4_LMpad_C8_CPU_recovery_tianshu','/workspace/benchmark-results/20261023_W4_LMpad_v2_math64_tianshu'):
    paths.update({Path(raw)/'result.json',Path(raw)/'accuracy_audit.json'})
@@ -40,6 +44,6 @@ def audit_benchmark(root,state,profile,c8,write=True):
  assert c8['correct']==quality['C8_correct'] and c64['correct']==quality['C64_correct'] and c8['accuracy']>.95 and c64['accuracy']>.95 and c8['frozen_sources']==c64['frozen_sources']==state['frozen_sources'] and c64['server_command']==state['server_command'] and c8['additional_environment']==c64['additional_environment']==state['additional_environment']
  a=normalized_environment(c64['profile_environment'],c64root);b=normalized_environment(state['profile_environment'],root);assert {k for k in a if a[k]!=b[k]}=={'TIANSHU_FUTURE_KV_MODE'} and a['TIANSHU_FUTURE_KV_MODE']=='control' and b['TIANSHU_FUTURE_KV_MODE']=='candidate';frozen_check(c64['controller_sources']);frozen_check(c8['controller_sources']);frozen_check(state['controller_sources'])
  assert c8['CPU_coverage_reconciliation'] and not c8['original_experiment_passed'] and not c8['GPU_rerun']
- r=original.audit_benchmark(root,state,profile,c8,write=False);r.update(runtime_source_count=944,environment_count=63,fresh_C8_correct=c8['correct'],fresh_C64_correct=c64['correct'],C8_and_C64_original_normal_runs_complete=False,C8_CPU_coverage_reconciliation_verified=True,C8_original_experiment_passed=False,C8_GPU_rerun=False,C64_original_normal_run_complete=True,new_Down64_W4_all42_actual_capture_verified=True,new_LM64_actual_native_W4_runtime_calls=profile['new_LM64_W4_actual_runtime_calls'],new_LM8_actual_native_W4_runtime_calls=profile['new_LM8_W4_actual_runtime_calls'],LM1_64_old_BF16_or_W8_guards_explicitly_replaced=True,QKV64_O64_BF16_retained=True,previous_formal_total_tok_s=5950.75,vs_previous_formal_percent=100*(r['total_tok_s']/5950.75-1),historical_comparison_is_not_same_run_AB=True,short_same_run_gain_percent=screen['vs_exact_r3_short_gain_percent'],short_same_run_screen_sha256=digest(SHORT/'SCREEN_GATE_prefill_32g.json'),quality_gate_sha256=digest(RESULTS/'QUALITY_GATE_32g.json'));r['candidate_passes_promotion_performance_gates']=r['vs_previous_formal_percent']>.5 and r['postfirst_spread_percent']<1 and r['ttft_ms']<=3174.58*1.01
+ r=original.audit_benchmark(root,state,profile,c8,write=False);r.update(runtime_source_count=944,environment_count=63,fresh_C8_correct=c8['correct'],fresh_C64_correct=c64['correct'],C8_and_C64_original_normal_runs_complete=False,C8_CPU_coverage_reconciliation_verified=True,C8_original_experiment_passed=False,C8_GPU_rerun=False,C64_original_normal_run_complete=True,new_Down64_W4_all42_actual_capture_verified=True,new_LM64_actual_native_W4_runtime_calls=profile['new_LM64_W4_actual_runtime_calls'],new_LM8_actual_native_W4_runtime_calls=profile['new_LM8_W4_actual_runtime_calls'],LM1_64_old_BF16_or_W8_guards_explicitly_replaced=True,QKV64_O64_BF16_retained=True,previous_formal_total_tok_s=5950.75,vs_previous_formal_percent=100*(r['total_tok_s']/5950.75-1),historical_comparison_is_not_same_run_AB=True,short_candidate_CPU_coverage_reconciliation_verified=True,short_candidate_original_experiment_passed=False,short_candidate_GPU_rerun=False,short_same_run_gain_percent=screen['vs_exact_r3_short_gain_percent'],short_same_run_screen_sha256=digest(RECOVERY/'SCREEN_GATE_prefill_32g.json'),quality_gate_sha256=digest(RESULTS/'QUALITY_GATE_32g.json'));r['candidate_passes_promotion_performance_gates']=r['vs_previous_formal_percent']>.5 and r['postfirst_spread_percent']<1 and r['ttft_ms']<=3174.58*1.01
  if write:(root/'comparison.json').write_text(json.dumps(r,indent=2)+'\n')
  return r

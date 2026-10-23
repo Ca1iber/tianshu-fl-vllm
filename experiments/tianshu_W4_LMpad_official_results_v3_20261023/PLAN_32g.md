@@ -7,3 +7,5 @@
 任何失败如实保存，不原样重跑挑成绩；只有本门禁complete且promotion_passed才构建新发布，不能以GPU退出码替代完整资格。代码/关键JSON/CSV/报告进天数GitHub，完整原始仅容器；本脚本无GPU导入、不运行模型或benchmark、不修改原始文件。候选模型和本预备验证器不等于已采用成果，16K不跑。
 
 v3 consumes C8 accuracy from math8_quality_root, verifies its CPU recovery identity via the independent full quality gate and retains original C8 audit_failed truth; C64 completes normally. No model changes or GPU retry. Independent official evidence is aggregate raw CSV and summary, not unavailable per-request traces.
+
+Short-screen qualification is independent CPU reconciliation of unchanged original measurements after a stale LM8 BF16 presence check failed. Metadata must retain original short candidate audit_failed/no GPU rerun; recheck frozen recovery sources and original result SHA. Full formal runtime auditor is adapted before its first GPU run and retains all other checks.
