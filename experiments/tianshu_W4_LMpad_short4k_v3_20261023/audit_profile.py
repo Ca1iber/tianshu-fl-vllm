@@ -20,3 +20,22 @@ def audit_runtime(root,state,official=False):
  if state['arm']=='candidate':
   r.update(own.audit_runtime(root,state,minimum_calls=100));assert r['new_W4_all42_capture_linked_to_actual_B64_model_replays'] and r['new_LM64_W4_actual_runtime_calls']>=100 and r['old_LM64_W8_calls_absent'];r.update(original_GU_attention_KV_scheduler_sampling_LM_and_other_Down_checks_retained=False,original_GU_attention_KV_scheduler_sampling_other_Down_checks_retained=True,original_LM64_INT8_precision_retained=False,LM64_requirement_explicitly_replaced_with_actual_native_W4_calls=True,only_changed_original_guards='Down64 BF16 capture->actual42 W4 capture and LM1to64 BF16-or-W8 calls->actual native W4 calls')
  return r
+
+# Final C8 Graph executes NN8 in both models. Keep real records immutable;
+# provide an explicit checked view linking real NN prefixes to existing bank IDs.
+def use_actual_NN8(module):
+ original=module.actual_gateup_launches
+ def select(root,row,state,batch):
+  if batch!=8:return original(root,row,state,batch)
+  nn=module.read(next((root/'int8_nn_gateup_records').glob('route_*.json')))
+  assert nn['mode']=='candidate' and nn['completed'] and nn['after_original_capture']
+  for kind in ('policy','NT','NN'):assert module.sha(nn[kind+'_source'])==state['frozen_sources'][nn[kind+'_source']]==nn[kind+'_sha256']
+  bank_ids={b['prefix']:b['bank_id'] for b in row['banks'] if b['role']=='gateup'}
+  routes=[r for r in nn['routes'].values() if r['M']==8 and r['actually_inside_capture']]
+  assert len(bank_ids)==42 and {r['prefix'] for r in routes}==set(bank_ids)
+  assert all(r['implementation']=='NN' and r['configuration']==nn['selected_configurations']['8'] and r['kernel_sha256']==nn['NN_sha256'] and r['calls']>0 for r in routes)
+  return [dict(r,role='gateup',bank_id=bank_ids[r['prefix']]) for r in routes]
+ module.actual_gateup_launches=select
+_seen=set()
+for _module in (control.legacy.legacy.lower.parent,control.legacy.legacy.dense,dense):
+ if id(_module) not in _seen:use_actual_NN8(_module);_seen.add(id(_module))
