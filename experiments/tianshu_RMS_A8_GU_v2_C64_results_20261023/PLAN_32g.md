@@ -1,0 +1,3 @@
+# C64单批次独立检查，不能授权benchmark
+
+完整双批次独立verify_cpu.py原字节复制，固定--batches64。先等待原C64 runner18883及批次间存储20683结束，原始C64结果必须complete、evalscope退出0，再CPU逐条重算105题及全部继承/新增运行审计、原快照/权重/环境。只输出此目录的partial Gate和关键逐题分数，不修改原双批次verifier或原始结果，不启动GPU。脚本model_quality_qualified只在两组都出现时才true，因此本partial即便C64合格也不能授权短测。
