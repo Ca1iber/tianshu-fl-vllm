@@ -26,3 +26,5 @@ CPU研究保留group32/64/128/256及非对称minmax误差表，未GPU或模型�
 C64的105请求全部正常stop，无cap，错误索引87/42/18/23。独立CPU校正见tianshu_dots_LM64_quality_recovery_20261023；原result仍audit_failed，新独立目录CPU_recovery_complete且绑定原失败SHA与CPU代码SHA。完整质量v2已两轮全部通过；旧results v1和short v1没有用于后续GPU，不能绕过校正语义。
 
 后续使用tianshu_dots_LM64_short4k_v2_20261023：原r3精确903来源对934来源，N64×3/exclude1、固定>0.5%/spread<1%/TTFT<=control1.01。必须完整新C8与校正后的C64均>95%才开始；计时期间不做后台CPU准备。条件正式控制器tianshu_dots_LM64_official4k_v2_20261023及独立formal_results、发布入口草稿已准备已CPU预检冻结，尚未GPU执行或采用；先完成CPU准备冻结，再开始任何计时，不在short或正式轮次中同时编代码/打包。
+
+18:10更新：Down64+LM64 W4完成同场短4K。热轮r3 5888.47→候选5911.96 total tok/s（+0.3988%），candidate spread0.5491%，TTFT8576.20→8603.67ms（+0.3203%）。全部384请求/完整运行与独立CPU审计通过，CPU准备均在计时前完成，但增益未达到预设0.5%。因此不跑已准备的正式控制器、不构建发布、不打tag，正式仍r3；不原样重跑追分。下一步独立研究W4解包/反量化与矩阵乘组件实现，native组件收益不等于服务收益。
