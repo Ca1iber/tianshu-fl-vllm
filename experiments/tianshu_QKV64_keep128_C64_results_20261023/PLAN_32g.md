@@ -1,0 +1,3 @@
+# keep128新C64独立部分核验
+
+使用首GPU前冻结的完整独立质量验证器相同字节，--batches64只读取新C64全部105题并独立评分、全部API与输出上限计数、928模型/51控制源和快照、QKV128 retained及uniform64 native capture42、Down与实际argv/env及原checkpoint。此单C64门槛model_quality_qualified=false，不能授权任何GPU吞吐，不复用旧分数；完整双批次最终结果仍留相邻quality_results目录，等新C8完成后单独运行默认8/64。
