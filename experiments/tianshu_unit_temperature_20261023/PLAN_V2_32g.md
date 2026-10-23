@@ -1,0 +1,1 @@
+原probe在创建第一条GPU测试输入前，`import policy` 被继承启动钩子新增sys.path指向其他实验同名模块，install签名不匹配。原probe/EXECUTION/失败结果完整保留。probe_v2仅使用独立名称从本目录明确路径加载同一policy.py，并改用新输出目录；策略、数值阈值、用例与RNG断言不改。执行源在首次GPU测试前保存，外层EXECUTION_V2冻结。
