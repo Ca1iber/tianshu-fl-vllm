@@ -1,0 +1,10 @@
+{
+  "complete": false,
+  "phase": "failed",
+  "error": "AssertionError((4, 0, 'BF16_actual_embedding_apply'))",
+  "traceback": "Traceback (most recent call last):\n  File \"/workspace/vllm-plugin-FL/experiments/tianshu_native_W4_lm_small_20261023/probe_gpu.py\", line 50, in main\n    eager=fn();torch.cuda.synchronize();expected=words(eager);outputs[name].fill_(float('nan'));graphs[name].replay();torch.cuda.synchronize();actual=words(outputs[name]);assert np.array_equal(actual,expected) and np.isfinite(f32(actual)).all(),(m,phase,name)\n                                                                                                                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: (4, 0, 'BF16_actual_embedding_apply')\n",
+  "numeric_records": 12,
+  "timing_rounds": 28,
+  "raw_result_sha256": "1d9050f9714d5ef13f6255b4b4fc23973b02fb7368718f5bd027414a86eea25b",
+  "adopted": false
+}
