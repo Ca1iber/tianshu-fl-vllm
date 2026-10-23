@@ -1,0 +1,3 @@
+# 单位温度观察器定期落盘修复
+
+上一screen控制组三轮192请求完整成功，但multiprocess子进程atexit没有保存累计计数，audit_failed，candidate未启动；不改原结果或宣称审计通过。本v2只把观察记录改成每128次温度调用落盘，双方等量。attach/make/sample AST不变，temperature函数剔除纯日志语句后AST完全相同，CPU_GATE提供两份SHA；复用原实际Sampler组件检查的计算语义而不把未运行的新Math当成通过。原GPU数值/RNG实现未变。

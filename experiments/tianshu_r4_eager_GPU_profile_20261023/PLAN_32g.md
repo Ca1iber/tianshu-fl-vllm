@@ -1,0 +1,5 @@
+# 仅16帧 eager 的模型GPU算子诊断
+
+正常r4 CUDA时间线没有展开模型Graph子kernel，不能据此给attention占比。本实验保留原serve CLI、所有r4模型/权重/精度/kv来源与日常Graph预热，只在64并发4K/256实请求的第二波、经过32次正常FULL纯decode之后的16个采集帧，用原_determine_batch_execution_and_padding(force_eager=True)入口请求NONE，不直接伪造BatchDescriptor。结束后恢复原调度。torch CUDA profiler记录GPU kernel，CPU无cProfile。
+
+该诊断运行方式与正式Graph执行不同，只用来辨认设备kernel族及同一eager窗口内耗时，不能当原Graph的正式占比、benchmark或模型质量证明。必须实际16帧均NONE/padded64，完整源/快照/trace SHA与请求用量通过。固定105题精度与正式成绩仍r4，不采用该无图运行方式。保留相同salt复用和新salt冷canary的条件与命中metrics；不把原CPU profile canary失败改成通过。最多900秒，截止23:58。

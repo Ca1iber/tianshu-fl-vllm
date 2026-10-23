@@ -1,0 +1,21 @@
+{
+  "phase": "failed",
+  "cases": [],
+  "timings": [],
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_sample_divargmax_native_20261023/generated_argmax.py": "78a6c478f97ade01e55875cb61d9f541fe8d11c9e25a020558719454235769bb",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_sample_divargmax_native_20261023/generate_cpu.py": "bc6c14fe2a0a79646e3c4eb799c67118b1a69f1d1ca68c5eaa3b00c75f4d8966",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_sample_divargmax_native_20261023/SOURCE_PROOF_32g.json": "7c08ea9dfa92a0fa8f8d526b519318f05329d61ab7eeddeb057947f6fc2ef38f",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_sample_divargmax_native_20261023/probe.py": "c254c47f81845e05be0c11e06ce2473bf09c659f2c08afd425f1f0c41294304d",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_sample_divargmax_native_20261023/kernel.py": "9e44970884d272bd8a3909bb447d155d85bc9749a770ba807ed79b97856c9328",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_sample_divargmax_native_20261023/PLAN_32g.md": "87056b191902cdda4068fb0a4afe25111f33106ddcd484a3734c33b39a4b9e69",
+    "/usr/local/lib/python3.12/site-packages/vllm/v1/sample/ops/topk_topp_sampler.py": "35b9a1ffeb1e50b73b0ddd1ffc0f968910ee21cf9cc5455dd879fde547b6ddc1",
+    "/workspace/FlagGems/src/flag_gems/runtime/backend/_iluvatar/ops/div.py": "e4cd6cafc402a1cd20906addb2849312df6b9377b5aef6c7d7ea6cec1c3855f9",
+    "/workspace/FlagGems/src/flag_gems/ops/argmax.py": "646a6e1cf1a8b1b9d24fb772b3e09e1f7bdea2f0449167ba9abfafaaf23576c8"
+  },
+  "official_benchmark": false,
+  "adopted": false,
+  "model_quality_tested": false,
+  "error": "KeyError('N')",
+  "traceback": "Traceback (most recent call last):\n  File \"/workspace/vllm-plugin-FL/experiments/tianshu_sample_divargmax_native_20261023/probe.py\", line 36, in main\n    baseline.copy_(base);candidate.copy_(base);ref=original(baseline,q);out=launch(candidate,q);torch.cuda.synchronize()\n                                                                            ^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/vllm-plugin-FL/experiments/tianshu_sample_divargmax_native_20261023/probe.py\", line 16, in launch\n    if probs.is_contiguous() and noise.is_contiguous():return fused(probs,noise)\n                                                              ^^^^^^^^^^^^^^^^^^\n  File \"/workspace/vllm-plugin-FL/experiments/tianshu_sample_divargmax_native_20261023/kernel.py\", line 10, in launch\n    argmax_kernel_inner[(b,1,1)](probs,out,b,n,noise=noise)\n  File \"/usr/local/lib/python3.12/site-packages/triton/spec/iluvatar/triton/runtime/jit.py\", line 412, in <lambda>\n    return lambda *args, **kwargs: self.run(grid=grid, warmup=False, *args, **kwargs)\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py\", line 1688, in run\n    kernel = self.fn.run(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/site-packages/triton/runtime/autotuner.py\", line 508, in run\n    kwargs[v] = heur({**dict(zip(self.arg_names, args)), **kwargs})\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/site-packages/flag_gems/runtime/backend/_nvidia/heuristics_config_utils.py\", line 99, in argmax_heur_tile_n_inner\n    if args[\"N\"] <= (32 * 1024):\n       ~~~~^^^^^\nKeyError: 'N'\n"
+}

@@ -74,3 +74,13 @@ C8服务已进入实际105题评测，现场新LM-only审计通过：LM8 W4至�
 实际3层GateUp M64原生W4+原SiLU的27项完整FP64检查通过，但Graph0.0875–0.0877ms，相比当前融合W8A8的0.0625–0.0628ms慢约40%，不接模型。分解显示W4矩阵本身约0.0678ms、SiLU约0.0236ms；分解值非严格可加。原失败/完整数据保留并持久归档，详见tianshu_native_W4_gateup_component_v2_20261023。
 
 新r4 CPU诊断采到16+16帧、128请求成功，但同种子短canary前后末尾两个token不同，原运行保持failed；源码与快照全部一致，原因未定，不声称完整诊断合格或模型新收益。下一步GPU时间线工具能力已验证（TorchProfiler可捕获真实CUDA kernel events）。历史相同快照去重并完整SHA复核释放约3.59GiB，只涉及容器内部，未改实时源或模型。当前正式最佳仍r4 6050.94，没有新16K。
+
+## 23:54 继续优化收尾：采样热点与单位温度小幅正向筛选
+
+r4正常16帧CUDA诊断完成，Graph子kernel未展开，不能据此给模型内部attention占比。图外TopP约2.45ms、LM约0.52ms、两个div约0.35/0.19ms。冷salt canary前后相同，复用salt缓存命中112token时末尾不同；关联已证实，具体混合精度/shape原因仍未证实，原CPU profile失败不改。
+
+除法/argmax融合普通组件约-14.5%耗时，GPU16阶段一致，但全CPU审计在NaN归约假设失败，小strided all_zero输入也不完全符合意图。仅独立证明38123580个完整商与292行非NaN CPU token；6行NaN无独立CPU oracle，不接入模型。全部原始输入/输出归档容器920399457字节并tar逐文件核对，未上传GitHub。
+
+实际CPU请求T=1的中性温度跳过，完整Sampler/两类RNG前置检查通过。同次N64三轮、剔首轮：control5913.58→candidate5951.78 total tok/s(+0.646111%)，TTFT8608.49→8586.02ms(-0.260961%)。384请求、原944源/快照、实际65env/13argv、canaries、零热态autotune/抢占核对通过。控制两热轮波动1.098%，候选0.738%，仍需复测。无新Math/正式N256/16K，不采用，正式最好保持r4 6050.94 total tok/s、Math100/105。
+
+详细报告：`tianshu_unit_temperature_screen_results_20261023/REPORT_32g.md`、`tianshu_r4_GPU_profile_20261023/REPORT_32g.md`、`tianshu_sample_divargmax_native_v2_20261023/REPORT_32g.md`。本日所有GPU服务已退出，后续原Graph模型内诊断仅代码准备、尚未运行。用户两处dirty、FlagGems原repo与沐曦均未改。
