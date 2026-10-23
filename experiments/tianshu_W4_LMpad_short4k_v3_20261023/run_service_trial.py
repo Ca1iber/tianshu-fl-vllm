@@ -140,7 +140,12 @@ def main():
                     actual=read(next((root/"nn_silu_fx_records").glob("route_*.json")))
                     assert len({r["bank_id"] for r in actual["routes"].values() if r["M"]==64 and r["actually_inside_capture"]})==42
                 else:
-                    assert len({r["bank_id"] for r in binding["launches"].values() if r["role"]=="gateup" and r["M"]==batch and r["actually_inside_capture"]})==42
+                    # Both arms execute NN8, not the original NT warm-capture route.
+                    actual=read(next((root/'int8_nn_gateup_records').glob('route_*.json')))
+                    captured=[r for r in actual['routes'].values() if r['M']==8 and r['actually_inside_capture']]
+                    expected={r['prefix'] for r in binding['banks'] if r['role']=='gateup'}
+                    assert len(expected)==42 and {r['prefix'] for r in captured}==expected
+                    assert all(r['implementation']=='NN' and r['configuration']==actual['selected_configurations']['8'] and r['kernel_sha256']==actual['NN_sha256']==sources[actual['NN_source']] and r['graph_key'] is not None and r['calls']>0 for r in captured)
         metrics('before_metrics.txt')
         for index in range(nrounds):
             state['phase']=f'round_{index+1}';save()

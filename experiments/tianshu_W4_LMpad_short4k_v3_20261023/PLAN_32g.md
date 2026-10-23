@@ -9,3 +9,5 @@ C8旧BF16 LM要求及M64 W8要求已经显式替换为实际W4调用，不改旧
 最迟2026-10-23 15:58UTC(23:58BJT)停止；代码/报告/关键JSON/CSV推天数GitHub，原始仅容器，当前r3已采用版不变。CPU预备可在质量期间完成，GPU run_pair只有完整双质量门槛通过才允许启动。
 
 v3 changes CPU qualification handling only: require independently verified C8 CPU reconciliation (original GPU run remains audit_failed, no GPU rerun) and normal C64 completion. The GPU model remains the exact944-source v2 model. Record and pin recovery CPU sources separately. All performance thresholds remain unchanged. Leave CPU idle during timed rounds; no hashing, pushes, cache work, or source editing then.
+
+Before the first GPU screen, source review found a second stale NT8 warm-capture assertion in the startup canary controller. Replace it for both arms with the real NN8 exact42-prefix/source/config/capture check. All runtime replay audits remain required. This fixes pre-timing evidence selection only; neither GPU model nor timing work nor threshold changes. Final EXECUTION freeze is regenerated before either arm starts.
