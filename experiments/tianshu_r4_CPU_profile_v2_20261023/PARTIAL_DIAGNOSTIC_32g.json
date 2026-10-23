@@ -1,0 +1,527 @@
+{
+  "partial_diagnostic_only": true,
+  "original_runner_phase": "failed",
+  "original_runner_error": "AssertionError()",
+  "original_result_sha256": "1ac41e673451981da5445bb89a5cd021e7fbadeb6748fe306c0e192b704ee84e",
+  "raw_root": "/workspace/benchmark-results/20261023_r4_CPU_profile_v2_tianshu",
+  "worker_CPU_frames": 16,
+  "scheduler_CPU_frames": 16,
+  "all128_workload_responses_usage_verified": true,
+  "all_current_and_snapshot_sources_verified": true,
+  "seeded_canary_before_after_equal": false,
+  "canary_before_text_sha256": "68225287cc8436368513a16d893157b8751f7a7ac6c315b93d35ea4d1737481e",
+  "canary_after_text_sha256": "f124576dfee37f82be817b4f80a8c0a8c124432c2f0695a6f671483839eb2d44",
+  "canary_mismatch_cause_not_proven": true,
+  "source_count": 1049,
+  "host_medians_ms": {
+    "execute_model": {
+      "wall_ms": 7.10445,
+      "thread_cpu_ms": 7.1058415
+    },
+    "sample_tokens": {
+      "wall_ms": 3.4338670000000002,
+      "thread_cpu_ms": 3.4344105000000003
+    },
+    "scheduler": {
+      "wall_ms": 3.202727,
+      "thread_cpu_ms": 3.2037485
+    }
+  },
+  "hotspots": {
+    "execute_model": [
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py",
+        "line": 1611,
+        "name": "run",
+        "local_wall_ms_per_frame": 0.32362381250000005,
+        "cumulative_wall_ms_per_frame": 0.9326675625000002,
+        "calls_per_frame": 9.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/model_runner.py",
+        "line": 1773,
+        "name": "_prepare_input_ids",
+        "local_wall_ms_per_frame": 0.2885809375000001,
+        "cumulative_wall_ms_per_frame": 0.8542620625000001,
+        "calls_per_frame": 1.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/model_runner.py",
+        "line": 1951,
+        "name": "_prepare_inputs",
+        "local_wall_ms_per_frame": 0.25408025,
+        "cumulative_wall_ms_per_frame": 5.1012271249999985,
+        "calls_per_frame": 1.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/copy.py",
+        "line": 118,
+        "name": "deepcopy",
+        "local_wall_ms_per_frame": 0.20606925,
+        "cumulative_wall_ms_per_frame": 0.49142425000000006,
+        "calls_per_frame": 153.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/flag_gems/utils/pointwise_dynamic.py",
+        "line": 1497,
+        "name": "prepare_args",
+        "local_wall_ms_per_frame": 0.18320131250000002,
+        "cumulative_wall_ms_per_frame": 0.5667269375,
+        "calls_per_frame": 8.0
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<method 'get' of 'dict' objects>",
+        "local_wall_ms_per_frame": 0.1752321875,
+        "cumulative_wall_ms_per_frame": 0.18275875,
+        "calls_per_frame": 633.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/logging/__init__.py",
+        "line": 298,
+        "name": "__init__",
+        "local_wall_ms_per_frame": 0.15488137500000004,
+        "cumulative_wall_ms_per_frame": 0.37206875,
+        "calls_per_frame": 13.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/model_runner.py",
+        "line": 1187,
+        "name": "_update_states",
+        "local_wall_ms_per_frame": 0.1409868125,
+        "cumulative_wall_ms_per_frame": 0.45528837499999997,
+        "calls_per_frame": 1.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/torch/_library/custom_ops.py",
+        "line": 346,
+        "name": "backend_impl",
+        "local_wall_ms_per_frame": 0.12208487500000001,
+        "cumulative_wall_ms_per_frame": 0.128963375,
+        "calls_per_frame": 1.0
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<built-in method builtins.id>",
+        "local_wall_ms_per_frame": 0.116930875,
+        "cumulative_wall_ms_per_frame": 0.116930875,
+        "calls_per_frame": 208.0
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<built-in method builtins.isinstance>",
+        "local_wall_ms_per_frame": 0.11158081249999999,
+        "cumulative_wall_ms_per_frame": 0.12023243750000003,
+        "calls_per_frame": 469.0
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<method 'append' of 'list' objects>",
+        "local_wall_ms_per_frame": 0.09900575,
+        "cumulative_wall_ms_per_frame": 0.09900575,
+        "calls_per_frame": 333.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/flag_gems/ops/copy.py",
+        "line": 74,
+        "name": "copy_",
+        "local_wall_ms_per_frame": 0.09703493750000002,
+        "cumulative_wall_ms_per_frame": 1.0695599375000002,
+        "calls_per_frame": 10.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/triton/spec/iluvatar/triton/runtime/jit.py",
+        "line": 1119,
+        "name": "__call__",
+        "local_wall_ms_per_frame": 0.08710262500000002,
+        "cumulative_wall_ms_per_frame": 0.185205,
+        "calls_per_frame": 26.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/torch/_ops.py",
+        "line": 823,
+        "name": "redispatch",
+        "local_wall_ms_per_frame": 0.08572368749999999,
+        "cumulative_wall_ms_per_frame": 0.08572368749999999,
+        "calls_per_frame": 7.0
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<built-in method builtins.len>",
+        "local_wall_ms_per_frame": 0.0814274375,
+        "cumulative_wall_ms_per_frame": 0.0814274375,
+        "calls_per_frame": 466.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/triton/spec/iluvatar/triton/compiler/compiler.py",
+        "line": 545,
+        "name": "runner",
+        "local_wall_ms_per_frame": 0.07469143750000003,
+        "cumulative_wall_ms_per_frame": 0.31167762500000007,
+        "calls_per_frame": 9.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/torch/_refs/__init__.py",
+        "line": 387,
+        "name": "_broadcast_shapes",
+        "local_wall_ms_per_frame": 0.073984375,
+        "cumulative_wall_ms_per_frame": 0.169977,
+        "calls_per_frame": 3.0
+      },
+      {
+        "file": "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_graph_segments_v3_20261019/trace.py",
+        "line": 97,
+        "name": "forward",
+        "local_wall_ms_per_frame": 0.0738040625,
+        "cumulative_wall_ms_per_frame": 6.4351703125,
+        "calls_per_frame": 1.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/model_runner.py",
+        "line": 2279,
+        "name": "_build_attention_metadata",
+        "local_wall_ms_per_frame": 0.06829875,
+        "cumulative_wall_ms_per_frame": 0.2987060624999999,
+        "calls_per_frame": 1.0
+      }
+    ],
+    "sample_tokens": [
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/model_runner.py",
+        "line": 3682,
+        "name": "_bookkeeping_sync",
+        "local_wall_ms_per_frame": 0.3864084375,
+        "cumulative_wall_ms_per_frame": 0.4394541250000001,
+        "calls_per_frame": 1.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py",
+        "line": 1611,
+        "name": "run",
+        "local_wall_ms_per_frame": 0.25297293750000005,
+        "cumulative_wall_ms_per_frame": 0.7104258125000001,
+        "calls_per_frame": 7.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/logging/__init__.py",
+        "line": 298,
+        "name": "__init__",
+        "local_wall_ms_per_frame": 0.10965118750000004,
+        "cumulative_wall_ms_per_frame": 0.257230625,
+        "calls_per_frame": 10.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/flag_gems/utils/pointwise_dynamic.py",
+        "line": 1497,
+        "name": "prepare_args",
+        "local_wall_ms_per_frame": 0.0945605,
+        "cumulative_wall_ms_per_frame": 0.24285462499999996,
+        "calls_per_frame": 4.0
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<method 'to' of 'torch._C.TensorBase' objects>",
+        "local_wall_ms_per_frame": 0.059597875,
+        "cumulative_wall_ms_per_frame": 0.8341761249999999,
+        "calls_per_frame": 4.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/triton/spec/iluvatar/triton/compiler/compiler.py",
+        "line": 545,
+        "name": "runner",
+        "local_wall_ms_per_frame": 0.05913393750000001,
+        "cumulative_wall_ms_per_frame": 0.24204025000000004,
+        "calls_per_frame": 7.0
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<method 'disable' of '_lsprof.Profiler' objects>",
+        "local_wall_ms_per_frame": 0.058260562499999995,
+        "cumulative_wall_ms_per_frame": 0.058260562499999995,
+        "calls_per_frame": 1.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/triton/spec/iluvatar/triton/runtime/jit.py",
+        "line": 1119,
+        "name": "__call__",
+        "local_wall_ms_per_frame": 0.0512083125,
+        "cumulative_wall_ms_per_frame": 0.1104063125,
+        "calls_per_frame": 14.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/torch/_ops.py",
+        "line": 823,
+        "name": "redispatch",
+        "local_wall_ms_per_frame": 0.048618249999999995,
+        "cumulative_wall_ms_per_frame": 0.06779162500000001,
+        "calls_per_frame": 2.0
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<built-in method builtins.isinstance>",
+        "local_wall_ms_per_frame": 0.0479175,
+        "cumulative_wall_ms_per_frame": 0.0479175,
+        "calls_per_frame": 218.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/triton/spec/iluvatar/triton/runtime/jit.py",
+        "line": 412,
+        "name": "<lambda>",
+        "local_wall_ms_per_frame": 0.045458750000000006,
+        "cumulative_wall_ms_per_frame": 0.84297575,
+        "calls_per_frame": 8.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/logging/__init__.py",
+        "line": 200,
+        "name": "_is_internal_frame",
+        "local_wall_ms_per_frame": 0.04460606250000001,
+        "cumulative_wall_ms_per_frame": 0.061391312499999996,
+        "calls_per_frame": 30.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/logging/__init__.py",
+        "line": 1611,
+        "name": "findCaller",
+        "local_wall_ms_per_frame": 0.0444435625,
+        "cumulative_wall_ms_per_frame": 0.12926975,
+        "calls_per_frame": 10.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/vllm_fl/worker/model_runner.py",
+        "line": 4518,
+        "name": "sample_tokens",
+        "local_wall_ms_per_frame": 0.038727312500000007,
+        "cumulative_wall_ms_per_frame": 3.2907503125000006,
+        "calls_per_frame": 1.0
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<method 'append' of 'list' objects>",
+        "local_wall_ms_per_frame": 0.037721062500000006,
+        "cumulative_wall_ms_per_frame": 0.037721062500000006,
+        "calls_per_frame": 125.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py",
+        "line": 1581,
+        "name": "spec_arg",
+        "local_wall_ms_per_frame": 0.03681168750000001,
+        "cumulative_wall_ms_per_frame": 0.0511855,
+        "calls_per_frame": 47.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py",
+        "line": 1580,
+        "name": "key",
+        "local_wall_ms_per_frame": 0.036415125,
+        "cumulative_wall_ms_per_frame": 0.09127043750000002,
+        "calls_per_frame": 7.0
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<built-in method builtins.len>",
+        "local_wall_ms_per_frame": 0.0336690625,
+        "cumulative_wall_ms_per_frame": 0.0336690625,
+        "calls_per_frame": 186.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/flag_gems/ops/to.py",
+        "line": 76,
+        "name": "to_copy",
+        "local_wall_ms_per_frame": 0.033421687500000005,
+        "cumulative_wall_ms_per_frame": 0.77457825,
+        "calls_per_frame": 3.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/triton/backends/iluvatar/driver.py",
+        "line": 727,
+        "name": "launch",
+        "local_wall_ms_per_frame": 0.032158687500000005,
+        "cumulative_wall_ms_per_frame": 0.12624237500000002,
+        "calls_per_frame": 8.0
+      }
+    ],
+    "scheduler": [
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/core/sched/scheduler.py",
+        "line": 388,
+        "name": "schedule",
+        "local_wall_ms_per_frame": 0.4120923125,
+        "cumulative_wall_ms_per_frame": 3.0894070625000003,
+        "calls_per_frame": 1.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/core/kv_cache_manager.py",
+        "line": 244,
+        "name": "allocate_slots",
+        "local_wall_ms_per_frame": 0.332667875,
+        "cumulative_wall_ms_per_frame": 1.5027663125000004,
+        "calls_per_frame": 64.0
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<built-in method builtins.len>",
+        "local_wall_ms_per_frame": 0.14502668749999997,
+        "cumulative_wall_ms_per_frame": 0.1492121875,
+        "calls_per_frame": 849.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/core/sched/scheduler.py",
+        "line": 1221,
+        "name": "_make_cached_request_data",
+        "local_wall_ms_per_frame": 0.130951875,
+        "cumulative_wall_ms_per_frame": 0.35716950000000003,
+        "calls_per_frame": 1.0
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<built-in method builtins.min>",
+        "local_wall_ms_per_frame": 0.12605125,
+        "cumulative_wall_ms_per_frame": 0.12605125,
+        "calls_per_frame": 320.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/core/single_type_kv_cache_manager.py",
+        "line": 101,
+        "name": "get_num_blocks_to_allocate",
+        "local_wall_ms_per_frame": 0.11059168750000001,
+        "cumulative_wall_ms_per_frame": 0.19933781250000002,
+        "calls_per_frame": 64.0
+      },
+      {
+        "file": "/workspace/vllm-plugin-FL/experiments/tianshu_future_kv_reservation_20261020/policy.py",
+        "line": 119,
+        "name": "allocate",
+        "local_wall_ms_per_frame": 0.10923418750000001,
+        "cumulative_wall_ms_per_frame": 1.6876566250000005,
+        "calls_per_frame": 64.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/core/kv_cache_coordinator.py",
+        "line": 233,
+        "name": "allocate_new_blocks",
+        "local_wall_ms_per_frame": 0.107615,
+        "cumulative_wall_ms_per_frame": 0.3850558125,
+        "calls_per_frame": 64.0
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<method 'append' of 'list' objects>",
+        "local_wall_ms_per_frame": 0.0865445,
+        "cumulative_wall_ms_per_frame": 0.0865445,
+        "calls_per_frame": 324.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/core/kv_cache_coordinator.py",
+        "line": 130,
+        "name": "get_num_blocks_to_allocate",
+        "local_wall_ms_per_frame": 0.08635593750000001,
+        "cumulative_wall_ms_per_frame": 0.370163875,
+        "calls_per_frame": 64.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/core/sched/scheduler.py",
+        "line": 1130,
+        "name": "_update_after_schedule",
+        "local_wall_ms_per_frame": 0.0808453125,
+        "cumulative_wall_ms_per_frame": 0.1358680625,
+        "calls_per_frame": 1.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/core/sched/async_scheduler.py",
+        "line": 19,
+        "name": "_update_after_schedule",
+        "local_wall_ms_per_frame": 0.0775258125,
+        "cumulative_wall_ms_per_frame": 0.2475815625,
+        "calls_per_frame": 1.0
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<method 'get' of 'dict' objects>",
+        "local_wall_ms_per_frame": 0.076914625,
+        "cumulative_wall_ms_per_frame": 0.076914625,
+        "calls_per_frame": 264.0
+      },
+      {
+        "file": "/workspace/vllm-plugin-FL/experiments/tianshu_future_kv_reservation_20261020/policy.py",
+        "line": 52,
+        "name": "allocate",
+        "local_wall_ms_per_frame": 0.07655668750000003,
+        "cumulative_wall_ms_per_frame": 1.7642133125,
+        "calls_per_frame": 64.0
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<built-in method builtins.isinstance>",
+        "local_wall_ms_per_frame": 0.06945275,
+        "cumulative_wall_ms_per_frame": 0.16068912500000004,
+        "calls_per_frame": 128.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/core/single_type_kv_cache_manager.py",
+        "line": 278,
+        "name": "allocate_new_blocks",
+        "local_wall_ms_per_frame": 0.066919625,
+        "cumulative_wall_ms_per_frame": 0.13866475,
+        "calls_per_frame": 64.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/core/kv_cache_coordinator.py",
+        "line": 257,
+        "name": "<genexpr>",
+        "local_wall_ms_per_frame": 0.0625570625,
+        "cumulative_wall_ms_per_frame": 0.2774408125,
+        "calls_per_frame": 128.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/core/kv_cache_manager.py",
+        "line": 69,
+        "name": "get_block_ids",
+        "local_wall_ms_per_frame": 0.0548395,
+        "cumulative_wall_ms_per_frame": 0.13211249999999997,
+        "calls_per_frame": 64.0
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "name": "<method 'disable' of '_lsprof.Profiler' objects>",
+        "local_wall_ms_per_frame": 0.05156618750000001,
+        "cumulative_wall_ms_per_frame": 0.05156618750000001,
+        "calls_per_frame": 1.0
+      },
+      {
+        "file": "/usr/local/lib/python3.12/site-packages/vllm/v1/utils.py",
+        "line": 734,
+        "name": "record_function_or_nullcontext",
+        "local_wall_ms_per_frame": 0.05140725,
+        "cumulative_wall_ms_per_frame": 0.063675125,
+        "calls_per_frame": 67.0
+      }
+    ]
+  },
+  "raw_files": {
+    "/workspace/benchmark-results/20261023_r4_CPU_profile_v2_tianshu/cpu_records/cpu_97430.json": "dccdf933b7d511b496d266c83f9efb73867f53f85aade083e2d96191abbadf98",
+    "/workspace/benchmark-results/20261023_r4_CPU_profile_v2_tianshu/cpu_records/scheduler_97430.json": "06f88b3fefdfab51117aa92da266148828758f28483651a507fa367e5c017071",
+    "/workspace/benchmark-results/20261023_r4_CPU_profile_v2_tianshu/result.json": "1ac41e673451981da5445bb89a5cd021e7fbadeb6748fe306c0e192b704ee84e"
+  },
+  "new_model_quality_not_tested": true,
+  "official_benchmark": false,
+  "adopted": false,
+  "interpretation": "Intrusive cProfile only; wall/cumulative values overlap and may include waits. No GPU kernel time or performance gain claim. Runner remains failed, no CPU recovery as normal success."
+}

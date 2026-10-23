@@ -40,14 +40,15 @@ def main():
     graphs[name]=graph;outputs[name]=result;keep.append(result)
    for phase in range(3):
     with np.load(root/f'X{phase}.npz') as f:a=f['X'].copy()
-    x.copy_(torch.from_numpy(a).view(torch.bfloat16));torch.cuda.synchronize()
+    x.copy_(torch.from_numpy(a).view(torch.bfloat16));torch.cuda.synchronize();x_version=int(x._version)
     for name,fn in operations.items():
      e=fn();torch.cuda.synchronize();eager=words(e[0] if isinstance(e,tuple) else e);repeat=fn();torch.cuda.synchronize();assert np.array_equal(eager,words(repeat[0] if isinstance(repeat,tuple) else repeat))
-     target=outputs[name][0] if isinstance(outputs[name],tuple) else outputs[name];target.fill_(float('nan'));graphs[name].replay();torch.cuda.synchronize();actual=words(target);assert np.array_equal(actual,eager)
+     target=outputs[name][0] if isinstance(outputs[name],tuple) else outputs[name];target.fill_(float('nan'));graphs[name].replay();torch.cuda.synchronize();actual=words(target);assert np.array_equal(actual,eager);assert int(x._version)==x_version and np.array_equal(words(x),a)
      path=out/f'L{layer}_{name}_p{phase}.npz';data=dict(output=actual)
      if isinstance(outputs[name],tuple):data['projection']=words(outputs[name][1])
      np.savez(path,**data);state['numeric'].append(dict(layer=layer,phase=phase,variant=name,file=str(path),sha256=sha(path),eager_graph_and_repeat_exact=True));save()
    with np.load(root/'X0.npz') as f:x.copy_(torch.from_numpy(f['X'].copy()).view(torch.bfloat16))
+   timed_x_version=int(x._version)
    for mode in ('eager','graph'):
     for rid in range(7):
      order=list(operations);order=order[::-1] if rid%2 else order;times={}
@@ -56,6 +57,7 @@ def main():
       for _ in range(30):fn()
       end.record();end.synchronize();times[name]=start.elapsed_time(end)/30
      row=dict(layer=layer,mode=mode,round=rid,excluded=rid==0,order=order,ms=times);state['rounds'].append(row);save();print(json.dumps(row),flush=True)
+   with np.load(root/'X0.npz') as f:assert int(x._version)==timed_x_version and np.array_equal(words(x),f['X'])
    for k,(version,a) in immutable.items():
     assert int(t[k]._version)==version;actual=words(t[k]) if t[k].dtype==torch.bfloat16 else t[k].cpu().numpy();assert np.array_equal(a,actual),k
    del graphs,outputs,keep,t,operations,x,q,sa,o,co,dummy

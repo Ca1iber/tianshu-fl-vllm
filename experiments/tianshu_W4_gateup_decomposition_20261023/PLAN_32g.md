@@ -1,0 +1,3 @@
+# GateUp W4 decomposition
+
+Follow only the numerically qualified3-real-bank component. Time native W4 matrix and the identical FlagGems strided SiLU separately, eager and Graph,7 paired alternating x50/exclude1, with per-bank Graph pool lifecycle. Same full CPU-qualified inputs and matrices, no model/quality or combined service speed claim. Saved full W8 fused baseline is context only, not simultaneous AB with new timings. Determine whether W4 matrix alone already exceeds r4 fused total, to decide whether pursuing activation fusion has plausible value. This diagnostic does not replace the original full combined component and cannot be used to claim a new end-to-end gain.600s stop,23:58 deadline. No local host files or MuXi edits.

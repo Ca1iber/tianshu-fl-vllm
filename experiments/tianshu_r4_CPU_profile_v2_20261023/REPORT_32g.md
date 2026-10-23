@@ -1,0 +1,7 @@
+# r4 CPU调用：部分诊断保留，不当作完整合格运行
+
+实际r4同944模型输入与原13参数，增加4个CPU观察开关及组合PYTHONPATH，完整67环境已记录。两组各64个4K/256请求全部成功，16帧FULL/C64 worker execute/sample调用与16帧scheduler调用均完整保存。原始run却在同seed777短canary前后文本比较失败，最后两个token不同；所有当前/快照源码逐项校验一致。原因尚未证明，不把失败改写为正常通过，也不对新模型质量或性能作结论。
+
+16帧侵入式cProfile的host中位数仍约execute7ms、sample3.4ms、scheduler3.2ms，与旧版线索接近。精确数值和按local排序的前20项见PARTIAL_DIAGNOSTIC_32g.json。父子累计时间重叠，C调用可能含等待，不将这些数字相加当GPU耗时或吞吐。完整10MB调用JSON、响应文本和源码快照仅在容器。
+
+V1漏记additional_environment，初始化后零请求失败，原件同样保留。后续应取GPU时间线寻找真正的GPU热点，另用明确前缀缓存条件的canary调查差异；不以当前部分诊断晋升任何版本。

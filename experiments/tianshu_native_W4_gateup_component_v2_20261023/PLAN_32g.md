@@ -1,0 +1,5 @@
+# GateUp W4 component v2: allocator lifecycle repair
+
+Retain original component CPU input proof and all raw references/weights unchanged. First GPU attempt completed layer0 6 numerical records/14 timing rounds then crashed entering the next layer's graph capture with CUDACachingAllocator use_count>0 assertion. Original result remains failed and all partial outputs/timings are retained; no full comparison or model claim from it.
+
+V2 changes only Graph pool lifecycle: create a new pool for each of three banks, sharing it only between that bank's two operations. Kernel/config/data/numerical thresholds, all3 layers/3 phases,7 alternating eager/graph rounds x30/exclude1 remain unchanged. Re-run the complete 3-bank component for whole-experiment RNG/immutability and independent27 FP64 checks, not to select a better score. Pin original failed result SHA and old sources plus all v2 sources before GPU. All arrays remain in the existing container SHM root; GPU_v2 output separate. No model or official benchmark; only numerical qualification and clear speed gain could justify model integration. Deadline23:58 BJT,15min alarm.

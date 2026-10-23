@@ -2,7 +2,7 @@
 import hashlib,importlib.util,json,struct,sys
 from pathlib import Path
 import numpy as np
-BASE=Path(__file__).resolve().parent;EXP=BASE.parent;ROOT=Path('/dev/shm/tianshu_W4_gateup_component_20261023');MODEL=Path('/workspace/MiniCPM5-2B/model-00000-of-00001.safetensors')
+BASE=Path(__file__).resolve().parent;EXP=BASE.parent;ROOT=Path('/dev/shm/tianshu_W4_gateup_component_v2_20261023');MODEL=Path('/workspace/MiniCPM5-2B/model-00000-of-00001.safetensors')
 s=importlib.util.spec_from_file_location('_gateup_pack_helpers',EXP/'tianshu_native_dotsaddz_down42_20261023/common.py');h=importlib.util.module_from_spec(s);s.loader.exec_module(h)
 def main():
  assert not ROOT.exists() and not (BASE/'CPU_GATE_32g.json').exists();ROOT.mkdir();checkpoint=h.sha(MODEL);assert checkpoint=='14fb8e7f0a18d53d1f239773758bf581cee7e456a4523a54622c3a245b64402c'
@@ -12,7 +12,10 @@ def main():
  for phase in range(3):
   i=np.arange(64*2048,dtype=np.float32).reshape(64,2048);x=h.bf16(np.sin(i*np.float32(.013)+phase)*np.float32(.8)+np.cos(i*np.float32(.019)+phase*.7)*np.float32(.2));save(ROOT/f'X{phase}.npz',X=x)
  for layer in (0,20,41):
-  prefix=f'model.layers.{layer}.mlp.gate_up_proj';v=header[prefix+'.weight'];assert v['dtype']=='BF16' and v['shape']==[12288,2048];w=np.memmap(MODEL,mode='r',dtype='<u2',offset=8+n+v['data_offsets'][0],shape=(12288,2048));assert h.ahash(w)==signatures[prefix]['original_BF16_sha256'];wf=h.f32(w)
+  prefix=f'model.layers.{layer}.mlp.gate_up_proj';parts=[]
+  for role in ('gate_proj','up_proj'):
+   v=header[f'model.layers.{layer}.mlp.{role}.weight'];assert v['dtype']=='BF16' and v['shape']==[6144,2048];parts.append(np.memmap(MODEL,mode='r',dtype='<u2',offset=8+n+v['data_offsets'][0],shape=(6144,2048)))
+  w=np.concatenate(parts,axis=0);assert h.ahash(w)==signatures[prefix]['original_BF16_sha256'];wf=h.f32(w)
   sw=np.maximum(abs(wf).max(1),np.float32(1.e-8))/np.float32(127);qw=np.clip(np.rint(wf/sw[:,None]),-127,127).astype(np.int8);assert h.ahash(qw)==signatures[prefix]['packed_sha256'] and h.ahash(sw)==signatures[prefix]['scales_sha256']
   sg=h.bf16(np.maximum(abs(wf.reshape(12288,16,128)).max(2),np.float32(1.e-8))/np.float32(7));q4=(np.clip(np.rint(wf.reshape(12288,16,128)/h.f32(sg)[:,:,None]),-8,7).astype(np.int8)+8).astype(np.uint8).reshape(12288,2048).T.copy();p=h.pack(q4);z=h.bf16(-8*h.f32(sg.T));assert np.array_equal(h.unpack(p),q4)
   path=ROOT/f'bank{layer}.npz';save(path,W8=qw.T.copy(),S8=sw,W4=p,S4=sg.T.copy(),Z4=z);banks.append(dict(layer=layer,prefix=prefix,file=str(path),file_sha256=files[str(path)],original_weight_sha256=h.ahash(w),W8_signature_exact=True,W4_full_roundtrip_exact=True))
