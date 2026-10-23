@@ -127,3 +127,11 @@ LM64输出融合组件将实际eager延迟约0.7187降至0.5751ms；进一步将
 新质量控制tianshu_QKV64_keep128_quality_20261023先完整C64再C8，各105题，严格>95%且所有运行审计通过才进入吞吐筛选；不复用旧903/915/928或925分数。新C64已启动，独立CPU完整计分工具也在首GPU前冻结。每日06:00-00:00可用，今日GPU硬截止23:58。所有旧GPU序列已结束且启动前确认空闲。
 
 质量启动前在GPU空闲时对1611个不可变snapshot目录逐文件核验并去重，共256555文件/90950新共享副本，全部原路径与字节保留；保护925源码/384严格cache/16LMcache前后SHA一致。净释放3.88GiB，可用约5GB，详细Gate/报告见tianshu_storage_20261023。没有删除模型或原始结果，未占本地磁盘。
+
+## 2026-10-23 10:11：keep128新C64独立102/105，C8进行中；IR norm+A8组件预备
+
+本版本C64完整105题102正确（97.142857%），原完整运行审计通过，独立CPU逐题计分/928源/51控制/全部快照/原checkpoint/13argv63env/native128/eligible64 capture42与Down复核通过。两道输出上限题26、83完整计入。单C64门槛仍model_quality_qualified=false；新C8正在评测，不借用任何旧分数，完整报告见tianshu_QKV64_keep128_C64_results_20261023/REPORT_32g.md。自动序列只认本版本新双质量，再短4K正收益才条件正式，不自动采用。
+
+新组件tianshu_IR_RMS_A8_20261023准备融合norm与下一步A8输入量化。真实服务log显示IR native优先级/custom_ops none，RMSNorm.forward_native调用IR规范，不能错误用FL.forward_oot作对照。组件使用安装IR原生impl_fn独立torch.compile后接当前A8；不声称与完整模型生成CUBIN一致。固定BF16中间舍入顺序、K2048/eps1e-6/4warp/1stage，真实6个norm权重来自原checkpoint，另核验84个norm签名；108完整数值case、实际Graph返回对象毒值后重放并保存独立数据、120计时记录与完整K FP64/精确A8 CPU校验方案均在GPU前冻结。当前仅CPU准备通过，未运行新组件GPU、未计时、未接入模型，未来仍需新完整双质量>95%。
+
+该组件明确等待keep128序列7900/9812结束且GPU空闲，禁止并发GPU。组件数组、权重小片段、生成图证据和编译cache仅在容器；GitHub只代码、报告、来源签名与关键结果。不改原模型权重/结构，不变已发布r3正式最佳5950.75 total tok/s。
