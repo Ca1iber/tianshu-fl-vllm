@@ -1,0 +1,3 @@
+# v3新融合C64阶段的独立CPU复核
+
+复制首次GPU前冻结的完整独立复核器，仅使用--batches64读取本次C64全部105题与全部新/旧profile，逐字段重算、SHA/快照/原checkpoint核验。C8未完成时model_quality_qualified必须false；最终双批次仍由原完整复核器在原独立目录重新全量验证，C64本目录不代替C8或正式双组Gate。不重跑GPU、不修改原始数据。
