@@ -44,3 +44,11 @@ C64的105请求全部正常stop，无cap，错误索引87/42/18/23。独立CPU�
 ## 19:08，LM W4完整M范围验证通过，准备模型候选
 
 将M1..64补齐到32/64的全部192个M/phase案例通过完整输出/hash及等价全FP64门槛（814694400逻辑格，参考前缀共享，非唯一格数）。实际补齐W4约0.34–0.52ms；M1比直接W4多0.0794ms，后续可明确复用已验证M1/2直接路径。首版独立Graph池OOM完整保留，v2验证器共享池peak约1.38GiB；候选kernel/数值阈值未改。这不是模型质量/新正式成绩。下一步准备同一原生W4 LM的M1..64服务，原生memory profile、fresh C8/C64完整105题门槛，过后才做同期短4K。细节见`../tianshu_W4_LM_pad32_64_component_v2_20261023/REPORT_32g.md`。
+
+## 19:36，新944-source模型C8完整Math进行中
+
+最终模型`tianshu_W4_LMpad_service_v2_20261023`冻结c83a850，C8/C64控制器冻结7fd1824，独立逐题与全部source/controller snapshot SHA复核器在结果未知时冻结4ec1d4e。Down64 W4保持旧42层；LM扩M1..64，其中1/2直接W4、其他用已验证32/64补齐（32/64本身直接）。原BF16/W8、checkpoint、其他路径与13argv/63环境保留，仅PYTHONPATH更换。CPU六点预热首稿89c742a未跑GPU，最终版完整64M预热/原生profile已经真实执行，避免运行时pad形状编译。
+
+C8服务已进入实际105题评测，现场新LM-only审计通过：LM8 W4至少8192次真实调用，M6/7也实际走补齐，M<=64旧BF16/W8调用缺失；原生loader/profile内全部64M预热/探测通过，model_memory_usage 7812066816字节、唯一parameter/buffer storage 7742773920字节，真实统计覆盖全部新增142049280字节LM bank和原副本，不宣称引擎净显存节省。全终态运行审计仍待after_metrics及全部105题完成，尚无新正确率或benchmark成绩。
+
+短4K预备a86570f已CPU核对精确r3 903与候选944、原13argv/63环境仅PYTHONPATH不同；其GPU入口硬性要求完整双质量独立门禁。正式N256预备及独立复核器最终冻结7cdd887，只有双质量与同期短测全部过才启用。正式脚本数据范围为raw CSV每轮请求数/token总量/吞吐/TTFT汇总，不声称官方脚本没有保存的逐请求trace；N64短测另有完整逐请求记录。现在没有启动短测或正式4K/16K、未采用新版本，正式合格最好仍r3 5950.75 total /1190.15 output tok/s、TTFT3174.58ms。
