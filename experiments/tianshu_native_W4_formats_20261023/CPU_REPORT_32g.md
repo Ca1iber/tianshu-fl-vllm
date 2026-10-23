@@ -1,0 +1,7 @@
+# 非恒定原生W4格式CPU准备通过，GPU未执行
+
+冻结同一个64×256×256非恒定逻辑矩阵，65536个q权重及每K组/每列不同的scale、zero。16384个输出全部以完整K INT64投影重新计算，再独立转换BF16；原生CPU通用INT4转换器/矩阵乘逐格完全一致。所有8个物理输入逐格逆解码、实际Torch Meta形状均通过，未初始化CUDA。
+
+待测格式为两种通用K向高低nibble顺序，以及两种N向排列与三种零点表示交叉的6种AWQ假设。实际安装的Torch二进制检查、CoreX4.5 ixinfer.h声明及cuinfer导出支持选择这些入口；具体物理格式仍是预先声明的假设，未宣称已验证。GPU只判断完整小矩阵是否精确匹配，不计时，不用原checkpoint，不宣称真实模型精度/收益。
+
+CPU输入位于`/workspace/benchmark-results/20261023_native_W4_formats_CPU_v2_tianshu`，初始准备与源码留在原CPU目录initial_source_snapshot。首次GPU前补齐代码/实际Torch及cuinfer库/全部物理和逻辑输入的SHA验证；原先已执行的模型/组件来源不改。GPU待PID43163微型探测终止后单独运行，每格式独立进程45秒；通用入口若前轮不通过则跳过重复通用调用。全部原始错误/不一致保留，只有实测完整正确后才考虑真实权重和计时。

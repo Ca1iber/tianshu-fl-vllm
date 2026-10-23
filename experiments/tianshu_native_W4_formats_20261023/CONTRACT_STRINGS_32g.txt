@@ -1,0 +1,20 @@
+/home/corex/sw_home/apps/pytorch/aten/src/ATen/native/cuinfer/Int4mm_awq.cpp
+_weight_int4pack_mm_awq requires libcuinfer.so at runtime on Iluvatar.
+Expected A.device() == B.device() && A.device() == qScale.device() && qScale.device() == qZero.device() to be true, but got false.  (Could this error message be improved?  If so, please report an enhancement request to PyTorch.)
+Expected A.dtype() == at::kBFloat16 || A.dtype() == at::kHalf to be true, but got false.  (Could this error message be improved?  If so, please report an enhancement request to PyTorch.)
+Expected B.dtype() == at::kInt to be true, but got false.  (Could this error message be improved?  If so, please report an enhancement request to PyTorch.)
+Expected qGroupSize == -1 || qGroupSize == 32 || qGroupSize == 64 || qGroupSize == 128 to be true, but got false.  (Could this error message be improved?  If so, please report an enhancement request to PyTorch.)
+Expected qScale.dim() == 2 to be true, but got false.  (Could this error message be improved?  If so, please report an enhancement request to PyTorch.)
+Expected qZero.dim() == 2 to be true, but got false.  (Could this error message be improved?  If so, please report an enhancement request to PyTorch.)
+/home/corex/sw_home/apps/pytorch/aten/src/ATen/native/cuinfer/Int4mm_dotsaddz.cpp
+_weight_int4pack_mm_dotsaddz requires libcuinfer.so at runtime on Iluvatar.
+Expected A.device() == B.device() && A.device() == qScaleAndZeros.device() to be true, but got false.  (Could this error message be improved?  If so, please report an enhancement request to PyTorch.)
+Expected A.dtype() == at::kBFloat16 to be true, but got false.  (Could this error message be improved?  If so, please report an enhancement request to PyTorch.)
+Expected B.dtype() == at::kInt to be true, but got false.  (Could this error message be improved?  If so, please report an enhancement request to PyTorch.)
+Expected qGroupSize == 32 || qGroupSize == 64 || qGroupSize == 128 || qGroupSize == 256 to be true, but got false.  (Could this error message be improved?  If so, please report an enhancement request to PyTorch.)
+Expected qScaleAndZeros.dim() == 3 to be true, but got false.  (Could this error message be improved?  If so, please report an enhancement request to PyTorch.)
+Expected kTiles * kKTileSize >= qGroupSize && isEvenDivisor(kTiles * kKTileSize, qGroupSize) to be true, but got false.  (Could this error message be improved?  If so, please report an enhancement request to PyTorch.)
+Expected qScaleAndZeros.size(1) == n to be true, but got false.  (Could this error message be improved?  If so, please report an enhancement request to PyTorch.)
+Expected qScaleAndZeros.size(2) == 2 to be true, but got false.  (Could this error message be improved?  If so, please report an enhancement request to PyTorch.)
+_GLOBAL__sub_I_Int4mm_awq.cpp
+_GLOBAL__sub_I_Int4mm_dotsaddz.cpp
