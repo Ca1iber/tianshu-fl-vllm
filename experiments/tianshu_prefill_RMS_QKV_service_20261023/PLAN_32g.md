@@ -8,4 +8,4 @@
 
 新的scratch必须在真实determine_available_memory/Profile窗口内用实际原bank0无残差和bank2有残差的显式zero probe计入峰值；初次general profile可能尚未执行静态4096路径，不能据此宣称新路径已被profile。probe独立标记、保持RNG/原权重，且manual KV bytes仍None，全部旧memory/profile审计保留。真实静态4096暖图/运行42层和新norm/dequant CUBIN、全部旧KV/scheduler/sampling/Down/O/GU/QKV其它M/LM守卫必须独立核验。
 
-本目录目前只实现原parent绑定的静态CPU证据和辅助函数；policy/FX pass/服务profile/全量质量与新审计尚待实现，未启动模型。待GPU前完整冻结后，新的C8/C64各105题严格>95%、全部独立运行/来源审计通过，才与r3同期N64×3排首轮短4K；收益>0.5%/波动<1%/TTFT<=1.01后才原N256×4完整4K。不运行16K，不自动采用或发布。15:58Z硬停，原始数组/日志仅容器，代码报告关键结果GitHub。
+本目录已实现parent绑定、policy、静态4096 FX pass、真实内存profile探测、服务来源冻结与新路径审计；初次CPU准备已保存在CPU_INITIAL_PREP_GATE及原准备目录，尚未启动模型。待GPU前完整冻结后，新的C8/C64各105题严格>95%、全部独立运行/来源审计通过，才与r3同期N64×3排首轮短4K；收益>0.5%/波动<1%/TTFT<=1.01后才原N256×4完整4K。不运行16K，不自动采用或发布。15:58Z硬停，原始数组/日志仅容器，代码报告关键结果GitHub。
