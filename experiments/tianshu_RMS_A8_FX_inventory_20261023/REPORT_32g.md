@@ -1,0 +1,9 @@
+# RMSNorm+A8在真实模型图中的接入调查（CPU、尚未实现）
+
+本轮真实r3短4K控制服务生成43份静态M64 Inductor后处理图。AST扫描不用Torch或GPU，逐节点核验：42层post_attention的fused_add_rms_norm输出只交给现有GateUp+SiLU融合op，同时残差输出仍被下一层使用；42层input norm的输出只交给QKV，其中首层无残差、其余41层有残差。norm IR节点在已有post_grad_custom_post_pass时仍保留，能在此时做明确图改写，无需从已分解的浮点算术链猜模式。
+
+若IR-native RMS+A8组件的108数值/120计时记录及独立CPU检查通过，优先接GateUp前42处：合并norm与原A8量化，继续原已验证的NN two-dot GEMM+SiLU，不增加权重打包。仅静态M64图改写，保留残差输出、其他范围原字节不变，禁止跨op隐藏全局Tensor临时缓冲。当前r3的QKV64还是BF16，不能把增加量化的收益与单纯融合混在一起；只有keep128通过并成为新基准，才考虑单独拓展QKV。
+
+未来替换会使旧GateUp融合op的捕获次数不再真实适用，必须新增实际融合路径/42层捕获/真实kernel二进制审计，并明确替换对应旧计数检查，不能虚构旧kernel已执行。先做真实权重/完整K/Graph返回对象/数值误差检查，再做同版本新鲜完整C8/C64各105题严格>95%，随后短4K对照。组件单独编译基线不冒充完整模型CUBIN一致，当前没有组件GPU或模型收益结论，也没有接入代码或发布。
+
+CPU_INVENTORY_GATE逐项记录43份实际图的SHA和84处节点关系，完整图与临时文件仅在天数容器；GitHub只存扫描源码、关键清单及本报告。
