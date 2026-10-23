@@ -1,0 +1,62 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "CUDA_initialized": false,
+  "torch_version": "2.10.0",
+  "source_sha256": "8cb07483000f6193c6fb84752f2ab79b4372a9cd729f8e281f457c3aff807530",
+  "meta_source": "/usr/local/lib/python3.12/site-packages/torch/_meta_registrations.py",
+  "meta_sha256": "c2c73d369f497bef4f63abced368badae6085deafe33e2e64c791e9c350ea3d7",
+  "operators": [
+    {
+      "name": "aten::_convert_weight_to_int4pack",
+      "CUDA": true,
+      "CPU": false,
+      "registration": "name: aten::_convert_weight_to_int4pack\nschema: aten::_convert_weight_to_int4pack(Tensor self, int innerKTiles) -> Tensor\ndebug: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterSchema.cpp:6\nalias analysis kind: FROM_SCHEMA\nTracer: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/TraceType_4.cpp:13760 :: (Tensor _0, int _1) -> Tensor _0 [ boxed unboxed ]\nCUDA: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCUDA_0.cpp:16260 :: (Tensor _0, int _1) -> Tensor _0 [ boxed unboxed ]\nMeta: registered at /usr/local/lib/python3.12/site-packages/torch/_meta_registrations.py:51 :: (none) [ boxed ]\nAutograd[alias]: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/VariableType_4.cpp:19777 :: (none) [ boxed ]\n"
+    },
+    {
+      "name": "aten::_convert_weight_to_int4pack_for_cpu",
+      "CUDA": false,
+      "CPU": true,
+      "registration": "name: aten::_convert_weight_to_int4pack_for_cpu\nschema: aten::_convert_weight_to_int4pack_for_cpu(Tensor self, int innerKTiles) -> Tensor\ndebug: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterSchema.cpp:6\nalias analysis kind: FROM_SCHEMA\nTracer: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/TraceType_2.cpp:18122 :: (Tensor _0, int _1) -> Tensor _0 [ boxed unboxed ]\nCPU: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCPU_2.cpp:3972 :: (Tensor _0, int _1) -> Tensor _0 [ boxed unboxed ]\nMeta: registered at /usr/local/lib/python3.12/site-packages/torch/_meta_registrations.py:51 :: (none) [ boxed ]\nAutograd[alias]: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/VariableType_2.cpp:20339 :: (none) [ boxed ]\n"
+    },
+    {
+      "name": "aten::_weight_int4pack_mm",
+      "CUDA": true,
+      "CPU": false,
+      "registration": "name: aten::_weight_int4pack_mm\nschema: aten::_weight_int4pack_mm(Tensor self, Tensor mat2, int qGroupSize, Tensor qScaleAndZeros) -> Tensor\ndebug: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterSchema.cpp:6\nalias analysis kind: FROM_SCHEMA\nTracer: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/TraceType_3.cpp:15269 :: (Tensor _0, Tensor _1, int _2, Tensor _3) -> Tensor _0 [ boxed unboxed ]\nCUDA: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCUDA_0.cpp:16287 :: (Tensor _0, Tensor _1, int _2, Tensor _3) -> Tensor _0 [ boxed unboxed ]\nMeta: registered at /usr/local/lib/python3.12/site-packages/torch/_meta_registrations.py:51 :: (none) [ boxed ]\nAutograd[alias]: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/VariableType_3.cpp:19895 :: (none) [ boxed ]\n"
+    },
+    {
+      "name": "aten::_weight_int4pack_mm_awq",
+      "CUDA": true,
+      "CPU": false,
+      "registration": "name: aten::_weight_int4pack_mm_awq\nschema: aten::_weight_int4pack_mm_awq(Tensor self, Tensor mat2, int qGroupSize, Tensor qScale, Tensor qZero, Tensor? bias=None, str? activation=None) -> Tensor\ndebug: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterSchema.cpp:6\nalias analysis kind: FROM_SCHEMA\nTracer: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/TraceType_0.cpp:17365 :: (Tensor _0, Tensor _1, int _2, Tensor _3, Tensor _4, Tensor? _5, str? _6) -> Tensor _0 [ boxed unboxed ]\nCUDA: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCUDA_0.cpp:16344 :: (Tensor _0, Tensor _1, int _2, Tensor _3, Tensor _4, Tensor? _5, str? _6) -> Tensor _0 [ boxed unboxed ]\nMeta: registered at /usr/local/lib/python3.12/site-packages/torch/_meta_registrations.py:51 :: (none) [ boxed ]\nAutograd[alias]: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/VariableType_0.cpp:18396 :: (none) [ boxed ]\n"
+    },
+    {
+      "name": "aten::_weight_int4pack_mm_dotsaddz",
+      "CUDA": true,
+      "CPU": false,
+      "registration": "name: aten::_weight_int4pack_mm_dotsaddz\nschema: aten::_weight_int4pack_mm_dotsaddz(Tensor self, Tensor mat2, int qGroupSize, Tensor qScale, Tensor qZero, *, int size_n=0, Tensor? bias=None, str? activation=None) -> Tensor\ndebug: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterSchema.cpp:6\nalias analysis kind: FROM_SCHEMA\nTracer: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/TraceType_2.cpp:18122 :: (Tensor _0, Tensor _1, int _2, Tensor _3, Tensor _4, int _5, Tensor? _6, str? _7) -> Tensor _0 [ boxed unboxed ]\nCUDA: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCUDA_0.cpp:16315 :: (Tensor _0, Tensor _1, int _2, Tensor _3, Tensor _4, int _5, Tensor? _6, str? _7) -> Tensor _0 [ boxed unboxed ]\nMeta: registered at /usr/local/lib/python3.12/site-packages/torch/_meta_registrations.py:51 :: (none) [ boxed ]\nAutograd[alias]: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/VariableType_2.cpp:20339 :: (none) [ boxed ]\n"
+    },
+    {
+      "name": "aten::_weight_int4pack_mm_for_cpu",
+      "CUDA": false,
+      "CPU": true,
+      "registration": "name: aten::_weight_int4pack_mm_for_cpu\nschema: aten::_weight_int4pack_mm_for_cpu(Tensor self, Tensor mat2, int qGroupSize, Tensor qScaleAndZeros) -> Tensor\ndebug: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterSchema.cpp:6\nalias analysis kind: FROM_SCHEMA\nTracer: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/TraceType_3.cpp:15269 :: (Tensor _0, Tensor _1, int _2, Tensor _3) -> Tensor _0 [ boxed unboxed ]\nCPU: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCPU_1.cpp:3570 :: (Tensor _0, Tensor _1, int _2, Tensor _3) -> Tensor _0 [ boxed unboxed ]\nMeta: registered at /usr/local/lib/python3.12/site-packages/torch/_meta_registrations.py:51 :: (none) [ boxed ]\nAutograd[alias]: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/VariableType_3.cpp:19895 :: (none) [ boxed ]\n"
+    },
+    {
+      "name": "aten::_weight_int4pack_mm_with_scales_and_zeros",
+      "CUDA": false,
+      "CPU": false,
+      "registration": "name: aten::_weight_int4pack_mm_with_scales_and_zeros\nschema: aten::_weight_int4pack_mm_with_scales_and_zeros(Tensor self, Tensor mat2, int qGroupSize, Tensor qScale, Tensor qZeros) -> Tensor\ndebug: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterSchema.cpp:6\nalias analysis kind: FROM_SCHEMA\nTracer: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/TraceType_2.cpp:18122 :: (Tensor _0, Tensor _1, int _2, Tensor _3, Tensor _4) -> Tensor _0 [ boxed unboxed ]\nMeta: registered at /usr/local/lib/python3.12/site-packages/torch/_meta_registrations.py:51 :: (none) [ boxed ]\nAutograd[alias]: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/VariableType_2.cpp:20339 :: (none) [ boxed ]\n"
+    },
+    {
+      "name": "aten::_weight_int8pack_mm",
+      "CUDA": true,
+      "CPU": true,
+      "registration": "name: aten::_weight_int8pack_mm\nschema: aten::_weight_int8pack_mm(Tensor self, Tensor mat2, Tensor scales) -> Tensor\ndebug: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterSchema.cpp:6\nalias analysis kind: FROM_SCHEMA\nTracer: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/TraceType_1.cpp:16771 :: (Tensor _0, Tensor _1, Tensor _2) -> Tensor _0 [ boxed unboxed ]\nCPU: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCPU_1.cpp:3593 :: (Tensor _0, Tensor _1, Tensor _2) -> Tensor _0 [ boxed unboxed ]\nCUDA: registered at /home/corex/sw_home/apps/pytorch/build/aten/src/ATen/RegisterCUDA_0.cpp:16371 :: (Tensor _0, Tensor _1, Tensor _2) -> Tensor _0 [ boxed unboxed ]\nMeta: registered at /usr/local/lib/python3.12/site-packages/torch/_meta_registrations.py:51 :: (none) [ boxed ]\nAutograd[alias]: registered at /home/corex/sw_home/apps/pytorch/torch/csrc/autograd/generated/VariableType_1.cpp:17226 :: (none) [ boxed ]\n"
+    }
+  ],
+  "GPU_functionality_not_tested": true,
+  "performance_not_tested": true,
+  "not_a_model_candidate": true
+}
