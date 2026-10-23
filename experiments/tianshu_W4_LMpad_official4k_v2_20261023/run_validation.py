@@ -74,7 +74,7 @@ def main():
         command, environment, profile, sources = prepare(root, args.screen_root.resolve(), batch=args.batch, scope=args.down_scope)
         state.update(server_command=command, profile_environment=profile, frozen_sources=sources)
         state["controller_sources"] = read(root / "controller_sources.json")
-        state["final_profile_kind"] = "r3_plus_M64_Down_LM_RTNg128_W4_dotsaddz"
+        state["final_profile_kind"] = "r3_plus_Down64_W4_LM1to64_W4_direct1_2_and_pad32_64"
         state["quality_batch"]=args.batch
         state["down_mode"]="candidate";state["down_scope"]=args.down_scope
         state["attention_mode"]="candidate"
