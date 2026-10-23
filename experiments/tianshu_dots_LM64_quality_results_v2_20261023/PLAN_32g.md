@@ -1,0 +1,5 @@
+# 同934模型完整双质量独立CPU复核v2
+
+原GPU C64 105题全部完成101正确，原controller因继承Down的LM64 INT8期望而audit_failed，原文件和95GPU控制器不改。单独CPU校正明确要求实际W4A16、真实LM64调用和旧W8为空，所有其他Down/GU/KV/attention/scheduler/sampling/LM8原审计完整保留。该校正仅CPU、没有重新生成C64题目；本完整门禁必须显式标识原失败及单独校正来源SHA。
+
+本verifier重新读取全部105reviews/predictions/report/raw和checkpoint SHA、934来源/95实际GPU控制器与全部快照，重算所有profile和accuracy字段，C64核对独立CPU_recovery_complete及原failed result SHA，C8必须新鲜原版本正常complete。除明确校正元数据外所有计算字段逐字相同。全部cap/errors完整分母，严格>95%。没有模型代码改动、不造父记录、未开始吞吐。可--batches64先输出部分核验，但完整model_quality_qualified必须同时C8/C64通过。
