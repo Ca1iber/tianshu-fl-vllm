@@ -1,0 +1,10 @@
+# SPDX-License-Identifier: Apache-2.0
+import ast,json,sys
+from pathlib import Path
+from quality_profile import BASE,HOLDOUT,prepare,read,digest,short,normalized_environment
+for p in BASE.glob('*.py'):ast.parse(p.read_text())
+root=Path('/workspace/benchmark-results/20261023_LM_pad64_official4k_CPU_tianshu');assert not root.exists();root.mkdir();cmd,env,profile,sources=prepare(root,HOLDOUT,batch=8,scope='prefill',check_screen=False,check_quality=True);assert len(sources)==925 and len(cmd)==13 and len(profile)==62 and len({**profile,'TRITON_CACHE_DIR':env['TRITON_CACHE_DIR']})==63
+quality=short.quality_gate('prefill',sources);arm=quality['arms']['64'];q64=read(Path(arm['quality_root'])/'accuracy_audit.json');a=normalized_environment(q64['profile_environment'],Path(arm['raw_root']));b=normalized_environment(profile,root);diff=sorted(k for k in a if a[k]!=b[k]);assert diff==['TIANSHU_FUTURE_KV_MODE'] and a['TIANSHU_FUTURE_KV_MODE']=='control' and b['TIANSHU_FUTURE_KV_MODE']=='candidate'
+wrong=normalized_environment(q64['profile_environment'],Path(arm['quality_root']));wrong_diff=sorted(k for k in wrong if wrong[k]!=b[k]);assert len(wrong_diff)>1,'Negative control must detect original raw/CPU-recovery-root mismatch'
+assert not any(n.split('.')[0] in ('torch','triton','vllm','flag_gems') for n in sys.modules)
+gate=dict(complete=True,CPU_only=True,model_not_started=True,source_count=925,original13argv=True,environment_count=63,C64_original_failure_recovery_recorded=True,C8_correct=quality['C8_correct'],C64_correct=quality['C64_correct'],same925_source_dual_quality_checked=True,runtime_requires_positive_short=True,C64_original_raw_environment_root_verified=arm['raw_root'],C64_CPU_recovery_result_root=arm['quality_root'],normalized_environment_differences=diff,wrong_recovery_directory_negative_control_differences=wrong_diff,controller_sources=read(root/'controller_sources.json'));(BASE/'CPU_GATE_32g.json').write_text(json.dumps(gate,indent=2)+'\n');print(json.dumps({k:v for k,v in gate.items() if k!='controller_sources'}))
