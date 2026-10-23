@@ -5,3 +5,9 @@ r3对照三轮完整通过后、候选启动前，GPU空闲时，将221个未冻
 925项模型输入、r3严格384缓存文件及新LM16缓存文件整理前后SHA均通过；这些文件均未更改或删除。源码、checkpoint、生成源、原评测结果和冻结cache保留。暂停的仅为外层Bash1807，对照GPU子进程与全部计时轮照常结束；整理完成才SIGCONT外层，候选随后独立启动。缓存变化只影响重新启动，计时期间未执行存储整理。
 
 关键数值见KEY_STORAGE_32g.json；完整归档文件清单、SHA、磁盘前后输出、严格cache核验日志和时间记录仅在容器/workspace/benchmark-results/20261023_storage_between_LM_arms_tianshu。脚本在执行前已提交06d917f。
+
+## 后续不可变快照去重
+
+所有GPU与旧控制器结束后，独立CPU对1611个snapshot目录的256555个文件核对完整SHA，将其中90950个与其他snapshot字节/大小/权限/属主一致的副本共享inode；另外161918个已共享。只以snapshot副本为链接目标，不链接实时源码、checkpoint或任意其他原始数据。全部原路径保留，完成后按清单对所有最终inode重新读文件校验，所有字节一致。额外925模型源、384严格cache、16新LMcache前后SHA再次通过。
+
+净释放4167680000字节（约3.88GiB），可用空间由1112510464升至5280190464字节，耗时102.17秒。关键Gate见SNAPSHOT_DEDUP_GATE_32g.json；完整逐文件gzip清单与原Gate留容器/workspace/benchmark-results/20261023_snapshot_dedup_CPU_tianshu，不上传重复源码快照或大清单。GPU全程空闲，不影响任何计时轮。
