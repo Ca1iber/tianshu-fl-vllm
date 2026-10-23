@@ -1,4 +1,4 @@
-# 2026-10-23 Tianshu量化进展（北京时间16:03更新）
+# 2026-10-23 Tianshu量化进展（北京时间16:26更新）
 
 正式最佳仍是r3：4K 5950.75 total /1190.15 output tok/s、TTFT3174.58ms。以下均为组件结果或候选，不是新的正式分数。
 
@@ -28,3 +28,5 @@ v2原始状态目录：`/workspace/benchmark-results/20261023_dots_Down64_v2_mat
 下一步已准备并冻结e74e039短4K控制器 `experiments/tianshu_dots_Down64_short4k_v2_20261023`，CPU预检确认精确903来源r3对916来源新W4、13官方argv/63环境仅入口不同。真实GPU执行强制要求独立完整C8/C64 QUALITY_GATE合格；每臂N64x3/exclude1，筛选>0.5%收益、candidate spread<1%、TTFT<=1.01。当前未运行短4K。新鲜质量全部完成后运行独立结果目录的verify_cpu.py生成完整QUALITY_GATE，再执行run_pair.sh；不在已执行目录修改任何来源。
 
 CPU另发现G32非对称minmax的3层3fixture平均投影误差7.70%（当前G128对称12.53%）；新group/参数未GPU或模型测试，保持独立候选，不混入当前模型。仅代码、关键误差表与CPU门禁入GitHub。
+
+16:26更新：完整新鲜质量两轮全部结束，C8 102/105=97.14%、C64 103/105=98.10%。独立CPU已核对全部210题、来源/控制器快照与SHA、完整profile和accuracy审计，model_quality_qualified=true。两轮各有1个max_tokens，均保留官方review结果和105分母。新W4捕获42、旧Down M64 BF16捕获0，实际内存探针通过。准备执行已冻结e74e039短4K同场对照；吞吐结果尚无更新，正式最佳仍r3。
