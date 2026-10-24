@@ -1,0 +1,90 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "declared_grid_verified": true,
+  "all_sources_snapshots_and_compiled_IR_ASM_verified": true,
+  "all_runtime_numerical_and_changed_data_guards_verified": true,
+  "full_GPU_FP32_cells": 2359296,
+  "selected_CPU_FP64_scalars": 27648,
+  "independent_primitive_counts": {
+    "quantized_elements": 5120,
+    "integer_outputs": 20480,
+    "FP32_output_words": 20480
+  },
+  "independent_writer_counts": {
+    "V_integer_elements": 196608,
+    "V_scale_words": 1536,
+    "K_scale_words": 1536
+  },
+  "qualified_fixed_configs_5percent_both_lengths": [],
+  "best_candidate_by_case": {
+    "decode64_4096": {
+      "case": "decode64_4096",
+      "label": "STRICT_INT8_S4_T32_W1",
+      "segments": 4,
+      "tile": 32,
+      "warps": 1,
+      "median_ms": 1.2174406051635742,
+      "time_reduction_percent": -107.82591566355286,
+      "trial_spread_percent": 0.5514582332938304,
+      "n_regs": 254,
+      "n_spills": 0
+    },
+    "decode64_5120": {
+      "case": "decode64_5120",
+      "label": "STRICT_INT8_S4_T32_W1",
+      "segments": 4,
+      "tile": 32,
+      "warps": 1,
+      "median_ms": 1.5148743629455566,
+      "time_reduction_percent": -109.11653363271677,
+      "trial_spread_percent": 0.3641764175624371,
+      "n_regs": 254,
+      "n_spills": 0
+    },
+    "decode64_ragged_strided": {
+      "case": "decode64_ragged_strided",
+      "label": "STRICT_INT8_S4_T32_W1",
+      "segments": 4,
+      "tile": 32,
+      "warps": 1,
+      "median_ms": 1.0916657447814941,
+      "time_reduction_percent": -89.27323078820766,
+      "trial_spread_percent": 0.7451245725387987,
+      "n_regs": 254,
+      "n_spills": 0
+    }
+  },
+  "model_or_service_qualified": false,
+  "adopted": false,
+  "raw_root": "/workspace/benchmark-results/20261024_INT8_PV_row_recip_tianshu",
+  "compiled_files": {
+    "/workspace/benchmark-results/20261024_INT8_PV_row_recip_tianshu/codegen/control/5cf4772e2db11699/kernel_unified_attention.ttir": "c62ff50590d2293cbaa8121ca58abcae7f19d91295e26343c2ff1590788e803e",
+    "/workspace/benchmark-results/20261024_INT8_PV_row_recip_tianshu/codegen/control/5cf4772e2db11699/kernel_unified_attention.ttgir": "0ad26a4a912e7bb6d4b966d382c6d62ba97f7bfa50fbab6c1203931fdb703248",
+    "/workspace/benchmark-results/20261024_INT8_PV_row_recip_tianshu/codegen/control/5cf4772e2db11699/kernel_unified_attention.llir": "b39ed8c6db20ad984539230e0f8f5f5d00f65b09701e10ecb3e967459bb47dde",
+    "/workspace/benchmark-results/20261024_INT8_PV_row_recip_tianshu/codegen/control/5cf4772e2db11699/kernel_unified_attention.asm": "0bb3f6fedf4cab5886ae781bab354c5d057f22dc3511d75c78dc664941402194",
+    "/workspace/benchmark-results/20261024_INT8_PV_row_recip_tianshu/codegen/control/72c6e8bc8d2c1166/kernel_unified_attention.ttir": "0ce3eb46cae288a6fe21ad9cb3f463548dcd92012c38ac6e5d3cc8a1b37fa2aa",
+    "/workspace/benchmark-results/20261024_INT8_PV_row_recip_tianshu/codegen/control/72c6e8bc8d2c1166/kernel_unified_attention.ttgir": "bbf43905fc6deca64f3e566d9f5a6a9926a804f3717755bc2908fbac96456d20",
+    "/workspace/benchmark-results/20261024_INT8_PV_row_recip_tianshu/codegen/control/72c6e8bc8d2c1166/kernel_unified_attention.llir": "b39ed8c6db20ad984539230e0f8f5f5d00f65b09701e10ecb3e967459bb47dde",
+    "/workspace/benchmark-results/20261024_INT8_PV_row_recip_tianshu/codegen/control/72c6e8bc8d2c1166/kernel_unified_attention.asm": "0bb3f6fedf4cab5886ae781bab354c5d057f22dc3511d75c78dc664941402194",
+    "/workspace/benchmark-results/20261024_INT8_PV_row_recip_tianshu/codegen/STRICT_INT8_S4_T32_W1/2da575eff66271df/kernel_unified_attention.ttir": "f5e5b030fdbcda4b16b56edbd6d9420b56b7c4b26edadae81dff4b63da235963",
+    "/workspace/benchmark-results/20261024_INT8_PV_row_recip_tianshu/codegen/STRICT_INT8_S4_T32_W1/2da575eff66271df/kernel_unified_attention.ttgir": "59d3f1471233c797c721e99a9928d905596224db2f8bbeec4ff29dc4621b40ba",
+    "/workspace/benchmark-results/20261024_INT8_PV_row_recip_tianshu/codegen/STRICT_INT8_S4_T32_W1/2da575eff66271df/kernel_unified_attention.llir": "780e219ba2149865f2f32dff9773481b47690bdbf5ca7f8f28cbb2fd52218c9b",
+    "/workspace/benchmark-results/20261024_INT8_PV_row_recip_tianshu/codegen/STRICT_INT8_S4_T32_W1/2da575eff66271df/kernel_unified_attention.asm": "7215d628bf6a56b386db829940f7f86cc1b844218360412e3a49acd60ea22300",
+    "/workspace/benchmark-results/20261024_INT8_PV_row_recip_tianshu/codegen/STRICT_INT8_S4_T32_W1/c1e0e9e521ab5f21/kernel_unified_attention.ttir": "e06e3afa22432199cc6e1dcea0a00f3761e511cc33624c1ee49ae76e6c897188",
+    "/workspace/benchmark-results/20261024_INT8_PV_row_recip_tianshu/codegen/STRICT_INT8_S4_T32_W1/c1e0e9e521ab5f21/kernel_unified_attention.ttgir": "9cff57c3e7b6c39f40dd33c858c97e944e3d7b25363c1273c843c14e43258293",
+    "/workspace/benchmark-results/20261024_INT8_PV_row_recip_tianshu/codegen/STRICT_INT8_S4_T32_W1/c1e0e9e521ab5f21/kernel_unified_attention.llir": "780e219ba2149865f2f32dff9773481b47690bdbf5ca7f8f28cbb2fd52218c9b",
+    "/workspace/benchmark-results/20261024_INT8_PV_row_recip_tianshu/codegen/STRICT_INT8_S4_T32_W1/c1e0e9e521ab5f21/kernel_unified_attention.asm": "7215d628bf6a56b386db829940f7f86cc1b844218360412e3a49acd60ea22300",
+    "/workspace/benchmark-results/20261024_INT8_PV_row_recip_tianshu/codegen/ROW_RECIP_INT8_S4_T32_W1/69fe478353aa076a/kernel_unified_attention.ttir": "d3c7132efbaf968bd74fe8bc1d541354088a2a62418f9989bdf83818bdf67b18",
+    "/workspace/benchmark-results/20261024_INT8_PV_row_recip_tianshu/codegen/ROW_RECIP_INT8_S4_T32_W1/69fe478353aa076a/kernel_unified_attention.ttgir": "b708c56b245e7b3d8ea2da3761c875731228f8d25880cb2bb3d1109d5f126ea3",
+    "/workspace/benchmark-results/20261024_INT8_PV_row_recip_tianshu/codegen/ROW_RECIP_INT8_S4_T32_W1/69fe478353aa076a/kernel_unified_attention.llir": "6707616a5e270f28ef500a1c3ced2434a5331ee79d7267f65adcaf51140309af",
+    "/workspace/benchmark-results/20261024_INT8_PV_row_recip_tianshu/codegen/ROW_RECIP_INT8_S4_T32_W1/69fe478353aa076a/kernel_unified_attention.asm": "abd74a59cc9823c6dfee6fd3d8683637cad4869bf9c3a61828fb3665a163c676",
+    "/workspace/benchmark-results/20261024_INT8_PV_row_recip_tianshu/codegen/ROW_RECIP_INT8_S4_T32_W1/21f643500f050bc0/kernel_unified_attention.ttir": "a6d1e333da8606d6a2fe191f553e1186c35ba50c72667300c302ff48c84d54c6",
+    "/workspace/benchmark-results/20261024_INT8_PV_row_recip_tianshu/codegen/ROW_RECIP_INT8_S4_T32_W1/21f643500f050bc0/kernel_unified_attention.ttgir": "af284a1d064c6e8f5bbb33c6062b2c3ea9d063c658d6b4a9fdb4e4d49f371396",
+    "/workspace/benchmark-results/20261024_INT8_PV_row_recip_tianshu/codegen/ROW_RECIP_INT8_S4_T32_W1/21f643500f050bc0/kernel_unified_attention.llir": "6707616a5e270f28ef500a1c3ced2434a5331ee79d7267f65adcaf51140309af",
+    "/workspace/benchmark-results/20261024_INT8_PV_row_recip_tianshu/codegen/ROW_RECIP_INT8_S4_T32_W1/21f643500f050bc0/kernel_unified_attention.asm": "abd74a59cc9823c6dfee6fd3d8683637cad4869bf9c3a61828fb3665a163c676"
+  },
+  "result_sha256": "a6e611848620429c5de62c536e03a1040b362f2a681755b8ecc1e8156b00755e",
+  "verifier_sha256": "ce5b4f782037d9bef0f40f49b5792262a62d112c905cd25640a3ab050d21b2fd",
+  "offline_scope": "Source/codegen snapshots, runtime reference records and event arithmetic; no full-tensor offline attention recomputation"
+}
