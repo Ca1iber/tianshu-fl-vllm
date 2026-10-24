@@ -1,0 +1,7 @@
+# 保留旧缓存全部字节，为后续评测腾出持久盘
+
+C8 Math正在运行、尚未进入正式吞吐测量时，将两份旧vLLM缓存8d2fa4b379和bc470218a3迁到/dev/shm/tianshu_BM8_capacity_vllm_cache_20261024，原路径保留符号链接。当前r5禁用vLLM编译缓存；两个旧目录不属于新组合1033冻结源，也不属于384份认证二进制缓存。先核验无目录内符号链接，逐文件SHA记录，再创建持久xz备份并tar逐文件比较；解到SHM再次比较。改原路径为链接后，全部旧文件、1033冻结源和384认证缓存前后检查均通过，最后才删除临时改名的原物理副本。
+
+generated Python、AOT数据和其他字节在原路径仍完全存在，且持久备份已经验证。没有删除模型、SDK、FlagGems、源码或认证缓存。恢复时先核验PERSISTENT_BACKUP.sha256，移除这两个已知链接，将备份解回/root/.cache/vllm/torch_compile_cache，再核验CACHE_FILES.sha256。当前服务与原发布版完全不依赖这些旧目录；正式吞吐期间不再做归档或搬迁。
+
+最初选用的QKV64旧发布目录缺少QUALIFIED_RELEASE.sha256，预检查已在任何搬迁前退出。最终使用实际存在的attention_prefill发布清单及其384文件缓存清单执行只读--check；没有补写或更改旧发布目录。
