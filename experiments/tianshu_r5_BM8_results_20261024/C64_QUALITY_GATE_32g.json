@@ -1,0 +1,57 @@
+{
+  "complete": true,
+  "batch": 64,
+  "correct": 103,
+  "total": 105,
+  "accuracy": 0.9809523809523809,
+  "this_batch_above95": true,
+  "all105_and_caps_counted": true,
+  "request_errors": 0,
+  "stop_reasons": {
+    "stop": 104,
+    "max_tokens": 1
+  },
+  "incorrect_indices": [
+    87,
+    18
+  ],
+  "source_count": 1023,
+  "environment_count": 67,
+  "original_serve_command": [
+    "vllm",
+    "serve",
+    "/workspace/MiniCPM5-2B",
+    "--port",
+    "9031",
+    "--compilation-config",
+    "{\"cudagraph_mode\": \"FULL_DECODE_ONLY\"}",
+    "--served-model-name",
+    "minicpm",
+    "--gpu-memory-utilization",
+    "0.85",
+    "--max-model-len",
+    "131072"
+  ],
+  "profile": {
+    "complete": true,
+    "additional_payload_bytes": 210567168,
+    "all84_original_and_packed_weight_hashes_verified": true,
+    "QKVO64_capture_banks": 84,
+    "actual_FULL64_replays": 1835,
+    "physical_KV_blocks": 36291,
+    "model_memory_usage_bytes": 8019504640,
+    "model_unique_storage_bytes": 7953341088
+  },
+  "raw_root": "/dev/shm/tianshu_r5_BM8_runs_20261024/math64",
+  "raw_files": {
+    "/dev/shm/tianshu_r5_BM8_runs_20261024/math64/result.json": "5b745317b083a72e13712810903ab14c01671387f717fb648ba98a5092a98d85",
+    "/dev/shm/tianshu_r5_BM8_runs_20261024/math64/accuracy_audit.json": "94f235eb590ebbd40c79139afbb7f08ca54d12069ee1fb0382ad75840243e23d",
+    "/dev/shm/tianshu_r5_BM8_runs_20261024/math64/profile_audit.json": "c4537d8eb64be5e4c1e9f4201ce98941fd3d7515ff2f401cf54c7dc0a8bd72ed",
+    "/dev/shm/tianshu_r5_BM8_runs_20261024/math64/evalscope/20261024_171716/reviews/minicpm/math_500_Level 3.jsonl": "80fe194c292044c1f65b7070d788614b3a74d65e9b0efe9ee643e4e2c17c0db1",
+    "/dev/shm/tianshu_r5_BM8_runs_20261024/math64/evalscope/20261024_171716/predictions/minicpm/math_500_Level 3.jsonl": "88f6570fc105ad39495951200060cca20ef73bda5029f5417097d310d645e268",
+    "/dev/shm/tianshu_r5_BM8_runs_20261024/math64/evalscope/20261024_171716/reports/minicpm/math_500.json": "f4de27a6f4d8f7d64ec05513ec632321ae60c45c9ea569d2d6b792a14f83b38d"
+  },
+  "collector_source_sha256": "0d126ee9e292dadc0c384ba27fd2082109b8ba3d36815d21d8ff7d52034509df",
+  "official_benchmark": false,
+  "adopted": false
+}
