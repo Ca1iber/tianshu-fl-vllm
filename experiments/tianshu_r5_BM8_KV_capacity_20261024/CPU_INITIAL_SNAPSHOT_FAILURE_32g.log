@@ -1,0 +1,37 @@
+INFO 10-24 20:51:55 [__init__.py:44] Available plugins for group vllm.platform_plugins:
+INFO 10-24 20:51:55 [__init__.py:46] - fl -> vllm_fl:register
+INFO 10-24 20:51:55 [__init__.py:58] Loading plugin fl
+/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py:728: DeprecationWarning: use_cuda_graph is deprecated; use benchmark_mode='replay' or benchmark_mode='event'
+  super().__init__(*args, **kwargs)
+/usr/local/lib/python3.12/site-packages/flag_gems/utils/libentry.py:411: RuntimeWarning: active Triton backend does not provide a replay benchmarker; falling back to event timing
+  resolved_benchmark = resolve_benchmarker(
+INFO 10-24 20:52:02 [__init__.py:237] Platform plugin fl is activated
+WARNING 10-24 20:52:06 [interface.py:358] Failed to import from vllm._C: ModuleNotFoundError("No module named 'vllm._C'")
+/usr/local/lib/python3.12/site-packages/torch/jit/_script.py:362: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+WARNING 10-24 20:52:07 [interface.py:358] Failed to import from vllm._C: ModuleNotFoundError("No module named 'vllm._C'")
+WARNING 10-24 20:52:07 [interface.py:358] Failed to import from vllm._C: ModuleNotFoundError("No module named 'vllm._C'")
+WARNING 10-24 20:52:07 [interface.py:358] Failed to import from vllm._C: ModuleNotFoundError("No module named 'vllm._C'")
+[2026-10-24 20:52:07] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.iluvatar] patch_sampler_compile_for_iluvatar: unwrapped topk_topp_sampler.compiled_random_sample
+[2026-10-24 20:52:07] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.iluvatar] patch_sampler_compile_for_iluvatar: unwrapped logprobs.batched_count_greater_than
+[2026-10-24 20:52:07] [INFO] [vllm_fl.dispatch.backends.vendor.iluvatar.iluvatar] patch_torch_inductor_for_iluvatar: backend '['iluvatar']' already supports target='cuda', no GPUTarget remap needed.
+INFO 10-24 20:52:07 [model.py:598] Resolved architecture: LlamaForCausalLM
+INFO 10-24 20:52:07 [model.py:1725] Using max model len 131072
+INFO 10-24 20:52:07 [scheduler.py:252] Chunked prefill is enabled with max_num_batched_tokens=4096.
+INFO 10-24 20:52:07 [vllm.py:1006] Asynchronous scheduling is enabled.
+INFO 10-24 20:52:07 [kernel.py:276] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+INFO 10-24 20:52:07 [kv_cache_utils.py:2084] Overriding num_gpu_blocks=36283 with num_gpu_blocks_override=36096
+INFO 10-24 20:52:07 [kv_cache_utils.py:2146] GPU KV cache size: 577,536 tokens
+INFO 10-24 20:52:07 [kv_cache_utils.py:2147] Maximum concurrency for 131,072 tokens per request: 4.41x
+INFO 10-24 20:52:07 [kv_cache_utils.py:2084] Overriding num_gpu_blocks=36291 with num_gpu_blocks_override=36096
+Traceback (most recent call last):
+  File "/workspace/vllm-plugin-FL/experiments/tianshu_r5_BM8_KV_capacity_20261024/check_cpu.py", line 36, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/workspace/vllm-plugin-FL/experiments/tianshu_r5_BM8_KV_capacity_20261024/check_cpu.py", line 25, in main
+    command,env,profile,sources=prepare(root,'candidate',check_gate=False)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/vllm-plugin-FL/experiments/tianshu_r5_BM8_KV_capacity_20261024/candidate_profile.py", line 26, in prepare
+    assert not target.is_symlink() and digest(target)==h
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
