@@ -1,0 +1,90 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "created_utc": "2026-10-24T07:51:49.301656+00:00",
+  "exact_inverse_helper_edit_proof": true,
+  "source_scope_proofs": {
+    "strict": {
+      "parent": {
+        "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+        "generated_sha256": "111b12dc78c67e32efd3dc45d086c72e0e8749c7bac0d67c0fc2a893d360e6df",
+        "all_edits_inverse_restore_exact_parent": true,
+        "native_QK_and_online_softmax_unchanged": true,
+        "public_API_and_reducer_AST_unchanged": true,
+        "current_unpaired_K_load_preserved": true,
+        "page_table_tails_masked_for_both_dynamic_V8_paths": true,
+        "requires_fresh_model_quality": true
+      },
+      "variant": "strict",
+      "helper_import_only_changed": true,
+      "generated_sha256": "111b12dc78c67e32efd3dc45d086c72e0e8749c7bac0d67c0fc2a893d360e6df"
+    },
+    "row_recip": {
+      "parent": {
+        "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+        "generated_sha256": "111b12dc78c67e32efd3dc45d086c72e0e8749c7bac0d67c0fc2a893d360e6df",
+        "all_edits_inverse_restore_exact_parent": true,
+        "native_QK_and_online_softmax_unchanged": true,
+        "public_API_and_reducer_AST_unchanged": true,
+        "current_unpaired_K_load_preserved": true,
+        "page_table_tails_masked_for_both_dynamic_V8_paths": true,
+        "requires_fresh_model_quality": true
+      },
+      "variant": "row_recip",
+      "helper_import_only_changed": true,
+      "generated_sha256": "663c3730e9812fc399fa024bce9460452d52ee185b1ac6d46a00c7746c21c874"
+    }
+  },
+  "scales_preserved_exact_formula": true,
+  "rounding_contract_explicitly_changed": true,
+  "CPU_boundary_neighbors_checked": 2681,
+  "CPU_codes_differing_from_strict": 35,
+  "quantization_error_bound": ".5001scale; independent real residual",
+  "declared_grid": [
+    {
+      "label": "STRICT_INT8_S4_T32_W1",
+      "segments": 4,
+      "TILE_SIZE": 32,
+      "num_warps": 1,
+      "PV_INT8": true,
+      "variant": "strict"
+    },
+    {
+      "label": "ROW_RECIP_INT8_S4_T32_W1",
+      "segments": 4,
+      "TILE_SIZE": 32,
+      "num_warps": 1,
+      "PV_INT8": true,
+      "variant": "row_recip"
+    }
+  ],
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_INT8_PV_attention_20261024/codec.py": "50f27d5724f0ab3530551af95b87f8006e17b62fb2bcf3bb87a4bbcb3d15d6ad",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_dense_w8a8_20261020/kernel.py": "b9b692cf561a35ef9c38d05d1edf7aa804436728923efa4800f914ff6b656152",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_heads_v2_20261021/layout.py": "d1b0a926e7883b1de41448465b1b06163db66668600991760f4fe2afdfa799a2",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_soft8_mixed_planes_20261019/writer.py": "27a74d3bdfee978780044eb69025c10a21d92a1b0a8cf567ee9fea1e0b8d12b5",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_INT8_PV_row_recip_20261024/PLAN_32g.md": "120b8ccb2f2a7749dec470fa4428d32643d4f38ec04b9d7cbb59b53cefb64cc2",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_INT8_PV_row_recip_20261024/probe_gpu.py": "9863a4fdaa217b50ae3262b09ea9ca64afd3cfd01d6f2b751d95d5131e1f5ad5",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_INT8_PV_row_recip_20261024/failure_evidence.py": "d6bf7bdb33bc76a984242ae9b1dc0023af3186efc7138fbed89085d257a23aee",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_pv_int8_20261021/PRIMITIVE_GPU_GATE_32g.json": "7622f7b32a770dcc14c7cde639e1e0405ea7af3ca847a4ccc29af7c852c807d2",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_heads_v2_20261021/GPU_GATE_32g.json": "bdaad93fe8b373a584391d7329acd06a05ba646eac65df23dadede6c547b4b25",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_INT8_PV_row_recip_20261024/codec.py": "7ea94b3fd72d857a7ca00831ad4db69d192b832f988c397be3d994164f2f9920",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_INT8_PV_row_recip_20261024/launch_sweep.py": "9bc2598c69704ecdd641e471f0c931f8e69a8f02eb554eed9144bf6ece7d9d57",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_INT8_PV_row_recip_20261024/domain_cpu.py": "6d70829f4002174f2b2c04db60672ebf23a9063d88c7ca12c3a412c514b370f4",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_heads_v2_20261021/reference_quantize.py": "032b9bfa9abd451a60b0bd809185994b0f94dadfe7c894baadbb85b265fd2633",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_INT8_PV_row_recip_20261024/verify_gpu_cpu.py": "ce5b4f782037d9bef0f40f49b5792262a62d112c905cd25640a3ab050d21b2fd",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/qualified_S16_reader.py": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_pv_int8_20261021/kernel_pv.py": "5ab90568743e73c3943b7e3b406a8a5a0c62d5c0965c48b23908a1615a44a214",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8vi8_heads_v2_20261021/writer.py": "49565b1105a0eaa3b68364499d857cf481227af2612f7bdf52c32eb3020802f2",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_V_e5m2_launch_sweep_20261024/launch_sweep.py": "ef7601ba4f06a53b37f67063f1a1cf11438b337e94c2195259c1158ce501b1c1",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_INT8_PV_row_recip_20261024/domain_gpu.py": "e9728018e0297a2776e6de0ae8e07974cde993991a2890d92040b6f0aee1ea17",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_INT8_PV_row_recip_20261024/component_launch.py": "e3218378a78fe0713564b1a005ba87a2e74f25e008cd41adcc5d4b00098b621f",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_INT8_PV_row_recip_20261024/kernel_pv_recip.py": "85fb93d2dd36c08f22ce06bada405c75f685fc1f1f50dfc0864491a754611801",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_INT8_PV_row_recip_20261024/check_cpu.py": "c23991c06b4fd15a69c10584ed709e07d8503326077dce00152cd642dd937bc2",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_INT8_PV_attention_20261024/CPU_GATE_32g.json": "23f6ce5de1a0cf4e1733a40aca5475689dd45cf12c8f28d8279effd2ecf0b936"
+  },
+  "GPU_component_not_run": true,
+  "model_or_service_qualified": false,
+  "adopted": false,
+  "raw_root": "/dev/shm/tianshu_INT8_PV_row_recip_CPU_20261024"
+}
