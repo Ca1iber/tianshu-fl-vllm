@@ -1,0 +1,69 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_native_dotsaddz_down42_20261023/INDEPENDENT_CPU_GATE_32g.json": "34f1dea8fe9b4725d82ac06bbbeda78d945fc2531c8c0c6bf567b3f20e4a9597",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_native_dotsaddz_down42_20261023/CPU_GATE_32g.json": "3fed4dd6bdbdbf11f0696442aca7a3daac964fe2bd2abaa521cb45c913672d58",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_native_W4_FP16_capability_20261024/prepare_cpu.py": "84fc39272c3d18a48cc1c680bdc49d07d77da4d1856f2dec606196f6f775d19b",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_native_W4_FP16_capability_20261024/verify_cpu.py": "ea04e195a9cac7c15125cc8c4d90b310f91d42aa91e2704f8011b8953c81cd64",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_native_W4_FP16_capability_20261024/PLAN_32g.md": "2bdf8cbe72bb97a256854c46f02cd9d732beb3a08bfb6ce70522db097a9fc598",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_native_W4_FP16_capability_20261024/common.py": "c0864fe58265b0dfcdde6a76acdccc2cc11105ca38641ffa6d43111e9e597af4",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_native_dotsaddz_down42_20261023/common.py": "89490e0b9844a1ab759a7c51425c250d7812af48b027317216f77eb08f2fdc31",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_native_W4_FP16_capability_20261024/probe_gpu.py": "27a7ac3f8a1e8668cf12cf14a6071fe86010ac377f5975d0e9b409ab30e59815"
+  },
+  "libraries": {
+    "/usr/local/corex-4.5.0/lib64/libcuinfer.so.7": "a087590aa1864bb85ab319eda83403af8d147952270c34af3c00a6f072914f98",
+    "/usr/local/corex-4.5.0/lib64/libcuinfer_blas.so": "84f6d29782d838e7a941d9e0f968bdede5cf561ef32d69c4456796223da3d176",
+    "/usr/local/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so": "6c03712a0845a1a7da526fa52c02d9e6c00c80e48f527dcf0c0f97c83b1bb755"
+  },
+  "files": {
+    "/workspace/benchmark-results/20261023_native_dotsaddz_down42_CPU_tianshu/layer00.npz": "f89c005e8a2d17fcadb32992fc093c4de653ae50f6ee7714439a8647f55e3b78",
+    "/dev/shm/tianshu_native_W4_FP16_capability_20261024/cpu/reference_phase0.npz": "9c0b7171a7961ee313ea0f80a633fb392f95a403be57c40ae9cf0f04365f1610",
+    "/dev/shm/tianshu_native_W4_FP16_capability_20261024/cpu/reference_phase1.npz": "702faa3f34233cff61e5a8d0ddc634e09ab58d972c285673f9278613b573fd87",
+    "/dev/shm/tianshu_native_W4_FP16_capability_20261024/cpu/reference_phase2.npz": "d8105ae5e720113d5dc2193105bac4e121f5e3ec5708abe2a9e6a7a83658ff64"
+  },
+  "bank": {
+    "layer": 0,
+    "original_sha256": "1a6e6d547d5f0ffd08fd020690ccf75323ba4dd54181617e406a84f644cee501",
+    "pack_sha256": "9abf153ef3163ddd5b1cf612afa3a9c741bcc169bb9025430ac32a98a2110528",
+    "scale_sha256": "4032cfb6502ea0e40d312eb0fba5c32f65a1c5e34dda27e3d01cb69215be3876",
+    "zero_sha256": "f6d102b7554bee5ea9c55505ad499004bc931924299a5d968e75f9f1449cc019",
+    "file": "/workspace/benchmark-results/20261023_native_dotsaddz_down42_CPU_tianshu/layer00.npz",
+    "file_sha256": "f89c005e8a2d17fcadb32992fc093c4de653ae50f6ee7714439a8647f55e3b78"
+  },
+  "references": [
+    {
+      "phase": 0,
+      "file": "/dev/shm/tianshu_native_W4_FP16_capability_20261024/cpu/reference_phase0.npz",
+      "sha256": "9c0b7171a7961ee313ea0f80a633fb392f95a403be57c40ae9cf0f04365f1610",
+      "activation_changed_cells": 44,
+      "activation_max_conversion_abs": 2.9802322387695312e-08
+    },
+    {
+      "phase": 1,
+      "file": "/dev/shm/tianshu_native_W4_FP16_capability_20261024/cpu/reference_phase1.npz",
+      "sha256": "702faa3f34233cff61e5a8d0ddc634e09ab58d972c285673f9278613b573fd87",
+      "activation_changed_cells": 152,
+      "activation_max_conversion_abs": 2.9802322387695312e-08
+    },
+    {
+      "phase": 2,
+      "file": "/dev/shm/tianshu_native_W4_FP16_capability_20261024/cpu/reference_phase2.npz",
+      "sha256": "d8105ae5e720113d5dc2193105bac4e121f5e3ec5708abe2a9e6a7a83658ff64",
+      "activation_changed_cells": 150,
+      "activation_max_conversion_abs": 2.9802322387695312e-08
+    }
+  ],
+  "shape": {
+    "M": 64,
+    "K": 6144,
+    "N": 2048,
+    "group": 128
+  },
+  "scale_conversion_exact_on_actual_bank": true,
+  "zero_conversion_exact_on_actual_bank": true,
+  "checkpoint_sha256": "14fb8e7f0a18d53d1f239773758bf581cee7e456a4523a54622c3a245b64402c",
+  "scope": "One real layer0 dtype acceptance and full FP64 reference; not performance or model qualification",
+  "model_or_service_qualified": false,
+  "adopted": false
+}
