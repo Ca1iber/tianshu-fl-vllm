@@ -1,0 +1,56 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "created_utc": "2026-10-24T07:33:51.547781+00:00",
+  "all65536_BF16_encodings_independent_rounding_passed": true,
+  "all65536_FP16_decodes_independent_real_reference_passed": true,
+  "counts": {
+    "BF16_finite": 65280,
+    "BF16_nonfinite": 256,
+    "finite_input_overflow": 28672,
+    "finite_nonzero_underflow": 26112,
+    "FP16_finite": 63488,
+    "FP16_nonfinite": 2048
+  },
+  "source_scope_proof": {
+    "reader": {
+      "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+      "generated_sha256": "cab67edd0d2ee8d1737c17b2452a824f3d4db9a267b98ae9a7864b61a6a2a67a",
+      "Q_K_score_softmax_AST_unchanged": true,
+      "reducer_AST_unchanged": true,
+      "attention_AST_only_V_helper_call_changed": true,
+      "P_cast_dtype": "FP16; explicit precision change",
+      "V_storage_dtype": "native FP16",
+      "physical_page_bytes": 12288,
+      "extra_byte_decode": false
+    },
+    "writer": {
+      "parent_sha256": "27a74d3bdfee978780044eb69025c10a21d92a1b0a8cf567ee9fea1e0b8d12b5",
+      "generated_sha256": "d0912ebb24451f1a13e64c59c5c1a4a5117ee9cc6a25436f517104c75134082d",
+      "K_encoder_slot_address_and_negative_slot_rules_unchanged": true,
+      "V_cast_only_for_FP16_destination": true,
+      "rounding": "nearest ties to even",
+      "overflow": "signed infinity; unsaturated IEEE FP16",
+      "NaN": "NaN classification; payload unspecified"
+    }
+  },
+  "no_Torch_Triton_import": true,
+  "physical_page_bytes": 12288,
+  "memory_capacity_gain_claimed": false,
+  "model_or_service_qualified": false,
+  "adopted": false,
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K8V_FP16_20261024/codec.py": "3e252bf3b4978ab78ce94e0db05f66a5d07e7af7720558506c12726dba9bfebe",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K8V_FP16_20261024/check_cpu.py": "b49cea2038483dfb8a589a94532a29b3062e3dd3d942f394f9f9533fd7860553",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K8V_FP16_20261024/probe_gpu.py": "0886c645b4eb253dab548a893fb559de9f01387c5cb8c9ac106a16305773f73e",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K8V_FP16_20261024/launch_sweep.py": "16e1b403e51f5d498a1c31b631bd73c67f376056eee50538fc0d60f52ba0a118",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K8V_FP16_20261024/verify_gpu_cpu.py": "9149ea66ee70ef490a7684cf947fcc834e05475f0aab8667235e9772f64e08ec",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K8V_FP16_20261024/component_launch.py": "da429c4978d8e88191d942cd2c51d65680cc965d20a6c63956772331b0eecdf3",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K8V_FP16_20261024/value_planes.py": "c51f20b6d49e7065257c24c8c21b0e683533cfb93087506d13b4eb5fb0d45469",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K8V_FP16_20261024/PLAN_32g.md": "d46bb6fd53bed27da5e4a7dde9c8458ca333999dc3e33c4e4afc7d3a51c942bc",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K8V_FP16_20261024/domain_gpu.py": "4f63f069cbb74d19c4a9ad5a8208fdf8941f56bda884b03ab604c57d7e498eb5",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/qualified_S16_reader.py": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_soft8_mixed_planes_20261019/writer.py": "27a74d3bdfee978780044eb69025c10a21d92a1b0a8cf567ee9fea1e0b8d12b5"
+  },
+  "raw_root": "/dev/shm/tianshu_K8V_FP16_CPU_20261024"
+}
