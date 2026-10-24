@@ -1,0 +1,95 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "quality": {
+    "8": {
+      "correct": 102,
+      "total": 105,
+      "accuracy": 0.9714285714285714,
+      "all105_counted": true,
+      "stop_reasons": {
+        "stop": 103,
+        "max_tokens": 2
+      },
+      "actual_FULL64_replays": 0,
+      "raw_root": "/workspace/benchmark-results/20261024_W4_O64_affine_math8_tianshu"
+    },
+    "64": {
+      "correct": 102,
+      "total": 105,
+      "accuracy": 0.9714285714285714,
+      "all105_counted": true,
+      "stop_reasons": {
+        "stop": 104,
+        "max_tokens": 1
+      },
+      "actual_FULL64_replays": 1836,
+      "raw_root": "/workspace/benchmark-results/20261024_W4_O64_affine_math64_tianshu"
+    }
+  },
+  "model_quality_qualified": true,
+  "arms": {
+    "control": {
+      "total_tok_s": 7741.903333333334,
+      "output_tok_s": 1548.3799999999999,
+      "ttft_ms": 4083.173333333333,
+      "spread_percent": 10.544047953754703,
+      "physical_KV_blocks": 36488,
+      "actual_FULL64_replays": 4031,
+      "preemptions": 0.0,
+      "source_count": 959,
+      "environment_count": 65,
+      "additional_payload_bytes": 93585408,
+      "all256_requests_succeeded": true
+    },
+    "candidate": {
+      "total_tok_s": 8052.47,
+      "output_tok_s": 1610.4933333333333,
+      "ttft_ms": 2679.5433333333335,
+      "spread_percent": 1.7010929565710953,
+      "physical_KV_blocks": 36488,
+      "actual_FULL64_replays": 4031,
+      "preemptions": 0.0,
+      "source_count": 959,
+      "environment_count": 65,
+      "additional_payload_bytes": 93585408,
+      "all256_requests_succeeded": true
+    }
+  },
+  "paired_total_throughput_change_percent": 4.011502769990671,
+  "paired_TTFT_change_percent": -34.37595922125928,
+  "meets_1percent_throughput_and_1percent_spread_gate": false,
+  "exact_model_sources_and_original_commands_verified": true,
+  "only_normalized_env_difference": "TIANSHU_O64_AFFINE_MODE",
+  "both_arms_equal_additional_weight_payload": true,
+  "all512_performance_requests_succeeded": true,
+  "source_sha256": "25a406fe8f44d35ce6f276a66150c23fea6e3268fe4f7ffb67add9039e09f449",
+  "raw_files": {
+    "/workspace/benchmark-results/20261024_W4_O64_affine_math8_tianshu/result.json": "90dd1dd3d5e56445758fbbb3a235e576c2a73822279148241d68cb1119527d08",
+    "/workspace/benchmark-results/20261024_W4_O64_affine_math8_tianshu/accuracy_audit.json": "c2890812638f93e62bbfd61f86a72c812500cad02bb072f1f7903055ccac5f1c",
+    "/workspace/benchmark-results/20261024_W4_O64_affine_math8_tianshu/profile_audit.json": "bb79dce0c517f648e6fdd582308dacaeb9a257b6f83b425b43ed3e46312b5110",
+    "/workspace/benchmark-results/20261024_W4_O64_affine_math64_tianshu/result.json": "6ec09d0d2d98a098f354baa7f7986e1a051355cd979c0a4bfba42f00e70c67b5",
+    "/workspace/benchmark-results/20261024_W4_O64_affine_math64_tianshu/accuracy_audit.json": "b1d039803abadcecea821378318466df0b6b602d66fd786f724da7a768d4d32e",
+    "/workspace/benchmark-results/20261024_W4_O64_affine_math64_tianshu/profile_audit.json": "a877b9fb2f26966fb47971fb7b22636658dc8c917f8ee09673e590cd69d84c17",
+    "/workspace/benchmark-results/20261024_W4_O64_affine_screen_pair_tianshu/control/benchmark_results/raw_runs_20261024_115031.csv": "a1af989af2637cbc91127726420eeedf25c6975f5ef26e6665ba23752d1aa1bd",
+    "/workspace/benchmark-results/20261024_W4_O64_affine_screen_pair_tianshu/control/benchmark_results/summary_20261024_115031.csv": "8e0c81762d4d62c3fead35a4c19db8020aa83feaf7c8913338b7f97d0e65ec09",
+    "/workspace/benchmark-results/20261024_W4_O64_affine_screen_pair_tianshu/control/result.json": "a33fdb658ca7512d6e53a46f2c9b50c99a4318f0f8b310dd62ecff5a5bc75c98",
+    "/workspace/benchmark-results/20261024_W4_O64_affine_screen_pair_tianshu/control/evaluation.log": "51c9bc87d15a24330c0bcfd3936f43bc10e6cf4bdf6fc5bbaba52bbc8cefdf1a",
+    "/workspace/benchmark-results/20261024_W4_O64_affine_screen_pair_tianshu/control/profile_audit.json": "f921704f820614ea124a6b480d225a4757cdb135d503724f961c999a1cdd119b",
+    "/workspace/benchmark-results/20261024_W4_O64_affine_screen_pair_tianshu/control/observed_environment.json": "a93034db5c714d814375cca80c63669152597df7e49f7e160125c9298063dc48",
+    "/workspace/benchmark-results/20261024_W4_O64_affine_screen_pair_tianshu/control/before_metrics.txt": "e11066f24fb9650322b82760e12991e8b522c2c36fe49d0cae69d37a1c221bd9",
+    "/workspace/benchmark-results/20261024_W4_O64_affine_screen_pair_tianshu/control/after_metrics.txt": "45b0a9db18629309f3f5a7207c16763b95f7c5ced006ea2096fa2133b4c99b21",
+    "/workspace/benchmark-results/20261024_W4_O64_affine_screen_pair_tianshu/candidate/benchmark_results/raw_runs_20261024_115915.csv": "3de32b877e15ee50cd0f0e174541f3ee41826ad1a6fbe79383bf936a498d7509",
+    "/workspace/benchmark-results/20261024_W4_O64_affine_screen_pair_tianshu/candidate/benchmark_results/summary_20261024_115915.csv": "352b6faf6d4e575cc407ad31d3ef9e242c6387a8c34e3a5e1186033f7e291ece",
+    "/workspace/benchmark-results/20261024_W4_O64_affine_screen_pair_tianshu/candidate/result.json": "d123ef5a563bd33f2caeed95903fe915b860337084a15d7533d04f3004184785",
+    "/workspace/benchmark-results/20261024_W4_O64_affine_screen_pair_tianshu/candidate/evaluation.log": "c6fb7f481e8e7f788736f93eb6bbf46b49cbcebe03b1fe32961f6b9c685e4b56",
+    "/workspace/benchmark-results/20261024_W4_O64_affine_screen_pair_tianshu/candidate/profile_audit.json": "71147b626131de85003fdc05670645c4aaa0da3ff95af4f44b9b41db5827c818",
+    "/workspace/benchmark-results/20261024_W4_O64_affine_screen_pair_tianshu/candidate/observed_environment.json": "634d94338e73b6c24f4ec85ab4a966b3a507446a1536d694776c533534d685f8",
+    "/workspace/benchmark-results/20261024_W4_O64_affine_screen_pair_tianshu/candidate/before_metrics.txt": "722b6e9f2f1b7c4d32f5a54aa9c535b726099894f57459efeb92644677941b76",
+    "/workspace/benchmark-results/20261024_W4_O64_affine_screen_pair_tianshu/candidate/after_metrics.txt": "9c86d569b2d72fe3e7704a1f5316e2e429ebc88ab99ab74075f802fd36acfcbb"
+  },
+  "screen_N64": true,
+  "official_benchmark": false,
+  "adopted": false,
+  "published_r4_6050_94_not_replaced_by_N64": true
+}
