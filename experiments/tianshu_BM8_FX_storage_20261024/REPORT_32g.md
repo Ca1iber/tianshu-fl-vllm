@@ -1,0 +1,9 @@
+# 纯FX缓存迁到容器共享内存，保留路径与内容
+
+C8完整评测结束、控制器33233成为zombie、API/evaluator已结束、GPU68MiB/无进程后操作。仅处理/tmp/torchinductor_root/fxgraph，86个普通缓存文件、无symlink/py/so/safetensors；已证明不包含新1023数值来源、原997来源或384固定资格缓存。先独立tar、tar比较、SHM活动副本再次tar比较、全部文件SHA；将原目录改为指向活动副本的symlink，原内容逐文件SHA相同，原盘副本校验后才删除。新活动副本和完整backup均留容器SHM；不动任何生成Python模块、模型、旧原始档案或受保护SDK快照。
+
+结果工作盘约7MiB→108MiB。默认绝对路径未变，数值源/显式环境/启动参数未改；原r5 997来源和384固定二进制缓存操作前后完整验证，restored0/missing0。EVIDENCE_32g.txt记录原始备份SHA、路径和字节数。本操作是存储维护，不是吞吐优化，未在GPU性能计时期间运行。
+
+主观察SSH末尾被网关关闭，但重新只读检查确认EVIDENCE落盘、所有后置验证通过、磁盘已释放，原Bash33228已恢复并启动C64新server37142；没有因连接中断重复执行迁移。
+
+FX缓存可重建。若以后容器SHM清空导致此专用symlink悬空，仅在确认其目标为本次tianshu-bm8-fxgraph-20261024.Jmx4Ub活动目录且没有GPU任务时，unlink该fxgraph symlink、mkdir同名目录即可由PyTorch重建；不需要还原数值源。已捕获的3个SDK副本另有持久备份，必须按r5自己的SDK恢复说明处理，不能把SDK当作可重建FX缓存删除。
