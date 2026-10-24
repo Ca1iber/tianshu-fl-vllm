@@ -1,0 +1,914 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "raw_root": "/dev/shm/tianshu_K4V16_bitcast_attention_20261024",
+  "raw_result_sha256": "69064ea77ecd706f848893b7fb5c70cf05730022b549e5e4c9bb626e7bc8af34",
+  "all_model_sources_preserved": true,
+  "independent_full_FP64_output_elements": 2768896,
+  "independent_raw_cache_bytes_reconstructed": 6454798336,
+  "all_input_hashes_verified": true,
+  "all32_arm_phases_verified": true,
+  "all_GPU_FP32_references_independently_checked": true,
+  "all_actual_binary_hashes_verified": true,
+  "all_components_slower": true,
+  "meets_consistent_component_gain": false,
+  "qualified_for_model_integration": false,
+  "adopted": false,
+  "rows": [
+    {
+      "case": "c8_4096",
+      "current_full_ms": 0.08355095982551575,
+      "k4_full_ms": 0.11275942325592041,
+      "k4_slowdown_factor": 1.3495886042650183,
+      "current_reader_ms": 0.08154326677322388,
+      "k4_reader_ms": 0.11033787727355956,
+      "current_writer_ms": 0.012082500010728836,
+      "k4_writer_ms": 0.011893077194690705
+    },
+    {
+      "case": "c33_4096",
+      "current_full_ms": 0.5027528762817383,
+      "k4_full_ms": 0.7334165096282959,
+      "k4_slowdown_factor": 1.4588012206961412,
+      "current_reader_ms": 0.5004759788513183,
+      "k4_reader_ms": 0.7305513381958008,
+      "current_writer_ms": 0.01215115413069725,
+      "k4_writer_ms": 0.01213826909661293
+    },
+    {
+      "case": "c64_4096",
+      "current_full_ms": 0.5577878475189209,
+      "k4_full_ms": 0.7707159519195557,
+      "k4_slowdown_factor": 1.3817367218517826,
+      "current_reader_ms": 0.5551745891571045,
+      "k4_reader_ms": 0.7676324844360352,
+      "current_writer_ms": 0.011819999665021896,
+      "k4_writer_ms": 0.012007500231266021
+    },
+    {
+      "case": "c64_5120",
+      "current_full_ms": 0.6892219066619873,
+      "k4_full_ms": 0.954496192932129,
+      "k4_slowdown_factor": 1.3848895162878785,
+      "current_reader_ms": 0.68651442527771,
+      "k4_reader_ms": 0.9514758110046386,
+      "current_writer_ms": 0.012190768867731095,
+      "k4_writer_ms": 0.011784807592630387
+    },
+    {
+      "case": "c8_ragged_strided",
+      "current_full_ms": 0.09445692300796509,
+      "k4_full_ms": 0.13133788108825684,
+      "k4_slowdown_factor": 1.3904526730897402,
+      "current_reader_ms": 0.09269673228263856,
+      "k4_reader_ms": 0.12916922569274902,
+      "current_writer_ms": 0.01182750016450882,
+      "k4_writer_ms": 0.012044038623571396
+    },
+    {
+      "case": "c64_ragged_strided",
+      "current_full_ms": 0.5470844268798828,
+      "k4_full_ms": 0.7623225212097168,
+      "k4_slowdown_factor": 1.3934275657550226,
+      "current_reader_ms": 0.544620943069458,
+      "k4_reader_ms": 0.7592700004577637,
+      "current_writer_ms": 0.012113653868436814,
+      "k4_writer_ms": 0.012136153876781464
+    },
+    {
+      "case": "c33_17408",
+      "current_full_ms": 1.3674449920654297,
+      "k4_full_ms": 1.9756050109863281,
+      "k4_slowdown_factor": 1.4447418524691917,
+      "current_reader_ms": 1.3647471427917481,
+      "k4_reader_ms": 1.972550392150879,
+      "current_writer_ms": 0.011847884953022003,
+      "k4_writer_ms": 0.012004230916500092
+    },
+    {
+      "case": "c64_capture1_to5120",
+      "current_full_ms": 0.6896313667297364,
+      "k4_full_ms": 0.9548399925231934,
+      "k4_slowdown_factor": 1.3845657819351933,
+      "current_reader_ms": 0.6868746280670166,
+      "k4_reader_ms": 0.9517659187316895,
+      "current_writer_ms": 0.012071730941534043,
+      "k4_writer_ms": 0.01211249977350235
+    }
+  ],
+  "checks": [
+    {
+      "case": "c8_4096",
+      "phase": 0,
+      "label": "current",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 16384,
+        "failed_elements": 0,
+        "max_abs": 0.0003275982071607869,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 16384,
+        "failed_elements": 0,
+        "max_abs": 2.63326783794815e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 25190400,
+      "raw_sha256": "0ab50ef071fb1b3fde9169bdf33461ccf92039d0eb3fecb3f2f0c33c41e3d780",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "2b00100eeb12ead3072c5f17776a9ba771bdc1efe85b9e7ca26c88aaabfe03d1"
+    },
+    {
+      "case": "c8_4096",
+      "phase": 0,
+      "label": "k4",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 16384,
+        "failed_elements": 0,
+        "max_abs": 0.000366154283429343,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 16384,
+        "failed_elements": 0,
+        "max_abs": 3.4900045244035116e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 21516800,
+      "raw_sha256": "a488b165ac5398c7b99ae38958d660afc8b295167eecd166637ef1f02dd7a52f",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "e3bf917cc9b974674b72fc20ad3cd44e13b07fbac8ac2e5e688f470145d67020"
+    },
+    {
+      "case": "c8_4096",
+      "phase": 1,
+      "label": "current",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 16384,
+        "failed_elements": 0,
+        "max_abs": 0.00020528895671855646,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 16384,
+        "failed_elements": 0,
+        "max_abs": 1.8570121113059557e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 25190400,
+      "raw_sha256": "9faefb9e8b8ad177f3f5ef994d86363ca6213d0cc6fee5899efaf84cf249fd2a",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "bac3ee0172e8cd4e29bec2c4bf4fbc07c756593eb0d7d5a297dec12b629cf08d"
+    },
+    {
+      "case": "c8_4096",
+      "phase": 1,
+      "label": "k4",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 16384,
+        "failed_elements": 0,
+        "max_abs": 0.00020217740755927582,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 16384,
+        "failed_elements": 0,
+        "max_abs": 2.0028772051983168e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 21516800,
+      "raw_sha256": "9c8fa96239d64fe119d3b69263035126ca9dc1638540207a8d9f325c6b27c0db",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "a4e4d9d06dca2c01e2896c7e56f6caa072dea451cea57cf83f44ccd70b8c15cb"
+    },
+    {
+      "case": "c33_4096",
+      "phase": 0,
+      "label": "current",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 67584,
+        "failed_elements": 0,
+        "max_abs": 0.0003272986905898806,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 67584,
+        "failed_elements": 0,
+        "max_abs": 3.130618760754933e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 103833600,
+      "raw_sha256": "db8a6e71951d65b3648e5b4f45d71b34ae39ce5efc2d1441166e64ec326d8095",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "f0b776ec6d16adb5d149de10cfa01290c7e6cd37c31562bc7e047f99ea30dcae"
+    },
+    {
+      "case": "c33_4096",
+      "phase": 0,
+      "label": "k4",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 67584,
+        "failed_elements": 0,
+        "max_abs": 0.000317127540294615,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 67584,
+        "failed_elements": 0,
+        "max_abs": 3.195867100125316e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 88691200,
+      "raw_sha256": "19e16a73828b0bc2e156aceba4f72210f37837ee18520027db238f7eef0ecbb9",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "8cca5b0240630616db9b467f380ddd0a3677d4b485900e764477c6d33780fab5"
+    },
+    {
+      "case": "c33_4096",
+      "phase": 1,
+      "label": "current",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 67584,
+        "failed_elements": 0,
+        "max_abs": 0.00026962488994482225,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 67584,
+        "failed_elements": 0,
+        "max_abs": 1.8312887538340927e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 103833600,
+      "raw_sha256": "c1c6c82cabf48d8a521ca5651dd2950b9f2f5d865753466f05dd494b7fccdd90",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "6533ce48254ba4ea317da505f6acfe6b0a3c66d572ba78209fad848219e6c97d"
+    },
+    {
+      "case": "c33_4096",
+      "phase": 1,
+      "label": "k4",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 67584,
+        "failed_elements": 0,
+        "max_abs": 0.00028427465143458786,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 67584,
+        "failed_elements": 0,
+        "max_abs": 1.9958021556243377e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 88691200,
+      "raw_sha256": "f691fa43bd2f75fdd9fe299b7c4bb1b4d6853eee299487d8b5d13ff031efd294",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "09d29a820526a5296be32f403f17cf0710aea7a5357fff454f75df0d035c0f47"
+    },
+    {
+      "case": "c64_4096",
+      "phase": 0,
+      "label": "current",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 0.0007142960737705484,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 3.5163865091947244e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 201351168,
+      "raw_sha256": "0ffe1793517c5674e793c2a7a365755b1deaecdee8f3b9be1afecf6f45b829c1",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "0c72c1a258642b03ac0aef9eed4dabccdbc8ba829ba51fac1afc44e7e1f92515"
+    },
+    {
+      "case": "c64_4096",
+      "phase": 0,
+      "label": "k4",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 0.0004657658603324233,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 3.6832462876890126e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 171987456,
+      "raw_sha256": "b3b29c02e7943454280ca8bfdd722353a55fb28aaf34f5e8787535b2c793399b",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "da82a7dd7e546c7224f8b5bc5903cd4205d4016cdab2f9cc5f1935c76a0a8ae1"
+    },
+    {
+      "case": "c64_4096",
+      "phase": 1,
+      "label": "current",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 0.00026865788685120906,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 1.9537467051133905e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 201351168,
+      "raw_sha256": "f205f850b57eaaf0ffad50813447a7e62c742166df1bdf172be13943fb72b207",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "590501b39c790c1173a54884f24721f0d0d9fbb9a08f0142c5d18089eee813fa"
+    },
+    {
+      "case": "c64_4096",
+      "phase": 1,
+      "label": "k4",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 0.00027719106019216677,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 1.9133307252450216e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 171987456,
+      "raw_sha256": "ffc7e8dcbf4116757355a6eae7dde6d80ac7466a0b002ae8555f03954a9fe076",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "8634f44e497126eff00ff6266218cac8b9db8cd461cf869f6b4c62578eb27fff"
+    },
+    {
+      "case": "c64_5120",
+      "phase": 0,
+      "label": "current",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 0.000320450406698522,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 3.0099197715488524e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 251682816,
+      "raw_sha256": "a0d67d36b9f02175af70ff62bcf56e067e023300e9aee7daf00cec93a3f13c43",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "d91f40bb99ac6e66b402b0f878047413bea6dbc715d3f1a6cf7f90f75390de2f"
+    },
+    {
+      "case": "c64_5120",
+      "phase": 0,
+      "label": "k4",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 0.00031250158628913505,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 3.072645226726012e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 214979072,
+      "raw_sha256": "09b9e156496002d2b2d60c5ad0c795eb4bb40ed6213237d555b57392bb265a86",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "b7442b8f37c7fd3123fcb51bfa70cab47461d65ce5bc6b54c3bab9d3d0ffd698"
+    },
+    {
+      "case": "c64_5120",
+      "phase": 1,
+      "label": "current",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 0.00026810149414521756,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 2.2775175981259999e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 251682816,
+      "raw_sha256": "4e552d78021f6abae3a171bb5c58b7d68a8c42f98eba6737cfac252ca48cea25",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "5e5d111b7f271e5ca1abdbaa85238b8b31ded0cf22d7073ebacc6a214dbf240e"
+    },
+    {
+      "case": "c64_5120",
+      "phase": 1,
+      "label": "k4",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 0.00021598049241045025,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 1.992432176710357e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 214979072,
+      "raw_sha256": "f962542f7d7d2a4e9aa83946ac58640b1427c22f72315cdb0dd446027903f46a",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "ffd3ffe682ddeae6411442ac0b32ccc6a9351224d8e6afa081e3d76865bb7f2a"
+    },
+    {
+      "case": "c8_ragged_strided",
+      "phase": 0,
+      "label": "current",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 16384,
+        "failed_elements": 0,
+        "max_abs": 0.0023561994172479617,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 16384,
+        "failed_elements": 0,
+        "max_abs": 3.62685541155372e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 62963712,
+      "raw_sha256": "ad336bb9f21d7f3f9efffbeca6e73b348c6cc89dc2f1100373a690f396e150d3",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "1b5b72a0dc822a880a999e31155a92914155f90d8dcc5f5e288c7d56e777a3a0"
+    },
+    {
+      "case": "c8_ragged_strided",
+      "phase": 0,
+      "label": "k4",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 16384,
+        "failed_elements": 0,
+        "max_abs": 0.0032625077940138247,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 16384,
+        "failed_elements": 0,
+        "max_abs": 2.913420012462531e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 53781504,
+      "raw_sha256": "1f7d06b7dba0cc1d0f800f45f737a324d9dbcb1eac6e13510474dda9a5742e0a",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "984b9781a714707ce21ec84f9323e4bd98c9d6612023fa973b090b84c13441c3"
+    },
+    {
+      "case": "c8_ragged_strided",
+      "phase": 1,
+      "label": "current",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 16384,
+        "failed_elements": 0,
+        "max_abs": 0.0021969351091479794,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 16384,
+        "failed_elements": 0,
+        "max_abs": 1.72192328395937e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 62963712,
+      "raw_sha256": "5104c6d1441fb503879d7d562d59cdf924b689851be796cc55fe4cb2d108e72a",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "444eac3c147509d130b10b61744d4fd197bb0f652a8a527c10722fb084b23bec"
+    },
+    {
+      "case": "c8_ragged_strided",
+      "phase": 1,
+      "label": "k4",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 16384,
+        "failed_elements": 0,
+        "max_abs": 0.0022017545931775073,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 16384,
+        "failed_elements": 0,
+        "max_abs": 1.680478841636912e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 53781504,
+      "raw_sha256": "775f73ea7482364b5f5eb96d9d4535c3cce2b81b8c617276942cfb469c6fae5a",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "295228e160013cd48232412850b4544f6b36d7105549027da0ee19c76fa704cd"
+    },
+    {
+      "case": "c64_ragged_strided",
+      "phase": 0,
+      "label": "current",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 0.00039362761014782865,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 2.723012332284114e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 402702336,
+      "raw_sha256": "9e2f7bb8b5e2bb35df5dda3ab66c52484c4690916b43380cc9711a23115a3a98",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "32475ad1ae16825fa96921988375933d7b81cc3362f17b6ffe955691fde88d33"
+    },
+    {
+      "case": "c64_ragged_strided",
+      "phase": 0,
+      "label": "k4",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 0.000550834878084494,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 2.7855377401908576e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 343974912,
+      "raw_sha256": "6e5d5589bb55e3276fcf2e1b1959ef1a0ef1e7d95bbb68df5d041d4b0b6a9ebe",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "c8449040bde28d337062fcd4978c14008d73e68b62587d50ea21c92c4cb4913d"
+    },
+    {
+      "case": "c64_ragged_strided",
+      "phase": 1,
+      "label": "current",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 0.0002851555105562037,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 1.9274590511153544e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 402702336,
+      "raw_sha256": "75d21b8368060492a48df8d139cb56d070c0d49d7244e85bcebb1ffec044b214",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "33c6b3f3c19b1dba044c15ac651e9f11811708292ab4dea528a2f18e3d615f8a"
+    },
+    {
+      "case": "c64_ragged_strided",
+      "phase": 1,
+      "label": "k4",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 0.000262469153883213,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 2.27623037543645e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 343974912,
+      "raw_sha256": "59df323ef03c654fef6b6e44aae50dbe20228886acd640bc718d5631b2c3cc33",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "0529638fbaf4f1518710f69b3ccaf31e7d248f46e62d3097b1bcb45037adc6b2"
+    },
+    {
+      "case": "c33_17408",
+      "phase": 0,
+      "label": "current",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 67584,
+        "failed_elements": 0,
+        "max_abs": 0.00016616229881442207,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 67584,
+        "failed_elements": 0,
+        "max_abs": 2.9236061280940584e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 441212928,
+      "raw_sha256": "b313333c36934319a664f6b1b00350e5f19034a47cc5d639b1709c19ed50708f",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "b840e28464df6005ddf123c264c3e5100cd687947475658c3361e3c604884c9d"
+    },
+    {
+      "case": "c33_17408",
+      "phase": 0,
+      "label": "k4",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 67584,
+        "failed_elements": 0,
+        "max_abs": 0.0001663417750502605,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 67584,
+        "failed_elements": 0,
+        "max_abs": 2.6816592962886077e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 376869376,
+      "raw_sha256": "32a3bcc01f8b1fdcae019d43c76dd76e31255ec6d84d43ced7e03887be26fcfb",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "bdb9abbfbfb9c2b0948af1851c837fa12a2dc1d7659bfcd9e9ed6ff7c152bfa1"
+    },
+    {
+      "case": "c33_17408",
+      "phase": 1,
+      "label": "current",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 67584,
+        "failed_elements": 0,
+        "max_abs": 0.00013091484032752565,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 67584,
+        "failed_elements": 0,
+        "max_abs": 2.189138300148774e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 441212928,
+      "raw_sha256": "58e5c03d0d755eb0bd2f29da464cc57481d6ac0fa060f982828416a5e7e0ff13",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "aec17020dfac9ff3276af438cf4540fff056e96578618b5b5d2f797560b57104"
+    },
+    {
+      "case": "c33_17408",
+      "phase": 1,
+      "label": "k4",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 67584,
+        "failed_elements": 0,
+        "max_abs": 0.00011847710574314912,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 67584,
+        "failed_elements": 0,
+        "max_abs": 1.7575104609840464e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 376869376,
+      "raw_sha256": "f2bfae790c6a4715cc334722581a54678d86c909430c1f2c30b6b1f5251f5fb2",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "1fa4128cf7966feb63364656467352361f52f465ad54ac21c50147e35d8f550c"
+    },
+    {
+      "case": "c64_capture1_to5120",
+      "phase": 0,
+      "label": "current",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 0.0,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 0.0,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 251682816,
+      "raw_sha256": "d7e68d7cd7e010d8cdf34246b6873bb93fc867a6218040e467b89d2babd5a727",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "d4b3cd90ad9e647e6be7d67b592c1c9c46000b3f5bd66e06341d90726deb8e6f"
+    },
+    {
+      "case": "c64_capture1_to5120",
+      "phase": 0,
+      "label": "k4",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 0.0,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 0.0,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 214979072,
+      "raw_sha256": "5cc14c7d676024abcfa3dc7e11803fdb2a00a3338744b5099a013c4294bb3fb1",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "d4b3cd90ad9e647e6be7d67b592c1c9c46000b3f5bd66e06341d90726deb8e6f"
+    },
+    {
+      "case": "c64_capture1_to5120",
+      "phase": 1,
+      "label": "current",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 0.00027130354354160113,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 1.8120927020026656e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 251682816,
+      "raw_sha256": "ae94f3d9c424e94b0f8d9fb4c20bd1bcbc78176a3b93534df7d9e69543dc28c8",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "dcd10947e85f56ad3af54bd2f8c4d0ca7da099cfb9a1455dd3fe08145ff84360"
+    },
+    {
+      "case": "c64_capture1_to5120",
+      "phase": 1,
+      "label": "k4",
+      "CPU_FP64_all_outputs": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 0.00021770153389605307,
+        "atol": 0.002,
+        "rtol": 0.01
+      },
+      "full_GPU_FP32_reference_vs_FP64": {
+        "passed": true,
+        "elements": 131072,
+        "failed_elements": 0,
+        "max_abs": 1.9570217532974277e-07,
+        "atol": 2e-05,
+        "rtol": 0.0002
+      },
+      "raw_cache_bytes_rebuilt": 214979072,
+      "raw_sha256": "0f827f40f03ae71e309a7d84d35f794957e5f6303ffca2dbfb89ce03043fa49b",
+      "all_inputs_regenerated_and_hashed": true,
+      "FP64_reference_sha256": "95e9e7ac850df0e1b1cd0cfc243d13580d783d59b689383340a918448e71b193"
+    }
+  ],
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K4V16_component_20261024/verify_bitcast_cpu.py": "79b01f94f930033e9aa389ad7a3dadf521a73c9e96920dcd27796f7b03d4f32d",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K4V16_component_20261024/fixtures_cpu.py": "35a6108b46e373751544795845eb82ebe333fbaf4fd0adf2ead3bf241d7374bc",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K4V16_contract_20261024/codec.py": "a67c4245133db78ccd0d3c60c3aa416718e726af045fe2cf1ec0fd620f12a2a4"
+  },
+  "native_Spec_count_verified": true,
+  "actual_component_page_bytes": 10496,
+  "component_page_reduction_percent": 14.583333333333337,
+  "engine_allocator_connected": false,
+  "model_math_not_run": true,
+  "unmodified_current_release": "r5",
+  "bitcast_helper_GPU_verified": true,
+  "bitcast_helper_output_elements": 34816
+}
