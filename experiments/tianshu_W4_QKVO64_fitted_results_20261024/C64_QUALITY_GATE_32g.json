@@ -1,0 +1,59 @@
+{
+  "complete": true,
+  "batch": 64,
+  "correct": 101,
+  "total": 105,
+  "accuracy": 0.9619047619047619,
+  "this_batch_above95": true,
+  "all105_and_caps_counted": true,
+  "request_errors": 0,
+  "stop_reasons": {
+    "stop": 104,
+    "max_tokens": 1
+  },
+  "incorrect_indices": [
+    8,
+    87,
+    18,
+    101
+  ],
+  "source_count": 997,
+  "environment_count": 65,
+  "original_serve_command": [
+    "vllm",
+    "serve",
+    "/workspace/MiniCPM5-2B",
+    "--port",
+    "9031",
+    "--compilation-config",
+    "{\"cudagraph_mode\": \"FULL_DECODE_ONLY\"}",
+    "--served-model-name",
+    "minicpm",
+    "--gpu-memory-utilization",
+    "0.85",
+    "--max-model-len",
+    "131072"
+  ],
+  "profile": {
+    "complete": true,
+    "additional_payload_bytes": 210567168,
+    "all84_original_and_packed_weight_hashes_verified": true,
+    "QKVO64_capture_banks": 84,
+    "actual_FULL64_replays": 1898,
+    "physical_KV_blocks": 36291,
+    "model_memory_usage_bytes": 8019504640,
+    "model_unique_storage_bytes": 7953341088
+  },
+  "raw_root": "/workspace/benchmark-results/20261024_W4_QKVO64_fitted_v2_math64_tianshu",
+  "raw_files": {
+    "/workspace/benchmark-results/20261024_W4_QKVO64_fitted_v2_math64_tianshu/result.json": "046d57049f61c3af5813cef3ab7397fb24599a8058ae8027d4e6ead56784475c",
+    "/workspace/benchmark-results/20261024_W4_QKVO64_fitted_v2_math64_tianshu/accuracy_audit.json": "c8d01f333ca0e440d09521dc7b3b30b8c61ca5337dc2e329c1f80aa8e9e4d7d9",
+    "/workspace/benchmark-results/20261024_W4_QKVO64_fitted_v2_math64_tianshu/profile_audit.json": "448219fdd29aec333c18cf1be882716cee014f1b922788928e66e73dd67eecfb",
+    "/workspace/benchmark-results/20261024_W4_QKVO64_fitted_v2_math64_tianshu/evalscope/20261024_131127/reviews/minicpm/math_500_Level 3.jsonl": "455c24f1cb95672cae1df18d262ecc0d69569b4a296f95790dc0a183b8446770",
+    "/workspace/benchmark-results/20261024_W4_QKVO64_fitted_v2_math64_tianshu/evalscope/20261024_131127/predictions/minicpm/math_500_Level 3.jsonl": "59135bbbb2a1348a404bacc64c21934e7ccde1ef909d3d8d368efa6aedb939fd",
+    "/workspace/benchmark-results/20261024_W4_QKVO64_fitted_v2_math64_tianshu/evalscope/20261024_131127/reports/minicpm/math_500.json": "50fbd0971b0ff4b16464a37466dfd07c39d029f71c9b44398b0f8d45951c1d95"
+  },
+  "collector_source_sha256": "3ac22c8ddb2e4a47ef23eaaa0baceb8d7a309c39fab52fcfd8d6c6ce0cbda831",
+  "official_benchmark": false,
+  "adopted": false
+}
