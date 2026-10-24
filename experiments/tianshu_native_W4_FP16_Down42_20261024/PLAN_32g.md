@@ -1,0 +1,7 @@
+# Native W4 FP16 Down42 performance, conversion included
+
+Reuse all42 exact currentr5 Down packedW/S/Z files proven by release W4_PARENT_PAYLOADS. Compare currentBF16 W4 vs nativeFP16 with preconverted activations (raw diagnostic) vs realBF16input→FP16→nativeW4→BF16output inside measuredGraph. FP16 scales/zeros are persistent derived buffers, actualbytes reported; no netmemorysaving claim. RawFP16 alone cannot qualify the casting implementation. No model/checkpoint changes.
+
+All42 banks have separate real currentshape M64/K6144/N2048/G128 inputs andpack. Three phases of realactivations change sameGraph; eager repeats/NaNpoisonGraph equality andfinite acrossall42. IndependentfullFP64 for layers0/20/41 allthree phases, separate BF16/FP16 decodedmatrices andinputconversions. NativeFP16 uses fixed .003abs+.001referenceRMS /L2≤.001; BF16outputs use .012abs+.006referenceRMS /L2≤.006. Saveoutputs beforeasserts. Fullinput/pack/scale/zero byte/version/guard/RNG andsource/SDKhash checks.
+
+Nine alternating paired20Graphreplays, allrounds used median; no independentCPU preparation/hash/archive/push duringtiming. Report everyarm andvariation. Advance fullcasting only for≥5% cumulativecomponent lowerlatency, allnumerics passed. Ifrawonly faster, recordpotentialforseparate producer/consumer conversion fusion, no service ormodel qualification. FreshC8/C64Math>95%, realnativeprofile/fresh4K/originalfullbenchmark requiredforadoption. Rawarrays inSHMcontainer thenpersistentarchive, GitHub code/report/keydata only. GPUdeadline2026-10-24 23:58BJT.
