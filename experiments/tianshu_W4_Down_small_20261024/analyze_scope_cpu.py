@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: Apache-2.0
+import hashlib,json,re
+from pathlib import Path
+BASE=Path(__file__).resolve().parent;p=Path('/workspace/benchmark-results/20261023_W4_LMpad_v3_official4k_tianshu/graph_segments_records/trace_93241.json');s=json.loads(p.read_text());hist={}
+for row in s['graphs'].values():
+ assert row['runtime_mode']=='FULL';m=int(re.search(r'num_tokens=(\d+)',row['descriptor']).group(1));assert sum(r['count'] for r in row['frames'].values())==row['replay_calls'];hist[m]=row['replay_calls']
+g=json.loads((BASE/'INDEPENDENT_CPU_GATE_32g.json').read_text());assert g['complete'];qualified=[r['M'] for r in g['timings'] if r['mode']=='graph' and r['candidate_faster_qualified']];total=sum(hist.values());proof=dict(complete=True,trace_file=str(p),trace_sha256=hashlib.sha256(p.read_bytes()).hexdigest(),scope='historical r4 FULL decode graph replay trace only; not all forward calls or a candidate model measurement',replays_by_padded_tokens=hist,total_replays=total,padded64_fraction_percent=100*hist[64]/total,qualified_coarse_M=qualified,qualified_coarse_M_observed_replays=sum(hist.get(m,0) for m in qualified),coarse_M4_control_determinism_failed=True,no_speed_claim_for_M4=True,new_model_or_official_benchmark=False,verifier_source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest());(BASE/'RUNTIME_SCOPE_32g.json').write_text(json.dumps(proof,indent=2)+'\n');print(json.dumps(proof,indent=2))
