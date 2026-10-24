@@ -1,0 +1,61 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "generated_UTC": "2026-10-24T06:06:12.844135+00:00",
+  "finite_BF16_checked": 65280,
+  "nonfinite_BF16_checked": 256,
+  "independently_rounded_all_BF16_encodings": true,
+  "decoded_codes": 256,
+  "finite_codes": 248,
+  "reserved_codes": 8,
+  "finite_codes_exact_in_FP16_and_BF16_and_roundtrip": true,
+  "finite_input_saturation_count": 28734,
+  "normal_unsaturated_max_relative_error": 0.1111111111111111,
+  "source_scope_proof": {
+    "BF16_PV": {
+      "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+      "generated_sha256": "83cabd2c664c76a00e7a404c35c7347a73e4b6379c82606bd0c38fdc3d221a5d",
+      "mode": "BF16_PV",
+      "Q_K_score_softmax_AST_unchanged": true,
+      "reducer_AST_unchanged": true,
+      "attention_AST_only_V_helper_call_changed": true,
+      "P_cast_dtype": "BF16 unchanged",
+      "finite_V_codes_exact_in_both_BF16_and_FP16": true
+    },
+    "FP16_PV": {
+      "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+      "generated_sha256": "fea59531f5270bfbcc5d946f8e73d4cf2969d10aa29cd5e61115f4d0a82b433a",
+      "mode": "FP16_PV",
+      "Q_K_score_softmax_AST_unchanged": true,
+      "reducer_AST_unchanged": true,
+      "attention_AST_only_V_helper_call_changed": true,
+      "P_cast_dtype": "FP16 (explicit precision change)",
+      "finite_V_codes_exact_in_both_BF16_and_FP16": true
+    },
+    "writer": {
+      "parent_sha256": "27a74d3bdfee978780044eb69025c10a21d92a1b0a8cf567ee9fea1e0b8d12b5",
+      "generated_sha256": "e227da61c7d253a217410591effe961e4f4758465e7475b483783c1a0df977c0",
+      "only_V_encoder_changed": true,
+      "K_encoder_slot_address_and_negative_slot_rules_unchanged": true,
+      "rounding": "nearest ties to even",
+      "saturation": 57344,
+      "NaN": "signed zero",
+      "infinity": "signed saturation",
+      "reserved_codes_never_emitted": true
+    }
+  },
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_V_e5m2_codec_20261024/check_cpu.py": "ba0c4924ce68a3033b69c61042c55282fec31ea885e79c1ae27d6335c61912d7",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_V_e5m2_codec_20261024/codec.py": "9dfc28e46ef0cd8ee80162515e20d982ae95f1168c5c2a44d2222d29bc56e355",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_V_e5m2_codec_20261024/PARENT_SOURCES_32g.sha256": "d1974069105b34e8bb35da5996217e6761db78a505acf712d804e7f992ffffe7",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/qualified_S16_reader.py": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_soft8_mixed_planes_20261019/writer.py": "27a74d3bdfee978780044eb69025c10a21d92a1b0a8cf567ee9fea1e0b8d12b5"
+  },
+  "physical_K8V16_page_bytes": 12288,
+  "proposed_K8V8_page_bytes": 8192,
+  "no_Torch_Triton_import": true,
+  "GPU_numerical_qualified": false,
+  "model_quality_qualified": false,
+  "service_tested": false,
+  "adopted": false
+}
