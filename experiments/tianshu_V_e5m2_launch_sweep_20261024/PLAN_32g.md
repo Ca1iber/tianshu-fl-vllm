@@ -1,0 +1,9 @@
+# E5M2 FP16_PV explicit launch sweep
+
+The previous fixed-configuration comparison isolated the codec but reused the K8/V16 S4/T16/W1 policy. Test whether the new format has a better launch configuration before attributing the remaining cost to byte loads. The released r5 model remains unchanged.
+
+Keep the GPU-qualified v2 E5M2 codec, writer, reader, Q/K BF16, FP16 P×V precision and8192-byte candidate pages. Compare current K8/V BF1612288-byte control against9 E5FP16 arms: segment counts4/8/16 at (tile16,warp1), (tile32,warp1) and (tile32,warp2). Stage1, blockM16/blockQ2 and cache modifier.cv stay fixed. Each candidate uses its declared configuration, and reducer tile follows actual producer tile. Allocate the same maximum segment scratch for all arms; check unused scratch using each arm's actual segment count.
+
+Cases: B64/4096, B64/5120, B64ragged/strided. Rerun all65536 writer/K-preservation encodings and all256 decoder values/classes; retain fullGPUFP32/selectedCPUFP64 references, two changed-data replays of the sameGraph, completecache/input/output/scratch/RNGguards.9alternating trialsx20Graphreplays. Capture TTIR/TTGIR/LLVM/actualassembly only on first eager warmup, never during timedGraphreplay.
+
+Select only candidates with at least5% less latency than the current K8/V16 control at both4K/5K and successful numerical/guard checks in all cases. Do not advance from merely improving the older slow V8 configuration. Preserve all configurations and failures, do not rerun a favorable subset to replace original scores. This component does not qualify model precision, allocator, prefill or service. Any promising candidate still needs newengineintegration/C64+C8Math>95%, pairedfresh4K and then the originalfullbenchmark. Rawdata/codegen stays in container; GitHub holds code/report/keyresults. GPUhardstop2026-10-24 23:58BJT.
