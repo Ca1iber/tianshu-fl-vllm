@@ -1,0 +1,7 @@
+# K4/V16 GPU写入契约通过，读取/模型/性能待验证
+
+真实GPU writer与原CPU数值契约逐字节一致。连续和跨步页面各两次Graph回放，共4组；每组覆盖全部65280种有限BF16 K位模式、32行舍入/零/微小边界、全部65536种BF16 V位模式、3个负slot与输入padding保护。同一个Graph原地改变K、V和slot后重放。每组544行独立CPU标量参考；所有raw页字节、guard页、128B页内padding、原始输入、slot和RNG均验证。V包括NaN/Inf的全部位模式保持原样。
+
+实际writer使用9寄存器、0spill；两个实际布局的GPU二进制SHA和全部fixture哈希见GPU_WRITER_GATE_32g.json。实际10496B单一raw存储中K、FP32 scale、BF16 V的typed view共享同一storage；原生FullAttentionSpec计数为10496B，尚未接引擎allocator，不能宣称模型显存已减少。
+
+首次验证程序在CPU构造expected scale字节时遇到NumPy零维view异常，GPU writer尚未调用；失败root保留为tianshu_K4V16_primitive_20261024。只修正验证fixture标量数组形状，原CPU契约与writer未改；第二次tianshu_K4V16_primitive_v2_20261024全部通过。读取器由现行r5 f1df主kernel可逆变换，wrapper/reducer AST一致，尚未运行attention性能或模型/Math评测；不采纳到服务。

@@ -1,0 +1,153 @@
+{
+  "complete": true,
+  "phase": "complete",
+  "runner_pid": 49221,
+  "started_at": "2026-10-24T11:58:38.040881+00:00",
+  "frozen_sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K4V16_component_20261024/writer.py": "2ca95e8c93b3ddb37b6bdc056d2750432116d10158c1fa4ababfb01d6a1d4f10",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K4V16_component_20261024/pages.py": "156e9c5fb2d3f922dba0a7697cb5eb2021c72455bb95784741fbf03104b8b2f6",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K4V16_component_20261024/k4_reader.py": "8375f014370bd899c61b0156a66ba8a8f9d52d31b2f8733fa16accca8d9302d8",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K4V16_component_20261024/probe_writer_gpu.py": "e50e0d29ee07ed76de96ada43976e5de8cb24552188cbe0f82dca78869753f98",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K4V16_component_20261024/PLAN_32g.md": "18dec46b2c10d1b838edbde44a501fb4808793ee0b3baa9733f880bbf00d7b00",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K4V16_contract_20261024/codec.py": "a67c4245133db78ccd0d3c60c3aa416718e726af045fe2cf1ec0fd620f12a2a4",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K4V16_contract_20261024/check_cpu.py": "4daa0b85718d153ee2beed4ccfb5f38a684692b7ed1f354062f324a5336f90ba",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K4V16_contract_20261024/CPU_GATE_32g.json": "3ff3a6023a70668ea2c699b0060e6407ed6a45e3b4c5d7bd944201624ca6ed4a",
+    "/usr/local/lib/python3.12/site-packages/triton/language/extra/corex/libdevice.py": "27b2a5d1e8db008bacefe6019f63922bbd65926de90bb1b527ee597477d2f365",
+    "/usr/local/lib/python3.12/site-packages/vllm/v1/kv_cache_interface.py": "7e3c220998267190a622e216b2b125306807cf8be3ec1e9a8e84fe6e7a293003"
+  },
+  "original_CPU_gate_sha256": "3ff3a6023a70668ea2c699b0060e6407ed6a45e3b4c5d7bd944201624ca6ed4a",
+  "cases": [
+    {
+      "strided": false,
+      "phase": 0,
+      "finite_K_patterns": 65280,
+      "all_V_BF16_patterns": 65536,
+      "independent_scalar_rows": 544,
+      "raw_storage_bytes": 199424,
+      "all_raw_bytes_equal": true,
+      "negative_slots": 3,
+      "input_and_padding_unchanged": true,
+      "RNG_unchanged": true,
+      "same_Graph_changed_inputs": false,
+      "actual_writer": {
+        "grid": [
+          275,
+          2
+        ],
+        "num_warps": 1,
+        "num_stages": 1,
+        "n_regs": 9,
+        "n_spills": 0,
+        "binary_sha256": "62666a01bb0521f2ca638af41dc8f6a36f94466855abf413eda3180421217e51"
+      },
+      "artifact": {
+        "path": "/dev/shm/tianshu_K4V16_primitive_v2_20261024/writer_strided0_phase0.npz",
+        "sha256": "19197f67925a0b2fe6f0a15ad040fe1ce4a9fbcb78d7d605a85f0f7eeb2b4eee",
+        "bytes": 484314
+      }
+    },
+    {
+      "strided": false,
+      "phase": 1,
+      "finite_K_patterns": 65280,
+      "all_V_BF16_patterns": 65536,
+      "independent_scalar_rows": 544,
+      "raw_storage_bytes": 199424,
+      "all_raw_bytes_equal": true,
+      "negative_slots": 3,
+      "input_and_padding_unchanged": true,
+      "RNG_unchanged": true,
+      "same_Graph_changed_inputs": true,
+      "actual_writer": {
+        "grid": [
+          275,
+          2
+        ],
+        "num_warps": 1,
+        "num_stages": 1,
+        "n_regs": 9,
+        "n_spills": 0,
+        "binary_sha256": "62666a01bb0521f2ca638af41dc8f6a36f94466855abf413eda3180421217e51"
+      },
+      "artifact": {
+        "path": "/dev/shm/tianshu_K4V16_primitive_v2_20261024/writer_strided0_phase1.npz",
+        "sha256": "37c9486134f51f07f7530a39541ec8c9f77299d238419e8c572d763739ff4fec",
+        "bytes": 499179
+      }
+    },
+    {
+      "strided": true,
+      "phase": 0,
+      "finite_K_patterns": 65280,
+      "all_V_BF16_patterns": 65536,
+      "independent_scalar_rows": 544,
+      "raw_storage_bytes": 398848,
+      "all_raw_bytes_equal": true,
+      "negative_slots": 3,
+      "input_and_padding_unchanged": true,
+      "RNG_unchanged": true,
+      "same_Graph_changed_inputs": false,
+      "actual_writer": {
+        "grid": [
+          275,
+          2
+        ],
+        "num_warps": 1,
+        "num_stages": 1,
+        "n_regs": 9,
+        "n_spills": 0,
+        "binary_sha256": "071b170b91eefd28bff3f4e5d5d70b94aa7529a2668976e65d747528a6d18893"
+      },
+      "artifact": {
+        "path": "/dev/shm/tianshu_K4V16_primitive_v2_20261024/writer_strided1_phase0.npz",
+        "sha256": "2ac912907cc941d2287c1fcb6a7b793981be7c6922cde38a7cbc0db0ce01204b",
+        "bytes": 486130
+      }
+    },
+    {
+      "strided": true,
+      "phase": 1,
+      "finite_K_patterns": 65280,
+      "all_V_BF16_patterns": 65536,
+      "independent_scalar_rows": 544,
+      "raw_storage_bytes": 398848,
+      "all_raw_bytes_equal": true,
+      "negative_slots": 3,
+      "input_and_padding_unchanged": true,
+      "RNG_unchanged": true,
+      "same_Graph_changed_inputs": true,
+      "actual_writer": {
+        "grid": [
+          275,
+          2
+        ],
+        "num_warps": 1,
+        "num_stages": 1,
+        "n_regs": 9,
+        "n_spills": 0,
+        "binary_sha256": "071b170b91eefd28bff3f4e5d5d70b94aa7529a2668976e65d747528a6d18893"
+      },
+      "artifact": {
+        "path": "/dev/shm/tianshu_K4V16_primitive_v2_20261024/writer_strided1_phase1.npz",
+        "sha256": "227d23be2287b9c029702f33e4a82243e5d77a3409d8580a3413dac1056f1b0e",
+        "bytes": 501405
+      }
+    }
+  ],
+  "native_spec": {
+    "actual_FullAttentionSpec_type": "FullAttentionSpec",
+    "real_page_size_bytes": 8192,
+    "page_size_bytes": 10496,
+    "indexes_kv_by_block_stride": true,
+    "raw_KV_mode": "NONE: custom K4 reader, not native INT8 cache format",
+    "actual_reader_mode": "INT8_PER_TOKEN_HEAD ABI reused only in standalone custom reader",
+    "engine_allocator_connected": false
+  },
+  "model_executed": false,
+  "performance_measured": false,
+  "adopted": false,
+  "all_writer_bytes_and_CPU_contract_verified": true,
+  "finite_K_pattern_visits": 261120,
+  "V_BF16_pattern_visits": 262144,
+  "ended_at": "2026-10-24T11:58:44.716365+00:00"
+}
