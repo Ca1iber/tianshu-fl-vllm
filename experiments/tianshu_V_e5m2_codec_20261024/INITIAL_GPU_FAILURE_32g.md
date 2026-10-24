@@ -1,0 +1,7 @@
+# 初次GPU实验：FP16 helper分支编译失败，没有组件性能结果
+
+原始结果/workspace/benchmark-results/20261024_V_e5m2_component_tianshu/result.json保持phase=failed，完成组件场景0。实际进程23760已退出且ixsmi空闲。冻结代码与生成源均保留，不把编译失败称为数值通过或负性能优化。
+
+Triton明确报Inconsistent return types: fp16 and bf16。FP16_PV helper的条件return half之后直接放BF16回退return，编译器仍合并两类返回。该失败出现在256码点FP16解码编译处，未进入writer+decode组件计时。控制流程已越过此前encoder/K不变检查及BF16解码检查，但初版没有逐步保存这些标志，因此不据此宣称完整GPU编码资格。
+
+修复另建tianshu_V_e5m2_codec_v2_20261024，只将回退写成显式else，保持全部量化/舍入/饱和/NaN规则与计算路径要求不变，CPU65536码点与源码范围证明重跑。v2增加逐步codec_progress，遇到后续失败时能保留实际完成范围。原始失败结果和v1代码不改写。

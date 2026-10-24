@@ -1,0 +1,83 @@
+{
+  "complete": false,
+  "phase": "failed",
+  "runner_pid": 23760,
+  "started_utc": "2026-10-24T06:54:16.912084+00:00",
+  "frozen_sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_V_e5m2_codec_20261024/probe_gpu.py": "821459efb0827caa16ce3baaaffb6839e9326ad2ef48a263294f5b38dfe07cb4",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_V_e5m2_codec_20261024/CPU_GATE_32g.json": "674572735c2abe2d0c4658de63e460f374b4d5593da1a0971c3d8b27166738c6",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/component_launch.py": "ebf86912b25e39c052f98698cfbcc385d48f9fd2750aeebe0ab6c7b7ac448a6e",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/legacy_routing.py": "9dae2408de9f77e39350cfd70661e4e282ef0d69f798f968c1886d4172a6dc41",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/dispatch_policy.py": "842d69f6635152afa31d498e6e353e0e5f18bc2d86d89782d4e9db4e32f0157a",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/guard.py": "050e0bcf9f194b8ef32e27d56376623c9cbb3bb3ea13aa8ad80269f7f870209d",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/source.py": "a864b8d71fd2fb0841498b0f92e9f383802b1ffdda8cc5d310711482a039a642",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/value_planes.py": "64f0a0ba89841feb8c091b861d60d687de5d4bdd73c9c7f66476e5cd6ff0d5f0",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_V_e5m2_codec_20261024/check_cpu.py": "ba0c4924ce68a3033b69c61042c55282fec31ea885e79c1ae27d6335c61912d7",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_V_e5m2_codec_20261024/codec.py": "9dfc28e46ef0cd8ee80162515e20d982ae95f1168c5c2a44d2222d29bc56e355",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_V_e5m2_codec_20261024/PARENT_SOURCES_32g.sha256": "d1974069105b34e8bb35da5996217e6761db78a505acf712d804e7f992ffffe7",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/qualified_S16_reader.py": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_soft8_mixed_planes_20261019/writer.py": "27a74d3bdfee978780044eb69025c10a21d92a1b0a8cf567ee9fea1e0b8d12b5",
+    "/workspace/benchmark-results/20261024_V_e5m2_component_tianshu/generated/reader_BF16_PV.py": "83cabd2c664c76a00e7a404c35c7347a73e4b6379c82606bd0c38fdc3d221a5d",
+    "/workspace/benchmark-results/20261024_V_e5m2_component_tianshu/generated/reader_FP16_PV.py": "fea59531f5270bfbcc5d946f8e73d4cf2969d10aa29cd5e61115f4d0a82b433a",
+    "/workspace/benchmark-results/20261024_V_e5m2_component_tianshu/generated/writer.py": "e227da61c7d253a217410591effe961e4f4758465e7475b483783c1a0df977c0",
+    "/usr/local/lib/python3.12/site-packages/torch/__init__.py": "ea188ff62c009a539efe40c781c4070fe1a001a224581eade667ee5b5e4ba095",
+    "/usr/local/lib/python3.12/site-packages/triton/__init__.py": "df3092178f70be89b50d22905cedae5bac414cc38677053616fc56802c91af30"
+  },
+  "source_proofs": {
+    "writer": {
+      "parent_sha256": "27a74d3bdfee978780044eb69025c10a21d92a1b0a8cf567ee9fea1e0b8d12b5",
+      "generated_sha256": "e227da61c7d253a217410591effe961e4f4758465e7475b483783c1a0df977c0",
+      "only_V_encoder_changed": true,
+      "K_encoder_slot_address_and_negative_slot_rules_unchanged": true,
+      "rounding": "nearest ties to even",
+      "saturation": 57344,
+      "NaN": "signed zero",
+      "infinity": "signed saturation",
+      "reserved_codes_never_emitted": true
+    },
+    "BF16_PV": {
+      "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+      "generated_sha256": "83cabd2c664c76a00e7a404c35c7347a73e4b6379c82606bd0c38fdc3d221a5d",
+      "mode": "BF16_PV",
+      "Q_K_score_softmax_AST_unchanged": true,
+      "reducer_AST_unchanged": true,
+      "attention_AST_only_V_helper_call_changed": true,
+      "P_cast_dtype": "BF16 unchanged",
+      "finite_V_codes_exact_in_both_BF16_and_FP16": true
+    },
+    "FP16_PV": {
+      "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+      "generated_sha256": "fea59531f5270bfbcc5d946f8e73d4cf2969d10aa29cd5e61115f4d0a82b433a",
+      "mode": "FP16_PV",
+      "Q_K_score_softmax_AST_unchanged": true,
+      "reducer_AST_unchanged": true,
+      "attention_AST_only_V_helper_call_changed": true,
+      "P_cast_dtype": "FP16 (explicit precision change)",
+      "finite_V_codes_exact_in_both_BF16_and_FP16": true
+    }
+  },
+  "launch_proof": {
+    "legacy_path": "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/legacy_routing.py",
+    "legacy_sha256": "9dae2408de9f77e39350cfd70661e4e282ef0d69f798f968c1886d4172a6dc41",
+    "policy_path": "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/dispatch_policy.py",
+    "policy_sha256": "842d69f6635152afa31d498e6e353e0e5f18bc2d86d89782d4e9db4e32f0157a",
+    "normalized_launch_AST_unchanged": true,
+    "normalization_removes_only_V_dtype_guard_and_shared_metadata_observation": true,
+    "reducer_AST_unchanged": true
+  },
+  "torch_version": "2.10.0",
+  "triton_version": "3.6.0",
+  "GPU": "Iluvatar BI-V150",
+  "cases": [],
+  "codec_validation": {},
+  "engine_allocator_connected": false,
+  "prefill_executed": false,
+  "model_executed": false,
+  "service_executed": false,
+  "official_benchmark": false,
+  "adopted": false,
+  "time_scope": "one KV writer plus one paged decode layer; 9 alternating trials x 20 Graph replays",
+  "error": "CompilationError('def e5m2_decode_all(X, Y):\\n    i = tl.arange(0, 256)\\n    dummy_q = tl.full([256], 0, tl.bfloat16)\\n    tl.store(Y + i, _e5m2_v_cast(tl.load(X + i), dummy_q, None, 0))\\n', <ast.Call object at 0x7db6d14cecd0>, None)",
+  "traceback": "triton.compiler.errors.CompilationError: at 5:4:\ndef _e5m2_v_cast(data, Q, tensor_scale, KV_QUANT_MODE: tl.constexpr):\n    if KV_QUANT_MODE == 0 and data.dtype == tl.uint8:\n        half = (data.to(tl.uint16) << 8).to(tl.float16, bitcast=True)\n        return half\n    return _cast_kv_tile(data, Q, tensor_scale, KV_QUANT_MODE)\n    ^\nTypeError(\"Inconsistent return types: <['256'], fp16> and <['256'], bf16>\")\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/workspace/vllm-plugin-FL/experiments/tianshu_V_e5m2_codec_20261024/probe_gpu.py\", line 157, in main\n    model['reader'].e5m2_decode_all[(1,)](codes, decoded, num_warps=1)\n  File \"/usr/local/lib/python3.12/site-packages/triton/spec/iluvatar/triton/runtime/jit.py\", line 412, in <lambda>\n    return lambda *args, **kwargs: self.run(grid=grid, warmup=False, *args, **kwargs)\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/site-packages/triton/spec/iluvatar/triton/runtime/jit.py\", line 765, in run\n    kernel = self._do_compile(key, signature, device, constexprs, options, attrs, warmup)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/site-packages/triton/spec/iluvatar/triton/runtime/jit.py\", line 894, in _do_compile\n    kernel = self.compile(src, target=target, options=options.__dict__)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/site-packages/triton/spec/iluvatar/triton/compiler/compiler.py\", line 342, in compile\n    module = src.make_ir(target, options, codegen_fns, module_map, context)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/site-packages/triton/spec/iluvatar/triton/compiler/compiler.py\", line 108, in make_ir\n    return ast_to_ttir(self.fn, self, context=context, options=options, codegen_fns=codegen_fns,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ntriton.compiler.errors.CompilationError: at 4:20:\ndef e5m2_decode_all(X, Y):\n    i = tl.arange(0, 256)\n    dummy_q = tl.full([256], 0, tl.bfloat16)\n    tl.store(Y + i, _e5m2_v_cast(tl.load(X + i), dummy_q, None, 0))\n                    ^\n",
+  "ended_utc": "2026-10-24T06:54:18.381122+00:00"
+}
