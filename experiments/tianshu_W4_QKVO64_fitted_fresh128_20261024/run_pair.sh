@@ -7,6 +7,7 @@ ti_c8=/workspace/benchmark-results/20261024_W4_QKVO64_fitted_v2_math8_tianshu
 test ! -e "$ti_pair"
 mkdir -p "$ti_pair/maintenance"
 find experiments/tianshu_W4_QKVO64_fitted_fresh128_20261024 -maxdepth 1 -type f -print0 | sort -z | xargs -0 sha256sum > "$ti_pair/controllers.sha256"
+sha256sum experiments/tianshu_W4_QKVO64_fitted_results_20261024/collect_quality_cpu.py >> "$ti_pair/controllers.sha256"
 trap 'printf "screen_pipeline_exit_code=%s\n" "$?"' EXIT
 printf 'waiting_for_quality_PID14085\n' > "$ti_pair/phase.txt"
 while true; do
@@ -26,6 +27,17 @@ jq -e -s '.[0].frozen_sources==.[1].frozen_sources and .[0].server_command==.[1]
 ti_archive_status=$(ps -p 14473 -o stat= || true)
 test -z "$ti_archive_status" || [[ "$ti_archive_status" == Z* ]]
 grep -q '^storage=persistent_workspace$' experiments/tianshu_W4_QKVO64_fitted_results_20261024/SDK_RAW_ARCHIVE_32g.txt
+printf 'quality_passed_collecting_C8_evidence\n' > "$ti_pair/phase.txt"
+ixsmi | grep -q 'No running processes found'
+python3 -u experiments/tianshu_W4_QKVO64_fitted_results_20261024/collect_quality_cpu.py --batch 8
+ti_c8_archive=/workspace/benchmark-results/20261024_W4_QKVO64_fitted_v2_math8_raw.tar.xz
+test ! -e "$ti_c8_archive"
+XZ_OPT='-T2 --lzma2=preset=6,dict=64MiB' tar -C /workspace/benchmark-results -cJf "$ti_c8_archive" "${ti_c8##*/}"
+tar -C /workspace/benchmark-results -dJf "$ti_c8_archive"
+sha256sum "$ti_c8_archive" > experiments/tianshu_W4_QKVO64_fitted_results_20261024/C8_RAW_ARCHIVE_32g.txt
+stat -c 'bytes=%s' "$ti_c8_archive" >> experiments/tianshu_W4_QKVO64_fitted_results_20261024/C8_RAW_ARCHIVE_32g.txt
+printf 'tar_compare=passed\nSDK_symlink_targets_backed_by=20261024_QKVO64_immutable_SDK_snapshot.tar.xz\n' >> experiments/tianshu_W4_QKVO64_fitted_results_20261024/C8_RAW_ARCHIVE_32g.txt
+printf 'C8 evidence complete; beginning the quality-qualified paired screen.\n'
 for ti_arm in control candidate; do
  printf '%s_preparing\n' "$ti_arm" > "$ti_pair/phase.txt"
  ixsmi | grep -q 'No running processes found'
