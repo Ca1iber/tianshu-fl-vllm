@@ -1,9 +1,11 @@
-# 待实现：当前r5量化KV消费者的BM8/direct候选
+# r5量化KV消费者：独立BM8/direct候选
 
-当前r5实际成对K读取为f1df...，与21日BM8 v2/v3父源完全一致；当前997来源/65环境和实际capture未包含BM8。复用已通过8044544元素bitwise组件资格的BM8 direct及v3 M64-only选择器，只替换IS_3D/N64的query tile16→8、BLOCK_Q2→1、grid96→64，保持K8/V BF16格式、writer、softmax/reducer、分段4、所有W4/W8/RMS/采样及checkpoint。其它M/2D委托原r5。
+两组均保持已发布r5的997个来源和全部W4/W8/RMS/采样/模型权重，父prepare固定candidate；仅本候选的candidate装旧v3 M64-only BM8选择器，control保持r5成对K读取。K8/V BF16、writer、softmax/reducer、分段4不改；IS_3D/N64 query tile16→8、BLOCK_Q2→1、grid96→64，其它M/2D原样委托。旧8044544元素bitwise组件资格和严格机器码签名作为复用前提，不能借用旧模型质量或吞吐成绩。
 
-本目录目前只有计划，没有新模型源码/CPU_GATE、GPU运行或新组合质量。旧短N64+2.4325%与C64 103/105仅为研究依据，旧C8/正式缺失，不能借给r5组合。下一步须新candidate_profile：两模式均先parent_r5.prepare(root,'candidate')，避免parent control关闭QKVO W4而错用r4对照。新增policy应只在candidate装BM8，control保持r5；同一套源与全部既有payload，源快照大SDK仍引用旧独立捕获副本，严禁重建/覆盖该SHM根。
+源与控制器在新CPU_GATE冻结，原r5的997来源逐项保持。source_snapshot新增小文件，大SDK继续引用已经独立捕获的不可变SHM副本；严禁重建/覆盖其根。所有新大输出先放/dev/shm/tianshu_r5_BM8_runs_20261024，正式工作盘只保存代码、报告、关键结果和经校验的紧凑原始档案。禁止主机文件副本。
 
-当前工作盘约125MiB，所有新profile/cache/大输出优先SHM；不复制3份大SDK库。若需要新Inductor缓存，候选自己记录TORCHINDUCTOR_CACHE_DIR指向SHM，不能改已发布r5。新组件/机器码若实际flags不匹配旧canonical签名，先独立验证当前环境，不绕过审核。
+启动时必须核对实际BM8最终JIT源、网格、BLOCK_M/Q、零spill及非debug机器码签名，并与uniform64 Graph capture绑定；真实C64运行必须观察到>=100次Graph重放。旧pair记录在子映射之前，只可证明父路径，不能作为最终BM8核验证据。control与candidate相同模型来源和相同payload，实际QKVO fitted模式两组均candidate。
 
-须新增最终JIT/source/grid/BM/机器码审计，不能用子选择器之前的pair记录充当实际新kernel证据；绑定真实uniform64 Graph capture和运行replay。新C8/C64完整105题>95%，无截断/漏题；同场freshN128每轮不同seed、两组对应seed相同、prefix hit≤1%、零抢占/就绪后autotune，无计时期间CPU准备。达到预定吞吐/TTFT/稳定门槛后才原始N256×4排首轮4K。用户未要求常规16K。保持报告/Git和23:58BJT停止边界。当前r5/tag/正式结果不改。
+新进程分别跑完整C8/C64 Math Level3共105题，每题均计入、>95%，不得使用旧分数。C64质量测试沿用r5质量协议暂时禁用未来KV准入以实际到达64并发，此开关必须记录，不能默认为正式吞吐设置。性能均启用原r5未来准入。同场freshN128每轮独立seed、两组对应seed相同，prefix hit<=1%、零抢占/就绪后autotune、无计时期间CPU准备。预先排首轮，热3轮吞吐极差/均值<1%；候选总吞吐须>对照1%、平均TTFT不得退步>2%，不达标不正式。通过新质量和短测后才原始N256×4排首轮4K，不常规跑16K。23:58北京时间硬停。
+
+本计划定义待验证候选，不代表已采用；最新正式成绩仍为r5 6123.31 total tok/s。旧短N64 +2.4325%及C64 103/105只作研究依据。

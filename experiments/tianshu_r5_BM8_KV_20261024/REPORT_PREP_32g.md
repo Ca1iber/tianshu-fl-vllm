@@ -1,0 +1,3 @@
+# 新组合准备记录
+
+首次CPU准备未通过：旧ABI门禁的model_sources为角色到源码证明对象的映射，并非路径到SHA字典。新候选错误合并该字段导致frozen_check尝试读取相对路径current，FileNotFoundError；未启GPU、未产生模型成绩。失败快照保存在/dev/shm/tianshu_r5_BM8_CPU_20261024_attempt1。只修改新candidate_profile，按每项generated_source/generated_sha256读取，原r5及历史资格文件不改。后续以实际新CPU_GATE是否通过为准。
