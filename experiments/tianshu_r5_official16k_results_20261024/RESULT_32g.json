@@ -1,0 +1,89 @@
+{
+  "complete": true,
+  "profile_name": "r5",
+  "benchmark_case": [
+    16384,
+    1024,
+    64,
+    128
+  ],
+  "source_count": 997,
+  "environment_count": 65,
+  "server_command": [
+    "vllm",
+    "serve",
+    "/workspace/MiniCPM5-2B",
+    "--port",
+    "9031",
+    "--compilation-config",
+    "{\"cudagraph_mode\": \"FULL_DECODE_ONLY\"}",
+    "--served-model-name",
+    "minicpm",
+    "--gpu-memory-utilization",
+    "0.85",
+    "--max-model-len",
+    "131072"
+  ],
+  "quality": {
+    "8": {
+      "correct": 102,
+      "total": 105,
+      "accuracy": 0.9714285714285714,
+      "raw_root": "/workspace/benchmark-results/20261024_W4_QKVO64_fitted_v2_math8_tianshu",
+      "result_sha256": "43fa77b2290a4621f359507348d4e5781cabb48a8af91cb8ddeab89ff5d699f1",
+      "accuracy_audit_sha256": "8484124124e0b52e9a4c19cf35e78133d56991e5f9bf745cadbd9a72d2ef55d1"
+    },
+    "64": {
+      "correct": 101,
+      "total": 105,
+      "accuracy": 0.9619047619047619,
+      "raw_root": "/workspace/benchmark-results/20261024_W4_QKVO64_fitted_v2_math64_tianshu",
+      "result_sha256": "046d57049f61c3af5813cef3ab7397fb24599a8058ae8027d4e6ead56784475c",
+      "accuracy_audit_sha256": "c8d01f333ca0e440d09521dc7b3b30b8c61ca5337dc2e329c1f80aa8e9e4d7d9"
+    }
+  },
+  "preceding_4K_result_sha256": "6811240bd7a38964ef431a63d0eac67492fd043d284cbd56760c856a918d591a",
+  "statistics": {
+    "complete": true,
+    "official": true,
+    "case": [
+      16384,
+      1024,
+      64,
+      128
+    ],
+    "rounds": 4,
+    "excluded_rounds": [
+      1
+    ],
+    "all_requests_succeeded": 512,
+    "total_tok_s": 4140.373333333333,
+    "output_tok_s": 243.54999999999998,
+    "ttft_ms": 118813.72,
+    "hot_spread_percent": 0.13549502782359196,
+    "hot_spread_below1_percent": true,
+    "prefix_hit_fraction": 0.0,
+    "prefix_below1_percent": true,
+    "counters": {
+      "prefix_cache_queries_total": 184745984.0,
+      "prefix_cache_hits_total": 0.0,
+      "num_preemptions_total": 0.0
+    },
+    "zero_preemptions": true,
+    "raw_csv": "/dev/shm/tianshu_official_followup_20261024/16k_r5/benchmark_results/raw_runs_20261024_190949.csv",
+    "raw_csv_sha256": "3509334de3c6cc2a533cff2b351b893ed03944ca8e91f6c107859f627cb36dc7",
+    "summary_csv": "/dev/shm/tianshu_official_followup_20261024/16k_r5/benchmark_results/summary_20261024_190949.csv",
+    "summary_csv_sha256": "88f4ba08107817a5051bbf4f81fe230d0b2eda99b764c616211167869739e48b"
+  },
+  "raw_root": "/dev/shm/tianshu_official_followup_20261024/16k_r5",
+  "adopted_profile_changed": false,
+  "original_checkpoint_unchanged": true,
+  "prior_same_model_4K_total_tok_s": 6123.31,
+  "old_16K_reference_total_tok_s": 3885.91,
+  "change_vs_old_record_percent": 6.5483589000602915,
+  "official_baseline_total_tok_s": 915.15,
+  "official_baseline_mean_TTFT_ms": 599262.03,
+  "multiplier_vs_official_baseline": 4.524256497113406,
+  "TTFT_change_vs_official_percent": -80.1733275175135,
+  "historical_comparison_not_single_variable_AB": true
+}
