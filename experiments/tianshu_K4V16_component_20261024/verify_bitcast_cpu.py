@@ -50,6 +50,22 @@ def main():
     r=json.loads((root/'result.json').read_text());assert r['complete'] and len(r['cases'])==len(fx.CASES)==8
     assert r['FP64_all_output_verification_pending'] and r['numpy_version']==np.__version__
     assert not (BASE/'BITCAST_GPU_GATE_32g.json').exists()
+    primitive=r['decoder_primitive']
+    assert primitive['complete'] and len(primitive['cases'])==4
+    assert primitive==json.loads((root/'decode_primitive/result.json').read_text())
+    assert primitive['generated_source_sha256']==r['reader_proof']['generated_sha256']
+    primitive_outputs=0
+    for unit in primitive['cases']:
+        p=Path(unit['artifact']);assert sha(p)==unit['artifact_sha256']
+        a=np.load(p);packed=a['packed'];assert set(packed.tolist())==set(range(256))
+        q=np.stack(((packed&15).astype(np.int16)-8,(packed>>4).astype(np.int16)-8),axis=-1)
+        expected=fx.bits(q.astype(np.float32)).reshape(-1)
+        assert np.array_equal(a['observed_BF16_bits'],expected) and np.array_equal(a['expected_BF16_bits'],expected)
+        binary=root/'decode_primitive'/f"{unit['stride']}_{unit['binary_sha256']}.bin"
+        assert sha(binary)==unit['binary_sha256']
+        assert unit['bitwise_equal'] and unit['input_and_output_guards'] and unit['RNG_unchanged']
+        primitive_outputs+=expected.size
+    assert primitive_outputs==primitive['total_output_elements']==34816
     for path,h in r['frozen_sources'].items():assert sha(path)==h,path
     assert r['reader_proof']['parent_sha256']=='f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002'
     rows=[];audits=[];total_outputs=0;total_raw=0
@@ -111,6 +127,7 @@ def main():
         qualified_for_model_integration=False,adopted=False,rows=rows,checks=audits,sources=sources,
         native_Spec_count_verified=True,actual_component_page_bytes=10496,component_page_reduction_percent=100*(1-10496/12288),
         engine_allocator_connected=False,model_math_not_run=True,unmodified_current_release='r5')
+    gate.update(bitcast_helper_GPU_verified=True,bitcast_helper_output_elements=primitive_outputs)
     with (BASE/'BITCAST_KEY_RUNS_32g.csv').open('w',newline='') as f:
         w=csv.DictWriter(f,fieldnames=list(rows[0]),lineterminator='\n');w.writeheader();w.writerows(rows)
     (BASE/'BITCAST_GPU_GATE_32g.json').write_text(json.dumps(gate,indent=2)+'\n')
