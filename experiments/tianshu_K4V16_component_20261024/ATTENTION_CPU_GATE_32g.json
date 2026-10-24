@@ -1,0 +1,59 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "reader_proof": {
+    "parent_sha256": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+    "generated_sha256": "986d3f35547ece7705e6feb6a65edd56b73ddd826d8b60c97e77097c0c6a23da",
+    "changed_functions": [
+      "kernel_unified_attention"
+    ],
+    "ABI_identical": true,
+    "wrapper_and_reducer_AST_identical": true,
+    "inverse_exact_source_proof": true,
+    "K4_unpack_and_K_token_scale_only": true,
+    "V_BF16_no_dequantization": true,
+    "supported": "3D, D128, uint8 K4, BF16 V, mode2 scale ABI"
+  },
+  "launch_proof": {
+    "native_path": "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_bm8_abi_20261021/native_launch.py",
+    "native_sha256": "666b8ee252765c63f0aa70bc83f2b4cc614774edb1d81f35d8ac160f4183ce5b",
+    "only_Producer_change": "KV_QUANT_MODE accepted 0 -> 2",
+    "all_launch_computation_AST_identical": true,
+    "original_Reducer_used": true,
+    "selected_C33_segments": 16,
+    "selected_C64_segments": 4
+  },
+  "fixture_mutation_hashes": [
+    [
+      "46154032d6d6f39aad4f37ae8361ded19840e6fc6d0731aa3cd0b88408bbb4ee",
+      "d2d752746f5ddcc881f70f8d23b0cd0c255748b77af1740375d553124bec5d8d",
+      "e220518abd8a2e9c7ef3f2e6d0a766254f2f21c166ca8a19635ca5b23683acbf",
+      "361a1c41bba8696bd21157ba887e1c5a5863bcdd703776a5849fee29ea2977f2"
+    ],
+    [
+      "ca3720e4e8ded667d5f3f412fc0116a376635d5ec12f1da14d87d5413b731742",
+      "18162eae16bbfaed3339753bffb9c96bd635a75c0762d1d6e7532a18a0eb5ea7",
+      "ed18cfc564e13e49edbeeb94657db1ec2ecb361393f6ea6835de008a20b42e10",
+      "acb85307cc49211dd37bb290804980950e2ca559825bd3ecd22866b7a47e9169"
+    ]
+  ],
+  "all_Q_K_V_table_change_verified": true,
+  "planned_cases": 8,
+  "native_page_layout_GPU_primitive_already_verified": true,
+  "model_not_ready": true,
+  "performance_not_claimed": true,
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K4V16_component_20261024/writer.py": "2ca95e8c93b3ddb37b6bdc056d2750432116d10158c1fa4ababfb01d6a1d4f10",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K4V16_component_20261024/pages.py": "156e9c5fb2d3f922dba0a7697cb5eb2021c72455bb95784741fbf03104b8b2f6",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K4V16_component_20261024/k4_reader.py": "8375f014370bd899c61b0156a66ba8a8f9d52d31b2f8733fa16accca8d9302d8",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K4V16_component_20261024/probe_writer_gpu.py": "e50e0d29ee07ed76de96ada43976e5de8cb24552188cbe0f82dca78869753f98",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K4V16_component_20261024/fixtures_cpu.py": "35a6108b46e373751544795845eb82ebe333fbaf4fd0adf2ead3bf241d7374bc",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K4V16_component_20261024/component_launch.py": "473c8a6bfb46d35ccd4293dc7a452fd4943e86de678fae4042012969b6f0c632",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K4V16_component_20261024/probe_attention_gpu.py": "05d4449d7e164438ec68f2c21d82f117f4ddecabd7d448a2c214f5dcd46d7df5",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K4V16_component_20261024/PLAN_32g.md": "18dec46b2c10d1b838edbde44a501fb4808793ee0b3baa9733f880bbf00d7b00",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_K4V16_component_20261024/GPU_WRITER_GATE_32g.json": "bc0642320117a46ed21aa6a7334a87537d3edcdb5e1fc677e693c66ea97bd05e",
+    "/workspace/benchmark-results/20261024_W4_QKVO64_fitted_official4k_tianshu/pair_load_records/generated_reader/generated_pair_rows.py": "f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_bm8_abi_20261021/native_launch.py": "666b8ee252765c63f0aa70bc83f2b4cc614774edb1d81f35d8ac160f4183ce5b",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_pipeline_20261019/dispatch_policy.py": "842d69f6635152afa31d498e6e353e0e5f18bc2d86d89782d4e9db4e32f0157a"
+  }
+}

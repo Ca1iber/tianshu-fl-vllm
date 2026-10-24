@@ -1,0 +1,7 @@
+# 保留全部字节的旧vLLM编译缓存迁移
+
+GPU空闲时，将torch_compile_cache/42f4b0545f和a6db8fcee3两份旧缓存复制到/dev/shm/tianshu_K4V16_vllm_cache_20261024，原路径保留符号链接。迁移前确认两目录均不在r5的997模型源码、BM8扩展源码或384份固定算子缓存中；目录内没有符号链接。
+
+持久盘独立xz备份先完成，与原目录tar compare；解压到SHM后再次tar compare。所有原路径文件的SHA256逐文件一致；r5全部997源码与384份认证缓存迁移前后检查均通过、restored=0/missing=0。只有在备份和替代路径全部验证后，删除临时改名的原缓存副本；所有generated Python模块和AOT数据仍原样存在于原路径。未修改checkpoint、SDK、FlagGems、当前模型或认证Triton缓存。
+
+如果SHM丢失，不启动旧缓存对应实验：先核对PERSISTENT_BACKUP.sha256，再移除这两个已知符号链接，将备份解压回/root/.cache/vllm/torch_compile_cache，最后检查CACHE_FILES.sha256。当前发布r5本身禁用vLLM编译缓存，且其冻结源码完全不依赖这两个目录。
