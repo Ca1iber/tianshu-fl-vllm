@@ -9,3 +9,5 @@ CPU准备已完成：全部84组原始权重/packed/scale/zero参数绑定对应
 新的run_math.sh先全新API跑C64完整105题以覆盖实际Graph64，再全新API跑C8完整105题。使用官方temperature1/top_p.95/max_tokens32768，全部题和到上限输出计入分母，任一批次≤95%停止推进。C64仅未来KV准入设control，确保实际满批覆盖；其余配置一致，不借用O minmax的102/105。完整105验证函数只复用代码，输入必须来自新目录的预测与判题。尚未启动本联合模型，本文不报告其质量或速度。
 
 O minmax新输入N128对照已稳定完成但仅+0.704%，见../tianshu_W4_O64_fresh128_20261024/REPORT_32g.md，不升级正式测试。联合版本若两批质量通过，再按同样跨轮新seed协议筛选；明确提升后才完整N256，不默认跑16K。当前正式最好仍r4 6050.94 total tok/s。
+
+后续存储修复：首次实际落盘在API启动前因2.4GB SDK副本耗尽磁盘，未执行模型；详见../tianshu_W4_QKVO64_fitted_results_20261024/REPORT_INITIAL_PREP_FAILURE_32g.md。v2改为复用3个已校验的独立SDK捕获副本，在真实工作盘完成新预检；来源数更新为996+CPU_GATE=997，量化参数与初版逐字节相同。新GPU输出使用fitted_v2_math64/math8目录，不覆盖失败记录。

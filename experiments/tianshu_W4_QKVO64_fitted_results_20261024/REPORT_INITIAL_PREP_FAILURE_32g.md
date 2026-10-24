@@ -1,0 +1,9 @@
+# 联合版本首次准备失败与快照存储修复
+
+首次任务cc6a002在prepare阶段写source_snapshot时触发OSError28磁盘不足；没有启动API/Engine或Math请求，因此没有GPU质量或性能负例。原始state、初版CPU_GATE/SELECTED与证据SHA保留，本报告不将准备失败记成模型正确率下降。
+
+根因：联合helper合并组件完整来源后包含3个大型SDK动态库，源码快照约2.4GB；初版CPU预检在/dev/shm成功，却未验证实际/workspace只剩约719MiB时的落盘容量。失败时已写快照717MiB，磁盘剩1.6MiB。已终止的失败快照经逐文件SHA记录后迁到/dev/shm并重新校验，原路径以符号链接保留；没有删除或改变原安装SDK、checkpoint或已完成成绩。
+
+修复：3个SDK文件复用初版CPU预检中已经独立复制并完整校验的捕获副本，目标不是正在使用的安装库；原安装库与捕获副本均按同一来源SHA校验。普通代码与JSON仍独立快照，不向共享副本写入。IMMUTABLE_SDK_REFERENCES记录精确路径、大小及SHA，其他来源与原模型计算路径保持。新CPU预检在真实/workspace目录完成两次prepare，检查SDK符号链接和全部来源，工作盘快照约26MiB。新CPU_GATE包括996份来源及自身共997份；原944份保留、65环境/原13argv不变。新旧SELECTED文件逐字节相同，84组量化参数未改变。
+
+后续使用新的fitted_v2_math64/math8输出目录，旧失败状态不覆盖。完整量化组件资格核验不因存储修复重跑，联合模型仍需要全新C64和C8完整105题、正确率>95%。SDK捕获副本的压缩归档另记SDK_RAW_ARCHIVE；所有代码、报告、关键证明保留GitHub，数组与原始预测/判题保留容器。

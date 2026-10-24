@@ -32,9 +32,13 @@ def main():
     selection=dict(complete=True,group_size=128,format='fitted_affine',additional_payload_bytes=210567168,
         no_activation_or_label_calibration=True,checkpoint_not_modified=True,banks=banks)
     (BASE/'SELECTED_BANKS_32g.json').write_text(json.dumps(selection,indent=2)+'\n')
-    root=Path('/dev/shm/tianshu_QKVO64_model_profile_CPU_20261024');root.mkdir()
+    root=Path('/workspace/benchmark-results/20261024_QKVO64_v2_CPU_model_profile_tianshu');root.mkdir()
     command,env,settings,sources=profile.prepare(root,'candidate',check_gate=False)
     assert len(command)==13 and len(settings)==64 and len({**settings,'TRITON_CACHE_DIR':env['TRITON_CACHE_DIR']})==65
+    sdk=profile.read(BASE/"IMMUTABLE_SDK_REFERENCES_32g.json")["references"]
+    for p,ref in sdk.items():
+        captured=root/"source_snapshot"/Path(p).relative_to("/")
+        assert captured.is_symlink() and captured.resolve()==Path(ref["immutable_snapshot"]).resolve()
     assert not any('TIANSHU_O64_AFFINE' in k for k in settings)
     assert settings['TIANSHU_QKVO64_FITTED_MODE']=='candidate'
     gate=dict(complete=True,model_ready=True,model_quality_qualified=False,adopted=False,first_model_GPU_not_run=True,
@@ -42,6 +46,7 @@ def main():
         original_serve_command=command,profile_environment_count=64,actual_environment_count=65,
         all84_selected_component_payload_files_SHA_verified=True,payload_files=payload_files,components=components,
         additional_payload_bytes=210567168,equal_payload_in_control=True,sources=sources,
+        immutable_SDK_reference_count=len(sdk),snapshot_storage_preflight_uses_actual_workspace_filesystem=True,
         checkpoint_SHA256=checkpoint.read_text().split()[0],no_checkpoint_or_structure_change=True)
     (BASE/'CPU_GATE_32g.json').write_text(json.dumps(gate,indent=2)+'\n')
     command2,env2,settings2,sources2=profile.prepare(root,'candidate')

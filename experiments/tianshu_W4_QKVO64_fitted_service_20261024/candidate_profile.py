@@ -53,7 +53,7 @@ def prepare(root,mode='candidate',check_gate=True):
             for key in ('packed_sha256','scale_sha256','zero_sha256','payload_bytes'):assert actual[key]==variant[key]
         for name in ('CPU_GATE_32g.json','INDEPENDENT_CPU_GATE_32g.json','EXECUTION.sha256'):
             p=folder/name;sources[str(p)]=digest(p)
-    paths=set(BASE.rglob('*.py'))|{BASE/'PLAN_32g.md',BASE/'SELECTED_BANKS_32g.json',BASE/'CORE_CPU_GATE_32g.json',BASE/'CHECKPOINT_CPU.sha256',EXP/'tianshu_W4_O64_affine_service_20261024/audit.py'}
+    paths=set(BASE.rglob('*.py'))|{BASE/'PLAN_32g.md',BASE/'SELECTED_BANKS_32g.json',BASE/'CORE_CPU_GATE_32g.json',BASE/'CHECKPOINT_CPU.sha256',BASE/'IMMUTABLE_SDK_REFERENCES_32g.json',EXP/'tianshu_W4_O64_affine_service_20261024/audit.py'}
     paths |= set(BASE.glob("*.sh"))
     merge(sources,{str(p):digest(p) for p in paths})
     frozen_check(sources)
@@ -65,8 +65,22 @@ def prepare(root,mode='candidate',check_gate=True):
         TIANSHU_QKVO64_FITTED_RECORD_DIR=str(root/'QKVO64_fitted_records'))
     assert all(profile[k]==v for k,v in old_profile.items() if k!='PYTHONPATH')
     env.update(profile)
+    references=read(BASE/'IMMUTABLE_SDK_REFERENCES_32g.json')
+    assert references['complete'] and references['independent_captured_copies'] and references['no_live_library_as_link_target']
+    sdk=references['references']
     for p,h in sources.items():
         target=root/'source_snapshot'/Path(p).relative_to('/')
-        target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(Path(p).read_bytes())
+        target.parent.mkdir(parents=True,exist_ok=True)
+        if p in sdk:
+            ref=sdk[p];captured=Path(ref['immutable_snapshot'])
+            assert p not in old_sources and h==ref['sha256']
+            assert captured.resolve().is_relative_to('/dev/shm/tianshu_QKVO64_model_profile_CPU_20261024/source_snapshot')
+            assert captured.is_file() and not captured.is_symlink() and captured.stat().st_size==ref['size_bytes']
+            if target.exists() or target.is_symlink():
+                assert target.is_symlink() and target.resolve()==captured.resolve()
+            else:target.symlink_to(captured)
+        else:
+            assert not target.is_symlink(),'Never overwrite an immutable shared snapshot'
+            target.write_bytes(Path(p).read_bytes())
         assert digest(target)==h
     return command,env,profile,sources
