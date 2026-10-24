@@ -1,0 +1,68 @@
+{
+  "complete": true,
+  "CPU_only": true,
+  "source_scope": {
+    "parent": {
+      "parent_sha256": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+      "generated_sha256": "a0abc83197e9a169f3f7c43d7d69252f0fb8fb214720c453a4b190d689bf28d6",
+      "mode": "FP16_PV",
+      "Q_K_score_softmax_AST_unchanged": true,
+      "reducer_AST_unchanged": true,
+      "attention_AST_only_V_helper_call_changed": true,
+      "P_cast_dtype": "FP16 (explicit precision change)",
+      "finite_V_codes_exact_in_both_BF16_and_FP16": true
+    },
+    "generated_sha256": "c93299397812732642121426be029281a015fa6ff4edbeb63434f6ec758abb0f",
+    "only_nonTD_V_load_and_already_FP16_V_assignment_changed": true,
+    "Q_K_score_softmax_reducer_unchanged": true,
+    "quantizer_unchanged": true,
+    "V_return_dtype": "FP16, same as qualified FP16_PV",
+    "supported": {
+      "HEAD_SIZE": 128,
+      "HEAD_SIZE_PADDED": 128,
+      "last_V_stride": 1,
+      "V_pointer_alignment_bytes": 2,
+      "other_V_byte_strides_even": true,
+      "USE_TD": false,
+      "KV_QUANT_MODE": 0
+    },
+    "no_general_TD_or_strided_head_support_claim": true
+  },
+  "declared_grid": [
+    {
+      "label": "scalar_T32",
+      "loader": "scalar",
+      "segments": 4,
+      "TILE_SIZE": 32,
+      "num_warps": 1
+    },
+    {
+      "label": "pair_T16",
+      "loader": "pair",
+      "segments": 4,
+      "TILE_SIZE": 16,
+      "num_warps": 1
+    },
+    {
+      "label": "pair_T32",
+      "loader": "pair",
+      "segments": 4,
+      "TILE_SIZE": 32,
+      "num_warps": 1
+    }
+  ],
+  "no_Torch_Triton_import_or_GPU_access": true,
+  "word_order_GPU_test_required": true,
+  "GPU_qualification": false,
+  "model_or_service_qualified": false,
+  "adopted": false,
+  "sources": {
+    "/workspace/vllm-plugin-FL/experiments/tianshu_V_e5m2_pair_load_20261024/check_source_cpu.py": "d60409a84a480e640605e453406c7684f0f614432187017db525afbc909477fa",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_V_e5m2_pair_load_20261024/paired_source.py": "d0c56f0586270b444e64ecaf2b6a61707c48f9afa7b56b1ce610e8a884bd8637",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_V_e5m2_pair_load_20261024/launch_sweep.py": "20ce57088e61a2b6234219a06d0483b106379311a163dc7f5a13e1d4f7ecf05f",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_V_e5m2_codec_v2_20261024/codec.py": "9556269f1f1cdd1791905b680210fa93bb89f3a22a934261c6c68f50c9715ac0",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_k8v16_address32_20261020/qualified_S16_reader.py": "7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106",
+    "/workspace/vllm-plugin-FL/experiments/tianshu_V_e5m2_codec_v2_20261024/CPU_GATE_32g.json": "55c63ddb0dd75c10b7373a9dd2a32b4117520ca4b2fda386462f667c2956e2e1",
+    "/usr/local/lib/python3.12/site-packages/triton/language/standard.py": "b1d3f165c2fdafa5de70d90073e19fec47ee16fda6c3553849c431e71c9c752f"
+  }
+}
