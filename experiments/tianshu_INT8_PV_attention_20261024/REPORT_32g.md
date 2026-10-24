@@ -22,3 +22,5 @@
 编译资源：control142regs/0spills/shared8192；V8浮点T16为177/0/8192，浮点T32为256/18/12288；整数T32/W1为254/0/8704，T32/W2为212/0/8704，T64/W2为256/99/13312。n_spills按运行时原单位记录。真实ASM包含ml_matrix_mad_i32_i8_m16n16k32；LLVM有P量化fdiv，ASM有rcp及FMA精度修正。静态证据见STATIC_CODEGEN，不能替代动态硬件counter，也不把全部负收益归因spill或除法。可另立候选隔离P量化的逐元素精确除法成本，改用每行倒数后乘法时须声明新舍入合同并重新验证。
 
 代码、计划、独立partial核验器、关键CSV/JSON及本报告进入天数GitHub；完整原语/实际writer数组、源码副本、IR/ASM、失败日志及原event保留容器，持久压缩档已逐文件tar compare，路径/大小/SHA见RAW_ARCHIVE_32g.txt。原完整通过审核器保留，不修改它来让本次失败冒充成功。
+
+对照范围补充：本实验使用7b94历史合格标量K读取器作组件控制；正式r5使用f1df成对K读取，不能将本组件ms等同r5实际attention成本。详见[当前KV基线说明](../tianshu_framework_status_20261024/CURRENT_KV_BASELINE_NOTE_32g.md)。原始数据、门槛及未采用状态不改。

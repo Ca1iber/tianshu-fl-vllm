@@ -17,3 +17,5 @@
 实际资源两整数版均254regs/0spills/shared8704；control142/0/8192。选定同一连续case编译文件全文件静态计数：LLVM fdiv12→8、ASM rcp4→4、FMA68→60、INT8矩阵指令8→8，见STATIC_CODEGEN。代码确实不同且运算减少，性能没有兑现；没有动态计数器，不将其解释成已经定位其它瓶颈。
 
 原始完整数组/源码副本/IR/ASM/event/日志留容器，持久GPU及CPU压缩档均逐文件tar compare通过，路径/大小/SHA见RAW_ARCHIVE。代码/计划/关键CSV和GATE/报告推天数GitHub。当前正式4K最好仍r5 6123.31total/1224.66output tok/s、TTFT3202.70ms，本轮没有新服务成绩。
+
+对照范围补充：本实验使用7b94历史合格标量K读取器作组件控制；正式r5使用f1df成对K读取，不能将本组件ms等同r5实际attention成本。详见[当前KV基线说明](../tianshu_framework_status_20261024/CURRENT_KV_BASELINE_NOTE_32g.md)。原始数据、门槛及未采用状态不改。

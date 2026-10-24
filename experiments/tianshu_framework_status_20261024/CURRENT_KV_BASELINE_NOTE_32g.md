@@ -1,0 +1,9 @@
+# 24日KV组件对照范围补充
+
+正式r5的原生运行记录明确使用成对K读取。证据为/workspace/benchmark-results/20261024_W4_QKVO64_fitted_official4k_tianshu/pair_load_records/binding_21630.json：installed=true/mode=candidate，捕获uniform64的42次Python层launch选择f1df731bae6cf48d5f38eef0a0adb5863ade2145667aab1ac976b9d473bdb002，grid[96,2,4]、tile16、warp1、stage1、176regs/0spills。父标量读取器为7b94b63e0b33a2775b9c0cd043b51120fbbb6b35a81f5134897e00fbea4cf106。Python捕获次数不等于Graph replay次数。r5的997来源与65环境中未包含BM8，实际捕获路径也未使用BM8 direct映射。
+
+24日若干独立V格式研究采用上述7b94历史合格标量读取器作对照，以固定同一K/QK/launch后只改变V格式或P×V精度。这是组件隔离，不是r5完整attention调用链复现。对应报告中“当前K8/V16”的表述应理解为该实验的对照，不能把0.59ms等组件耗时当作正式r5的实际attention成本，或直接计算相对r5吞吐收益。
+
+涉及V E5M2 v2、页步长、launch扫描、成对V加载、原生FP16 V、整数PV及其每行倒数版本。原始源码/输入/输出/计时、正负结论及未采用状态不改；这些候选没有通过独立推进门槛，未进入正式r5。该说明不改变6123.31正式结果。后续KV模型比较采用实际r5成对读取控制，并保留完整框架/精度/Graph审计。
+
+历史BM8 direct候选有同场N64+2.4325%和旧C64 Math103/105，但因当时用户要求停止而缺少C8及正式N256，未采用。若将它与新r5 W4组合，须固定r5其余997来源/权重/65环境，新增选择器单独审核，再做新C8/C64、fresh-inputN128及原完整4K；旧Math和短测不能当新组合资格。

@@ -18,3 +18,5 @@ B64实际配置同为tile16/warp1/stage1/segments4，寄存器142→156/154，sp
 独立verify_gpu_cpu.py核对全部冻结来源/快照、原始event中位数/变化率、数值与保护记录；没有序列化全部Tensor，不声称离线重新计算完整attention。没有候选满足预声明B64/4K与5K都减时≥5%的条件，所以不接引擎allocator/prefill、不跑新Math或完整服务benchmark。正式r5仍为6123.31 total tok/s，本组件不改r5。
 
 下一项只排查物理page步长：对同一FP16_PV码流/reader/launch分别用8KiB与12KiB页面，与当前K8/V16比较，先隔离布局因素，不预设能改善性能。尚无该排查结果。当前全部CPU/GPU原始生成源、日志与结果保留容器并归档比较，路径与SHA见RAW_ARCHIVE_32g.txt；GitHub仅保存代码、报告和关键结果。
+
+对照范围补充：本实验使用7b94历史合格标量K读取器作组件控制；正式r5使用f1df成对K读取，不能将本组件ms等同r5实际attention成本。详见[当前KV基线说明](../tianshu_framework_status_20261024/CURRENT_KV_BASELINE_NOTE_32g.md)。原始数据、门槛及未采用状态不改。

@@ -17,3 +17,5 @@ GPU两个tile分别检查全部65536个word→131072个rawhalf bit pattern，含
 没有固定配置在4K/5K都胜过控制5%，不进入引擎/Math/正式benchmark。没有改r5，当前正式best6123.31 total tok/s。原始参考记录/源码/IR/ASM/event都留容器并归档逐文件比较，路径和SHA见RAW_ARCHIVE_32g.txt；GitHub只保存代码、报告与关键结果。未序列化全部tensor，不声称离线重算完整attention。
 
 下一步先拆开存储与计算精度：考虑同样12KiB物理页的原生FP16 V存储，与当前BF16 V比较，不再同时加入byte压缩/解包。该方向尚未测试，也没有服务或Math结论。
+
+对照范围补充：本实验使用7b94历史合格标量K读取器作组件控制；正式r5使用f1df成对K读取，不能将本组件ms等同r5实际attention成本。详见[当前KV基线说明](../tianshu_framework_status_20261024/CURRENT_KV_BASELINE_NOTE_32g.md)。原始数据、门槛及未采用状态不改。
